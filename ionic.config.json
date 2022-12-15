@@ -1,0 +1,7 @@
+{
+  "name": "Qivan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
