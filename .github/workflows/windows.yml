@@ -54,8 +54,5 @@ jobs:
     - name: Check lint
       run: npm run lint
 
-    - name: Run tests
-      run: npm run test
-
     - name: Build the app
       run: npm run electron:build
