@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Character</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="char-create">
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Character Information</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input [(ngModel)]="character.name" (keyup.enter)="create()"></ion-input>
+            </ion-item>
+          </ion-card-content>
+          <ion-button expand="block" (click)="create()" [disabled]="!canCreate()">Create</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeMd="4" offsetMd="4">
+        <ion-card>
+          <ion-card-content>
+            Want to choose a different character?
+          </ion-card-content>
+          <ion-button expand="block" routerLink="/" color="secondary">Back</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

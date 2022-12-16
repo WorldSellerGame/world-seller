@@ -4,7 +4,7 @@ import { GameOption, IOptions } from '../../interfaces';
 import { SetOption } from './options.actions';
 
 
-export const defaultOptions = () => ({
+export const defaultOptions: () => IOptions = () => ({
   version: 0,
   [GameOption.DebugMode]: false
 });
