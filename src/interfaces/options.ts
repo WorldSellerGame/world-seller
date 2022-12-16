@@ -4,5 +4,6 @@ export enum GameOption {
 }
 
 export interface IOptions {
+  version: number;
   [GameOption.DebugMode]: boolean;
 }
