@@ -1,15 +1,49 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import { AppComponent } from './app.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsStoragePluginModule, StorageOption } from '@ngxs/storage-plugin';
+import { NgxsModule } from '@ngxs/store';
+
+import * as Stores from '../stores';
+import * as Migrations from '../stores/migrations';
+
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+// migrations must check each key they set and migrate to make sure they don't accidentally migrate twice
+// the version of the state will always be set to 0 when a user opens the application for the first time
+// thus, all migrations will be run on the second load
+
+const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => (Stores as Record<string, any>)[x]);
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
+    NgxsModule.forRoot(allStores, {
+      developmentMode: !isDevMode()
+    }),
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsStoragePluginModule.forRoot({
+      key: allStores,
+      migrations: Object.values(Migrations).flat(),
+      storage: StorageOption.LocalStorage
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot()
+  ],
+
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
