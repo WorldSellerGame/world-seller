@@ -35,6 +35,7 @@
     "@ngxs/logger-plugin": "^3.7.6-dev.master-5f9405c",
     "@ngxs/storage-plugin": "^3.7.6-dev.master-5f9405c",
     "@ngxs/store": "^3.7.6-dev.master-5f9405c",
+    "@seiyria/ngxs-attach-action": "^0.1.3",
     "@trixt0r/ecs": "^0.5.1",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",

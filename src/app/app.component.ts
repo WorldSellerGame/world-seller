@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+import { Store } from '@ngxs/store';
+import { GameOption } from '../interfaces';
+import { SetOption } from '../stores/options/options.actions';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,5 +18,7 @@ export class AppComponent {
   ];
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {  }
+  constructor(private store: Store) {
+    this.store.dispatch(new SetOption(GameOption.DebugMode, false));
+  }
 }
