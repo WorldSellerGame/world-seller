@@ -6,10 +6,21 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 9335",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "changelog:generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog:generate:current": "conventional-changelog -p angular -o CHANGELOG-current.md -r 2",
+    "changelog:commit": "git commit CHANGELOG.md CHANGELOG-current.md -m \"Update changelog\" || true",
+    "preversion": "npm run lint && npm run build",
+    "postversion": "npm run changelog:generate && npm run changelog:generate:current && npm run changelog:commit && npm run version:reversion && npm run push",
+    "version:reversion": "ts-node scripts/postversion.reversion",
+    "push": "git push && git push --tags",
+    "bump:patch": "npm version patch -m \"chore(release): Patch %s\"",
+    "bump:minor": "npm version minor -m \"chore(release): Minor %s\"",
+    "bump:major": "npm version major -m \"chore(release): Major %s\""
   },
   "private": true,
   "dependencies": {
@@ -20,6 +31,8 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "@ionic/angular": "^6.1.9",
+    "@trixt0r/ecs": "^0.5.1",
+    "conventional-changelog-cli": "^2.2.2",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
