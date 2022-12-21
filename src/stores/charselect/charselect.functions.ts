@@ -91,4 +91,6 @@ export function syncTotalLevel(ctx: StateContext<ICharSelect>, { newLevel }: Syn
       lastTotalLevel: newLevel
     }))
   }));
+
+  saveCurrentCharacter(ctx);
 }
