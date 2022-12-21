@@ -6,6 +6,7 @@
           <ion-card-header>
             <ion-card-title>{{ character.name }}</ion-card-title>
             <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
+            <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
 
             <ion-button class="character-actions" fill="clear" (click)="popover.present($event)">
               <ion-icon slot="icon-only" name="settings"></ion-icon>
