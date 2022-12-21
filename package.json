@@ -10,6 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "load:content": "ts-node scripts/content",
+    "build:netlify": "npm run load:content && npm run build",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "changelog:generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog:generate:current": "conventional-changelog -p angular -o CHANGELOG-current.md -r 2",
