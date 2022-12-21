@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <div class="resource-container" *ngFor="let resource of resources$ | async | keyvalue">
+        <app-resource-icon [name]="resource.key" [quantity]="resource.value"></app-resource-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -25,4 +25,14 @@ export class CharSelectState {
     return state.characters;
   }
 
+  @Selector()
+  static activeCharacter(state: ICharSelect) {
+    return state.characters[state.currentCharacter];
+  }
+
+  @Selector()
+  static activeCharacterResources(state: ICharSelect) {
+    return this.activeCharacter(state)?.resources ?? {};
+  }
+
 }

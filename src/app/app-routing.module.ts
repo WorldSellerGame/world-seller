@@ -7,13 +7,27 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'game/:slot',
-    loadChildren: () => import('./pages/game/game.module').then( m => m.GamePageModule)
-  },
-  {
     path: 'new',
     loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
-  }
+  },
+  {
+    path: 'game/:slot',
+    redirectTo: 'game/:slot/dashboard'
+  },
+  {
+    path: 'game/:slot/dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'game/:slot/mining',
+    loadChildren: () => import('./pages/mining/mining.module').then( m => m.MiningPageModule)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: ''
+  },
+
 ];
 
 @NgModule({

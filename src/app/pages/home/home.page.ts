@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
   }
 
   playCharacter(slot: number) {
-    this.router.navigate([`/game/${slot}`]);
+    this.router.navigate([`/game/${slot}/dashboard`]);
   }
 
   async deleteCharacter(slot: number) {

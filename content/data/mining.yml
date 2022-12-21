@@ -1,0 +1,30 @@
+locations:
+  - name: Nearby Quarry
+    description: A small quarry nearby.
+    perGather:
+      min: 5
+      max: 10
+    level:
+      min: 1
+      max: 10
+    gatherTime: 10
+    resources:
+      - name: Clay
+        weight: 1
+      - name: Stone
+        weight: 1
+
+  - name: Long Quarry
+    description: A small quarry nearby that takes a while to gather from.
+    perGather:
+      min: 50
+      max: 100
+    level:
+      min: 1
+      max: 10
+    gatherTime: 100
+    resources:
+      - name: Clay
+        weight: 1
+      - name: Stone
+        weight: 1

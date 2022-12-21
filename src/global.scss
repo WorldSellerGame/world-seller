@@ -28,3 +28,19 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.no-skillups {
+  --color: #888;
+}
+
+.thin-status-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

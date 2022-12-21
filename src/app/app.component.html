@@ -1,1 +1,40 @@
-<router-outlet></router-outlet>
+<ion-app>
+  <ion-split-pane [when]="showMenu" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list class="header" *ngIf="activeCharacter$ | async as character">
+          <ion-list-header>{{ character.name }}</ion-list-header>
+          <ion-note>Level {{ totalLevel | number }}</ion-note>
+        </ion-list>
+
+        <ion-list>
+          <ion-menu-toggle [autoHide]="false">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'dashboard']" lines="none" detail="false" routerLinkActive="selected">
+              <ion-label>Dashboard</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-list-header>Gathering</ion-list-header>
+
+          <ion-menu-toggle [autoHide]="false" *ngFor="let p of gatheringTradeskills; let i = index">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <svg-icon slot="start"
+                        [src]="'assets/icon/' + p.icon + '.svg'"
+                        [svgStyle]="{ 'width.px': 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
+              <ion-label class="has-timer">
+                <span>{{ p.title }}</span>
+                <app-countdown *ngIf="p.timer" [duration]="p.timer | async"></app-countdown>
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list>
+          <ion-list-header>Refining</ion-list-header>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

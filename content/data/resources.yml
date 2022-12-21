@@ -1,0 +1,8 @@
+
+Clay:
+  description: Used to do clay things.
+  icon: 'clay'
+
+Stone:
+  description: Used to do stone things.
+  icon: 'stone'
