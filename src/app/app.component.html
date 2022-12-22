@@ -22,7 +22,7 @@
                         [src]="'assets/icon/' + p.icon + '.svg'"
                         [svgStyle]="{ 'width.px': 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
               <ion-label class="has-timer">
-                <span>{{ p.title }}</span>
+                <span>{{ p.title }} Lv.{{ p.level | async }}</span>
                 <app-countdown *ngIf="p.timer" [duration]="p.timer | async"></app-countdown>
               </ion-label>
             </ion-item>
