@@ -10,7 +10,7 @@ import { CancelFishing, SetFishingLocation } from './fishing.actions';
 
 export const defaultFishing: () => IGameGathering = () => ({
   version: 0,
-  level: 1,
+  level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {}

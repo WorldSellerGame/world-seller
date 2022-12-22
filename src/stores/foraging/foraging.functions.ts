@@ -10,7 +10,7 @@ import { CancelForaging, SetForagingLocation } from './foraging.actions';
 
 export const defaultForaging: () => IGameGathering = () => ({
   version: 0,
-  level: 1,
+  level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {}

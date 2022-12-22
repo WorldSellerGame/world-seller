@@ -10,7 +10,7 @@ import { CancelHunting, SetHuntingLocation } from './hunting.actions';
 
 export const defaultHunting: () => IGameGathering = () => ({
   version: 0,
-  level: 1,
+  level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {}

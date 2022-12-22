@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
 
-  <ng-container *ngIf="level$ | async as skillLevel">
+  <ng-container *ngIf="{ level: level$ | async } as skillLevel">
     <ion-grid>
       <ion-row *ngIf="currentLocation$ | async as currentLocation">
         <ion-col>
@@ -23,7 +23,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(locationData.locations, skillLevel)">
+        <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(locationData.locations, skillLevel.level || 0)">
           <ion-card class="location-card">
             <ion-card-header>
               <ion-card-title>{{ location.name }}</ion-card-title>
@@ -45,7 +45,7 @@
 
             <ion-button fill="clear"
                         *ngIf="!(cooldowns$ | async)?.[location.name]"
-                        [class.no-skillups]="skillLevel >= location.level.max"
+                        [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
                         [disabled]="currentLocation$ | async"
                         (click)="gather(location)">
               Hunt

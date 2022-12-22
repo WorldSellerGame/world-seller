@@ -10,7 +10,7 @@ import { CancelLogging, SetLoggingLocation } from './logging.actions';
 
 export const defaultLogging: () => IGameGathering = () => ({
   version: 0,
-  level: 1,
+  level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {}

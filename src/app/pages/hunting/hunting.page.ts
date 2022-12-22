@@ -24,7 +24,7 @@ export class HuntingPage implements OnInit {
   ngOnInit() {
   }
 
-  visibleLocations(locations: IGameGatherLocation[], currentLevel = 1) {
+  visibleLocations(locations: IGameGatherLocation[], currentLevel = 0) {
     return locations.filter(location => currentLevel >= location.level.min);
   }
 

@@ -5,7 +5,7 @@ locations:
       min: 5
       max: 10
     level:
-      min: 1
+      min: 0
       max: 10
     gatherTime: 10
     resources:
@@ -45,9 +45,9 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
-  
+
   - name: Abandoned Iron Mine
-    description: 
+    description:
     perGather:
       min: 10
       max: 15
@@ -62,7 +62,7 @@ locations:
         weight: 1
 
   - name: Bat Infested Iron Mine
-    description: 
+    description:
     perGather:
       min: 10
       max: 15
@@ -79,7 +79,7 @@ locations:
         weight: 1
 
   - name: Grotto
-    description: 
+    description:
     perGather:
       min: 15
       max: 25
@@ -98,7 +98,7 @@ locations:
         weight: 1
 
   - name: Archaeological Site
-    description: 
+    description:
     perGather:
       min: 3
       max: 5
@@ -117,7 +117,7 @@ locations:
         weight: 1
 
   - name: Deep Depth Mine
-    description: 
+    description:
     perGather:
       min: 25
       max: 50
@@ -138,7 +138,7 @@ locations:
         weight: 1
 
   - name: Achient Dwarven Mine
-    description: 
+    description:
     perGather:
       min: 50
       max: 150
@@ -160,8 +160,8 @@ locations:
       - name: Curse
         weight: 1
 
-  - name: Pile of Cursed Feces 
-    description: 
+  - name: Pile of Cursed Feces
+    description:
     perGather:
       min: 50
       max: 50
