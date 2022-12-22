@@ -1,8 +1,60 @@
 
 Clay:
   description: Used to do clay things.
+  category: Raw Materials
+  rarity: Common
   icon: 'clay'
 
 Stone:
   description: Used to do stone things.
+  category: Raw Materials
+  rarity: Common
   icon: 'stone'
+
+Raspberry:
+  description: Used to do raspberry things.
+  category: Foods
+  rarity: Common
+  icon: 'raspberry'
+
+Raspberry Seed:
+  description: Used to plant raspberries in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Cedar Log:
+  description: Used to do cedar things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Cedar Seed:
+  description: Used to plant cedar trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Bunny Meat:
+  description: Used to do bunny things.
+  category: Foods
+  rarity: Common
+  icon: 'meat'
+
+Bone:
+  description: Used to do bone things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'bone'
+
+Cropfish:
+  description: A really tiny and weak fish.
+  category: Foods
+  rarity: Common
+  icon: 'fish'
+
+Old Boot:
+  description: Used to do boot things.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'old-boot'

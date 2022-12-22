@@ -19,7 +19,11 @@ export class AppComponent implements OnInit, OnDestroy {
   public totalLevel = 0;
 
   public gatheringTradeskills = [
-    { title: 'Mining', url: 'mining', icon: 'mining', timer: this.store.select(state => state.mining.currentLocationDuration) }
+    { title: 'Fishing',   url: 'fishing',   icon: 'fishing',    timer: this.store.select(state => state.fishing.currentLocationDuration) },
+    { title: 'Foraging',  url: 'foraging',  icon: 'foraging',   timer: this.store.select(state => state.foraging.currentLocationDuration) },
+    { title: 'Hunting',   url: 'hunting',   icon: 'hunting',    timer: this.store.select(state => state.hunting.currentLocationDuration) },
+    { title: 'Logging',   url: 'logging',   icon: 'logging',    timer: this.store.select(state => state.logging.currentLocationDuration) },
+    { title: 'Mining',    url: 'mining',    icon: 'mining',     timer: this.store.select(state => state.mining.currentLocationDuration) },
   ];
 
   public refiningTradeskills = [];
