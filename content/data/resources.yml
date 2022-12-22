@@ -6,3 +6,7 @@ Clay:
 Stone:
   description: Used to do stone things.
   icon: 'stone'
+
+Iron:
+  description: Metalic piss
+  icon: 'stone'
