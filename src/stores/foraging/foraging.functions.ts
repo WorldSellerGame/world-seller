@@ -15,6 +15,10 @@ export const defaultForaging: () => IGameGathering = () => ({
   currentLocationDuration: -1
 });
 
+export function resetForaging(ctx: StateContext<IGameGathering>) {
+  ctx.setState(defaultForaging());
+}
+
 export function cancelForaging(ctx: StateContext<IGameGathering>) {
   ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,

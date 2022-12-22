@@ -15,6 +15,10 @@ export const defaultHunting: () => IGameGathering = () => ({
   currentLocationDuration: -1
 });
 
+export function resetHunting(ctx: StateContext<IGameGathering>) {
+  ctx.setState(defaultHunting());
+}
+
 export function cancelHunting(ctx: StateContext<IGameGathering>) {
   ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,

@@ -15,6 +15,10 @@ export const defaultFishing: () => IGameGathering = () => ({
   currentLocationDuration: -1
 });
 
+export function resetFishing(ctx: StateContext<IGameGathering>) {
+  ctx.setState(defaultFishing());
+}
+
 export function cancelFishing(ctx: StateContext<IGameGathering>) {
   ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,

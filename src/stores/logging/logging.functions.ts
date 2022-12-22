@@ -15,6 +15,10 @@ export const defaultLogging: () => IGameGathering = () => ({
   currentLocationDuration: -1
 });
 
+export function resetLogging(ctx: StateContext<IGameGathering>) {
+  ctx.setState(defaultLogging());
+}
+
 export function cancelLogging(ctx: StateContext<IGameGathering>) {
   ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,
