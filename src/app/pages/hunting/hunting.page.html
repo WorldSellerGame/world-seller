@@ -8,8 +8,8 @@
 
   <ng-container *ngIf="{ level: level$ | async } as skillLevel">
     <ion-grid>
-      <ion-row *ngIf="currentLocation$ | async as currentLocation">
-        <ion-col>
+      <ion-row class="status-row">
+        <ion-col *ngIf="currentLocation$ | async as currentLocation">
           <ion-card>
             <ion-card-content class="thin-status-card">
               <div>
