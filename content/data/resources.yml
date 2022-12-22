@@ -1,12 +1,47 @@
 
-Clay:
-  description: Used to do clay things.
-  icon: 'clay'
-
 Stone:
   description: Used to do stone things.
   icon: 'stone'
 
-Iron:
-  description: Metalic piss
-  icon: 'stone'
+Gravel:
+  description: Used to do gravel things.
+  icon: 'gravel'
+
+Sand:
+  description: Used to do sand things.
+  icon: 'sand'
+
+Clay:
+  description: Used to do clay things.
+  icon: 'clay'
+
+Iron Ore:
+  description: Used to do iron things, but later.
+  icon: 'iron-ore'
+
+Adamantite Ore:
+  description: Used to do Adamantite things, but later.
+  icon: 'adamantite-ore'
+
+Crystals:
+  description: Used to do crystal things.
+  icon: 'crystals'
+
+Gems:
+  description: Used to do gems things.
+  icon: 'gems'
+
+Curse:
+  description: Used to do punish you for things.
+  icon: 'curse'
+
+Poo:
+  description: Used to do nothing, suffer you dumbass.
+  icon: 'poo'
+
+#Brandon
+  # semi sorted and in order in the semi sorted sections 
+  # Mostly place holder mats further tiering likely
+  # Silling shit being tabled for fuctionality at the moment
+  # Ps if you wants notes in a certain format do let me know
+
