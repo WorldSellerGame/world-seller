@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 
-import { pickWithWeights } from '../../app/helpers';
+import { isLocationOnCooldown, lowerCooldowns, pickWithWeights, putLocationOnCooldown } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
 import { GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -12,7 +12,8 @@ export const defaultHunting: () => IGameGathering = () => ({
   version: 0,
   level: 1,
   currentLocationDurationInitial: -1,
-  currentLocationDuration: -1
+  currentLocationDuration: -1,
+  cooldowns: {}
 });
 
 export function resetHunting(ctx: StateContext<IGameGathering>) {
@@ -29,6 +30,9 @@ export function cancelHunting(ctx: StateContext<IGameGathering>) {
 
 export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
   const state = ctx.getState();
+
+  lowerCooldowns(ctx, ticks);
+
   if(state.currentLocationDuration < 0 || !state.currentLocation) {
     return;
   }
@@ -47,6 +51,8 @@ export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: T
 
     ctx.dispatch(new GainResources(gainedResources));
 
+    putLocationOnCooldown(ctx, location);
+
     if(location.level.max > state.level) {
       ctx.setState(patch<IGameGathering>({
         level: state.level + 1
@@ -60,6 +66,11 @@ export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: T
 }
 
 export function setHuntingLocation(ctx: StateContext<IGameGathering>, { location }: SetHuntingLocation) {
+
+  if(isLocationOnCooldown(ctx, location)) {
+    return;
+  }
+
   ctx.setState(patch<IGameGathering>({
     currentLocation: location,
     currentLocationDurationInitial: location.gatherTime,

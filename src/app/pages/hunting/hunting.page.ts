@@ -16,6 +16,7 @@ export class HuntingPage implements OnInit {
   public readonly locationData = (locationData as any).default || locationData;
 
   @Select(HuntingState.level) level$!: Observable<number>;
+  @Select(HuntingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(HuntingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
   constructor(private store: Store) { }

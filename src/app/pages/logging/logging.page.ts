@@ -16,6 +16,7 @@ export class LoggingPage implements OnInit {
   public readonly locationData = (locationData as any).default || locationData;
 
   @Select(LoggingState.level) level$!: Observable<number>;
+  @Select(LoggingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(LoggingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
   constructor(private store: Store) { }

@@ -8,6 +8,7 @@ locations:
       min: 1
       max: 10
     gatherTime: 10
+    cooldownTime: 20
     resources:
       - name: Bunny Meat
         weight: 2

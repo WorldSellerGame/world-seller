@@ -34,4 +34,9 @@ export class ForagingState {
     return { location: state.currentLocation, duration: state.currentLocationDuration };
   }
 
+  @Selector()
+  static cooldowns(state: IGameGathering) {
+    return state.cooldowns;
+  }
+
 }

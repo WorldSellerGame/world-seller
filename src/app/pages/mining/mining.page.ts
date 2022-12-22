@@ -17,6 +17,7 @@ export class MiningPage implements OnInit {
   public readonly locationData = (locationData as any).default || locationData;
 
   @Select(MiningState.level) level$!: Observable<number>;
+  @Select(MiningState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(MiningState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
   constructor(private store: Store) { }

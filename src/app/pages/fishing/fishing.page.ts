@@ -16,6 +16,7 @@ export class FishingPage implements OnInit {
   public readonly locationData = (locationData as any).default || locationData;
 
   @Select(FishingState.level) level$!: Observable<number>;
+  @Select(FishingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(FishingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
   constructor(private store: Store) { }

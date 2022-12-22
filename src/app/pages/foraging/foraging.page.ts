@@ -16,6 +16,7 @@ export class ForagingPage implements OnInit {
   public readonly locationData = (locationData as any).default || locationData;
 
   @Select(ForagingState.level) level$!: Observable<number>;
+  @Select(ForagingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(ForagingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
   constructor(private store: Store) { }

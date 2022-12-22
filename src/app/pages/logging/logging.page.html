@@ -37,7 +37,14 @@
               </div>
             </ion-card-content>
 
+            <ion-button fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
+              <ion-spinner color="warning"></ion-spinner>
+              <span class="ion-margin-start ion-margin-end">Cooldown</span>
+              <app-countdown [duration]="cooldown"></app-countdown>
+            </ion-button>
+
             <ion-button fill="clear"
+                        *ngIf="!(cooldowns$ | async)?.[location.name]"
                         [class.no-skillups]="skillLevel >= location.level.max"
                         [disabled]="currentLocation$ | async"
                         (click)="gather(location)">
