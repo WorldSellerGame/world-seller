@@ -3,11 +3,11 @@
 import { Injectable } from '@angular/core';
 import { Selector, State } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { IGameMining } from '../../interfaces';
+import { IGameGathering } from '../../interfaces';
 import { attachments } from './mining.attachments';
 import { defaultMining } from './mining.functions';
 
-@State<IGameMining>({
+@State<IGameGathering>({
   name: 'mining',
   defaults: defaultMining()
 })
@@ -21,12 +21,12 @@ export class MiningState {
   }
 
   @Selector()
-  static level(state: IGameMining) {
+  static level(state: IGameGathering) {
     return state.level;
   }
 
   @Selector()
-  static currentLocation(state: IGameMining) {
+  static currentLocation(state: IGameGathering) {
     if(!state.currentLocation) {
       return undefined;
     }

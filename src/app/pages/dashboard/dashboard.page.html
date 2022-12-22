@@ -5,11 +5,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <div class="resource-container" *ngFor="let resource of resources$ | async | keyvalue">
-        <app-resource-icon [name]="resource.key" [quantity]="resource.value"></app-resource-icon>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <ng-container *ngIf="resources$ | async as resources">
+
+    <ion-card *ngIf="hasNoResources(resources)">
+      <ion-card-content>
+        <p class="no-resources">You have no resources, yet.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!hasNoResources(resources)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of resourceCategories(resources)">
+              <div class="resource-title">{{ resourceCategory }}</div>
+
+              <div class="resource-container" *ngFor="let resource of resourcesInCategory(resources, resourceCategory)">
+                <app-resource-icon [name]="resource" [quantity]="resources[resource]"></app-resource-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
 </ion-content>

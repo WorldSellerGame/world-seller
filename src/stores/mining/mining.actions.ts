@@ -1,8 +1,8 @@
-import { IGameMiningLocation } from '../../interfaces';
+import { IGameGatherLocation } from '../../interfaces';
 
 export class SetMiningLocation {
   static type = '[Mining] Set Mining Location';
-  constructor(public location: IGameMiningLocation) {}
+  constructor(public location: IGameGatherLocation) {}
 }
 
 export class CancelMining {

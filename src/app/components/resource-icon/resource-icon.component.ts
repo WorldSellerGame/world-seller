@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import * as resources from '../../../assets/content/resources.json';
-console.log(resources);
 
 @Component({
   selector: 'app-resource-icon',
@@ -17,6 +16,10 @@ export class ResourceIconComponent implements OnInit {
 
   public get icon() {
     return this.resourceInfo[this.name]?.icon.toLowerCase();
+  }
+
+  public get rarity() {
+    return this.resourceInfo[this.name]?.rarity.toLowerCase();
   }
 
   constructor() { }

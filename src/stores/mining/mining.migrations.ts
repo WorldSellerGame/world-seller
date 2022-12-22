@@ -1,9 +1,9 @@
-import { IGameMining } from '../../interfaces';
+import { IGameGathering } from '../../interfaces';
 
 export const miningStoreMigrations = [
   {
     version: 0,
-    migrate: (state: IGameMining) => ({
+    migrate: (state: IGameGathering) => ({
       ...state,
       version: 1
     })

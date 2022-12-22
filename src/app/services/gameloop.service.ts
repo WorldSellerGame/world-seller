@@ -48,6 +48,7 @@ export class GameloopService {
     this.activeCharacter$.subscribe(character => {
       if(!character) {
         this.stop();
+        this.router.navigate(['/']);
         return;
       }
 
