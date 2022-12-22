@@ -28,3 +28,18 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+
+  - name: Old Monkey Valley
+    description: Monkeys are shitters.
+    perGather:
+      min: 10
+      max: 15
+    level:
+      min: 5
+      max: 15
+    gatherTime: 30
+    resources:
+      - name: Clay
+        weight: 2
+      - name: Stone
+        weight: 1
