@@ -11,6 +11,54 @@ Stone:
   rarity: Common
   icon: 'stone'
 
+Gravel:
+  description: Used to do gravel things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'gravel'
+
+Sand:
+  description: Used to do sand things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'sand'
+
+Iron Ore:
+  description: Used to do iron things, but later.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'iron-ore'
+
+Adamantite Ore:
+  description: Used to do Adamantite things, but later.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'adamantite-ore'
+
+Crystals:
+  description: Used to do crystal things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystals'
+
+Gems:
+  description: Used to do gems things.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'gems'
+
+Curse:
+  description: Used to do punish you for things.
+  category: Miscellaneous 
+  rarity: Junk
+  icon: 'curse'
+
+Poo:
+  description: Used to do nothing, suffer you dumbass.
+  category: Miscellaneous
+  rarity: Junk 
+  icon: 'poo'
+
 Raspberry:
   description: Used to do raspberry things.
   category: Foods

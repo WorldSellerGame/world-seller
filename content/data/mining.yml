@@ -28,3 +28,149 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+
+  - name: Dried Out River Basin
+    description: A place where a river used to flow.
+    perGather:
+      min: 5
+      max: 15
+    level:
+      min: 5
+      max: 15
+    gatherTime: 15
+    resources:
+      - name: Clay
+        weight: 1
+      - name: Sand
+        weight: 1
+      - name: Gravel
+        weight: 1
+  
+  - name: Abandoned Iron Mine
+    description: 
+    perGather:
+      min: 10
+      max: 15
+    level:
+      min: 10
+      max: 20
+    gatherTime: 20
+    resources:
+      - name: Stone
+        weight: 19
+      - name: Iron Ore
+        weight: 1
+
+  - name: Bat Infested Iron Mine
+    description: 
+    perGather:
+      min: 10
+      max: 15
+    level:
+      min: 15
+      max: 20
+    gatherTime: 20
+    resources:
+      - name: Stone
+        weight: 2
+      - name: Iron Ore
+        weight: 1
+      - name: Poo
+        weight: 1
+
+  - name: Grotto
+    description: 
+    perGather:
+      min: 15
+      max: 25
+    level:
+      min: 20
+      max: 35
+    gatherTime: 30
+    resources:
+      - name: Stone
+        weight: 50
+      - name: Sand
+        weight: 5
+      - name: Crystals
+        weight: 10
+      - name: Gems
+        weight: 1
+
+  - name: Archaeological Site
+    description: 
+    perGather:
+      min: 3
+      max: 5
+    level:
+      min: 25
+      max: 40
+    gatherTime: 5
+    resources:
+      - name: Stone
+        weight: 10
+      - name: Gravel
+        weight: 30
+      - name: Gems
+        weight: 10
+      - name: Curse
+        weight: 1
+
+  - name: Deep Depth Mine
+    description: 
+    perGather:
+      min: 25
+      max: 50
+    level:
+      min: 30
+      max: 40
+    gatherTime: 100
+    resources:
+      - name: Stone
+        weight: 70
+      - name: Iron Ore
+        weight: 20
+      - name: Crystal
+        weight: 14
+      - name: Gems
+        weight: 5
+      - name: Adamantite Ore
+        weight: 1
+
+  - name: Achient Dwarven Mine
+    description: 
+    perGather:
+      min: 50
+      max: 150
+    level:
+      min: 35
+      max: 45
+    gatherTime: 150
+    resources:
+      - name: Stone
+        weight: 300
+      - name: Iron Ore
+        weight: 100
+      - name: Crystal
+        weight: 10
+      - name: Gems
+        weight: 20
+      - name: Adamantite Ore
+        weight: 20
+      - name: Curse
+        weight: 1
+
+  - name: Pile of Cursed Feces 
+    description: 
+    perGather:
+      min: 50
+      max: 50
+    level:
+      min: 45
+      max: 45
+    gatherTime: 10
+    resources:
+      - name: Poo
+        weight: 1
+      - name: Curse
+        weight: 1
