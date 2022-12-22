@@ -26,11 +26,11 @@ export class HomePage implements OnInit {
   }
 
   canMakeNewCharacter(characterList: ICharacter[]) {
-    return characterList.length < 4;
+    return characterList.length < 1;
   }
 
-  playCharacter(slot: number) {
-    this.router.navigate([`/game/${slot}/dashboard`]);
+  async playCharacter(slot: number) {
+    await this.router.navigate([`/game/${slot}/dashboard`]);
   }
 
   async deleteCharacter(slot: number) {
