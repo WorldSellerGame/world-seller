@@ -27,7 +27,7 @@ export class DashboardPage implements OnInit {
   }
 
   resourceCategories(resourceHash: Record<string, number>): string[] {
-    return uniq(Object.keys(resourceHash).map(x => this.resources[x].category));
+    return sortBy(uniq(Object.keys(resourceHash).map(x => this.resources[x].category)));
   }
 
   resourcesInCategory(resourceHash: Record<string, number>, category: string): string[] {
