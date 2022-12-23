@@ -7,11 +7,11 @@ import { CharSelectState } from '../../../stores';
 import * as resources from '../../../assets/content/resources.json';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-resources',
+  templateUrl: './resources.page.html',
+  styleUrls: ['./resources.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class ResourcesPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 

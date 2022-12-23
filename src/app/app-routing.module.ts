@@ -11,12 +11,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
   },
   {
-    path: 'game/play-:slot',
-    redirectTo: 'game/:slot/dashboard'
+    path: 'game/:slot',
+    redirectTo: 'game/:slot/resources'
   },
   {
-    path: 'game/:slot/dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    path: 'game/:slot/resources',
+    loadChildren: () => import('./pages/resources/resources.module').then( m => m.ResourcesPageModule)
   },
   {
     path: 'game/:slot/mining',
