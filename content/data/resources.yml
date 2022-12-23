@@ -35,17 +35,17 @@ Adamantite Ore:
   rarity: Rare
   icon: 'adamantite-ore'
 
-Crystals:
+Quartz:
   description: Used to do crystal things.
   category: Raw Materials
   rarity: Uncommon
-  icon: 'crystals'
+  icon: 'quartz'
 
-Gems:
-  description: Used to do gems things.
+Tanzanite:
+  description: Used to do tanzanite things.
   category: Raw Materials
   rarity: Rare
-  icon: 'gems'
+  icon: 'tanzanite'
 
 Curse:
   description: Used to do punish you for things.

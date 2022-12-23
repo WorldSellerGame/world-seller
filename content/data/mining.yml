@@ -45,9 +45,9 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
-
+  
   - name: Abandoned Iron Mine
-    description:
+    description: Mostly mined out minning operation but you can still minorly mine at this mine.
     perGather:
       min: 10
       max: 15
@@ -62,7 +62,7 @@ locations:
         weight: 1
 
   - name: Bat Infested Iron Mine
-    description:
+    description: Despite being rich in ore this cave has had touch by mankind.
     perGather:
       min: 10
       max: 15
@@ -79,7 +79,7 @@ locations:
         weight: 1
 
   - name: Grotto
-    description:
+    description: A naturally formed cave with pools of water.
     perGather:
       min: 15
       max: 25
@@ -92,32 +92,34 @@ locations:
         weight: 50
       - name: Sand
         weight: 5
-      - name: Crystals
+      - name: Quartz
         weight: 10
-      - name: Gems
+      - name: Tanzanite
         weight: 1
 
   - name: Archaeological Site
-    description:
+    description: Anchient loacation that seems to be a resting place for the dead.
     perGather:
       min: 3
       max: 5
     level:
       min: 25
       max: 40
-    gatherTime: 5
+    gatherTime: 15
     resources:
       - name: Stone
         weight: 10
       - name: Gravel
         weight: 30
-      - name: Gems
+      - name: Bone
+        weight: 5
+      - name: Tanzanite
         weight: 10
       - name: Curse
         weight: 1
 
   - name: Deep Depth Mine
-    description:
+    description: Place too deep for most companys to turn a profit
     perGather:
       min: 25
       max: 50
@@ -130,15 +132,15 @@ locations:
         weight: 70
       - name: Iron Ore
         weight: 20
-      - name: Crystal
+      - name: Quartz
         weight: 14
-      - name: Gems
+      - name: Tanzanite
         weight: 5
       - name: Adamantite Ore
         weight: 1
 
   - name: Achient Dwarven Mine
-    description:
+    description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
     perGather:
       min: 50
       max: 150
@@ -151,17 +153,17 @@ locations:
         weight: 300
       - name: Iron Ore
         weight: 100
-      - name: Crystal
+      - name: Quartz
         weight: 10
-      - name: Gems
+      - name: Tanzanite
         weight: 20
       - name: Adamantite Ore
         weight: 20
       - name: Curse
         weight: 1
 
-  - name: Pile of Cursed Feces
-    description:
+  - name: Pile of Cursed Feces 
+    description: Probably best not to mine here
     perGather:
       min: 50
       max: 50
