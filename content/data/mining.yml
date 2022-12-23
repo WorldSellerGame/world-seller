@@ -47,7 +47,7 @@ locations:
         weight: 1
   
   - name: Abandoned Iron Mine
-    description: Mostly mined out minning operation but you can still minorly mine at this mine.
+    description: Mostly mined-out minning operation, but you can still somewhat mine at this mine.
     perGather:
       min: 10
       max: 15
@@ -62,7 +62,7 @@ locations:
         weight: 1
 
   - name: Bat Infested Iron Mine
-    description: Despite being rich in ore this cave has had touch by mankind.
+    description: Despite being rich in ore, this cave hasn't had the touch of mankind.
     perGather:
       min: 10
       max: 15
@@ -98,7 +98,7 @@ locations:
         weight: 1
 
   - name: Archaeological Site
-    description: Anchient loacation that seems to be a resting place for the dead.
+    description: Ancient loacation that doubles as a resting place for the dead.
     perGather:
       min: 3
       max: 5
@@ -119,7 +119,7 @@ locations:
         weight: 1
 
   - name: Deep Depth Mine
-    description: Place too deep for most companys to turn a profit
+    description: Place too deep for most companies to turn a profit.
     perGather:
       min: 25
       max: 50
@@ -163,7 +163,7 @@ locations:
         weight: 1
 
   - name: Pile of Cursed Feces 
-    description: Probably best not to mine here
+    description: Probably best not to mine here.
     perGather:
       min: 50
       max: 50
