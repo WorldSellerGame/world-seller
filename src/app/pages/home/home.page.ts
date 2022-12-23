@@ -29,8 +29,51 @@ export class HomePage implements OnInit {
     return characterList.length < 1;
   }
 
-  async playCharacter(slot: number) {
-    await this.router.navigate([`/game/${slot}/dashboard`]);
+  playCharacter(slot: number) {
+    this.router.navigate([`/game/${slot}/dashboard`]);
+  }
+
+  exportCharacter(slot: number) {
+    this.store.selectOnce(data => data).subscribe(data => {
+      const ignoredKeys: string[] = [];
+
+      const charData = data.charselect.characters[slot];
+      const charName = charData.name;
+
+      const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
+        acc[key] = data[key];
+        return acc;
+      }, {} as any);
+
+      const fileName = `${charName}.qivan`;
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
+      const downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute('href',     dataStr);
+      downloadAnchorNode.setAttribute('download', fileName);
+      downloadAnchorNode.click();
+    });
+  }
+
+  importCharacter(e: any, inputEl: HTMLInputElement) {
+    if (!e || !e.target || !e.target.files) {
+      return;
+    }
+
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const charFile = JSON.parse((ev.target as FileReader).result as string);
+
+      const finish = () => {
+        inputEl.value = '';
+      };
+
+      this.store.reset(charFile);
+      finish();
+    };
+
+    reader.readAsText(file);
   }
 
   async deleteCharacter(slot: number) {

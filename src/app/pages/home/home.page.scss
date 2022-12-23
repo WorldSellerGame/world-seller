@@ -9,3 +9,18 @@
   top: 10px;
   right: 10px;
 }
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .text {
+    flex: 1;
+    text-align: center;
+  }
+
+  ion-button {
+    flex: 2;
+  }
+}

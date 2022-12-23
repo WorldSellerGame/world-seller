@@ -16,6 +16,11 @@
               <ng-template>
                 <ion-content>
                   <ion-list>
+                    <ion-item class="cursor-pointer" (click)="exportCharacter(i)">
+                      <ion-icon slot="start" color="secondary" name="download"></ion-icon>
+                      Export Character
+                    </ion-item>
+
                     <ion-item class="cursor-pointer" (click)="deleteCharacter(i)">
                       <ion-icon slot="start" color="danger" name="trash"></ion-icon>
                       Delete Character
@@ -42,7 +47,14 @@
           <ion-card-content>
             <p>You can only have one character.</p>
           </ion-card-content>
-          <ion-button expand="block" routerLink="/new">Create</ion-button>
+
+          <div class="card-footer">
+            <ion-button expand="block" routerLink="/new">Create</ion-button>
+            <div class="text">or</div>
+            <ion-button expand="block" color="secondary" (click)="characterImporter.click()">Import</ion-button>
+
+            <input type="file" #characterImporter class="hidden" accept=".qivan" (change)="importCharacter($event, characterImporter)"/>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>
