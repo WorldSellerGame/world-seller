@@ -5,7 +5,8 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>{{ character.name }}</ion-card-title>
-            <ion-card-subtitle>Level 0</ion-card-subtitle>
+            <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
+            <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
 
             <ion-button class="character-actions" fill="clear" (click)="popover.present($event)">
               <ion-icon slot="icon-only" name="settings"></ion-icon>
@@ -15,6 +16,11 @@
               <ng-template>
                 <ion-content>
                   <ion-list>
+                    <ion-item class="cursor-pointer" (click)="exportCharacter(i)">
+                      <ion-icon slot="start" color="secondary" name="download"></ion-icon>
+                      Export Character
+                    </ion-item>
+
                     <ion-item class="cursor-pointer" (click)="deleteCharacter(i)">
                       <ion-icon slot="start" color="danger" name="trash"></ion-icon>
                       Delete Character
@@ -39,9 +45,16 @@
             <ion-card-title>Create New Character</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>You can have up to 4 characters.</p>
+            <p>You can only have one character.</p>
           </ion-card-content>
-          <ion-button expand="block" routerLink="/new">Create</ion-button>
+
+          <div class="card-footer">
+            <ion-button expand="block" routerLink="/new">Create</ion-button>
+            <div class="text">or</div>
+            <ion-button expand="block" color="secondary" (click)="characterImporter.click()">Import</ion-button>
+
+            <input type="file" #characterImporter class="hidden" accept=".qivan" (change)="importCharacter($event, characterImporter)"/>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -25,6 +25,49 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "~notiflix/dist/notiflix-3.2.5.min.css";
+
+.hidden {
+  display: none !important;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.no-skillups {
+  --color: #888;
+}
+
+.thin-status-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.junk {
+  color: #666;
+}
+
+.uncommon {
+  color: #0a0;
+}
+
+.rare {
+  color: #3a3ad3;
+}
+
+.epic {
+  color: #a0a;
+}
+
+.legendary {
+  color: #f80;
 }

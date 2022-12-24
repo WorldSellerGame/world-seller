@@ -49,7 +49,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install Dependencies
-      run: npm i --legacy-peer-deps && npm i --legacy-peer-deps -D cli-truncate iconv-corefoundation
+      run: npm i && npm i -D cli-truncate iconv-corefoundation
+
+    - run: npm run load:content
 
     - name: Check lint
       run: npm run lint

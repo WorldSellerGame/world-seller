@@ -1,9 +1,13 @@
 
 
 import { Injectable } from '@angular/core';
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { ICharSelect } from '../../interfaces';
+import { ItemCreatorService } from '../../app/services/item-creator.service';
+import { NotifyService } from '../../app/services/notify.service';
+import { ICharSelect, ICharacter, IGameItem } from '../../interfaces';
+import { GainInventoryItem, GainResources } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -14,7 +18,10 @@ import { defaultCharSelect } from './charselect.functions';
 @Injectable()
 export class CharSelectState {
 
-  constructor() {
+  constructor(
+    private notifyService: NotifyService,
+    private itemCreatorService: ItemCreatorService
+  ) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CharSelectState, action, handler);
     });
@@ -23,6 +30,74 @@ export class CharSelectState {
   @Selector()
   static characters(state: ICharSelect) {
     return state.characters;
+  }
+
+  @Selector()
+  static activeCharacter(state: ICharSelect) {
+    return state.characters[state.currentCharacter];
+  }
+
+  @Selector()
+  static activeCharacterResources(state: ICharSelect) {
+    return this.activeCharacter(state)?.resources ?? {};
+  }
+
+  @Selector()
+  static activeCharacterInventory(state: ICharSelect) {
+    return this.activeCharacter(state)?.inventory ?? {};
+  }
+
+  @Selector()
+  static activeCharacterEquipment(state: ICharSelect) {
+    return this.activeCharacter(state)?.equipment ?? {};
+  }
+
+  @Action(GainResources)
+  async gainResources(ctx: StateContext<ICharSelect>, { resources }: GainResources) {
+    if(Object.keys(resources).some(res => resources[res] < 0)) {
+      return;
+    }
+
+    const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
+    this.notifyService.notify(`Gained ${resStr}!`);
+  }
+
+  @Action(GainInventoryItem)
+  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainInventoryItem) {
+
+    const createdItem = this.itemCreatorService.createItem(itemName, quantity);
+    if(!createdItem) {
+      return;
+    }
+
+    this.notifyService.notify(`Gained ${itemName} x${quantity}!`);
+
+    const state = ctx.getState();
+
+    const existingItem = state.characters[state.currentCharacter].inventory.find(item => item.name === itemName);
+
+    console.log(existingItem, createdItem.canStack);
+
+    if(existingItem && createdItem.canStack) {
+      ctx.setState(patch<ICharSelect>({
+        characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+          inventory: updateItem<IGameItem>(
+            (item) => item?.name === itemName,
+            patch<IGameItem>({
+              quantity: (existingItem.quantity ?? 1) + quantity
+            })
+          )
+        }))
+      }));
+
+      return;
+    }
+
+    ctx.setState(patch<ICharSelect>({
+      characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+        inventory: append<IGameItem>([createdItem])
+      }))
+    }));
   }
 
 }

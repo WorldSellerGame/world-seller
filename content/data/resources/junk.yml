@@ -1,0 +1,18 @@
+
+Old Boot:
+  description: Used to do boot things.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'old-boot'
+
+Curse:
+  description: Used to do punish you for things.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'curse'
+
+Poo:
+  description: Used to do nothing, suffer you dumbass.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'poo'

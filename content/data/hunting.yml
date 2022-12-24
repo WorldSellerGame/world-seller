@@ -1,0 +1,16 @@
+locations:
+  - name: Nearby Forest
+    description: A small forest nearby.
+    perGather:
+      min: 2
+      max: 4
+    level:
+      min: 0
+      max: 10
+    gatherTime: 10
+    cooldownTime: 20
+    resources:
+      - name: Bunny Meat
+        weight: 2
+      - name: Bone
+        weight: 1

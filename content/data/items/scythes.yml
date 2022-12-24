@@ -1,0 +1,11 @@
+
+Stone Scythe:
+  name: Stone Scythe
+  description: A scythe made of stone.
+  type: Scythe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: foraging
+  stats:
+    scythePower: 3

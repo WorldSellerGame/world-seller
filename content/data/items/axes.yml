@@ -1,0 +1,11 @@
+
+Stone Axe:
+  name: Stone Axe
+  description: An axe made of stone.
+  type: Axe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: logging
+  stats:
+    axePower: 3

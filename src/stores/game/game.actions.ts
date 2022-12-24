@@ -1,5 +1,5 @@
 
-export class SetActiveCharacter {
-  static type = '[Game] Set Active Character';
-  constructor(public charSlot: number) {}
+export class TickTimer {
+  static type = '[Game] Tick Timer';
+  constructor(public ticks = 1) {}
 }

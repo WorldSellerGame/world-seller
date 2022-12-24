@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inventory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="inventory$ | async as items">
+
+    <ion-card *ngIf="hasNoItems(items)">
+      <ion-card-content>
+        <p class="no-resources">You have no items, yet.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!hasNoItems(items)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of itemCategories(items)">
+              <div class="resource-title">{{ resourceCategory }}</div>
+
+              <div class="resource-container" *ngFor="let item of itemsInCategory(items, resourceCategory)">
+                <app-item [item]="item"></app-item>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

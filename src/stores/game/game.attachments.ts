@@ -1,8 +1,8 @@
 import { IAttachment } from '../../interfaces/store';
+import { DeleteCharacter } from '../charselect/charselect.actions';
+import { resetGame } from './game.functions';
 
-import { SetActiveCharacter } from './game.actions';
-import { setActiveCharacter } from './game.functions';
 
 export const attachments: IAttachment[] = [
-  { action: SetActiveCharacter, handler: setActiveCharacter }
+  { action: DeleteCharacter, handler: resetGame },
 ];
