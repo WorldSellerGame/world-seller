@@ -48,11 +48,18 @@ ion-item.selected {
   box-shadow: -5px 0px 0px 0px var(--ion-color-primary), 5px 0px 0px 0px var(--ion-color-primary);
 }
 
-app-game-icon {
+app-game-icon:not([slot]) {
   margin-inline-end: 16px;
 }
 
 ion-label.has-timer {
   display: flex;
   justify-content: space-between;
+}
+
+.settings {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  z-index: 100;
 }

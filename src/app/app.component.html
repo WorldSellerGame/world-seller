@@ -3,6 +3,10 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list class="header" *ngIf="activeCharacter$ | async as character">
+          <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']">
+            <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
+          </ion-button>
+
           <ion-list-header>{{ character.name }}</ion-list-header>
           <ion-note>Level {{ totalLevel | number }}</ion-note>
         </ion-list>
