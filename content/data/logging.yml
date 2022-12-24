@@ -107,7 +107,7 @@ locations:
       - name: Ash Seed
         weight: 4
 
- - name: Iron Wood Grove  
+  - name: Iron Wood Grove  
     description: Place to go for some of the hardest lumber available to most people. 
     perGather:
       min: 35
@@ -130,7 +130,7 @@ locations:
       - name: Hophornbeam Seed
         weight: 2
 
- - name: Dryads Chosen Select
+  - name: Dryads Chosen Select
     description: High quality wood in abundance. Best not to upset the owners if you know whats good for you.
     perGather:
       min: 35
@@ -155,7 +155,7 @@ locations:
       - name: Curse
         weight: 1
 
- - name: Old Elvish Woods
+  - name: Old Elvish Woods
     description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people. 
     perGather:
       min: 45
