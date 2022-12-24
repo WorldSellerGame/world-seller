@@ -5,7 +5,7 @@ locations:
       min: 5
       max: 10
     level:
-      min: 1
+      min: 0
       max: 10
     gatherTime: 10
     resources:
@@ -29,17 +29,150 @@ locations:
       - name: Stone
         weight: 1
 
-  - name: Old Monkey Valley
-    description: Monkeys are shitters.
+  - name: Dried Out River Basin
+    description: A place where a river used to flow.
     perGather:
-      min: 10
+      min: 5
       max: 15
     level:
       min: 5
       max: 15
-    gatherTime: 30
+    gatherTime: 15
     resources:
       - name: Clay
-        weight: 2
+        weight: 1
+      - name: Sand
+        weight: 1
+      - name: Gravel
+        weight: 1
+  
+  - name: Abandoned Iron Mine
+    description: Mostly mined-out minning operation, but you can still somewhat mine at this mine.
+    perGather:
+      min: 10
+      max: 15
+    level:
+      min: 10
+      max: 20
+    gatherTime: 20
+    resources:
       - name: Stone
+        weight: 19
+      - name: Iron Ore
+        weight: 1
+
+  - name: Bat Infested Iron Mine
+    description: Despite being rich in ore, this cave hasn't had the touch of mankind.
+    perGather:
+      min: 10
+      max: 15
+    level:
+      min: 15
+      max: 20
+    gatherTime: 20
+    resources:
+      - name: Stone
+        weight: 2
+      - name: Iron Ore
+        weight: 1
+      - name: Poo
+        weight: 1
+
+  - name: Grotto
+    description: A naturally formed cave with pools of water.
+    perGather:
+      min: 15
+      max: 25
+    level:
+      min: 20
+      max: 35
+    gatherTime: 30
+    resources:
+      - name: Stone
+        weight: 50
+      - name: Sand
+        weight: 5
+      - name: Quartz
+        weight: 10
+      - name: Tanzanite
+        weight: 1
+
+  - name: Archaeological Site
+    description: Ancient loacation that doubles as a resting place for the dead.
+    perGather:
+      min: 3
+      max: 5
+    level:
+      min: 25
+      max: 40
+    gatherTime: 15
+    resources:
+      - name: Stone
+        weight: 10
+      - name: Gravel
+        weight: 30
+      - name: Bone
+        weight: 5
+      - name: Tanzanite
+        weight: 10
+      - name: Curse
+        weight: 1
+
+  - name: Deep Depth Mine
+    description: Place too deep for most companies to turn a profit.
+    perGather:
+      min: 25
+      max: 50
+    level:
+      min: 30
+      max: 40
+    gatherTime: 100
+    resources:
+      - name: Stone
+        weight: 70
+      - name: Iron Ore
+        weight: 20
+      - name: Quartz
+        weight: 14
+      - name: Tanzanite
+        weight: 5
+      - name: Adamantite Ore
+        weight: 1
+
+  - name: Achient Dwarven Mine
+    description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
+    perGather:
+      min: 50
+      max: 150
+    level:
+      min: 35
+      max: 45
+    gatherTime: 150
+    resources:
+      - name: Stone
+        weight: 300
+      - name: Iron Ore
+        weight: 100
+      - name: Quartz
+        weight: 10
+      - name: Tanzanite
+        weight: 20
+      - name: Adamantite Ore
+        weight: 20
+      - name: Curse
+        weight: 1
+
+  - name: Pile of Cursed Feces 
+    description: Probably best not to mine here.
+    perGather:
+      min: 50
+      max: 50
+    level:
+      min: 45
+      max: 45
+    gatherTime: 10
+    resources:
+      - name: Poo
+        weight: 1
+      - name: Curse
         weight: 1

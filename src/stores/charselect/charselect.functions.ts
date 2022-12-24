@@ -34,7 +34,7 @@ export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
 }
 
 export function createCharacter(ctx: StateContext<ICharSelect>, { name }: CreateCharacter) {
-  if(ctx.getState().characters.length >= 4) {
+  if(ctx.getState().characters.length >= 1) {
     return;
   }
 

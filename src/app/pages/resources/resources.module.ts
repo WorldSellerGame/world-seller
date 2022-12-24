@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DashboardPageRoutingModule } from './dashboard-routing.module';
+import { ResourcesPageRoutingModule } from './resources-routing.module';
 
 import { SharedModule } from '../../shared.module';
-import { DashboardPage } from './dashboard.page';
+import { ResourcesPage } from './resources.page';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { DashboardPage } from './dashboard.page';
     FormsModule,
     IonicModule,
     SharedModule,
-    DashboardPageRoutingModule
+    ResourcesPageRoutingModule
   ],
-  declarations: [DashboardPage]
+  declarations: [ResourcesPage]
 })
-export class DashboardPageModule {}
+export class ResourcesPageModule {}

@@ -52,7 +52,9 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

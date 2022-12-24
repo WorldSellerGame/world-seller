@@ -6,24 +6,24 @@
 
 <ion-content [fullscreen]="true">
 
-  <ng-container *ngIf="level$ | async as skillLevel">
+  <ng-container *ngIf="{ level: level$ | async } as skillLevel">
     <ion-grid>
-      <ion-row *ngIf="currentLocation$ | async as currentLocation">
-        <ion-col>
+      <ion-row class="status-row">
+        <ion-col *ngIf="currentLocation$ | async as currentLocation">
           <ion-card>
             <ion-card-content class="thin-status-card">
               <div>
                 Gathering from {{ currentLocation.location.name }} for another <strong>{{ currentLocation.duration }}s</strong>.
               </div>
 
-              <ion-button color="danger" fill="clear" (click)="cancelMining()">Cancel</ion-button>
+              <ion-button color="danger" fill="clear" (click)="cancelGather()">Cancel</ion-button>
             </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(miningData.locations, skillLevel)">
+        <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(locationData.locations, skillLevel.level || 0)">
           <ion-card class="location-card">
             <ion-card-header>
               <ion-card-title>{{ location.name }}</ion-card-title>
@@ -37,10 +37,17 @@
               </div>
             </ion-card-content>
 
+            <ion-button fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
+              <ion-spinner color="warning"></ion-spinner>
+              <span class="ion-margin-start ion-margin-end">Cooldown</span>
+              <app-countdown [duration]="cooldown"></app-countdown>
+            </ion-button>
+
             <ion-button fill="clear"
-                        [class.no-skillups]="skillLevel >= location.level.max"
+                        *ngIf="!(cooldowns$ | async)?.[location.name]"
+                        [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
                         [disabled]="currentLocation$ | async"
-                        (click)="mine(location)">
+                        (click)="gather(location)">
               Mine
             </ion-button>
           </ion-card>

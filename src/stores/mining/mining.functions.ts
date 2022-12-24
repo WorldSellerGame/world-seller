@@ -2,36 +2,44 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 
-import { pickWithWeights } from '../../app/helpers';
-import { IGameMining } from '../../interfaces';
+import { isLocationOnCooldown, lowerCooldowns, pickWithWeights, putLocationOnCooldown } from '../../app/helpers';
+import { IGameGathering } from '../../interfaces';
 import { GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { CancelMining, SetMiningLocation } from './mining.actions';
 
-export const defaultMining: () => IGameMining = () => ({
+export const defaultMining: () => IGameGathering = () => ({
   version: 0,
-  level: 1,
+  level: 0,
   currentLocationDurationInitial: -1,
-  currentLocationDuration: -1
+  currentLocationDuration: -1,
+  cooldowns: {}
 });
 
-export function cancelMining(ctx: StateContext<IGameMining>) {
-  ctx.setState(patch<IGameMining>({
+export function resetMining(ctx: StateContext<IGameGathering>) {
+  ctx.setState(defaultMining());
+}
+
+export function cancelMining(ctx: StateContext<IGameGathering>) {
+  ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,
     currentLocationDuration: -1,
     currentLocation: undefined
   }));
 }
 
-export function decreaseDuration(ctx: StateContext<IGameMining>, { ticks }: TickTimer) {
+export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
   const state = ctx.getState();
+
+  lowerCooldowns(ctx, ticks);
+
   if(state.currentLocationDuration < 0 || !state.currentLocation) {
     return;
   }
 
   const newTicks = state.currentLocationDuration - ticks;
 
-  ctx.setState(patch<IGameMining>({
+  ctx.setState(patch<IGameGathering>({
     currentLocationDuration: newTicks
   }));
 
@@ -43,8 +51,10 @@ export function decreaseDuration(ctx: StateContext<IGameMining>, { ticks }: Tick
 
     ctx.dispatch(new GainResources(gainedResources));
 
+    putLocationOnCooldown(ctx, location);
+
     if(location.level.max > state.level) {
-      ctx.setState(patch<IGameMining>({
+      ctx.setState(patch<IGameGathering>({
         level: state.level + 1
       }));
 
@@ -55,8 +65,13 @@ export function decreaseDuration(ctx: StateContext<IGameMining>, { ticks }: Tick
   }
 }
 
-export function setMiningLocation(ctx: StateContext<IGameMining>, { location }: SetMiningLocation) {
-  ctx.setState(patch<IGameMining>({
+export function setMiningLocation(ctx: StateContext<IGameGathering>, { location }: SetMiningLocation) {
+
+  if(isLocationOnCooldown(ctx, location)) {
+    return;
+  }
+
+  ctx.setState(patch<IGameGathering>({
     currentLocation: location,
     currentLocationDurationInitial: location.gatherTime,
     currentLocationDuration: location.gatherTime

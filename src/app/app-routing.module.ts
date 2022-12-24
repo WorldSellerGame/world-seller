@@ -12,22 +12,37 @@ const routes: Routes = [
   },
   {
     path: 'game/:slot',
-    redirectTo: 'game/:slot/dashboard'
+    redirectTo: 'game/:slot/resources'
   },
   {
-    path: 'game/:slot/dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    path: 'game/:slot/resources',
+    loadChildren: () => import('./pages/resources/resources.module').then( m => m.ResourcesPageModule)
   },
   {
     path: 'game/:slot/mining',
     loadChildren: () => import('./pages/mining/mining.module').then( m => m.MiningPageModule)
   },
   {
+    path: 'game/:slot/fishing',
+    loadChildren: () => import('./pages/fishing/fishing.module').then( m => m.FishingPageModule)
+  },
+  {
+    path: 'game/:slot/foraging',
+    loadChildren: () => import('./pages/foraging/foraging.module').then( m => m.ForagingPageModule)
+  },
+  {
+    path: 'game/:slot/logging',
+    loadChildren: () => import('./pages/logging/logging.module').then( m => m.LoggingPageModule)
+  },
+  {
+    path: 'game/:slot/hunting',
+    loadChildren: () => import('./pages/hunting/hunting.module').then( m => m.HuntingPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
-  },
-
+  }
 ];
 
 @NgModule({
