@@ -1,4 +1,16 @@
 
+Pine Log:
+  description: Used to do pine things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Pinecone:
+  description: Used to do plant pine trees in the farm.
+  category: Raw Materials
+  rarity: Common
+  icon: 'seed'
+
 Cedar Log:
   description: Used to do cedar things.
   category: Raw Materials
@@ -11,36 +23,74 @@ Cedar Seed:
   rarity: Common
   icon: 'seed'
 
-#############################################################################################################################
-Pine Log:
-  description: Used to do pine things.
-  category: Raw Materials
-  rarity: Common
-  icon: 'log'
-
-Pinecone:
-  description: Used to do plant pine trees in the farm.
-  category: Raw Materials
-  rarity: Common
-  icon: 'seed'
-
-Pine Log:
-  description: Used to do pine things.
-  category: Raw Materials
-  rarity: Common
-  icon: 'log'
-
-Pinecone:
-  description: Used to do plant pine trees in the farm.
-  category: Raw Materials
-  rarity: Common
-  icon: 'seed'
-
 Apple Wood Log:
-  description: Used to do pine things.
+  description: Hard wood not too useful for tool making, but excellent for cooking.
   category: Raw Materials
   rarity: Common
   icon: 'log'
 
+Apple Seed:
+  description: Used to plant apple trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'apple-seed'
 
+Oak Log:
+  description: Used to do oak things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
 
+Acorn:
+  description: Used to plant oak trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'acorn'
+
+Ash Log:
+  description: Used to do ash things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Ash Seed:
+  description: Used to plant ash trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Hickory Log:
+  description: Ideal material for standard tool handles.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Hickory Nut:
+  description: Used to plant hickory trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'hickory-nut'
+
+Hophornbeam Log:
+  description: Iron wood tree, some of the hardest natural wood avalible.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Hophornbeam Seed:
+  description: Used to plant hophornbeam trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Elvish Silverwood Log:
+  description: Log from an ancient now extinct genus of tree domesticated by the elves long ago. They hold the secret to planting and growing these living fossils. Some of the best material possible for tool crafting.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Elivish Silverwood Seed:
+  description: Used to plant silverwoods in the farm. Getting they to actually grow is nigh impossible.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
