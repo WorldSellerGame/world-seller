@@ -10,6 +10,6 @@ locations:
     gatherTime: 10
     resources:
       - name: Cedar Log
-        weight: 1
+        weight: 5
       - name: Cedar Seed
         weight: 1

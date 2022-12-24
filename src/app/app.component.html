@@ -12,6 +12,9 @@
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected">
               <ion-label>Resources</ion-label>
             </ion-item>
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
+              <ion-label>Inventory</ion-label>
+            </ion-item>
           </ion-menu-toggle>
 
           <ion-list-header>Gathering</ion-list-header>
@@ -23,7 +26,7 @@
                         [svgStyle]="{ 'width.px': 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
               <ion-label class="has-timer">
                 <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                <app-countdown *ngIf="p.timer" [duration]="p.timer | async"></app-countdown>
+                <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
@@ -31,6 +34,18 @@
 
         <ion-list>
           <ion-list-header>Refining</ion-list-header>
+
+          <ion-menu-toggle [autoHide]="false" *ngFor="let p of refiningTradeskills; let i = index">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <svg-icon slot="start"
+                        [src]="'assets/icon/' + p.icon + '.svg'"
+                        [svgStyle]="{ 'width.px': 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
+              <ion-label class="has-timer">
+                <span>{{ p.title }} Lv.{{ p.level | async }}</span>
+                <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>

@@ -1,0 +1,67 @@
+
+Stone Axe:
+  name: Stone Axe
+  description: An axe made of stone.
+  type: Axe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: logging
+  stats:
+    axePower: 3
+
+Stone Pickaxe:
+  name: Stone Pickaxe
+  description: A pickaxe made of stone.
+  type: Pickaxe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: mining
+  stats:
+    pickaxePower: 3
+
+Stone Scythe:
+  name: Stone Scythe
+  description: A scythe made of stone.
+  type: Scythe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: foraging
+  stats:
+    scythePower: 3
+
+Stone Spear:
+  name: Stone Spear
+  description: A hunting spear made of stone.
+  type: HuntingTool
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: hunting
+  stats:
+    huntingPower: 3
+
+Cedar Fishing Rod:
+  name: Cedar Fishing Rod
+  description: A simple fishing rod.
+  type: FishingRod
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: fishing
+  stats:
+    fishingPower: 3
+
+Stone Bait:
+  name: Stone Bait
+  description: Somewhat ineffective bait, but it'll do.
+  type: Fishing Bait
+  category: Tool
+  rarity: Common
+  durability: 50
+  canStack: true
+  icon: fishing
+  stats:
+    fishingSpeed: 3

@@ -1,5 +1,5 @@
-<div *ngIf="duration > 0">
-  <span *ngIf="hours > 0">{{ hours | number:'2.0' }}:</span>
-  <span *ngIf="hours > 0 || minutes > 0">{{ minutes | number:'2.0' }}:</span>
-  <span *ngIf="hours > 0 || minutes > 0 || seconds > 0">{{ seconds | number:'2.0' }}</span>
-</div>
+<span *ngIf="duration > 0">
+  <span *ngIf="hours > 0">{{ hours | number:'2.0' }}h:</span>
+  <span *ngIf="hours > 0 || minutes > 0">{{ minutes | number:'2.0' }}m:</span>
+  <span *ngIf="hours > 0 || minutes > 0 || seconds > 0">{{ seconds | number:'2.0' }}s</span>
+</span>

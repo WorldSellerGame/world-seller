@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 
-import { isLocationOnCooldown, lowerCooldowns, pickWithWeights, putLocationOnCooldown } from '../../app/helpers';
+import { isLocationOnCooldown, lowerGatheringCooldowns, pickWithWeights, putLocationOnCooldown } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
 import { GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -31,7 +31,7 @@ export function cancelHunting(ctx: StateContext<IGameGathering>) {
 export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
   const state = ctx.getState();
 
-  lowerCooldowns(ctx, ticks);
+  lowerGatheringCooldowns(ctx, ticks);
 
   if(state.currentLocationDuration < 0 || !state.currentLocation) {
     return;

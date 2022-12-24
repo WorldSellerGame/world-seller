@@ -19,6 +19,11 @@ export class GainResources {
   constructor(public resources: Record<string, number>) {}
 }
 
+export class GainInventoryItem {
+  static type = '[CharSelect] Gain Inventory Item';
+  constructor(public itemName: string, public quantity = 1) {}
+}
+
 export class SyncTotalLevel {
   static type = '[CharSelect] Sync Total Level';
   constructor(public newLevel = 0) {}

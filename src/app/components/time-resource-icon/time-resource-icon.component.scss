@@ -3,10 +3,6 @@
   display: flex;
   align-items: center;
 
-  &.angry {
-    color: #a00;
-  }
-
   &.emphasis {
     font-weight: bold;
   }
@@ -16,7 +12,7 @@
     margin-right: 10px;
   }
 
-  .name {
-    margin-right: 10px;
+  .quantity {
+    min-width: 40px;
   }
 }

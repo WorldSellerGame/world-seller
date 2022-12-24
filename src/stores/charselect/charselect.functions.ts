@@ -16,7 +16,9 @@ export const defaultCharacter: (name: string) => ICharacter = (name: string) => 
   lastTotalLevel: 0,
   tradeskillLevels: {},
   tradeskillInformation: {},
-  resources: {}
+  resources: {},
+  inventory: [],
+  equipment: {}
 });
 
 export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
@@ -67,7 +69,7 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources }: Gai
       currentCharacter.resources[resource] = 0;
     }
 
-    currentCharacter.resources[resource] += resources[resource];
+    currentCharacter.resources[resource] = Math.max(0, currentCharacter.resources[resource] + resources[resource]);
   });
 
   ctx.setState(patch<ICharSelect>({

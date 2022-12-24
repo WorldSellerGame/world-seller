@@ -1,15 +1,7 @@
 
-.resource-icon {
+.item {
   display: flex;
   align-items: center;
-
-  &.angry {
-    color: #a00;
-  }
-
-  &.emphasis {
-    font-weight: bold;
-  }
 
   .icon {
     display: flex;

@@ -1,8 +1,6 @@
 
-<div class="resource-icon" [ngClass]="[rarity || 'Common']">
-  <svg-icon class="icon"
-            [src]="'assets/icon/' + icon + '.svg'"
-            [svgStyle]="{ 'width.px': 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
-  <strong class="name" *ngIf="name">{{ name }}</strong>
-  <span class="quantity" *ngIf="quantity >= 0">{{ quantity | number }}</span>
+<div class="resource-icon" [ngClass]="[rarity || 'Common', emphasizeText ? 'emphasis' : '', angryColorWhenQuantityExceedsMax && quantity > maxQuantity ? 'angry' : '']">
+  <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
+  <span class="name" *ngIf="name">{{ name }}</span>
+  <span class="quantity" *ngIf="quantity >= 0">{{ showX ? 'x' : '' }}{{ quantity | number }}{{ maxQuantity ? '/' + (maxQuantity | number) : '' }}</span>
 </div>

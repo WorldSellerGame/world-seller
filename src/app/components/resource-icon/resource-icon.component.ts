@@ -13,6 +13,11 @@ export class ResourceIconComponent implements OnInit {
 
   @Input() name = '';
   @Input() quantity = -1;
+  @Input() maxQuantity = 0;
+  @Input() showX = false;
+  @Input() angryColorWhenQuantityExceedsMax = false;
+  @Input() inlineIconSize = false;
+  @Input() emphasizeText = true;
 
   public get icon() {
     return this.resourceInfo[this.name]?.icon.toLowerCase();
