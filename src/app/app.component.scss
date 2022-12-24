@@ -40,8 +40,12 @@ ion-list.header ion-list-header {
   min-height: 20px;
 }
 
+ion-item {
+  margin-left: 5px;
+}
+
 ion-item.selected {
-  border: 1px solid #fff;
+  box-shadow: -5px 0px 0px 0px var(--ion-color-primary), 5px 0px 0px 0px var(--ion-color-primary);
 }
 
 svg-icon {
