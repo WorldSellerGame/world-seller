@@ -6,7 +6,7 @@ Cedar Fishing Rod:
   category: Tool
   rarity: Common
   durability: 50
-  icon: fishing
+  icon: fishingpole
   stats:
     fishingPower: 3
 
@@ -18,6 +18,6 @@ Stone Bait:
   rarity: Common
   durability: 50
   canStack: true
-  icon: fishing
+  icon: fishingpole
   stats:
     fishingSpeed: 3

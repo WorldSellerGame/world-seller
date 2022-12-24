@@ -6,6 +6,6 @@ Stone Axe:
   category: Tool
   rarity: Common
   durability: 50
-  icon: logging
+  icon: axe
   stats:
     axePower: 3

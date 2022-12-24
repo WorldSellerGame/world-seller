@@ -6,6 +6,6 @@ Stone Scythe:
   category: Tool
   rarity: Common
   durability: 50
-  icon: foraging
+  icon: scythe
   stats:
     scythePower: 3
