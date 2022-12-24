@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/resources/resources.module').then( m => m.ResourcesPageModule)
   },
   {
+    path: 'game/:slot/inventory',
+    loadChildren: () => import('./pages/inventory/inventory.module').then( m => m.InventoryPageModule)
+  },
+  {
     path: 'game/:slot/mining',
     loadChildren: () => import('./pages/mining/mining.module').then( m => m.MiningPageModule)
   },
@@ -39,10 +43,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/hunting/hunting.module').then( m => m.HuntingPageModule)
   },
   {
+    path: 'game/:slot/blacksmithing',
+    loadChildren: () => import('./pages/blacksmith/blacksmith.module').then( m => m.BlacksmithPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
   }
+
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { IGameGatherLocation, IGameGathering } from '../../interfaces';
 
-export function lowerCooldowns(ctx: StateContext<IGameGathering>, ticks = 1) {
+export function lowerGatheringCooldowns(ctx: StateContext<IGameGathering>, ticks = 1) {
   const state = ctx.getState();
 
   const cooldowns = state.cooldowns;

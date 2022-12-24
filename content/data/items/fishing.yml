@@ -1,0 +1,23 @@
+
+Cedar Fishing Rod:
+  name: Cedar Fishing Rod
+  description: A simple fishing rod.
+  type: FishingRod
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: fishing
+  stats:
+    fishingPower: 3
+
+Stone Bait:
+  name: Stone Bait
+  description: Somewhat ineffective bait, but it'll do.
+  type: Fishing Bait
+  category: Tool
+  rarity: Common
+  durability: 50
+  canStack: true
+  icon: fishing
+  stats:
+    fishingSpeed: 3

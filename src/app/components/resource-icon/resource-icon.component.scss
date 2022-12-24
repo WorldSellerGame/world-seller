@@ -3,6 +3,14 @@
   display: flex;
   align-items: center;
 
+  &.angry {
+    color: #a00;
+  }
+
+  &.emphasis {
+    font-weight: bold;
+  }
+
   .icon {
     display: flex;
     margin-right: 10px;
@@ -10,29 +18,5 @@
 
   .name {
     margin-right: 10px;
-  }
-
-  &.junk {
-    color: #666;
-  }
-
-  &.common {
-
-  }
-
-  &.uncommon {
-    color: #0a0;
-  }
-
-  &.rare {
-    color: #3a3ad3;
-  }
-
-  &.epic {
-    color: #a0a;
-  }
-
-  &.legendary {
-    color: #f80;
   }
 }

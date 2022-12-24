@@ -1,4 +1,5 @@
 
+export * from './blacksmithing/blacksmithing.migrations';
 export * from './charselect/charselect.migrations';
 export * from './fishing/fishing.migrations';
 export * from './foraging/foraging.migrations';

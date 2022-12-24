@@ -1,11 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
+import { sum } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { ICharacter } from '../interfaces';
+import { ICharacter, IGameRefiningRecipe } from '../interfaces';
 import { CharSelectState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
+
+interface IMenuItem {
+  title: string;
+  url: string;
+  icon: string;
+  timer: Observable<number>;
+  level: Observable<number>;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -18,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public level!: Subscription;
   public totalLevel = 0;
 
-  public gatheringTradeskills = [
+  public gatheringTradeskills: IMenuItem[] = [
     { title: 'Fishing',   url: 'fishing',   icon: 'fishing',
       timer: this.store.select(state => state.fishing.currentLocationDuration),
       level: this.store.select(state => state.fishing.level) },
@@ -40,7 +50,16 @@ export class AppComponent implements OnInit, OnDestroy {
       level: this.store.select(state => state.mining.level) },
   ];
 
-  public refiningTradeskills = [];
+  public refiningTradeskills: IMenuItem[] = [
+
+    { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
+      timer: this.store.select(state => sum(
+        state.blacksmithing.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                        + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.blacksmithing.level) }
+  ];
 
   public get showMenu(): boolean {
     return window.location.href.includes('/game/');

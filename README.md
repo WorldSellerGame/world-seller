@@ -4,7 +4,8 @@
 
 Ensure you have NodeJS v18 (needed for structuredClone).
 
-`npm i`
+1. `npm i`
+2. `npm run load:content`
 
 ## Running the Game
 
@@ -12,6 +13,10 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 
 
 ## Development-related Topics
+
+### Reloading Game Content
+
+`npm run load:content`
 
 ### Creating a New Page
 
