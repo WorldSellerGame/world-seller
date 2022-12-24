@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { GameIconComponent } from './components/game-icon/game-icon.component';
@@ -12,6 +13,7 @@ import { TimeResourceIconComponent } from './components/time-resource-icon/time-
   declarations: [ResourceIconComponent, TimeResourceIconComponent, CountdownComponent, GameIconComponent, ItemComponent],
   imports: [
     CommonModule,
+    NgxTippyModule,
     AngularSvgIconModule
   ],
   exports: [ResourceIconComponent, TimeResourceIconComponent, CountdownComponent, GameIconComponent, ItemComponent]

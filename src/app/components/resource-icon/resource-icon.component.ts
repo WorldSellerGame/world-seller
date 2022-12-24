@@ -27,6 +27,10 @@ export class ResourceIconComponent implements OnInit {
     return this.resourceInfo[this.name]?.rarity.toLowerCase();
   }
 
+  public get description() {
+    return this.resourceInfo[this.name]?.description;
+  }
+
   constructor() { }
 
   ngOnInit() {}
