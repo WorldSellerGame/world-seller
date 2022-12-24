@@ -1,0 +1,12 @@
+
+Bunny Meat:
+  description: Used to do bunny things.
+  category: Foods
+  rarity: Common
+  icon: 'meat'
+
+Bone:
+  description: Used to do bone things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'bone'

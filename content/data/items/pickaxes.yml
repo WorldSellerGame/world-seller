@@ -1,0 +1,11 @@
+
+Stone Pickaxe:
+  name: Stone Pickaxe
+  description: A pickaxe made of stone.
+  type: Pickaxe
+  category: Tool
+  rarity: Common
+  durability: 50
+  icon: mining
+  stats:
+    pickaxePower: 3

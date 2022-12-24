@@ -1,0 +1,12 @@
+
+Cedar Log:
+  description: Used to do cedar things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Cedar Seed:
+  description: Used to plant cedar trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'

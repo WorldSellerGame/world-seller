@@ -1,0 +1,13 @@
+
+
+Raspberry:
+  description: Used to do raspberry things.
+  category: Foods
+  rarity: Common
+  icon: 'raspberry'
+
+Raspberry Seed:
+  description: Used to plant raspberries in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'

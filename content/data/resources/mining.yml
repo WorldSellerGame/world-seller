@@ -1,0 +1,48 @@
+
+Clay:
+  description: Used to do clay things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'clay'
+
+Stone:
+  description: Used to do stone things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'stone'
+
+Gravel:
+  description: Used to do gravel things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'gravel'
+
+Sand:
+  description: Used to do sand things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'sand'
+
+Iron Ore:
+  description: Used to do iron things, but later.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'iron-ore'
+
+Adamantite Ore:
+  description: Used to do Adamantite things, but later.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'adamantite-ore'
+
+Quartz:
+  description: Used to do crystal things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'quartz'
+
+Tanzanite:
+  description: Used to do tanzanite things.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'tanzanite'
