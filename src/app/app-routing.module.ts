@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
   },
   {
+    path: 'game/:slot/settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
     path: 'game/:slot',
     redirectTo: 'game/:slot/resources'
   },

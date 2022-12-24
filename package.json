@@ -43,6 +43,7 @@
     "ionicons": "^6.0.3",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
+    "ngx-tippy-wrapper": "^6.0.0",
     "notiflix": "^3.2.5",
     "recursive-readdir": "^2.2.3",
     "rxjs": "~7.5.0",

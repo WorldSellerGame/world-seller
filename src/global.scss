@@ -27,6 +27,8 @@
 
 @import "~notiflix/dist/notiflix-3.2.5.min.css";
 
+@import '~tippy.js/dist/tippy.css';
+
 .hidden {
   display: none !important;
 }
@@ -43,6 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 70px;
 }
 
 .location-card {

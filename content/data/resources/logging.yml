@@ -1,6 +1,18 @@
 
+Pine Log:
+  description: Good firewood but burns fast.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Pinecone:
+  description: Used to do plant pine trees in the farm.
+  category: Raw Materials
+  rarity: Common
+  icon: 'seed'
+
 Cedar Log:
-  description: Used to do cedar things.
+  description: Reliable enough to use as handles for tools and other manufacturing.
   category: Raw Materials
   rarity: Common
   icon: 'log'
@@ -10,3 +22,81 @@ Cedar Seed:
   category: Seeds
   rarity: Common
   icon: 'seed'
+
+Apple Wood Log:
+  description: Hard wood not too useful for tool making, but excellent for cooking.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Apple Seed:
+  description: Used to plant apple trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'apple-seed'
+
+Oak Log:
+  description: Used to do oak things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'log'
+
+Acorn:
+  description: Used to plant oak trees in the farm.
+  category: Seeds
+  rarity: Uncommon
+  icon: 'acorn'
+
+Ash Log:
+  description: Used to do ash things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'log'
+
+Ash Seed:
+  description: Used to plant ash trees in the farm.
+  category: Seeds
+  rarity: Uncommon
+  icon: 'seed'
+
+Hickory Log:
+  description: Ideal material for standard tool handles.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'log'
+
+Hickory Nut:
+  description: Used to plant hickory trees in the farm.
+  category: Seeds
+  rarity: Rare
+  icon: 'hickory-nut'
+
+Hophornbeam Log:
+  description: Iron wood tree, some of the hardest natural wood avalible.
+  category: Raw Materials
+  rarity: Epic
+  icon: 'log'
+
+Hophornbeam Seed:
+  description: Used to plant hophornbeam trees in the farm.
+  category: Seeds
+  rarity: Epic
+  icon: 'seed'
+
+Elvish Silverwood Log:
+  description: Log from an ancient now extinct genus of tree domesticated by the elves long ago. They hold the secret to planting and growing these living fossils. Some of the best material possible for tool crafting.
+  category: Raw Materials
+  rarity: Legendary
+  icon: 'log'
+
+Elivish Silverwood Seed:
+  description: Used to plant silverwoods in the farm. Getting they to actually grow is nigh impossible.
+  category: Seeds
+  rarity: Legendary
+  icon: 'seed'
+
+
+
+#Brandon
+  #Raritys must be lowered one tier later on for some wood
+  #Testing to make sure the raritys work properly lel

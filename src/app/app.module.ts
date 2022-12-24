@@ -14,6 +14,7 @@ import { NgxsModule } from '@ngxs/store';
 import * as Stores from '../stores';
 import * as Migrations from '../stores/migrations';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    NgxTippyModule,
     SharedModule,
     AngularSvgIconModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {

@@ -11,3 +11,11 @@ Raspberry Seed:
   category: Seeds
   rarity: Common
   icon: 'seed'
+ 
+Apple:
+  description: Used to eat or turn into seeds.
+  category: Food
+  rarity: Common
+  icon: 'apple'
+
+

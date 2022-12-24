@@ -9,15 +9,23 @@
   <ng-container *ngIf="{ level: level$ | async } as skillLevel">
     <ion-grid>
       <ion-row class="status-row">
-        <ion-col *ngIf="currentLocation$ | async as currentLocation">
+        <ion-col>
           <ion-card>
-            <ion-card-content class="thin-status-card">
+            <ion-card-content class="thin-status-card" *ngIf="currentLocation$ | async as currentLocation; else noGathering">
               <div>
                 Gathering from {{ currentLocation.location.name }} for another <strong>{{ currentLocation.duration }}s</strong>.
               </div>
 
               <ion-button color="danger" fill="clear" (click)="cancelGather()">Cancel</ion-button>
             </ion-card-content>
+
+            <ng-template #noGathering>
+              <ion-card-content class="thin-status-card">
+                <div>
+                  You're not currently hunting.
+                </div>
+              </ion-card-content>
+            </ng-template>
           </ion-card>
         </ion-col>
       </ion-row>
