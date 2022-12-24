@@ -1,6 +1,6 @@
 locations:
   - name: Fallen Trees
-    description: Gather up what you can from already dead wood
+    description: Gather up what you can from already dead wood.
     perGather:
       min: 5
       max: 5
@@ -131,7 +131,7 @@ locations:
         weight: 2
 
   - name: Dryads Chosen Select
-    description: High quality wood in abundance. Best not to upset the owners if you know whats good for you.
+    description: High quality wood in abundance. Best not to upset the owners if you know what's good for you.
     perGather:
       min: 35
       max: 45
