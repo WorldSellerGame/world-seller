@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { ICharacter, IGameRefiningRecipe } from '../interfaces';
-import { CharSelectState } from '../stores';
+import { CharSelectState, OptionsState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
@@ -24,6 +24,7 @@ interface IMenuItem {
 export class AppComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(OptionsState.isShrinkSidebar) isShrinkSidebar$!: Observable<boolean>;
 
   public level!: Subscription;
   public totalLevel = 0;
