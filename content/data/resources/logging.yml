@@ -10,3 +10,37 @@ Cedar Seed:
   category: Seeds
   rarity: Common
   icon: 'seed'
+
+#############################################################################################################################
+Pine Log:
+  description: Used to do pine things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Pinecone:
+  description: Used to do plant pine trees in the farm.
+  category: Raw Materials
+  rarity: Common
+  icon: 'seed'
+
+Pine Log:
+  description: Used to do pine things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+Pinecone:
+  description: Used to do plant pine trees in the farm.
+  category: Raw Materials
+  rarity: Common
+  icon: 'seed'
+
+Apple Wood Log:
+  description: Used to do pine things.
+  category: Raw Materials
+  rarity: Common
+  icon: 'log'
+
+
+

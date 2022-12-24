@@ -11,3 +11,15 @@ Raspberry Seed:
   category: Seeds
   rarity: Common
   icon: 'seed'
+ 
+Apple:
+  description: Used to do plant pine trees in the farm.
+  category: Food
+  rarity: Common
+  icon: 'apple'
+
+Apple Seed:
+  description: Used to do plant pine trees in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'apple-seed'
