@@ -76,6 +76,14 @@ export class AppComponent implements OnInit, OnDestroy {
       )),
       level: this.store.select(state => state.cooking.level) },
 
+    { title: 'Jewelcrafting',    url: 'jewelcrafting',    icon: 'jewelcrafting',
+      timer: this.store.select(state => sum(
+        state.jewelcrafting.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                            + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.jewelcrafting.level) },
+
     { title: 'Weaving',    url: 'weaving',    icon: 'weaving',
       timer: this.store.select(state => sum(
         state.weaving.recipeQueue

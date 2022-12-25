@@ -63,6 +63,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cooking/cooking.module').then( m => m.CookingPageModule)
   },
   {
+    path: 'game/:slot/jewelcrafting',
+    loadChildren: () => import('./pages/jewelcrafting/jewelcrafting.module').then( m => m.JewelcraftingPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''

@@ -23,6 +23,12 @@ Sand:
   rarity: Common
   icon: 'sand'
 
+Copper Ore:
+  description: Used to do copper things, but later.
+  category: Raw Materials
+  rarity: Common
+  icon: 'iron-ore'
+
 Iron Ore:
   description: Used to do iron things, but later.
   category: Raw Materials

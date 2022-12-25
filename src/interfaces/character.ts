@@ -7,6 +7,7 @@ export enum ICharacterEquipmentSlot {
   FishingBait = 'fishingBait',
   Scythe = 'scythe',
   HuntingTool = 'huntingTool',
+  Jewelry = 'jewelry',
 }
 
 export interface ICharacter {
