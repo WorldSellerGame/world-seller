@@ -84,36 +84,3 @@ export interface IWeighted {
   weight: number;
   quantity?: number;
 }
-
-export interface IGameGatherLocation {
-  name: string;
-  description: string;
-  perGather: { min: number; max: number };
-  level: { min: number; max: number };
-  gatherTime: number;
-  cooldownTime?: number;
-  resources: IWeighted[];
-}
-
-export interface IGameGathering {
-  version: number;
-  level: number;
-  currentLocation?: IGameGatherLocation;
-  currentLocationDurationInitial: number;
-  currentLocationDuration: number;
-  cooldowns: Record<string, number>;
-}
-
-export interface IGameRefiningRecipe {
-  recipe: IGameRecipe;
-  totalDurationInitial: number;
-  totalLeft: number;
-  durationPer: number;
-  currentDuration: number;
-}
-
-export interface IGameRefining {
-  version: number;
-  level: number;
-  recipeQueue: IGameRefiningRecipe[];
-}
