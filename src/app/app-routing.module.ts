@@ -59,6 +59,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/alchemy/alchemy.module').then( m => m.AlchemyPageModule)
   },
   {
+    path: 'game/:slot/cooking',
+    loadChildren: () => import('./pages/cooking/cooking.module').then( m => m.CookingPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
