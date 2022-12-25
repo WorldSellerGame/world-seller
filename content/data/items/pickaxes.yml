@@ -3,7 +3,7 @@ Stone Pickaxe:
   name: Stone Pickaxe
   description: A pickaxe made of stone.
   type: Pickaxe
-  category: Tool
+  category: Tools
   rarity: Common
   durability: 50
   icon: pickaxe

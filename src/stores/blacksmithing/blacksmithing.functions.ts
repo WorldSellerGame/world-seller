@@ -3,15 +3,14 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
 import { IGameRefining, IGameRefiningRecipe } from '../../interfaces';
-import { GainInventoryItem, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
+import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { CancelBlacksmithingJob, StartBlacksmithingJob } from './blacksmithing.actions';
 
 export const defaultBlacksmithing: () => IGameRefining = () => ({
   version: 0,
   level: 0,
-  recipeQueue: [],
-  cooldowns: {}
+  recipeQueue: []
 });
 
 export function resetBlacksmithing(ctx: StateContext<IGameRefining>) {
@@ -35,7 +34,7 @@ export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: Ti
   if(newTicks <= 0) {
 
     // get a new item
-    ctx.dispatch(new GainInventoryItem(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)));
+    ctx.dispatch(new GainJobResult(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)));
 
     // attempt a level up
     if(job.recipe.level.max > state.level) {

@@ -7,7 +7,7 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { ICharSelect, ICharacter, IGameItem } from '../../interfaces';
-import { GainInventoryItem, GainResources } from './charselect.actions';
+import { GainJobResult, GainResources } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -62,9 +62,17 @@ export class CharSelectState {
     this.notifyService.notify(`Gained ${resStr}!`);
   }
 
-  @Action(GainInventoryItem)
-  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainInventoryItem) {
+  @Action(GainJobResult)
+  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainJobResult) {
 
+    // if it's a resource, gain that
+    const isResource = this.itemCreatorService.isResource(itemName);
+    if(isResource) {
+      ctx.dispatch(new GainResources({ [itemName]: quantity }));
+      return;
+    }
+
+    // otherwise, try to gain an item
     const createdItem = this.itemCreatorService.createItem(itemName, quantity);
     if(!createdItem) {
       return;
@@ -75,8 +83,6 @@ export class CharSelectState {
     const state = ctx.getState();
 
     const existingItem = state.characters[state.currentCharacter].inventory.find(item => item.name === itemName);
-
-    console.log(existingItem, createdItem.canStack);
 
     if(existingItem && createdItem.canStack) {
       ctx.setState(patch<ICharSelect>({

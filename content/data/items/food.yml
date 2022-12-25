@@ -1,0 +1,11 @@
+
+Raspberry Cupcake:
+  name: Raspberry Cupcake
+  description: A cupcake topped with a single raspberry.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  icon: cupcake
+  stats:
+    healing: 50

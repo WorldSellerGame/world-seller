@@ -1,0 +1,11 @@
+
+Linen Gloves:
+  name: Linen Gloves
+  description: Gloves made of linen cloth.
+  type: HandArmor
+  category: Armor
+  rarity: Common
+  durability: 50
+  icon: gloves
+  stats:
+    armor: 1

@@ -8,6 +8,7 @@ import { sortBy } from 'lodash';
 import * as locationData from '../../../assets/content/blacksmithing.json';
 import * as itemsData from '../../../assets/content/items.json';
 import { CancelBlacksmithingJob, StartBlacksmithingJob } from '../../../stores/blacksmithing/blacksmithing.actions';
+import { ItemCreatorService } from '../../services/item-creator.service';
 
 @Component({
   selector: 'app-blacksmith',
@@ -22,12 +23,11 @@ export class BlacksmithPage implements OnInit {
   public amounts: Record<string, number> = {};
 
   @Select(BlacksmithingState.level) level$!: Observable<number>;
-  @Select(BlacksmithingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<IGameRefiningRecipe[]>;
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private itemCreatorService: ItemCreatorService) { }
 
   ngOnInit() {
   }
@@ -37,7 +37,7 @@ export class BlacksmithPage implements OnInit {
   }
 
   iconForRecipe(recipe: IGameRecipe) {
-    return this.itemsData[recipe.result].icon;
+    return this.itemCreatorService.iconFor(recipe.result);
   }
 
   modifyAmount(recipe: IGameRecipe, amount: number) {

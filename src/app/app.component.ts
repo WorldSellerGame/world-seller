@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { ICharacter, IGameRefiningRecipe } from '../interfaces';
-import { CharSelectState } from '../stores';
+import { CharSelectState, OptionsState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
@@ -24,6 +24,7 @@ interface IMenuItem {
 export class AppComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(OptionsState.isShrinkSidebar) isShrinkSidebar$!: Observable<boolean>;
 
   public level!: Subscription;
   public totalLevel = 0;
@@ -51,6 +52,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   public refiningTradeskills: IMenuItem[] = [
+    { title: 'Alchemy',    url: 'alchemy',    icon: 'alchemy',
+      timer: this.store.select(state => sum(
+        state.alchemy.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                          + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.alchemy.level) },
 
     { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
       timer: this.store.select(state => sum(
@@ -58,7 +66,23 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => r.currentDuration
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.blacksmithing.level) }
+      level: this.store.select(state => state.blacksmithing.level) },
+
+    { title: 'Cooking',    url: 'cooking',    icon: 'cooking',
+      timer: this.store.select(state => sum(
+        state.cooking.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                          + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.cooking.level) },
+
+    { title: 'Weaving',    url: 'weaving',    icon: 'weaving',
+      timer: this.store.select(state => sum(
+        state.weaving.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                        + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.weaving.level) }
   ];
 
   public get showMenu(): boolean {

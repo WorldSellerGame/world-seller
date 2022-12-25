@@ -1,55 +1,84 @@
 <ion-app>
-  <ion-split-pane [when]="showMenu" contentId="main-content">
+  <ion-split-pane [when]="showMenu" contentId="main-content" [class.shrink]="isShrinkSidebar$ | async">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list class="header" *ngIf="activeCharacter$ | async as character">
-          <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']">
-            <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
-          </ion-button>
 
-          <ion-list-header>{{ character.name }}</ion-list-header>
-          <ion-note>Level {{ totalLevel | number }}</ion-note>
-        </ion-list>
-
+      <ion-content *ngIf="isShrinkSidebar$ | async; else expandedSidebar">
         <ion-list>
           <ion-menu-toggle [autoHide]="false">
+            <ion-item [routerLink]="['/game', characterSlot, 'settings']">
+              <app-game-icon slot="start" icon="settings"></app-game-icon>
+            </ion-item>
+
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected">
               <app-game-icon slot="start" icon="resources"></app-game-icon>
-              <ion-label>Resources</ion-label>
             </ion-item>
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
               <app-game-icon slot="start" icon="inventory"></app-game-icon>
-              <ion-label>Inventory</ion-label>
             </ion-item>
-          </ion-menu-toggle>
 
-          <ion-list-header>Gathering</ion-list-header>
-
-          <ion-menu-toggle [autoHide]="false" *ngFor="let p of gatheringTradeskills; let i = index">
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of gatheringTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-              <ion-label class="has-timer">
-                <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-              </ion-label>
             </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
 
-        <ion-list>
-          <ion-list-header>Refining</ion-list-header>
-
-          <ion-menu-toggle [autoHide]="false" *ngFor="let p of refiningTradeskills; let i = index">
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of refiningTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-              <ion-label class="has-timer">
-                <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-              </ion-label>
             </ion-item>
+
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+
+      <ng-template #expandedSidebar>
+        <ion-content>
+          <ion-list class="header" *ngIf="activeCharacter$ | async as character">
+            <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']">
+              <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
+            </ion-button>
+
+            <ion-list-header>{{ character.name }}</ion-list-header>
+            <ion-note>Level {{ totalLevel | number }}</ion-note>
+          </ion-list>
+
+          <ion-list>
+            <ion-menu-toggle [autoHide]="false">
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected">
+                <app-game-icon slot="start" icon="resources"></app-game-icon>
+                <ion-label>Resources</ion-label>
+              </ion-item>
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
+                <app-game-icon slot="start" icon="inventory"></app-game-icon>
+                <ion-label>Inventory</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-list-header>Gathering</ion-list-header>
+
+            <ion-menu-toggle [autoHide]="false" *ngFor="let p of gatheringTradeskills; let i = index">
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+                <ion-label class="has-timer">
+                  <span>{{ p.title }} Lv.{{ p.level | async }}</span>
+                  <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+
+          <ion-list>
+            <ion-list-header>Refining</ion-list-header>
+
+            <ion-menu-toggle [autoHide]="false" *ngFor="let p of refiningTradeskills; let i = index">
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+                <ion-label class="has-timer">
+                  <span>{{ p.title }} Lv.{{ p.level | async }}</span>
+                  <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+      </ng-template>
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>

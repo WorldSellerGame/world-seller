@@ -30,9 +30,4 @@ export class BlacksmithingState {
     return state.recipeQueue;
   }
 
-  @Selector()
-  static cooldowns(state: IGameRefining) {
-    return state.cooldowns;
-  }
-
 }

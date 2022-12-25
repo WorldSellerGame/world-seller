@@ -21,7 +21,12 @@ export class OptionsState {
   }
 
   @Selector()
-  static isDebugMode(state: IOptions) {
-    return state[GameOption.DebugMode];
+  static options(state: IOptions) {
+    return state;
+  }
+
+  @Selector()
+  static isShrinkSidebar(state: IOptions) {
+    return state[GameOption.ShrinkSidebar];
   }
 }

@@ -5,16 +5,28 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid *ngIf="options$ | async as options">
     <ion-row>
-      <ion-col>
+      <ion-col sizeMd="4">
         <ion-card>
           <ion-card-header>
             <ion-card-title>Main Settings</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            There are no settings! It's really cool!
+            <ion-list>
+              <ion-item>
+                <ion-label>Debug Mode</ion-label>
+                <ion-toggle slot="end" [checked]="options.debugMode"
+                                       (click)="setOption('debugMode', !options.debugMode)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Shrink Sidebar</ion-label>
+                <ion-toggle slot="end" [checked]="options.shrinkSidebar"
+                                       (click)="setOption('shrinkSidebar', !options.shrinkSidebar)"></ion-toggle>
+              </ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>

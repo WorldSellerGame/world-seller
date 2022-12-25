@@ -1,8 +1,30 @@
 
 
 ion-split-pane {
-  --side-min-width: 200px;
-  --side-max-width: 20%;
+  --side-min-width: 300px;
+  --side-max-width: 22%;
+
+  &.shrink {
+    --side-min-width: 64px;
+    --side-max-width: 64px;
+
+    ion-content {
+      --padding-start: 0;
+      --padding-top: 8px;
+
+      ion-list {
+        padding: 0 !important;
+
+        ion-item {
+          margin: 0;
+
+          app-game-icon {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
 }
 
 ion-menu ion-content {

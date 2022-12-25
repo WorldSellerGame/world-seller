@@ -13,3 +13,5 @@ locations:
         weight: 5
       - name: Raspberry Seed
         weight: 1
+      - name: Plant Fiber
+        weight: 3

@@ -1,0 +1,16 @@
+
+recipes:
+  - result: Flour
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Plant Fiber: 1
+
+  - result: Raspberry Cupcake
+    perCraft: { min: 1, max: 1 }
+    level: { min: 1, max: 11 }
+    craftTime: 90
+    ingredients:
+      Flour: 2
+      Raspberry: 1
