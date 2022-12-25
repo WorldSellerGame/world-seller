@@ -24,7 +24,7 @@ Frog:
   icon: 'frog'
 
 Trout:
-  description: "A new age of darkness? ...This Will Affect the Trout Population"
+  description: "A new age of darkness? ...This will affect the trout population."
   category: Foods
   rarity: Uncommon
   icon: 'fish'
@@ -36,7 +36,7 @@ Bass:
   icon: 'fish'
 
 Catfish:
-  description: Rare in these parts, but the species present grow huge. The taste isnt for everyone though. #Catfish cheeks are a a delicacy look it up
+  description: Rare in these parts, but the species present grow huge. The taste isn't for everyone though. #Catfish cheeks are a a delicacy look it up
   category: Foods
   rarity: Rare
   icon: 'fish'
@@ -48,7 +48,7 @@ Magical Frog:
   icon: 'magical-frog'
 
 Sardine:
-  description: Tiny but neumerous and can be eaten whole
+  description: Tiny but numerous and can be eaten whole.
   category: Foods
   rarity: Common
   icon: 'many-fish'
@@ -60,7 +60,7 @@ Pompano:
   icon: 'ocean-fish'
 
 Pufferfish:
-  description: Best not to be eaten unless your a master chef. Even then is it worth the effort?
+  description: Best not to be eaten unless you're a master chef. Even then, is it worth the effort?
   category: Foods
   rarity: Uncommon
   icon: 'pufferfish'
@@ -72,7 +72,7 @@ Octopus:
   icon: 'octopus'  
 
 Shark:
-  description: You know what a shark is and it's cool, thats what a shark is, cool. 
+  description: You know what a shark is and it's cool, that's what a shark is, cool. 
   category: Foods
   rarity: Rare
   icon: 'shark'
