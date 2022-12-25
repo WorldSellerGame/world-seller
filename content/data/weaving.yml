@@ -1,0 +1,43 @@
+
+recipes:
+  - result: Linen Cloth
+    perCraft: { min: 1, max: 3 }
+    level: { min: 0, max: 10 }
+    craftTime: 30
+    ingredients:
+      Plant Fiber: 2
+
+  - result: Linen Boots
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Linen Cloth: 2
+
+  - result: Linen Hat
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 60
+    ingredients:
+      Linen Cloth: 1
+
+  - result: Linen Shirt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Linen Cloth: 5
+
+  - result: Linen Gloves
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 60
+    ingredients:
+      Linen Cloth: 2
+
+  - result: Linen Pants
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Linen Cloth: 3

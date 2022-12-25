@@ -1,0 +1,11 @@
+
+Linen Boots:
+  name: Linen Boots
+  description: Boots made, ineffectively, of linen cloth.
+  type: FeetArmor
+  category: Armor
+  rarity: Common
+  durability: 50
+  icon: boots
+  stats:
+    armor: 1

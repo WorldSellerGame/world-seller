@@ -52,6 +52,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   public refiningTradeskills: IMenuItem[] = [
+    { title: 'Alchemy',    url: 'alchemy',    icon: 'alchemy',
+      timer: this.store.select(state => sum(
+        state.alchemy.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                          + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.alchemy.level) },
 
     { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
       timer: this.store.select(state => sum(
@@ -59,7 +66,15 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => r.currentDuration
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.blacksmithing.level) }
+      level: this.store.select(state => state.blacksmithing.level) },
+
+    { title: 'Weaving',    url: 'weaving',    icon: 'weaving',
+      timer: this.store.select(state => sum(
+        state.weaving.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                        + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.weaving.level) }
   ];
 
   public get showMenu(): boolean {

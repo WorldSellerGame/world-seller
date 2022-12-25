@@ -12,6 +12,9 @@ locations:
       - name: Pine Log
         weight: 5
 
+      - name: Plant Fiber
+        weight: 2
+
   - name: Pine Forest
     description: Closest place to gather good firewood.
     perGather:
@@ -26,6 +29,8 @@ locations:
         weight: 5
       - name: Pinecone
         weight: 1
+      - name: Plant Fiber
+        weight: 2
 
   - name: Coniferous forest
     description: A mix of different trees a little farther away.
@@ -45,9 +50,11 @@ locations:
         weight: 15
       - name: Cedar Seed
         weight: 3
+      - name: Plant Fiber
+        weight: 2
 
-  - name: Orchard 
-    description: It looks to be an abandoned apple farm amongst the wilderness. 
+  - name: Orchard
+    description: It looks to be an abandoned apple farm amongst the wilderness.
     perGather:
       min: 10
       max: 20
@@ -59,6 +66,8 @@ locations:
       - name: Apple Wood Log
         weight: 5
       - name: Apple
+        weight: 1
+      - name: Plant Fiber
         weight: 1
 
   - name: Cedrics Woods
@@ -83,8 +92,10 @@ locations:
         weight: 10
       - name: Ash Seed
         weight: 2
+      - name: Plant Fiber
+        weight: 1
 
-  - name: Cedrics Spot  
+  - name: Cedrics Spot
     description: Cedrics old secret spot for high quality wood.
     perGather:
       min: 25
@@ -106,9 +117,11 @@ locations:
         weight: 20
       - name: Ash Seed
         weight: 4
+      - name: Plant Fiber
+        weight: 2
 
-  - name: Iron Wood Grove  
-    description: Place to go for some of the hardest lumber available to most people. 
+  - name: Iron Wood Grove
+    description: Place to go for some of the hardest lumber available to most people.
     perGather:
       min: 35
       max: 45
@@ -156,7 +169,7 @@ locations:
         weight: 1
 
   - name: Old Elvish Woods
-    description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people. 
+    description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people.
     perGather:
       min: 45
       max: 60

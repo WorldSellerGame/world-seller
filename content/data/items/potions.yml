@@ -1,0 +1,11 @@
+
+Raspberry Juice:
+  name: Raspberry Juice
+  description: A bottle of the finest raspberry juice.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  icon: bottle
+  stats:
+    healing: 50

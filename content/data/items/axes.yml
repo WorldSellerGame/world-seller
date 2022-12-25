@@ -3,7 +3,7 @@ Stone Axe:
   name: Stone Axe
   description: An axe made of stone.
   type: Axe
-  category: Tool
+  category: Tools
   rarity: Common
   durability: 50
   icon: axe

@@ -3,7 +3,7 @@ Stone Scythe:
   name: Stone Scythe
   description: A scythe made of stone.
   type: Scythe
-  category: Tool
+  category: Tools
   rarity: Common
   durability: 50
   icon: scythe

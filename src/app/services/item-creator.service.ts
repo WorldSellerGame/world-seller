@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
 
 import * as itemData from '../../assets/content/items.json';
+import * as resourceData from '../../assets/content/resources.json';
 import { IGameItem } from '../../interfaces';
 
 @Injectable({
@@ -9,9 +10,18 @@ import { IGameItem } from '../../interfaces';
 })
 export class ItemCreatorService {
 
+  readonly resourceData = (resourceData as any).default || resourceData;
   readonly itemData = (itemData as any).default || itemData;
 
   constructor() { }
+
+  public iconFor(itemName: string): string {
+    return this.itemData[itemName]?.icon || this.resourceData[itemName]?.icon;
+  }
+
+  public isResource(itemName: string): boolean {
+    return !!this.resourceData[itemName];
+  }
 
   public createItem(itemName: string, quantity = 1): IGameItem {
     const baseItem = cloneDeep(this.itemData[itemName]);

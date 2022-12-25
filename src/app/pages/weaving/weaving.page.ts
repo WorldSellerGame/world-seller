@@ -2,28 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IGameRecipe, IGameRefiningRecipe } from '../../../interfaces';
-import { BlacksmithingState, CharSelectState } from '../../../stores';
+import { CharSelectState, WeavingState } from '../../../stores';
 
 import { sortBy } from 'lodash';
-import * as locationData from '../../../assets/content/blacksmithing.json';
 import * as itemsData from '../../../assets/content/items.json';
-import { CancelBlacksmithingJob, StartBlacksmithingJob } from '../../../stores/blacksmithing/blacksmithing.actions';
+import * as locationData from '../../../assets/content/weaving.json';
+import { CancelWeavingJob, StartWeavingJob } from '../../../stores/weaving/weaving.actions';
 import { ItemCreatorService } from '../../services/item-creator.service';
 
 @Component({
-  selector: 'app-blacksmith',
-  templateUrl: './blacksmith.page.html',
-  styleUrls: ['./blacksmith.page.scss'],
+  selector: 'app-weaving',
+  templateUrl: './weaving.page.html',
+  styleUrls: ['./weaving.page.scss'],
 })
-export class BlacksmithPage implements OnInit {
+export class WeavingPage implements OnInit {
 
   public readonly locationData = (locationData as any).default || locationData;
   public readonly itemsData = (itemsData as any).default || itemsData;
 
   public amounts: Record<string, number> = {};
 
-  @Select(BlacksmithingState.level) level$!: Observable<number>;
-  @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<IGameRefiningRecipe[]>;
+  @Select(WeavingState.level) level$!: Observable<number>;
+  @Select(WeavingState.currentQueue) currentQueue$!: Observable<IGameRefiningRecipe[]>;
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
@@ -55,11 +55,11 @@ export class BlacksmithPage implements OnInit {
   craft(recipe: IGameRecipe, amount = 1) {
     this.amounts[recipe.result] = 1;
 
-    this.store.dispatch(new StartBlacksmithingJob(recipe, amount));
+    this.store.dispatch(new StartWeavingJob(recipe, amount));
   }
 
   cancel(jobIndex: number) {
-    this.store.dispatch(new CancelBlacksmithingJob(jobIndex));
+    this.store.dispatch(new CancelWeavingJob(jobIndex));
   }
 
 }

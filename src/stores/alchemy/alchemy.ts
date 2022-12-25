@@ -4,19 +4,19 @@ import { Injectable } from '@angular/core';
 import { Selector, State } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { IGameRefining } from '../../interfaces';
-import { attachments } from './blacksmithing.attachments';
-import { defaultBlacksmithing } from './blacksmithing.functions';
+import { attachments } from './alchemy.attachments';
+import { defaultAlchemy } from './alchemy.functions';
 
 @State<IGameRefining>({
-  name: 'blacksmithing',
-  defaults: defaultBlacksmithing()
+  name: 'alchemy',
+  defaults: defaultAlchemy()
 })
 @Injectable()
-export class BlacksmithingState {
+export class AlchemyState {
 
   constructor() {
     attachments.forEach(({ action, handler }) => {
-      attachAction(BlacksmithingState, action, handler);
+      attachAction(AlchemyState, action, handler);
     });
   }
 

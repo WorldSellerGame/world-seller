@@ -5,16 +5,16 @@ import { cloneDeep, merge, random, zipObject } from 'lodash';
 import { IGameRefining, IGameRefiningRecipe } from '../../interfaces';
 import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { CancelBlacksmithingJob, StartBlacksmithingJob } from './blacksmithing.actions';
+import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
 
-export const defaultBlacksmithing: () => IGameRefining = () => ({
+export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
   level: 0,
   recipeQueue: []
 });
 
-export function resetBlacksmithing(ctx: StateContext<IGameRefining>) {
-  ctx.setState(defaultBlacksmithing());
+export function resetWeaving(ctx: StateContext<IGameRefining>) {
+  ctx.setState(defaultWeaving());
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
@@ -47,7 +47,7 @@ export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: Ti
 
     // if we're on the last one, delete the job
     if(job.totalLeft <= 1) {
-      ctx.dispatch(new CancelBlacksmithingJob(0, false));
+      ctx.dispatch(new CancelWeavingJob(0, false));
       return;
     }
 
@@ -62,7 +62,7 @@ export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: Ti
   }
 }
 
-export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelBlacksmithingJob) {
+export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelWeavingJob) {
 
   if(shouldRefundResources) {
     const job = ctx.getState().recipeQueue[jobIndex];
@@ -79,7 +79,7 @@ export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIn
 
 }
 
-export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartBlacksmithingJob) {
+export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartWeavingJob) {
 
   const recipeIngredients = Object.keys(job.ingredients);
   const recipeCosts = recipeIngredients.map(ingredient => -job.ingredients[ingredient] * quantity);

@@ -3,7 +3,7 @@ Stone Spear:
   name: Stone Spear
   description: A hunting spear made of stone.
   type: HuntingTool
-  category: Tool
+  category: Tools
   rarity: Common
   durability: 50
   icon: spear

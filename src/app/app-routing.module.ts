@@ -51,6 +51,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/blacksmith/blacksmith.module').then( m => m.BlacksmithPageModule)
   },
   {
+    path: 'game/:slot/weaving',
+    loadChildren: () => import('./pages/weaving/weaving.module').then( m => m.WeavingPageModule)
+  },
+  {
+    path: 'game/:slot/alchemy',
+    loadChildren: () => import('./pages/alchemy/alchemy.module').then( m => m.AlchemyPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
