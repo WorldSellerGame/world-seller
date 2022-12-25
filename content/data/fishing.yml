@@ -16,7 +16,7 @@ locations:
         weight: 1
 
   - name: Local Pond
-    description: A small pond, its close and there's fish cant really beat that as of now.
+    description: A small pond, its close and there's fish - can't really beat that as of now.
     perGather:
       min: 0
       max: 2
@@ -28,10 +28,11 @@ locations:
     resources:
       - name: Old Boot
         weight: 1     
-      - name: Cropfish(5)
+      - name: Cropfish
+        quantity: 5
         weight: 5
 
-  - name: Creek
+  - name: Coniferous Creek
     description: A little creek in the Coniferous forest.
     perGather:
       min: 0
@@ -52,7 +53,7 @@ locations:
         weight: 10
 
   - name: Marsh
-    description: A marsh with small steams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it. 
     perGather:
       min: 1
       max: 4
@@ -69,7 +70,7 @@ locations:
       - name: Frog
         weight: 10
 
-  - name: Stream
+  - name: Coniferous Stream
     description: A little creek in the Coniferous forest.
     perGather:
       min: 0
