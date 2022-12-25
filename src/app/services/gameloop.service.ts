@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription, filter, interval, map } from 'rxjs';
+import { Observable, Subscription, filter, interval, map, combineLatest } from 'rxjs';
 import { ICharacter } from '../../interfaces';
 import { CharSelectState } from '../../stores';
 import { SetActiveCharacter } from '../../stores/charselect/charselect.actions';
@@ -59,8 +59,11 @@ export class GameloopService {
   start() {
     this.stop();
 
-    this.interval = interval(1000).subscribe(() => {
-      this.store.dispatch(new TickTimer(1));
+    this.interval = combineLatest([
+      interval(1000),
+      this.store.select(state => state.options.tickTimer)
+    ]).subscribe(([i, timer]) => {
+      this.store.dispatch(new TickTimer(timer || 1));
     });
   }
 

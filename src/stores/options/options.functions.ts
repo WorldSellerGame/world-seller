@@ -8,6 +8,7 @@ export const defaultOptions: () => IOptions = () => ({
   version: 0,
   [GameOption.DebugMode]: false,
   [GameOption.ShrinkSidebar]: false,
+  [GameOption.TickTimer]: 1
 });
 
 export function setOption(ctx: StateContext<IOptions>, { option, value }: SetOption) {
