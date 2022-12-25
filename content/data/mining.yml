@@ -45,9 +45,9 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
-  
-  - name: Abandoned Iron Mine
-    description: Mostly mined-out minning operation, but you can still somewhat mine at this mine.
+
+  - name: Abandoned Copper Mine
+    description: Mostly mined-out mining operation, but you can still somewhat mine at this mine.
     perGather:
       min: 10
       max: 15
@@ -57,8 +57,8 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
-        weight: 19
-      - name: Iron Ore
+        weight: 5
+      - name: Copper Ore
         weight: 1
 
   - name: Bat Infested Iron Mine
@@ -162,7 +162,7 @@ locations:
       - name: Curse
         weight: 1
 
-  - name: Pile of Cursed Feces 
+  - name: Pile of Cursed Feces
     description: Probably best not to mine here.
     perGather:
       min: 50

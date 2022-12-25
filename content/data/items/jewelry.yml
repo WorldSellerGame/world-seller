@@ -1,0 +1,11 @@
+
+Quartz Ring:
+  name: Quartz Ring
+  description: A simple copper ring set with a cut quartz.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  icon: ring
+  stats:
+    armor: 1
