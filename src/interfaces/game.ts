@@ -82,6 +82,7 @@ export interface IGameResource {
 export interface IWeighted {
   name: string;
   weight: number;
+  quantity?: number;
 }
 
 export interface IGameGatherLocation {
