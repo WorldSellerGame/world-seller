@@ -52,6 +52,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
   public refiningTradeskills: IMenuItem[] = [
+    { title: 'Alchemy',    url: 'alchemy',    icon: 'alchemy',
+      timer: this.store.select(state => sum(
+        state.alchemy.recipeQueue
+          .map((r: IGameRefiningRecipe) => r.currentDuration
+                                          + (r.durationPer * (r.totalLeft - 1)))
+      )),
+      level: this.store.select(state => state.alchemy.level) },
 
     { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
       timer: this.store.select(state => sum(

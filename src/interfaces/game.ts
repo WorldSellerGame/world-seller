@@ -25,7 +25,8 @@ export enum Stat {
   HuntingSpeed = 'huntingSpeed',
 
   // generic stats
-  Armor = 'armor'
+  Armor = 'armor',
+  Healing = 'healing'
 }
 
 export enum ItemType {

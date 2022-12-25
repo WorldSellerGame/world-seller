@@ -1,4 +1,5 @@
 
+export * from './alchemy/alchemy';
 export * from './blacksmithing/blacksmithing';
 export * from './charselect/charselect';
 export * from './fishing/fishing';
