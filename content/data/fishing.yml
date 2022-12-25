@@ -1,8 +1,8 @@
 locations:
-  - name: Nearby Quarry
-    description: A small quarry nearby.
+  - name: Big Ditch
+    description: A very small body of water.
     perGather:
-      min: 1
+      min: 0
       max: 1
     level:
       min: 0
@@ -10,7 +10,212 @@ locations:
     gatherTime: 10
     cooldownTime: 20
     resources:
+      - name: Old Boot
+        weight: 1     
       - name: Cropfish
         weight: 1
+
+  - name: Local Pond
+    description: A small pond, its close and there's fish cant really beat that as of now.
+    perGather:
+      min: 0
+      max: 2
+    level:
+      min: 5
+      max: 10
+    gatherTime: 10
+    cooldownTime: 20
+    resources:
       - name: Old Boot
+        weight: 1     
+      - name: Cropfish(5)
+        weight: 5
+
+  - name: Creek
+    description: A little creek in the Coniferous forest.
+    perGather:
+      min: 0
+      max: 2
+    level:
+      min: 10
+      max: 20
+    gatherTime: 15
+    cooldownTime: 20
+    resources:
+      - name: Old Boot
+        weight: 1
+      - name: Cropfish
+        weight: 5
+      - name: Panfish
+        weight: 5
+      - name: Fallfish
+        weight: 10
+
+  - name: Marsh
+    description: A marsh with small steams and ponds amongst it. 
+    perGather:
+      min: 1
+      max: 4
+    level:
+      min: 15
+      max: 25
+    gatherTime: 20
+    cooldownTime: 20
+    resources:
+      - name: Old Boot
+        weight: 5
+      - name: Panfish
+        weight: 10
+      - name: Frog
+        weight: 10
+
+  - name: Stream
+    description: A little creek in the Coniferous forest.
+    perGather:
+      min: 0
+      max: 5
+    level:
+      min: 20
+      max: 30
+    gatherTime: 20
+    cooldownTime: 30
+    resources:
+      - name: Old Boot
+        weight: 1
+      - name: Cropfish
+        weight: 5
+      - name: Panfish
+        weight: 5
+      - name: Fallfish
+        weight: 10
+      - name: Trout
+        weight: 10
+
+  - name: Cedrics Fishing Hole
+    description: Apparently some guy named Cedric fought a bear with a spoon over this stream pool. The fishing is good but the fish are skittish.
+    perGather:
+      min: 2
+      max: 8
+    level:
+      min: 25
+      max: 35
+    gatherTime: 5
+    cooldownTime: 120
+    resources:
+      - name: Trout
+        weight: 500000000
+
+  - name: Misty Lake 
+    description: The mist covers this small lake in the early morning and late in the evening.
+    perGather:
+      min: 0
+      max: 3
+    level:
+      min: 30
+      max: 40
+    gatherTime: 30
+    cooldownTime: 40
+    resources:
+      - name: Old Boot
+        weight: 1
+      - name: Panfish
+        weight: 5
+      - name: Trout
+        weight: 10
+      - name: Bass
+        weight: 15
+
+  - name: Magic Swamp
+    description: They said "dont go into The Magic Swamp". Its called "The Magic Swamp" of course your gonna go in there anyways.
+    perGather:
+      min: 1
+      max: 6
+    level:
+      min: 35
+      max: 50
+    gatherTime: 30
+    cooldownTime: 60
+    resources:
+      - name: Panfish
+        weight: 20
+      - name: Bass
+        weight: 40
+      - name: Frog
+        weight: 100
+      - name: Catfish
+        weight: 100
+      - name: Magical Frog
+        weight: 1
+      - name: Curse
+        weight: 5
+
+  - name: Seashore
+    description: Hard to catch anything big from shore.
+    perGather:
+      min: 5
+      max: 5
+    level:
+      min: 40
+      max: 50
+    gatherTime: 45
+    cooldownTime: 45
+    resources:
+      - name: Sardine
+        weight: 420
+
+  - name: Sand Bar
+    description: You're able to walk out a a bit further during low tide.
+    perGather:
+      min: 5
+      max: 5
+    level:
+      min: 45
+      max: 55
+    gatherTime: 45
+    cooldownTime: 80
+    resources:
+      - name: Sardine
+        weight: 5
+      - name: Pompano
+        weight: 1
+
+  - name: Small Reef
+    description: A reef inside the Surf Break of a bay.
+    perGather:
+      min: 0
+      max: 3
+    level:
+      min: 50
+      max: 60
+    gatherTime: 60
+    cooldownTime: 80
+    resources:
+      - name: Pompano
+        weight: 20
+      - name: Pufferfish
+        weight: 5
+      - name: Octopus
+        weight: 1
+
+  - name: Surf Break
+    description: Where the waves of the ocean begin to roll into the bay. An ideal place to catch predators.
+    perGather:
+      min: 1
+      max: 4
+    level:
+      min: 55
+      max: 65
+    gatherTime: 60
+    cooldownTime: 240
+    resources:
+      - name: Pompano
+        weight: 5
+      - name: Pufferfish
+        weight: 1
+      - name: Octopus
         weight: 2
+      - name: Shark
+        weight: 1
+
+#Brandon 
+  #silly problems plague me as much as my standards and inability to not research every single thing I put in
