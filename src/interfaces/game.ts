@@ -23,15 +23,27 @@ export enum Stat {
   FishingSpeed = 'fishingSpeed',
   ScytheSpeed = 'scytheSpeed',
   HuntingSpeed = 'huntingSpeed',
+
+  // generic stats
+  Armor = 'armor'
 }
 
 export enum ItemType {
+
+  // tools
   Pickaxe = 'Pickaxe',
   Axe = 'Axe',
   FishingRod = 'FishingRod',
   FishingBait = 'FishingBait',
   Scythe = 'Scythe',
   HuntingTool = 'HuntingTool',
+
+  // armor
+  LegArmor = 'LegArmor',
+  ChestArmor = 'ChestArmor',
+  HeadArmor = 'HeadArmor',
+  FootArmor = 'FootArmor',
+  HandArmor = 'HandArmor',
 }
 
 export interface IGame {
@@ -102,5 +114,4 @@ export interface IGameRefining {
   version: number;
   level: number;
   recipeQueue: IGameRefiningRecipe[];
-  cooldowns: Record<string, number>;
 }

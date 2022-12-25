@@ -1,0 +1,11 @@
+
+Linen Pants:
+  name: Linen Pants
+  description: Pants made of linen cloth.
+  type: LegArmor
+  category: Armor
+  rarity: Common
+  durability: 50
+  icon: pants
+  stats:
+    armor: 1

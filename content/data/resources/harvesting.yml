@@ -11,11 +11,15 @@ Raspberry Seed:
   category: Seeds
   rarity: Common
   icon: 'seed'
- 
+
 Apple:
   description: Used to eat or turn into seeds.
   category: Food
   rarity: Common
   icon: 'apple'
 
-
+Plant Fiber:
+  description: Used to turn into fabric.
+  category: Raw Materials
+  rarity: Common
+  icon: 'fiber'

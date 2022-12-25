@@ -19,8 +19,8 @@ export class GainResources {
   constructor(public resources: Record<string, number>) {}
 }
 
-export class GainInventoryItem {
-  static type = '[CharSelect] Gain Inventory Item';
+export class GainJobResult {
+  static type = '[CharSelect] Gain Job Result';
   constructor(public itemName: string, public quantity = 1) {}
 }
 

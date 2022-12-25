@@ -8,4 +8,5 @@ export * from './hunting/hunting';
 export * from './logging/logging';
 export * from './mining/mining';
 export * from './options/options';
+export * from './weaving/weaving';
 

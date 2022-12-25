@@ -1,0 +1,11 @@
+
+Linen Hat:
+  name: Linen Hat
+  description: Hat made of linen cloth.
+  type: HeadArmor
+  category: Armor
+  rarity: Common
+  durability: 50
+  icon: hat
+  stats:
+    armor: 1

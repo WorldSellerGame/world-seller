@@ -8,4 +8,5 @@ export * from './hunting/hunting.migrations';
 export * from './logging/logging.migrations';
 export * from './mining/mining.migrations';
 export * from './options/options.migrations';
+export * from './weaving/weaving.migrations';
 
