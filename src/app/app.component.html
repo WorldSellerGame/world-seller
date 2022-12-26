@@ -1,8 +1,10 @@
 <ion-app>
-  <ion-split-pane [when]="showMenu" contentId="main-content" [class.shrink]="(sidebarDisplay$ | async) === 'minimal'">
+  <ion-split-pane [when]="showMenu" contentId="main-content"
+    [class.shrink]="(sidebarDisplay$ | async) === 'minimal'"
+    [class.compact]="(sidebarDisplay$ | async) === 'compact'">
     <ion-menu contentId="main-content" type="overlay">
 
-      <ion-content *ngIf="(sidebarDisplay$ | async) === 'minimal'; else expandedSidebar">
+      <ion-content *ngIf="(sidebarDisplay$ | async) === 'minimal'; else expandedSidebar" class="minimal">
         <ion-list>
           <ion-menu-toggle [autoHide]="false">
             <ion-item [routerLink]="['/game', characterSlot, 'settings']">
