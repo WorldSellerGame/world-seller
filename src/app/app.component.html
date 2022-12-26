@@ -8,37 +8,37 @@
         <ion-list>
           <ion-menu-toggle [autoHide]="false">
             <ion-item [routerLink]="['/game', characterSlot, 'settings']">
-              <app-game-icon slot="start" icon="settings" ngxTippy="Settings"></app-game-icon>
+              <app-game-icon slot="start" icon="settings" ngxTippy="Settings" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
             <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected">
-              <app-game-icon slot="start" icon="resources" ngxTippy="Resources"></app-game-icon>
+              <app-game-icon slot="start" icon="resources" ngxTippy="Resources" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
-              <app-game-icon slot="start" icon="inventory" ngxTippy="Inventory"></app-game-icon>
+              <app-game-icon slot="start" icon="inventory" ngxTippy="Inventory" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'equipment']" lines="none" detail="false" routerLinkActive="selected">
-              <app-game-icon slot="start" icon="equipment" ngxTippy="Equipment"></app-game-icon>
+              <app-game-icon slot="start" icon="equipment" ngxTippy="Equipment" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
             <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of gatheringTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
+              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
             <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of refiningTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
+              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
             <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of peripheralTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
+              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
           </ion-menu-toggle>
