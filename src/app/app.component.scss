@@ -39,7 +39,8 @@ ion-menu ion-content {
 }
 
 ion-menu ion-list {
-  padding: 20px 0;
+  padding-top: 10px;
+  padding-bottom: 0;
 }
 
 ion-menu ion-note {
@@ -53,6 +54,8 @@ ion-menu ion-note {
 
 ion-list.header {
   border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 ion-list.header ion-list-header {

@@ -16,4 +16,13 @@ export class NotifyService {
       timeout: 5000
     });
   }
+
+  public error(message: string) {
+    Notify.failure(message, {
+      useIcon: false,
+      clickToClose: true,
+      fontSize: '15px',
+      timeout: 5000
+    });
+  }
 }

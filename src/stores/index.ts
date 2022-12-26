@@ -1,8 +1,9 @@
 
 export * from './alchemy/alchemy';
 export * from './blacksmithing/blacksmithing';
-export * from './cooking/cooking';
 export * from './charselect/charselect';
+export * from './cooking/cooking';
+export * from './farming/farming';
 export * from './fishing/fishing';
 export * from './foraging/foraging';
 export * from './game/game';

@@ -1,0 +1,7 @@
+
+transforms:
+  - seed: Raspberry Seed
+    becomes: Raspberry
+    perGather: { min: 3, max: 10 }
+    level: { max: 10 }
+    gatherTime: 600
