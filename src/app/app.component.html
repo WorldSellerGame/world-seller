@@ -38,20 +38,6 @@
               <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
             </ion-item>
 
-            <!-- <ion-list>
-              <ion-list-header>Other</ion-list-header>
-
-              <ion-menu-toggle [autoHide]="false" *ngFor="let p of otherTradeskills; let i = index">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
-                  <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-                  <ion-label class="has-timer">
-                    <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                    <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-                  </ion-label>
-                </ion-item>
-              </ion-menu-toggle>
-            </ion-list> -->
-
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
