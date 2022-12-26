@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import * as locationData from '../../../assets/content/farming.json';
-import { IGameFarmingPlot, IGameFarmingSeedTransform } from '../../../interfaces';
+import { IGameFarmingPlot, IGameResourceTransform } from '../../../interfaces';
 import { CharSelectState, FarmingState } from '../../../stores';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../../../stores/farming/farming.actions';
 import { ItemCreatorService } from '../../services/item-creator.service';
@@ -46,6 +46,7 @@ export class FarmingPage implements OnInit {
     const resources = this.store.selectSnapshot(CharSelectState.activeCharacterResources);
     this.plantableSeeds = Object.keys(resources)
       .filter(res => this.itemCreatorService.resourceMatchesType(res, 'Seeds'))
+      .filter(res => resources[res] > 0)
       .map(res => ({ name: res, quantity: resources[res] }));
   }
 
@@ -65,8 +66,8 @@ export class FarmingPage implements OnInit {
     this.store.dispatch(new HarvestPlantFromFarm(plotIndex));
   }
 
-  private getSeedTransform(seed: string): IGameFarmingSeedTransform {
-    return this.locationData.transforms.find((t: IGameFarmingSeedTransform) => t.seed === seed);
+  private getSeedTransform(seed: string): IGameResourceTransform {
+    return this.locationData.transforms.find((t: IGameResourceTransform) => t.startingItem === seed);
   }
 
 }

@@ -72,6 +72,14 @@ export interface IGameRecipe {
   craftTime: number;
 }
 
+export interface IGameResourceTransform {
+  startingItem: string;
+  becomes: IWeighted[];
+  perGather: { min: number; max: number };
+  level: { min: number; max: number };
+  gatherTime: number;
+}
+
 export interface IGameResource {
   description: string;
   icon: string;
