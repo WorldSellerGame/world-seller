@@ -3,17 +3,21 @@ import { cloneDeep } from 'lodash';
 
 import * as itemData from '../../assets/content/items.json';
 import * as resourceData from '../../assets/content/resources.json';
-import { IGameItem } from '../../interfaces';
+import { IGameItem, IGameResource } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemCreatorService {
 
-  readonly resourceData = (resourceData as any).default || resourceData;
-  readonly itemData = (itemData as any).default || itemData;
+  readonly resourceData: Record<string, IGameResource> = (resourceData as any).default || resourceData;
+  readonly itemData: Record<string, IGameItem> = (itemData as any).default || itemData;
 
   constructor() { }
+
+  public resourceMatchesType(itemName: string, type: string): boolean {
+    return this.resourceData[itemName]?.category === type;
+  }
 
   public iconFor(itemName: string): string {
     return this.itemData[itemName]?.icon || this.resourceData[itemName]?.icon;

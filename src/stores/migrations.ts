@@ -1,8 +1,9 @@
 
 export * from './alchemy/alchemy.migrations';
 export * from './blacksmithing/blacksmithing.migrations';
-export * from './cooking/cooking.migrations';
 export * from './charselect/charselect.migrations';
+export * from './cooking/cooking.migrations';
+export * from './farming/farming.migrations';
 export * from './fishing/fishing.migrations';
 export * from './foraging/foraging.migrations';
 export * from './game/game.migrations';
