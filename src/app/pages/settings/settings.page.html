@@ -24,7 +24,7 @@
               <ion-item>
                 <ion-label>Sidebar Display</ion-label>
                 <ion-select interface="popover" [(ngModel)]="options.sidebarDisplay"
-                                                (valueChange)="setOption('sidebarDisplay', options.sidebarDisplay)">
+                                                (ionChange)="setOption('sidebarDisplay', options.sidebarDisplay)">
                   <ion-select-option value="minimal">Minimal</ion-select-option>
                   <ion-select-option value="compact">Compact</ion-select-option>
                   <ion-select-option value="full">Full</ion-select-option>
