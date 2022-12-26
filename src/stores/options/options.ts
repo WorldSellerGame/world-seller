@@ -26,7 +26,7 @@ export class OptionsState {
   }
 
   @Selector()
-  static isShrinkSidebar(state: IOptions) {
-    return state[GameOption.ShrinkSidebar];
+  static getSidebarDisplay(state: IOptions) {
+    return state[GameOption.SidebarDisplay];
   }
 }
