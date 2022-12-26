@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inventory/inventory.module').then( m => m.InventoryPageModule)
   },
   {
+    path: 'game/:slot/equipment',
+    loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentPageModule)
+  },
+  {
     path: 'game/:slot/mining',
     loadChildren: () => import('./pages/mining/mining.module').then( m => m.MiningPageModule)
   },
@@ -69,6 +73,10 @@ const routes: Routes = [
   {
     path: 'game/:slot/farming',
     loadChildren: () => import('./pages/farming/farming.module').then( m => m.FarmingPageModule)
+  },
+  {
+    path: 'game/:slot/prospecting',
+    loadChildren: () => import('./pages/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
   },
   {
     path: '**',

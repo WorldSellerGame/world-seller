@@ -12,5 +12,6 @@ export * from './jewelcrafting/jewelcrafting.migrations';
 export * from './logging/logging.migrations';
 export * from './mining/mining.migrations';
 export * from './options/options.migrations';
+export * from './prospecting/prospecting.migrations';
 export * from './weaving/weaving.migrations';
 

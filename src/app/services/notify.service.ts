@@ -25,4 +25,13 @@ export class NotifyService {
       timeout: 5000
     });
   }
+
+  public warn(message: string) {
+    Notify.warning(message, {
+      useIcon: false,
+      clickToClose: true,
+      fontSize: '15px',
+      timeout: 5000
+    });
+  }
 }

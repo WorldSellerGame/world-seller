@@ -1,9 +1,13 @@
 
 
 import { Injectable } from '@angular/core';
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { IGameGathering } from '../../interfaces';
+import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
+import { IGameGathering, Stat } from '../../interfaces';
+import { CharSelectState } from '../charselect/charselect';
+import { TickTimer } from '../game/game.actions';
+import { CancelMining, SetMiningLocation } from './mining.actions';
 import { attachments } from './mining.attachments';
 import { defaultMining } from './mining.functions';
 
@@ -14,7 +18,7 @@ import { defaultMining } from './mining.functions';
 @Injectable()
 export class MiningState {
 
-  constructor() {
+  constructor(private store: Store) {
     attachments.forEach(({ action, handler }) => {
       attachAction(MiningState, action, handler);
     });
@@ -38,5 +42,19 @@ export class MiningState {
   static cooldowns(state: IGameGathering) {
     return state.cooldowns;
   }
+
+  @Action(TickTimer)
+  decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const cdrValue = calculateStat(equipment, Stat.PickaxeSpeed);
+    decreaseGatherTimer(ctx, ticks, cdrValue, CancelMining);
+  }
+
+  @Action(SetMiningLocation)
+  setLocation(ctx: StateContext<IGameGathering>, { location }: SetMiningLocation) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const gdrValue = calculateStat(equipment, Stat.PickaxePower);
+    setGatheringLocation(ctx, location, gdrValue);
+  };
 
 }

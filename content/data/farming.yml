@@ -1,7 +1,9 @@
 
 transforms:
-  - seed: Raspberry Seed
-    becomes: Raspberry
+  - startingItem: Raspberry Seed
+    becomes:
+      - name: Raspberry
+        weight: 1
     perGather: { min: 3, max: 10 }
-    level: { max: 10 }
+    level: { min: 0, max: 10 }
     gatherTime: 600

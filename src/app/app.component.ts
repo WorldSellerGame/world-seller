@@ -94,10 +94,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
 
-  public otherTradeskills: IMenuItem[] = [
+  public peripheralTradeskills: IMenuItem[] = [
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       timer: of(0),
-      level: this.store.select(state => state.farming.level) }
+      level: this.store.select(state => state.farming.level) },
+
+    { title: 'Prospecting',    url: 'prospecting',    icon: 'prospecting',
+      timer: of(0),
+      level: this.store.select(state => state.prospecting.level) }
   ];
 
   public get showMenu(): boolean {

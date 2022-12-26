@@ -45,6 +45,7 @@ export enum ItemType {
   HeadArmor = 'HeadArmor',
   FootArmor = 'FootArmor',
   HandArmor = 'HandArmor',
+  Jewelry = 'Jewelry'
 }
 
 export interface IGame {
@@ -70,6 +71,14 @@ export interface IGameRecipe {
   level: { min: number; max: number };
   perCraft: { min: number; max: number };
   craftTime: number;
+}
+
+export interface IGameResourceTransform {
+  startingItem: string;
+  becomes: IWeighted[];
+  perGather: { min: number; max: number };
+  level: { min: number; max: number };
+  gatherTime: number;
 }
 
 export interface IGameResource {
