@@ -1,10 +1,7 @@
 import { StateContext } from '@ngxs/store';
-import { patch } from '@ngxs/store/operators';
-import { random } from 'lodash';
 
-import { isLocationOnCooldown, lowerGatheringCooldowns, pickWithWeights, putLocationOnCooldown } from '../../app/helpers';
+import { cancelGathering, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { CancelLogging, SetLoggingLocation } from './logging.actions';
 
@@ -21,59 +18,13 @@ export function resetLogging(ctx: StateContext<IGameGathering>) {
 }
 
 export function cancelLogging(ctx: StateContext<IGameGathering>) {
-  ctx.setState(patch<IGameGathering>({
-    currentLocationDurationInitial: -1,
-    currentLocationDuration: -1,
-    currentLocation: undefined
-  }));
+  cancelGathering(ctx);
 }
 
 export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
-  const state = ctx.getState();
-
-  lowerGatheringCooldowns(ctx, ticks);
-
-  if(state.currentLocationDuration < 0 || !state.currentLocation) {
-    return;
-  }
-
-  const newTicks = state.currentLocationDuration - ticks;
-
-  ctx.setState(patch<IGameGathering>({
-    currentLocationDuration: newTicks
-  }));
-
-  if(newTicks <= 0) {
-    const location = state.currentLocation;
-
-    const numResources = random(location.perGather.min, location.perGather.max);
-    const gainedResources = pickWithWeights(location.resources, numResources);
-
-    ctx.dispatch(new GainResources(gainedResources));
-
-    putLocationOnCooldown(ctx, location);
-
-    if(location.level.max > state.level) {
-      ctx.setState(patch<IGameGathering>({
-        level: state.level + 1
-      }));
-
-      ctx.dispatch(new SyncTotalLevel());
-    }
-
-    ctx.dispatch(new CancelLogging());
-  }
+  decreaseGatherTimer(ctx, ticks, CancelLogging);
 }
 
 export function setLoggingLocation(ctx: StateContext<IGameGathering>, { location }: SetLoggingLocation) {
-
-  if(isLocationOnCooldown(ctx, location)) {
-    return;
-  }
-
-  ctx.setState(patch<IGameGathering>({
-    currentLocation: location,
-    currentLocationDurationInitial: location.gatherTime,
-    currentLocationDuration: location.gatherTime
-  }));
+  setGatheringLocation(ctx, location);
 };
