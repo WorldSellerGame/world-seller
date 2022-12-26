@@ -12,5 +12,6 @@ export * from './jewelcrafting/jewelcrafting';
 export * from './logging/logging';
 export * from './mining/mining';
 export * from './options/options';
+export * from './prospecting/prospecting';
 export * from './weaving/weaving';
 

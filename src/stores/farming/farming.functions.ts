@@ -2,8 +2,9 @@ import { StateContext } from '@ngxs/store';
 
 import { patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { random } from 'lodash';
+import { pickNameWithWeights } from '../../app/helpers';
 import { IGameFarming, IGameFarmingPlot } from '../../interfaces';
-import { GainJobResult } from '../charselect/charselect.actions';
+import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
@@ -36,6 +37,8 @@ export function plantSeedInFarm(ctx: StateContext<IGameFarming>, { plotIndex, jo
       currentDurationInitial: job.gatherTime
     })
   }));
+
+  ctx.dispatch(new GainResources({ [job.startingItem]: -1 }));
 };
 
 export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: HarvestPlantFromFarm) {
@@ -52,5 +55,14 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: Harv
     plots: removeItem<IGameFarmingPlot>(plotIndex)
   }));
 
-  ctx.dispatch(new GainJobResult(result.becomes, random(result.perGather.min, result.perGather.max)));
+  const choice = pickNameWithWeights(result.becomes);
+  ctx.dispatch(new GainJobResult(choice, random(result.perGather.min, result.perGather.max)));
+
+  if(result.level.max > state.level) {
+    ctx.setState(patch<IGameFarming>({
+      level: state.level + 1
+    }));
+
+    ctx.dispatch(new SyncTotalLevel());
+  }
 }

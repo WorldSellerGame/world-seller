@@ -71,6 +71,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/farming/farming.module').then( m => m.FarmingPageModule)
   },
   {
+    path: 'game/:slot/prospecting',
+    loadChildren: () => import('./pages/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''

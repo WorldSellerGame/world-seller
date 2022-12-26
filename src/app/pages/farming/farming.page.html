@@ -24,7 +24,7 @@
             <ion-card class="location-card plot-card">
               <ion-card-header>
                 <ion-card-title *ngIf="!plot.result">Empty Plot</ion-card-title>
-                <ion-card-title *ngIf="plot.result">{{ plot.result.seed }} Plant</ion-card-title>
+                <ion-card-title *ngIf="plot.result">{{ plot.result.startingItem }} Plant</ion-card-title>
               </ion-card-header>
 
               <ion-card-content>
@@ -33,11 +33,11 @@
                 </div>
 
                 <div *ngIf="plot.result && plot.currentDuration <= 0">
-                  You've planted a {{ plot.result.seed }} plant here. It's ready to harvest!
+                  You've planted a {{ plot.result.startingItem }} plant here. It's ready to harvest!
                 </div>
 
                 <div *ngIf="plot.result && plot.currentDuration > 0">
-                  You've planted a {{ plot.result.seed }} plant here. It will be ready in <app-countdown [duration]="plot.currentDuration"></app-countdown>.
+                  You've planted a {{ plot.result.startingItem }} plant here. It will be ready in <app-countdown [duration]="plot.currentDuration"></app-countdown>.
                 </div>
               </ion-card-content>
 

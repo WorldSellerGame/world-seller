@@ -1,7 +1,7 @@
 import { countBy, sample } from 'lodash';
 import { IWeighted } from '../../interfaces';
 
-export function pickWithWeights(choices: IWeighted[], totalToTake = 1): Record<string, number> {
+export function pickResourcesWithWeights(choices: IWeighted[], totalToTake = 1): Record<string, number> {
   const chooseableChoices = choices.map(choice => Array(choice.weight).fill(choice)).flat();
 
   const choicesChosen = Array(totalToTake).fill(0).map(() => {
@@ -10,4 +10,9 @@ export function pickWithWeights(choices: IWeighted[], totalToTake = 1): Record<s
   }).flat();
 
   return countBy(choicesChosen);
+}
+
+export function pickNameWithWeights(choices: IWeighted[]): string {
+  const chooseableChoices = choices.map(choice => Array(choice.weight).fill(choice)).flat();
+  return sample(chooseableChoices).name;
 }

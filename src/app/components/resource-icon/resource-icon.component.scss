@@ -11,6 +11,10 @@
     font-weight: bold;
   }
 
+  &.nothing {
+    display: none;
+  }
+
   .icon {
     display: flex;
     margin-right: 10px;
