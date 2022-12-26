@@ -22,9 +22,13 @@
               </ion-item>
 
               <ion-item>
-                <ion-label>Shrink Sidebar</ion-label>
-                <ion-toggle slot="end" [checked]="options.shrinkSidebar"
-                                       (click)="setOption('shrinkSidebar', !options.shrinkSidebar)"></ion-toggle>
+                <ion-label>Sidebar Display</ion-label>
+                <ion-select interface="popover" [(ngModel)]="options.sidebarDisplay"
+                                                (valueChange)="setOption('sidebarDisplay', options.sidebarDisplay)">
+                  <ion-select-option value="minimal">Minimal</ion-select-option>
+                  <ion-select-option value="compact">Compact</ion-select-option>
+                  <ion-select-option value="full">Full</ion-select-option>
+                </ion-select>
               </ion-item>
             </ion-list>
           </ion-card-content>
