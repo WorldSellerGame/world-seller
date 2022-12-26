@@ -32,7 +32,7 @@ locations:
       - name: Plant Fiber
         weight: 2
 
-  - name: Coniferous forest
+  - name: Coniferous Forest
     description: A mix of different trees a little farther away.
     perGather:
       min: 10

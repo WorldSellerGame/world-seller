@@ -34,8 +34,8 @@ locations:
         quantity: 5
         weight: 5
 
-  - name: Coniferous Creek
-    description: A little creek in the Coniferous forest.
+  - name: Pine Creek
+    description: A little creek in the Pine forest.
     perGather:
       min: 0
       max: 2
@@ -72,8 +72,8 @@ locations:
       - name: Frog
         weight: 10
 
-  - name: Coniferous Stream
-    description: A little creek in the Coniferous forest.
+  - name: Small Stream
+    description: A little stream in Cedrics Woods.
     perGather:
       min: 0
       max: 5
