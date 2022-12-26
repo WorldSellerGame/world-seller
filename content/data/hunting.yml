@@ -78,7 +78,7 @@ locations:
         weight: 2
 
   - name: Orchard (Deer)
-    description: It looks to be an abandoned apple farm amongst the wilderness. The Deer seem to love the apples.
+    description: It looks to be an abandoned apple farm amongst the wilderness. The deer seem to love the apples.
     perGather:
       min: 6
       max: 9
@@ -154,7 +154,7 @@ locations:
         weight: 1
 
   - name: Magic Swamp (Alligator)
-    description: They said "dont chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
+    description: They said "don't chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
     perGather:
       min: 9
       max: 12
@@ -174,7 +174,7 @@ locations:
         weight: 1
 
   - name: Iron Wood Grove (Moose)
-    description: They said "dont chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
+    description: They said "don't chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
     perGather:
       min: 12
       max: 18
