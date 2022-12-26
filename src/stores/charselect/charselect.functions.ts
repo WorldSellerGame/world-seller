@@ -2,7 +2,8 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 
 import { ICharacter, ICharSelect, IGameItem, ItemType } from '../../interfaces';
-import { AddItemToInventory, CreateCharacter, DeleteCharacter, EquipItem, GainResources, RemoveItemFromInventory, SetActiveCharacter, SyncTotalLevel, UnequipItem } from './charselect.actions';
+import { AddItemToInventory, CreateCharacter, DeleteCharacter, EquipItem,
+  GainResources, RemoveItemFromInventory, SetActiveCharacter, SyncTotalLevel, UnequipItem } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
   version: 0,
