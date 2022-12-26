@@ -45,6 +45,7 @@ export enum ItemType {
   HeadArmor = 'HeadArmor',
   FootArmor = 'FootArmor',
   HandArmor = 'HandArmor',
+  Jewelry = 'Jewelry'
 }
 
 export interface IGame {

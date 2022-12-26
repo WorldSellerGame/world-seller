@@ -1,3 +1,4 @@
+import { IGameItem, ItemType } from '../../interfaces';
 
 export class CreateCharacter {
   static type = '[CharSelect] Create Character';
@@ -27,4 +28,24 @@ export class GainJobResult {
 export class SyncTotalLevel {
   static type = '[CharSelect] Sync Total Level';
   constructor(public newLevel = 0) {}
+}
+
+export class AddItemToInventory {
+  static type = '[CharSelect] Add Item To Inventory';
+  constructor(public item: IGameItem) {}
+}
+
+export class RemoveItemFromInventory {
+  static type = '[CharSelect] Remove Item From Inventory';
+  constructor(public item: IGameItem) {}
+}
+
+export class EquipItem {
+  static type = '[CharSelect] Equip Item';
+  constructor(public item: IGameItem) {}
+}
+
+export class UnequipItem {
+  static type = '[CharSelect] Unequip Item';
+  constructor(public slot: ItemType) {}
 }

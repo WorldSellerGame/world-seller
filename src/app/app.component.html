@@ -15,6 +15,9 @@
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
               <app-game-icon slot="start" icon="inventory"></app-game-icon>
             </ion-item>
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'equipment']" lines="none" detail="false" routerLinkActive="selected">
+              <app-game-icon slot="start" icon="equipment"></app-game-icon>
+            </ion-item>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of gatheringTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
@@ -52,6 +55,10 @@
               <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected">
                 <app-game-icon slot="start" icon="inventory"></app-game-icon>
                 <ion-label>Inventory</ion-label>
+              </ion-item>
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'equipment']" lines="none" detail="false" routerLinkActive="selected">
+                <app-game-icon slot="start" icon="equipment"></app-game-icon>
+                <ion-label>Equipment</ion-label>
               </ion-item>
             </ion-menu-toggle>
 

@@ -29,7 +29,7 @@
                       </div>
                     </ion-label>
 
-                    <ion-button slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]">
+                    <ion-button fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max">
                       Prospect
                     </ion-button>
                   </ion-item>
