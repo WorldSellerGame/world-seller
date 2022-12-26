@@ -41,10 +41,6 @@
               <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
             </ion-item>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of peripheralTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-            </ion-item>
-
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
