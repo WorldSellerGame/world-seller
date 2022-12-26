@@ -1,9 +1,7 @@
 import { StateContext } from '@ngxs/store';
 
-import { cancelGathering, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
+import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { TickTimer } from '../game/game.actions';
-import { CancelHunting, SetHuntingLocation } from './hunting.actions';
 
 export const defaultHunting: () => IGameGathering = () => ({
   version: 0,
@@ -20,11 +18,3 @@ export function resetHunting(ctx: StateContext<IGameGathering>) {
 export function cancelHunting(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
 }
-
-export function decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
-  decreaseGatherTimer(ctx, ticks, CancelHunting);
-}
-
-export function setHuntingLocation(ctx: StateContext<IGameGathering>, { location }: SetHuntingLocation) {
-  setGatheringLocation(ctx, location);
-};

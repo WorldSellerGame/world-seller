@@ -6,7 +6,7 @@ import { GainResources, SyncTotalLevel } from '../../stores/charselect/charselec
 import { isLocationOnCooldown, lowerGatheringCooldowns, putLocationOnCooldown } from './cooldowns';
 import { pickResourcesWithWeights } from './pick-weight';
 
-export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cancelProto: any) {
+export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cdrValue: number, cancelProto: any) {
   const state = ctx.getState();
 
   lowerGatheringCooldowns(ctx, ticks);
@@ -29,7 +29,7 @@ export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: nu
 
     ctx.dispatch(new GainResources(gainedResources));
 
-    putLocationOnCooldown(ctx, location);
+    putLocationOnCooldown(ctx, location, cdrValue);
 
     if(location.level.max > state.level) {
       ctx.setState(patch<IGameGathering>({
@@ -51,15 +51,17 @@ export function cancelGathering(ctx: StateContext<IGameGathering>) {
   }));
 }
 
-export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation) {
+export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation, gdrValue: number) {
 
   if(isLocationOnCooldown(ctx, location)) {
     return;
   }
 
+  const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
+
   ctx.setState(patch<IGameGathering>({
     currentLocation: location,
-    currentLocationDurationInitial: location.gatherTime,
-    currentLocationDuration: location.gatherTime
+    currentLocationDurationInitial: gatherTime,
+    currentLocationDuration: gatherTime
   }));
 }
