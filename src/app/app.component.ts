@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { ICharacter, IGameRefiningRecipe } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
@@ -91,6 +91,13 @@ export class AppComponent implements OnInit, OnDestroy {
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.weaving.level) }
+  ];
+
+
+  public otherTradeskills: IMenuItem[] = [
+    { title: 'Farming',    url: 'farming',    icon: 'farming',
+      timer: of(0),
+      level: this.store.select(state => state.farming.level) }
   ];
 
   public get showMenu(): boolean {
