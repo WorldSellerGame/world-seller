@@ -34,7 +34,7 @@
 
             <div class="sublist-divider"></div>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of otherTradeskills; let i = index">
+            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of peripheralTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title"></app-game-icon>
             </ion-item>
 
@@ -95,7 +95,7 @@
           <ion-list>
             <ion-list-header>Other</ion-list-header>
 
-            <ion-menu-toggle [autoHide]="false" *ngFor="let p of otherTradeskills; let i = index">
+            <ion-menu-toggle [autoHide]="false" *ngFor="let p of peripheralTradeskills; let i = index">
               <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
                 <ion-label class="has-timer">
