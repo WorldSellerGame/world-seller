@@ -54,7 +54,11 @@ export class CharSelectState {
 
   @Action(GainResources)
   async gainResources(ctx: StateContext<ICharSelect>, { resources }: GainResources) {
-    if(Object.keys(resources).some(res => resources[res] < 0)) {
+
+    const earnedResources = Object.keys(resources).filter(x => x !== 'nothing');
+
+    if(earnedResources.length === 0 || earnedResources.some(res => resources[res] <= 0)) {
+      this.notifyService.warn('You didn\'t get anything...');
       return;
     }
 
@@ -68,6 +72,7 @@ export class CharSelectState {
     // if it's a resource, gain that
     const isResource = this.itemCreatorService.isResource(itemName);
     if(isResource) {
+      console.log('is resource', itemName, this.itemCreatorService.isResource(itemName));
       ctx.dispatch(new GainResources({ [itemName]: quantity }));
       return;
     }
@@ -75,6 +80,7 @@ export class CharSelectState {
     // otherwise, try to gain an item
     const createdItem = this.itemCreatorService.createItem(itemName, quantity);
     if(!createdItem) {
+      this.notifyService.warn('You didn\'t get anything...');
       return;
     }
 

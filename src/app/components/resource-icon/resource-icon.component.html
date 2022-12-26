@@ -4,7 +4,8 @@
   [ngClass]="[
   rarity || 'Common',
   emphasizeText ? 'emphasis' : '',
-  angryColorWhenQuantityExceedsMax && quantity > maxQuantity ? 'angry' : ''
+  angryColorWhenQuantityExceedsMax && quantity > maxQuantity ? 'angry' : '',
+  name === 'nothing' ? 'nothing' : ''
 ]">
   <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
   <span class="name" *ngIf="name" [ngxTippy]="description">{{ name }}</span>

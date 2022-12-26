@@ -27,11 +27,11 @@ export class ResourcesPage implements OnInit {
   }
 
   resourceCategories(resourceHash: Record<string, number>): string[] {
-    return sortBy(uniq(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).map(x => this.resources[x].category)));
+    return sortBy(uniq(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).map(x => this.resources[x]?.category)));
   }
 
   resourcesInCategory(resourceHash: Record<string, number>, category: string): string[] {
-    return sortBy(Object.keys(resourceHash).filter(x => this.resources[x].category === category));
+    return sortBy(Object.keys(resourceHash).filter(x => this.resources[x]?.category === category));
   }
 
 
