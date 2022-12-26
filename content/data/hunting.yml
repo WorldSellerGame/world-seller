@@ -174,7 +174,7 @@ locations:
         weight: 1
 
   - name: Iron Wood Grove (Moose)
-    description: They said "don't chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
+    description: Moose are a rare sight outside of these woods nearly hunted to extinction in their lands by the legendary hunter, Beebo.
     perGather:
       min: 12
       max: 18
