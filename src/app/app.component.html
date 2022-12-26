@@ -1,13 +1,15 @@
 <ion-app>
-  <ion-split-pane [when]="showMenu" contentId="main-content" [class.shrink]="isShrinkSidebar$ | async">
+  <ion-split-pane [when]="showMenu" contentId="main-content" [class.shrink]="(sidebarDisplay$ | async) === 'minimal'">
     <ion-menu contentId="main-content" type="overlay">
 
-      <ion-content *ngIf="isShrinkSidebar$ | async; else expandedSidebar">
+      <ion-content *ngIf="(sidebarDisplay$ | async) === 'minimal'; else expandedSidebar">
         <ion-list>
           <ion-menu-toggle [autoHide]="false">
             <ion-item [routerLink]="['/game', characterSlot, 'settings']">
               <app-game-icon slot="start" icon="settings"></app-game-icon>
             </ion-item>
+
+            <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected">
               <app-game-icon slot="start" icon="resources"></app-game-icon>
@@ -16,9 +18,13 @@
               <app-game-icon slot="start" icon="inventory"></app-game-icon>
             </ion-item>
 
+            <div class="sublist-divider"></div>
+
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of gatheringTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
             </ion-item>
+
+            <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of refiningTradeskills; let i = index">
               <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>

@@ -17,6 +17,7 @@ ion-split-pane {
 
         ion-item {
           margin: 0;
+          padding: 4px 0;
 
           app-game-icon {
             margin: 0;
@@ -87,4 +88,12 @@ ion-label.has-timer {
   right: 10px;
   top: 20px;
   z-index: 100;
+}
+
+.sublist-divider {
+  height: 1px;
+  width: 48px;
+  background-color: var(--ion-color-medium-shade);
+  margin: 4px 0 4px 8px;
+  position: relative;
 }
