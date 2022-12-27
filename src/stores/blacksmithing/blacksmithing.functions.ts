@@ -8,6 +8,7 @@ import { CancelBlacksmithingJob, StartBlacksmithingJob } from './blacksmithing.a
 export const defaultBlacksmithing: () => IGameRefining = () => ({
   version: 0,
   level: 0,
+  queueSize: 1,
   recipeQueue: []
 });
 

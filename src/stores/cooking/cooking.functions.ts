@@ -8,6 +8,7 @@ import { CancelCookingJob, StartCookingJob } from './cooking.actions';
 export const defaultCooking: () => IGameRefining = () => ({
   version: 0,
   level: 0,
+  queueSize: 1,
   recipeQueue: []
 });
 

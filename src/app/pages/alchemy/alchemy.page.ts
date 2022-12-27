@@ -23,13 +23,22 @@ export class AlchemyPage implements OnInit {
   public amounts: Record<string, number> = {};
 
   @Select(AlchemyState.level) level$!: Observable<number>;
-  @Select(AlchemyState.currentQueue) currentQueue$!: Observable<IGameRefiningRecipe[]>;
+  @Select(AlchemyState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
   constructor(private store: Store, private itemCreatorService: ItemCreatorService) { }
 
   ngOnInit() {
+  }
+
+  isQueueFull(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
+    if(!queueInfo) {
+      return false;
+    }
+
+    const { queue, size } = queueInfo;
+    return queue.length >= size;
   }
 
   trackBy(index: number) {

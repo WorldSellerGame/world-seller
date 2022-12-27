@@ -8,6 +8,7 @@ import { CancelAlchemyJob, StartAlchemyJob } from './alchemy.actions';
 export const defaultAlchemy: () => IGameRefining = () => ({
   version: 0,
   level: 0,
+  queueSize: 1,
   recipeQueue: []
 });
 
