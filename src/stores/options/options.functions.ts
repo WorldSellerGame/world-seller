@@ -7,7 +7,7 @@ import { SetOption } from './options.actions';
 export const defaultOptions: () => IOptions = () => ({
   version: 0,
   [GameOption.DebugMode]: false,
-  [GameOption.ShrinkSidebar]: false,
+  [GameOption.SidebarDisplay]: 'full',
   [GameOption.TickTimer]: 1
 });
 
