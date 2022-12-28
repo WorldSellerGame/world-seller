@@ -2,7 +2,7 @@
 #Common
 Pine Needle:
   description: Useless junk on the ground for the most part generally not worth your time.
-  category: Food
+  category: Foods
   rarity: Junk
   icon: 'pine-needle'
 
@@ -20,13 +20,13 @@ Dandelion:
 
 Worm:
   description: Wiggly fellow. Not for you to eat but makes excellent bait.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'worm'
 
 Carrot:
   description: Backbone or many soups and stews.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'carrot'
 
@@ -38,7 +38,7 @@ Carrot Seed:
 
 Apple:
   description: Apples are a tasty treat on their own, but also a staple flavor in pies and pastries.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'apple'
 
@@ -76,7 +76,7 @@ Raspberry Seed:
 
 Pumpkin:
   description: Lots of applications, but most well known for pie.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'pumpkin'
 
@@ -88,7 +88,7 @@ Pumpkin Seed:
 
 Grape:
   description: Lots of applications, but most profitable in wine.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'grape'
 
@@ -100,19 +100,19 @@ Grape Seed:
 
 Wheat:
   description: Most well known for its use in flour. Can also be planted in the farm.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'wheat'
 
 Garlic:
   description: "Garlic is a flavoring for the gods and it is treason to say that a little of it goes a long way."
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'garlic'
 
 Spicy Pepper:
   description: Adds a kick to food, but can have a few other uses as well.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'pepper'
 
@@ -124,19 +124,19 @@ Spicy Pepper Seeds:
 
 Honey:
   description: Tasty treat guarded by little soldiers.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'honey'
 
 Bee:
   description: Can't make honey without a queen so fairly useless?
-  category: Junk
+  category: Miscellaneous
   rarity: Uncommon
-  icon: 'Bee'
+  icon: 'bee'
 
 Banana:
   description: Tasty but probably won't grow back home.
-  category: Food
+  category: Foods
   rarity: Uncommon
   icon: 'banana'
 
@@ -144,19 +144,19 @@ Banana:
 
 Duck Egg:
   description: A bit more snazzy than a chicken egg.
-  category: Food
+  category: Foods
   rarity: Rare
   icon: 'egg'
 
 Coconut:
   description: Quenchy but probably won't grow back home.
-  category: Food
+  category: Foods
   rarity: Rare
   icon: 'coconut'
 
 Rose:
   description: A beautiful flower, a thorny stem.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'Rare'
 
@@ -164,13 +164,13 @@ Rose:
 
 Carambola:
   description: Better known as a star fruit. Tasty but price is more representative of the rarity around these parts.
-  category: Food
+  category: Foods
   rarity: Epic
   icon: 'carambola'
 
 Grouse Egg:
   description: A luxurious option for only the most affluent.
-  category: Food
+  category: Foods
   rarity: Epic
   icon: 'egg'
 
@@ -178,25 +178,25 @@ Grouse Egg:
 
 Mushroom:
   description: Tasty with a flavor thats tough to replace with other ingredients.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'mushroom'
 
 Poisonous Mushroom:
   description: This mushroom will make you ill or worse.
-  category: Food
+  category: Foods
   rarity: Common
   icon: 'spotted-mushroom'
 
 Death Cap:
   description: This mushroom will make its best effort to kill you.
-  category: Food
+  category: Foods
   rarity: Rare
   icon: 'death-cap'
 
 Fairy Bell:
   description: Not magical, well, not in the traditional sense.
-  category: Food
+  category: Foods
   rarity: Rare
   icon: 'magic-mushroom'
 

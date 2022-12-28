@@ -69,10 +69,10 @@ Octopus:
   description: It has many uses, but not worth the effort for most folks.
   category: Foods
   rarity: Rare
-  icon: 'octopus'  
+  icon: 'octopus'
 
 Shark:
-  description: You know what a shark is and it's cool, that's what a shark is, cool. 
+  description: You know what a shark is and it's cool, that's what a shark is, cool.
   category: Foods
   rarity: Rare
   icon: 'shark'

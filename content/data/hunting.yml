@@ -48,7 +48,7 @@ locations:
         weight: 1
 
   - name: Marsh (Frog)
-    description: A marsh with small streams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 2
       max: 4
@@ -60,9 +60,9 @@ locations:
     resources:
       - name: Frog
         weight: 702
-  
+
   - name: Marsh (Duck)
-    description: A marsh with small streams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 3
       max: 6
@@ -88,9 +88,9 @@ locations:
     gatherTime: 15
     cooldownTime: 20
     resources:
-      - name: Dear meat
+      - name: Deer Meat
         weight: 5
-      - name: Dear Antlers
+      - name: Deer Antler
         weight: 1
       - name: Hide
         weight: 1
@@ -146,7 +146,7 @@ locations:
     resources:
       - name: Elk Meat
         weight: 4
-      - name: Elk Antlers
+      - name: Elk Antler
         weight: 1
       - name: Hide
         weight: 1

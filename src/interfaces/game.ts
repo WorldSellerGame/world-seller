@@ -8,6 +8,18 @@ export enum Rarity {
   Legendary = 'Legendary'
 }
 
+export enum ItemCategory {
+  Tools = 'Tools',
+  Armor = 'Armor',
+  Foods = 'Foods',
+  Jewelry = 'Jewelry',
+  Potions = 'Potions',
+  Seeds = 'Seeds',
+  Miscellaneous = 'Miscellaneous',
+  RawMaterials = 'Raw Materials',
+  RefinedMaterials = 'Refined Materials'
+}
+
 export enum Stat {
 
   // power reduces the time it takes to gather a resource by seconds
@@ -45,7 +57,11 @@ export enum ItemType {
   HeadArmor = 'HeadArmor',
   FootArmor = 'FootArmor',
   HandArmor = 'HandArmor',
-  Jewelry = 'Jewelry'
+  Jewelry = 'Jewelry',
+
+  // usable
+  Food = 'Food',
+  Potion = 'Potion'
 }
 
 export interface IGame {
@@ -56,7 +72,7 @@ export interface IGameItem {
   name: string;
   description: string;
   type: ItemType;
-  category: string;
+  category: ItemCategory;
   rarity: Rarity;
   durability: number;
   icon: string;
@@ -85,7 +101,7 @@ export interface IGameResource {
   description: string;
   icon: string;
   rarity: Rarity;
-  category: string;
+  category: ItemCategory;
 }
 
 export interface IWeighted {

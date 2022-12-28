@@ -49,7 +49,7 @@ locations:
         weight: 1
       - name: Carrot
         weight: 15
-      - name: Carrot Seeds
+      - name: Carrot Seed
         weight: 3
       - name: Worm
         weight: 1
@@ -92,7 +92,7 @@ locations:
         weight: 4
       - name: Rose
         weight: 1
-      
+
   - name: Wheat Meadow
     description: A field of wheat, pretty cool right?
     perGather:
