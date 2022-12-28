@@ -16,8 +16,6 @@ const loadContent = async () => {
   const allResources = await fs.readJson('src/assets/content/resources.json');
   const allItems = await fs.readJson('src/assets/content/items.json');
 
-  const allItemKeys = Object.keys(allItems);
-
   Object.keys(allResources).forEach(key => {
     const resource = allResources[key];
     if(!validCategories.includes(resource.category)) {
