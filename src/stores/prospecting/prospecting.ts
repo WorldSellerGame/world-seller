@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Selector, State } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { IGameFarming, IGameProspecting } from '../../interfaces';
+import { IGameProspecting } from '../../interfaces';
 import { attachments } from './prospecting.attachments';
 import { defaultProspecting } from './prospecting.functions';
 
@@ -21,13 +21,8 @@ export class ProspectingState {
   }
 
   @Selector()
-  static level(state: IGameFarming) {
+  static level(state: IGameProspecting) {
     return state.level;
-  }
-
-  @Selector()
-  static plotInfo(state: IGameFarming) {
-    return { maxPlots: state.maxPlots, plots: state.plots };
   }
 
 }

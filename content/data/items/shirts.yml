@@ -2,7 +2,7 @@
 Linen Shirt:
   name: Linen Shirt
   description: Shirt made of linen cloth.
-  type: BodyArmor
+  type: ChestArmor
   category: Armor
   rarity: Common
   durability: 50

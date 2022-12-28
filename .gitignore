@@ -68,3 +68,4 @@ testem.log
 Thumbs.db
 
 src/assets/content
+version.json

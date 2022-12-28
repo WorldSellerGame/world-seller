@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { GameOption, IOptions } from '../../../interfaces';
 import { OptionsState } from '../../../stores';
 import { SetOption } from '../../../stores/options/options.actions';
+import { MetaService } from '../../services/meta.service';
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +18,7 @@ export class SettingsPage implements OnInit {
 
   public showDevOptions = !environment.production;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, public metaService: MetaService) { }
 
   ngOnInit() {
   }

@@ -10,7 +10,8 @@ import { ProspectRock } from './prospecting.actions';
 
 export const defaultProspecting: () => IGameProspecting = () => ({
   version: 0,
-  level: 0
+  level: 0,
+  queueSize: 1
 });
 
 export function resetProspecting(ctx: StateContext<IGameProspecting>) {

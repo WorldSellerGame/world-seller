@@ -1,4 +1,64 @@
 
+#Common
+Pine Needle:
+  description: Useless junk on the ground for the most part generally not worth your time.
+  category: Foods
+  rarity: Junk
+  icon: 'pine-needle'
+
+Plant Fiber:
+  description: Used to turn into fabric.
+  category: Raw Materials
+  rarity: Common
+  icon: 'fiber'
+
+Dandelion:
+  description: Despite being considered a weed has a few medicinal applications.
+  category: Raw Materials
+  rarity: Common
+  icon: 'dandelion'
+
+Worm:
+  description: Wiggly fellow. Not for you to eat but makes excellent bait.
+  category: Foods
+  rarity: Common
+  icon: 'worm'
+
+Carrot:
+  description: Backbone or many soups and stews.
+  category: Foods
+  rarity: Common
+  icon: 'carrot'
+
+Carrot Seed:
+  description: Used to plant carrots in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Apple:
+  description: Apples are a tasty treat on their own, but also a staple flavor in pies and pastries.
+  category: Foods
+  rarity: Common
+  icon: 'apple'
+
+Apple Seed:
+  description: Used to plant Apples in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
+
+Strawberry:
+  description: Used to do strawberry things.
+  category: Foods
+  rarity: Common
+  icon: 'strawberry'
+
+Strawberry Seed:
+  description: Used to plant strawberry in the farm.
+  category: Seeds
+  rarity: Common
+  icon: 'seed'
 
 Raspberry:
   description: Used to do raspberry things.
@@ -12,14 +72,135 @@ Raspberry Seed:
   rarity: Common
   icon: 'seed'
 
-Apple:
-  description: Used to eat or turn into seeds.
-  category: Food
-  rarity: Common
-  icon: 'apple'
+#Uncommon
 
-Plant Fiber:
-  description: Used to turn into fabric.
-  category: Raw Materials
+Pumpkin:
+  description: Lots of applications, but most well known for pie.
+  category: Foods
+  rarity: Uncommon
+  icon: 'pumpkin'
+
+Pumpkin Seed:
+  description: Used to plant pumpkins in the farm.
+  category: Seeds
+  rarity: Uncommon
+  icon: 'seed'
+
+Grape:
+  description: Lots of applications, but most profitable in wine.
+  category: Foods
+  rarity: Uncommon
+  icon: 'grape'
+
+Grape Seed:
+  description: Used to plant grapes in the farm.
+  category: Seeds
+  rarity: Uncommon
+  icon: 'seed'
+
+Wheat:
+  description: Most well known for its use in flour. Can also be planted in the farm.
+  category: Foods
+  rarity: Uncommon
+  icon: 'wheat'
+
+Garlic:
+  description: "Garlic is a flavoring for the gods and it is treason to say that a little of it goes a long way."
+  category: Foods
+  rarity: Uncommon
+  icon: 'garlic'
+
+Spicy Pepper:
+  description: Adds a kick to food, but can have a few other uses as well.
+  category: Foods
+  rarity: Uncommon
+  icon: 'pepper'
+
+Spicy Pepper Seeds:
+  description: Used to plant Spicy Peppers in the farm.
+  category: Seeds
+  rarity: Uncommon
+  icon: 'seed'
+
+Honey:
+  description: Tasty treat guarded by little soldiers.
+  category: Foods
+  rarity: Uncommon
+  icon: 'honey'
+
+Bee:
+  description: Can't make honey without a queen so fairly useless?
+  category: Miscellaneous
+  rarity: Uncommon
+  icon: 'bee'
+
+Banana:
+  description: Tasty but probably won't grow back home.
+  category: Foods
+  rarity: Uncommon
+  icon: 'banana'
+
+#Rare
+
+Duck Egg:
+  description: A bit more snazzy than a chicken egg.
+  category: Foods
+  rarity: Rare
+  icon: 'egg'
+
+Coconut:
+  description: Quenchy but probably won't grow back home.
+  category: Foods
+  rarity: Rare
+  icon: 'coconut'
+
+Rose:
+  description: A beautiful flower, a thorny stem.
+  category: Foods
   rarity: Common
-  icon: 'fiber'
+  icon: 'Rare'
+
+#Epic
+
+Carambola:
+  description: Better known as a star fruit. Tasty but price is more representative of the rarity around these parts.
+  category: Foods
+  rarity: Epic
+  icon: 'carambola'
+
+Grouse Egg:
+  description: A luxurious option for only the most affluent.
+  category: Foods
+  rarity: Epic
+  icon: 'egg'
+
+#Mushrooms (Can be back sorted later if desired)
+
+Mushroom:
+  description: Tasty with a flavor thats tough to replace with other ingredients.
+  category: Foods
+  rarity: Common
+  icon: 'mushroom'
+
+Poisonous Mushroom:
+  description: This mushroom will make you ill or worse.
+  category: Foods
+  rarity: Common
+  icon: 'spotted-mushroom'
+
+Death Cap:
+  description: This mushroom will make its best effort to kill you.
+  category: Foods
+  rarity: Rare
+  icon: 'death-cap'
+
+Fairy Bell:
+  description: Not magical, well, not in the traditional sense.
+  category: Foods
+  rarity: Rare
+  icon: 'magic-mushroom'
+
+
+
+
+

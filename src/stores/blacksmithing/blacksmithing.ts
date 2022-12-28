@@ -27,7 +27,7 @@ export class BlacksmithingState {
 
   @Selector()
   static currentQueue(state: IGameRefining) {
-    return state.recipeQueue;
+    return { queue: state.recipeQueue, size: state.queueSize };
   }
 
 }

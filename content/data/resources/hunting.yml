@@ -64,7 +64,7 @@ Grouse Meat:
   category: Foods
   rarity: Epic
   icon: 'meat'
-  
+
 ######################################################################################################################################
 Bone:
   description: Used to bone things.
@@ -89,7 +89,7 @@ Deer Antler:
   category: Foods
   rarity: Common
   icon: 'antler'
-  
+
 Elk Antler:
   description: Mostly decorative, making tools out of this material not too practical any more.
   category: Foods

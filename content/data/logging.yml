@@ -163,7 +163,7 @@ locations:
         weight: 2
       - name: Elvish Silverwood Log
         weight: 40
-      - name: Elvish Silverwood seed
+      - name: Elvish Silverwood Seed
         weight: 2
       - name: Curse
         weight: 1
@@ -184,7 +184,7 @@ locations:
         weight: 3
       - name: Elvish Silverwood Log
         weight: 80
-      - name: Elvish Silverwood seed
+      - name: Elvish Silverwood Seed
         weight: 4
 
 #Brandon
