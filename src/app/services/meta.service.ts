@@ -36,7 +36,7 @@ export class MetaService {
         return acc;
       }, {} as any);
 
-      const fileName = `${charName}.qivan`;
+      const fileName = `${charName}.ws`;
       const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
       const downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute('href',     dataStr);
