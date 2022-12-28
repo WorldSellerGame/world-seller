@@ -1,6 +1,6 @@
 locations:
   - name: Nearby Forest
-    description: Over harvested forest with little bounty.
+    description: Over-harvested forest with little bounty.
     perGather:
       min: 2
       max: 4
@@ -13,7 +13,7 @@ locations:
         weight: 1
 
   - name: Pine Forest
-    description: Over harvested but less so.
+    description: Over-harvested but less so.
     perGather:
       min: 3
       max: 5
@@ -71,7 +71,7 @@ locations:
       - name: Worm
         weight: 2
 
-  - name: Forrest Glade
+  - name: Forest Glade
     description: A small clearing in the Coniferous Forest.
     perGather:
       min: 6
