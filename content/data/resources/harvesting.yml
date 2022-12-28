@@ -129,13 +129,13 @@ Honey:
   icon: 'honey'
 
 Bee:
-  description: Cant make honey without a queen so fairly useless?
+  description: Can't make honey without a queen so fairly useless?
   category: Junk
   rarity: Uncommon
   icon: 'Bee'
 
 Banana:
-  description: Tasty but probably wont grow back home.
+  description: Tasty but probably won't grow back home.
   category: Food
   rarity: Uncommon
   icon: 'banana'
@@ -149,7 +149,7 @@ Duck Egg:
   icon: 'egg'
 
 Coconut:
-  description: Quenchy but probably wont grow back home.
+  description: Quenchy but probably won't grow back home.
   category: Food
   rarity: Rare
   icon: 'coconut'
