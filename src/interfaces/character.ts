@@ -1,14 +1,4 @@
-import { IGameItem } from './game';
-
-export enum ICharacterEquipmentSlot {
-  Pickaxe = 'pickaxe',
-  Axe = 'axe',
-  FishingRod = 'fishingRod',
-  FishingBait = 'fishingBait',
-  Scythe = 'scythe',
-  HuntingTool = 'huntingTool',
-  Jewelry = 'jewelry',
-}
+import { IGameItem, ItemType } from './game';
 
 export interface ICharacter {
   name: string;
@@ -16,5 +6,5 @@ export interface ICharacter {
   lastTotalLevel: number;
   resources: Record<string, number>;
   inventory: IGameItem[];
-  equipment: Partial<Record<ICharacterEquipmentSlot, IGameItem>>;
+  equipment: Partial<Record<ItemType, IGameItem>>;
 }

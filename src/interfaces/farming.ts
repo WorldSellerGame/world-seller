@@ -1,14 +1,7 @@
-
-export interface IGameFarmingSeedTransform {
-  seed: string;
-  becomes: string;
-  perGather: { min: number; max: number };
-  level: { max: number };
-  gatherTime: number;
-}
+import { IGameResourceTransform } from './game';
 
 export interface IGameFarmingPlot {
-  result: IGameFarmingSeedTransform;
+  result: IGameResourceTransform;
   currentDuration: number;
   currentDurationInitial: number;
 }

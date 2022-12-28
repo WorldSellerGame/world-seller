@@ -8,6 +8,7 @@ import { CancelJewelcraftingJob, StartJewelcraftingJob } from './jewelcrafting.a
 export const defaultJewelcrafting: () => IGameRefining = () => ({
   version: 0,
   level: 0,
+  queueSize: 1,
   recipeQueue: []
 });
 

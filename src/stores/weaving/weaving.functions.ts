@@ -8,6 +8,7 @@ import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
 export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
   level: 0,
+  queueSize: 1,
   recipeQueue: []
 });
 

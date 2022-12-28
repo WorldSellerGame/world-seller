@@ -1,5 +1,5 @@
 {
-  "name": "qivan",
+  "name": "world-seller",
   "description": "who knows",
   "version": "0.0.1",
   "author": "Kyle Kemp <kyle@seiyria.com>",
@@ -10,7 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "load:content": "ts-node scripts/content",
-    "build:netlify": "npm run load:content && npm run build",
+    "build:netlify": "npm run load:content && npm run buildvars && npm run build",
+    "buildvars": "ts-node scripts/buildvars",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "changelog:generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog:generate:current": "conventional-changelog -p angular -o CHANGELOG-current.md -r 2",
@@ -71,6 +72,7 @@
     "eslint-plugin-jsdoc": "^39.6.4",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "git-describe": "^4.1.1",
     "ts-node": "~8.3.0",
     "typescript": "~4.8.4"
   }

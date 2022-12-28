@@ -1,9 +1,13 @@
 
 
 import { Injectable } from '@angular/core';
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { IGameGathering } from '../../interfaces';
+import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
+import { IGameGathering, Stat } from '../../interfaces';
+import { CharSelectState } from '../charselect/charselect';
+import { TickTimer } from '../game/game.actions';
+import { CancelFishing, SetFishingLocation } from './fishing.actions';
 import { attachments } from './fishing.attachments';
 import { defaultFishing } from './fishing.functions';
 
@@ -14,7 +18,7 @@ import { defaultFishing } from './fishing.functions';
 @Injectable()
 export class FishingState {
 
-  constructor() {
+  constructor(private store: Store) {
     attachments.forEach(({ action, handler }) => {
       attachAction(FishingState, action, handler);
     });
@@ -38,5 +42,19 @@ export class FishingState {
   static cooldowns(state: IGameGathering) {
     return state.cooldowns;
   }
+
+  @Action(TickTimer)
+  decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const cdrValue = calculateStat(equipment, Stat.FishingSpeed);
+    decreaseGatherTimer(ctx, ticks, cdrValue, CancelFishing);
+  }
+
+  @Action(SetFishingLocation)
+  setLocation(ctx: StateContext<IGameGathering>, { location }: SetFishingLocation) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const gdrValue = calculateStat(equipment, Stat.FishingPower);
+    setGatheringLocation(ctx, location, gdrValue);
+  };
 
 }

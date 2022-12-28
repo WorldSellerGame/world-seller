@@ -1,9 +1,13 @@
 
 
 import { Injectable } from '@angular/core';
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { IGameGathering } from '../../interfaces';
+import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
+import { IGameGathering, Stat } from '../../interfaces';
+import { CharSelectState } from '../charselect/charselect';
+import { TickTimer } from '../game/game.actions';
+import { CancelLogging, SetLoggingLocation } from './logging.actions';
 import { attachments } from './logging.attachments';
 import { defaultLogging } from './logging.functions';
 
@@ -14,7 +18,7 @@ import { defaultLogging } from './logging.functions';
 @Injectable()
 export class LoggingState {
 
-  constructor() {
+  constructor(private store: Store) {
     attachments.forEach(({ action, handler }) => {
       attachAction(LoggingState, action, handler);
     });
@@ -38,5 +42,19 @@ export class LoggingState {
   static cooldowns(state: IGameGathering) {
     return state.cooldowns;
   }
+
+  @Action(TickTimer)
+  decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const cdrValue = calculateStat(equipment, Stat.AxeSpeed);
+    decreaseGatherTimer(ctx, ticks, cdrValue, CancelLogging);
+  }
+
+  @Action(SetLoggingLocation)
+  setLocation(ctx: StateContext<IGameGathering>, { location }: SetLoggingLocation) {
+    const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
+    const gdrValue = calculateStat(equipment, Stat.AxePower);
+    setGatheringLocation(ctx, location, gdrValue);
+  };
 
 }

@@ -24,7 +24,7 @@ interface IMenuItem {
 export class AppComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
-  @Select(OptionsState.isShrinkSidebar) isShrinkSidebar$!: Observable<boolean>;
+  @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
   public level!: Subscription;
   public totalLevel = 0;
@@ -94,10 +94,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ];
 
 
-  public otherTradeskills: IMenuItem[] = [
+  public peripheralTradeskills: IMenuItem[] = [
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       timer: of(0),
-      level: this.store.select(state => state.farming.level) }
+      level: this.store.select(state => state.farming.level) },
+
+    { title: 'Prospecting',    url: 'prospecting',    icon: 'prospecting',
+      timer: of(0),
+      level: this.store.select(state => state.prospecting.level) }
   ];
 
   public get showMenu(): boolean {

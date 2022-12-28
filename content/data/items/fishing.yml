@@ -1,6 +1,6 @@
 
-Cedar Fishing Rod:
-  name: Cedar Fishing Rod
+Pine Fishing Rod:
+  name: Pine Fishing Rod
   description: A simple fishing rod.
   type: FishingRod
   category: Tools
@@ -13,7 +13,7 @@ Cedar Fishing Rod:
 Stone Bait:
   name: Stone Bait
   description: Somewhat ineffective bait, but it'll do.
-  type: Fishing Bait
+  type: FishingBait
   category: Tools
   rarity: Common
   durability: 50

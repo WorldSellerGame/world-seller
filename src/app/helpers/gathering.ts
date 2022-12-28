@@ -1,12 +1,12 @@
 import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
-import { IGameGathering, IGameGatherLocation } from '../../interfaces';
+import { IGameGatherLocation, IGameGathering } from '../../interfaces';
 import { GainResources, SyncTotalLevel } from '../../stores/charselect/charselect.actions';
 import { isLocationOnCooldown, lowerGatheringCooldowns, putLocationOnCooldown } from './cooldowns';
-import { pickWithWeights } from './pick-weight';
+import { pickResourcesWithWeights } from './pick-weight';
 
-export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cancelProto: any) {
+export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cdrValue: number, cancelProto: any) {
   const state = ctx.getState();
 
   lowerGatheringCooldowns(ctx, ticks);
@@ -25,11 +25,11 @@ export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: nu
     const location = state.currentLocation;
 
     const numResources = random(location.perGather.min, location.perGather.max);
-    const gainedResources = pickWithWeights(location.resources, numResources);
+    const gainedResources = pickResourcesWithWeights(location.resources, numResources);
 
     ctx.dispatch(new GainResources(gainedResources));
 
-    putLocationOnCooldown(ctx, location);
+    putLocationOnCooldown(ctx, location, cdrValue);
 
     if(location.level.max > state.level) {
       ctx.setState(patch<IGameGathering>({
@@ -51,15 +51,17 @@ export function cancelGathering(ctx: StateContext<IGameGathering>) {
   }));
 }
 
-export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation) {
+export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation, gdrValue: number) {
 
   if(isLocationOnCooldown(ctx, location)) {
     return;
   }
 
+  const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
+
   ctx.setState(patch<IGameGathering>({
     currentLocation: location,
-    currentLocationDurationInitial: location.gatherTime,
-    currentLocationDuration: location.gatherTime
+    currentLocationDurationInitial: gatherTime,
+    currentLocationDuration: gatherTime
   }));
 }

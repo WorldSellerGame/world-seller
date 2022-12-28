@@ -6,7 +6,7 @@ recipes:
     craftTime: 10
     ingredients:
       Stone: 3
-      Cedar Log: 2
+      Pine Log: 2
 
   - result: Stone Pickaxe
     perCraft: { min: 1, max: 1 }
@@ -14,7 +14,7 @@ recipes:
     craftTime: 10
     ingredients:
       Stone: 5
-      Cedar Log: 3
+      Pine Log: 3
 
   - result: Stone Scythe
     perCraft: { min: 1, max: 1 }
@@ -22,7 +22,7 @@ recipes:
     craftTime: 10
     ingredients:
       Stone: 4
-      Cedar Log: 4
+      Pine Log: 4
 
   - result: Stone Spear
     perCraft: { min: 1, max: 1 }
@@ -30,14 +30,14 @@ recipes:
     craftTime: 10
     ingredients:
       Stone: 2
-      Cedar Log: 3
+      Pine Log: 3
 
-  - result: Cedar Fishing Rod
+  - result: Pine Fishing Rod
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
-      Cedar Log: 2
+      Pine Log: 2
 
   - result: Stone Bait
     perCraft: { min: 1, max: 2 }

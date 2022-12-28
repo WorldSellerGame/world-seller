@@ -10,10 +10,12 @@ locations:
     gatherTime: 10
     cooldownTime: 20
     resources:
-      - name: Old Boot
-        weight: 1     
-      - name: Cropfish
+      - name: nothing
         weight: 1
+      - name: Old Boot
+        weight: 1
+      - name: Cropfish
+        weight: 3
 
   - name: Local Pond
     description: A small pond, its close and there's fish - can't really beat that as of now.
@@ -27,13 +29,13 @@ locations:
     cooldownTime: 20
     resources:
       - name: Old Boot
-        weight: 1     
+        weight: 1
       - name: Cropfish
         quantity: 5
         weight: 5
 
-  - name: Coniferous Creek
-    description: A little creek in the Coniferous forest.
+  - name: Pine Creek
+    description: A little creek in the Pine forest.
     perGather:
       min: 0
       max: 2
@@ -53,7 +55,7 @@ locations:
         weight: 10
 
   - name: Marsh
-    description: A marsh with small streams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 1
       max: 4
@@ -70,8 +72,8 @@ locations:
       - name: Frog
         weight: 10
 
-  - name: Coniferous Stream
-    description: A little creek in the Coniferous forest.
+  - name: Small Stream
+    description: A little stream in Cedrics Woods.
     perGather:
       min: 0
       max: 5
@@ -106,7 +108,7 @@ locations:
       - name: Trout
         weight: 500000000
 
-  - name: Misty Lake 
+  - name: Misty Lake
     description: The mist covers this small lake in the early morning and late in the evening.
     perGather:
       min: 0
@@ -218,5 +220,5 @@ locations:
       - name: Shark
         weight: 1
 
-#Brandon 
+#Brandon
   #silly problems plague me as much as my standards and inability to not research every single thing I put in
