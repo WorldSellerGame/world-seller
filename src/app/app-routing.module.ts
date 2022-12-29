@@ -4,15 +4,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/core/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'new',
-    loadChildren: () => import('./pages/new/new.module').then( m => m.NewPageModule)
+    loadChildren: () => import('./pages/core/new/new.module').then( m => m.NewPageModule)
   },
   {
     path: 'game/:slot/settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/character/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
     path: 'game/:slot',
@@ -20,63 +20,63 @@ const routes: Routes = [
   },
   {
     path: 'game/:slot/resources',
-    loadChildren: () => import('./pages/resources/resources.module').then( m => m.ResourcesPageModule)
+    loadChildren: () => import('./pages/character/resources/resources.module').then( m => m.ResourcesPageModule)
   },
   {
     path: 'game/:slot/inventory',
-    loadChildren: () => import('./pages/inventory/inventory.module').then( m => m.InventoryPageModule)
+    loadChildren: () => import('./pages/character/inventory/inventory.module').then( m => m.InventoryPageModule)
   },
   {
     path: 'game/:slot/equipment',
-    loadChildren: () => import('./pages/equipment/equipment.module').then( m => m.EquipmentPageModule)
+    loadChildren: () => import('./pages/character/equipment/equipment.module').then( m => m.EquipmentPageModule)
   },
   {
     path: 'game/:slot/mining',
-    loadChildren: () => import('./pages/mining/mining.module').then( m => m.MiningPageModule)
+    loadChildren: () => import('./pages/tradeskills/gathering/mining/mining.module').then( m => m.MiningPageModule)
   },
   {
     path: 'game/:slot/fishing',
-    loadChildren: () => import('./pages/fishing/fishing.module').then( m => m.FishingPageModule)
+    loadChildren: () => import('./pages/tradeskills/gathering/fishing/fishing.module').then( m => m.FishingPageModule)
   },
   {
     path: 'game/:slot/foraging',
-    loadChildren: () => import('./pages/foraging/foraging.module').then( m => m.ForagingPageModule)
+    loadChildren: () => import('./pages/tradeskills/gathering/foraging/foraging.module').then( m => m.ForagingPageModule)
   },
   {
     path: 'game/:slot/logging',
-    loadChildren: () => import('./pages/logging/logging.module').then( m => m.LoggingPageModule)
+    loadChildren: () => import('./pages/tradeskills/gathering/logging/logging.module').then( m => m.LoggingPageModule)
   },
   {
     path: 'game/:slot/hunting',
-    loadChildren: () => import('./pages/hunting/hunting.module').then( m => m.HuntingPageModule)
+    loadChildren: () => import('./pages/tradeskills/gathering/hunting/hunting.module').then( m => m.HuntingPageModule)
   },
   {
     path: 'game/:slot/blacksmithing',
-    loadChildren: () => import('./pages/blacksmith/blacksmith.module').then( m => m.BlacksmithPageModule)
+    loadChildren: () => import('./pages/tradeskills/refining/blacksmith/blacksmith.module').then( m => m.BlacksmithPageModule)
   },
   {
     path: 'game/:slot/weaving',
-    loadChildren: () => import('./pages/weaving/weaving.module').then( m => m.WeavingPageModule)
+    loadChildren: () => import('./pages/tradeskills/refining/weaving/weaving.module').then( m => m.WeavingPageModule)
   },
   {
     path: 'game/:slot/alchemy',
-    loadChildren: () => import('./pages/alchemy/alchemy.module').then( m => m.AlchemyPageModule)
+    loadChildren: () => import('./pages/tradeskills/refining/alchemy/alchemy.module').then( m => m.AlchemyPageModule)
   },
   {
     path: 'game/:slot/cooking',
-    loadChildren: () => import('./pages/cooking/cooking.module').then( m => m.CookingPageModule)
+    loadChildren: () => import('./pages/tradeskills/refining/cooking/cooking.module').then( m => m.CookingPageModule)
   },
   {
     path: 'game/:slot/jewelcrafting',
-    loadChildren: () => import('./pages/jewelcrafting/jewelcrafting.module').then( m => m.JewelcraftingPageModule)
+    loadChildren: () => import('./pages/tradeskills/refining/jewelcrafting/jewelcrafting.module').then( m => m.JewelcraftingPageModule)
   },
   {
     path: 'game/:slot/farming',
-    loadChildren: () => import('./pages/farming/farming.module').then( m => m.FarmingPageModule)
+    loadChildren: () => import('./pages/tradeskills/peripheral/farming/farming.module').then( m => m.FarmingPageModule)
   },
   {
     path: 'game/:slot/prospecting',
-    loadChildren: () => import('./pages/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
+    loadChildren: () => import('./pages/tradeskills/peripheral/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
   },
   {
     path: '**',
