@@ -17,7 +17,8 @@ export enum ItemCategory {
   Seeds = 'Seeds',
   Miscellaneous = 'Miscellaneous',
   RawMaterials = 'Raw Materials',
-  RefinedMaterials = 'Refined Materials'
+  RefinedMaterials = 'Refined Materials',
+  CraftingTables = 'Crafting Tables'
 }
 
 export enum Stat {
@@ -87,6 +88,8 @@ export interface IGameRecipe {
   level: { min: number; max: number };
   perCraft: { min: number; max: number };
   craftTime: number;
+  preserve?: string[];
+  require?: string[];
 }
 
 export interface IGameResourceTransform {

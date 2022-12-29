@@ -1,47 +1,85 @@
 
 recipes:
+  - result: Stone Crafting Table
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 30
+    ingredients:
+      Stone: 10
+      Pine Log: 8
+
   - result: Stone Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Stone Crafting Table: 1
       Stone: 3
       Pine Log: 2
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
 
   - result: Stone Pickaxe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Stone Crafting Table: 1
       Stone: 5
       Pine Log: 3
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
 
   - result: Stone Scythe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Stone Crafting Table: 1
       Stone: 4
       Pine Log: 4
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
 
   - result: Stone Spear
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Stone Crafting Table: 1
       Stone: 2
       Pine Log: 3
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
 
   - result: Pine Fishing Rod
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Stone Crafting Table: 1
       Pine Log: 2
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
 
   - result: Stone Bait
     perCraft: { min: 1, max: 2 }
     level: { min: 0, max: 10 }
     craftTime: 2
     ingredients:
+      Stone Crafting Table: 1
       Stone: 2
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table

@@ -51,7 +51,7 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
 }
 
 export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number) {
-  const recipeIngredients = Object.keys(job.ingredients);
+  const recipeIngredients = Object.keys(job.ingredients).filter(ingredient => !(job.preserve || []).includes(ingredient));
   const recipeCosts = recipeIngredients.map(ingredient => -job.ingredients[ingredient] * quantity);
 
   ctx.dispatch(new GainResources(zipObject(recipeIngredients, recipeCosts)));

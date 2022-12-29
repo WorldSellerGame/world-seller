@@ -21,6 +21,7 @@ export class BlacksmithPage implements OnInit {
   public readonly itemsData = (itemsData as any).default || itemsData;
 
   public amounts: Record<string, number> = {};
+  public recipes$!: Observable<IGameRecipe[]>;
 
   @Select(BlacksmithingState.level) level$!: Observable<number>;
   @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
@@ -45,16 +46,21 @@ export class BlacksmithPage implements OnInit {
     return index;
   }
 
+  visibleRecipes(resources: Record<string, number>, recipes: IGameRecipe[]): IGameRecipe[] {
+    const validRecipes = recipes.filter((recipe: IGameRecipe) => {
+      const required = recipe.require || [];
+      return required.every((req) => resources[req] > 0);
+    });
+
+    return sortBy(validRecipes, 'result');
+  }
+
   iconForRecipe(recipe: IGameRecipe) {
     return this.itemCreatorService.iconFor(recipe.result);
   }
 
   modifyAmount(recipe: IGameRecipe, amount: number) {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
-  }
-
-  sortRecipes(recipes: IGameRecipe[]): IGameRecipe[] {
-    return sortBy(recipes, 'result');
   }
 
   canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {

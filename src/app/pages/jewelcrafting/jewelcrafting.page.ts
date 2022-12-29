@@ -5,10 +5,10 @@ import { IGameRecipe, IGameRefiningRecipe } from '../../../interfaces';
 import { CharSelectState, JewelcraftingState } from '../../../stores';
 
 import { sortBy } from 'lodash';
-import * as locationData from '../../../assets/content/jewelcrafting.json';
 import * as itemsData from '../../../assets/content/items.json';
-import { ItemCreatorService } from '../../services/item-creator.service';
+import * as locationData from '../../../assets/content/jewelcrafting.json';
 import { CancelJewelcraftingJob, StartJewelcraftingJob } from '../../../stores/jewelcrafting/jewelcrafting.actions';
+import { ItemCreatorService } from '../../services/item-creator.service';
 
 @Component({
   selector: 'app-jewelcrafting',
@@ -53,8 +53,13 @@ export class JewelcraftingPage implements OnInit {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
   }
 
-  sortRecipes(recipes: IGameRecipe[]): IGameRecipe[] {
-    return sortBy(recipes, 'result');
+  visibleRecipes(resources: Record<string, number>, recipes: IGameRecipe[]): IGameRecipe[] {
+    const validRecipes = recipes.filter((recipe: IGameRecipe) => {
+      const required = recipe.require || [];
+      return required.every((req) => resources[req] > 0);
+    });
+
+    return sortBy(validRecipes, 'result');
   }
 
   canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {

@@ -1,0 +1,6 @@
+
+Stone Crafting Table:
+  description: A table to craft stone tools with.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'toolbox'

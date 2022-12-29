@@ -49,7 +49,7 @@
 
             <ion-card-content>
               <ion-list>
-                <ion-item *ngFor="let recipe of sortRecipes(locationData.recipes)">
+                <ion-item *ngFor="let recipe of visibleRecipes(pageData.resources || {}, locationData.recipes)">
                   <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
 
                   <ion-label>
