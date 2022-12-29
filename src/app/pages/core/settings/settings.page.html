@@ -22,6 +22,15 @@
               </ion-item>
 
               <ion-item>
+                <ion-label>Color Theme</ion-label>
+                <ion-select interface="popover" [(ngModel)]="options.colorTheme"
+                                                (ionChange)="setOption('colorTheme', options.colorTheme)">
+                  <ion-select-option value="light">Light</ion-select-option>
+                  <ion-select-option value="dark">Dark</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
                 <ion-label>Sidebar Display</ion-label>
                 <ion-select interface="popover" [(ngModel)]="options.sidebarDisplay"
                                                 (ionChange)="setOption('sidebarDisplay', options.sidebarDisplay)">
