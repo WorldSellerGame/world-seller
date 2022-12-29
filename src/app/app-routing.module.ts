@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'game/:slot/settings',
-    loadChildren: () => import('./pages/character/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/core/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
     path: 'game/:slot',
