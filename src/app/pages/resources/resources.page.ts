@@ -31,7 +31,7 @@ export class ResourcesPage implements OnInit {
   }
 
   resourcesInCategory(resourceHash: Record<string, number>, category: string): string[] {
-    return sortBy(Object.keys(resourceHash).filter(x => this.resources[x]?.category === category));
+    return sortBy(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).filter(x => this.resources[x]?.category === category));
   }
 
 
