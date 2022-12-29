@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ICharacter } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { DeleteCharacter } from '../../../stores/charselect/charselect.actions';
+import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomePage implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public metaService: MetaService
   ) { }
 
   ngOnInit() {
@@ -34,24 +36,7 @@ export class HomePage implements OnInit {
   }
 
   exportCharacter(slot: number) {
-    this.store.selectOnce(data => data).subscribe(data => {
-      const ignoredKeys: string[] = [];
-
-      const charData = data.charselect.characters[slot];
-      const charName = charData.name;
-
-      const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
-        acc[key] = data[key];
-        return acc;
-      }, {} as any);
-
-      const fileName = `${charName}.ws`;
-      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
-      const downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute('href',     dataStr);
-      downloadAnchorNode.setAttribute('download', fileName);
-      downloadAnchorNode.click();
-    });
+    this.metaService.exportCharacter(this.store, slot);
   }
 
   importCharacter(e: any, inputEl: HTMLInputElement) {

@@ -33,4 +33,7 @@ export class SettingsPage implements OnInit {
     this.setOption(GameOption.TickTimer, $event.detail.value);
   }
 
+  exportCharacter(slot: number) {
+    this.metaService.exportCharacter(this.store, slot);
+  }
 }

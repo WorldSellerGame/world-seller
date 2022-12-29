@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,27 @@ export class MetaService {
     this.http.get('assets/version.json').subscribe((data: any) => {
       this.versionInfo = data;
       console.log({ data });
+    });
+  }
+
+  exportCharacter(store: Store, slot: number = 0) {
+    store.selectOnce(data => data).subscribe(data => {
+      const ignoredKeys: string[] = [];
+
+      const charData = data.charselect.characters[slot];
+      const charName = charData.name;
+
+      const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
+        acc[key] = data[key];
+        return acc;
+      }, {} as any);
+
+      const fileName = `${charName}.ws`;
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
+      const downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute('href',     dataStr);
+      downloadAnchorNode.setAttribute('download', fileName);
+      downloadAnchorNode.click();
     });
   }
 }

@@ -33,6 +33,15 @@
             </ion-list>
           </ion-card-content>
         </ion-card>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-item class="cursor-pointer" (click)="exportCharacter(0)">
+              <ion-icon slot="start" color="secondary" name="download"></ion-icon>
+              Export Character
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
 
       <ion-col sizeMd="4" *ngIf="showDevOptions">
