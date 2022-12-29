@@ -20,7 +20,6 @@ export class MetaService {
   init() {
     this.http.get('assets/version.json').subscribe((data: any) => {
       this.versionInfo = data;
-      console.log({ data });
     });
   }
 
