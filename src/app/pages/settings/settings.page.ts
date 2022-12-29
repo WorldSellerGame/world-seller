@@ -34,6 +34,6 @@ export class SettingsPage implements OnInit {
   }
 
   exportCharacter(slot: number) {
-    this.metaService.exportCharacter(this.store, slot);
+    this.metaService.exportCharacter(slot);
   }
 }

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { MetaService } from 'src/app/services/meta.service';
 import { ICharacter } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { DeleteCharacter } from '../../../stores/charselect/charselect.actions';
-import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   }
 
   exportCharacter(slot: number) {
-    this.metaService.exportCharacter(this.store, slot);
+    this.metaService.exportCharacter(slot);
   }
 
   importCharacter(e: any, inputEl: HTMLInputElement) {

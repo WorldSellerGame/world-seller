@@ -15,7 +15,7 @@ export class MetaService {
         || this.versionInfo.hash;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store) { }
 
   init() {
     this.http.get('assets/version.json').subscribe((data: any) => {
@@ -23,8 +23,8 @@ export class MetaService {
     });
   }
 
-  exportCharacter(store: Store, slot: number = 0) {
-    store.selectOnce(data => data).subscribe(data => {
+  exportCharacter(slot: number = 0) {
+    this.store.selectOnce(data => data).subscribe(data => {
       const ignoredKeys: string[] = [];
 
       const charData = data.charselect.characters[slot];
