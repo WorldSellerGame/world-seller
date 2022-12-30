@@ -24,6 +24,7 @@ interface IMenuItem {
 export class AppComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
   public level!: Subscription;
