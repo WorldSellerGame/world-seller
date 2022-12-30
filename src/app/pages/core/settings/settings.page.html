@@ -36,6 +36,11 @@
 
         <ion-card>
           <ion-card-content>
+            <ion-item routerDirection="root" [routerLink]="['']" lines="none" detail="false" routerLinkActive="selected" class="cursor-pointer">
+              <ion-icon slot="start" color="primary" name="home"></ion-icon>
+              Return to Home
+            </ion-item>
+
             <ion-item class="cursor-pointer" (click)="exportCharacter(0)">
               <ion-icon slot="start" color="secondary" name="download"></ion-icon>
               Export Character
