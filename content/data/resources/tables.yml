@@ -30,7 +30,7 @@ Fire Brick:
   rarity: Uncommon
   icon: 'brick'
 
-Burning-Oil: #Might say fuck this and make the burner use sap instead if multiple recipes for a single item are a pain. I really don't need this over charcoal and coal.
+Burning Oil: #Might say fuck this and make the burner use sap instead if multiple recipes for a single item are a pain. I really don't need this over charcoal and coal.
   description: Used in lamps and burners and made in lots of ways.
   category: Refined Materials
   rarity: Uncommon
@@ -59,7 +59,7 @@ Construction Tools:
   rarity: Common
   icon: 'construction-hammer'
 
-Metal Tool bench:
+Metal Tool Bench:
   description: A table with dedicated tools and special features, but metal.
   category: Crafting Tables
   rarity: Uncommon
