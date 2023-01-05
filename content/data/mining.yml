@@ -89,7 +89,9 @@ locations:
     gatherTime: 30
     resources:
       - name: Stone
-        weight: 50
+        weight: 30
+      - name: White Clay
+        weight: 20
       - name: Sand
         weight: 5
       - name: Quartz

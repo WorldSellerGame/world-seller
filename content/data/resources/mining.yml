@@ -35,6 +35,12 @@ Iron Ore:
   rarity: Uncommon
   icon: 'iron-ore'
 
+White Clay:
+  description: Used to make ceramics.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'powder'
+
 Adamantite Ore:
   description: Used to do Adamantite things, but later.
   category: Raw Materials
