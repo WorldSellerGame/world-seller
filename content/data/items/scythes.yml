@@ -6,6 +6,7 @@ Stone Scythe:
   category: Tools
   rarity: Common
   durability: 50
+  value: 10
   icon: scythe
   stats:
     scythePower: 3

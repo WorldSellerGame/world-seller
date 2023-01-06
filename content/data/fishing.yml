@@ -16,6 +16,7 @@ locations:
         weight: 1
       - name: Cropfish
         weight: 3
+    maxWorkers: 3
 
   - name: Local Pond
     description: A small pond, its close and there's fish - can't really beat that as of now.
@@ -33,6 +34,7 @@ locations:
       - name: Cropfish
         quantity: 5
         weight: 5
+    maxWorkers: 1
 
   - name: Pine Creek
     description: A little creek in the Pine forest.
@@ -53,6 +55,7 @@ locations:
         weight: 5
       - name: Fallfish
         weight: 10
+    maxWorkers: 1
 
   - name: Marsh
     description: A marsh with small streams and ponds amongst it.
@@ -71,6 +74,7 @@ locations:
         weight: 10
       - name: Frog
         weight: 10
+    maxWorkers: 1
 
   - name: Small Stream
     description: A little stream in Cedrics Woods.
@@ -93,6 +97,7 @@ locations:
         weight: 10
       - name: Trout
         weight: 10
+    maxWorkers: 1
 
   - name: Cedrics Fishing Hole
     description: Apparently some guy named Cedric fought a bear with a spoon over this stream pool. The fishing is good but the fish are skittish.
@@ -106,7 +111,8 @@ locations:
     cooldownTime: 120
     resources:
       - name: Trout
-        weight: 500000000
+        weight: 1
+    maxWorkers: 1
 
   - name: Misty Lake
     description: The mist covers this small lake in the early morning and late in the evening.
@@ -127,6 +133,7 @@ locations:
         weight: 10
       - name: Bass
         weight: 15
+    maxWorkers: 1
 
   - name: Magic Swamp
     description: They said "dont go into The Magic Swamp". Its called "The Magic Swamp" of course your gonna go in there anyways.
@@ -151,6 +158,7 @@ locations:
         weight: 1
       - name: Curse
         weight: 5
+    maxWorkers: 1
 
   - name: Seashore
     description: Hard to catch anything big from shore.
@@ -164,7 +172,8 @@ locations:
     cooldownTime: 45
     resources:
       - name: Sardine
-        weight: 420
+        weight: 1
+    maxWorkers: 1
 
   - name: Sand Bar
     description: You're able to walk out a a bit further during low tide.
@@ -181,6 +190,7 @@ locations:
         weight: 5
       - name: Pompano
         weight: 1
+    maxWorkers: 1
 
   - name: Small Reef
     description: A reef inside the Surf Break of a bay.
@@ -199,6 +209,7 @@ locations:
         weight: 5
       - name: Octopus
         weight: 1
+    maxWorkers: 1
 
   - name: Surf Break
     description: Where the waves of the ocean begin to roll into the bay. An ideal place to catch predators.
@@ -219,6 +230,7 @@ locations:
         weight: 2
       - name: Shark
         weight: 1
+    maxWorkers: 1
 
 #Brandon
   #silly problems plague me as much as my standards and inability to not research every single thing I put in

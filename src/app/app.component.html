@@ -53,7 +53,15 @@
             </ion-button>
 
             <ion-list-header>{{ character.name }}</ion-list-header>
-            <ion-note>Level {{ totalLevel | number }}</ion-note>
+            <ion-note class="level">
+              <app-game-icon icon="level" [inlineIconSize]="true"></app-game-icon>
+              Level {{ totalLevel | number }}
+            </ion-note>
+
+            <ion-note class="coins">
+              <app-game-icon icon="coins" [inlineIconSize]="true"></app-game-icon>
+              {{ coins$ | async | number }} Coins
+            </ion-note>
           </ion-list>
 
           <ion-list>

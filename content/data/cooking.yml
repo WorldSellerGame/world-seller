@@ -6,6 +6,7 @@ recipes:
     craftTime: 10
     ingredients:
       Plant Fiber: 1
+    maxWorkers: 2
 
   - result: Raspberry Cupcake
     perCraft: { min: 1, max: 1 }
@@ -14,3 +15,4 @@ recipes:
     ingredients:
       Flour: 2
       Raspberry: 1
+    maxWorkers: 1

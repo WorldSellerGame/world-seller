@@ -6,6 +6,7 @@ Linen Gloves:
   category: Armor
   rarity: Common
   durability: 50
+  value: 10
   icon: gloves
   stats:
     armor: 1

@@ -79,6 +79,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tradeskills/peripheral/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
   },
   {
+    path: 'game/:slot/mercantile',
+    loadChildren: () => import('./pages/tradeskills/peripheral/mercantile/mercantile.module').then( m => m.MercantilePageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''

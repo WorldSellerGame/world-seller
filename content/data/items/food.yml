@@ -6,6 +6,7 @@ Raspberry Cupcake:
   category: Foods
   rarity: Common
   durability: 1
+  value: 5
   icon: cupcake
   stats:
     healing: 50

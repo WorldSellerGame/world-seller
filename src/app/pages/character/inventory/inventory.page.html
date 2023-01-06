@@ -17,11 +17,35 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of itemCategories(items)">
+            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of itemCategories(items)" [class.hidden]="!resourceCategory">
               <div class="resource-title">{{ resourceCategory }}</div>
 
               <div class="resource-container" *ngFor="let item of itemsInCategory(items, resourceCategory)">
-                <app-item [item]="item"></app-item>
+                <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
+
+                <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item disabled>
+                          {{ item.name }}
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="quickSell(item)">
+                          Quick Sell ({{ (item.value || 1) * (item.quantity || 1) }} coins)
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sell(item)">
+                          Sell
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sendToStockpile(item)">
+                          Send to Stockpile
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
               </div>
             </ion-col>
           </ion-row>

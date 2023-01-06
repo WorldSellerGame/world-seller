@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shop</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    shop: shop$ | async,
+    shopCounter: shopCounter$ | async,
+    coins: coins$ | async
+  } as pageData">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <div class="upgrade-label">Shop Counter +{{ pageData.shop?.saleCounterLevel || 0 }}</div>
+                  <ion-button expand="block"
+                              (click)="upgradeCounter()"
+                              [disabled]="!canUpgradeCounter(pageData.coins || 0, pageData.shop?.saleCounterLevel || 0)"
+                              fill="outline">
+                    <span *ngIf="isCounterMaxLevel(pageData.shop?.saleCounterLevel || 0)">Counter is max level</span>
+                    <span *ngIf="!isCounterMaxLevel(pageData.shop?.saleCounterLevel || 0)">
+                      +1 Counter Slot ({{ counterUpgradeCost(pageData.shop?.saleCounterLevel || 0) | number }} coins)
+                    </span>
+                  </ion-button>
+                </ion-col>
+
+                <ion-col>
+                  <div class="upgrade-label">Shop Register +{{ pageData.shop?.saleBonusLevel || 0 }}</div>
+                  <ion-button expand="block"
+                              (click)="upgradeRegister()"
+                              [disabled]="!canUpgradeRegister(pageData.coins || 0, pageData.shop?.saleBonusLevel || 0)"
+                              fill="outline">
+                    <span *ngIf="isRegisterMaxLevel(pageData.shop?.saleBonusLevel || 0)">Register is max level</span>
+                    <span *ngIf="!isRegisterMaxLevel(pageData.shop?.saleBonusLevel || 0)">
+                      +10% Sale Price ({{ registerUpgradeCost(pageData.shop?.saleBonusLevel || 0) | number }} coins)
+                    </span>
+                  </ion-button>
+                </ion-col>
+
+                <ion-col>
+                  <div class="upgrade-label">Shop Decorations +{{ pageData.shop?.decorationsLevel || 0 }}</div>
+                  <ion-button expand="block"
+                              (click)="upgradeDecorations()"
+                              [disabled]="!canUpgradeDecorations(pageData.coins || 0, pageData.shop?.decorationsLevel || 0)"
+                              fill="outline">
+                    <span *ngIf="isDecorationsMaxLevel(pageData.shop?.decorationsLevel || 0)">Decoration is max level</span>
+                    <span *ngIf="!isDecorationsMaxLevel(pageData.shop?.decorationsLevel || 0)">
+                      -5% Sell Time ({{ decorationsUpgradeCost(pageData.shop?.decorationsLevel || 0) | number }} coins)
+                    </span>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeMd="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>For Sale ({{ pageData.shopCounter?.current || 0 }}/{{ pageData.shopCounter?.max || 0 }} items)</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list *ngIf="pageData.shop?.forSale || [] as forSale">
+              <ion-item *ngIf="forSale.length === 0">Nothing for sale</ion-item>
+
+              <ion-item *ngFor="let item of forSale">
+                <ion-label #item (contextmenu)="popover.present($event); $event.preventDefault();">
+                  <app-item [item]="item"></app-item>
+                  <div class="listed-for">
+                    Listed for <app-countdown [duration]="item.sellTicks || 1"></app-countdown>
+                  </div>
+                </ion-label>
+
+                <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item disabled>
+                          {{ item.name }}
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="saleToStockpile(item)">
+                          Send To Stockpile
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="saleToInventory(item)">
+                          Send To Inventory
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  </ng-container>
+</ion-content>

@@ -2,6 +2,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const readdir = require('recursive-readdir');
+const { isUndefined } = require('lodash');
 
 const validCategories = ['Tools', 'Armor', 'Foods', 'Jewelry', 'Potions', 'Seeds', 'Miscellaneous', 'Raw Materials', 'Refined Materials', 'Crafting Tables'];
 
@@ -46,6 +47,11 @@ const loadContent = async () => {
       console.log(`⚠ Item ${key} has an invalid type ${item.type}.`);
       hasBad = true;
     }
+
+    if(isUndefined(item.value)) {
+      console.log(`⚠ Item ${key} is missing value.`);
+      hasBad = true;
+    }
   });
 
   const isValidItem = (item: string) => {
@@ -72,6 +78,11 @@ const loadContent = async () => {
           hasBad = true;
         }
       });
+
+      if(isUndefined(recipe.maxWorkers)) {
+        console.log(`⚠ Recipe ${recipe.name} is missing maxWorkers.`);
+        hasBad = true;
+      }
     });
 
     (transforms || []).forEach((transform: any) => {
@@ -98,6 +109,11 @@ const loadContent = async () => {
           hasBad = true;
         }
       });
+
+      if(isUndefined(location.maxWorkers)) {
+        console.log(`⚠ Location ${location.name} is missing maxWorkers.`);
+        hasBad = true;
+      }
     });
   });
 

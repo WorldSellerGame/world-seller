@@ -5,7 +5,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { ICharacter, IGameRefiningRecipe } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
-import { getTotalLevel } from './helpers';
+import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
 
 interface IMenuItem {
@@ -24,6 +24,7 @@ interface IMenuItem {
 export class AppComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
@@ -99,6 +100,10 @@ export class AppComponent implements OnInit, OnDestroy {
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       timer: of(0),
       level: this.store.select(state => state.farming.level) },
+
+    { title: 'Mercantile',    url: 'mercantile',    icon: 'mercantile',
+      timer: of(0),
+      level: this.store.select(state => getMercantileLevel(state)) },
 
     { title: 'Prospecting',    url: 'prospecting',    icon: 'prospecting',
       timer: of(0),

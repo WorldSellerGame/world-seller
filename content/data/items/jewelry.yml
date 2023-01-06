@@ -6,6 +6,7 @@ Quartz Ring:
   category: Jewelry
   rarity: Common
   durability: 50
+  value: 10
   icon: ring
   stats:
     armor: 1

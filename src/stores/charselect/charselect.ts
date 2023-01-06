@@ -43,6 +43,11 @@ export class CharSelectState {
   }
 
   @Selector()
+  static activeCharacterCoins(state: ICharSelect): number {
+    return this.activeCharacter(state)?.resources?.['Coin'] ?? 0;
+  }
+
+  @Selector()
   static activeCharacterInventory(state: ICharSelect) {
     return this.activeCharacter(state)?.inventory ?? {};
   }

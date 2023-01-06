@@ -21,7 +21,7 @@
                   <app-game-icon slot="start" [icon]="tool.icon"></app-game-icon>
 
                   <ng-container *ngIf="!equipment[tool.type]">
-                    <ion-label>{{ tool.name }} [empty]</ion-label>
+                    <ion-label class="unequipped">{{ tool.name }} [empty]</ion-label>
                   </ng-container>
 
                   <ng-container *ngIf="equipment[tool.type] as item">
@@ -46,11 +46,11 @@
                   <app-game-icon slot="start" [icon]="armor.icon"></app-game-icon>
 
                   <ng-container *ngIf="!equipment[armor.type]">
-                    <ion-label>{{ armor.name }} [empty]</ion-label>
+                    <ion-label class="unequipped">{{ armor.name }} [empty]</ion-label>
                   </ng-container>
 
                   <ng-container *ngIf="equipment[armor.type] as item">
-                    <ion-label>{{ armor.name }}</ion-label>
+                    <ion-label>{{ item.name }}</ion-label>
                   </ng-container>
                 </ion-item>
               </ion-list>

@@ -6,6 +6,7 @@ Stone Spear:
   category: Tools
   rarity: Common
   durability: 50
+  value: 10
   icon: spear
   stats:
     huntingPower: 3

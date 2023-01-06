@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="shop">
+        <ion-icon name="storefront"></ion-icon>
+        <ion-label>
+          Shop
+          <ng-container *ngIf="shopCounter$ | async as shopCounter">({{ shopCounter.current }}/{{ shopCounter.max }})</ng-container>
+        </ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="stockpile">
+        <ion-icon name="basket"></ion-icon>
+        <ion-label>
+          Stockpile
+          <ng-container *ngIf="stockpileInfo$ | async as stockpileInfo">({{ stockpileInfo.current }}/{{ stockpileInfo.max }})</ng-container>
+        </ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="workers">
+        <ion-icon name="body"></ion-icon>
+        <ion-label>Workers</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

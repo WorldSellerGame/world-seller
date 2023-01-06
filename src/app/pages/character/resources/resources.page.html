@@ -17,7 +17,7 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of resourceCategories(resources)">
+            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of resourceCategories(resources)" [class.hidden]="!resourceCategory">
               <div class="resource-title">{{ resourceCategory }}</div>
 
               <div class="resource-container" *ngFor="let resource of resourcesInCategory(resources, resourceCategory)">

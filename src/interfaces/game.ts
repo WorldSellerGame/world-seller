@@ -70,26 +70,20 @@ export interface IGame {
 }
 
 export interface IGameItem {
+  id?: string;
   name: string;
   description: string;
   type: ItemType;
   category: ItemCategory;
   rarity: Rarity;
   durability: number;
+  value: number;
   icon: string;
   canStack?: boolean;
   quantity?: number;
   stats: Record<Stat, number>;
-}
 
-export interface IGameRecipe {
-  result: string;
-  ingredients: Record<string, number>;
-  level: { min: number; max: number };
-  perCraft: { min: number; max: number };
-  craftTime: number;
-  preserve?: string[];
-  require?: string[];
+  sellTicks?: number;
 }
 
 export interface IGameResourceTransform {

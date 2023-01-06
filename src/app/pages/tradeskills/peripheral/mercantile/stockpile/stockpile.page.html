@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ng-container *ngIf="stockpileInfo$ | async as stockpileInfo">
+      <ion-title>Stockpile ({{ stockpileInfo.current }}/{{ stockpileInfo.max }} items)</ion-title>
+    </ng-container>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    stockpile: stockpile$ | async,
+    coins: coins$ | async
+  } as pageData">
+
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="upgrade-label">&nbsp;</div>
+              <ion-button expand="block" [disabled]="hasNoItems(pageData.stockpile?.items || [])" (click)="quickSellAll()" fill="outline">Quick Sell All</ion-button>
+            </ion-col>
+
+            <ion-col>
+              <div class="upgrade-label">Stockpile Storage +{{ pageData.stockpile?.limitLevel || 0 }}</div>
+              <ion-button expand="block"
+                          (click)="upgradeStorage()"
+                          [disabled]="!canUpgradeStorage(pageData.coins || 0, pageData.stockpile?.limitLevel || 0)"
+                          fill="outline">
+                <span *ngIf="isStockpileStorageMaxLevel(pageData.stockpile?.limitLevel || 0)">Storage is max level</span>
+                <span *ngIf="!isStockpileStorageMaxLevel(pageData.stockpile?.limitLevel || 0)">
+                  +10 Storage Slots ({{ stockpileStorageUpgradeCost(pageData.stockpile?.limitLevel || 0) | number }} coins)
+                </span>
+              </ion-button>
+            </ion-col>
+
+            <ion-col>
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="hasNoItems(pageData.stockpile?.items || [])">
+      <ion-card-content>
+        <p class="no-resources">Your stockpile is empty, for now.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!hasNoItems(pageData.stockpile?.items || [])">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of itemCategories(pageData.stockpile?.items || [])" [class.hidden]="!resourceCategory">
+              <div class="resource-title">{{ resourceCategory }}</div>
+
+              <div class="resource-container" *ngFor="let item of itemsInCategory(pageData.stockpile?.items || [], resourceCategory)">
+                <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
+
+                <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item disabled>
+                          {{ item.name }}
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="quickSell(item)">
+                          Quick Sell ({{ (item.value || 1) * (item.quantity || 1) }} coins)
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sell(item)">
+                          Sell
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sendToInventory(item)">
+                          Send to Inventory
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

@@ -6,6 +6,7 @@ Pine Fishing Rod:
   category: Tools
   rarity: Common
   durability: 50
+  value: 10
   icon: fishingpole
   stats:
     fishingPower: 3
@@ -17,6 +18,7 @@ Stone Bait:
   category: Tools
   rarity: Common
   durability: 50
+  value: 1
   canStack: true
   icon: fishingpole
   stats:

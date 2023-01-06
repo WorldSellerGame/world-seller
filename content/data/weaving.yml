@@ -6,6 +6,7 @@ recipes:
     craftTime: 30
     ingredients:
       Plant Fiber: 2
+    maxWorkers: 2
 
   - result: Linen Boots
     perCraft: { min: 1, max: 1 }
@@ -13,6 +14,7 @@ recipes:
     craftTime: 90
     ingredients:
       Linen Cloth: 2
+    maxWorkers: 1
 
   - result: Linen Hat
     perCraft: { min: 1, max: 1 }
@@ -20,6 +22,7 @@ recipes:
     craftTime: 60
     ingredients:
       Linen Cloth: 1
+    maxWorkers: 1
 
   - result: Linen Shirt
     perCraft: { min: 1, max: 1 }
@@ -27,6 +30,7 @@ recipes:
     craftTime: 90
     ingredients:
       Linen Cloth: 5
+    maxWorkers: 1
 
   - result: Linen Gloves
     perCraft: { min: 1, max: 1 }
@@ -34,6 +38,7 @@ recipes:
     craftTime: 60
     ingredients:
       Linen Cloth: 2
+    maxWorkers: 1
 
   - result: Linen Pants
     perCraft: { min: 1, max: 1 }
@@ -41,3 +46,4 @@ recipes:
     craftTime: 90
     ingredients:
       Linen Cloth: 3
+    maxWorkers: 1

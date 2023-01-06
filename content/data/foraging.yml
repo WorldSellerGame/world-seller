@@ -11,6 +11,7 @@ locations:
     resources:
       - name: Dandelion
         weight: 1
+    maxWorkers: 1
 
   - name: Pine Forest
     description: Over-harvested but less so.
@@ -28,6 +29,7 @@ locations:
         weight: 1
       - name: Plant Fiber
         weight: 1
+    maxWorkers: 1
 
   - name: Coniferous Forest
     description: Less mulled over location farther into to the wilderness.
@@ -53,6 +55,7 @@ locations:
         weight: 3
       - name: Worm
         weight: 1
+    maxWorkers: 1
 
   - name: Orchard
     description: It looks to be an abandoned apple farm amongst the wilderness.
@@ -70,6 +73,7 @@ locations:
         weight: 1
       - name: Worm
         weight: 2
+    maxWorkers: 1
 
   - name: Forest Glade
     description: A small clearing in the Coniferous Forest.
@@ -92,6 +96,7 @@ locations:
         weight: 4
       - name: Rose
         weight: 1
+    maxWorkers: 1
 
   - name: Wheat Meadow
     description: A field of wheat, pretty cool right?
@@ -104,7 +109,8 @@ locations:
     gatherTime: 25
     resources:
       - name: Wheat
-        weight: 10
+        weight: 1
+    maxWorkers: 1
 
   - name: Stream Bank
     description: Soggy.
@@ -134,6 +140,7 @@ locations:
         weight: 20
       - name: Duck Egg
         weight: 5
+    maxWorkers: 1
 
   - name: Abandoned Homestead
     description: A small home with an over grown garden attached. Who can say what happened.
@@ -156,6 +163,7 @@ locations:
         weight: 10
       - name: Spicy Pepper Seeds
         weight: 2
+    maxWorkers: 1
 
   - name: Iron Wood Grove
     description: Best place to go searching for bee hives.
@@ -179,6 +187,7 @@ locations:
         weight: 2
       - name: Rose
         weight: 1
+    maxWorkers: 1
 
   - name: Near Ocean Jungle
     description: Stack bananas till the morning comes.
@@ -195,6 +204,7 @@ locations:
         weight: 1
       - name: Banana
         weight: 6
+    maxWorkers: 1
 
   - name: Seashore
     description: Many things here you cannot grow back home making their value worth the trip.
@@ -215,6 +225,7 @@ locations:
         weight: 2
       - name: Carambola
         weight: 1
+    maxWorkers: 1
 
   - name: Grave of the Forest Nymph
     description: Roses grow supernaturally thick in this small clearing. Best not to disturb the graves of spirits.
@@ -231,6 +242,7 @@ locations:
         weight: 14
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Old Elvish Woods
     description: The Silverwood trees prevent other plants from growing the fungus do not care.
@@ -253,4 +265,5 @@ locations:
         weight: 10
       - name: Grouse Egg
         weight: 1
+    maxWorkers: 1
 

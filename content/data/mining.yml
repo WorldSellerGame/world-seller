@@ -13,6 +13,7 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+    maxWorkers: 2
 
   - name: Long Quarry
     description: A small quarry nearby that takes a while to gather from.
@@ -28,6 +29,7 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+    maxWorkers: 0
 
   - name: Dried Out River Basin
     description: A place where a river used to flow.
@@ -45,6 +47,7 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
+    maxWorkers: 1
 
   - name: Abandoned Copper Mine
     description: Mostly mined-out mining operation, but you can still somewhat mine at this mine.
@@ -60,6 +63,7 @@ locations:
         weight: 5
       - name: Copper Ore
         weight: 1
+    maxWorkers: 1
 
   - name: Bat Infested Iron Mine
     description: Despite being rich in ore, this cave hasn't had the touch of mankind.
@@ -77,6 +81,7 @@ locations:
         weight: 1
       - name: Poo
         weight: 1
+    maxWorkers: 1
 
   - name: Grotto
     description: A naturally formed cave with pools of water.
@@ -98,6 +103,7 @@ locations:
         weight: 10
       - name: Tanzanite
         weight: 1
+    maxWorkers: 1
 
   - name: Archaeological Site
     description: Ancient loacation that doubles as a resting place for the dead.
@@ -119,6 +125,7 @@ locations:
         weight: 10
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Deep Depth Mine
     description: Place too deep for most companies to turn a profit.
@@ -140,6 +147,7 @@ locations:
         weight: 5
       - name: Adamantite Ore
         weight: 1
+    maxWorkers: 1
 
   - name: Achient Dwarven Mine
     description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
@@ -163,6 +171,7 @@ locations:
         weight: 20
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Pile of Cursed Feces
     description: Probably best not to mine here.
@@ -178,3 +187,4 @@ locations:
         weight: 1
       - name: Curse
         weight: 1
+    maxWorkers: 1

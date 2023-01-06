@@ -6,6 +6,7 @@ Stone Pickaxe:
   category: Tools
   rarity: Common
   durability: 50
+  value: 10
   icon: pickaxe
   stats:
     pickaxePower: 3

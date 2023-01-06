@@ -6,6 +6,7 @@ Linen Shirt:
   category: Armor
   rarity: Common
   durability: 50
+  value: 10
   icon: shirt
   stats:
     armor: 1

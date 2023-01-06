@@ -6,6 +6,7 @@ Linen Hat:
   category: Armor
   rarity: Common
   durability: 50
+  value: 10
   icon: hat
   stats:
     armor: 1

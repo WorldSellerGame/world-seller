@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 
 import * as itemData from '../../assets/content/items.json';
 import * as resourceData from '../../assets/content/resources.json';
@@ -30,6 +31,7 @@ export class ItemCreatorService {
   public createItem(itemName: string, quantity = 1): IGameItem {
     const baseItem = cloneDeep(this.itemData[itemName]);
 
+    baseItem.id = uuidv4();
     baseItem.quantity = quantity;
 
     return baseItem;
