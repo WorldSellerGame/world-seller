@@ -4,7 +4,7 @@ import { patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { pickNameWithWeights } from '../../app/helpers';
 import { IGameFarming, IGameFarmingPlot } from '../../interfaces';
-import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
+import { GainJobResult, GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
@@ -62,7 +62,5 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: Harv
     ctx.setState(patch<IGameFarming>({
       level: state.level + 1
     }));
-
-    ctx.dispatch(new SyncTotalLevel());
   }
 }

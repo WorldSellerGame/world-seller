@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
 import { IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
-import { GainJobResult, GainResources, SyncTotalLevel } from '../../stores/charselect/charselect.actions';
+import { GainJobResult, GainResources } from '../../stores/charselect/charselect.actions';
 
 export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any) {
 
@@ -29,8 +29,6 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
       ctx.setState(patch<IGameRefining>({
         level: state.level + 1
       }));
-
-      ctx.dispatch(new SyncTotalLevel());
     }
 
     // if we're on the last one, delete the job

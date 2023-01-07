@@ -4,7 +4,7 @@ import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { ICharacter, ICharSelect, IGameItem, ItemType } from '../../interfaces';
 import {
   AddItemToInventory, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SetActiveCharacter, SyncTotalLevel, UnequipItem
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
@@ -81,7 +81,7 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources }: Gai
     }))
   }));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }
 
 export function syncTotalLevel(ctx: StateContext<ICharSelect>, { newLevel }: SyncTotalLevel) {
@@ -97,7 +97,7 @@ export function syncTotalLevel(ctx: StateContext<ICharSelect>, { newLevel }: Syn
     }))
   }));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }
 
 export function addItemToInventory(ctx: StateContext<ICharSelect>, { item }: AddItemToInventory) {
@@ -113,7 +113,7 @@ export function addItemToInventory(ctx: StateContext<ICharSelect>, { item }: Add
     }))
   }));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }
 
 export function removeItemFromInventory(ctx: StateContext<ICharSelect>, { item }: RemoveItemFromInventory) {
@@ -129,7 +129,7 @@ export function removeItemFromInventory(ctx: StateContext<ICharSelect>, { item }
     }))
   }));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }
 
 export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipItem) {
@@ -152,7 +152,7 @@ export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipIte
     }))
   }));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }
 
 export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
@@ -177,5 +177,5 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
 
   ctx.dispatch(new RemoveItemFromInventory(item));
 
-  saveCurrentCharacter(ctx);
+  ctx.dispatch(new SaveActiveCharacter());
 }

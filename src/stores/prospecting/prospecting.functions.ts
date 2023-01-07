@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { pickNameWithWeights } from '../../app/helpers';
 import { IGameProspecting } from '../../interfaces';
-import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
+import { GainJobResult, GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { ProspectRock } from './prospecting.actions';
 
@@ -33,7 +33,5 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
     ctx.setState(patch<IGameProspecting>({
       level: state.level + 1
     }));
-
-    ctx.dispatch(new SyncTotalLevel());
   }
 };

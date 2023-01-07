@@ -7,7 +7,7 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { ICharSelect, ICharacter, IGameItem, ItemType } from '../../interfaces';
-import { DecreaseDurability, GainJobResult, GainResources, UnequipItem } from './charselect.actions';
+import { DecreaseDurability, GainJobResult, GainResources, SaveActiveCharacter, UnequipItem } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -125,6 +125,8 @@ export class CharSelectState {
         inventory: append<IGameItem>([createdItem])
       }))
     }));
+
+    ctx.dispatch(new SaveActiveCharacter());
   }
 
   @Action(DecreaseDurability)
@@ -157,6 +159,8 @@ export class CharSelectState {
         })
       }))
     }));
+
+    ctx.dispatch(new SaveActiveCharacter());
   }
 
 }

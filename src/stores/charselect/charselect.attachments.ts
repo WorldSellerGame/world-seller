@@ -3,17 +3,18 @@ import { QuickSellItemFromInventory, SellItem, SendToInventory, SendToStockpile 
 
 import {
   AddItemToInventory, CreateCharacter, DeleteCharacter,
-  EquipItem, GainResources, RemoveItemFromInventory, SetActiveCharacter, SyncTotalLevel, UnequipItem
+  EquipItem, GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
 } from './charselect.actions';
 import {
   addItemToInventory, createCharacter, deleteCharacter,
-  equipItem, gainResources, removeItemFromInventory, setActiveCharacter, syncTotalLevel, unequipItem
+  equipItem, gainResources, removeItemFromInventory, saveCurrentCharacter, setActiveCharacter, syncTotalLevel, unequipItem
 } from './charselect.functions';
 
 export const attachments: IAttachment[] = [
   { action: CreateCharacter, handler: createCharacter },
   { action: DeleteCharacter, handler: deleteCharacter },
   { action: SetActiveCharacter, handler: setActiveCharacter },
+  { action: SaveActiveCharacter, handler: saveCurrentCharacter },
   { action: GainResources, handler: gainResources },
 
   { action: AddItemToInventory, handler: addItemToInventory },

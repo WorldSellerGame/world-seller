@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { IGameGatherLocation, IGameGathering } from '../../interfaces';
-import { GainResources, SyncTotalLevel } from '../../stores/charselect/charselect.actions';
+import { GainResources } from '../../stores/charselect/charselect.actions';
 import { isLocationOnCooldown, lowerGatheringCooldowns, putLocationOnCooldown } from './cooldowns';
 import { pickResourcesWithWeights } from './pick-weight';
 
@@ -27,19 +27,17 @@ export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: nu
     const numResources = random(location.perGather.min, location.perGather.max);
     const gainedResources = pickResourcesWithWeights(location.resources, numResources);
 
-    ctx.dispatch(new GainResources(gainedResources));
-
     putLocationOnCooldown(ctx, location, cdrValue);
 
     if(location.level.max > state.level) {
       ctx.setState(patch<IGameGathering>({
         level: state.level + 1
       }));
-
-      ctx.dispatch(new SyncTotalLevel());
     }
 
-    ctx.dispatch(new cancelProto());
+    ctx.dispatch(new cancelProto()).subscribe(() => {
+      ctx.dispatch(new GainResources(gainedResources));
+    });
   }
 }
 

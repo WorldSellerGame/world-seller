@@ -15,6 +15,11 @@ export class SetActiveCharacter {
   constructor(public charSlot: number) {}
 }
 
+export class SaveActiveCharacter {
+  static type = '[CharSelect] Save Active Character';
+  constructor() {}
+}
+
 export class GainResources {
   static type = '[CharSelect] Gain Resources';
   constructor(public resources: Record<string, number>) {}
