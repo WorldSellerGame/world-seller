@@ -78,5 +78,53 @@ export class ContentService {
     return (weaving as any).default || weaving;
   }
 
-  constructor() { }
+  public readonly locationHashes = {
+    fishing: {},
+    foraging: {},
+    hunting: {},
+    logging: {},
+    mining: {}
+  };
+
+  public readonly recipeHashes = {
+    alchemy: {},
+    blacksmithing: {},
+    cooking: {},
+    jewelcrafting: {},
+    weaving: {}
+  };
+
+  constructor() {
+    this.init();
+  }
+
+  private init() {
+    this.locationHashes.fishing = this.toHash(this.fishing.locations, 'name');
+    this.locationHashes.foraging = this.toHash(this.foraging.locations, 'name');
+    this.locationHashes.hunting = this.toHash(this.hunting.locations, 'name');
+    this.locationHashes.logging = this.toHash(this.logging.locations, 'name');
+    this.locationHashes.mining = this.toHash(this.mining.locations, 'name');
+
+    this.recipeHashes.alchemy = this.toHash(this.alchemy.recipes, 'result');
+    this.recipeHashes.blacksmithing = this.toHash(this.blacksmithing.recipes, 'result');
+    this.recipeHashes.cooking = this.toHash(this.cooking.recipes, 'result');
+    this.recipeHashes.jewelcrafting = this.toHash(this.jewelcrafting.recipes, 'result');
+    this.recipeHashes.weaving = this.toHash(this.weaving.recipes, 'result');
+  }
+
+  private toHash(arr: any[], key: string) {
+    return arr.reduce((hash, item) => {
+      hash[item[key]] = item;
+      return hash;
+    }, {});
+  }
+
+  public getLocationsForSkill(skill: keyof typeof this.locationHashes) {
+    return this.locationHashes[skill];
+  }
+
+  public getRecipesForSkill(skill: keyof typeof this.recipeHashes) {
+    return this.recipeHashes[skill];
+  }
+
 }

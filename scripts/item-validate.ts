@@ -64,7 +64,16 @@ const loadContent = async () => {
 
     const { recipes, transforms, locations } = data;
 
+    const allRecipeResults: Record<string, boolean> = {};
+
     (recipes || []).forEach((recipe: any) => {
+      if(allRecipeResults[recipe.result]) {
+        console.log(`⚠ Result ${recipe.result} is a duplicate.`);
+        hasBad = true;
+      }
+
+      allRecipeResults[recipe.result] = true;
+
       const result = recipe.result;
 
       if(!isValidItem(result)) {
@@ -100,7 +109,16 @@ const loadContent = async () => {
       });
     });
 
+    const allLocationNames: Record<string, boolean> = {};
+
     (locations || []).forEach((location: any) => {
+      if(allLocationNames[location.name]) {
+        console.log(`⚠ Location ${location.name} is a duplicate.`);
+        hasBad = true;
+      }
+
+      allLocationNames[location.name] = true;
+
       const resources = location.resources;
       resources.forEach((resource: any) => {
         const name = resource.name;
