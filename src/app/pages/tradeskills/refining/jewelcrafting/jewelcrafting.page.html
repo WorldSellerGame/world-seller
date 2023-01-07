@@ -63,7 +63,7 @@
                                               [emphasizeText]="false"></app-time-resource-icon>
 
                       <app-resource-icon [name]="resource.key"
-                                          [quantity]="resource.value * (amounts[recipe.result] || 1)"
+                                          [quantity]="recipe.preserve?.includes(resource.key) ? resource.value : resource.value * (amounts[recipe.result] || 1)"
                                           [maxQuantity]="pageData.resources?.[resource.key] || 0"
                                           [showX]="true"
                                           [inlineIconSize]="true"

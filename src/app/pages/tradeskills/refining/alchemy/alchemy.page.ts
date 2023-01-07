@@ -63,7 +63,11 @@ export class AlchemyPage implements OnInit {
   }
 
   canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {
-    return Object.keys(recipe.ingredients).every(ingredient => resources[ingredient] >= (recipe.ingredients[ingredient] * amount));
+    return Object.keys(recipe.ingredients)
+      .every(ingredient => recipe.preserve?.includes(ingredient)
+        ? resources[ingredient] >= recipe.ingredients[ingredient]
+        : resources[ingredient] >= (recipe.ingredients[ingredient] * amount)
+      );
   }
 
   craft(recipe: IGameRecipe, amount = 1) {
