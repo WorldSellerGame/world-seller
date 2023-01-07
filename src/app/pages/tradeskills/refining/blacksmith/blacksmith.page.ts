@@ -5,9 +5,8 @@ import { IGameRecipe, IGameRefiningRecipe } from '../../../../../interfaces';
 import { BlacksmithingState, CharSelectState } from '../../../../../stores';
 
 import { sortBy } from 'lodash';
-import * as locationData from '../../../../../assets/content/blacksmithing.json';
-import * as itemsData from '../../../../../assets/content/items.json';
 import { CancelBlacksmithingJob, StartBlacksmithingJob } from '../../../../../stores/blacksmithing/blacksmithing.actions';
+import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 
 @Component({
@@ -17,8 +16,9 @@ import { ItemCreatorService } from '../../../../services/item-creator.service';
 })
 export class BlacksmithPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
-  public readonly itemsData = (itemsData as any).default || itemsData;
+  public get locationData() {
+    return this.contentService.blacksmithing;
+  }
 
   public amounts: Record<string, number> = {};
   public recipes$!: Observable<IGameRecipe[]>;
@@ -28,7 +28,7 @@ export class BlacksmithPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  constructor(private store: Store, private itemCreatorService: ItemCreatorService) { }
+  constructor(private store: Store, private itemCreatorService: ItemCreatorService, private contentService: ContentService) { }
 
   ngOnInit() {
   }

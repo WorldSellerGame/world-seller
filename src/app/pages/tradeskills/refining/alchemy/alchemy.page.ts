@@ -5,9 +5,8 @@ import { IGameRecipe, IGameRefiningRecipe } from '../../../../../interfaces';
 import { AlchemyState, CharSelectState } from '../../../../../stores';
 
 import { sortBy } from 'lodash';
-import * as locationData from '../../../../../assets/content/alchemy.json';
-import * as itemsData from '../../../../../assets/content/items.json';
 import { CancelAlchemyJob, StartAlchemyJob } from '../../../../../stores/alchemy/alchemy.actions';
+import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 
 @Component({
@@ -17,8 +16,9 @@ import { ItemCreatorService } from '../../../../services/item-creator.service';
 })
 export class AlchemyPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
-  public readonly itemsData = (itemsData as any).default || itemsData;
+  public get locationData() {
+    return this.contentService.alchemy;
+  }
 
   public amounts: Record<string, number> = {};
 
@@ -27,7 +27,7 @@ export class AlchemyPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  constructor(private store: Store, private itemCreatorService: ItemCreatorService) { }
+  constructor(private store: Store, private itemCreatorService: ItemCreatorService, private contentService: ContentService) { }
 
   ngOnInit() {
   }

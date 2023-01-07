@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import * as resources from '../../../assets/content/resources.json';
+import { ContentService } from '../../services/content.service';
 
 @Component({
   selector: 'app-resource-icon',
@@ -8,8 +8,6 @@ import * as resources from '../../../assets/content/resources.json';
   styleUrls: ['./resource-icon.component.scss'],
 })
 export class ResourceIconComponent implements OnInit {
-
-  public readonly resourceInfo = (resources as any).default || resources;
 
   @Input() name = '';
   @Input() quantity = -1;
@@ -20,18 +18,18 @@ export class ResourceIconComponent implements OnInit {
   @Input() emphasizeText = true;
 
   public get icon() {
-    return this.resourceInfo[this.name]?.icon.toLowerCase();
+    return this.contentService.resources[this.name]?.icon.toLowerCase();
   }
 
   public get rarity() {
-    return this.resourceInfo[this.name]?.rarity.toLowerCase();
+    return this.contentService.resources[this.name]?.rarity.toLowerCase();
   }
 
   public get description() {
-    return this.resourceInfo[this.name]?.description;
+    return this.contentService.resources[this.name]?.description;
   }
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit() {}
 

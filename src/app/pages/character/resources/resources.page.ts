@@ -4,7 +4,7 @@ import { sortBy, uniq } from 'lodash';
 import { Observable } from 'rxjs';
 import { CharSelectState } from '../../../../stores';
 
-import * as resources from '../../../../assets/content/resources.json';
+import { ContentService } from '../../../services/content.service';
 
 @Component({
   selector: 'app-resources',
@@ -15,9 +15,7 @@ export class ResourcesPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  readonly resources = (resources as any).default || resources;
-
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit() {
   }
@@ -27,11 +25,15 @@ export class ResourcesPage implements OnInit {
   }
 
   resourceCategories(resourceHash: Record<string, number>): string[] {
-    return sortBy(uniq(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).map(x => this.resources[x]?.category)));
+    return sortBy(uniq(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).map(x => this.contentService.resources[x]?.category)));
   }
 
   resourcesInCategory(resourceHash: Record<string, number>, category: string): string[] {
-    return sortBy(Object.keys(resourceHash).filter(x => resourceHash[x] > 0).filter(x => this.resources[x]?.category === category));
+    return sortBy(
+      Object.keys(resourceHash)
+        .filter(x => resourceHash[x] > 0)
+        .filter(x => this.contentService.resources[x]?.category === category)
+    );
   }
 
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import * as locationData from '../../../../../assets/content/prospecting.json';
 import { IGameResourceTransform } from '../../../../../interfaces';
 import { CharSelectState, ProspectingState } from '../../../../../stores';
 import { ProspectRock } from '../../../../../stores/prospecting/prospecting.actions';
+import { ContentService } from '../../../../services/content.service';
 
 @Component({
   selector: 'app-prospecting',
@@ -13,12 +13,14 @@ import { ProspectRock } from '../../../../../stores/prospecting/prospecting.acti
 })
 export class ProspectingPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
+  public get locationData() {
+    return this.contentService.prospecting;
+  }
 
   @Select(ProspectingState.level) level$!: Observable<number>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
   }

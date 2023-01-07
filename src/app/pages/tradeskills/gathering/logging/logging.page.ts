@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import * as locationData from '../../../../../assets/content/logging.json';
 import { IGameGatherLocation } from '../../../../../interfaces';
 import { LoggingState } from '../../../../../stores';
 import { CancelLogging, SetLoggingLocation } from '../../../../../stores/logging/logging.actions';
+import { ContentService } from '../../../../services/content.service';
 
 @Component({
   selector: 'app-logging',
@@ -13,13 +13,15 @@ import { CancelLogging, SetLoggingLocation } from '../../../../../stores/logging
 })
 export class LoggingPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
+  public get locationData() {
+    return this.contentService.logging;
+  }
 
   @Select(LoggingState.level) level$!: Observable<number>;
   @Select(LoggingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(LoggingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
   }

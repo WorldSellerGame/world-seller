@@ -2,34 +2,30 @@ import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
-import * as itemData from '../../assets/content/items.json';
-import * as resourceData from '../../assets/content/resources.json';
-import { IGameItem, IGameResource } from '../../interfaces';
+import { IGameItem } from '../../interfaces';
+import { ContentService } from './content.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemCreatorService {
 
-  readonly resourceData: Record<string, IGameResource> = (resourceData as any).default || resourceData;
-  readonly itemData: Record<string, IGameItem> = (itemData as any).default || itemData;
-
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   public resourceMatchesType(itemName: string, type: string): boolean {
-    return this.resourceData[itemName]?.category === type;
+    return this.contentService.resources[itemName]?.category === type;
   }
 
   public iconFor(itemName: string): string {
-    return this.itemData[itemName]?.icon || this.resourceData[itemName]?.icon;
+    return this.contentService.items[itemName]?.icon || this.contentService.resources[itemName]?.icon;
   }
 
   public isResource(itemName: string): boolean {
-    return !!this.resourceData[itemName];
+    return !!this.contentService.resources[itemName];
   }
 
   public createItem(itemName: string, quantity = 1): IGameItem {
-    const baseItem = cloneDeep(this.itemData[itemName]);
+    const baseItem = cloneDeep(this.contentService.items[itemName]);
 
     baseItem.id = uuidv4();
     baseItem.quantity = quantity;

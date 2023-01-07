@@ -5,9 +5,8 @@ import { IGameRecipe, IGameRefiningRecipe } from '../../../../../interfaces';
 import { CharSelectState, CookingState } from '../../../../../stores';
 
 import { sortBy } from 'lodash';
-import * as locationData from '../../../../../assets/content/cooking.json';
-import * as itemsData from '../../../../../assets/content/items.json';
 import { CancelCookingJob, StartCookingJob } from '../../../../../stores/cooking/cooking.actions';
+import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 
 @Component({
@@ -17,8 +16,9 @@ import { ItemCreatorService } from '../../../../services/item-creator.service';
 })
 export class CookingPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
-  public readonly itemsData = (itemsData as any).default || itemsData;
+  public get locationData() {
+    return this.contentService.cooking;
+  }
 
   public amounts: Record<string, number> = {};
 
@@ -27,7 +27,7 @@ export class CookingPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  constructor(private store: Store, private itemCreatorService: ItemCreatorService) { }
+  constructor(private store: Store, private itemCreatorService: ItemCreatorService, private contentService: ContentService) { }
 
   ngOnInit() {
   }

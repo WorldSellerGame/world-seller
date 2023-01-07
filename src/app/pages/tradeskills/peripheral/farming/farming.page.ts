@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import * as locationData from '../../../../../assets/content/farming.json';
 import { IGameFarmingPlot, IGameResourceTransform } from '../../../../../interfaces';
 import { CharSelectState, FarmingState } from '../../../../../stores';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../../../../../stores/farming/farming.actions';
+import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 import { NotifyService } from '../../../../services/notify.service';
 
@@ -15,7 +15,9 @@ import { NotifyService } from '../../../../services/notify.service';
 })
 export class FarmingPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
+  public get locationData() {
+    return this.contentService.farming;
+  }
 
   public currentPlantIndex = -1;
   public plantableSeeds: Array<{ name: string; quantity: number }> = [];
@@ -26,7 +28,8 @@ export class FarmingPage implements OnInit {
   constructor(
     private store: Store,
     private itemCreatorService: ItemCreatorService,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private contentService: ContentService
   ) { }
 
   ngOnInit() {

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import * as locationData from '../../../../../assets/content/mining.json';
 import { IGameGatherLocation } from '../../../../../interfaces';
 import { MiningState } from '../../../../../stores';
 import { CancelMining, SetMiningLocation } from '../../../../../stores/mining/mining.actions';
+import { ContentService } from '../../../../services/content.service';
 
 @Component({
   selector: 'app-mining',
@@ -14,13 +14,15 @@ import { CancelMining, SetMiningLocation } from '../../../../../stores/mining/mi
 })
 export class MiningPage implements OnInit {
 
-  public readonly locationData = (locationData as any).default || locationData;
+  public get locationData() {
+    return this.contentService.mining;
+  }
 
   @Select(MiningState.level) level$!: Observable<number>;
   @Select(MiningState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(MiningState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
   }
