@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { IGameGathering, Stat } from '../../interfaces';
+import { IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
+import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { CancelForaging, SetForagingLocation } from './foraging.actions';
 import { attachments } from './foraging.attachments';
@@ -55,6 +56,7 @@ export class ForagingState {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const gdrValue = calculateStat(equipment, Stat.ScythePower);
     setGatheringLocation(ctx, location, gdrValue);
+    ctx.dispatch(new DecreaseDurability(ItemType.Scythe));
   };
 
 }

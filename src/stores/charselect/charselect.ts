@@ -6,8 +6,8 @@ import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { NotifyService } from '../../app/services/notify.service';
-import { ICharSelect, ICharacter, IGameItem } from '../../interfaces';
-import { GainJobResult, GainResources } from './charselect.actions';
+import { ICharSelect, ICharacter, IGameItem, ItemType } from '../../interfaces';
+import { DecreaseDurability, GainJobResult, GainResources, UnequipItem } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -123,6 +123,38 @@ export class CharSelectState {
     ctx.setState(patch<ICharSelect>({
       characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
         inventory: append<IGameItem>([createdItem])
+      }))
+    }));
+  }
+
+  @Action(DecreaseDurability)
+  decreaseDurability(ctx: StateContext<ICharSelect>, { slot }: DecreaseDurability) {
+
+    const state = ctx.getState();
+    const currentCharacter = state.characters[state.currentCharacter];
+    if(!currentCharacter) {
+      return;
+    }
+
+    const currentItem = currentCharacter.equipment[slot];
+    if(!currentItem) {
+      return;
+    }
+
+    const newDurability = Math.max(0, currentItem.durability - 1);
+    if(newDurability <= 0) {
+      ctx.dispatch(new UnequipItem(slot));
+      this.notifyService.error(`Your ${currentItem.name} broke!`);
+      return;
+    }
+
+    ctx.setState(patch<ICharSelect>({
+      characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+        equipment: patch<Partial<Record<ItemType, IGameItem>>>({
+          [slot]: patch<IGameItem>({
+            durability: newDurability
+          })
+        })
       }))
     }));
   }

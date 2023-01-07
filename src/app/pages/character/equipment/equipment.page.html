@@ -25,7 +25,10 @@
                   </ng-container>
 
                   <ng-container *ngIf="equipment[tool.type] as item">
-                    <ion-label>{{ item.name }}</ion-label>
+                    <ion-label>
+                      <h2>{{ item.name }}</h2>
+                      <p>{{ item.durability | number }} Durability</p>
+                    </ion-label>
                   </ng-container>
                 </ion-item>
               </ion-list>
@@ -50,7 +53,10 @@
                   </ng-container>
 
                   <ng-container *ngIf="equipment[armor.type] as item">
-                    <ion-label>{{ item.name }}</ion-label>
+                    <ion-label>
+                      <h2>{{ item.name }}</h2>
+                      <p>{{ item.durability | number }} Durability</p>
+                    </ion-label>
                   </ng-container>
                 </ion-item>
               </ion-list>
