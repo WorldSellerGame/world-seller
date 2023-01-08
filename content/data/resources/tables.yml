@@ -4,3 +4,179 @@ Stone Crafting Table:
   category: Crafting Tables
   rarity: Common
   icon: 'toolbox'
+<<<<<<< Updated upstream
+=======
+
+#woe pain ahead 
+#wait wtf where did the refined materials resources tab go lol
+
+###Resources (necessary for crafting tables)
+
+Brick:
+  description: Good for building, but also pretty handy for throwing.
+  category: Refined Materials
+  rarity: Common
+  icon: 'brick'
+
+Lime:
+  description: Useful as a binder, flux and as an alkaline material, but please don't put this on your food.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Mortar: #High Heat Mortar later
+  description: Good for building, not too good for throwing. 
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Copper Ingot: #fuck
+  description: Refined copper ore ready to be shaped.
+  category: Refined Materials
+  rarity: Common
+  icon: 'ingot'
+
+Fire Brick:
+  description: High heat resistant brick.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'brick'
+
+Iron Ingot:
+  description: Refined iron ore ready to be shaped.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'ingot'
+
+Burning Oil: #yeah fuck this shit
+  description: Used in lamps and burners and made in lots of ways.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'drop'
+
+
+###tables/Tools
+
+#Fabrication (Lists where it is used now where it is made)
+
+Table:  #also used in Cooking, Refining, Jewel Crafting and Weaving
+  description: A table is a simple flat workspace for many things.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'table'
+
+Workbench:
+  description: A table with dedicated tools and special features.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'toolbox'
+
+Construction Tools:
+  description: A set of tools for making structures and otherwise.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'construction-hammer'
+
+Metal Tool Bench:
+  description: A table with dedicated tools and special features, but metal.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'toolbox'
+
+Metal Construction Tools:
+  description: A set of tools for making structures and otherwise, but metal.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'hammer-nails'
+
+#refining 
+
+Oven: # Also used in Cooking and Alchemy 
+  description: A very rudimentary stone oven, better than a campfire for cooking and lets you bake things.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'oven'
+
+Brick Oven: # Also used in Cooking 
+  description: An exceptionally useful pice of equipment, looks quite nice as well.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'oven'
+
+Furnace:
+  description: Hot enough to melt metal.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'oven'
+
+Forge Mitts: # Also used in Cooking 
+  description: Necessary for the extremely high heats of the Blast Furnace. 
+  category: Crafting Tables 
+  rarity: Uncommon
+  icon: 'mitts'
+
+Blast Furnace:
+  description: Exceptionally hot burning furnace for very tough materials.
+  category: Crafting Tables
+  rarity: Rare
+  icon: 'oven'
+
+#cooking
+
+Kitchen Utensils: 
+  description: Set of varied cooking implements.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'utensils'
+
+Pots and Pans: #Also used in Early Alchemy
+  description: Oven safe.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'pot'
+
+Millstone: 
+  description: Basically a very large mortar and pestle. Mostly used to make flour.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'millstone'
+
+Metal Kitchen Utensils: 
+  description: Necessary for fine work when cooking.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'whisk'
+
+Metal Pots and Pans: 
+  description: Necessary for fine work when cooking in the oven.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'pot'
+
+# Alchemy
+
+Mortar and Pestle: 
+  description: Used to grind material to powder or paste.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'mortar-and-pestle'
+
+Glass Set: 
+  description: Rudimentary glassware and stands.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'standing-potion'
+
+Burner: 
+  description: Small flame producing implement, useful when finesse is required.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'burner'
+
+Fine Glass Set: 
+  description: Glassware and stands of good quality.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'standing-potion'
+
+>>>>>>> Stashed changes
