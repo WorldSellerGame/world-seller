@@ -7,6 +7,7 @@ Stone Crafting Table:
   rarity: Common
   icon: 'toolbox'
 
+
 #woe pain ahead 
 #wait wtf where did the refined materials resources tab go lol
 
@@ -18,11 +19,23 @@ Brick:
   rarity: Common
   icon: 'brick'
 
-Mortar:
+Lime:
+  description: Useful as a binder, flux and as an alkaline material, but please don't put this on your food.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Mortar: #High Heat Mortar later
   description: Good for building, not too good for throwing. 
   category: Refined Materials
   rarity: Common
   icon: 'powder'
+
+Copper Ingot: #fuck
+  description: Refined copper ore ready to be shaped.
+  category: Refined Materials
+  rarity: Common
+  icon: 'ingot'
 
 Fire Brick:
   description: High heat resistant brick.
@@ -30,7 +43,13 @@ Fire Brick:
   rarity: Uncommon
   icon: 'brick'
 
-Burning Oil: #Might say fuck this and make the burner use sap instead if multiple recipes for a single item are a pain. I really don't need this over charcoal and coal.
+Iron Ingot:
+  description: Refined iron ore ready to be shaped.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'ingot'
+
+Burning Oil: #yeah fuck this shit
   description: Used in lamps and burners and made in lots of ways.
   category: Refined Materials
   rarity: Uncommon
@@ -42,7 +61,7 @@ Burning Oil: #Might say fuck this and make the burner use sap instead if multipl
 #Fabrication (Lists where it is used now where it is made)
 
 Table:  #also used in Cooking, Refining, Jewel Crafting and Weaving
-  description: A table is a simple flat workspace for many things
+  description: A table is a simple flat workspace for many things.
   category: Crafting Tables
   rarity: Common
   icon: 'table'
@@ -78,12 +97,6 @@ Oven: # Also used in Cooking and Alchemy
   category: Crafting Tables
   rarity: Common
   icon: 'oven'
-
-Oven Mitts: # Also used in Cooking and Alchemy
-  description: Please don't grab it with just your hands. Can be used over gloves.
-  category: Crafting Tables 
-  rarity: Common
-  icon: 'mitts'
 
 Brick Oven: # Also used in Cooking 
   description: An exceptionally useful pice of equipment, looks quite nice as well.

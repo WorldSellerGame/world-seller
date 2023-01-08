@@ -47,6 +47,8 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
+      - name: Limestone
+        weight: 1
     maxWorkers: 1
 
   - name: Abandoned Copper Mine
@@ -76,7 +78,9 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
-        weight: 2
+        weight: 1
+      - name: Limestone
+        weight: 1
       - name: Iron Ore
         weight: 1
       - name: Poo
@@ -95,6 +99,10 @@ locations:
     resources:
       - name: Stone
         weight: 30
+      - name: White Clay
+        weight: 20
+      - name: Limestone
+        weight: 10
       - name: White Clay
         weight: 20
       - name: Sand
@@ -138,7 +146,9 @@ locations:
     gatherTime: 100
     resources:
       - name: Stone
-        weight: 70
+        weight: 55
+      - name: Stone
+        weight: 15
       - name: Iron Ore
         weight: 20
       - name: Quartz
@@ -160,7 +170,9 @@ locations:
     gatherTime: 150
     resources:
       - name: Stone
-        weight: 300
+        weight: 250
+      - name: Limestone
+        weight: 50
       - name: Iron Ore
         weight: 100
       - name: Quartz
