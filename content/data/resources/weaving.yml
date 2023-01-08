@@ -4,3 +4,9 @@ Linen Cloth:
   category: Refined Materials
   rarity: Common
   icon: 'fabric'
+
+Oven Mitts: # used in Cooking, Refining, and Alchemy
+  description: Please don't grab it with just your hands. Can be used over gloves.
+  category: Crafting Tables 
+  rarity: Common
+  icon: 'mitts'
