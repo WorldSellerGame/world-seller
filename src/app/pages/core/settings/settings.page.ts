@@ -17,7 +17,9 @@ export class SettingsPage implements OnInit {
 
   @Select(OptionsState.options) options$!: Observable<IOptions>;
 
-  public showDevOptions = !environment.production;
+  public get showDevOptions() {
+    return !environment.production || window.location.href.includes('deploy-preview');
+  }
 
   constructor(private store: Store, public metaService: MetaService) { }
 
