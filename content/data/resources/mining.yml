@@ -23,6 +23,12 @@ Sand:
   rarity: Common
   icon: 'sand'
 
+Limestone:
+  description: Used to do lime things. Not for food.
+  category: Raw Materials
+  rarity: Common
+  icon: 'limestone'
+
 Copper Ore:
   description: Used to do copper things, but later.
   category: Raw Materials
