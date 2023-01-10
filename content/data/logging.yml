@@ -32,7 +32,7 @@ locations:
         weight: 1
       - name: Plant Fiber
         weight: 2
-    maxWorkers: 1
+    maxWorkers: 2
 
   - name: Coniferous Forest
     description: A mix of different trees a little farther away.
@@ -54,7 +54,7 @@ locations:
         weight: 3
       - name: Plant Fiber
         weight: 2
-    maxWorkers: 1
+    maxWorkers: 0
 
   - name: Orchard
     description: It looks to be an abandoned apple farm amongst the wilderness.

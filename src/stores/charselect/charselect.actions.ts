@@ -22,11 +22,16 @@ export class SaveActiveCharacter {
 
 export class GainResources {
   static type = '[CharSelect] Gain Resources';
-  constructor(public resources: Record<string, number>) {}
+  constructor(public resources: Record<string, number>, public shouldNotify = true) {}
 }
 
 export class GainJobResult {
   static type = '[CharSelect] Gain Job Result';
+  constructor(public itemName: string, public quantity = 1) {}
+}
+
+export class WorkerCreateItem {
+  static type = '[CharSelect] Worker Create Item';
   constructor(public itemName: string, public quantity = 1) {}
 }
 

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameGatherLocation } from '../../../../../interfaces';
-import { MiningState } from '../../../../../stores';
+import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
+import { MiningState, WorkersState } from '../../../../../stores';
 import { CancelMining, SetMiningLocation } from '../../../../../stores/mining/mining.actions';
+import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../../../stores/workers/workers.actions';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -21,6 +22,11 @@ export class MiningPage implements OnInit {
   @Select(MiningState.level) level$!: Observable<number>;
   @Select(MiningState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(MiningState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
+    workerAllocations: IGameWorkersGathering[];
+    canAssignWorker: boolean;
+    hasWorkers: boolean;
+  }>;
 
   constructor(private store: Store, private contentService: ContentService) { }
 
@@ -37,6 +43,18 @@ export class MiningPage implements OnInit {
 
   cancelGather() {
     this.store.dispatch(new CancelMining());
+  }
+
+  workersAllocatedToLocation(allWorkers: IGameWorkersGathering[], location: IGameGatherLocation): number {
+    return allWorkers.filter(w => w.location.name === location.name && w.tradeskill === 'mining').length;
+  }
+
+  allocateWorker(location: IGameGatherLocation) {
+    this.store.dispatch(new AssignGatheringWorker('mining', location));
+  }
+
+  unallocateWorker(location: IGameGatherLocation) {
+    this.store.dispatch(new UnassignGatheringWorker('mining', location));
   }
 
 }

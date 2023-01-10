@@ -58,7 +58,11 @@ export class CharSelectState {
   }
 
   @Action(GainResources)
-  async gainResources(ctx: StateContext<ICharSelect>, { resources }: GainResources) {
+  async gainResources(ctx: StateContext<ICharSelect>, { resources, shouldNotify }: GainResources) {
+
+    if(!shouldNotify) {
+      return;
+    }
 
     const resourceNames = Object.keys(resources);
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);

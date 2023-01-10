@@ -107,7 +107,7 @@ export function resetMercantile(ctx: StateContext<IGameMercantile>) {
   ctx.setState(defaultMercantile());
 }
 
-export function gainCoins(ctx: StateContext<IGameMercantile>, { amount }: GainCoins) {
+export function gainCoins(ctx: StateContext<any>, { amount }: GainCoins) {
   if(amount === 0) {
     return;
   }
@@ -116,7 +116,7 @@ export function gainCoins(ctx: StateContext<IGameMercantile>, { amount }: GainCo
   ctx.dispatch(new GainResources({ Coin: amount }));
 }
 
-export function spendCoins(ctx: StateContext<IGameMercantile>, { amount }: SpendCoins) {
+export function spendCoins(ctx: StateContext<any>, { amount }: SpendCoins) {
   gainCoins(ctx, { amount: -amount });
 }
 

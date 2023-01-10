@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameItem, IGameMercantileShop } from '../../../../../../interfaces';
-import { CharSelectState, MercantileState } from '../../../../../../stores';
+import { IGameItem, IGameMercantileShop, IGameWorkersMercantle } from '../../../../../../interfaces';
+import { CharSelectState, MercantileState, WorkersState } from '../../../../../../stores';
 import {
   SendToInventory, SendToStockpile, UnsellItem, UpgradeShopCounter,
   UpgradeShopDecorations, UpgradeShopRegister
@@ -12,6 +12,8 @@ import {
   maxShopDecorationUpgradeCost, maxShopRegisterLevel,
   maxShopRegisterUpgradeCost
 } from '../../../../../../stores/mercantile/mercantile.functions';
+import { AssignMercantileWorker, UnassignMercantileWorker } from '../../../../../../stores/workers/workers.actions';
+import { maxMercantileWorkers } from '../../../../../../stores/workers/workers.functions';
 
 @Component({
   selector: 'app-shop',
@@ -23,6 +25,11 @@ export class ShopPage implements OnInit {
   @Select(MercantileState.shop) shop$!: Observable<IGameMercantileShop>;
   @Select(MercantileState.shopCounterInfo) shopCounter$!: Observable<{ current: number; max: number }>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
+  @Select(WorkersState.mercantileWorkers) mercantileWorkers$!: Observable<{
+    workerAllocations: IGameWorkersMercantle[];
+    canAssignWorker: boolean;
+    hasWorkers: boolean;
+  }>;
 
   constructor(private store: Store) { }
 
@@ -94,6 +101,19 @@ export class ShopPage implements OnInit {
 
   maxShopCounterSize(currentLevel: number) {
     return maxShopCounterSize(currentLevel);
+  }
+
+  // worker functions
+  allocateWorker() {
+    this.store.dispatch(new AssignMercantileWorker());
+  }
+
+  unallocateWorker() {
+    this.store.dispatch(new UnassignMercantileWorker());
+  }
+
+  maxWorkers() {
+    return maxMercantileWorkers();
   }
 
   // misc functions

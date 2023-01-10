@@ -48,11 +48,23 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
   }
 }
 
-export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number) {
-  const recipeIngredients = Object.keys(job.ingredients).filter(ingredient => !(job.preserve || []).includes(ingredient));
-  const recipeCosts = recipeIngredients.map(ingredient => -job.ingredients[ingredient] * quantity);
+export function canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {
+  return Object.keys(recipe.ingredients)
+    .every(ingredient => recipe.preserve?.includes(ingredient)
+      ? resources[ingredient] >= recipe.ingredients[ingredient]
+      : resources[ingredient] >= (recipe.ingredients[ingredient] * amount)
+    );
+}
 
-  ctx.dispatch(new GainResources(zipObject(recipeIngredients, recipeCosts)));
+export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Record<string, number> {
+  const recipeIngredients = Object.keys(recipe.ingredients).filter(ingredient => !(recipe.preserve || []).includes(ingredient));
+  const recipeCosts = recipeIngredients.map(ingredient => -recipe.ingredients[ingredient] * amount);
+
+  return zipObject(recipeIngredients, recipeCosts);
+}
+
+export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number) {
+  ctx.dispatch(new GainResources(getRecipeIngredientCosts(job, quantity)));
 
   ctx.setState(patch<IGameRefining>({
     recipeQueue: append<IGameRefiningRecipe>([{

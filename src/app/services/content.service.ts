@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as seedrandom from 'seedrandom';
 
 import * as alchemy from '../../assets/content/alchemy.json';
 import * as blacksmithing from '../../assets/content/blacksmithing.json';
@@ -14,6 +15,8 @@ import * as mining from '../../assets/content/mining.json';
 import * as prospecting from '../../assets/content/prospecting.json';
 import * as resources from '../../assets/content/resources.json';
 import * as weaving from '../../assets/content/weaving.json';
+
+import * as characterNames from '../../assets/content/character-names.json';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +81,12 @@ export class ContentService {
     return (weaving as any).default || weaving;
   }
 
+  // misc
+  public get characterNames() {
+    return (characterNames as any).default || characterNames;
+  }
+
+  // aggregates
   public readonly locationHashes = {
     fishing: {},
     foraging: {},
@@ -117,6 +126,22 @@ export class ContentService {
       hash[item[key]] = item;
       return hash;
     }, {});
+  }
+
+  private getRandom<T>(rng: any, arr: T[]): T {
+    return arr[Math.floor(rng() * arr.length)];
+  }
+
+  public getCharacterNameFromSeed(seed: number) {
+    const rng = seedrandom('character' + seed.toString());
+
+    const firstKey = this.getRandom(rng, ['one', 'two', 'three', 'more']);
+    const secondKey = this.getRandom(rng, ['one', 'two', 'three', 'more']);
+
+    const firstName = this.getRandom(rng, this.characterNames.human[firstKey]);
+    const secondName = this.getRandom(rng, this.characterNames.human[secondKey]);
+
+    return `${firstName} ${secondName}`;
   }
 
   public getLocationsForSkill(skill: keyof typeof this.locationHashes) {

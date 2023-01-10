@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameRecipe, IGameRefiningRecipe } from '../../../../../interfaces';
-import { CharSelectState, WeavingState } from '../../../../../stores';
+import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { CharSelectState, WeavingState, WorkersState } from '../../../../../stores';
 
 import { sortBy } from 'lodash';
 import { CancelWeavingJob, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
+import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../../../stores/workers/workers.actions';
+import { canCraftRecipe } from '../../../../helpers';
 import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 
@@ -26,6 +28,11 @@ export class WeavingPage implements OnInit {
   @Select(WeavingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
+  @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
+    workerAllocations: IGameWorkersRefining[];
+    canAssignWorker: boolean;
+    hasWorkers: boolean;
+  }>;
 
   constructor(private store: Store, private itemCreatorService: ItemCreatorService, private contentService: ContentService) { }
 
@@ -63,11 +70,7 @@ export class WeavingPage implements OnInit {
   }
 
   canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {
-    return Object.keys(recipe.ingredients)
-      .every(ingredient => recipe.preserve?.includes(ingredient)
-        ? resources[ingredient] >= recipe.ingredients[ingredient]
-        : resources[ingredient] >= (recipe.ingredients[ingredient] * amount)
-      );
+    return canCraftRecipe(resources, recipe, amount);
   }
 
   craft(recipe: IGameRecipe, amount = 1) {
@@ -78,6 +81,18 @@ export class WeavingPage implements OnInit {
 
   cancel(jobIndex: number) {
     this.store.dispatch(new CancelWeavingJob(jobIndex));
+  }
+
+  workersAllocatedToRecipe(allWorkers: IGameWorkersRefining[], recipe: IGameRecipe): number {
+    return allWorkers.filter(w => w.recipe.result === recipe.result && w.tradeskill === 'weaving').length;
+  }
+
+  assignWorker(recipe: IGameRecipe) {
+    this.store.dispatch(new AssignRefiningWorker('weaving', recipe));
+  }
+
+  unassignWorker(recipe: IGameRecipe) {
+    this.store.dispatch(new UnassignRefiningWorker('weaving', recipe));
   }
 
 }

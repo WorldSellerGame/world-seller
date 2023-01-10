@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameGatherLocation } from '../../../../../interfaces';
-import { ForagingState } from '../../../../../stores';
+import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
+import { ForagingState, WorkersState } from '../../../../../stores';
 import { CancelForaging, SetForagingLocation } from '../../../../../stores/foraging/foraging.actions';
+import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../../../stores/workers/workers.actions';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -20,6 +21,11 @@ export class ForagingPage implements OnInit {
   @Select(ForagingState.level) level$!: Observable<number>;
   @Select(ForagingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(ForagingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
+    workerAllocations: IGameWorkersGathering[];
+    canAssignWorker: boolean;
+    hasWorkers: boolean;
+  }>;
 
   constructor(private store: Store, private contentService: ContentService) { }
 
@@ -36,6 +42,18 @@ export class ForagingPage implements OnInit {
 
   cancelGather() {
     this.store.dispatch(new CancelForaging());
+  }
+
+  workersAllocatedToLocation(allWorkers: IGameWorkersGathering[], location: IGameGatherLocation): number {
+    return allWorkers.filter(w => w.location.name === location.name && w.tradeskill === 'foraging').length;
+  }
+
+  allocateWorker(location: IGameGatherLocation) {
+    this.store.dispatch(new AssignGatheringWorker('foraging', location));
+  }
+
+  unallocateWorker(location: IGameGatherLocation) {
+    this.store.dispatch(new UnassignGatheringWorker('foraging', location));
   }
 
 }

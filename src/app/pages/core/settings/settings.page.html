@@ -62,7 +62,7 @@
       <ion-col sizeMd="4" *ngIf="showDevOptions">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Dev Settings</ion-card-title>
+            <ion-card-title>Dev Tools</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
@@ -73,6 +73,10 @@
               <ion-item>
                 <ion-label>{{ options.tickTimer }}</ion-label>
                 <ion-range [value]="options.tickTimer" [ticks]="true" [min]="1" [max]="60" (ionChange)="changeTickTimer($event)"></ion-range>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="addManyCoins()">
+                +1000 Coins
               </ion-item>
             </ion-list>
           </ion-card-content>

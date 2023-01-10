@@ -45,19 +45,36 @@
               </div>
             </ion-card-content>
 
-            <ion-button fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
-              <ion-spinner color="warning"></ion-spinner>
-              <span class="ion-margin-start ion-margin-end">Cooldown</span>
-              <app-countdown [duration]="cooldown"></app-countdown>
-            </ion-button>
+            <div class="location-footer">
 
-            <ion-button fill="clear"
-                        *ngIf="!(cooldowns$ | async)?.[location.name]"
-                        [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
-                        [disabled]="currentLocation$ | async"
-                        (click)="gather(location)">
-              Log
-            </ion-button>
+              <ion-button class="user-action" fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
+                <ion-spinner color="warning"></ion-spinner>
+                <span class="ion-margin-start ion-margin-end">Cooldown</span>
+                <app-countdown [duration]="cooldown"></app-countdown>
+              </ion-button>
+
+              <ion-button class="user-action"
+                          fill="clear"
+                          *ngIf="!(cooldowns$ | async)?.[location.name]"
+                          [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
+                          [disabled]="currentLocation$ | async"
+                          (click)="gather(location)">
+                Log
+              </ion-button>
+
+              <ng-container *ngIf="{
+                gatheringWorkers: gatheringWorkers$ | async,
+                allocated: workersAllocatedToLocation((gatheringWorkers$ | async)?.workerAllocations ?? [], location)
+              } as workerData">
+                <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
+                  <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)">-</ion-button>
+
+                  <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
+
+                  <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)">+</ion-button>
+                </div>
+              </ng-container>
+            </div>
           </ion-card>
         </ion-col>
       </ion-row>

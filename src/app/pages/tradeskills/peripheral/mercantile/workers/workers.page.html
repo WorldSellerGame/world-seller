@@ -5,5 +5,86 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="{
+    maxWorkers: maxWorkers$ | async,
+    coins: coins$ | async,
+    workersAndAllocated: workersAndAllocated$ | async,
+    workerAllocations: workerAllocations$ | async
+  } as pageData">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Worker Allocations</ion-card-title>
+              <ion-card-subtitle class="buy-action">
+                Idle Workers: {{ (pageData.workersAndAllocated?.max || 0) - (pageData.workersAndAllocated?.current || 0) }}
+                <ion-button size="sm" fill="clear" (click)="buyWorker()" [disabled]="!canBuyWorker(pageData.coins || 0, pageData.maxWorkers || 0)">Buy Worker for {{ nextWorkerCost(pageData.maxWorkers || 0) | number }} coins</ion-button>
+              </ion-card-subtitle>
+            </ion-card-header>
 
+            <ion-card-content>
+              <ion-list>
+                <ion-list-header>
+                  Gathering Workers
+                </ion-list-header>
+
+                <ion-item *ngIf="(pageData.workerAllocations?.gathering || []).length === 0">
+                  None
+                </ion-item>
+
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.gathering">
+                  <ion-label>
+                    <h2>{{ workerName(worker.nameId) }}</h2>
+                    <p>
+                      Currently {{ worker.tradeskill }} @ {{ worker.location.name }}...
+                      <span *ngIf="worker.currentTick < 0">cooling down...</span>
+                      <span *ngIf="worker.currentTick >= 0">{{ worker.currentTick / worker.location.gatherTime * 100 | number:'1.0-0' }}%</span>
+                    </p>
+                  </ion-label>
+                </ion-item>
+
+                <ion-list-header>
+                  Refining Workers
+                </ion-list-header>
+
+                <ion-item *ngIf="(pageData.workerAllocations?.refining || []).length === 0">
+                  None
+                </ion-item>
+
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.refining">
+                  <ion-label>
+                    <h2>{{ workerName(worker.nameId) }}</h2>
+                    <p>
+                      Currently doing {{ worker.tradeskill }} and making {{ worker.recipe.result }}...
+                      <span *ngIf="worker.currentTick < 0">cooling down...</span>
+                      <span *ngIf="worker.currentTick >= 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
+                    </p>
+                  </ion-label>
+                </ion-item>
+
+                <ion-list-header>
+                  Mercantile Workers
+                </ion-list-header>
+
+                <ion-item *ngIf="(pageData.workerAllocations?.mercantile || []).length === 0">
+                  None
+                </ion-item>
+
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.mercantile">
+                  <ion-label>
+                    <h2>{{ workerName(worker.nameId) }}</h2>
+                    <p>
+                      Will restock store counter in {{ mercantileWorkerTime() - worker.currentTick }}s...
+                    </p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ng-container>
 </ion-content>

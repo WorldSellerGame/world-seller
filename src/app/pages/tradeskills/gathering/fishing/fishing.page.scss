@@ -12,3 +12,27 @@
 .status-row {
   min-height: 100px;
 }
+
+.location-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .user-action {
+    flex: 1;
+  }
+
+  .workers {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .allocated {
+      margin-left: 10px;
+      margin-right: 10px;
+      min-width: 50px;
+      text-align: center;
+    }
+  }
+}

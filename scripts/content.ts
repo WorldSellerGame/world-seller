@@ -27,6 +27,14 @@ const loadItems = async () => {
     fs.writeJson(`src/assets/content/${folder}.json`, allData);
   }));
 
+  await Promise.all(['misc'].map(async folder => {
+    const files = await readdir(`content/data/${folder}`);
+    files.forEach((file: string) => {
+      const data = yaml.load(fs.readFileSync(file, 'utf8'));
+      fs.writeJson(`src/assets/content/${path.basename(file, '.yml')}.json`, data);
+    });
+  }))
+
   console.log('☑ Content loaded.');
 };
 

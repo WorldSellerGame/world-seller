@@ -107,6 +107,31 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <ion-col sizeMd="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Shop Workers</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="worker-card-actions">
+                  <ng-container *ngIf="{
+                    mercantileWorkers: mercantileWorkers$ | async,
+                    allocated: ((mercantileWorkers$ | async)?.workerAllocations || []).length
+                  } as workerData">
+                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker()">-</ion-button>
+                    <div>{{ workerData.allocated | number }}/{{ maxWorkers() }}</div>
+                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated >= maxWorkers() || !workerData.mercantileWorkers?.canAssignWorker" (click)="allocateWorker()">+</ion-button>
+                  </ng-container>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
 

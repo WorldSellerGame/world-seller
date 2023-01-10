@@ -6,6 +6,13 @@ import { GainResources } from '../../stores/charselect/charselect.actions';
 import { isLocationOnCooldown, lowerGatheringCooldowns, putLocationOnCooldown } from './cooldowns';
 import { pickResourcesWithWeights } from './pick-weight';
 
+export function getResourceRewardsForLocation(location: IGameGatherLocation) {
+  const numResources = random(location.perGather.min, location.perGather.max);
+  const gainedResources = pickResourcesWithWeights(location.resources, numResources);
+
+  return gainedResources;
+}
+
 export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cdrValue: number, cancelProto: any) {
   const state = ctx.getState();
 
@@ -24,8 +31,7 @@ export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: nu
   if(newTicks <= 0) {
     const location = state.currentLocation;
 
-    const numResources = random(location.perGather.min, location.perGather.max);
-    const gainedResources = pickResourcesWithWeights(location.resources, numResources);
+    const gainedResources = getResourceRewardsForLocation(location);
 
     putLocationOnCooldown(ctx, location, cdrValue);
 

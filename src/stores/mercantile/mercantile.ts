@@ -1,9 +1,13 @@
 
 
 import { Injectable } from '@angular/core';
-import { Selector, State } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
+import { ItemCreatorService } from '../../app/services/item-creator.service';
+import { NotifyService } from '../../app/services/notify.service';
 import { IGameMercantile } from '../../interfaces';
+import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
+import { SendToStockpile } from './mercantile.actions';
 import { attachments } from './mercantile.attachments';
 import { defaultMercantile, maxShopCounterSize, maxStockpileSize } from './mercantile.functions';
 
@@ -14,7 +18,7 @@ import { defaultMercantile, maxShopCounterSize, maxStockpileSize } from './merca
 @Injectable()
 export class MercantileState {
 
-  constructor() {
+  constructor(private itemCreatorService: ItemCreatorService, private notifyService: NotifyService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(MercantileState, action, handler);
     });
@@ -43,6 +47,31 @@ export class MercantileState {
   @Selector()
   static stockpileInfo(state: IGameMercantile) {
     return { current: state.stockpile.items.length, max: maxStockpileSize(state.stockpile.limitLevel) };
+  }
+
+  @Action(WorkerCreateItem)
+  async gainItemFromWorker(ctx: StateContext<IGameMercantile>, { itemName, quantity }: WorkerCreateItem) {
+
+    if(itemName === 'nothing') {
+      return;
+    }
+
+    // if it's a resource, gain that
+    const isResource = this.itemCreatorService.isResource(itemName);
+    if(isResource) {
+      ctx.dispatch(new GainResources({ [itemName]: quantity }));
+      return;
+    }
+
+    // try to gain an item
+    const createdItem = this.itemCreatorService.createItem(itemName, quantity);
+    if(!createdItem) {
+      return;
+    }
+
+    this.notifyService.notify(`Gained ${itemName} x${quantity}!`);
+
+    ctx.dispatch(new SendToStockpile(createdItem));
   }
 
 }

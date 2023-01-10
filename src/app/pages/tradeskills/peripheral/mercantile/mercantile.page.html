@@ -19,7 +19,10 @@
 
       <ion-tab-button tab="workers">
         <ion-icon name="body"></ion-icon>
-        <ion-label>Workers</ion-label>
+        <ion-label>
+          Workers
+          <ng-container *ngIf="workersAndAllocated$ | async as workerAllocations">({{ workerAllocations.current }}/{{ workerAllocations.max }})</ng-container>
+        </ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
