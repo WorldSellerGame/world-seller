@@ -6,13 +6,13 @@ Glass Bottle:
   icon: 'bottle'
 
 Saltpeter: #guano obtained lvl 15 mining
-  description: Don't ea-... oh wait you can't actually eat this. There are more fun uses though.
+  description: Don't ea-... oh wait you can actually eat this. There are more fun uses though.
   category: Refined Materials
   rarity: Common
   icon: 'powder'
 
 Quartz Powder:
-  description: Once again: do not eat it. Useful when making specialty glass and in certain alchemical recipes.
+  description: Once again - do not eat it. Useful when making specialty glass and in certain alchemical recipes.
   category: Refined Materials
   rarity: Uncommon
   icon: 'powder'
