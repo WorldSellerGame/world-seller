@@ -27,4 +27,6 @@ export interface IGameWorkers {
   gatheringWorkerAllocations: IGameWorkersGathering[];
   refiningWorkerAllocations: IGameWorkersRefining[];
   mercantileWorkerAllocations: IGameWorkersMercantle[];
+  upkeepTicks: number;
+  upkeepPaid: boolean;
 }
