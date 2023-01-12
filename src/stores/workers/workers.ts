@@ -9,7 +9,7 @@ import { canCraftRecipe, getRecipeIngredientCosts, getResourceRewardsForLocation
 import { IGameRecipe, IGameWorkers } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { SellItem } from '../mercantile/mercantile.actions';
+import { SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
 import {
   canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers,
@@ -122,8 +122,7 @@ export class WorkersState {
       // if we have coins, pay it
       if(hasCoins) {
 
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        ctx.dispatch(new GainResources({ Coin: -workerUpkeepCost }));
+        ctx.dispatch(new SpendCoins(workerUpkeepCost));
         ctx.patchState({ upkeepPaid: true, upkeepTicks: upkeepTicks() });
         return;
 
