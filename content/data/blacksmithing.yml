@@ -343,10 +343,11 @@ recipes:
 
   - result: Fine Glass Set
     perCraft: { min: 1, max: 1 }
-    level: { min: 15, max: 25 }
+    level: { min: 20, max: 30 }
     craftTime: 40
     ingredients:
       Sand: 10
+      Quartz Powder: 5
       Furnace: 1
       Metal Tool Bench: 1
     require:
@@ -452,3 +453,42 @@ recipes:
       - Furnace
     maxWorkers: 1
 
+  - result: Glass Bottle
+    perCraft: { min: 4, max: 6 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Sand: 3
+      Brick Oven: 1
+    require:
+      - Brick Oven
+    preserve:
+      - Brick Oven
+    maxWorkers: 2
+
+  - result: Burning Oil
+    perCraft: { min: 6, max: 8 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Sap: 4
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1
+
+  - result: Charcoal
+    perCraft: { min: 8, max: 8 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Pine Log: 4
+      Cedar Log: 4
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1

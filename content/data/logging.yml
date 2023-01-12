@@ -11,7 +11,6 @@ locations:
     resources:
       - name: Pine Log
         weight: 5
-
       - name: Plant Fiber
         weight: 2
     maxWorkers: 1
@@ -27,12 +26,14 @@ locations:
     gatherTime: 10
     resources:
       - name: Pine Log
-        weight: 5
+        weight: 10
       - name: Pinecone
-        weight: 1
-      - name: Plant Fiber
         weight: 2
-    maxWorkers: 2
+      - name: Plant Fiber
+        weight: 4
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Coniferous Forest
     description: A mix of different trees a little farther away.
@@ -54,7 +55,9 @@ locations:
         weight: 3
       - name: Plant Fiber
         weight: 2
-    maxWorkers: 0
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Orchard
     description: It looks to be an abandoned apple farm amongst the wilderness.
@@ -98,6 +101,8 @@ locations:
         weight: 2
       - name: Plant Fiber
         weight: 1
+      - name: Sap
+        weight: 1
     maxWorkers: 1
 
   - name: Cedrics Spot
@@ -124,6 +129,8 @@ locations:
         weight: 4
       - name: Plant Fiber
         weight: 2
+      - name: Sap
+        weight: 1
     maxWorkers: 1
 
   - name: Iron Wood Grove

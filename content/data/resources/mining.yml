@@ -32,8 +32,14 @@ Limestone:
 Copper Ore:
   description: Used to do copper things, but later.
   category: Raw Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'iron-ore'
+
+Brimstone:
+  description: Stinky yellow rock.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'stone' 
 
 Iron Ore:
   description: Used to do iron things, but later.

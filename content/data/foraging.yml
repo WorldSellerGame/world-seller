@@ -29,6 +29,8 @@ locations:
         weight: 1
       - name: Plant Fiber
         weight: 1
+      - name: Sap
+        weight: 1
     maxWorkers: 1
 
   - name: Coniferous Forest
@@ -54,6 +56,8 @@ locations:
       - name: Carrot Seed
         weight: 3
       - name: Worm
+        weight: 1
+      - name: Sap
         weight: 1
     maxWorkers: 1
 
@@ -176,17 +180,19 @@ locations:
     gatherTime: 50
     resources:
       - name: Mushroom
-        weight: 15
+        weight: 30
       - name: Poisonous Mushroom
-        weight: 5
+        weight: 10
       - name: Honey
-        weight: 24
+        weight: 48
       - name: Bee
-        weight: 3
+        weight: 6
       - name: Fairy Bell
-        weight: 2
-      - name: Rose
+        weight: 4
+      - name: Death Cap
         weight: 1
+      - name: Rose
+        weight: 2
     maxWorkers: 1
 
   - name: Near Ocean Jungle

@@ -1,6 +1,36 @@
 
 Glass Bottle:
-  description: Created from sand, magically.
+  description: It's a container, not an art piece.
   category: Refined Materials
   rarity: Common
   icon: 'bottle'
+
+Saltpeter: #guano obtained lvl 15 mining
+  description: Don't ea-... oh wait you can actually eat this. There are more fun uses though.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Quartz Powder:
+  description: Once again - do not eat it. Useful when making specialty glass and in certain alchemical recipes.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'powder'
+
+Wine:
+  description: For the refined and common alike.
+  category: Foods
+  rarity: Uncommon
+  icon: 'wine'
+
+Acid:
+  description: Dangerous corrosive liquid.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'toxic-bottle'
+
+Gypsum:
+  description: Mostly useful as fertilizer but could be used in jewelry as well.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'gypsum'

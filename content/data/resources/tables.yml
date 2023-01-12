@@ -25,6 +25,12 @@ Lime:
   rarity: Common
   icon: 'powder'
 
+Charcoal:
+  description: High heat can't be beat.
+  category: Refined Materials
+  rarity: Common
+  icon: 'charcoal'
+
 Mortar: #High Heat Mortar later
   description: Good for building, not too good for throwing. 
   category: Refined Materials
@@ -49,8 +55,8 @@ Iron Ingot:
   rarity: Uncommon
   icon: 'ingot'
 
-Burning Oil: #yeah fuck this shit
-  description: Used in lamps and burners and made in lots of ways.
+Burning Oil: #nvm
+  description: Used in glass sets, lamps, and burners. Can be made a few ways but sap is easiest.
   category: Refined Materials
   rarity: Uncommon
   icon: 'drop'
@@ -179,4 +185,3 @@ Fine Glass Set:
   category: Crafting Tables
   rarity: Uncommon
   icon: 'standing-potion'
-
