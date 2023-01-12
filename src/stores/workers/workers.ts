@@ -11,7 +11,10 @@ import { GainResources, WorkerCreateItem } from '../charselect/charselect.action
 import { TickTimer } from '../game/game.actions';
 import { SellItem } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
-import { canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers, upkeepCost, upkeepTicks, workerTimerMultiplier } from './workers.functions';
+import {
+  canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers,
+  upkeepCost, upkeepTicks, workerTimerMultiplier
+} from './workers.functions';
 
 @State<IGameWorkers>({
   name: 'workers',
