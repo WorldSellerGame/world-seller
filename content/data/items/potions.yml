@@ -37,7 +37,7 @@ Pine Needle Tea:
 
 Potion of Fire:
   name: Potion of Fire
-  description: "A bottle full of burning oil and a fuse isn't really a potion is it? Well maybe Ill wait till he sets ot down to tell him."
+  description: "A bottle full of burning oil and a fuse isn't really a potion is it? Well, maybe I'll wait 'til he sets to down to tell him."
   type: Potion
   category: Potions
   rarity: Common
@@ -61,7 +61,7 @@ Potion of Minor Poison:
 
 Potion of Simple Blinding:
   name: Potion of Simple Blinding
-  description: A vial of very fine particles ins't really a potion however it works quite well.
+  description: A vial of very fine particles ins't really a potion, however it works quite well.
   type: Potion
   category: Potions
   rarity: Common
@@ -97,7 +97,7 @@ Potion of Small Speed:
 
 Potion of Minor Strength:
   name: Potion of Minor Strength
-  description: Strength to smite your enemies or you know, hit them with a big stick.
+  description: Strength to smite your enemies, or, you know, hit them with a big stick.
   type: Potion
   category: Potions
   rarity: Common
@@ -121,7 +121,7 @@ Potion of Minor Magic Maximize:
 
 Potion of Weakness:
   name: Potion of Weakness
-  description: Turn their arms to noodles and their mouths into the round type of noodles
+  description: Turn their arms to noodles and their mouths into the round type of noodles.
   type: Potion
   category: Potions
   rarity: Common
@@ -133,7 +133,7 @@ Potion of Weakness:
 
 Potion of Minor Mud:
   name: Potion of Mud
-  description: Lets your enemies flow like muck. Well cover them in way more than should fit in that bottle.
+  description: Lets your enemies flow like muck. Will cover them in way more than should fit in that bottle.
   type: Potion
   category: Potions
   rarity: Common
@@ -246,7 +246,7 @@ Potion of Compressed Fire:
 
 Confusion Concoction:
   name: Confusion Concoction
-  description: Uh oh its kicking in.
+  description: Uh oh, it's kicking in.
   type: Potion
   category: Potions
   rarity: Rare
@@ -258,7 +258,7 @@ Confusion Concoction:
 
 Minthy's Sleep Medication:
   name: Minthy's Sleep Medication
-  description: "Good Night"
+  description: "Good night"
   type: Potion
   category: Potions
   rarity: Rare
