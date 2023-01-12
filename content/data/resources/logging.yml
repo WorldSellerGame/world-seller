@@ -1,4 +1,10 @@
 
+Sap:
+  description: Sticky material with a pleasant smell.
+  category: Raw Materials
+  rarity: Common
+  icon: 'drop'
+
 Pine Log:
   description: Good firewood but burns fast.
   category: Raw Materials

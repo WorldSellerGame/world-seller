@@ -62,9 +62,11 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
-        weight: 5
-      - name: Copper Ore
+        weight: 10
+      - name: Brimstone
         weight: 1
+      - name: Copper Ore
+        weight: 2
     maxWorkers: 1
 
   - name: Bat Infested Iron Mine
@@ -78,13 +80,15 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
-        weight: 1
+        weight: 3
       - name: Limestone
+        weight: 2
+      - name: Brimstone
         weight: 1
       - name: Iron Ore
-        weight: 1
-      - name: Poo
-        weight: 1
+        weight: 2
+      - name: Guano
+        weight: 3
     maxWorkers: 1
 
   - name: Grotto
@@ -99,8 +103,6 @@ locations:
     resources:
       - name: Stone
         weight: 30
-      - name: White Clay
-        weight: 20
       - name: Limestone
         weight: 10
       - name: White Clay
@@ -126,11 +128,15 @@ locations:
       - name: Stone
         weight: 10
       - name: Gravel
-        weight: 30
+        weight: 20
+      - name: Brimstone
+        weight: 10
       - name: Bone
         weight: 5
       - name: Tanzanite
         weight: 10
+      - name: Sap
+        weight: 1
       - name: Curse
         weight: 1
     maxWorkers: 1
@@ -147,7 +153,7 @@ locations:
     resources:
       - name: Stone
         weight: 55
-      - name: Stone
+      - name: Limestone
         weight: 15
       - name: Iron Ore
         weight: 20
@@ -173,6 +179,8 @@ locations:
         weight: 250
       - name: Limestone
         weight: 50
+      - name: Brimstone
+        weight: 10
       - name: Iron Ore
         weight: 100
       - name: Quartz
@@ -195,7 +203,7 @@ locations:
       max: 45
     gatherTime: 10
     resources:
-      - name: Poo
+      - name: Guano
         weight: 1
       - name: Curse
         weight: 1
