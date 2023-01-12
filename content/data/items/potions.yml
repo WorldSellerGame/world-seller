@@ -3,10 +3,281 @@ Raspberry Juice:
   name: Raspberry Juice
   description: A bottle of the finest raspberry juice.
   type: Potion
-  category: Potions
+  category: Foods
   rarity: Common
   durability: 1
   value: 3
   icon: bottle
   stats:
     healing: 50
+
+Dandelion Tea:
+  name: Dandelion Tea
+  description: No caffeine, but good for your health.
+  type: Potion
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: hot-cup
+  stats:
+    healing: 50 #Cure minor ailments
+
+Pine Needle Tea:
+  name: Pine Needle Tea
+  description: No caffeine, but good for your health.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: hot-cup
+  stats:
+    healing: 50 #Cure minor ailments
+
+Potion of Fire:
+  name: Potion of Fire
+  description: "A bottle full of burning oil and a fuse isn't really a potion is it? Well maybe Ill wait till he sets ot down to tell him."
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: fire-bottle
+  stats:
+    healing: 50 #burning effect baby
+
+Potion of Minor Poison:
+  name: Potion of Minor Poison
+  description: Not Tasty and green like it should be.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: toxic-bottle
+  stats:
+    healing: 50 #small poison effect
+
+Potion of Simple Blinding:
+  name: Potion of Simple Blinding
+  description: A vial of very fine particles ins't really a potion however it works quite well.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #blind that bitch lower their accuracy and take their currency
+
+Potion of Minor Healing:
+  name: Potion of Minor Healing
+  description: Tasty and red like it should be.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: heart-bottle
+  stats:
+    healing: 50 #Small health gain
+
+Potion of Small Speed:
+  name: Potion of Small Speed
+  description: Moving faster is generally good.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #Small initiative increase
+
+Potion of Minor Strength:
+  name: Potion of Minor Strength
+  description: Strength to smite your enemies or you know, hit them with a big stick.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #small damage increase
+
+Potion of Minor Magic Maximize:
+  name: Potion of Minor Magic Maximize
+  description: Increase magic potency.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #small magic increase (maybe lump together with pot o strength?)
+
+Potion of Weakness:
+  name: Potion of Weakness
+  description: Turn their arms to noodles and their mouths into the round type of noodles
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #Lower damage dealt (all types)
+
+Potion of Minor Mud:
+  name: Potion of Mud
+  description: Lets your enemies flow like muck. Well cover them in way more than should fit in that bottle.
+  type: Potion
+  category: Potions
+  rarity: Common
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #Slows a little bit
+
+###
+
+Potion of Acid:
+  name: Potion of Acid
+  description: Please don't drink this.
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: toxic-bottle
+  stats:
+    healing: 50 #mmmm dot damage + chance to blind
+
+Antidote:
+  name: Antidote
+  description: Cures basic poisons, sicknesses, and a few other status ailments.
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: heart-bottle
+  stats:
+    healing: 50 #self explanatory description
+
+Bottled Brambles:
+  name: Bottled Brambles
+  description: Breaking the glass releases a mass of thorny vines, bushes, and brambles.
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #instant damage and slow
+
+Mages Little Helper:
+  name: Mages Little Helper
+  description: Helps casters hit hard and fast. 
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: bottle
+  stats:
+    healing: 50 #Magic up + Speed Up
+
+Poison of Leaden Limbs:
+  name: Poison of Leaden Limbs
+  description: Poison that weakens the victims ability to fight.
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: toxic-bottle
+  stats:
+    healing: 50 #Poision + Weak
+
+Warriors Draught:
+  name: Warriors Draught
+  description: Helpful for any fighter in pinch. 
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: heart-bottle
+  stats:
+    healing: 50 #Heal + Strength up
+
+Dazzler:
+  name: Dazzler
+  description: Helps you escape in a cloud of glitter. #Escape (not sure if guaranteed or just high percent)
+  type: Potion
+  category: Potions
+  rarity: Uncommon
+  durability: 1
+  value: 3
+  icon: spiral-bottle
+  stats:
+    healing: 50 #escape mechanic
+
+#####
+
+
+Potion of Compressed Fire:
+  name: Potion of Compressed Fire
+  description: Kaboom.
+  type: Potion
+  category: Potions
+  rarity: Rare
+  durability: 1
+  value: 3
+  icon: fire-bottle
+  stats:
+    healing: 50 #KA FUCKING BOOOOOOOOOOOOOM 
+
+Confusion Concoction:
+  name: Confusion Concoction
+  description: Uh oh its kicking in.
+  type: Potion
+  category: Potions
+  rarity: Rare
+  durability: 1
+  value: 3
+  icon: spiral-bottle
+  stats:
+    healing: 50 #Random target selection and random ability selection (I wonder if there would be a super niche self use case)
+
+Minthy's Sleep Medication:
+  name: Minthy's Sleep Medication
+  description: "Good Night"
+  type: Potion
+  category: Potions
+  rarity: Rare
+  durability: 1
+  value: 3
+  icon: toxic-bottle
+  stats:
+    healing: 50 #Poision
+
+###
+
+Oil Of Mortality:
+  name: Oil Of Mortality
+  description: A poison named for its humbling effect. Often used on victims who survived a previous attempt.
+  type: Potion
+  category: Potions
+  rarity: Epic
+  durability: 1
+  value: 3
+  icon: toxic-bottle
+  stats:
+    healing: 50 #Poison
