@@ -11,7 +11,9 @@ export const defaultWorkers: () => IGameWorkers = () => ({
   nextWorkerNameIds: [],
   gatheringWorkerAllocations: [],
   refiningWorkerAllocations: [],
-  mercantileWorkerAllocations: []
+  mercantileWorkerAllocations: [],
+  upkeepPaid: true,
+  upkeepTicks: 3600
 });
 
 export function resetWorkers(ctx: StateContext<IGameWorkers>) {
@@ -20,6 +22,18 @@ export function resetWorkers(ctx: StateContext<IGameWorkers>) {
 
 export function workerTimerMultiplier(workerMultiplierLevel = 1) {
   return 0.05 * workerMultiplierLevel;
+}
+
+export function upkeepCost(numWorkers: number) {
+  if(numWorkers <= 5) {
+    return 0;
+  }
+
+  return Math.floor(100 * Math.pow(numWorkers + 1, 1.3));
+}
+
+export function upkeepTicks() {
+  return 3600;
 }
 
 export function totalAllocatedWorkers(state: IGameWorkers): number {

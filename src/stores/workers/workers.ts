@@ -9,9 +9,12 @@ import { canCraftRecipe, getRecipeIngredientCosts, getResourceRewardsForLocation
 import { IGameRecipe, IGameWorkers } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { SellItem } from '../mercantile/mercantile.actions';
+import { SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
-import { canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers, workerTimerMultiplier } from './workers.functions';
+import {
+  canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers,
+  upkeepCost, upkeepTicks, workerTimerMultiplier
+} from './workers.functions';
 
 @State<IGameWorkers>({
   name: 'workers',
@@ -82,18 +85,58 @@ export class WorkersState {
     return totalAllocatedWorkers(state);
   }
 
+  @Selector()
+  static upkeep(state: IGameWorkers) {
+    return { paid: state.upkeepPaid, ticks: state.upkeepTicks };
+  }
+
   @Action(TickTimer)
   decreaseDuration(ctx: StateContext<IGameWorkers>, { ticks }: TickTimer) {
     const store = this.store.snapshot();
+    const state = ctx.getState();
 
     const currentCharacter = store.charselect.characters[store.charselect.currentCharacter];
     if(!currentCharacter) {
       return;
     }
 
+    const totalWorkers = totalAllocatedWorkers(state);
+    if(totalWorkers === 0) {
+      return;
+    }
+
     const allResources = currentCharacter.resources;
 
-    const state = ctx.getState();
+    // handle upkeep
+    const workerUpkeepCost = upkeepCost(totalWorkers);
+    const hasCoins = allResources.Coin >= workerUpkeepCost;
+
+    // if it doesn't cost anything, it's always paid, but time will still tick down to prevent abuse
+    if(workerUpkeepCost <= 0) {
+      ctx.patchState({ upkeepPaid: true });
+    }
+
+    // when we get to the end
+    if(workerUpkeepCost > 0 && (state.upkeepTicks <= 0 || !state.upkeepPaid)) {
+
+      // if we have coins, pay it
+      if(hasCoins) {
+
+        ctx.dispatch(new SpendCoins(workerUpkeepCost));
+        ctx.patchState({ upkeepPaid: true, upkeepTicks: upkeepTicks() });
+        return;
+
+      // if we can't pay, we mark it unpaid
+      } else {
+        ctx.patchState({ upkeepPaid: false, upkeepTicks: upkeepTicks() });
+        return;
+      }
+    }
+
+    // workers will not work unless the upkeep is currently paid
+    if(!state.upkeepPaid) {
+      return;
+    }
 
     // handle gathering / rewards
     const gatheringRewards: Array<Record<string, number>> = [];
@@ -176,7 +219,8 @@ export class WorkersState {
     ctx.setState(patch<IGameWorkers>({
       gatheringWorkerAllocations: gatheringWorkerUpdates,
       refiningWorkerAllocations: refiningWorkerUpdates,
-      mercantileWorkerAllocations: mercantileWorkerUpdates
+      mercantileWorkerAllocations: mercantileWorkerUpdates,
+      upkeepTicks: (state.upkeepTicks ?? upkeepTicks()) - ticks
     }));
   }
 

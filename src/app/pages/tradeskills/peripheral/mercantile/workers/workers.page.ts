@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
 import { BuyWorker } from '../../../../../../stores/workers/workers.actions';
-import { mercantileWorkerTime, nextWorkerCost } from '../../../../../../stores/workers/workers.functions';
+import { mercantileWorkerTime, nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
 import { ContentService } from '../../../../../services/content.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class WorkersPage implements OnInit {
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(WorkersState.workersAndAllocated) workersAndAllocated$!: Observable<{ current: number; max: number }>;
   @Select(WorkersState.maxWorkers) maxWorkers$!: Observable<number>;
+  @Select(WorkersState.upkeep) upkeep$!: Observable<{ paid: number; ticks: number }>;
   @Select(WorkersState.workerAllocations) workerAllocations$!: Observable<{
     gathering: IGameWorkersGathering[];
     refining: IGameWorkersRefining[];
@@ -34,6 +35,10 @@ export class WorkersPage implements OnInit {
 
   canBuyWorker(coins: number, currentWorkers: number) {
     return coins >= this.nextWorkerCost(currentWorkers);
+  }
+
+  totalUpkeepCost(numWorkers: number) {
+    return upkeepCost(numWorkers);
   }
 
   buyWorker() {

@@ -9,18 +9,47 @@
     maxWorkers: maxWorkers$ | async,
     coins: coins$ | async,
     workersAndAllocated: workersAndAllocated$ | async,
-    workerAllocations: workerAllocations$ | async
+    workerAllocations: workerAllocations$ | async,
+    upkeep: upkeep$ | async
   } as pageData">
     <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="top-card">
+            <ion-card-header>
+              <ion-card-title>Worker Acquisition</ion-card-title>
+              <ion-card-subtitle class="buy-action">
+                Idle Workers: {{ (pageData.workersAndAllocated?.max || 0) - (pageData.workersAndAllocated?.current || 0) }}
+                <ion-button size="sm" fill="clear" (click)="buyWorker()" [disabled]="!canBuyWorker(pageData.coins || 0, pageData.maxWorkers || 0)">Buy Worker for {{ nextWorkerCost(pageData.maxWorkers || 0) | number }} coins</ion-button>
+              </ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card class="top-card">
+            <ion-card-header>
+              <ion-card-title>Worker Upkeep</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <div *ngIf="totalUpkeepCost(pageData.workersAndAllocated?.current || 0) > 0">
+                Currently <strong>{{ pageData.upkeep?.paid ? 'paid' : 'unpaid' }}</strong>. Next payment is {{ totalUpkeepCost(pageData.workersAndAllocated?.current || 0) | number }} coins in <app-countdown [duration]="pageData.upkeep?.ticks || 0"></app-countdown>.
+              </div>
+
+              <div *ngIf="totalUpkeepCost(pageData.workersAndAllocated?.current || 0) <= 0">
+                Workers currently do not require upkeep. Your first 5 workers are free.
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col>
           <ion-card>
             <ion-card-header>
               <ion-card-title>Worker Allocations</ion-card-title>
-              <ion-card-subtitle class="buy-action">
-                Idle Workers: {{ (pageData.workersAndAllocated?.max || 0) - (pageData.workersAndAllocated?.current || 0) }}
-                <ion-button size="sm" fill="clear" (click)="buyWorker()" [disabled]="!canBuyWorker(pageData.coins || 0, pageData.maxWorkers || 0)">Buy Worker for {{ nextWorkerCost(pageData.maxWorkers || 0) | number }} coins</ion-button>
-              </ion-card-subtitle>
             </ion-card-header>
 
             <ion-card-content>
