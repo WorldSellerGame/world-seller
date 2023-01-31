@@ -4,7 +4,7 @@ import { clamp, random, sum } from 'lodash';
 import * as CombatActions from '../../app/helpers/abilities';
 import {
   IAttackParams, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameEncounter, IGameEncounterCharacter, IGameItem, ItemType
+  IGameEncounter, IGameEncounterCharacter, IGameItem, ItemType, Stat
 } from '../../interfaces';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock } from '../../stores/combat/combat.actions';
@@ -15,9 +15,9 @@ export function getCombatFunction(action: string): (ctx: StateContext<IGameComba
   return allCombatActions[action];
 }
 
-export function calculateAbilityDamageForUser(ability: IGameCombatAbility, user: IGameEncounterCharacter): number {
+export function calculateAbilityDamageForUser(ability: IGameCombatAbility, stats: Record<Stat, number>): number {
   const totalAbilityValue = sum(ability.stats.map(stat => {
-    const baseValue = user.stats[stat.stat] * stat.multiplier;
+    const baseValue = stats[stat.stat] * stat.multiplier;
     const variance = Math.floor(baseValue * stat.variance);
     const varianceValue = random(-variance, variance);
 

@@ -97,6 +97,34 @@
                 </ion-list>
               </ion-card-content>
             </ion-card>
+
+            <ion-card *ngIf="activeItems$ | async as items">
+              <ion-card-header>
+                <ion-card-title>Items</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-list>
+                  <ion-item *ngIf="displayItems(items).length === 0">
+                    You don't have any combat items.
+                  </ion-item>
+
+                  <ng-container *ngFor="let item of items; let i = index">
+                    <ion-item *ngIf="item"
+                              class="cursor-pointer"
+                              [class.active-skill]="i === activeItemIndex"
+                              (click)="selectItem(item, i)"
+                              [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, item.effect || '', i)">
+                      <app-combat-item-display [item]="item" [showEffectInfo]="true" [showUses]="false"></app-combat-item-display>
+
+                      <ion-text color="warning" slot="end" *ngIf="item.durability > 0">
+                        {{ item.durability }} use(s)
+                      </ion-text>
+                    </ion-item>
+                  </ng-container>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
           </ion-col>
 
           <ion-col class="player-abilities">

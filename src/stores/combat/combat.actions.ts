@@ -1,8 +1,13 @@
-import { IGameCombatAbility, IGameEncounterCharacter, IGameEnemyThreat } from '../../interfaces';
+import { IGameCombatAbility, IGameEncounterCharacter, IGameEnemyThreat, IGameItem } from '../../interfaces';
 
 export class SetSkill {
   static type = '[Combat] Set Skill';
   constructor(public skill: string, public slot: number) {}
+}
+
+export class SetItem {
+  static type = '[Combat] Set Item';
+  constructor(public item: IGameItem | undefined, public slot: number) {}
 }
 
 export class ChangeThreats {
@@ -62,7 +67,7 @@ export class EnemyTakeTurn {
 
 export class TargetSelfWithAbility {
   static type = '[Combat] Target Self With Ability';
-  constructor(public ability: IGameCombatAbility, public abilitySlot: number) {}
+  constructor(public ability: IGameCombatAbility, public abilitySlot: number, public fromItem?: IGameItem) {}
 }
 
 export class TargetEnemyWithAbility {
@@ -71,8 +76,14 @@ export class TargetEnemyWithAbility {
     public targetIndex: number,
     public source: IGameEncounterCharacter,
     public ability: IGameCombatAbility,
-    public abilitySlot: number
+    public abilitySlot: number,
+    public fromItem?: IGameItem
   ) {}
+}
+
+export class UseItemInSlot {
+  static type = '[Combat] Use Item In Slot';
+  constructor(public slot: number) {}
 }
 
 export class PlayerCooldownSkill {

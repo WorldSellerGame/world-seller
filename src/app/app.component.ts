@@ -4,7 +4,7 @@ import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
 import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
-import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { GainJobResult, SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
 
@@ -26,8 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
   @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
+  @Select(OptionsState.isDebugMode) debugMode$!: Observable<boolean>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
+  public debug!: Subscription;
   public level!: Subscription;
   public totalLevel = 0;
 
@@ -136,11 +138,23 @@ export class AppComponent implements OnInit, OnDestroy {
 
       this.store.dispatch(new SyncTotalLevel(level));
     });
+
+    this.debug = this.debugMode$.subscribe(debugMode => {
+      if(!debugMode) {
+        (window as any).gainItem = () => {};
+        return;
+      }
+
+      (window as any).gainItem = (item: string, amount: number) => {
+        this.store.dispatch(new GainJobResult(item, amount));
+      };
+    });
   }
 
   ngOnDestroy() {
     this.gameloopService.stop();
     this.level?.unsubscribe();
+    this.debug?.unsubscribe();
   }
 
 }

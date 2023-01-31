@@ -1,4 +1,4 @@
-import { Stat } from './game';
+import { IGameItem, Stat } from './game';
 
 export interface IGameEnemyThreat {
   name: string;
@@ -85,6 +85,7 @@ export interface IGameCombat {
   currentEncounter?: IGameEncounter;
   currentDungeon?: IGameDungeon;
   activeSkills: string[];
+  activeItems: Array<IGameItem | undefined>;
 
   threatChangeTicks: number;
   threats: string[];
@@ -92,8 +93,10 @@ export interface IGameCombat {
 
 export interface IAttackParams {
   ability: IGameCombatAbility;
+  useStats: Record<Stat, number>;
   source: IGameEncounterCharacter;
   target: IGameEncounterCharacter;
+  allowBonusStats: boolean;
 }
 
 export interface ICombatDelta {

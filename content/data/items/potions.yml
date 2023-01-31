@@ -5,11 +5,12 @@ Raspberry Juice:
   type: Potion
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 5
   value: 3
   icon: bottle
   stats:
     healing: 50
+  effect: PotionHeal
 
 Dandelion Tea:
   name: Dandelion Tea
@@ -45,7 +46,8 @@ Potion of Fire:
   value: 3
   icon: fire-bottle
   stats:
-    healing: 50 #burning effect baby
+    attack: 50 #burning effect baby
+  effect: PotionDamage
 
 Potion of Minor Poison:
   name: Potion of Minor Poison
@@ -183,7 +185,7 @@ Bottled Brambles:
 
 Mages Little Helper:
   name: Mages Little Helper
-  description: Helps casters hit hard and fast. 
+  description: Helps casters hit hard and fast.
   type: Potion
   category: Potions
   rarity: Uncommon
@@ -207,7 +209,7 @@ Poison of Leaden Limbs:
 
 Warriors Draught:
   name: Warriors Draught
-  description: Helpful for any fighter in pinch. 
+  description: Helpful for any fighter in pinch.
   type: Potion
   category: Potions
   rarity: Uncommon
@@ -242,7 +244,7 @@ Potion of Compressed Fire:
   value: 3
   icon: fire-bottle
   stats:
-    healing: 50 #KA FUCKING BOOOOOOOOOOOOOM 
+    healing: 50 #KA FUCKING BOOOOOOOOOOOOOM
 
 Confusion Concoction:
   name: Confusion Concoction

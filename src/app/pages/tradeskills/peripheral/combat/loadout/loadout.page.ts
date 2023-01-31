@@ -4,7 +4,7 @@ import { get, uniqBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameCombatAbility, IGameItem } from '../../../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../../../stores';
-import { SetSkill } from '../../../../../../stores/combat/combat.actions';
+import { SetItem, SetSkill } from '../../../../../../stores/combat/combat.actions';
 import { getSkillsFromItems } from '../../../../../helpers';
 import { ContentService } from '../../../../../services/content.service';
 
@@ -16,19 +16,29 @@ import { ContentService } from '../../../../../services/content.service';
 export class LoadoutPage implements OnInit, OnDestroy {
 
   @Select(CombatState.activeSkills) activeSkills$!: Observable<string[]>;
+  @Select(CombatState.activeItems) activeItems$!: Observable<IGameItem[]>;
+  @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
 
   public level!: Subscription;
+  public allUsableItems!: Subscription;
 
   public readonly skills = [0, 1, 2, 3, 4];
+  public readonly items = [0, 1, 2];
 
+  public usableItems: IGameItem[] = [];
   public learnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
 
-  public selectedSkill = '';
+  public selectedItemLoadoutIndex = -1;
+  public selectedAbilityLoadoutIndex = -1;
 
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.allUsableItems = this.inventory$.subscribe(items => {
+      this.usableItems = items.filter(item => item.effect);
+    });
+
     this.level = this.store.subscribe(state => {
       let currentlyLearnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
 
@@ -70,33 +80,57 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.level?.unsubscribe();
+    this.allUsableItems?.unsubscribe();
   }
 
   getItemSkills(items: Record<string, IGameItem>): string[] {
     return getSkillsFromItems(items);
   }
 
-  selectSkill(skillName: string) {
-    if(this.selectedSkill === skillName) {
-      this.selectedSkill = '';
+  selectSkillIndex(index: number) {
+    this.selectedItemLoadoutIndex = -1;
+
+    if(this.selectedAbilityLoadoutIndex === index) {
+      this.selectedAbilityLoadoutIndex = -1;
       return;
     }
 
-    this.selectedSkill = skillName;
+    this.selectedAbilityLoadoutIndex = index;
   }
 
   slotSkill(skillName: string, index: number) {
-    if(!skillName) {
-      return;
-    }
-
     this.store.dispatch(new SetSkill(skillName, index));
 
-    this.selectedSkill = '';
+    setTimeout(() => {
+      this.selectedAbilityLoadoutIndex = -1;
+    }, 0);
   }
 
   unslotSkill(index: number) {
-    this.store.dispatch(new SetSkill('', index));
+    this.slotSkill('', index);
+  }
+
+  selectItemIndex(index: number) {
+    this.selectedAbilityLoadoutIndex = -1;
+
+    if(this.selectedItemLoadoutIndex === index) {
+      this.selectedItemLoadoutIndex = -1;
+      return;
+    }
+
+    this.selectedItemLoadoutIndex = index;
+  }
+
+  slotItem(item: IGameItem | undefined, index: number) {
+    this.store.dispatch(new SetItem(item, index));
+
+    setTimeout(() => {
+      this.selectedItemLoadoutIndex = -1;
+    }, 0);
+  }
+
+  unslotItem(index: number) {
+    this.slotItem(undefined, index);
   }
 
 }

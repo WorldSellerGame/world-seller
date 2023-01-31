@@ -91,6 +91,7 @@ export interface IGameItem {
   canStack?: boolean;
   quantity?: number;
   givesAbility?: string;
+  effect?: string;
   stats: Record<Stat, number>;
 
   sellTicks?: number;

@@ -1,0 +1,22 @@
+
+:host, ion-row {
+  width: 100%;
+}
+
+.item {
+  .icon {
+    max-width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .name {
+    margin-right: 10px;
+  }
+
+  .effect, .effect-uses {
+    font-size: 0.8em;
+    font-style: italic;
+  }
+}

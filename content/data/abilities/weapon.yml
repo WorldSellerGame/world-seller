@@ -1,0 +1,30 @@
+
+Stab:
+  name: Stab
+  description: Perform a strong attack against a target.
+  icon: knife
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.5
+      variance: 0.05
+  effect: SingleTargetAttack
+  cooldown: 5
+  energyCost: 2
+  requires: {}
+
+GoblinStaffHeal1:
+  name: Goblish Heal I
+  description: Heal yourself.
+  icon: skull-staff
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 5
+  requires: {}

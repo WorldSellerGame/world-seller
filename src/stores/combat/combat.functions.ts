@@ -1,22 +1,25 @@
 import { StateContext } from '@ngxs/store';
 
 import { patch, updateItem } from '@ngxs/store/operators';
-import { IGameCombat, IGameEncounter, IGameEncounterCharacter, Stat } from '../../interfaces';
+import { IGameCombat, IGameEncounter, IGameEncounterCharacter, IGameItem, Stat } from '../../interfaces';
 import {
   AddCombatLogMessage, EnemyCooldownSkill, EnemySpeedReset,
   LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill, PlayerSpeedReset, SetCombatLock,
   SetCombatLockForEnemies,
-  SetSkill, TargetEnemyWithAbility, TargetSelfWithAbility
+  SetItem,
+  SetSkill, TargetEnemyWithAbility, TargetSelfWithAbility, UseItemInSlot
 } from './combat.actions';
 
-import { GainJobResult } from '../charselect/charselect.actions';
+import { AddItemToInventory, GainJobResult, RemoveItemFromInventory } from '../charselect/charselect.actions';
 
-import { applyDeltas, getCombatFunction, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
+import { merge } from 'lodash';
+import { applyDeltas, defaultStatsZero, getCombatFunction, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 
 export const defaultCombat: () => IGameCombat = () => ({
   version: 0,
   level: 0,
   activeSkills: [],
+  activeItems: [],
   currentDungeon: undefined,
   currentEncounter: undefined,
   currentPlayer: undefined,
@@ -49,6 +52,33 @@ export function endCombatAndResetPlayer(ctx: StateContext<IGameCombat>) {
 }
 
 /**
+ * Use the item in a slot, decrement its uses, and remove it if it's out of uses.
+ */
+export function useItemInSlot(ctx: StateContext<IGameCombat>, { slot }: UseItemInSlot) {
+  const state = ctx.getState();
+
+  const itemRef = state.activeItems[slot];
+  if(!itemRef) {
+    return;
+  }
+
+  const newDurability = itemRef.durability - 1;
+  if(newDurability <= 0) {
+    ctx.setState(patch<IGameCombat>({
+      activeItems: updateItem<IGameItem | undefined>(slot, undefined)
+    }));
+
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    activeItems: updateItem<IGameItem | undefined>(slot, patch<IGameItem | undefined>({
+      durability: newDurability
+    }))
+  }));
+}
+
+/**
  * Change what skill is in what slot for the player.
  *
  */
@@ -56,6 +86,26 @@ export function setSkillInSlot(ctx: StateContext<IGameCombat>, { skill, slot }: 
   ctx.setState(patch<IGameCombat>({
     activeSkills: updateItem<string>(slot, skill)
   }));
+}
+
+/**
+ * Change what item is in what slot for the player.
+ *
+ */
+export function setItemInSlot(ctx: StateContext<IGameCombat>, { item, slot }: SetItem) {
+
+  const currentItem = ctx.getState().activeItems[slot];
+  if(currentItem) {
+    ctx.dispatch(new AddItemToInventory(currentItem));
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    activeItems: updateItem<IGameItem | undefined>(slot, item)
+  }));
+
+  if(item) {
+    ctx.dispatch(new RemoveItemFromInventory(item));
+  }
 }
 
 /**
@@ -209,6 +259,9 @@ export function lowerEnemyCooldowns(ctx: StateContext<IGameCombat>, { enemyIndex
   }));
 }
 
+/**
+ * Get all item drops (items and resources) from a singular enemy.
+ */
 export function acquireItemDrops(ctx: StateContext<IGameCombat>, enemy: IGameEncounterCharacter) {
   enemy.drops.forEach(drop => {
     const { item, resource, amount } = drop;
@@ -234,7 +287,7 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, enemy: IGameEnc
  */
 export function targetEnemyWithAbility(
   ctx: StateContext<IGameCombat>,
-  { targetIndex, source, ability, abilitySlot }: TargetEnemyWithAbility
+  { targetIndex, source, ability, abilitySlot, fromItem }: TargetEnemyWithAbility
 ) {
 
   const abilityFunc = getCombatFunction(ability.effect);
@@ -258,7 +311,8 @@ export function targetEnemyWithAbility(
 
   const target = encounter.enemies[targetIndex];
 
-  const deltas = abilityFunc(ctx, { ability, source, target });
+  const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
+  const deltas = abilityFunc(ctx, { ability, source, target, useStats, allowBonusStats: !fromItem });
   deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
   applyDeltas(ctx, source, target, deltas);
 
@@ -283,7 +337,7 @@ export function targetEnemyWithAbility(
 /**
  * The player targets themself with an ability.
  */
-export function targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot }: TargetSelfWithAbility) {
+export function targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot, fromItem }: TargetSelfWithAbility) {
 
   const abilityFunc = getCombatFunction(ability.effect);
   if(!abilityFunc) {
@@ -299,7 +353,8 @@ export function targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability,
   // lower all other cooldowns by 1 first
   ctx.dispatch(new LowerPlayerCooldown());
 
-  const deltas = abilityFunc(ctx, { ability, source: currentPlayer, target: currentPlayer });
+  const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
+  const deltas = abilityFunc(ctx, { ability, source: currentPlayer, target: currentPlayer, useStats, allowBonusStats: !fromItem });
   deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
   applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
 

@@ -9,7 +9,8 @@ import {
   LowerPlayerCooldown,
   PlayerCooldownSkill,
   PlayerSpeedReset,
-  ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetSkill, TargetEnemyWithAbility, TargetSelfWithAbility
+  ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetItem, SetSkill,
+  TargetEnemyWithAbility, TargetSelfWithAbility, UseItemInSlot
 } from './combat.actions';
 import {
   addCombatLogMessage,
@@ -19,7 +20,8 @@ import {
   lowerPlayerCooldowns,
   resetCombat, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
-  setEnemySkillOnCooldown, setPlayerSkillOnCooldown, setSkillInSlot, targetEnemyWithAbility, targetSelfWithAbility
+  setEnemySkillOnCooldown, setItemInSlot, setPlayerSkillOnCooldown, setSkillInSlot,
+  targetEnemyWithAbility, targetSelfWithAbility, useItemInSlot
 } from './combat.functions';
 
 
@@ -28,6 +30,8 @@ export const attachments: IAttachment[] = [
   { action: EndCombat, handler: endCombat },
   { action: EndCombatAndResetPlayer, handler: endCombatAndResetPlayer },
   { action: SetSkill, handler: setSkillInSlot },
+  { action: SetItem, handler: setItemInSlot },
+  { action: UseItemInSlot, handler: useItemInSlot },
   { action: AddCombatLogMessage, handler: addCombatLogMessage },
   { action: SetCombatLock, handler: setCombatLock },
   { action: SetCombatLockForEnemies, handler: setCombatLockForEnemies },

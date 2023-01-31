@@ -18,6 +18,10 @@ const validStats = [
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
 
+const validateIcon = (icon: string) => {
+  return fs.existsSync(`src/assets/icon/${icon}.svg`);
+};
+
 const loadContent = async () => {
 
   let hasBad = false;
@@ -37,6 +41,11 @@ const loadContent = async () => {
 
     if(!validRarities.includes(resource.rarity)) {
       console.log(`⚠ Resource ${key} has an invalid rarity ${resource.rarity}.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(resource.icon)) {
+      console.log(`⚠ Resource ${key} has an invalid icon ${resource.icon}.`);
       hasBad = true;
     }
   });

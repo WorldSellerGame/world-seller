@@ -9,7 +9,7 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
 
   const { source, target, ability } = opts;
 
-  const baseDamage = calculateAbilityDamageForUser(ability, source);
+  const baseDamage = calculateAbilityDamageForUser(ability, opts.useStats);
   const armor = target.stats[Stat.Armor];
 
   const damage = Math.max(0, baseDamage - armor);
@@ -26,8 +26,8 @@ function singleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): 
 
   const { source, ability } = opts;
 
-  const baseHeal = calculateAbilityDamageForUser(ability, source);
-  const healingBonus = source.stats[Stat.Healing];
+  const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
+  const healingBonus = opts.allowBonusStats ? source.stats[Stat.Healing] : 0;
 
   const damage = Math.max(0, baseHeal + healingBonus);
 

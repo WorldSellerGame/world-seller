@@ -50,6 +50,11 @@ export class CombatState {
   }
 
   @Selector()
+  static activeItems(state: IGameCombat) {
+    return state.activeItems;
+  }
+
+  @Selector()
   static currentDungeon(state: IGameCombat) {
     return state.currentDungeon;
   }
@@ -212,7 +217,7 @@ export class CombatState {
 
     const target = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef);
 
-    const deltas = abilityFunc(ctx, { ability: chosenSkillRef, source: enemy, target });
+    const deltas = abilityFunc(ctx, { ability: chosenSkillRef, source: enemy, target, useStats: enemy.stats, allowBonusStats: true });
     deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
     applyDeltas(ctx, enemy, target, deltas);
 

@@ -157,8 +157,8 @@ Coconut:
 Rose:
   description: A beautiful flower, a thorny stem.
   category: Foods
-  rarity: Common
-  icon: 'Rare'
+  rarity: Rare
+  icon: 'rose'
 
 #Epic
 
