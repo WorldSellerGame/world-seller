@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameItem, ItemType } from '../../../../interfaces';
+import { IGameItem, IPlayerCharacter, ItemType } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
-import { EquipItem } from '../../../../stores/charselect/charselect.actions';
+import { EquipItem, UnequipItem } from '../../../../stores/charselect/charselect.actions';
+import { getItemRarityClass, getStatTotals } from '../../../helpers';
 
 @Component({
   selector: 'app-equipment',
@@ -12,7 +13,7 @@ import { EquipItem } from '../../../../stores/charselect/charselect.actions';
 })
 export class EquipmentPage implements OnInit {
 
-  @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Partial<Record<ItemType, IGameItem>>>;
+  @Select(CharSelectState.activeCharacter) character$!: Observable<IPlayerCharacter>;
 
   public currentEquipSlot: ItemType | undefined;
   public equippableItems: IGameItem[] = [];
@@ -23,7 +24,8 @@ export class EquipmentPage implements OnInit {
     { name: 'Fishing Rod',  icon: 'fishingpole',  type: ItemType.FishingRod },
     { name: 'Fishing Bait', icon: 'fishingpole',  type: ItemType.FishingBait },
     { name: 'Scythe',       icon: 'scythe',       type: ItemType.Scythe },
-    { name: 'Hunting Tool', icon: 'spear',        type: ItemType.HuntingTool }
+    { name: 'Hunting Tool', icon: 'spear',        type: ItemType.HuntingTool },
+    { name: 'Weapon',       icon: 'knife',        type: ItemType.Weapon }
   ];
 
   public armorSlots = [
@@ -47,11 +49,29 @@ export class EquipmentPage implements OnInit {
     this.equippableItems = items.filter(item => item.type === slot);
   }
 
-  equip(item: IGameItem) {
+  unloadEquipment() {
     this.currentEquipSlot = undefined;
     this.equippableItems = [];
+  }
+
+  equip(item: IGameItem) {
+    this.unloadEquipment();
 
     this.store.dispatch(new EquipItem(item));
+  }
+
+  unequip(slot: ItemType) {
+    this.unloadEquipment();
+
+    this.store.dispatch(new UnequipItem(slot));
+  }
+
+  statTotals(character: IPlayerCharacter): Record<string, number> {
+    return getStatTotals(character);
+  }
+
+  getItemRarity(item: IGameItem): string {
+    return getItemRarityClass(item);
   }
 
 }

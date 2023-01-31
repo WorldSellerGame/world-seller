@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as seedrandom from 'seedrandom';
 
+import * as abilities from '../../assets/content/abilities.json';
 import * as alchemy from '../../assets/content/alchemy.json';
 import * as blacksmithing from '../../assets/content/blacksmithing.json';
 import * as cooking from '../../assets/content/cooking.json';
+import * as enemies from '../../assets/content/enemies.json';
 import * as farming from '../../assets/content/farming.json';
 import * as fishing from '../../assets/content/fishing.json';
 import * as foraging from '../../assets/content/foraging.json';
@@ -14,9 +16,11 @@ import * as logging from '../../assets/content/logging.json';
 import * as mining from '../../assets/content/mining.json';
 import * as prospecting from '../../assets/content/prospecting.json';
 import * as resources from '../../assets/content/resources.json';
+import * as threats from '../../assets/content/threats.json';
 import * as weaving from '../../assets/content/weaving.json';
 
 import * as characterNames from '../../assets/content/character-names.json';
+import { IEnemyCharacter, IGameCombatAbility, IGameEnemyThreat, IGameItem, IGameResource } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +28,24 @@ import * as characterNames from '../../assets/content/character-names.json';
 export class ContentService {
 
   // core things
-  public get resources() {
+  public get resources(): Record<string, IGameResource> {
     return (resources as any).default || resources;
   }
 
-  public get items() {
+  public get items(): Record<string, IGameItem> {
     return (items as any).default || items;
+  }
+
+  public get abilities(): Record<string, IGameCombatAbility> {
+    return (abilities as any).default || abilities;
+  }
+
+  public get enemies(): Record<string, IEnemyCharacter> {
+    return (enemies as any).default || enemies;
+  }
+
+  public get threats(): Record<string, IGameEnemyThreat> {
+    return (threats as any).default || threats;
   }
 
   // other skills

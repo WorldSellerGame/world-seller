@@ -1,0 +1,43 @@
+<ion-content>
+
+  <ng-container *ngIf="{
+    currentDungeon: currentDungeon$ | async,
+    currentEncounter: currentEncounter$ | async
+  } as pageData">
+
+    <!-- if combat is available, we're stuck here -->
+    <app-combat-display *ngIf="pageData.currentEncounter"></app-combat-display>
+
+    <!-- if we're in a dungeon, we're stuck there, but that's second priority -->
+    <app-dungeon-display *ngIf="pageData.currentDungeon && !pageData.currentEncounter"></app-dungeon-display>
+
+    <!-- otherwise, show all the options available -->
+    <ng-container *ngIf="!pageData.currentDungeon && !pageData.currentEncounter">
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="loadout">
+            <ion-icon name="accessibility"></ion-icon>
+            <ion-label>
+              Loadout
+            </ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="threats">
+            <ion-icon name="paw"></ion-icon>
+            <ion-label>
+              Threats
+            </ion-label>
+          </ion-tab-button>
+
+          <ion-tab-button tab="dungeons" disabled="true">
+            <ion-icon name="footsteps"></ion-icon>
+            <ion-label>
+              Dungeons
+            </ion-label>
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ng-container>
+
+  </ng-container>
+</ion-content>

@@ -1,5 +1,6 @@
 
 export enum Rarity {
+  Broken = 'Broken',
   Junk = 'Junk',
   Common = 'Common',
   Uncommon = 'Uncommon',
@@ -18,7 +19,8 @@ export enum ItemCategory {
   Miscellaneous = 'Miscellaneous',
   RawMaterials = 'Raw Materials',
   RefinedMaterials = 'Refined Materials',
-  CraftingTables = 'Crafting Tables'
+  CraftingTables = 'Crafting Tables',
+  Weapons = 'Weapons'
 }
 
 export enum Stat {
@@ -39,7 +41,13 @@ export enum Stat {
 
   // generic stats
   Armor = 'armor',
-  Healing = 'healing'
+  Healing = 'healing',
+  Attack = 'attack',
+  EnergyBonus = 'energyBonus',
+  EnergyCost = 'energyCost',
+  EnergyRegen = 'energyRegen',
+  HealthBonus = 'healthBonus',
+  Speed = 'speed'
 }
 
 export enum ItemType {
@@ -51,6 +59,7 @@ export enum ItemType {
   FishingBait = 'FishingBait',
   Scythe = 'Scythe',
   HuntingTool = 'HuntingTool',
+  Weapon = 'Weapon',
 
   // armor
   LegArmor = 'LegArmor',
@@ -81,6 +90,7 @@ export interface IGameItem {
   icon: string;
   canStack?: boolean;
   quantity?: number;
+  givesAbility?: string;
   stats: Record<Stat, number>;
 
   sellTicks?: number;

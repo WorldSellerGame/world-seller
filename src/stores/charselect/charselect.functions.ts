@@ -1,9 +1,10 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 
-import { ICharacter, ICharSelect, IGameItem, ItemType } from '../../interfaces';
+import { calculateBrokenItemStats } from '../../app/helpers';
+import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import {
-  AddItemToInventory, CreateCharacter, DeleteCharacter, EquipItem,
+  AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
   GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
 } from './charselect.actions';
 
@@ -13,7 +14,7 @@ export const defaultCharSelect: () => ICharSelect = () => ({
   characters: []
 });
 
-export const defaultCharacter: (name: string) => ICharacter = (name: string) => ({
+export const defaultCharacter: (name: string) => IPlayerCharacter = (name: string) => ({
   name,
   lastSavedAt: Date.now(),
   lastTotalLevel: 0,
@@ -32,7 +33,7 @@ export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       lastSavedAt: Date.now()
     }))
   }));
@@ -44,13 +45,13 @@ export function createCharacter(ctx: StateContext<ICharSelect>, { name }: Create
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: append<ICharacter>([defaultCharacter(name)])
+    characters: append<IPlayerCharacter>([defaultCharacter(name)])
   }));
 }
 
 export function deleteCharacter(ctx: StateContext<ICharSelect>, { slot }: DeleteCharacter) {
   ctx.setState(patch<ICharSelect>({
-    characters: removeItem<ICharacter>(slot)
+    characters: removeItem<IPlayerCharacter>(slot)
   }));
 }
 
@@ -76,7 +77,7 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources }: Gai
   });
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       resources: currentCharacter.resources
     }))
   }));
@@ -92,7 +93,7 @@ export function syncTotalLevel(ctx: StateContext<ICharSelect>, { newLevel }: Syn
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       lastTotalLevel: newLevel
     }))
   }));
@@ -108,7 +109,7 @@ export function addItemToInventory(ctx: StateContext<ICharSelect>, { item }: Add
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       inventory: append<IGameItem>([item])
     }))
   }));
@@ -124,7 +125,7 @@ export function removeItemFromInventory(ctx: StateContext<ICharSelect>, { item }
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       inventory: removeItem<IGameItem>(currentCharacter.inventory.indexOf(item))
     }))
   }));
@@ -145,12 +146,14 @@ export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipIte
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       equipment: patch<Partial<Record<ItemType, IGameItem>>>({
         [slot]: undefined
       })
     }))
   }));
+
+  ctx.dispatch(new AddItemToInventory(currentItem));
 
   ctx.dispatch(new SaveActiveCharacter());
 }
@@ -168,7 +171,7 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       equipment: patch<Partial<Record<ItemType, IGameItem>>>({
         [item.type]: item
       })
@@ -176,6 +179,31 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
   }));
 
   ctx.dispatch(new RemoveItemFromInventory(item));
+
+  ctx.dispatch(new SaveActiveCharacter());
+}
+
+export function breakItem(ctx: StateContext<ICharSelect>, { slot }: BreakItem) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters[state.currentCharacter];
+  if(!currentCharacter) {
+    return;
+  }
+
+  const brokenItem = currentCharacter.equipment[slot];
+  if(!brokenItem) {
+    return;
+  }
+
+  brokenItem.stats = calculateBrokenItemStats(brokenItem);
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
+      equipment: patch<Partial<Record<ItemType, IGameItem>>>({
+        [slot]: brokenItem
+      })
+    }))
+  }));
 
   ctx.dispatch(new SaveActiveCharacter());
 }

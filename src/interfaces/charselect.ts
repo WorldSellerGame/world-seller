@@ -1,7 +1,7 @@
-import { ICharacter } from './character';
+import { IPlayerCharacter } from './character';
 
 export interface ICharSelect {
   version: number;
-  characters: ICharacter[];
+  characters: IPlayerCharacter[];
   currentCharacter: number;
 }

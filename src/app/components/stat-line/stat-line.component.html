@@ -1,0 +1,18 @@
+
+<span>
+  <span class="stat" *ngFor="let stat of allStats()">
+    <span class="stat-name">{{ stat | titlecase }}</span>
+    <span class="stat-value">
+      <span *ngIf="item.stats[stat] > 0">+</span>
+      {{ item.stats[stat] | number }}
+    </span>
+    <span class="stat-difference"
+          *ngIf="withRespectTo && item.stats[stat] - (withRespectTo.stats[stat] || 0) !== 0"
+          [class.greater]="item.stats[stat] - (withRespectTo.stats[stat] || 0) > 0"
+          [class.lesser]="item.stats[stat] - (withRespectTo.stats[stat] || 0) < 0">
+      (
+      <span *ngIf="item.stats[stat] - (withRespectTo.stats[stat] || 0) > 0">+</span>
+      {{ item.stats[stat] - (withRespectTo.stats[stat] || 0) | number }})
+    </span>
+  </span>
+</span>

@@ -60,6 +60,11 @@ export class UnequipItem {
   constructor(public slot: ItemType) {}
 }
 
+export class BreakItem {
+  static type = '[CharSelect] Break Item';
+  constructor(public slot: ItemType) {}
+}
+
 export class DecreaseDurability {
   static type = '[CharSelect] Decrease Durability';
   constructor(public slot: ItemType) {}

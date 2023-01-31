@@ -1,0 +1,16 @@
+
+Foraging1:
+  name: Forager's Heal I
+  description: Heal yourself.
+  icon: foraging
+  target: Self
+  type: Physical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 5
+  requires:
+    foraging: 10

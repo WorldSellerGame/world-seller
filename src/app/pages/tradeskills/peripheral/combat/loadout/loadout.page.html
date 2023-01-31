@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Loadout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    activeSkills: activeSkills$ | async,
+    equipment: equipment$ | async
+  } as pageData">
+    <ion-grid>
+      <ion-row>
+      <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Combat Skills</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-list-header>Basic</ion-list-header>
+                <ion-item>
+                  <app-skill-display skill="BasicAttack"></app-skill-display>
+                </ion-item>
+
+                <ion-list-header>Utility</ion-list-header>
+                <ion-item>
+                  <app-skill-display skill="BasicUtilityEscape"></app-skill-display>
+                </ion-item>
+
+                <ng-container *ngIf="getItemSkills(pageData.equipment || {}) as itemSkills">
+                  <ion-list-header *ngIf="itemSkills.length > 0">From Equipment</ion-list-header>
+                  <ion-item *ngFor="let skill of itemSkills">
+                    <app-skill-display [skill]="skill"></app-skill-display>
+                  </ion-item>
+                </ng-container>
+
+                <ion-list-header>Loadout</ion-list-header>
+                <ion-item *ngFor="let skillIndex of skills"
+                          [class.cursor-pointer]="selectedSkill"
+                          (click)="slotSkill(selectedSkill, skillIndex)">
+                  <ng-container *ngIf="pageData.activeSkills?.[skillIndex] as skill; else noSkill">
+                    <app-skill-display [skill]="skill"></app-skill-display>
+                  </ng-container>
+
+                  <ng-template #noSkill>
+                    No skill in slot {{ skillIndex + 1 }}.
+                  </ng-template>
+
+                  <ion-button slot="end"
+                              fill="clear"
+                              color="warning"
+                              *ngIf="pageData.activeSkills?.[skillIndex]"
+                              (click)="unslotSkill(skillIndex)">
+                    <ion-icon slot="icon-only" name="close"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Learned Skills</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-item *ngFor="let skill of learnedSkills"
+                          class="cursor-pointer"
+                          [class.highlight]="skill.name === selectedSkill"
+                          (click)="selectSkill(skill.name)">
+                  <app-skill-display [skill]="skill.name"></app-skill-display>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

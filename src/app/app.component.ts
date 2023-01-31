@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
-import { ICharacter, IGameRefiningRecipe } from '../interfaces';
+import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
@@ -23,7 +23,7 @@ interface IMenuItem {
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
@@ -97,6 +97,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   public peripheralTradeskills: IMenuItem[] = [
+
+    { title: 'Combat',    url: 'combat',    icon: 'combat',
+      timer: of(0),
+      level: this.store.select(state => state.combat.level) },
+
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       timer: of(0),
       level: this.store.select(state => state.farming.level) },

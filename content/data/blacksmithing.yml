@@ -9,6 +9,20 @@ recipes:
       Pine Log: 8
     maxWorkers: 0
 
+  - result: Stone Knife
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Stone Crafting Table: 1
+      Stone: 3
+      Pine Log: 1
+    require:
+      - Stone Crafting Table
+    preserve:
+      - Stone Crafting Table
+    maxWorkers: 1
+
   - result: Stone Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
@@ -124,7 +138,7 @@ recipes:
       - Construction Tools
     maxWorkers: 1
 
-  - result: Workbench 
+  - result: Workbench
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
     craftTime: 20
@@ -144,7 +158,7 @@ recipes:
     level: { min: 10, max: 20 }
     craftTime: 30
     ingredients:
-      Stone: 4 
+      Stone: 4
       Cedar Log: 10
       Copper Ingot: 4
       Construction Tools: 1
@@ -310,7 +324,7 @@ recipes:
       - Furnace
     maxWorkers: 1
 
-  #alchemy 
+  #alchemy
 
   - result: Mortar and Pestle
     perCraft: { min: 1, max: 1 }
@@ -402,7 +416,7 @@ recipes:
 
   - result: Mortar
     perCraft: { min: 6, max: 7 }
-    level: { min: 5, max: 15 } 
+    level: { min: 5, max: 15 }
     craftTime: 10
     ingredients:
       Lime: 1

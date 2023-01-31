@@ -1,0 +1,19 @@
+{
+  "autorun": true,
+  "autokill": true,
+  "terminals": [
+    {
+      "name": "Game Run",
+      "description": "Run the game.",
+      "focus": true,
+      "command": "npm start"
+    },
+    {
+      "name": "Git",
+      "split": "Game Run",
+      "description": "Empty terminal.",
+      "focus": true,
+      "command": ""
+    }
+  ]
+}

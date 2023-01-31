@@ -26,6 +26,11 @@ export class OptionsState {
   }
 
   @Selector()
+  static isDebugMode(state: IOptions) {
+    return state[GameOption.DebugMode];
+  }
+
+  @Selector()
   static getSidebarDisplay(state: IOptions) {
     return state[GameOption.SidebarDisplay];
   }

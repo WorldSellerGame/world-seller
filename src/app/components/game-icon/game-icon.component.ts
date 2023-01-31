@@ -9,6 +9,17 @@ export class GameIconComponent implements OnInit {
 
   @Input() icon!: string;
   @Input() inlineIconSize = false;
+  @Input() bigSize = false;
+
+  public get size(): number {
+    if (this.inlineIconSize) {
+      return 24;
+    }
+    if (this.bigSize) {
+      return 64;
+    }
+    return 32;
+  }
 
   constructor() { }
 

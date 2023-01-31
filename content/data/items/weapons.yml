@@ -1,0 +1,27 @@
+
+Stone Knife:
+  name: Stone Knife
+  description: A knife made of stone.
+  type: Weapon
+  category: Weapons
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: knife
+  givesAbility: Stab
+  stats:
+    attack: 3
+
+Goblin Staff:
+  name: Goblin Staff
+  description: A staff stolen shamelessly from a goblin.
+  type: Weapon
+  category: Weapons
+  rarity: Uncommon
+  durability: 50
+  value: 10
+  icon: skull-staff
+  givesAbility: GoblinStaffHeal1
+  stats:
+    attack: 10
+    healing: 20

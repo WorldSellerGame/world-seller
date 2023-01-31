@@ -1,0 +1,15 @@
+
+.enemy-card-title {
+  display: flex;
+  align-items: center;
+
+  .enemy-icon {
+    margin-right: 10px;
+  }
+}
+
+
+.threat-drops {
+  display: flex;
+  flex-wrap: wrap;
+}

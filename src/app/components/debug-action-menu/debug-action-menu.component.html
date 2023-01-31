@@ -1,0 +1,18 @@
+
+<ng-container *ngIf="isDebugMode$ | async">
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="bug"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <ion-fab-button *ngFor="let action of actions"
+                      (click)="doAction(action.action)"
+                      [ngxTippy]="action.text" [tippyProps]="{ placement: 'left' }">
+        <ion-icon [name]="action.icon"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ng-container>
