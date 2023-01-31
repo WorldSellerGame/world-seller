@@ -10,7 +10,8 @@ PotionHeal:
     - stat: healing
       multiplier: 1
       variance: 0
-  effect: SingleTargetHeal
+  effects:
+    - effect: SingleTargetHeal
   cooldown: 0
   energyCost: 0
   requires: {}
@@ -25,7 +26,8 @@ PotionDamage:
     - stat: attack
       multiplier: 1
       variance: 0
-  effect: SingleTargetAttack
+  effects:
+    - effect: SingleTargetAttack
   cooldown: 0
   energyCost: 0
   requires: {}

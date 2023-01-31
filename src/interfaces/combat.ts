@@ -62,6 +62,10 @@ export enum CombatSkillType {
   Magical = 'Magical',
 }
 
+export interface IGameCombatAbilityEffect {
+  effect: string;
+}
+
 export interface IGameCombatAbility {
   name: string;
   description: string;
@@ -69,7 +73,7 @@ export interface IGameCombatAbility {
   target: CombatAbilityTarget;
   type: CombatSkillType;
   stats: Array<{ stat: Stat; multiplier: number; variance: number }>;
-  effect: string;
+  effects: IGameCombatAbilityEffect[];
   multiplier: number;
   cooldown: number;
   energyCost: number;

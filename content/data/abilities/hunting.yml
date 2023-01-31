@@ -9,7 +9,8 @@ Hunting1:
     - stat: attack
       multiplier: 1.2
       variance: 0.1
-  effect: SingleTargetAttack
+  effects:
+    - effect: SingleTargetAttack
   cooldown: 3
   energyCost: 5
   requires:
@@ -25,7 +26,8 @@ Hunting2:
     - stat: attack
       multiplier: 1.3
       variance: 0.1
-  effect: SingleTargetAttack
+  effects:
+    - effect: SingleTargetAttack
   cooldown: 3
   energyCost: 6
   requires:

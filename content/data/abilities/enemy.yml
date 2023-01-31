@@ -9,7 +9,8 @@ GoblishHeal1:
     - stat: healing
       multiplier: 1
       variance: 0.5
-  effect: SingleTargetHeal
+  effects:
+    - effect: SingleTargetHeal
   cooldown: 3
   energyCost: 10
   requires: {}

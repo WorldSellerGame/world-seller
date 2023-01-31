@@ -290,36 +290,38 @@ export function targetEnemyWithAbility(
   { targetIndex, source, ability, abilitySlot, fromItem }: TargetEnemyWithAbility
 ) {
 
-  const abilityFunc = getCombatFunction(ability.effect);
-  if(!abilityFunc) {
-    ctx.dispatch(new AddCombatLogMessage(`Ability ${ability.effect} is not implemented yet!`));
-    return;
-  }
+  ability.effects.forEach(({ effect }) => {
+    const abilityFunc = getCombatFunction(effect);
+    if(!abilityFunc) {
+      ctx.dispatch(new AddCombatLogMessage(`Ability ${effect} is not implemented yet!`));
+      return;
+    }
 
-  const encounter = ctx.getState().currentEncounter;
-  if(!encounter) {
-    return;
-  }
+    const encounter = ctx.getState().currentEncounter;
+    if(!encounter) {
+      return;
+    }
 
-  const player = ctx.getState().currentPlayer;
-  if(!player) {
-    return;
-  }
+    const player = ctx.getState().currentPlayer;
+    if(!player) {
+      return;
+    }
 
-  // lower all other cooldowns by 1 first
-  ctx.dispatch(new LowerPlayerCooldown());
+    // lower all other cooldowns by 1 first
+    ctx.dispatch(new LowerPlayerCooldown());
 
-  const target = encounter.enemies[targetIndex];
+    const target = encounter.enemies[targetIndex];
 
-  const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
-  const deltas = abilityFunc(ctx, { ability, source, target, useStats, allowBonusStats: !fromItem });
-  deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
-  applyDeltas(ctx, source, target, deltas);
+    const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
+    const deltas = abilityFunc(ctx, { ability, source, target, useStats, allowBonusStats: !fromItem });
+    deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+    applyDeltas(ctx, source, target, deltas);
 
-  if(isDead(target)) {
-    ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
-    acquireItemDrops(ctx, target);
-  }
+    if(isDead(target)) {
+      ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
+      acquireItemDrops(ctx, target);
+    }
+  });
 
   ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
 
@@ -339,24 +341,26 @@ export function targetEnemyWithAbility(
  */
 export function targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot, fromItem }: TargetSelfWithAbility) {
 
-  const abilityFunc = getCombatFunction(ability.effect);
-  if(!abilityFunc) {
-    ctx.dispatch(new AddCombatLogMessage(`Ability ${ability.effect} is not implemented yet!`));
-    return;
-  }
+  // lower all other cooldowns by 1 first
+  ctx.dispatch(new LowerPlayerCooldown());
 
   const currentPlayer = ctx.getState().currentPlayer;
   if(!currentPlayer) {
     return;
   }
 
-  // lower all other cooldowns by 1 first
-  ctx.dispatch(new LowerPlayerCooldown());
+  ability.effects.forEach(effectRef => {
+    const abilityFunc = getCombatFunction(effectRef.effect);
+    if(!abilityFunc) {
+      ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
+      return;
+    }
 
-  const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
-  const deltas = abilityFunc(ctx, { ability, source: currentPlayer, target: currentPlayer, useStats, allowBonusStats: !fromItem });
-  deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
-  applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
+    const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
+    const deltas = abilityFunc(ctx, { ability, source: currentPlayer, target: currentPlayer, useStats, allowBonusStats: !fromItem });
+    deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+    applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
+  });
 
   ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
 

@@ -9,11 +9,12 @@ import {
   applyDeltas,
   calculateMaxEnergy, calculateMaxHealth, defaultStatsZero,
   getCombatFunction,
-  getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat
+  getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import {
   CombatAbilityTarget, IGameCombat, IGameCombatAbility,
+  IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
@@ -206,20 +207,22 @@ export class CombatState {
     const chosenSkill = sample(validSkills) as string;
     const chosenSkillRef = this.contentService.abilities[chosenSkill];
 
-    const abilityFunc = getCombatFunction(chosenSkillRef.effect);
-    if(!abilityFunc) {
-      ctx.dispatch([
-        new AddCombatLogMessage(`Ability ${chosenSkillRef.effect} (c/o ${enemy.name}) is not implemented yet!`),
-        new EnemySpeedReset(enemyIndex)
-      ]);
-      return;
-    }
+    chosenSkillRef.effects.forEach(effectRef => {
+      const abilityFunc = getCombatFunction(effectRef.effect);
+      if(!abilityFunc) {
+        ctx.dispatch([
+          new AddCombatLogMessage(`Ability ${effectRef.effect} (c/o ${enemy.name}) is not implemented yet!`),
+          new EnemySpeedReset(enemyIndex)
+        ]);
+        return;
+      }
 
-    const target = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef);
+      const target = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef, effectRef);
 
-    const deltas = abilityFunc(ctx, { ability: chosenSkillRef, source: enemy, target, useStats: enemy.stats, allowBonusStats: true });
-    deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
-    applyDeltas(ctx, enemy, target, deltas);
+      const deltas = abilityFunc(ctx, { ability: chosenSkillRef, source: enemy, target, useStats: enemy.stats, allowBonusStats: true });
+      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
+      applyDeltas(ctx, enemy, target, deltas);
+    });
 
     // cool down the skill
     ctx.dispatch(new EnemyCooldownSkill(enemyIndex, enemy.abilities.indexOf(chosenSkill), chosenSkillRef.cooldown));
@@ -348,7 +351,7 @@ export class CombatState {
         return false;
       }
 
-      if(skill.effect.includes('Heal')) {
+      if(skill.effects.some(eff => isHealEffect(eff))) {
         return allies.filter(x => x.currentHealth > 0 && x.currentHealth < x.maxHealth).length > 0;
       }
 
@@ -361,12 +364,13 @@ export class CombatState {
     player: IGameEncounterCharacter,
     self: IGameEncounterCharacter,
     allies: IGameEncounterCharacter[],
-    skill: IGameCombatAbility
+    skill: IGameCombatAbility,
+    effect: IGameCombatAbilityEffect
   ): IGameEncounterCharacter {
 
     switch(skill.target) {
       case CombatAbilityTarget.Ally: {
-        if(skill.effect.includes('Heal')) {
+        if(isHealEffect(effect)) {
           const validAllies = allies.filter(x => x.currentHealth > 0 && x.currentHealth < x.maxHealth);
           if(validAllies.length > 0) {
             return sample(validAllies) as IGameEncounterCharacter;
