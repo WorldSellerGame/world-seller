@@ -12,7 +12,10 @@ import {
   getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
-import { CombatAbilityTarget, IGameCombat, IGameCombatAbility, IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat } from '../../interfaces';
+import {
+  CombatAbilityTarget, IGameCombat, IGameCombatAbility,
+  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
+} from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
