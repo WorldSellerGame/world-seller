@@ -1,0 +1,9 @@
+
+PoisonWeak:
+  name: Poison
+  description: Losing health over time.
+  icon: poison
+  color: "#ff0000"
+  turnsLeft: 5
+  statusEffectType: DamageOverTime
+  damageOverTime: 5

@@ -31,11 +31,11 @@ export class ThreatsPage implements OnInit {
   }
 
   getThreatInfo(threatName: string): IGameEnemyThreat {
-    return this.contentService.threats[threatName];
+    return this.contentService.getThreatByName(threatName);
   }
 
   getEnemyDrops(enemyName: string): IEnemyDrop[] {
-    return this.contentService.enemies[enemyName].drops;
+    return this.contentService.getEnemyByName(enemyName).drops;
   }
 
   fight(threatName: string) {

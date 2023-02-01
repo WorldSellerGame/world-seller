@@ -13,10 +13,13 @@ const validItemTypes = ['Pickaxe', 'Axe', 'FishingRod', 'FishingBait', 'Scythe',
 const validStats = [
   'pickaxePower', 'axePower', 'fishingPower', 'scythePower', 'huntingPower',
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
-  'armor', 'healing', 'attack', 'energyBonus', 'energyCost', 'energyRegen', 'healthBonus', 'speed'
+  'armor', 'healing', 'attack', 'energyBonus', 'energyCost', 'energyRegen',
+  'healthBonus', 'health', 'speed'
 ];
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
+
+const validStatusTypes = ['StatModification', 'DamageOverTime'];
 
 const validateIcon = (icon: string) => {
   return fs.existsSync(`src/assets/icon/${icon}.svg`);
@@ -31,6 +34,7 @@ const loadContent = async () => {
   const allAbilities = await fs.readJson('src/assets/content/abilities.json');
   const allEnemies = await fs.readJson('src/assets/content/enemies.json');
   const allThreats = await fs.readJson('src/assets/content/threats.json');
+  const allEffects = await fs.readJson('src/assets/content/effects.json');
 
   Object.keys(allResources).forEach(key => {
     const resource = allResources[key];
@@ -73,6 +77,11 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    if(!validateIcon(item.icon)) {
+      console.log(`⚠ Item ${key} has an invalid icon ${item.icon}.`);
+      hasBad = true;
+    }
+
     Object.keys(item.stats).forEach(stat => {
       if(!validStats.includes(stat)) {
         console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
@@ -109,6 +118,11 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    if(!validateIcon(skill.icon)) {
+      console.log(`⚠ Skill ${key} has an invalid icon ${skill.icon}.`);
+      hasBad = true;
+    }
+
   });
 
   Object.keys(allEnemies).forEach(key => {
@@ -136,6 +150,11 @@ const loadContent = async () => {
 
     if(!enemy.energy) {
       console.log(`⚠ Enemy ${key} has no energy.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(enemy.icon)) {
+      console.log(`⚠ Enemy ${key} has an invalid icon ${enemy.icon}.`);
       hasBad = true;
     }
 
@@ -194,6 +213,11 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    if(!validateIcon(threat.icon)) {
+      console.log(`⚠ Threat ${key} has an invalid icon ${threat.icon}.`);
+      hasBad = true;
+    }
+
     threat.enemies.forEach((enemy: string) => {
       if(!allEnemies[enemy]) {
         console.log(`⚠ Threat ${key} has an enemy for ${enemy} which is not a valid enemy.`);
@@ -201,6 +225,52 @@ const loadContent = async () => {
       }
     })
   });
+
+  Object.keys(allEffects).forEach(key => {
+    const effect = allEffects[key];
+
+    if(!effect.name) {
+      console.log(`⚠ Effect ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(!effect.description) {
+      console.log(`⚠ Effect ${key} has no description.`);
+      hasBad = true;
+    }
+
+    if(!effect.icon) {
+      console.log(`⚠ Effect ${key} has no icon.`);
+      hasBad = true;
+    }
+
+    if(!effect.color) {
+      console.log(`⚠ Effect ${key} has no color.`);
+      hasBad = true;
+    }
+
+    if(!effect.turnsLeft) {
+      console.log(`⚠ Effect ${key} has no turns left.`);
+      hasBad = true;
+    }
+
+    if(!validStatusTypes.includes(effect.statusEffectType)) {
+      console.log(`⚠ Effect ${key} has an invalid type.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(effect.icon)) {
+      console.log(`⚠ Effect ${key} has an invalid icon ${effect.icon}.`);
+      hasBad = true;
+    }
+
+    Object.keys(effect.statModifications || {}).forEach(stat => {
+      if(!validStats.includes(stat)) {
+        console.log(`⚠ Effect ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+    });
+  })
 
   const isValidItem = (item: string) => {
     return item === 'nothing' || allResources[item] || allItems[item];

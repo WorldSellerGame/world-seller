@@ -109,17 +109,41 @@ export function isDead(character: IGameEncounterCharacter): boolean {
  * Apply a delta to a character. Currently only supports health and energy changing.
  */
 export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICombatDelta): IGameEncounterCharacter {
-  const { attribute, delta } = appliedDelta;
+  const { attribute, delta, applyStatusEffect, unapplyStatusEffect } = appliedDelta;
 
-  switch(attribute) {
-    case 'currentHealth': {
-      character.currentHealth = clamp(character.currentHealth + delta, 0, character.maxHealth);
-      break;
+  if(attribute) {
+    switch(attribute) {
+      case 'currentHealth': {
+        character.currentHealth = clamp(character.currentHealth + delta, 0, character.maxHealth);
+        break;
+      }
+
+      case 'currentEnergy': {
+        character.currentEnergy = clamp(character.currentEnergy + delta, 0, character.maxEnergy);
+        break;
+      }
     }
+  }
 
-    case 'currentEnergy': {
-      character.currentEnergy = clamp(character.currentEnergy + delta, 0, character.maxEnergy);
-      break;
+  if(applyStatusEffect) {
+    character.statusEffects.push(applyStatusEffect);
+
+    const statMods = applyStatusEffect.statModifications || {};
+    if(statMods) {
+      Object.keys(statMods).forEach(key => {
+        character.stats[key as Stat] = Math.max(character.stats[key as Stat] + (statMods?.[key as Stat] ?? 0), 1);
+      });
+    }
+  }
+
+  if(unapplyStatusEffect) {
+    character.statusEffects = character.statusEffects.filter(effect => effect !== unapplyStatusEffect);
+
+    const statMods = unapplyStatusEffect.statModifications || {};
+    if(statMods) {
+      Object.keys(statMods).forEach(key => {
+        character.stats[key as Stat] = Math.max(character.stats[key as Stat] - (statMods?.[key as Stat] ?? 0), 1);
+      });
     }
   }
 
@@ -142,6 +166,11 @@ export function applyDeltas(
     const { target } = deltaToApply;
 
     const trueTarget = target === 'source' ? sourceRef : targetRef;
+
+    // if we target ourselves with an effect, we offset turns by 1 so it doesn't get slurped up immediately
+    if(targetRef === sourceRef && deltaToApply.applyStatusEffect) {
+      deltaToApply.applyStatusEffect.turnsLeft += 1;
+    }
 
     if(state.currentPlayer === trueTarget) {
       const newPlayer = applyDelta(state.currentPlayer, deltaToApply);

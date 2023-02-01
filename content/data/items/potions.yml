@@ -10,7 +10,8 @@ Raspberry Juice:
   icon: bottle
   stats:
     healing: 50
-  effect: PotionHeal
+  effects:
+    - effect: PotionHeal
 
 Dandelion Tea:
   name: Dandelion Tea
@@ -47,7 +48,8 @@ Potion of Fire:
   icon: fire-bottle
   stats:
     attack: 50 #burning effect baby
-  effect: PotionDamage
+  effects:
+    - effect: PotionDamage
 
 Potion of Minor Poison:
   name: Potion of Minor Poison

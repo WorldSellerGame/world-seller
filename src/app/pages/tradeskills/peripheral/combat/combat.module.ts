@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CombatPageRoutingModule } from './combat-routing.module';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { SharedModule } from '../../../../shared.module';
 import { CombatDisplayComponent } from './combat-display/combat-display.component';
 import { CombatPage } from './combat.page';
@@ -17,6 +18,7 @@ import { DungeonDisplayComponent } from './dungeon-display/dungeon-display.compo
     FormsModule,
     IonicModule,
     SharedModule,
+    NgxTippyModule,
     CombatPageRoutingModule
   ],
   declarations: [CombatPage, CombatDisplayComponent, DungeonDisplayComponent]

@@ -9,7 +9,7 @@ import {
   applyDeltas,
   calculateMaxEnergy, calculateMaxHealth, defaultStatsZero,
   getCombatFunction,
-  getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isHealEffect
+  getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import {
@@ -20,10 +20,13 @@ import {
 import { TickTimer } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
-  EnemySpeedReset, EnemyTakeTurn, InitiateCombat, LowerEnemyCooldown, SetCombatLock
+  EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
+  LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill,
+  PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
 } from './combat.actions';
 import { attachments } from './combat.attachments';
 import {
+  acquireItemDrops,
   defaultCombat
 } from './combat.functions';
 
@@ -102,6 +105,7 @@ export class CombatState {
         stats,
         cooldowns: {},
         idleChance: 0,
+        statusEffects: [],
         drops: [],
         currentSpeed: 0,
         currentEnergy: calculateMaxEnergy(activePlayer),
@@ -115,7 +119,7 @@ export class CombatState {
     const enemyNamesAndCounts: Record<string, number> = {};
 
     const enemies: IGameEncounterCharacter[] = threat.enemies.map(enemyName => {
-      const enemyData = this.contentService.enemies[enemyName];
+      const enemyData = this.contentService.getEnemyByName(enemyName);
 
       enemyNamesAndCounts[enemyData.name] ??= 0;
       enemyNamesAndCounts[enemyData.name]++;
@@ -136,6 +140,7 @@ export class CombatState {
         abilities: ['BasicAttack', ...enemyData.abilities],
         level: threat.level,
         stats,
+        statusEffects: [],
         idleChance: enemyData.idleChance,
         cooldowns: {},
         currentSpeed: 0,
@@ -150,7 +155,7 @@ export class CombatState {
     // speed adjustments
     const maxSpeed = 1 + Math.max(
       currentPlayer.stats[Stat.Speed],
-      ...threat.enemies.map(enemyName => this.contentService.enemies[enemyName].stats[Stat.Speed] ?? 1)
+      ...threat.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
     );
 
     [currentPlayer, ...enemies].forEach(char => {
@@ -187,7 +192,9 @@ export class CombatState {
       return;
     }
 
-    ctx.dispatch(new LowerEnemyCooldown(enemyIndex));
+    ctx.dispatch([
+      new LowerEnemyCooldown(enemyIndex)
+    ]);
 
     // if not idle, pick a skill and a valid target
     const validSkills = this.enemyChooseValidAbilities(enemy, currentEncounter.enemies);
@@ -198,6 +205,7 @@ export class CombatState {
     if(isIdle || validSkills.length === 0) {
       ctx.dispatch([
         new AddCombatLogMessage(`${enemy.name} is faffing about.`),
+        new TickEnemyEffects(enemyIndex),
         new EnemySpeedReset(enemyIndex)
       ]);
       return;
@@ -205,13 +213,14 @@ export class CombatState {
 
     // use the skill
     const chosenSkill = sample(validSkills) as string;
-    const chosenSkillRef = this.contentService.abilities[chosenSkill];
+    const chosenSkillRef = this.contentService.getAbilityByName(chosenSkill);
 
     chosenSkillRef.effects.forEach(effectRef => {
       const abilityFunc = getCombatFunction(effectRef.effect);
       if(!abilityFunc) {
         ctx.dispatch([
           new AddCombatLogMessage(`Ability ${effectRef.effect} (c/o ${enemy.name}) is not implemented yet!`),
+          new TickEnemyEffects(enemyIndex),
           new EnemySpeedReset(enemyIndex)
         ]);
         return;
@@ -219,7 +228,14 @@ export class CombatState {
 
       const target = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef, effectRef);
 
-      const deltas = abilityFunc(ctx, { ability: chosenSkillRef, source: enemy, target, useStats: enemy.stats, allowBonusStats: true });
+      const deltas = abilityFunc(ctx, {
+        ability: chosenSkillRef,
+        source: enemy,
+        target,
+        useStats: enemy.stats,
+        allowBonusStats: true,
+        statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
+      });
       deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
       applyDeltas(ctx, enemy, target, deltas);
     });
@@ -233,7 +249,118 @@ export class CombatState {
       return;
     }
 
-    ctx.dispatch(new EnemySpeedReset(enemyIndex));
+    ctx.dispatch([
+      new EnemySpeedReset(enemyIndex),
+      new TickEnemyEffects(enemyIndex)
+    ]);
+  }
+
+  @Action(TargetEnemyWithAbility)
+  targetEnemyWithAbility(
+    ctx: StateContext<IGameCombat>,
+    { targetIndex, source, ability, abilitySlot, fromItem }: TargetEnemyWithAbility
+  ) {
+    ability.effects.forEach((effectRef) => {
+      const abilityFunc = getCombatFunction(effectRef.effect);
+      if(!abilityFunc) {
+        ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
+        return;
+      }
+
+      const encounter = ctx.getState().currentEncounter;
+      if(!encounter) {
+        return;
+      }
+
+      const player = ctx.getState().currentPlayer;
+      if(!player) {
+        return;
+      }
+
+      // lower all other cooldowns by 1 first
+      ctx.dispatch([
+        new LowerPlayerCooldown()
+      ]);
+
+      const target = encounter.enemies[targetIndex];
+
+      const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
+      const deltas = abilityFunc(ctx, {
+        ability,
+        source,
+        target,
+        useStats,
+        allowBonusStats: !fromItem,
+        statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
+      });
+      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+      applyDeltas(ctx, source, target, deltas);
+
+      if(isDead(target)) {
+        ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
+        acquireItemDrops(ctx, target);
+      }
+    });
+
+    ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
+
+    if(hasAnyoneWonCombat(ctx)) {
+      handleCombatEnd(ctx);
+      return;
+    }
+
+    ctx.dispatch([
+      new PlayerSpeedReset(),
+      new TickPlayerEffects(),
+      new SetCombatLock(true)
+    ]);
+  }
+
+  @Action(TargetSelfWithAbility)
+  targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot, fromItem }: TargetSelfWithAbility) {
+
+    // lower all other cooldowns by 1 first
+    ctx.dispatch([
+      new LowerPlayerCooldown()
+    ]);
+
+    const currentPlayer = ctx.getState().currentPlayer;
+    if(!currentPlayer) {
+      return;
+    }
+
+    ability.effects.forEach(effectRef => {
+      const abilityFunc = getCombatFunction(effectRef.effect);
+      if(!abilityFunc) {
+        ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
+        return;
+      }
+
+      const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
+      const deltas = abilityFunc(ctx, {
+        ability,
+        source: currentPlayer,
+        target: currentPlayer,
+        useStats,
+        allowBonusStats: !fromItem,
+        statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
+      });
+      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+      applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
+    });
+
+    ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
+
+    if(hasAnyoneWonCombat(ctx)) {
+      handleCombatEnd(ctx);
+      return;
+    }
+
+    ctx.dispatch([
+      new PlayerSpeedReset(),
+      new TickPlayerEffects(),
+      new SetCombatLock(true)
+    ]);
   }
 
   @Action(ChangeThreats)
@@ -241,8 +368,8 @@ export class CombatState {
     const store = this.store.snapshot();
 
     const playerLevel = getTotalLevel(store);
-    const validThreats = Object.keys(this.contentService.threats)
-      .map(x => ({ id: x, threat: this.contentService.threats[x] }))
+    const validThreats = Object.keys(this.contentService.getAllThreats())
+      .map(x => ({ id: x, threat: this.contentService.getThreatByName(x) }))
       .filter(
         (x) => x.threat.level.min <= playerLevel && x.threat.level.max >= playerLevel
       );
@@ -342,7 +469,7 @@ export class CombatState {
         return false;
       }
 
-      const skill = this.contentService.abilities[abi];
+      const skill = this.contentService.getAbilityByName(abi);
       if(!skill) {
         return false;
       }

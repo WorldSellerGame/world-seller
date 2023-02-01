@@ -1,3 +1,4 @@
+import { IGameCombatAbilityEffect } from './combat';
 
 export enum Rarity {
   Broken = 'Broken',
@@ -91,7 +92,7 @@ export interface IGameItem {
   canStack?: boolean;
   quantity?: number;
   givesAbility?: string;
-  effect?: string;
+  effects?: IGameCombatAbilityEffect[];
   stats: Record<Stat, number>;
 
   sellTicks?: number;

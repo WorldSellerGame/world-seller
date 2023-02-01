@@ -10,7 +10,7 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
   const { source, target, ability } = opts;
 
   const baseDamage = calculateAbilityDamageForUser(ability, opts.useStats);
-  const armor = target.stats[Stat.Armor];
+  const armor = opts.allowBonusStats ? target.stats[Stat.Armor] : 0;
 
   const damage = Math.max(0, baseDamage - armor);
 
@@ -93,4 +93,19 @@ export function SingleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackPa
   return [
     ...deltas
   ];
+}
+
+export function ApplyEffect(ctx: StateContext<IGameCombat>, opts: IAttackParams): ICombatDelta[] {
+
+  const { source, target, ability, statusEffect } = opts;
+
+  ctx.dispatch(new AddCombatLogMessage(`${source.name} used "${ability.name}" on ${target.name}!`));
+
+  if(statusEffect) {
+    return [
+      { target: 'target', attribute: '', applyStatusEffect: statusEffect, delta: 0 }
+    ];
+  }
+
+  return [];
 }

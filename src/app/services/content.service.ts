@@ -5,6 +5,7 @@ import * as abilities from '../../assets/content/abilities.json';
 import * as alchemy from '../../assets/content/alchemy.json';
 import * as blacksmithing from '../../assets/content/blacksmithing.json';
 import * as cooking from '../../assets/content/cooking.json';
+import * as effects from '../../assets/content/effects.json';
 import * as enemies from '../../assets/content/enemies.json';
 import * as farming from '../../assets/content/farming.json';
 import * as fishing from '../../assets/content/fishing.json';
@@ -19,8 +20,9 @@ import * as resources from '../../assets/content/resources.json';
 import * as threats from '../../assets/content/threats.json';
 import * as weaving from '../../assets/content/weaving.json';
 
+import { cloneDeep } from 'lodash';
 import * as characterNames from '../../assets/content/character-names.json';
-import { IEnemyCharacter, IGameCombatAbility, IGameEnemyThreat, IGameItem, IGameResource } from '../../interfaces';
+import { IEnemyCharacter, IGameCombatAbility, IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -28,24 +30,28 @@ import { IEnemyCharacter, IGameCombatAbility, IGameEnemyThreat, IGameItem, IGame
 export class ContentService {
 
   // core things
-  public get resources(): Record<string, IGameResource> {
+  private get resources(): Record<string, IGameResource> {
     return (resources as any).default || resources;
   }
 
-  public get items(): Record<string, IGameItem> {
+  private get items(): Record<string, IGameItem> {
     return (items as any).default || items;
   }
 
-  public get abilities(): Record<string, IGameCombatAbility> {
+  private get abilities(): Record<string, IGameCombatAbility> {
     return (abilities as any).default || abilities;
   }
 
-  public get enemies(): Record<string, IEnemyCharacter> {
+  private get enemies(): Record<string, IEnemyCharacter> {
     return (enemies as any).default || enemies;
   }
 
-  public get threats(): Record<string, IGameEnemyThreat> {
+  private get threats(): Record<string, IGameEnemyThreat> {
     return (threats as any).default || threats;
+  }
+
+  private get effects(): Record<string, IGameStatusEffect> {
+    return (effects as any).default || effects;
   }
 
   // other skills
@@ -166,6 +172,38 @@ export class ContentService {
 
   public getRecipesForSkill(skill: keyof typeof this.recipeHashes) {
     return this.recipeHashes[skill];
+  }
+
+  public getResourceByName(name: string) {
+    return cloneDeep(this.resources[name]);
+  }
+
+  public getItemByName(name: string) {
+    return cloneDeep(this.items[name]);
+  }
+
+  public getAllAbilities() {
+    return cloneDeep(this.abilities);
+  }
+
+  public getAbilityByName(name: string) {
+    return cloneDeep(this.abilities[name]);
+  }
+
+  public getEnemyByName(name: string) {
+    return cloneDeep(this.enemies[name]);
+  }
+
+  public getAllThreats() {
+    return cloneDeep(this.threats);
+  }
+
+  public getThreatByName(name: string) {
+    return cloneDeep(this.threats[name]);
+  }
+
+  public getEffectByName(name: string) {
+    return cloneDeep(this.effects[name]);
   }
 
 }

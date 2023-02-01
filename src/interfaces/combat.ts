@@ -18,6 +18,28 @@ export interface IGameEncounterDrop {
   amount: number;
 }
 
+export enum StatusEffectType {
+  StatModification = 'StatModification',
+  DamageOverTime = 'DamageOverTime',
+}
+
+export interface IGameStatusEffectBase {
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  turnsLeft: number;
+  statusEffectType: StatusEffectType;
+}
+
+export type IGameStatusEffect = IGameStatusEffectBase
+& {
+  statModifications: Partial<Record<Stat, number>>;
+}
+& {
+  damageOverTime: number;
+};
+
 export interface IGameEncounterCharacter {
   name: string;
   icon: string;
@@ -31,6 +53,8 @@ export interface IGameEncounterCharacter {
 
   idleChance: number;
   drops: IGameEncounterDrop[];
+
+  statusEffects: IGameStatusEffect[];
 
   // slot:cooldown turns
   cooldowns: Record<number, number>;
@@ -64,6 +88,7 @@ export enum CombatSkillType {
 
 export interface IGameCombatAbilityEffect {
   effect: string;
+  effectName?: string;
 }
 
 export interface IGameCombatAbility {
@@ -97,6 +122,7 @@ export interface IGameCombat {
 
 export interface IAttackParams {
   ability: IGameCombatAbility;
+  statusEffect: IGameStatusEffect;
   useStats: Record<Stat, number>;
   source: IGameEncounterCharacter;
   target: IGameEncounterCharacter;
@@ -106,5 +132,7 @@ export interface IAttackParams {
 export interface ICombatDelta {
   target: 'target' | 'source';
   attribute: string;
+  applyStatusEffect?: IGameStatusEffect;
+  unapplyStatusEffect?: IGameStatusEffect;
   delta: number;
 }

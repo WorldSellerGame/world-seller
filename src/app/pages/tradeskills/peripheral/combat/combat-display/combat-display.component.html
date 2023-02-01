@@ -29,6 +29,17 @@
               <div class="health">
                 <ion-progress-bar [value]="monster.currentHealth / monster.maxHealth" color="danger"></ion-progress-bar>
               </div>
+
+              <div class="effects">
+                <ng-container *ngIf="monster.currentHealth > 0">
+                  <app-game-icon class="effect"
+                                 [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
+                                 [tippyProps]="{ placement: 'bottom' }"
+                                 *ngFor="let effect of monster.statusEffects"
+                                 [inlineIconSize]="true"
+                                 [icon]="effect.icon"></app-game-icon>
+                </ng-container>
+              </div>
             </div>
           </ion-card-content>
         </ion-card>
@@ -94,6 +105,22 @@
                       </ion-col>
                     </ion-row>
                   </ion-item>
+
+                  <ion-item *ngIf="encounterData.player.statusEffects.length > 0">
+                    <ion-row class="effects-row">
+                      <ion-col size="2">
+                        Effects
+                      </ion-col>
+
+                      <ion-col class="effects-bar" size="10">
+                        <app-game-icon class="effect"
+                                       [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
+                                       [tippyProps]="{ placement: 'bottom' }"
+                                       *ngFor="let effect of encounterData.player.statusEffects"
+                                       [icon]="effect.icon"></app-game-icon>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
                 </ion-list>
               </ion-card-content>
             </ion-card>
@@ -114,7 +141,7 @@
                               class="cursor-pointer"
                               [class.active-skill]="i === activeItemIndex"
                               (click)="selectItem(item, i)"
-                              [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, item.effect || '', i)">
+                              [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, item.effects?.[0]?.effect || '', i)">
                       <app-combat-item-display [item]="item" [showEffectInfo]="true" [showUses]="false"></app-combat-item-display>
 
                       <ion-text color="warning" slot="end" *ngIf="item.durability > 0">

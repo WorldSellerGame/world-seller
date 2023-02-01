@@ -9,9 +9,11 @@
     align-items: center;
 
     .enemy {
+      padding-left: 30px;
+      padding-right: 30px;
       max-width: 25%;
       min-width: 150px;
-      max-height: 150px;
+      max-height: 190px;
 
       &.dead {
         opacity: 0.5;
@@ -25,6 +27,12 @@
       .name {
         margin-top: 10px;
         text-align: center;
+      }
+
+      .effects {
+        margin-top: 10px;
+        text-align: center;
+        min-height: 30px;
       }
 
       .health {
@@ -56,6 +64,22 @@
 
       ion-progress-bar {
         height: 10px;
+      }
+    }
+  }
+
+  .effects-row {
+    width: 100%;
+
+    .effects-bar {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+
+      .effect {
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
       }
     }
   }

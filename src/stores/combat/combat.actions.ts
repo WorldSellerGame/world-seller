@@ -60,6 +60,16 @@ export class LowerEnemyCooldown {
   constructor(public enemyIndex: number) {}
 }
 
+export class TickPlayerEffects {
+  static type = '[Combat] Tick Player Effects';
+  constructor() {}
+}
+
+export class TickEnemyEffects {
+  static type = '[Combat] Tick Enemy Effects';
+  constructor(public enemyIndex: number) {}
+}
+
 export class EnemyTakeTurn {
   static type = '[Combat] Enemy Take Turn';
   constructor(public enemyIndex: number) {}

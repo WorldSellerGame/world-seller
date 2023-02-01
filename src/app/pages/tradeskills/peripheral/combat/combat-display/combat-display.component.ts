@@ -40,7 +40,7 @@ export class CombatDisplayComponent implements OnInit {
   }
 
   getAbility(ability: string): IGameCombatAbility {
-    return this.contentService.abilities[ability];
+    return this.contentService.getAbilityByName(ability);
   }
 
   canDoAbility(player: IGameEncounterCharacter, ability: string, abilityIndex: number): boolean {
@@ -99,7 +99,7 @@ export class CombatDisplayComponent implements OnInit {
     }
 
     this.activeItemIndex = itemIndex;
-    this.activeAbilityInfo = this.getAbility(item.effect || '');
+    this.activeAbilityInfo = this.getAbility(item.effects?.[0]?.effect || '');
   }
 
   targetEnemy(index: number, enemy: IGameEncounterCharacter, source: IGameEncounterCharacter) {

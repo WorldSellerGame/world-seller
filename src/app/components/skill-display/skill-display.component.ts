@@ -16,7 +16,7 @@ export class SkillDisplayComponent implements OnInit {
   ngOnInit() {}
 
   getSkillByName(name: string): IGameCombatAbility {
-    return this.contentService.abilities[name];
+    return this.contentService.getAbilityByName(name);
   }
 
 }

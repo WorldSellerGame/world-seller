@@ -4,16 +4,15 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { IGameCombat, IGameEncounter, IGameEncounterCharacter, IGameItem, Stat } from '../../interfaces';
 import {
   AddCombatLogMessage, EnemyCooldownSkill, EnemySpeedReset,
-  LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill, PlayerSpeedReset, SetCombatLock,
+  LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
   SetItem,
-  SetSkill, TargetEnemyWithAbility, TargetSelfWithAbility, UseItemInSlot
+  SetSkill, TickEnemyEffects, UseItemInSlot
 } from './combat.actions';
 
+import { applyDeltas, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 import { AddItemToInventory, GainJobResult, RemoveItemFromInventory } from '../charselect/charselect.actions';
 
-import { merge } from 'lodash';
-import { applyDeltas, defaultStatsZero, getCombatFunction, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 
 export const defaultCombat: () => IGameCombat = () => ({
   version: 0,
@@ -283,94 +282,108 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, enemy: IGameEnc
 }
 
 /**
- * The player targets an enemy with an ability.
+ * Tick all of the player effects down by 1.
  */
-export function targetEnemyWithAbility(
-  ctx: StateContext<IGameCombat>,
-  { targetIndex, source, ability, abilitySlot, fromItem }: TargetEnemyWithAbility
-) {
-
-  ability.effects.forEach(({ effect }) => {
-    const abilityFunc = getCombatFunction(effect);
-    if(!abilityFunc) {
-      ctx.dispatch(new AddCombatLogMessage(`Ability ${effect} is not implemented yet!`));
-      return;
-    }
-
-    const encounter = ctx.getState().currentEncounter;
-    if(!encounter) {
-      return;
-    }
-
-    const player = ctx.getState().currentPlayer;
-    if(!player) {
-      return;
-    }
-
-    // lower all other cooldowns by 1 first
-    ctx.dispatch(new LowerPlayerCooldown());
-
-    const target = encounter.enemies[targetIndex];
-
-    const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
-    const deltas = abilityFunc(ctx, { ability, source, target, useStats, allowBonusStats: !fromItem });
-    deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
-    applyDeltas(ctx, source, target, deltas);
-
-    if(isDead(target)) {
-      ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
-      acquireItemDrops(ctx, target);
-    }
-  });
-
-  ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
-
-  if(hasAnyoneWonCombat(ctx)) {
-    handleCombatEnd(ctx);
-    return;
-  }
-
-  ctx.dispatch([
-    new PlayerSpeedReset(),
-    new SetCombatLock(true)
-  ]);
-}
-
-/**
- * The player targets themself with an ability.
- */
-export function targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot, fromItem }: TargetSelfWithAbility) {
-
-  // lower all other cooldowns by 1 first
-  ctx.dispatch(new LowerPlayerCooldown());
-
+export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
   const currentPlayer = ctx.getState().currentPlayer;
   if(!currentPlayer) {
     return;
   }
 
-  ability.effects.forEach(effectRef => {
-    const abilityFunc = getCombatFunction(effectRef.effect);
-    if(!abilityFunc) {
-      ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
-      return;
-    }
-
-    const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
-    const deltas = abilityFunc(ctx, { ability, source: currentPlayer, target: currentPlayer, useStats, allowBonusStats: !fromItem });
-    deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
-    applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
-  });
-
-  ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
-
-  if(hasAnyoneWonCombat(ctx)) {
-    handleCombatEnd(ctx);
+  if(isDead(currentPlayer)) {
     return;
   }
 
-  ctx.dispatch([
-    new PlayerSpeedReset(),
-    new SetCombatLock(true)
-  ]);
+  const allEffects = currentPlayer.statusEffects;
+  allEffects.forEach(effect => {
+    effect.turnsLeft--;
+
+    if(effect.damageOverTime) {
+      const term = effect.damageOverTime > 0 ? 'damage' : 'healing';
+
+      applyDeltas(ctx, currentPlayer, currentPlayer, [
+        { target: 'source', attribute: 'currentHealth', delta: -effect.damageOverTime }
+      ]);
+
+      ctx.dispatch(
+        new AddCombatLogMessage(`${currentPlayer.name} received ${Math.abs(effect.damageOverTime)} ${term} from ${effect.name}!`)
+      );
+
+      if(hasAnyoneWonCombat(ctx)) {
+        handleCombatEnd(ctx);
+        return;
+      }
+    }
+
+    if(effect.turnsLeft <= 0) {
+
+      applyDeltas(ctx, currentPlayer, currentPlayer, [
+        { target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect }
+      ]);
+
+      ctx.dispatch(new AddCombatLogMessage(`${currentPlayer.name} no longer has the "${effect.name}" effect!`));
+    }
+  });
+
+
+  const updatedEffects = allEffects.filter(effect => effect.turnsLeft > 0);
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      statusEffects: updatedEffects
+    })
+  }));
+}
+
+/**
+ * Tick all of the enemy effects down by 1.
+ */
+export function tickEnemyEffects(ctx: StateContext<IGameCombat>, { enemyIndex }: TickEnemyEffects) {
+  const currentEncounter = ctx.getState().currentEncounter;
+  if(!currentEncounter) {
+    return;
+  }
+
+  const enemy = currentEncounter.enemies[enemyIndex];
+
+  if(isDead(enemy)) {
+    return;
+  }
+
+  const allEffects = enemy.statusEffects;
+  allEffects.forEach(effect => {
+    effect.turnsLeft--;
+
+    if(effect.damageOverTime) {
+      const term = effect.damageOverTime > 0 ? 'damage' : 'healing';
+
+      applyDeltas(ctx, enemy, enemy, [
+        { target: 'source', attribute: 'currentHealth', delta: -effect.damageOverTime }
+      ]);
+
+      ctx.dispatch(new AddCombatLogMessage(`${enemy.name} received ${Math.abs(effect.damageOverTime)} ${term} from ${effect.name}!`));
+
+      if(hasAnyoneWonCombat(ctx)) {
+        handleCombatEnd(ctx);
+        return;
+      }
+    }
+
+    if(effect.turnsLeft <= 0) {
+
+      applyDeltas(ctx, enemy, enemy, [
+        { target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect }
+      ]);
+
+      ctx.dispatch(new AddCombatLogMessage(`${enemy.name} no longer has the "${effect.name}" effect!`));
+    }
+  });
+
+  const updatedEffects = allEffects.filter(effect => effect.turnsLeft > 0);
+  ctx.setState(patch<IGameCombat>({
+    currentEncounter: patch<IGameEncounter>({
+      enemies: updateItem<IGameEncounterCharacter>(enemyIndex, patch<IGameEncounterCharacter>({
+        statusEffects: updatedEffects
+      }))
+    })
+  }));
 }

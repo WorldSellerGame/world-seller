@@ -18,20 +18,24 @@ export class ItemIconComponent implements OnInit {
   @Input() inlineIconSize = false;
   @Input() emphasizeText = true;
 
+  get item() {
+    return this.contentService.getItemByName(this.name);
+  }
+
   get itemClass() {
-    return getItemRarityClass(this.contentService.items[this.name]);
+    return getItemRarityClass(this.item);
   }
 
   public get icon() {
-    return this.contentService.items[this.name]?.icon.toLowerCase();
+    return this.item?.icon.toLowerCase();
   }
 
   public get rarity() {
-    return this.contentService.items[this.name]?.rarity.toLowerCase();
+    return this.item?.rarity.toLowerCase();
   }
 
   public get description() {
-    return this.contentService.items[this.name]?.description;
+    return this.item?.description;
   }
 
   constructor(private contentService: ContentService) { }

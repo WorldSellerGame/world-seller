@@ -19,11 +19,11 @@ export class CombatItemDisplayComponent implements OnInit {
   }
 
   get effectInfo() {
-    if(!this.item.effect) {
+    if(!this.item.effects) {
       return '';
     }
 
-    return this.contentService.abilities[this.item.effect]?.description || '';
+    return this.contentService.getAbilityByName(this.item.effects[0].effect)?.description || '';
   }
 
   constructor(private contentService: ContentService) { }

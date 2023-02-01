@@ -36,13 +36,13 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.allUsableItems = this.inventory$.subscribe(items => {
-      this.usableItems = items.filter(item => item.effect);
+      this.usableItems = items.filter(item => (item.effects?.length ?? 0) > 0);
     });
 
     this.level = this.store.subscribe(state => {
       let currentlyLearnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
 
-      const allSkills = this.contentService.abilities;
+      const allSkills = this.contentService.getAllAbilities();
 
       // check all the skills and see what we know!
       Object.keys(allSkills).forEach(skillName => {
