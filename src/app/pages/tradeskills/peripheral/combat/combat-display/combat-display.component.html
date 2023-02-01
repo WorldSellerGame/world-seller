@@ -33,6 +33,7 @@
               <div class="effects">
                 <ng-container *ngIf="monster.currentHealth > 0">
                   <app-game-icon class="effect"
+                                 [color]="effect.color"
                                  [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
                                  [tippyProps]="{ placement: 'bottom' }"
                                  *ngFor="let effect of monster.statusEffects"
@@ -114,6 +115,7 @@
 
                       <ion-col class="effects-bar" size="10">
                         <app-game-icon class="effect"
+                                       [color]="effect.color"
                                        [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
                                        [tippyProps]="{ placement: 'bottom' }"
                                        *ngFor="let effect of encounterData.player.statusEffects"
