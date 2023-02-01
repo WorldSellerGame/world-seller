@@ -19,8 +19,6 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.Healing]: 0,
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,
-    [Stat.EnergyCost]: 0,
-    [Stat.EnergyRegen]: 0,
     [Stat.HealthBonus]: 0,
     [Stat.Speed]: 0
   };
