@@ -57,8 +57,10 @@ export class FishingState {
     const gdrValue = calculateStat(equipment, Stat.FishingPower);
     setGatheringLocation(ctx, location, gdrValue);
 
-    ctx.dispatch(new DecreaseDurability(ItemType.FishingRod));
-    ctx.dispatch(new DecreaseDurability(ItemType.FishingBait));
+    ctx.dispatch([
+      new DecreaseDurability(ItemType.FishingRod),
+      new DecreaseDurability(ItemType.FishingBait)
+    ]);
   };
 
 }

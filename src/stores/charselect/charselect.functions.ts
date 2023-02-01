@@ -153,9 +153,10 @@ export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipIte
     }))
   }));
 
-  ctx.dispatch(new AddItemToInventory(currentItem));
-
-  ctx.dispatch(new SaveActiveCharacter());
+  ctx.dispatch([
+    new AddItemToInventory(currentItem),
+    new SaveActiveCharacter()
+  ]);
 }
 
 export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
@@ -178,9 +179,10 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
     }))
   }));
 
-  ctx.dispatch(new RemoveItemFromInventory(item));
-
-  ctx.dispatch(new SaveActiveCharacter());
+  ctx.dispatch([
+    new RemoveItemFromInventory(item),
+    new SaveActiveCharacter()
+  ]);
 }
 
 export function breakItem(ctx: StateContext<ICharSelect>, { slot }: BreakItem) {
