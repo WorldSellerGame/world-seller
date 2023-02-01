@@ -78,7 +78,12 @@ export interface IGame {
 }
 
 export interface IGameItem {
+
+  // used to uniquely identify this item
   id?: string;
+
+  // used to identify the item based on its internal name/id (for migrating items)
+  internalId?: string;
   name: string;
   description: string;
   type: ItemType;

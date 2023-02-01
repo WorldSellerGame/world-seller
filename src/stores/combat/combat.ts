@@ -17,7 +17,7 @@ import {
   IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
-import { TickTimer } from '../game/game.actions';
+import { TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
@@ -75,6 +75,26 @@ export class CombatState {
   @Selector()
   static threatInfo(state: IGameCombat) {
     return { threats: state.threats, threatChangeTicks: state.threatChangeTicks };
+  }
+
+  @Action(UpdateAllItems)
+  async updateAllItems(ctx: StateContext<IGameCombat>) {
+    const state = ctx.getState();
+
+    const activeItems = state.activeItems.map(item => {
+      if(!item) {
+        return undefined;
+      }
+
+      const baseItem = this.contentService.getItemByName(item.internalId || '');
+      if(!baseItem) {
+        return undefined;
+      }
+
+      return merge({}, baseItem, item);
+    }).filter(Boolean);
+
+    ctx.setState(patch<IGameCombat>({ activeItems }));
   }
 
   @Action(InitiateCombat)

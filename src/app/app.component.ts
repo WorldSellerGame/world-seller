@@ -5,6 +5,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { GainJobResult, SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
 import { NotifyService } from './services/notify.service';
@@ -134,6 +135,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.gameloopService.init();
+
+    this.store.dispatch(new UpdateAllItems());
 
     this.level = this.store.select(state => getTotalLevel(state)).subscribe(level => {
       this.totalLevel = level;

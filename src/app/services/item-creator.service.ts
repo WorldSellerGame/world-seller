@@ -23,9 +23,13 @@ export class ItemCreatorService {
     return !!this.contentService.getResourceByName(itemName);
   }
 
-  public createItem(itemName: string, quantity = 1): IGameItem {
+  public createItem(itemName: string, quantity = 1): IGameItem | undefined {
     const baseItem = this.contentService.getItemByName(itemName);
+    if(!baseItem) {
+      return undefined;
+    }
 
+    baseItem.internalId = itemName;
     baseItem.id = uuidv4();
     baseItem.quantity = quantity;
 
