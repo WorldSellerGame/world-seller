@@ -64,5 +64,13 @@ export function getStatTotals(character: IPlayerCharacter): Record<Stat, number>
     });
   });
 
+  if(totals['health'] < 1) {
+    totals['health'] = 1;
+  }
+
+  if(totals['energy'] < 0) {
+    totals['energy'] = 0;
+  }
+
   return totals;
 }

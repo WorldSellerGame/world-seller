@@ -10,7 +10,7 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
   const { source, target, ability } = opts;
 
   const baseDamage = calculateAbilityDamageForUser(ability, opts.useStats);
-  const armor = opts.allowBonusStats ? target.stats[Stat.Armor] : 0;
+  const armor = opts.allowBonusStats ? Math.max(0, target.stats[Stat.Armor]) : 0;
 
   const damage = Math.max(0, baseDamage - armor);
 
