@@ -10,3 +10,79 @@ Raspberry Cupcake:
   icon: cupcake
   stats:
     healing: 50
+
+#####################
+
+Pine Nuts:
+  name: Pine Nuts
+  description: MMMMMMMMMMM seeds.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: seed
+  stats:
+    healing: 50
+
+Cooked Cropfish:
+  name: Pine Nuts
+  description: MMMMMMMMMMM seeds.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: seed
+  stats:
+    healing: 50
+
+#barbecued squirrel
+
+#vegetable stew
+#Roasted rabbit
+#pan fish
+
+#fall fish
+#rabbit stew
+#candied apples
+
+#duck roast
+#frog legs
+#trout
+#straw jam
+#ras Jam
+
+#flour
+#bread
+#basss
+#tallow   #fuck
+#turkey
+
+
+#venisin
+#pumpkin pie 
+#apple pie
+#cookies
+
+#fruit juice ### Must be op
+#duck egs benedict
+
+#seasoned food
+#spicy cat fish
+
+#spricy papano
+#banna bread
+
+#super tropical dish
+#Boar
+
+###I should go farther by tier
+#elk
+#bear
+#moose
+#shark
+#pufferfish
+#grouse
+
+# additionally Something that uses honey

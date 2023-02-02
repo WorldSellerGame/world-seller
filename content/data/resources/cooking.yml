@@ -4,3 +4,17 @@ Flour:
   category: Refined Materials
   rarity: Common
   icon: 'flour'
+
+##########
+
+Syrup:
+  description: Used to bake goods.
+  category: Refined Materials
+  rarity: Common
+  icon: 'drop'
+
+Sugar:
+  description: Used to bake goods.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'

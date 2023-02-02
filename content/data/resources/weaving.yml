@@ -1,12 +1,43 @@
 
-Linen Cloth:
-  description: Woven together from plant fibers.
-  category: Refined Materials
-  rarity: Common
-  icon: 'fabric'
 
 Oven Mitts: # used in Cooking, Refining, and Alchemy
   description: Please don't grab it with just your hands. Can be used over gloves.
   category: Crafting Tables 
   rarity: Common
   icon: 'mitts'
+
+Linen Cloth:
+  description: Woven together from plant fibers.
+  category: Refined Materials
+  rarity: Common
+  icon: 'fabric'
+
+Yarn: 
+  description: A loosely bound type of string whose slight bit of elasticity makes it great for simple projects.
+  category: Refined Materials
+  rarity: Common
+  icon: 'spool'
+
+Fur: 
+  description: Useable fur processed to be useable.
+  category: Refined Materials
+  rarity: Common
+  icon: 'hide'
+
+Twine: 
+  description: Tightly bound plant fiber. Can vary in thickness depending on the application 
+  category: Refined Materials
+  rarity: Common
+  icon: 'spool'
+
+Rope: 
+  description: Undoubtedly a useful thing, yet what it is but a string.
+  category: Crafting Tables 
+  rarity: Refined Materials
+  icon: 'spool'
+
+Leather: 
+  description: Processed hide, long lasting and tough... and kinky I guess.
+  category: Crafting Tables 
+  rarity: Refined Materials
+  icon: 'fabric'
