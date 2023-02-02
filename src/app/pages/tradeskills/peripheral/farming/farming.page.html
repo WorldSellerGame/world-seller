@@ -44,7 +44,7 @@
 
               <ion-button fill="clear"
                           *ngIf="!plot.result"
-                          (click)="setupPlanting(i)">
+                          (click)="setupPlanting(i, skillLevel.level || 0)">
                 Plant
               </ion-button>
 
@@ -73,7 +73,9 @@
                         <app-resource-icon [name]="seed.name" [quantity]="seed.quantity" [showX]="true"></app-resource-icon>
                       </h2>
                     </ion-label>
-                    <ion-button fill="clear" (click)="plant(currentPlantIndex, seed.name)">Plant</ion-button>
+                    <ion-button fill="clear"
+                                [class.no-skillups]="!seed.canGiveLevel"
+                                (click)="plant(currentPlantIndex, seed.name)">Plant</ion-button>
                   </ion-item>
                 </ion-list>
               </ion-card-content>
