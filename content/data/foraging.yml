@@ -165,7 +165,7 @@ locations:
         weight: 10
       - name: Spicy Pepper
         weight: 10
-      - name: Spicy Pepper Seeds
+      - name: Spicy Pepper Seed
         weight: 2
     maxWorkers: 1
 

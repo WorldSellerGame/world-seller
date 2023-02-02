@@ -7,3 +7,99 @@ transforms:
     perGather: { min: 3, max: 10 }
     level: { min: 0, max: 10 }
     gatherTime: 600
+
+  - startingItem: Strawberry Seed
+    becomes:
+      - name: Strawberry
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Carrot Seed
+    becomes:
+      - name: Carrot
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Apple Seed
+    becomes:
+      - name: Apple
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Pumpkin Seed
+    becomes:
+      - name: Pumpkin
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Grape Seed
+    becomes:
+      - name: Grape
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Spicy Pepper Seed
+    becomes:
+      - name: Spicy Pepper
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Cedar Seed
+    becomes:
+      - name: Cedar Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Acorn
+    becomes:
+      - name: Oak Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Ash Seed
+    becomes:
+      - name: Ash Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Hickory Nut
+    becomes:
+      - name: Hickory Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Hophornbeam Seed
+    becomes:
+      - name: Hophornbeam Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Elvish Silverwood Seed
+    becomes:
+      - name: Elvish Silverwood Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600

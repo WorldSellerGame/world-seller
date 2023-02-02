@@ -35,6 +35,8 @@ const loadContent = async () => {
   const allThreats = await fs.readJson('src/assets/content/threats.json');
   const allEffects = await fs.readJson('src/assets/content/effects.json');
 
+  const farming = await fs.readJson('src/assets/content/farming.json');
+
   Object.keys(allResources).forEach(key => {
     const resource = allResources[key];
     if(!validCategories.includes(resource.category)) {
@@ -50,6 +52,24 @@ const loadContent = async () => {
     if(!validateIcon(resource.icon)) {
       console.log(`⚠ Resource ${key} has an invalid icon ${resource.icon}.`);
       hasBad = true;
+    }
+
+    if(resource.category === 'Seeds') {
+      const transform = farming.transforms.find((x: any) => x.startingItem === key);
+
+      if(!transform) {
+        console.log(`⚠ Seed ${key} is not used in any farming transforms.`);
+        hasBad = true;
+      }
+
+      if(transform) {
+        transform.becomes.forEach(({ name }: any) => {
+          if(!allItems[name] && !allResources[name]) {
+            console.log(`⚠ Seed ${key} transforms into ${name} which does not exist.`);
+            hasBad = true;
+          }
+        });
+      }
     }
   });
 
