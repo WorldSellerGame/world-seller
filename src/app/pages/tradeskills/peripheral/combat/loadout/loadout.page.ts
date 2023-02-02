@@ -4,7 +4,7 @@ import { get, uniqBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameCombatAbility, IGameItem } from '../../../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../../../stores';
-import { SetItem, SetSkill } from '../../../../../../stores/combat/combat.actions';
+import { SetFood, SetItem, SetSkill } from '../../../../../../stores/combat/combat.actions';
 import { getSkillsFromItems } from '../../../../../helpers';
 import { ContentService } from '../../../../../services/content.service';
 
@@ -17,6 +17,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   @Select(CombatState.activeSkills) activeSkills$!: Observable<string[]>;
   @Select(CombatState.activeItems) activeItems$!: Observable<IGameItem[]>;
+  @Select(CombatState.activeFoods) activeFoods$!: Observable<IGameItem[]>;
   @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
 
@@ -25,18 +26,22 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   public readonly skills = [0, 1, 2, 3, 4];
   public readonly items = [0, 1, 2];
+  public readonly foods = [0];
 
+  public usableFoods: IGameItem[] = [];
   public usableItems: IGameItem[] = [];
   public learnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
 
   public selectedItemLoadoutIndex = -1;
   public selectedAbilityLoadoutIndex = -1;
+  public selectedFoodLoadoutIndex = -1;
 
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
     this.allUsableItems = this.inventory$.subscribe(items => {
       this.usableItems = items.filter(item => (item.effects?.length ?? 0) > 0);
+      this.usableFoods = items.filter(item => (item.foodDuration ?? 0) > 0);
     });
 
     this.level = this.store.subscribe(state => {
@@ -89,6 +94,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   selectSkillIndex(index: number) {
     this.selectedItemLoadoutIndex = -1;
+    this.selectedFoodLoadoutIndex = -1;
 
     if(this.selectedAbilityLoadoutIndex === index) {
       this.selectedAbilityLoadoutIndex = -1;
@@ -112,6 +118,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   selectItemIndex(index: number) {
     this.selectedAbilityLoadoutIndex = -1;
+    this.selectedFoodLoadoutIndex = -1;
 
     if(this.selectedItemLoadoutIndex === index) {
       this.selectedItemLoadoutIndex = -1;
@@ -131,6 +138,30 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   unslotItem(index: number) {
     this.slotItem(undefined, index);
+  }
+
+  selectFoodIndex(index: number) {
+    this.selectedAbilityLoadoutIndex = -1;
+    this.selectedItemLoadoutIndex = -1;
+
+    if(this.selectedFoodLoadoutIndex === index) {
+      this.selectedFoodLoadoutIndex = -1;
+      return;
+    }
+
+    this.selectedFoodLoadoutIndex = index;
+  }
+
+  slotFood(item: IGameItem | undefined, index: number) {
+    this.store.dispatch(new SetFood(item, index));
+
+    setTimeout(() => {
+      this.selectedFoodLoadoutIndex = -1;
+    }, 0);
+  }
+
+  unslotFood(index: number) {
+    this.slotFood(undefined, index);
   }
 
 }

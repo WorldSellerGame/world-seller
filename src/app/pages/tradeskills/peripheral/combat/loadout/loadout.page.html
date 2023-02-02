@@ -8,6 +8,7 @@
   <ng-container *ngIf="{
     activeSkills: activeSkills$ | async,
     activeItems: activeItems$ | async,
+    activeFoods: activeFoods$ | async,
     equipment: equipment$ | async
   } as pageData">
     <ion-grid>
@@ -82,15 +83,38 @@
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
                 </ion-item>
+
+                <!-- food changer -->
+                <ion-list-header>Food Loadout</ion-list-header>
+                <ion-item *ngFor="let foodIndex of foods"
+                          [class.highlight]="foodIndex === selectedFoodLoadoutIndex"
+                          class="cursor-pointer"
+                          (click)="selectFoodIndex(foodIndex)">
+                  <ng-container *ngIf="pageData.activeFoods?.[foodIndex] as item; else noItem">
+                    <app-combat-food-display [item]="item"></app-combat-food-display>
+                  </ng-container>
+
+                  <ng-template #noItem>
+                    No food in slot {{ foodIndex + 1 }}.
+                  </ng-template>
+
+                  <ion-button slot="end"
+                              fill="clear"
+                              color="warning"
+                              *ngIf="pageData.activeFoods?.[foodIndex]"
+                              (click)="unslotFood(foodIndex)">
+                    <ion-icon slot="icon-only" name="close"></ion-icon>
+                  </ion-button>
+                </ion-item>
               </ion-list>
             </ion-card-content>
           </ion-card>
         </ion-col>
 
         <ion-col>
-          <ion-card *ngIf="selectedAbilityLoadoutIndex === -1 && selectedItemLoadoutIndex === -1">
+          <ion-card *ngIf="selectedAbilityLoadoutIndex === -1 && selectedItemLoadoutIndex === -1 && selectedFoodLoadoutIndex === -1">
             <ion-card-content>
-              Select an ability or item slot.
+              Select an ability, item or food slot.
             </ion-card-content>
           </ion-card>
 
@@ -123,6 +147,23 @@
                           class="cursor-pointer"
                           (click)="slotItem(item, selectedItemLoadoutIndex)">
                   <app-combat-item-display [item]="item" [showEffectInfo]="true"></app-combat-item-display>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card *ngIf="selectedFoodLoadoutIndex !== -1">
+            <ion-card-header>
+              <ion-card-title>Usable Food</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-item *ngIf="usableFoods.length === 0">You don't have any usable food items!</ion-item>
+                <ion-item *ngFor="let item of usableFoods"
+                          class="cursor-pointer"
+                          (click)="slotFood(item, selectedFoodLoadoutIndex)">
+                  <app-combat-food-display [item]="item"></app-combat-food-display>
                 </ion-item>
               </ion-list>
             </ion-card-content>

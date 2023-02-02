@@ -4,6 +4,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
 import { IonicModule } from '@ionic/angular';
+import { CombatFoodDisplayComponent } from './components/combat-food-display/combat-food-display.component';
 import { CombatItemDisplayComponent } from './components/combat-item-display/combat-item-display.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { DebugActionMenuComponent } from './components/debug-action-menu/debug-action-menu.component';
@@ -18,7 +19,7 @@ import { TimeResourceIconComponent } from './components/time-resource-icon/time-
 @NgModule({
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent],
+    CombatItemDisplayComponent, CombatFoodDisplayComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -27,6 +28,6 @@ import { TimeResourceIconComponent } from './components/time-resource-icon/time-
   ],
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent]
+    CombatItemDisplayComponent, CombatFoodDisplayComponent]
 })
 export class SharedModule { }

@@ -115,6 +115,7 @@ export interface IGameCombat {
   currentDungeon?: IGameDungeon;
   activeSkills: string[];
   activeItems: Array<IGameItem | undefined>;
+  activeFoods: Array<IGameItem | undefined>;
 
   threatChangeTicks: number;
   threats: string[];

@@ -3,9 +3,10 @@ import { StateContext } from '@ngxs/store';
 import { patch, updateItem } from '@ngxs/store/operators';
 import { IGameCombat, IGameEncounter, IGameEncounterCharacter, IGameItem, Stat } from '../../interfaces';
 import {
-  AddCombatLogMessage, EnemyCooldownSkill, EnemySpeedReset,
+  AddCombatLogMessage, ConsumeFoodCharges, EnemyCooldownSkill, EnemySpeedReset,
   LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
+  SetFood,
   SetItem,
   SetSkill, TickEnemyEffects, UseItemInSlot
 } from './combat.actions';
@@ -19,6 +20,7 @@ export const defaultCombat: () => IGameCombat = () => ({
   level: 0,
   activeSkills: [],
   activeItems: [],
+  activeFoods: [],
   currentDungeon: undefined,
   currentEncounter: undefined,
   currentPlayer: undefined,
@@ -35,6 +37,10 @@ export function resetCombat(ctx: StateContext<IGameCombat>) {
  *
  */
 export function endCombat(ctx: StateContext<IGameCombat>) {
+
+  // lower all foods by 1
+  ctx.dispatch(new ConsumeFoodCharges());
+
   ctx.setState(patch<IGameCombat>({
     currentEncounter: undefined
   }));
@@ -44,6 +50,10 @@ export function endCombat(ctx: StateContext<IGameCombat>) {
  * End the combat and reset the player (for one-off battles).
  */
 export function endCombatAndResetPlayer(ctx: StateContext<IGameCombat>) {
+
+  // lower all foods by 1
+  ctx.dispatch(new ConsumeFoodCharges());
+
   ctx.setState(patch<IGameCombat>({
     currentPlayer: undefined,
     currentEncounter: undefined
@@ -100,6 +110,26 @@ export function setItemInSlot(ctx: StateContext<IGameCombat>, { item, slot }: Se
 
   ctx.setState(patch<IGameCombat>({
     activeItems: updateItem<IGameItem | undefined>(slot, item)
+  }));
+
+  if(item) {
+    ctx.dispatch(new RemoveItemFromInventory(item));
+  }
+}
+
+/**
+ * Change what food is in what slot for the player.
+ *
+ */
+export function setFoodInSlot(ctx: StateContext<IGameCombat>, { item, slot }: SetFood) {
+
+  const currentItem = ctx.getState().activeFoods[slot];
+  if(currentItem) {
+    ctx.dispatch(new AddItemToInventory(currentItem));
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    activeFoods: updateItem<IGameItem | undefined>(slot, item)
   }));
 
   if(item) {

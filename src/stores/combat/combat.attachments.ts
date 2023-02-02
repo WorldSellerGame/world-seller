@@ -9,7 +9,8 @@ import {
   LowerPlayerCooldown,
   PlayerCooldownSkill,
   PlayerSpeedReset,
-  ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetItem, SetSkill, TickEnemyEffects, TickPlayerEffects, UseItemInSlot
+  ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
+  SetSkill, TickEnemyEffects, TickPlayerEffects, UseItemInSlot
 } from './combat.actions';
 import {
   addCombatLogMessage,
@@ -19,7 +20,8 @@ import {
   lowerPlayerCooldowns,
   resetCombat, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
-  setEnemySkillOnCooldown, setItemInSlot, setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, useItemInSlot
+  setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
+  setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, useItemInSlot
 } from './combat.functions';
 
 
@@ -29,6 +31,7 @@ export const attachments: IAttachment[] = [
   { action: EndCombatAndResetPlayer, handler: endCombatAndResetPlayer },
   { action: SetSkill, handler: setSkillInSlot },
   { action: SetItem, handler: setItemInSlot },
+  { action: SetFood, handler: setFoodInSlot },
   { action: UseItemInSlot, handler: useItemInSlot },
   { action: AddCombatLogMessage, handler: addCombatLogMessage },
   { action: SetCombatLock, handler: setCombatLock },

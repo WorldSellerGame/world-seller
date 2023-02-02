@@ -81,7 +81,7 @@ const loadContent = async () => {
       hasBad = true;
     }
 
-    Object.keys(item.stats).forEach(stat => {
+    Object.keys(item.stats || {}).forEach(stat => {
       if(!validStats.includes(stat)) {
         console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
         hasBad = true;

@@ -98,6 +98,7 @@ export interface IGameItem {
   effects?: IGameCombatAbilityEffect[];
   stats: Record<Stat, number>;
 
+  foodDuration?: number;
   sellTicks?: number;
 }
 

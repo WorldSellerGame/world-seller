@@ -154,6 +154,12 @@
                 </ion-list>
               </ion-card-content>
             </ion-card>
+
+            <ion-card *ngIf="activeFoods$ | async as foods" [class.hidden]="foods.length > 0" color="danger">
+              <ion-card-content>
+                You're not using any food!
+              </ion-card-content>
+            </ion-card>
           </ion-col>
 
           <ion-col class="player-abilities">

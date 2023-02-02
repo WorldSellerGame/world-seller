@@ -12,6 +12,7 @@ import {
   getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
+import { NotifyService } from '../../app/services/notify.service';
 import {
   CombatAbilityTarget, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
@@ -19,7 +20,7 @@ import {
 } from '../../interfaces';
 import { TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
-  AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
+  AddCombatLogMessage, ChangeThreats, ConsumeFoodCharges, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
   LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
@@ -37,7 +38,7 @@ import {
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService) {
+  constructor(private store: Store, private contentService: ContentService, private notify: NotifyService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -56,6 +57,11 @@ export class CombatState {
   @Selector()
   static activeItems(state: IGameCombat) {
     return state.activeItems;
+  }
+
+  @Selector()
+  static activeFoods(state: IGameCombat) {
+    return state.activeFoods;
   }
 
   @Selector()
@@ -94,7 +100,42 @@ export class CombatState {
       return merge({}, baseItem, item);
     }).filter(Boolean);
 
-    ctx.setState(patch<IGameCombat>({ activeItems }));
+    const activeFoods = state.activeFoods.map(item => {
+      if(!item) {
+        return undefined;
+      }
+
+      const baseItem = this.contentService.getItemByName(item.internalId || '');
+      if(!baseItem) {
+        return undefined;
+      }
+
+      return merge({}, baseItem, item);
+    }).filter(Boolean);
+
+    ctx.setState(patch<IGameCombat>({ activeItems, activeFoods }));
+  }
+
+  @Action(ConsumeFoodCharges)
+  consumeFoodCharges(ctx: StateContext<IGameCombat>) {
+    const state = ctx.getState();
+
+    const foods = state.activeFoods.map(food => {
+      if(!food) {
+        return undefined;
+      }
+
+      const newDuration = (food.foodDuration ?? 0) - 1;
+
+      if(newDuration <= 0) {
+        this.notify.notify(`Your ${food.name} effects have worn off.`);
+        return undefined;
+      }
+
+      return { ...food, foodDuration: newDuration };
+    });
+
+    ctx.setState(patch<IGameCombat>({ activeFoods: foods }));
   }
 
   @Action(InitiateCombat)
@@ -112,6 +153,21 @@ export class CombatState {
       }
 
       const stats = merge(defaultStatsZero(), getStatTotals(activePlayer));
+
+      state.activeFoods.forEach(food => {
+        if(!food) {
+          return;
+        }
+
+        const foodStats = food.stats;
+        if(!foodStats) {
+          return;
+        }
+
+        Object.keys(foodStats).forEach(stat => {
+          stats[stat as Stat] += foodStats[stat as Stat];
+        });
+      });
 
       currentPlayer = {
         name: activePlayer.name,

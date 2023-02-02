@@ -10,6 +10,16 @@ export class SetItem {
   constructor(public item: IGameItem | undefined, public slot: number) {}
 }
 
+export class SetFood {
+  static type = '[Combat] Set Food';
+  constructor(public item: IGameItem | undefined, public slot: number) {}
+}
+
+export class ConsumeFoodCharges {
+  static type = '[Combat] Consume Food Charges';
+  constructor() {}
+}
+
 export class ChangeThreats {
   static type = '[Combat] Change Threats';
   constructor() {}

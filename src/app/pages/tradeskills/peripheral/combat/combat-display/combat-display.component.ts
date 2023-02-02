@@ -29,6 +29,7 @@ export class CombatDisplayComponent implements OnInit {
   public activeAbilityInfo: IGameCombatAbility | undefined;
 
   @Select(CombatState.activeItems) activeItems$!: Observable<IGameItem[]>;
+  @Select(CombatState.activeFoods) activeFoods$!: Observable<IGameItem[]>;
   @Select(CombatState.currentEncounter) currentEncounter$!: Observable<{ encounter: IGameEncounter; player: IGameEncounterCharacter }>;
 
   constructor(private store: Store, private contentService: ContentService) { }
