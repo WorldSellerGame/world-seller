@@ -1,7 +1,10 @@
 import { StateContext } from '@ngxs/store';
 
 import { append, patch, updateItem } from '@ngxs/store/operators';
-import { IGameCombat, IGameDungeonLoot, IGameDungeonState, IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat } from '../../interfaces';
+import {
+  IGameCombat, IGameDungeonLoot, IGameDungeonState,
+  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat
+} from '../../interfaces';
 import {
   AddCombatLogMessage, ConsumeFoodCharges, EnemyCooldownSkill, EnemySpeedReset,
   LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
