@@ -1,0 +1,21 @@
+<div class="item" [ngClass]="[itemClass]">
+  <ion-row>
+    <ion-col class="icon">
+      <app-game-icon [icon]="item.icon"></app-game-icon>
+    </ion-col>
+
+    <ion-col class="text">
+      <div class="name">
+        {{ item.name }}
+      </div>
+
+      <div class="stats">
+        <app-stat-line [item]="item"></app-stat-line>
+      </div>
+
+      <div class="uses">
+        <ion-text color="warning">{{ item.foodDuration }} Combat(s)</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

@@ -1,0 +1,16 @@
+
+GoblishHeal1:
+  name: Goblish Heal I
+  description: Heal yourself.
+  icon: foraging
+  target: Ally
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 10
+  requires: {}

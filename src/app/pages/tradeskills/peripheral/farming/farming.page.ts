@@ -20,7 +20,7 @@ export class FarmingPage implements OnInit {
   }
 
   public currentPlantIndex = -1;
-  public plantableSeeds: Array<{ name: string; quantity: number }> = [];
+  public plantableSeeds: Array<{ name: string; quantity: number; canGiveLevel: boolean }> = [];
 
   @Select(FarmingState.level) level$!: Observable<number>;
   @Select(FarmingState.plotInfo) plotInfo$!: Observable<{ plots: IGameFarmingPlot[]; maxPlots: number }>;
@@ -43,14 +43,23 @@ export class FarmingPage implements OnInit {
     return Array(maxPlots).fill(null).map((x, i) => allPlots[i] || { seed: undefined });
   }
 
-  public setupPlanting(plotIndex: number) {
+  public maxLevelForSeed(seedName: string): number {
+    return this.contentService.farming.transforms.find((x: IGameResourceTransform) => x.startingItem === seedName)?.level.max ?? 0;
+  }
+
+  public setupPlanting(plotIndex: number, currentLevel: number) {
     this.currentPlantIndex = plotIndex;
 
     const resources = this.store.selectSnapshot(CharSelectState.activeCharacterResources);
+
     this.plantableSeeds = Object.keys(resources)
       .filter(res => this.itemCreatorService.resourceMatchesType(res, 'Seeds'))
       .filter(res => resources[res] > 0)
-      .map(res => ({ name: res, quantity: resources[res] }));
+      .map(res => ({
+        name: res,
+        quantity: resources[res],
+        canGiveLevel: this.maxLevelForSeed(res) > currentLevel
+      }));
   }
 
   public plant(plotIndex: number, seed: string) {

@@ -8,5 +8,6 @@ Raspberry Cupcake:
   durability: 1
   value: 5
   icon: cupcake
+  foodDuration: 5
   stats:
-    healing: 50
+    attack: 5

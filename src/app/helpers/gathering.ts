@@ -3,6 +3,11 @@ import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { IGameGatherLocation, IGameGathering } from '../../interfaces';
 import { GainResources } from '../../stores/charselect/charselect.actions';
+import { CancelFishing } from '../../stores/fishing/fishing.actions';
+import { CancelForaging } from '../../stores/foraging/foraging.actions';
+import { CancelHunting } from '../../stores/hunting/hunting.actions';
+import { CancelLogging } from '../../stores/logging/logging.actions';
+import { CancelMining } from '../../stores/mining/mining.actions';
 import { isLocationOnCooldown, lowerGatheringCooldowns, putLocationOnCooldown } from './cooldowns';
 import { pickResourcesWithWeights } from './pick-weight';
 
@@ -55,17 +60,31 @@ export function cancelGathering(ctx: StateContext<IGameGathering>) {
   }));
 }
 
+export function cancelAllGathering() {
+  return [
+    new CancelFishing(),
+    new CancelMining(),
+    new CancelLogging(),
+    new CancelForaging(),
+    new CancelHunting()
+  ];
+}
+
 export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation, gdrValue: number) {
 
   if(isLocationOnCooldown(ctx, location)) {
     return;
   }
 
-  const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
+  ctx.dispatch([
+    ...cancelAllGathering(),
+  ]).subscribe(() => {
+    const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
 
-  ctx.setState(patch<IGameGathering>({
-    currentLocation: location,
-    currentLocationDurationInitial: gatherTime,
-    currentLocationDuration: gatherTime
-  }));
+    ctx.setState(patch<IGameGathering>({
+      currentLocation: location,
+      currentLocationDurationInitial: gatherTime,
+      currentLocationDuration: gatherTime
+    }));
+  });
 }

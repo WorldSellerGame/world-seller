@@ -1,5 +1,7 @@
+import { IGameCombatAbilityEffect } from './combat';
 
 export enum Rarity {
+  Broken = 'Broken',
   Junk = 'Junk',
   Common = 'Common',
   Uncommon = 'Uncommon',
@@ -18,7 +20,8 @@ export enum ItemCategory {
   Miscellaneous = 'Miscellaneous',
   RawMaterials = 'Raw Materials',
   RefinedMaterials = 'Refined Materials',
-  CraftingTables = 'Crafting Tables'
+  CraftingTables = 'Crafting Tables',
+  Weapons = 'Weapons'
 }
 
 export enum Stat {
@@ -39,7 +42,11 @@ export enum Stat {
 
   // generic stats
   Armor = 'armor',
-  Healing = 'healing'
+  Healing = 'healing',
+  Attack = 'attack',
+  EnergyBonus = 'energyBonus',
+  HealthBonus = 'healthBonus',
+  Speed = 'speed'
 }
 
 export enum ItemType {
@@ -51,6 +58,7 @@ export enum ItemType {
   FishingBait = 'FishingBait',
   Scythe = 'Scythe',
   HuntingTool = 'HuntingTool',
+  Weapon = 'Weapon',
 
   // armor
   LegArmor = 'LegArmor',
@@ -70,7 +78,12 @@ export interface IGame {
 }
 
 export interface IGameItem {
+
+  // used to uniquely identify this item
   id?: string;
+
+  // used to identify the item based on its internal name/id (for migrating items)
+  internalId?: string;
   name: string;
   description: string;
   type: ItemType;
@@ -81,8 +94,11 @@ export interface IGameItem {
   icon: string;
   canStack?: boolean;
   quantity?: number;
+  givesAbility?: string;
+  effects?: IGameCombatAbilityEffect[];
   stats: Record<Stat, number>;
 
+  foodDuration?: number;
   sellTicks?: number;
 }
 

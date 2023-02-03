@@ -1,0 +1,15 @@
+
+Alchemy1:
+  name: Alchemist's Poison Gas I
+  description: Poison an enemy.
+  icon: alchemy
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: PoisonWeak
+  cooldown: 10
+  energyCost: 5
+  requires:
+    alchemy: 10

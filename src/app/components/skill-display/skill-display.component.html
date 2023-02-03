@@ -1,0 +1,16 @@
+
+<ion-grid *ngIf="getSkillByName(skill) as skill">
+  <ion-row>
+    <ion-col class="icon">
+      <app-game-icon [icon]="skill.icon"></app-game-icon>
+    </ion-col>
+
+    <ion-col class="text">
+      <div class="name">{{ skill.name }}</div>
+      <div class="desc">{{ skill.description }}</div>
+      <div class="cost" *ngIf="skill.energyCost > 0">
+        <ion-text color="warning">{{ skill.energyCost }} Energy</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

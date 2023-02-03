@@ -33,7 +33,59 @@ const loadItems = async () => {
       const data = yaml.load(fs.readFileSync(file, 'utf8'));
       fs.writeJson(`src/assets/content/${path.basename(file, '.yml')}.json`, data);
     });
-  }))
+  }));
+
+  await Promise.all(['abilities'].map(async folder => {
+    const files = await readdir(`content/data/${folder}`);
+
+    const allData = {};
+
+    files.forEach((file: string) => {
+      const data = yaml.load(fs.readFileSync(file, 'utf8'));
+      merge(allData, data);
+    });
+
+    fs.writeJson(`src/assets/content/${folder}.json`, allData);
+  }));
+
+  await Promise.all(['enemies'].map(async folder => {
+    const files = await readdir(`content/data/${folder}`);
+
+    const allData = {};
+
+    files.forEach((file: string) => {
+      const data = yaml.load(fs.readFileSync(file, 'utf8'));
+      merge(allData, data);
+    });
+
+    fs.writeJson(`src/assets/content/${folder}.json`, allData);
+  }));
+
+  await Promise.all(['effects'].map(async folder => {
+    const files = await readdir(`content/data/${folder}`);
+
+    const allData = {};
+
+    files.forEach((file: string) => {
+      const data = yaml.load(fs.readFileSync(file, 'utf8'));
+      merge(allData, data);
+    });
+
+    fs.writeJson(`src/assets/content/${folder}.json`, allData);
+  }));
+
+  await Promise.all(['threats'].map(async folder => {
+    const files = await readdir(`content/data/${folder}`);
+
+    const allData = {};
+
+    files.forEach((file: string) => {
+      const data = yaml.load(fs.readFileSync(file, 'utf8'));
+      merge(allData, data);
+    });
+
+    fs.writeJson(`src/assets/content/${folder}.json`, allData);
+  }));
 
   console.log('☑ Content loaded.');
 };

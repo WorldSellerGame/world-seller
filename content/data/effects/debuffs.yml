@@ -1,0 +1,10 @@
+
+WeakenBasic:
+  name: Weaken
+  description: Lost -5 attack.
+  icon: weaken
+  color: "#ff0000"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    attack: -5

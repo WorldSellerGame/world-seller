@@ -17,16 +17,20 @@ export class ResourceIconComponent implements OnInit {
   @Input() inlineIconSize = false;
   @Input() emphasizeText = true;
 
+  public get resource() {
+    return this.contentService.getResourceByName(this.name);
+  }
+
   public get icon() {
-    return this.contentService.resources[this.name]?.icon.toLowerCase();
+    return this.resource?.icon.toLowerCase();
   }
 
   public get rarity() {
-    return this.contentService.resources[this.name]?.rarity.toLowerCase();
+    return this.resource?.rarity.toLowerCase();
   }
 
   public get description() {
-    return this.contentService.resources[this.name]?.description;
+    return this.resource?.description;
   }
 
   constructor(private contentService: ContentService) { }

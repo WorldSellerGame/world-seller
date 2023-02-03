@@ -118,13 +118,17 @@ export class ShopPage implements OnInit {
 
   // misc functions
   saleToStockpile(item: IGameItem) {
-    this.store.dispatch(new UnsellItem(item));
-    this.store.dispatch(new SendToStockpile(item));
+    this.store.dispatch([
+      new SendToStockpile(item),
+      new UnsellItem(item)
+    ]);
   }
 
   saleToInventory(item: IGameItem) {
-    this.store.dispatch(new UnsellItem(item));
-    this.store.dispatch(new SendToInventory(item));
+    this.store.dispatch([
+      new SendToInventory(item),
+      new UnsellItem(item)
+    ]);
   }
 
 }

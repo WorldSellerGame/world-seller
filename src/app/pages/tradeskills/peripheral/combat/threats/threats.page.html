@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Active Threats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    level: level$ | async,
+    threatInfo: threatInfo$ | async
+  } as pageData">
+    <ion-grid *ngIf="pageData.threatInfo">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              Time Left Until Threats Change:
+              <app-countdown *ngIf="pageData.threatInfo.threatChangeTicks > 0" [duration]="pageData.threatInfo.threatChangeTicks"></app-countdown>
+              <span *ngIf="pageData.threatInfo.threatChangeTicks <= 0">Changing...</span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="pageData.threatInfo.threats.length === 0">
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              Nothing can threaten you!
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let threatName of pageData.threatInfo.threats; trackBy: trackBy">
+        <ion-col>
+          <ion-card *ngIf="getThreatInfo(threatName) as threat">
+            <ion-card-header>
+              <ion-card-title class="enemy-card-title">
+                <app-game-icon class="enemy-icon" [icon]="threat.icon"></app-game-icon>
+                {{ threat.name }}
+              </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div class="threat-description">{{ threat.description }}</div>
+                  </ion-col>
+
+                  <ion-col>
+                    <div class="threat-drops">
+                      <app-resource-icon [name]="drop.key" [inlineIconSize]="true" *ngFor="let drop of getPotentialDrops(threatName).resources | keyvalue"></app-resource-icon>
+
+                      <app-item-icon [name]="drop.key" [inlineIconSize]="true" *ngFor="let drop of getPotentialDrops(threatName).items | keyvalue"></app-item-icon>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+
+            <ion-button class="user-action"
+                        fill="clear"
+                        [class.no-skillups]="(pageData.level || 0) >= threat.maxSkillGainLevel"
+                        (click)="fight(threatName)">
+              Fight!
+            </ion-button>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <app-debug-action-menu [actions]="debugActions"></app-debug-action-menu>
+</ion-content>

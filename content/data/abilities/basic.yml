@@ -1,0 +1,30 @@
+
+BasicAttack:
+  name: Attack
+  description: Perform a basic attack against a target. Restores 3 energy.
+  icon: knife
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.0
+      variance: 0
+  effects:
+    - effect: BasicAttack
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
+BasicUtilityEscape:
+  name: Escape
+  description: Escape from combat.
+  icon: run
+  target: Self
+  stats: []
+  type: Utility
+  stat: none
+  effects:
+    - effect: UtilityEscape
+  cooldown: 0
+  energyCost: 0
+  requires: {}

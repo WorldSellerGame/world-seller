@@ -116,7 +116,7 @@ Spicy Pepper:
   rarity: Uncommon
   icon: 'pepper'
 
-Spicy Pepper Seeds:
+Spicy Pepper Seed:
   description: Used to plant Spicy Peppers in the farm.
   category: Seeds
   rarity: Uncommon
@@ -157,8 +157,8 @@ Coconut:
 Rose:
   description: A beautiful flower, a thorny stem.
   category: Foods
-  rarity: Common
-  icon: 'Rare'
+  rarity: Rare
+  icon: 'rose'
 
 #Epic
 

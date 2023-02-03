@@ -1,0 +1,33 @@
+
+
+PotionHeal:
+  name: Potion Heal
+  description: Heal yourself.
+  icon: healing
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
+PotionDamage:
+  name: Potion Damage
+  description: Damage an enemy.
+  icon: fire-bottle
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1
+      variance: 0
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 0
+  energyCost: 0
+  requires: {}
