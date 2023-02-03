@@ -3,6 +3,7 @@
 import { StateContext } from '@ngxs/store';
 import { IAttackParams, ICombatDelta, IGameCombat, Stat } from '../../../interfaces';
 import { AddCombatLogMessage, SetCombatLock, SetCombatLockForEnemies } from '../../../stores/combat/combat.actions';
+import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../../stores/combat/dungeon.actions';
 import { calculateAbilityDamageForUser, dispatchCorrectCombatEndEvent } from '../combat';
 
 function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackParams): { damage: number; deltas: ICombatDelta[] } {
@@ -61,7 +62,9 @@ export function UtilityEscape(ctx: StateContext<IGameCombat>, opts: IAttackParam
   ctx.dispatch([
     new SetCombatLock(true),
     new SetCombatLockForEnemies(true),
-    new AddCombatLogMessage('You escaped successfully!')
+    new AddCombatLogMessage('You escaped successfully!'),
+    new GainPercentageOfDungeonLoot(70),
+    new LeaveDungeon()
   ]);
 
   setTimeout(() => {

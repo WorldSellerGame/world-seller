@@ -1,0 +1,54 @@
+
+
+.dungeon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .dungeon-row {
+    display: inline-flex;
+    flex-direction: row;
+
+    .dungeon-col, .dungeon-col app-game-icon {
+      width: 32px;
+      height: 32px;
+      max-width: 32px;
+      max-height: 32px;
+    }
+  }
+}
+
+.movement-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .movement-options {
+    width: 256px;
+    height: 256px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ion-col {
+      min-width: 64px;
+      min-height: 64px;
+      padding: 0;
+    }
+
+    .has-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-button {
+        min-height: 48px;
+        min-width: 48px;
+        --padding-start: 0.6em;
+        --padding-end: 0.6em;
+      }
+    }
+  }
+}

@@ -6,21 +6,20 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import {
-  applyDeltas,
-  calculateMaxEnergy, calculateMaxHealth, defaultStatsZero,
+  applyDeltas, calculateSpeedBonus, defaultStatsZero,
+  findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getSkillsFromItems, getStatTotals, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
-import { NotifyService } from '../../app/services/notify.service';
 import {
-  CombatAbilityTarget, IGameCombat, IGameCombatAbility,
+  CombatAbilityTarget, DungeonTile, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
 import { TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
-  AddCombatLogMessage, ChangeThreats, ConsumeFoodCharges, EnemyCooldownSkill,
+  AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
   LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
@@ -30,6 +29,7 @@ import {
   acquireItemDrops,
   defaultCombat
 } from './combat.functions';
+import { EnterDungeon } from './dungeon.actions';
 
 @State<IGameCombat>({
   name: 'combat',
@@ -38,7 +38,7 @@ import {
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService, private notify: NotifyService) {
+  constructor(private store: Store, private contentService: ContentService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -62,6 +62,11 @@ export class CombatState {
   @Selector()
   static activeFoods(state: IGameCombat) {
     return state.activeFoods;
+  }
+
+  @Selector()
+  static currentPlayer(state: IGameCombat) {
+    return state.currentPlayer;
   }
 
   @Selector()
@@ -116,85 +121,32 @@ export class CombatState {
     ctx.setState(patch<IGameCombat>({ activeItems, activeFoods }));
   }
 
-  @Action(ConsumeFoodCharges)
-  consumeFoodCharges(ctx: StateContext<IGameCombat>) {
-    const state = ctx.getState();
-
-    const foods = state.activeFoods.map(food => {
-      if(!food) {
-        return undefined;
-      }
-
-      const newDuration = (food.foodDuration ?? 0) - 1;
-
-      if(newDuration <= 0) {
-        this.notify.notify(`Your ${food.name} effects have worn off.`);
-        return undefined;
-      }
-
-      return { ...food, foodDuration: newDuration };
-    });
-
-    ctx.setState(patch<IGameCombat>({ activeFoods: foods }));
-  }
-
   @Action(InitiateCombat)
-  initiateCombat(ctx: StateContext<IGameCombat>, { threat, shouldResetPlayer }: InitiateCombat) {
+  initiateCombat(ctx: StateContext<IGameCombat>, { threat, shouldResetPlayer, shouldExitDungeon }: InitiateCombat) {
     const store = this.store.snapshot();
     const state = ctx.getState();
+
+    const threatData = this.contentService.getThreatByName(threat);
+
+    // we need the active player to exist. it always will. probably?
+    const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
+    if(!activePlayer) {
+      return;
+    }
 
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-
-      const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
-      if(!activePlayer) {
-        return;
-      }
-
-      const stats = merge(defaultStatsZero(), getStatTotals(activePlayer));
-
-      state.activeFoods.forEach(food => {
-        if(!food) {
-          return;
-        }
-
-        const foodStats = food.stats;
-        if(!foodStats) {
-          return;
-        }
-
-        Object.keys(foodStats).forEach(stat => {
-          stats[stat as Stat] += foodStats[stat as Stat];
-        });
-      });
-
-      currentPlayer = {
-        name: activePlayer.name,
-        icon: '',
-        abilities: [
-          'BasicAttack', 'BasicUtilityEscape',
-          ...getSkillsFromItems(activePlayer.equipment),
-          ...state.activeSkills.filter(Boolean)
-        ],
-        level: getTotalLevel(store),
-        stats,
-        cooldowns: {},
-        idleChance: 0,
-        statusEffects: [],
-        drops: [],
-        currentSpeed: 0,
-        currentEnergy: calculateMaxEnergy(activePlayer),
-        maxEnergy: calculateMaxEnergy(activePlayer),
-        currentHealth: calculateMaxHealth(activePlayer),
-        maxHealth: calculateMaxHealth(activePlayer)
-      } as IGameEncounterCharacter;
+      currentPlayer = getPlayerCharacterReadyForCombat(ctx, activePlayer);
     }
+
+    // sync things in case we have a persistent character
+    currentPlayer.stats[Stat.Speed] = calculateSpeedBonus(activePlayer);
 
     // set up enemies for combat
     const enemyNamesAndCounts: Record<string, number> = {};
 
-    const enemies: IGameEncounterCharacter[] = threat.enemies.map(enemyName => {
+    const enemies: IGameEncounterCharacter[] = threatData.enemies.map(enemyName => {
       const enemyData = this.contentService.getEnemyByName(enemyName);
 
       enemyNamesAndCounts[enemyData.name] ??= 0;
@@ -214,7 +166,6 @@ export class CombatState {
         name: `${enemyData.name} ${String.fromCharCode(65 - 1 + enemyNamesAndCounts[enemyData.name])}`,
         icon: enemyData.icon,
         abilities: ['BasicAttack', ...enemyData.abilities],
-        level: threat.level,
         stats,
         statusEffects: [],
         idleChance: enemyData.idleChance,
@@ -231,7 +182,7 @@ export class CombatState {
     // speed adjustments
     const maxSpeed = 1 + Math.max(
       currentPlayer.stats[Stat.Speed],
-      ...threat.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
+      ...threatData.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
     );
 
     [currentPlayer, ...enemies].forEach(char => {
@@ -243,11 +194,14 @@ export class CombatState {
       currentPlayer,
       currentEncounter: {
         enemies,
-        log: [`Combat against ${threat.name} start!`],
+        log: [`Combat against ${threatData.name} start!`],
         shouldResetPlayer,
         isLocked: false,
         isLockedForEnemies: false,
-        shouldGiveSkillPoint: threat.maxSkillGainLevel > state.level
+        shouldExitDungeon,
+
+        // every 10th level requires a dungeon dive
+        shouldGiveSkillPoint: (state.level % 10) !== 0 && threatData.maxSkillGainLevel > state.level
       }
     }));
   }
@@ -374,7 +328,7 @@ export class CombatState {
 
       if(isDead(target)) {
         ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
-        acquireItemDrops(ctx, target);
+        acquireItemDrops(ctx, target.drops);
       }
     });
 
@@ -458,18 +412,55 @@ export class CombatState {
     }));
   }
 
+  @Action(EnterDungeon)
+  enterDungeon(ctx: StateContext<IGameCombat>, { dungeon }: EnterDungeon) {
+    const store = this.store.snapshot();
+
+    // we need the active player to exist. it always will. probably?
+    const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
+    if(!activePlayer) {
+      return;
+    }
+
+    const dungeonCharacter = getPlayerCharacterReadyForCombat(ctx, activePlayer);
+
+    const startPos = findUniqueTileInDungeonFloor(dungeon, 0, DungeonTile.Entrance);
+    if(!startPos) {
+      return;
+    }
+
+    ctx.setState(patch<IGameCombat>({
+      currentPlayer: dungeonCharacter,
+      currentDungeon: {
+        currentLoot: {
+          items: [],
+          resources: {}
+        },
+        pos: {
+          x: startPos.x,
+          y: startPos.y,
+          z: 0
+        },
+        dungeon
+      }
+    }));
+  }
+
   @Action(TickTimer)
   decreaseDuration(ctx: StateContext<IGameCombat>, { ticks }: TickTimer) {
     const state = ctx.getState();
 
     // modify threats if applicable
-    if(state.threatChangeTicks <= 0) {
-      ctx.dispatch(new ChangeThreats());
-    }
+    // (while you're in a dungeon or encounter, your threats reset immediately afterwards anyway)
+    if(!state.currentDungeon && !state.currentEncounter) {
+      if(state.threatChangeTicks <= 0) {
+        ctx.dispatch(new ChangeThreats());
+      }
 
-    ctx.setState(patch<IGameCombat>({
-      threatChangeTicks: state.threatChangeTicks - ticks
-    }));
+      ctx.setState(patch<IGameCombat>({
+        threatChangeTicks: state.threatChangeTicks - ticks
+      }));
+    }
 
     if(state.currentEncounter && state.currentPlayer) {
       let canSomeoneAct = false;

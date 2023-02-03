@@ -1,13 +1,15 @@
 import { StateContext } from '@ngxs/store';
 import { patch, updateItem } from '@ngxs/store/operators';
-import { clamp, random, sum } from 'lodash';
+import { clamp, merge, random, sum } from 'lodash';
 import * as CombatActions from '../../app/helpers/abilities';
 import {
   IAttackParams, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameEncounter, IGameEncounterCharacter, IGameItem, ItemType, Stat
+  IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock } from '../../stores/combat/combat.actions';
+import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
+import { calculateMaxEnergy, calculateMaxHealth, defaultStatsZero, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
 
@@ -73,13 +75,27 @@ export function hasAnyoneWonCombat(ctx: StateContext<IGameCombat>): boolean {
 
 export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
 
-  const { currentEncounter, level } = ctx.getState();
+  const { currentEncounter, currentDungeon, level } = ctx.getState();
   if(!currentEncounter) {
     return;
   }
 
   if(hasPlayerWonCombat(ctx)) {
     ctx.dispatch(new AddCombatLogMessage('You have won combat!'));
+
+    // if we're leaving the dungeon on win, do that and level up
+    if(currentEncounter.shouldExitDungeon) {
+      if(currentDungeon?.dungeon.givesPointAtCombatLevel === level) {
+        ctx.setState(patch<IGameCombat>({
+          level: level + 1
+        }));
+      }
+
+      ctx.dispatch([
+        new GainPercentageOfDungeonLoot(100),
+        new LeaveDungeon()
+      ]);
+    }
 
     // can I get a levelup?
     if(currentEncounter.shouldGiveSkillPoint) {
@@ -92,6 +108,13 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
 
   } else if(hasEnemyWonCombat(ctx)) {
     ctx.dispatch(new AddCombatLogMessage('You have lost combat!'));
+
+    if(currentDungeon) {
+      ctx.dispatch([
+        new GainPercentageOfDungeonLoot(30),
+        new LeaveDungeon()
+      ]);
+    }
   }
 
   ctx.dispatch(new SetCombatLock(true));
@@ -194,4 +217,46 @@ export function applyDeltas(
       }));
     });
   });
+}
+
+export function getPlayerCharacterReadyForCombat(ctx: StateContext<IGameCombat>, activePlayer: IPlayerCharacter): IGameEncounterCharacter {
+  const state = ctx.getState();
+
+  const stats = merge(defaultStatsZero(), getStatTotals(activePlayer));
+
+  state.activeFoods.forEach(food => {
+    if(!food) {
+      return;
+    }
+
+    const foodStats = food.stats;
+    if(!foodStats) {
+      return;
+    }
+
+    Object.keys(foodStats).forEach(stat => {
+      stats[stat as Stat] += foodStats[stat as Stat];
+    });
+  });
+
+  return {
+    name: activePlayer.name,
+    icon: 'me',
+    abilities: [
+      'BasicAttack', 'BasicUtilityEscape',
+      ...getSkillsFromItems(activePlayer.equipment),
+      ...state.activeSkills.filter(Boolean)
+    ],
+
+    stats,
+    cooldowns: {},
+    idleChance: 0,
+    statusEffects: [],
+    drops: [],
+    currentSpeed: 0,
+    currentEnergy: calculateMaxEnergy(activePlayer),
+    maxEnergy: calculateMaxEnergy(activePlayer),
+    currentHealth: calculateMaxHealth(activePlayer),
+    maxHealth: calculateMaxHealth(activePlayer)
+  };
 }

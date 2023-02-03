@@ -5,9 +5,8 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
-import { NotifyService } from '../../app/services/notify.service';
 import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
-import { UpdateAllItems } from '../game/game.actions';
+import { NotifyError, NotifyInfo, NotifyWarning, UpdateAllItems } from '../game/game.actions';
 import { BreakItem, DecreaseDurability, GainJobResult, GainResources, SaveActiveCharacter } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
@@ -20,7 +19,6 @@ import { defaultCharSelect } from './charselect.functions';
 export class CharSelectState {
 
   constructor(
-    private notifyService: NotifyService,
     private itemCreatorService: ItemCreatorService
   ) {
     attachments.forEach(({ action, handler }) => {
@@ -120,7 +118,7 @@ export class CharSelectState {
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);
 
     if(earnedNothing) {
-      this.notifyService.warn('You didn\'t get anything...');
+      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
     }
 
     const earnedResources = Object.keys(resources).filter(x => x !== 'nothing').filter(x => resources[x] > 0);
@@ -130,14 +128,14 @@ export class CharSelectState {
     }
 
     const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
-    this.notifyService.notify(`Gained ${resStr}!`);
+    ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
   }
 
   @Action(GainJobResult)
   async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainJobResult) {
 
     if(itemName === 'nothing') {
-      this.notifyService.warn('You didn\'t get anything...');
+      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
@@ -151,11 +149,11 @@ export class CharSelectState {
     // otherwise, try to gain an item
     const createdItem = this.itemCreatorService.createItem(itemName, quantity);
     if(!createdItem) {
-      this.notifyService.warn('You didn\'t get anything...');
+      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
-    this.notifyService.notify(`Gained ${itemName} x${quantity}!`);
+    ctx.dispatch(new NotifyInfo(`Gained ${itemName} x${quantity}!`));
 
     const state = ctx.getState();
 
@@ -203,8 +201,10 @@ export class CharSelectState {
 
     // only break if it is freshly breaking
     if(currentItem.durability > 0 && newDurability <= 0) {
-      ctx.dispatch(new BreakItem(slot));
-      this.notifyService.error(`Your ${currentItem.name} broke!`);
+      ctx.dispatch([
+        new BreakItem(slot),
+        new NotifyError(`Your ${currentItem.name} broke!`)
+      ]);
     }
 
     ctx.setState(patch<ICharSelect>({

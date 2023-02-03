@@ -18,6 +18,12 @@
               <app-countdown *ngIf="pageData.threatInfo.threatChangeTicks > 0" [duration]="pageData.threatInfo.threatChangeTicks"></app-countdown>
               <span *ngIf="pageData.threatInfo.threatChangeTicks <= 0">Changing...</span>
             </ion-card-content>
+
+            <ion-card-content *ngIf="((pageData.level || 0) % 10) === 0">
+              <ion-text color="warning">
+                You are currently at a level where you can't gain a level in Combat. You need to go to the next dungeon to level up.
+              </ion-text>
+            </ion-card-content>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -62,7 +68,7 @@
 
             <ion-button class="user-action"
                         fill="clear"
-                        [class.no-skillups]="(pageData.level || 0) >= threat.maxSkillGainLevel"
+                        [class.no-skillups]="(pageData.level || 0) % 10 === 0 || (pageData.level || 0) >= threat.maxSkillGainLevel"
                         (click)="fight(threatName)">
               Fight!
             </ion-button>

@@ -4,7 +4,7 @@ SingleGoblin:
   icon: goblin-small
   description: A tiny lil goblin. He can't do too much to you, can he?
 
-  maxSkillGainLevel: 5
+  maxSkillGainLevel: 4
   level:
     min: 1
     max: 150
@@ -17,7 +17,7 @@ SingleBiggerGoblin:
   icon: goblin-big
   description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
 
-  maxSkillGainLevel: 10
+  maxSkillGainLevel: 6
   level:
     min: 50
     max: 200
@@ -30,7 +30,7 @@ GoblinDuo:
   icon: goblin-small
   description: A pair of tiny goblins. They do get a little more threatening this way.
 
-  maxSkillGainLevel: 5
+  maxSkillGainLevel: 7
   level:
     min: 1
     max: 150
@@ -44,7 +44,7 @@ GoblinMixedDuo:
   icon: goblin-small
   description: A mixed pair of tiny goblins.
 
-  maxSkillGainLevel: 5
+  maxSkillGainLevel: 9
   level:
     min: 1
     max: 200
@@ -58,7 +58,7 @@ GoblinMixedTrio:
   icon: goblin-small
   description: A trio of goblins - and one of them has a staff.
 
-  maxSkillGainLevel: 5
+  maxSkillGainLevel: 11
   level:
     min: 1
     max: 200
@@ -73,7 +73,7 @@ GoblinParty:
   icon: goblin-small
   description: A party of goblins. Adventurers aren't the only ones who can party up.
 
-  maxSkillGainLevel: 5
+  maxSkillGainLevel: 12
   level:
     min: 1
     max: 200

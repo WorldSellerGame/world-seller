@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 
-import { patch, updateItem } from '@ngxs/store/operators';
-import { IGameCombat, IGameEncounter, IGameEncounterCharacter, IGameItem, Stat } from '../../interfaces';
+import { append, patch, updateItem } from '@ngxs/store/operators';
+import { IGameCombat, IGameDungeonLoot, IGameDungeonState, IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat } from '../../interfaces';
 import {
   AddCombatLogMessage, ConsumeFoodCharges, EnemyCooldownSkill, EnemySpeedReset,
   LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
@@ -13,6 +13,7 @@ import {
 
 import { applyDeltas, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 import { AddItemToInventory, GainJobResult, RemoveItemFromInventory } from '../charselect/charselect.actions';
+import { NotifyInfo } from '../game/game.actions';
 
 
 export const defaultCombat: () => IGameCombat = () => ({
@@ -291,11 +292,34 @@ export function lowerEnemyCooldowns(ctx: StateContext<IGameCombat>, { enemyIndex
 /**
  * Get all item drops (items and resources) from a singular enemy.
  */
-export function acquireItemDrops(ctx: StateContext<IGameCombat>, enemy: IGameEncounterCharacter) {
-  enemy.drops.forEach(drop => {
+export function acquireItemDrops(ctx: StateContext<IGameCombat>, drops: IGameEncounterDrop[]) {
+
+  const isInDungeon = !!ctx.getState().currentDungeon;
+
+  drops.forEach(drop => {
     const { item, resource, amount } = drop;
 
     if(resource) {
+
+      // in a dungeon, we store the loot
+      if(isInDungeon) {
+        const currentResourceValue = ctx.getState().currentDungeon?.currentLoot?.resources[resource] ?? 0;
+
+        ctx.dispatch(new NotifyInfo(`You found ${amount}x ${resource}!`));
+
+        ctx.setState(patch<IGameCombat>({
+          currentDungeon: patch<IGameDungeonState>({
+            currentLoot: patch<IGameDungeonLoot>({
+              resources: patch<Record<string, number>>({
+                [resource]: currentResourceValue + amount
+              })
+            })
+          })
+        }));
+
+        return;
+      }
+
       ctx.dispatch([
         new AddCombatLogMessage(`You got ${amount}x ${resource}!`),
         new GainJobResult(resource, amount)
@@ -303,6 +327,23 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, enemy: IGameEnc
     }
 
     if(item) {
+
+      // in a dungeon, we store the loot
+      if(isInDungeon) {
+
+        ctx.dispatch(new NotifyInfo(`You found ${amount}x ${item}!`));
+
+        ctx.setState(patch<IGameCombat>({
+          currentDungeon: patch<IGameDungeonState>({
+            currentLoot: patch<IGameDungeonLoot>({
+              items: append<string>(Array(amount).fill(undefined).map(() => item))
+            })
+          })
+        }));
+
+        return;
+      }
+
       ctx.dispatch([
         new AddCombatLogMessage(`You got ${amount}x ${item}!`),
         ...Array(amount).fill(undefined).map(() => new GainJobResult(item, amount))
@@ -416,4 +457,28 @@ export function tickEnemyEffects(ctx: StateContext<IGameCombat>, { enemyIndex }:
       }))
     })
   }));
+}
+
+/**
+ * Consume one charge of food per food item.
+ */
+export function consumeFoodCharges(ctx: StateContext<IGameCombat>) {
+  const state = ctx.getState();
+
+  const foods = state.activeFoods.map(food => {
+    if(!food) {
+      return undefined;
+    }
+
+    const newDuration = (food.foodDuration ?? 0) - 1;
+
+    if(newDuration <= 0) {
+      ctx.dispatch(new NotifyInfo(`Your ${food.name} effects have worn off.`));
+      return undefined;
+    }
+
+    return { ...food, foodDuration: newDuration };
+  });
+
+  ctx.setState(patch<IGameCombat>({ activeFoods: foods }));
 }

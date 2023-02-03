@@ -39,7 +39,7 @@ export class ThreatsPage implements OnInit {
   }
 
   fight(threatName: string) {
-    this.store.dispatch(new InitiateCombat(this.getThreatInfo(threatName), true));
+    this.store.dispatch(new InitiateCombat(threatName, true));
   }
 
   getPotentialDrops(threatName: string) {
