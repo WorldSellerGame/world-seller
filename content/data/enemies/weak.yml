@@ -1,0 +1,83 @@
+
+Goblin1:
+  name: Goblin
+  icon: goblin-small
+  description: A tiny lil goblin. He can't do too much to you, can he?
+
+  health: 25
+  energy: 25
+
+  idleChance: 25
+
+  stats:
+    attack: 5
+    armor: 2
+    speed: 6
+
+  abilities:
+    - Stab
+
+  drops:
+    - resource: Coin
+      min: 10
+      max: 25
+      chance: 100
+
+Goblin2:
+  name: Goblin
+  icon: goblin-big
+  description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
+
+  health: 50
+  energy: 50
+
+  idleChance: 15
+
+  stats:
+    attack: 10
+    armor: 4
+    speed: 5
+
+  abilities:
+    - Stab
+
+  drops:
+    - resource: Coin
+      min: 25
+      max: 45
+      chance: 100
+
+    - resource: Linen Cloth
+      min: 1
+      max: 3
+      chance: 25
+
+GoblinShaman1:
+  name: Goblin Shaman
+  icon: goblin-big
+  description: A caster goblin. You should probably kill the caster first, right?
+
+  health: 50
+  energy: 50
+
+  idleChance: 15
+
+  stats:
+    attack: 5
+    healing: 10
+    armor: 4
+    speed: 5
+
+  abilities:
+    - GoblishHeal1
+
+  drops:
+    - resource: Coin
+      min: 25
+      max: 45
+      chance: 100
+
+    - item: Goblin Staff
+      min: 1
+      max: 1
+      chance: 50

@@ -8,6 +8,7 @@ Raspberry Cupcake:
   durability: 1
   value: 5
   icon: cupcake
+  foodDuration: 5
   stats:
     healing: 50
 
@@ -86,3 +87,4 @@ Cooked Cropfish:
 #grouse
 
 # additionally Something that uses honey
+

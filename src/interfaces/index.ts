@@ -1,5 +1,6 @@
 export * from './character';
 export * from './charselect';
+export * from './combat';
 export * from './farming';
 export * from './game';
 export * from './gathering';

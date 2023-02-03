@@ -2,11 +2,11 @@ import { IAttachment } from '../../interfaces/store';
 import { QuickSellItemFromInventory, SellItem, SendToInventory, SendToStockpile } from '../mercantile/mercantile.actions';
 
 import {
-  AddItemToInventory, CreateCharacter, DeleteCharacter,
+  AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter,
   EquipItem, GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
 } from './charselect.actions';
 import {
-  addItemToInventory, createCharacter, deleteCharacter,
+  addItemToInventory, breakItem, createCharacter, deleteCharacter,
   equipItem, gainResources, removeItemFromInventory, saveCurrentCharacter, setActiveCharacter, syncTotalLevel, unequipItem
 } from './charselect.functions';
 
@@ -24,6 +24,7 @@ export const attachments: IAttachment[] = [
   { action: SendToStockpile, handler: removeItemFromInventory },
   { action: QuickSellItemFromInventory, handler: removeItemFromInventory },
   { action: SellItem, handler: removeItemFromInventory },
+  { action: BreakItem, handler: breakItem },
 
   { action: EquipItem, handler: equipItem },
   { action: UnequipItem, handler: unequipItem },

@@ -2,11 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
-import { ICharacter, IGameRefiningRecipe } from '../interfaces';
+import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
-import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { GainJobResult, SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
+import { NotifyService } from './services/notify.service';
 
 interface IMenuItem {
   title: string;
@@ -23,11 +25,13 @@ interface IMenuItem {
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
+  @Select(OptionsState.isDebugMode) debugMode$!: Observable<boolean>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
+  public debug!: Subscription;
   public level!: Subscription;
   public totalLevel = 0;
 
@@ -97,6 +101,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   public peripheralTradeskills: IMenuItem[] = [
+
+    { title: 'Combat',    url: 'combat',    icon: 'combat',
+      timer: of(0),
+      level: this.store.select(state => state.combat.level) },
+
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       timer: of(0),
       level: this.store.select(state => state.farming.level) },
@@ -120,22 +129,47 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
+    private notify: NotifyService,
     private readonly gameloopService: GameloopService
   ) { }
 
   ngOnInit() {
     this.gameloopService.init();
 
+    this.store.dispatch(new UpdateAllItems());
+
     this.level = this.store.select(state => getTotalLevel(state)).subscribe(level => {
       this.totalLevel = level;
 
       this.store.dispatch(new SyncTotalLevel(level));
+    });
+
+    const oldError = window.onerror;
+
+    this.debug = this.debugMode$.subscribe(debugMode => {
+      if(!debugMode) {
+        (window as any).gainItem = () => {};
+        window.onerror = oldError;
+        return;
+      }
+
+      window.onerror = (error: Event | string) => {
+        const message = (error as ErrorEvent).message ?? error;
+
+        this.notify.error(message);
+        console.error(error);
+      };
+
+      (window as any).gainItem = (item: string, amount: number) => {
+        this.store.dispatch(new GainJobResult(item, amount));
+      };
     });
   }
 
   ngOnDestroy() {
     this.gameloopService.stop();
     this.level?.unsubscribe();
+    this.debug?.unsubscribe();
   }
 
 }

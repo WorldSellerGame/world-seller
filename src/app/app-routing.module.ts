@@ -83,12 +83,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tradeskills/peripheral/mercantile/mercantile.module').then( m => m.MercantilePageModule)
   },
   {
+    path: 'game/:slot/combat',
+    loadChildren: () => import('./pages/tradeskills/peripheral/combat/combat.module').then( m => m.CombatPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
   }
-
-
 ];
 
 @NgModule({

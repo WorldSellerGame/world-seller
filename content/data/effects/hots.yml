@@ -1,0 +1,9 @@
+
+RegenWeak:
+  name: Regen
+  description: Regenerates health over time.
+  icon: healing
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: DamageOverTime
+  damageOverTime: -5

@@ -6,8 +6,9 @@ import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { NotifyService } from '../../app/services/notify.service';
-import { ICharSelect, ICharacter, IGameItem, ItemType } from '../../interfaces';
-import { DecreaseDurability, GainJobResult, GainResources, SaveActiveCharacter, UnequipItem } from './charselect.actions';
+import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
+import { UpdateAllItems } from '../game/game.actions';
+import { BreakItem, DecreaseDurability, GainJobResult, GainResources, SaveActiveCharacter } from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -55,6 +56,57 @@ export class CharSelectState {
   @Selector()
   static activeCharacterEquipment(state: ICharSelect) {
     return this.activeCharacter(state)?.equipment ?? {};
+  }
+
+  @Action(UpdateAllItems)
+  async updateAllItems(ctx: StateContext<ICharSelect>) {
+    const state = ctx.getState();
+    const characters = state.characters.map(char => {
+
+      const inventory = char.inventory.map((oldItem) => {
+
+        // can't migrate an item with no id
+        if(!oldItem.internalId) {
+          return undefined;
+        }
+
+        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
+        if(!newItem) {
+          return undefined;
+        }
+
+        newItem.durability = oldItem.durability;
+        newItem.stats = oldItem.stats;
+
+        return newItem;
+      }, []).filter(Boolean);
+
+      const equipment = Object.keys(char.equipment).reduce((acc, key) => {
+        const oldItem = char.equipment[key as ItemType];
+        if(!oldItem) {
+          return { ...acc };
+        }
+
+        // can't migrate an item with no id
+        if(!oldItem.internalId) {
+          return { ...acc };
+        }
+
+        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
+        if(!newItem) {
+          return { ...acc };
+        }
+
+        newItem.durability = oldItem.durability;
+        newItem.stats = oldItem.stats;
+
+        return { ...acc, [key]: newItem };
+      }, {});
+
+      return { ...char, inventory, equipment };
+    });
+
+    ctx.setState(patch({ characters }));
   }
 
   @Action(GainResources)
@@ -111,7 +163,7 @@ export class CharSelectState {
 
     if(existingItem && createdItem.canStack) {
       ctx.setState(patch<ICharSelect>({
-        characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+        characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
           inventory: updateItem<IGameItem>(
             (item) => item?.name === itemName,
             patch<IGameItem>({
@@ -125,7 +177,7 @@ export class CharSelectState {
     }
 
     ctx.setState(patch<ICharSelect>({
-      characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+      characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
         inventory: append<IGameItem>([createdItem])
       }))
     }));
@@ -148,14 +200,15 @@ export class CharSelectState {
     }
 
     const newDurability = Math.max(0, currentItem.durability - 1);
-    if(newDurability <= 0) {
-      ctx.dispatch(new UnequipItem(slot));
+
+    // only break if it is freshly breaking
+    if(currentItem.durability > 0 && newDurability <= 0) {
+      ctx.dispatch(new BreakItem(slot));
       this.notifyService.error(`Your ${currentItem.name} broke!`);
-      return;
     }
 
     ctx.setState(patch<ICharSelect>({
-      characters: updateItem<ICharacter>(state.currentCharacter, patch<ICharacter>({
+      characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
         equipment: patch<Partial<Record<ItemType, IGameItem>>>({
           [slot]: patch<IGameItem>({
             durability: newDurability

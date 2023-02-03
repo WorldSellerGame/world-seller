@@ -1,0 +1,10 @@
+
+StrengthenBasic:
+  name: Strengthen
+  description: Gained +5 attack.
+  icon: strong
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    attack: 5

@@ -133,3 +133,7 @@ ion-label.has-timer {
   margin: 4px 0 4px 8px;
   position: relative;
 }
+
+ion-item.item.selected {
+  pointer-events: none;
+}

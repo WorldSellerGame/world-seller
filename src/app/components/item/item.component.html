@@ -1,4 +1,4 @@
-<div class="item" [ngClass]="[item.rarity || 'Common']">
+<div class="item" [ngClass]="[itemClass]">
   <app-game-icon class="icon" [icon]="item.icon" [inlineIconSize]="true"></app-game-icon>
   <span class="name" [ngxTippy]="item.description">{{ item.name }}</span>
   <span class="quantity" *ngIf="(item.quantity || 1) > 1">x{{ item.quantity | number }}</span>

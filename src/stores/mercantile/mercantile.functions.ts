@@ -2,6 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { append, patch, removeItem } from '@ngxs/store/operators';
 import { random, sum } from 'lodash';
+import { itemValue } from '../../app/helpers';
 import { IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
 import { GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -75,11 +76,6 @@ export function maxStockpileSizeUpgradeCost(currentLevel: number): number {
 
 export function maxStockpileSize(limitLevel: number): number {
   return 100 + (limitLevel * 10);
-}
-
-// item functions
-export function itemValue(item: IGameItem, multiplier = 1): number {
-  return multiplier * (item.quantity ?? 1) * (item.value ?? 1);
 }
 
 export function shouldSellItem(item: IGameItem, reductionMultiplier = 0): boolean {

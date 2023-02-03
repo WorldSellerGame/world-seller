@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MetaService } from 'src/app/services/meta.service';
-import { ICharacter } from '../../../../interfaces';
+import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
 
@@ -15,7 +15,7 @@ import { DeleteCharacter } from '../../../../stores/charselect/charselect.action
 })
 export class HomePage implements OnInit {
 
-  @Select(CharSelectState.characters) characters$!: Observable<ICharacter[]>;
+  @Select(CharSelectState.characters) characters$!: Observable<IPlayerCharacter[]>;
 
   constructor(
     private store: Store,
@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  canMakeNewCharacter(characterList: ICharacter[]) {
+  canMakeNewCharacter(characterList: IPlayerCharacter[]) {
     return characterList.length < 1;
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { ICharacter } from '../../../../interfaces';
+import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { CreateCharacter } from '../../../../stores/charselect/charselect.actions';
 
@@ -13,7 +13,7 @@ import { CreateCharacter } from '../../../../stores/charselect/charselect.action
 })
 export class NewPage implements OnInit {
 
-  @Select(CharSelectState.characters) characters$!: Observable<ICharacter[]>;
+  @Select(CharSelectState.characters) characters$!: Observable<IPlayerCharacter[]>;
 
   public character = { name: '' };
 
