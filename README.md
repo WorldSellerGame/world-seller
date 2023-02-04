@@ -83,6 +83,15 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 * `healthBonus` - boost to the creatures max health
 * `energyBonus` - boost to the creatures max energy
 
+#### Dungeon Nodes
+
+* `e` - the entrance of the current floor (can be used to go back to the previous floor, or leave)
+* `x` - the exit of the current floor (will go to the next floor)
+* `f` - a bonfire, will heal the player fully
+* `b` - the boss of the dungeon - if there are multiple, any boss killed will end the dungeon
+* `.` - wall - non-traversible
+* `1` - floor - traversible
+
 #### Adding a New Resource
 
 1. Add the resource under the corresponding tradeskill in the `content/resources` folder (file names are used purely for organization).
@@ -202,3 +211,18 @@ Threats require:
 * `maxSkillGainLevel` - the level at which the threat stops giving skill gain
 * `level` - the range of levels the threat will be valid for the player (`min`, `max`)
 * `enemies` - the enemies the threat will spawn - see threats for how to declare this, and see Enemies for the valid enemies
+
+#### Adding a New Dungeon
+
+1. Add the dungeon under any file in the `content/dungeons` folder (file names are used here are purely organizational, _but_ consider naming them in order with a brief description, e.g. `1-goblin` for "level 1" and "there are goblins here").
+
+Dungeons require:
+
+* `name` - shown in game
+* `description` - shown in game
+* `icon` - the name of the SVG file in `src/assets/icon`
+* `givesPointAtCombatLevel` - the level at which the dungeon will give a point
+* `floors` - the floors the dungeon has - see dungeons for how to declare this, and see Dungeon Nodes for a listing of valid node names
+* `boss` - the threat name of the boss of the dungeon (when beaten, the player will be given a point and exit the dungeon)
+* `threats` - a mapping of keys to threat names - the keys will be placed in the floor layout, and the threat names must be threats that exist
+* `treasureChests` - a mapping of keys to the possible rewards given by the chest - each type of chest can have a randomized set of rewards, and they can have multiple rewards (see examples)
