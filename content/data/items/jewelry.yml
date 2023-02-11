@@ -1,12 +1,210 @@
 
-Quartz Ring:
-  name: Quartz Ring
-  description: A simple copper ring set with a cut quartz.
+
+
+Dandelion Crown:
+  name: Dandelion Crown
+  description: Dandelions braided together.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 2
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Braided Belt:
+  name: Braided Belt
+  description: A simple braided belt.
   type: Jewelry
   category: Jewelry
   rarity: Common
   durability: 50
   value: 10
-  icon: ring
+  icon: 'ring'
   stats:
     armor: 1
+
+Braided Anklet:
+  name: Braided Anklet
+  description: A simple braided anklet.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Copper Ring:
+  name: Copper Ring
+  description: A plain Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Copper Tongue Piercing:
+  name: Copper Tongue Piercing
+  description: A plain Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+#
+
+Bone Belt:
+  name: Bone Belt
+  description: Belt strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'bone-string'
+  stats:
+    armor: 1
+
+Bone Anklet:
+  name: Bone Anklet
+  description: Anklet strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'bone-string'
+  stats:
+    {}
+
+Quartz Copper Ring:
+  name: Copper Ring
+  description: Cut Quartz in a Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Quartz Copper Tongue Piercing:
+  name: Copper Tongue Piercing
+  description: Cut Quartz in a Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+###HOLY FUCK
+
+Iron Ring:
+  name: Iron Ring
+  description: A plain Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: A plain Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Boar Tusk Belt:
+  name: Boar Tusk Belt
+  description: Belt strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'bone-string'
+  stats:
+    armor: 1
+
+Boar Tusk Anklet:
+  name: Boar Tusk Anklet
+  description: Anklet strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'bone-string'
+  stats:
+    {}
+
+Quartz Iron Ring:
+  name: Iron Ring
+  description: Cut Quartz set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Quartz Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: Cut Quartz set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Tanzanite Iron Ring:
+  name: Iron Ring
+  description: Cut Tanzanite set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Tanzanite Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: Cut Tanzanite set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}

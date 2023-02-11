@@ -16,3 +16,9 @@ Guano:
   category: Miscellaneous
   rarity: Junk
   icon: 'poo'
+
+Love:
+  description: Defies description.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'heart'

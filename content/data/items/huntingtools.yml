@@ -10,3 +10,27 @@ Stone Spear:
   icon: spear
   stats:
     huntingPower: 3
+
+Copper Spear:
+  name: Copper Spear
+  description: A hunting spear made of Copper.
+  type: HuntingTool
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: spear
+  stats:
+    huntingPower: 3
+
+Iron Spear:
+  name: Iron Spear
+  description: A hunting spear made of Iron.
+  type: HuntingTool
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: spear
+  stats:
+    huntingPower: 3

@@ -1,6 +1,12 @@
 
-Copper Setting:
-  description: Used to create copper jewelry.
+Cut Quartz:
+  description: A piece of Quartz that has been cut to a specific shape.
   category: Refined Materials
   rarity: Common
-  icon: 'plain-ring'
+  icon: 'cut-stone'
+
+Cut Tanzanite:
+  description: A piece of Tanzanite that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Common
+  icon: 'cut-stone'

@@ -1,12 +1,5 @@
 
-
-
-Stone Crafting Table:
-  description: A table to craft stone tools with.
-  category: Crafting Tables
-  rarity: Common
-  icon: 'toolbox'
-
+# this table covers all things associated with bsmithing made tables and resources then make/need to function
 
 #woe pain ahead 
 #wait wtf where did the refined materials resources tab go lol
@@ -93,6 +86,18 @@ Metal Tool Bench:
 Metal Construction Tools:
   description: A set of tools for making structures and otherwise, but metal.
   category: Crafting Tables
+  rarity: Rare
+  icon: 'hammer-nails'
+
+Iron Tool Bench:
+  description: A table with dedicated tools and special features, but metal.
+  category: Crafting Tables
+  rarity: Rare
+  icon: 'toolbox'
+
+Iron Construction Tools:
+  description: A set of tools for making structures and otherwise, but metal.
+  category: Crafting Tables
   rarity: Uncommon
   icon: 'hammer-nails'
 
@@ -115,12 +120,6 @@ Furnace:
   category: Crafting Tables
   rarity: Uncommon
   icon: 'oven'
-
-Forge Mitts: # Also used in Cooking 
-  description: Necessary for the extremely high heats of the Blast Furnace. 
-  category: Crafting Tables 
-  rarity: Uncommon
-  icon: 'mitts'
 
 Blast Furnace:
   description: Exceptionally hot burning furnace for very tough materials.
@@ -185,3 +184,61 @@ Fine Glass Set:
   category: Crafting Tables
   rarity: Uncommon
   icon: 'standing-potion'
+
+#Weaving 
+
+Whorl: 
+  description: Used to make threads of fibers
+  category: Crafting Tables
+  rarity: Common
+  icon: 'whorl'
+
+Knitting Needles: 
+  description: Used to knit yarn together.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+Sewing Kit: 
+  description: Used stich material together. String not included.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+Spinning Wheel: 
+  description: Used to make threads and composite threads at high speeds. Has an attached rope walk setup.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'spinning-wheel'
+
+Loom: 
+  description: Used to knit fabric together.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'loom'
+
+Metal Sewing Kit: 
+  description: Used stich tougher material together. String not included.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+# Jewelry, Going to use other catagories crafting things all the time
+
+Jewelry Tools:
+  description: A few tools for puncturing holding smashing and stitching.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'toolbox'
+
+Metal Jewelry Tools:
+  description: A set of tools appropriate for soft metals and stones.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'flat-hammer'
+
+Iron Jewelry Tools:
+  description: A set of tools appropriate for most normal metals and stones.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'flat-hammer'

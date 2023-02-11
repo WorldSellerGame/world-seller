@@ -14,7 +14,7 @@ Linen Cloth:
 
 Yarn: 
   description: A loosely bound type of string whose slight bit of elasticity makes it great for simple projects.
-  category: Refined Materials
+  category: Refined Materials 
   rarity: Common
   icon: 'spool'
 
@@ -30,14 +30,22 @@ Twine:
   rarity: Common
   icon: 'spool'
 
+Twine Oven Mitts: # used in Cooking, Refining, and Alchemy
+  description: High heat resistant Oven Mitts.
+  category: Crafting Tables 
+  rarity: Uncommon
+  icon: 'mitts'
+
 Rope: 
   description: Undoubtedly a useful thing, yet what it is but a string.
-  category: Crafting Tables 
-  rarity: Refined Materials
+  category: Refined Materials
+  rarity: Uncommon
   icon: 'spool'
 
 Leather: 
-  description: Processed hide, long lasting and tough... and kinky I guess.
-  category: Crafting Tables 
-  rarity: Refined Materials
+  description: Processed hide, long lasting and tough.
+  category: Refined Materials
+  rarity: Uncommon
   icon: 'fabric'
+
+#blankets

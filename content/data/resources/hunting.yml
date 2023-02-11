@@ -72,8 +72,14 @@ Bone:
   rarity: Common
   icon: 'bone'
 
+Fat:
+  description: Lipids have uses.
+  category: Raw Materials
+  rarity: Common
+  icon: 'fat'
+
 Hide:
-  description: Hide from larger animals uses are varied with selling pelts and making clothes being the most common.
+  description: Hide from larger animals, uses are varied with selling pelts and making clothes being the most common.
   category: Raw Materials
   rarity: Common
   icon: 'hide'

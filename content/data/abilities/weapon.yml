@@ -1,4 +1,6 @@
 
+### Crafted
+
 Stab:
   name: Stab
   description: Perform a strong attack against a target.
@@ -14,6 +16,8 @@ Stab:
   cooldown: 5
   energyCost: 2
   requires: {}
+
+### Dropped
 
 GoblinStaffHeal1:
   name: Goblish Heal I

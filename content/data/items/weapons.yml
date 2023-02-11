@@ -1,4 +1,6 @@
 
+### Crafted
+
 Stone Knife:
   name: Stone Knife
   description: A knife made of stone.
@@ -11,6 +13,60 @@ Stone Knife:
   givesAbility: Stab
   stats:
     attack: 3
+
+Copper Sword: 
+  name: Copper Sword
+  description: An arming sword made of Copper.
+  type: Weapon
+  category: Weapons
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: sword
+  givesAbility: Stab
+  stats:
+    attack: 3
+
+Copper Dagger:
+  name: Copper Dagger
+  description: A dagger made of Copper.
+  type: Weapon
+  category: Weapons
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: knife
+  givesAbility: Stab
+  stats:
+    attack: 3
+
+Iron Sword: 
+  name: Iron Sword
+  description: An arming sword made of Iron.
+  type: Weapon
+  category: Weapons
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: sword
+  givesAbility: Stab
+  stats:
+    attack: 3
+
+Iron Dagger:
+  name: Iron Dagger
+  description: A knife made of Iron.
+  type: Weapon
+  category: Weapons
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: knife
+  givesAbility: Stab
+  stats:
+    attack: 3
+
+### Dropped
 
 Goblin Staff:
   name: Goblin Staff
@@ -25,3 +81,4 @@ Goblin Staff:
   stats:
     attack: 10
     healing: 20
+ 
