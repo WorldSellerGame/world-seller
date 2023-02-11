@@ -1,6 +1,7 @@
 
 export * from './combat';
 export * from './cooldowns';
+export * from './dungeon';
 export * from './effect';
 export * from './gathering';
 export * from './get-total-level';

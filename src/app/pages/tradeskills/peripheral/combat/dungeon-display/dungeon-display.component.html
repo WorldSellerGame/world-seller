@@ -1,3 +1,179 @@
-<p>
-  dungeon-display works!
-</p>
+
+<ng-container *ngIf="{
+  currentDungeon: currentDungeon$ | async,
+  currentPlayer: currentPlayer$ | async
+} as pageData">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title *ngIf="pageData.currentDungeon?.dungeon as dungeon">
+        {{ dungeon.name }}
+        &middot;
+        {{ dungeon.floors[pageData.currentDungeon?.pos?.z ?? 0].name }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row *ngIf="pageData.currentPlayer as player">
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <strong>Health</strong> {{ player.currentHealth }}/{{ player.maxHealth }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-progress-bar [value]="player.currentHealth / player.maxHealth" color="danger"></ion-progress-bar>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <strong>Energy</strong> {{ player.currentEnergy }}/{{ player.maxEnergy }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-progress-bar [value]="player.currentEnergy / player.maxEnergy" color="warning"></ion-progress-bar>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="pageData.currentDungeon as dungeon">
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <div class="dungeon-container">
+                  <div class="dungeon-row" *ngFor="let row of dungeonView(dungeon.pos, dungeon.dungeon); let y = index; trackBy: trackBy">
+                    <div class="dungeon-col" *ngFor="let col of row; let x = index; trackBy: trackBy">
+                      <app-game-icon [icon]="pageData.currentPlayer?.icon ?? 'me'" *ngIf="col === 'me'"></app-game-icon>
+                      <app-game-icon [icon]="getIconForTile(dungeon.dungeon, col)" *ngIf="col !== 'me'" [color]="getColorForTile(dungeon.dungeon, col)"></app-game-icon>
+                    </div>
+                  </div>
+                </div>
+              </ion-col>
+
+              <ion-col class="movement-container">
+                <ion-grid class="movement-options">
+                  <ion-row>
+                    <ion-col>
+
+                    </ion-col>
+
+                    <ion-col class="has-button">
+                      <ion-button (click)="movePlayer(0, -1)"
+                                  [disabled]="!canMoveTo(dungeon.dungeon, dungeon.pos.z, dungeon.pos.x + 0, dungeon.pos.y - 1)">
+                        <ion-icon slot="icon-only" name="arrow-up"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col class="has-button">
+                      <ion-button (click)="movePlayer(-1, 0)"
+                                  [disabled]="!canMoveTo(dungeon.dungeon, dungeon.pos.z, dungeon.pos.x - 1, dungeon.pos.y + 0)">
+                        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+
+                    </ion-col>
+
+                    <ion-col class="has-button">
+                      <ion-button (click)="movePlayer(1, 0)"
+                                  [disabled]="!canMoveTo(dungeon.dungeon, dungeon.pos.z, dungeon.pos.x + 1, dungeon.pos.y + 0)">
+                        <ion-icon slot="icon-only" name="arrow-forward"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col>
+
+                    </ion-col>
+
+                    <ion-col class="has-button">
+                      <ion-button (click)="movePlayer(0, 1)"
+                                  [disabled]="!canMoveTo(dungeon.dungeon, dungeon.pos.z, dungeon.pos.x + 0, dungeon.pos.y + 1)">
+                        <ion-icon slot="icon-only" name="arrow-down"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="pageData.currentDungeon as dungeon">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Found Resources</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row *ngIf="(dungeon.currentLoot.resources | keyvalue).length === 0">
+              <ion-col>You haven't looted any resources yet.</ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="(dungeon.currentLoot.resources | keyvalue).length > 0">
+              <ion-col size="6" *ngFor="let resource of dungeon.currentLoot.resources | keyvalue">
+                <app-resource-icon [name]="resource.key" [quantity]="resource.value"></app-resource-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Found Items</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row *ngIf="dungeon.currentLoot.items.length === 0">
+              <ion-col>You haven't looted any items yet.</ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="dungeon.currentLoot.items.length > 0">
+              <ion-col size="6" *ngFor="let item of dungeon.currentLoot.items">
+                <app-item-icon [name]="item"></app-item-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-debug-action-menu [actions]="debugActions"></app-debug-action-menu>
+</ng-container>

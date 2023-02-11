@@ -1,3 +1,4 @@
+import { IDungeon } from './dungeon';
 import { IGameItem, Stat } from './game';
 
 export interface IGameEnemyThreat {
@@ -66,11 +67,20 @@ export interface IGameEncounter {
   shouldGiveSkillPoint: boolean;
   isLocked: boolean;
   isLockedForEnemies: boolean;
+  shouldExitDungeon: boolean;
   log: string[];
 }
 
-export interface IGameDungeon {
-  layout: any;
+export interface IGameDungeonLoot {
+  resources: Record<string, number>;
+  items: string[];
+}
+
+export interface IGameDungeonState {
+  dungeon: IDungeon;
+  pos: { x: number; y: number; z: number };
+
+  currentLoot: IGameDungeonLoot;
 }
 
 export enum CombatAbilityTarget {
@@ -112,7 +122,7 @@ export interface IGameCombat {
 
   currentPlayer?: IGameEncounterCharacter;
   currentEncounter?: IGameEncounter;
-  currentDungeon?: IGameDungeon;
+  currentDungeon?: IGameDungeonState;
   activeSkills: string[];
   activeItems: Array<IGameItem | undefined>;
   activeFoods: Array<IGameItem | undefined>;

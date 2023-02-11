@@ -32,6 +32,10 @@ export function calculateSpeedBonus(character: IPlayerCharacter): number {
   return Math.floor(character.lastTotalLevel / 25);
 }
 
+export function calculateHealingBonus(character: IPlayerCharacter): number {
+  return Math.floor(character.lastTotalLevel / 20);
+}
+
 export function calculateAttackBonus(character: IPlayerCharacter): number {
   return Math.floor(character.lastTotalLevel / 15);
 }
@@ -49,6 +53,7 @@ export function getStatTotals(character: IPlayerCharacter): Record<Stat, number>
     health: calculateMaxHealth(character),
     energy: calculateMaxEnergy(character),
     attack: calculateAttackBonus(character),
+    healing: calculateHealingBonus(character),
     speed: calculateSpeedBonus(character)
   };
 

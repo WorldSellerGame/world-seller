@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameDungeon, IGameEncounter } from '../../../../../interfaces';
+import { IGameDungeonState, IGameEncounter } from '../../../../../interfaces';
 import { CombatState } from '../../../../../stores';
 
 @Component({
@@ -11,7 +11,7 @@ import { CombatState } from '../../../../../stores';
 })
 export class CombatPage implements OnInit {
 
-  @Select(CombatState.currentDungeon) currentDungeon$!: Observable<IGameDungeon>;
+  @Select(CombatState.currentDungeon) currentDungeon$!: Observable<IGameDungeonState>;
   @Select(CombatState.currentEncounter) currentEncounter$!: Observable<IGameEncounter>;
 
   constructor() { }

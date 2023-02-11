@@ -8,7 +8,7 @@
 
     <ion-fab-list side="top">
       <ion-fab-button *ngFor="let action of actions"
-                      (click)="doAction(action.action)"
+                      (click)="doAction(action.action, action.actionArgs)"
                       [ngxTippy]="action.text" [tippyProps]="{ placement: 'left' }">
         <ion-icon [name]="action.icon"></ion-icon>
       </ion-fab-button>
