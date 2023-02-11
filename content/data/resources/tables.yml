@@ -30,7 +30,7 @@ Mortar: #High Heat Mortar later
   rarity: Common
   icon: 'powder'
 
-Copper Ingot: #fuck
+Copper Ingot: 
   description: Refined copper ore ready to be shaped.
   category: Refined Materials
   rarity: Common
@@ -48,7 +48,7 @@ Iron Ingot:
   rarity: Uncommon
   icon: 'ingot'
 
-Burning Oil: #nvm
+Burning Oil: #likely will have more ins for making burning oil
   description: Used in glass sets, lamps, and burners. Can be made a few ways but sap is easiest.
   category: Refined Materials
   rarity: Uncommon
@@ -90,13 +90,13 @@ Metal Construction Tools:
   icon: 'hammer-nails'
 
 Iron Tool Bench:
-  description: A table with dedicated tools and special features, but metal.
+  description: A table with dedicated tools and special features, but Iron.
   category: Crafting Tables
   rarity: Rare
   icon: 'toolbox'
 
 Iron Construction Tools:
-  description: A set of tools for making structures and otherwise, but metal.
+  description: A set of tools for making structures and otherwise, but Iron.
   category: Crafting Tables
   rarity: Uncommon
   icon: 'hammer-nails'
@@ -188,7 +188,7 @@ Fine Glass Set:
 #Weaving 
 
 Whorl: 
-  description: Used to make threads of fibers
+  description: Used to make threads of fibers.
   category: Crafting Tables
   rarity: Common
   icon: 'whorl'
@@ -212,7 +212,7 @@ Spinning Wheel:
   icon: 'spinning-wheel'
 
 Loom: 
-  description: Used to knit fabric together.
+  description: Used to make fabric.
   category: Crafting Tables
   rarity: Uncommon
   icon: 'loom'

@@ -7,7 +7,7 @@ Oven Mitts: # used in Cooking, Refining, and Alchemy
   icon: 'mitts'
 
 Linen Cloth:
-  description: Woven together from plant fibers.
+  description: Spun and woven together from plant fibers.
   category: Refined Materials
   rarity: Common
   icon: 'fabric'
@@ -19,13 +19,13 @@ Yarn:
   icon: 'spool'
 
 Fur: 
-  description: Useable fur processed to be useable.
+  description: Hide processed to be useable.
   category: Refined Materials
   rarity: Common
   icon: 'hide'
 
 Twine: 
-  description: Tightly bound plant fiber. Can vary in thickness depending on the application 
+  description: Tightly spun plant fiber. Can vary in thickness depending on the application 
   category: Refined Materials
   rarity: Common
   icon: 'spool'
@@ -37,7 +37,7 @@ Twine Oven Mitts: # used in Cooking, Refining, and Alchemy
   icon: 'mitts'
 
 Rope: 
-  description: Undoubtedly a useful thing, yet what it is but a string.
+  description: Undoubtedly a useful thing, yet it is but a string. #leave this punctuation as is
   category: Refined Materials
   rarity: Uncommon
   icon: 'spool'

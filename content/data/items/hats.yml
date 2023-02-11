@@ -1,7 +1,7 @@
 
 Knitted Hat:
   name: Knitted Hat
-  description: Hat made of linen cloth.
+  description: Hat made of Yarn.
   type: HeadArmor
   category: Armor
   rarity: Common
@@ -13,7 +13,7 @@ Knitted Hat:
 
 Fur Hat:
   name: Fur Hat
-  description: Hat made of linen cloth.
+  description: Hat made of Fur.
   type: HeadArmor
   category: Armor
   rarity: Common
@@ -37,7 +37,7 @@ Linen Hat:
 
 Leather Hat:
   name: Leather Hat
-  description: Hat made of linen cloth.
+  description: Hat made of Leather.
   type: HeadArmor
   category: Armor
   rarity: Common

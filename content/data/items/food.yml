@@ -16,7 +16,7 @@ Pine Nuts:
 
 Cooked Cropfish:
   name: Pine Nuts
-  description: Once cooked you can eat them whole. Although I would rather not eat them at all.
+  description: Once cooked you can eat them whole. Although, I would rather not eat them at all.
   type: Food
   category: Foods
   rarity: Common
@@ -94,7 +94,7 @@ Baked Fallfish:
 
 Bunny Stew:
   name: Bunny Stew
-  description: A solid well rounded tasty meal.
+  description: A solid, well rounded, tasty meal.
   type: Food
   category: Foods
   rarity: Common
@@ -132,7 +132,7 @@ Duck Roast:
 
 Fried Frog Legs:
   name: Fried Frog Legs
-  description: Though claimed to be a delicacy they do taste like water chicken.
+  description: Though claimed to be a delicacy, they do taste like water chicken.
   type: Food
   category: Foods
   rarity: Common
@@ -280,9 +280,9 @@ Mixed Fruit Juice:
   stats:
     healing: 50
 
-Duck Eggs Benedict: ########## MUST INCLUDE BOAR MEAT
+Duck Eggs Benedict:
   name: Duck Eggs Benedict
-  description: One of the most complicated ways to prepare an egg
+  description: One of the most complicated ways to prepare two eggs.
   type: Food
   category: Foods
   rarity: Common
@@ -308,7 +308,7 @@ Honey Ham:
 
 Spicy Catfish Stew: 
   name: Spicy Catfish Stew
-  description: Fairly simple to cook but time and good recipe are the secret to to this comfort food.
+  description: Fairly simple to cook, but time and good recipe are the secret to to this comfort food.
   type: Food
   category: Foods
   rarity: Common

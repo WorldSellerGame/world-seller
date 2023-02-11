@@ -10,7 +10,6 @@
 #Resources
 recipes:
 
-
   - result: Syrup
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
@@ -20,7 +19,7 @@ recipes:
       Oven: 1
       Pots and Pans: 1
       Kitchen Utensils: 1
-      require:
+    require:
       - Oven
       - Pots and Pans
       - Kitchen Utensils
@@ -126,7 +125,7 @@ recipes:
 
   - result: Barbecued Squirrel
     perCraft: { min: 1, max: 1 }
-    level: { min: 0, max: 10 }
+    level: { min: 5, max: 15 }
     craftTime: 10
     ingredients:
       Squirrel Meat: 3
@@ -139,7 +138,7 @@ recipes:
 
   - result: Vegetable Soup
     perCraft: { min: 1, max: 1 }
-    level: { min: 0, max: 10 }
+    level: { min: 5, max: 15 }
     craftTime: 10
     ingredients:
       Carrot: 4
@@ -161,7 +160,7 @@ recipes:
 
   - result: Pan Fried Panfish
     perCraft: { min: 1, max: 1 }
-    level: { min: 0, max: 10 }
+    level: { min: 10, max: 20 }
     craftTime: 10
     ingredients:
       Panfish: 3
@@ -180,7 +179,7 @@ recipes:
 
   - result: Roast Bunny
     perCraft: { min: 1, max: 1 }
-    level: { min: 0, max: 10 }
+    level: { min: 10, max: 20 }
     craftTime: 10
     ingredients:
       Bunny Meat: 4
@@ -221,7 +220,7 @@ recipes:
 
   - result: Baked Fallfish
     perCraft: { min: 1, max: 1 }
-    level: { min: 0, max: 10 }
+    level: { min: 15, max: 25 }
     craftTime: 10
     ingredients:
       Fallfish: 2

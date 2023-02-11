@@ -57,7 +57,7 @@ Copper Tongue Piercing:
   rarity: Common
   durability: 50
   value: 10
-  icon: 'ring'
+  icon: 'tongue-piercing'
   stats:
     {}
 
@@ -107,7 +107,7 @@ Quartz Copper Tongue Piercing:
   rarity: Common
   durability: 50
   value: 10
-  icon: 'ring-with-stone'
+  icon: 'tongue-piercing'
   stats:
     {}
 
@@ -133,7 +133,7 @@ Iron Tongue Piercing:
   rarity: Common
   durability: 50
   value: 10
-  icon: 'ring'
+  icon: 'tongue-piercing'
   stats:
     {}
 
@@ -181,7 +181,7 @@ Quartz Iron Tongue Piercing:
   rarity: Common
   durability: 50
   value: 10
-  icon: 'ring-with-stone'
+  icon: 'tongue-piercing'
   stats:
     {}
 
@@ -205,6 +205,8 @@ Tanzanite Iron Tongue Piercing:
   rarity: Common
   durability: 50
   value: 10
-  icon: 'ring-with-stone'
+  icon: 'tongue-piercing'
   stats:
     {}
+
+#if the system becomes more modular/needs more things engraving filigree could be easy

@@ -3,7 +3,7 @@
 
 Stone Knife:
   name: Stone Knife
-  description: A knife made of stone.
+  description: A knife made of Stone.
   type: Weapon
   category: Weapons
   rarity: Common
@@ -55,7 +55,7 @@ Iron Sword:
 
 Iron Dagger:
   name: Iron Dagger
-  description: A knife made of Iron.
+  description: A dagger made of Iron.
   type: Weapon
   category: Weapons
   rarity: Common

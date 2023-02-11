@@ -1,7 +1,7 @@
 
 Knitted Gloves:
   name: Knitted Gloves
-  description: Gloves made of linen cloth.
+  description: Gloves made of yarn.
   type: HandArmor
   category: Armor
   rarity: Common
@@ -13,7 +13,7 @@ Knitted Gloves:
 
 Fur Gloves:
   name: Fur Gloves
-  description: Gloves made of linen cloth.
+  description: Gloves made of fur.
   type: HandArmor
   category: Armor
   rarity: Common
@@ -37,7 +37,7 @@ Linen Gloves:
 
 Leather Gloves:
   name: Leather Gloves
-  description: Gloves made of linen cloth.
+  description: Gloves made of leather.
   type: HandArmor
   category: Armor
   rarity: Common

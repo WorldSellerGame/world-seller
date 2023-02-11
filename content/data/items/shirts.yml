@@ -1,7 +1,7 @@
 
 Knitted Shirt:
   name: Knitted Shirt
-  description: Shirt made of linen cloth.
+  description: Shirt made of Yarn.
   type: ChestArmor
   category: Armor
   rarity: Common
@@ -13,7 +13,7 @@ Knitted Shirt:
 
 Fur Shirt:
   name: Fur Shirt
-  description: Shirt made of linen cloth.
+  description: Shirt made of Fur.
   type: ChestArmor
   category: Armor
   rarity: Common
@@ -37,7 +37,7 @@ Linen Shirt:
 
 Leather Shirt:
   name: Leather Shirt
-  description: Shirt made of linen cloth.
+  description: Shirt made of Leather.
   type: ChestArmor
   category: Armor
   rarity: Common

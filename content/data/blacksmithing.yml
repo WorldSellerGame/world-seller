@@ -522,7 +522,7 @@ recipes: #Rebalance for 900~ lines ;-;
     level: { min: 10, max: 20 }
     craftTime: 30
     ingredients:
-      Copper Ingot: 7
+      Copper Ingot: 6
       Metal Tool Bench: 1
       Furnace: 1
     require:

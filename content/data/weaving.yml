@@ -71,11 +71,11 @@ recipes:
 
   - result: Leather
     perCraft: { min: 3, max: 4 }
-    level: { min: 10, max: 20 }
+    level: { min: 15, max: 25 }
     craftTime: 30
     ingredients:
       Hide: 6
-      Tallow: 1
+      Tallow: 2
       Saltpeter: 1 #this may be too much for min-15 weaving but it may be fine
       Stone Knife: 1
     require:

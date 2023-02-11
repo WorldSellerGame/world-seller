@@ -1,6 +1,6 @@
 
 Flour:
-  description: Used to bake goods.
+  description: Used in bake goods.
   category: Refined Materials
   rarity: Common
   icon: 'flour'
@@ -13,7 +13,7 @@ Vegetable Stock:
 
 ##########
 
-Syrup:
+Syrup: #actually use this later
   description: Used to sweeten and solidify certain food. It can also be further refined. 
   category: Refined Materials
   rarity: Common

@@ -34,3 +34,6 @@ Iron Spear:
   icon: spear
   stats:
     huntingPower: 3
+
+
+#todo look at methods of bow implementation #it may be possible to force hunting power to be a sudo ranged option on skills

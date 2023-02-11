@@ -1,7 +1,7 @@
 
 Knitted Pants:
   name: Knitted Pants
-  description: Pants made of linen cloth.
+  description: Pants made of Yarn.
   type: LegArmor
   category: Armor
   rarity: Common
@@ -13,7 +13,7 @@ Knitted Pants:
 
 Fur Pants:
   name: Fur Pants
-  description: Pants made of linen cloth.
+  description: Pants made of Fur.
   type: LegArmor
   category: Armor
   rarity: Common
@@ -37,7 +37,7 @@ Linen Pants:
 
 Leather Pants:
   name: Leather Pants
-  description: Pants made of linen cloth.
+  description: Pants made of Leather.
   type: LegArmor
   category: Armor
   rarity: Common
