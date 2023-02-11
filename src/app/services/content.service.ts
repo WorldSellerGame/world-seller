@@ -5,6 +5,7 @@ import * as abilities from '../../assets/content/abilities.json';
 import * as alchemy from '../../assets/content/alchemy.json';
 import * as blacksmithing from '../../assets/content/blacksmithing.json';
 import * as cooking from '../../assets/content/cooking.json';
+import * as dungeons from '../../assets/content/dungeons.json';
 import * as effects from '../../assets/content/effects.json';
 import * as enemies from '../../assets/content/enemies.json';
 import * as farming from '../../assets/content/farming.json';
@@ -22,7 +23,10 @@ import * as weaving from '../../assets/content/weaving.json';
 
 import { cloneDeep } from 'lodash';
 import * as characterNames from '../../assets/content/character-names.json';
-import { IEnemyCharacter, IGameCombatAbility, IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect } from '../../interfaces';
+import {
+  IDungeon, IEnemyCharacter, IGameCombatAbility,
+  IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect
+} from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +56,10 @@ export class ContentService {
 
   private get effects(): Record<string, IGameStatusEffect> {
     return (effects as any).default || effects;
+  }
+
+  private get dungeons(): Record<string, IDungeon> {
+    return (dungeons as any).default || dungeons;
   }
 
   // other skills
@@ -204,6 +212,14 @@ export class ContentService {
 
   public getEffectByName(name: string) {
     return cloneDeep(this.effects[name]);
+  }
+
+  public getAllDungeons() {
+    return cloneDeep(this.dungeons);
+  }
+
+  public getDungeonByName(name: string) {
+    return cloneDeep(this.dungeons[name]);
   }
 
 }

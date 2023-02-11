@@ -1,4 +1,4 @@
-import { IGameCombatAbility, IGameEncounterCharacter, IGameEnemyThreat, IGameItem } from '../../interfaces';
+import { IGameCombatAbility, IGameEncounterCharacter, IGameItem } from '../../interfaces';
 
 export class SetSkill {
   static type = '[Combat] Set Skill';
@@ -42,7 +42,7 @@ export class EndCombatAndResetPlayer {
 
 export class InitiateCombat {
   static type = '[Combat] Initiate';
-  constructor(public threat: IGameEnemyThreat, public shouldResetPlayer = false) {}
+  constructor(public threat: string, public shouldResetPlayer = false, public shouldExitDungeon = false) {}
 }
 
 export class SetCombatLock {
@@ -125,4 +125,3 @@ export class EnemySpeedReset {
   static type = '[Combat] Enemy Speed Reset';
   constructor(public enemyIndex: number) {}
 }
-

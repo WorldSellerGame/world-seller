@@ -10,7 +10,7 @@ import { OptionsState } from '../../../stores';
 })
 export class DebugActionMenuComponent implements OnInit {
 
-  @Input() actions!: Array<{ icon: string; text: string; action: any }>;
+  @Input() actions!: Array<{ icon: string; text: string; action: any; actionArgs?: any[] }>;
 
   @Select(OptionsState.isDebugMode) isDebugMode$!: Observable<boolean>;
 
@@ -18,8 +18,8 @@ export class DebugActionMenuComponent implements OnInit {
 
   ngOnInit() {}
 
-  doAction(action: any) {
-    this.store.dispatch(new action());
+  doAction(action: any, args: any[] = []) {
+    this.store.dispatch(new action(...args));
   }
 
 }

@@ -5,10 +5,9 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
-import { NotifyService } from '../../app/services/notify.service';
 import { IGameMercantile } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
-import { UpdateAllItems } from '../game/game.actions';
+import { NotifyInfo, UpdateAllItems } from '../game/game.actions';
 import { SendToStockpile } from './mercantile.actions';
 import { attachments } from './mercantile.attachments';
 import { defaultMercantile, maxShopCounterSize, maxStockpileSize } from './mercantile.functions';
@@ -20,7 +19,7 @@ import { defaultMercantile, maxShopCounterSize, maxStockpileSize } from './merca
 @Injectable()
 export class MercantileState {
 
-  constructor(private itemCreatorService: ItemCreatorService, private notifyService: NotifyService) {
+  constructor(private itemCreatorService: ItemCreatorService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(MercantileState, action, handler);
     });
@@ -109,9 +108,10 @@ export class MercantileState {
       return;
     }
 
-    this.notifyService.notify(`Gained ${itemName} x${quantity}!`);
-
-    ctx.dispatch(new SendToStockpile(createdItem));
+    ctx.dispatch([
+      new NotifyInfo(`Gained ${itemName} x${quantity}!`),
+      new SendToStockpile(createdItem)
+    ]);
   }
 
 }

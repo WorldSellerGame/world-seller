@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dungeons</ion-title>
+    <ion-title>Dungeons</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row *ngIf="{
+    level: level$ | async
+  } as pageData">
+    <ion-col>
+      <ion-card *ngIf="dungeons.length === 0">
+        <ion-card-content>
+          You don't currently have access to any dungeons. You can visit the first one starting at Combat Lv.10, and each subsequent one opens up every 10th level after.
+        </ion-card-content>
+      </ion-card>
 
+      <ion-card *ngIf="dungeons.length > 0">
+        <ion-card-header>
+          <ion-card-title>Accessible Dungeons</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item class="dungeon-row" *ngFor="let dungeon of dungeons">
+              <ion-row>
+                <ion-col class="icon">
+                  <app-game-icon [icon]="dungeon.icon"></app-game-icon>
+                </ion-col>
+
+                <ion-col>
+                  <ion-label>
+                    <h2>{{ dungeon.name }} (Lv.{{ dungeon.givesPointAtCombatLevel }})</h2>
+                    <p>{{ dungeon.description }}</p>
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+
+              <ion-button slot="end"
+                          fill="clear"
+                          [class.no-skillups]="(pageData.level || 0) > dungeon.givesPointAtCombatLevel"
+                          (click)="embark(dungeon)">Embark</ion-button>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

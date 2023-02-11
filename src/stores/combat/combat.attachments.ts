@@ -1,6 +1,7 @@
 import { IAttachment } from '../../interfaces/store';
 import {
   AddCombatLogMessage,
+  ConsumeFoodCharges,
   EndCombat,
   EndCombatAndResetPlayer,
   EnemyCooldownSkill,
@@ -14,6 +15,7 @@ import {
 } from './combat.actions';
 import {
   addCombatLogMessage,
+  consumeFoodCharges,
   endCombat,
   endCombatAndResetPlayer,
   lowerEnemyCooldowns,
@@ -23,6 +25,15 @@ import {
   setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
   setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, useItemInSlot
 } from './combat.functions';
+
+import {
+  EmptyDungeonTile, FullyHeal, GainPercentageOfDungeonLoot,
+  LeaveDungeon, MoveInDungeon, MoveInDungeonByDelta
+} from './dungeon.actions';
+import {
+  emptyDungeonTile, fullyHeal, gainPercentageOfDungeonLoot,
+  leaveDungeon, moveInDungeon, moveInDungeonByDelta
+} from './dungeon.functions';
 
 
 export const attachments: IAttachment[] = [
@@ -43,5 +54,13 @@ export const attachments: IAttachment[] = [
   { action: PlayerSpeedReset, handler: resetPlayerSpeed },
   { action: EnemySpeedReset, handler: resetEnemySpeed },
   { action: TickPlayerEffects, handler: tickPlayerEffects },
-  { action: TickEnemyEffects, handler: tickEnemyEffects }
+  { action: TickEnemyEffects, handler: tickEnemyEffects },
+  { action: ConsumeFoodCharges, handler: consumeFoodCharges },
+
+  { action: FullyHeal, handler: fullyHeal },
+  { action: LeaveDungeon, handler: leaveDungeon },
+  { action: EmptyDungeonTile, handler: emptyDungeonTile },
+  { action: MoveInDungeonByDelta, handler: moveInDungeonByDelta },
+  { action: MoveInDungeon, handler: moveInDungeon },
+  { action: GainPercentageOfDungeonLoot, handler: gainPercentageOfDungeonLoot }
 ];

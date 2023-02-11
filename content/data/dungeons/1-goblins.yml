@@ -1,0 +1,72 @@
+
+name: Goblin's Hideaway
+description: You think you saw some goblins go in here. You're not sure if they have a leader, but there's only one way to find out for sure.
+icon: goblin-big
+
+givesPointAtCombatLevel: 10
+
+floors:
+  - name: Cave Entrance
+    layout:
+      - [.,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
+      - [.,  e,  1,  1,  t1, 1,  .,  1,  1,  1,  1,  1,  .]
+      - [.,  1,  1,  .,  .,  1,  .,  1,  .,  .,  ., c1,  .]
+      - [.,  1,  .,  .,  .,  1,  1,  1, t2, c2,  .,  1,  .]
+      - [.,  1,  .,  .,  .,  1,  1,  1,  .,  .,  .,  1,  .]
+      - [.,  1,  .,  .,  .,  1,  .,  1,  1,  1,  1,  1,  .]
+      - [.,  1, t1,  ., c1,  1,  .,  1,  .,  .,  1,  .,  .]
+      - [.,  .,  1,  .,  .,  .,  .,  .,  .,  .,  1,  .,  .]
+      - [.,  1,  1,  1,  1,  1,  1,  f,  1,  1,  1,  .,  .]
+      - [.,  1,  .,  .,  .,  .,  1,  1,  1,  .,  1,  1,  .]
+      - [.,  1,  ., t3, c2,  .,  1,  .,  1,  .,  .,  1,  .]
+      - [.,  1,  .,  1,  .,  .,  1,  ., c1,  .,  1, t2,  .]
+      - [.,  1,  1,  1,  1,  1,  1,  .,  .,  .,  x,  .,  .]
+      - [.,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
+
+  - name: Goblin Lair
+    layout:
+      - [.,  .,  .,  .,  .,  .,  .,  .]
+      - [.,  e,  1,  .,  1,  b,  .,  .]
+      - [.,  .,  1,  .,  1,  .,  .,  .]
+      - [.,  ., t2,  .,  1,  .,  .,  .]
+      - [.,  .,  1,  .,  1,  ., c3,  .]
+      - [.,  .,  1,  1,  1, t4,  1,  .]
+      - [.,  .,  .,  .,  .,  .,  .,  .]
+
+boss: GoblinParty
+
+threats:
+  t1: GoblinDuo
+  t2: GoblinMixedDuo
+  t3: GoblinMixedTrio
+  t4: GoblinParty
+
+treasureChests:
+  c1:
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 50
+
+    - config: Strawberry Seeds
+      drops:
+        - resource: Strawberry Seed
+          amount: 2
+        - resource: Strawberry
+          amount: 1
+
+  c2:
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 200
+    - config: Staff
+      drops:
+        - item: Goblin Staff
+          amount: 1
+
+  c3:
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 500
