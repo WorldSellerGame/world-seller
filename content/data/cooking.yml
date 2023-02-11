@@ -8,6 +8,8 @@
 
 
 #Resources
+recipes:
+
 
   - result: Syrup
     perCraft: { min: 1, max: 1 }
