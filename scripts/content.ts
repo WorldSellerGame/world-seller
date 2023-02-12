@@ -11,6 +11,12 @@ const loadItems = async () => {
   const files = await readdir('content/data', [(file: string, stats: any) => stats.isDirectory()]);
   files.forEach((file: string) => {
     const data = yaml.load(fs.readFileSync(file, 'utf8'));
+
+    if(!data.recipes && !data.transforms && !data.locations) {
+      console.error(`❌ ${file} is missing recipes, transforms, or locations as a top level object.`);
+      process.exit(0);
+    }
+
     fs.writeJson(`src/assets/content/${path.basename(file, '.yml')}.json`, data);
   });
 
@@ -62,19 +68,6 @@ const loadItems = async () => {
   }));
 
   await Promise.all(['effects'].map(async folder => {
-    const files = await readdir(`content/data/${folder}`);
-
-    const allData = {};
-
-    files.forEach((file: string) => {
-      const data = yaml.load(fs.readFileSync(file, 'utf8'));
-      merge(allData, data);
-    });
-
-    fs.writeJson(`src/assets/content/${folder}.json`, allData);
-  }));
-
-  await Promise.all(['threats'].map(async folder => {
     const files = await readdir(`content/data/${folder}`);
 
     const allData = {};
