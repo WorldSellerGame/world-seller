@@ -4,7 +4,7 @@
 
 Pine Nuts:
   name: Pine Nuts
-  description: MMMMMMMMMMM seeds.
+  description: Mmmmmmmm, seeds.
   type: Food
   category: Foods
   rarity: Common
@@ -42,7 +42,7 @@ Barbecued Squirrel:
 
 Vegetable Soup:
   name: Vegetable Soup
-  description: Simple and easy. Can be eaten, used in other dishes, or cooked more to make simple veg stock.
+  description: Simple and easy. Can be eaten, used in other dishes, or cooked more to make simple veggie stock.
   type: Food
   category: Foods
   rarity: Common
@@ -144,7 +144,7 @@ Fried Frog Legs:
 
 Cooked Trout:
   name: Cooked Trout
-  description: Perhaps best enjoyed now and then lest you want to effect the trout population.
+  description: Perhaps best enjoyed now and then lest you want to affect the trout population.
   type: Food
   category: Foods
   rarity: Common
@@ -154,7 +154,7 @@ Cooked Trout:
   stats:
     healing: 50
 
-Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a sudo potion
+Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a pseudo potion
   name: Strawberry Jam
   description: Tasty jam thats smooth... maybe a little too smooth.
   type: Food
@@ -182,7 +182,7 @@ Raspberry Jam:
 
 Bread:
   name: Bread
-  description: Warm flakey bread is hard to beat and easy to make in large quantities.
+  description: Warm, flaky bread is hard to beat and easy to make in large quantities.
   type: Food
   category: Foods
   rarity: Common
@@ -194,7 +194,7 @@ Bread:
 
 Baked Breaded Bass:
   name: Baked Breaded Bass
-  description: Reminds you of times past. A more filling way to prepare fish and inexpensive at that.
+  description: Reminds you of times past. A more filling way to prepare fish and inexpensive to boot.
   type: Food
   category: Foods
   rarity: Common
@@ -232,7 +232,7 @@ Venison Steak:
 
 Apple Pie:
   name: Apple Pie
-  description: A mainstay desert whose warm smell makes it hard to hold back, many a mouths burned on pie too hot.
+  description: A mainstay dessert whose warm smell makes it hard to hold back, with many a mouths burned from pie too hot.
   type: Food
   category: Foods
   rarity: Common
@@ -244,7 +244,7 @@ Apple Pie:
 
 Pumpkin Pie:
   name: Pumpkin Pie
-  description: I cant even get through this description. My mouth is watering. #I couldn't figure out how to italicize this
+  description: Made of pumpkins, nutmeg, and deliciousness. #I couldn't figure out how to italicize this (you can't)
   type: Food
   category: Foods
   rarity: Common
@@ -256,7 +256,7 @@ Pumpkin Pie:
 
 Cookie: #egg required - Im sorry little one you will be be added next time
   name: Cookie
-  description: Easy to make in large batches. They can last quite awhile but are exceptional when warm.
+  description: Easy to make in large batches. They can last quite a while but are exceptional when warm.
   type: Food
   category: Foods
   rarity: Common
@@ -270,7 +270,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
 
 Mixed Fruit Juice:
   name: Mixed Fruit Juice
-  description: Hits the spot any time any where.
+  description: Hits the spot - any time, any where.
   type: Food
   category: Foods
   rarity: Common
@@ -296,7 +296,7 @@ Duck Eggs Benedict:
 
 Honey Ham: 
   name: Honey Ham
-  description: A feast to be sure. Rich succulent meat with a diverse flavor.
+  description: A feast to be sure. Rich, succulent meat with a diverse flavor.
   type: Food
   category: Foods
   rarity: Common
@@ -308,7 +308,7 @@ Honey Ham:
 
 Spicy Catfish Stew: 
   name: Spicy Catfish Stew
-  description: Fairly simple to cook, but time and good recipe are the secret to to this comfort food.
+  description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
   type: Food
   category: Foods
   rarity: Common
@@ -322,7 +322,7 @@ Spicy Catfish Stew:
 
 Pompano Ceviche: 
   name: Pompano Ceviche
-  description: Refreshing and filling this dish is unique but undeniably a treat.
+  description: Refreshing and filling, this dish is unique and undeniably a treat.
   type: Food
   category: Foods
   rarity: Common
