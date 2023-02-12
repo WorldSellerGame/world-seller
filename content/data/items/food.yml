@@ -188,7 +188,7 @@ Bread:
   rarity: Common
   durability: 1
   value: 1
-  icon: Bread
+  icon: bread
   stats:
     healing: 50
 
@@ -200,7 +200,7 @@ Baked Breaded Bass:
   rarity: Common
   durability: 1
   value: 1
-  icon: Bread
+  icon: cooked-fish
   stats:
     healing: 50
 
