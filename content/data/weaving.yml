@@ -1,59 +1,380 @@
 
 recipes:
-  - result: Linen Cloth
-    perCraft: { min: 1, max: 3 }
-    level: { min: 0, max: 10 }
+
+# Resources #leather will be tanned withtallow and saltpeter
+
+  - result: Yarn
+    perCraft: { min: 5, max: 6 }       #actually its slightly problematic refining resources at the same level range that you craft
+    level: { min: 0, max: 10 }            #actually wtf am I saying shops and dungeons make it fine (Probably)
     craftTime: 30
     ingredients:
-      Plant Fiber: 2
-    maxWorkers: 2
-
-  - result: Linen Boots
-    perCraft: { min: 1, max: 1 }
-    level: { min: 2, max: 12 }
-    craftTime: 90
+      Plant Fiber: 12
+      Whorl: 1
+    require:
+      - Whorl
+    preserve:
+      - Whorl
+    maxWorkers: 1
+  
+  - result: Fur
+    perCraft: { min: 5, max: 6 }
+    level: { min: 5, max: 15 }
+    craftTime: 30
     ingredients:
-      Linen Cloth: 2
+      Hide: 6
+      Stone Knife: 1
+    preserve:
+      - Stone Knife
     maxWorkers: 1
 
-  - result: Linen Hat
-    perCraft: { min: 1, max: 1 }
-    level: { min: 1, max: 11 }
-    craftTime: 60
+  - result: Twine
+    perCraft: { min: 2, max: 2 }
+    level: { min: 5, max: 15 }
+    craftTime: 30
     ingredients:
-      Linen Cloth: 1
+      Plant Fiber: 6
+      Spinning Wheel: 1
+    require:
+      - Spinning Wheel
+    preserve:
+      - Spinning Wheel
     maxWorkers: 1
 
-  - result: Linen Shirt
+  - result: Rope # this does nothing but I know I will need this a ton or never touch it
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 90
+    craftTime: 30
     ingredients:
-      Linen Cloth: 5
+      Twine: 3
+      Spinning Wheel: 1
+    require:
+      - Spinning Wheel
+    preserve:
+      - Spinning Wheel
     maxWorkers: 1
 
-  - result: Linen Gloves
-    perCraft: { min: 1, max: 1 }
-    level: { min: 3, max: 13 }
-    craftTime: 60
+  - result: Linen Cloth
+    perCraft: { min: 2, max: 2 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
     ingredients:
-      Linen Cloth: 2
-    maxWorkers: 1
+      Plant Fiber: 12
+      Spinning Wheel: 1
+      Loom: 1
+    require:
+      - Spinning Wheel
+      - Loom
+    preserve:
+      - Spinning Wheel
+      - Loom
+    maxWorkers: 2
 
-  - result: Linen Pants
-    perCraft: { min: 1, max: 1 }
-    level: { min: 4, max: 14 }
-    craftTime: 90
+  - result: Leather
+    perCraft: { min: 3, max: 4 }
+    level: { min: 15, max: 25 }
+    craftTime: 30
     ingredients:
-      Linen Cloth: 3
-    maxWorkers: 1
+      Hide: 6
+      Tallow: 2
+      Saltpeter: 1 #this may be too much for min-15 weaving but it may be fine
+      Stone Knife: 1
+    require:
+      - Tallow
+    preserve:
+      - Stone Knife
+    maxWorkers: 2
 
-  - result: Oven Mitts
+#tables (aka gates) 
+
+  - result: Oven Mitts #need another set for twine
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 30
     ingredients:
       Plant Fiber: 1
+      Yarn: 3
+      Sewing Kit: 1
+    require:
+      - Sewing Kit
+      - Knitting Needles
+    preserve:
+      - Sewing Kit
+      - Knitting Needles
+    maxWorkers: 1
+
+  - result: Twine Oven Mitts 
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
+    ingredients:
+      Linen Cloth: 2
+      Twine: 5
+      Plant Fiber: 1
+    require:
+      - Sewing Kit
+      - Knitting Needles
+    preserve:
+      - Sewing Kit
+      - Knitting Needles
+    maxWorkers: 1
+
+#Items
+
+#yarn
+
+  - result: Knitted Boots
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Yarn: 2
+    require:
+      - Knitting Needles
+    preserve:
+      - Knitting Needles
+    maxWorkers: 1
+
+  - result: Knitted Hat
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 60
+    ingredients:
+      Yarn: 1
+    require:
+      - Knitting Needles
+    preserve:
+      - Knitting Needles
+    maxWorkers: 1
+
+  - result: Knitted Shirt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Yarn: 5
+    require:
+      - Knitting Needles
+    preserve:
+      - Knitting Needles
+    maxWorkers: 1
+
+  - result: Knitted Gloves
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 60
+    ingredients:
+      Yarn: 2
+    require:
+      - Knitting Needles
+    preserve:
+      - Knitting Needles
+    maxWorkers: 1
+
+  - result: Knitted Pants
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Yarn: 3
+    require:
+      - Knitting Needles
+    preserve:
+      - Knitting Needles
+    maxWorkers: 1
+
+#fur
+
+  - result: Fur Boots
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 90
+    ingredients:
+      Fur: 2
+      Yarn: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Fur Hat
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 60
+    ingredients:
+      Fur: 1
+      Yarn: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Fur Shirt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 90
+    ingredients:
+      Fur: 5
+      Yarn: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Fur Gloves
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 60
+    ingredients:
+      Fur: 2
+      Yarn: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Fur Pants
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 90
+    ingredients:
+      Fur: 3
+      Yarn: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+#linen
+
+  - result: Linen Boots
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Linen Cloth: 2
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Linen Hat
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 60
+    ingredients:
+      Linen Cloth: 1
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Linen Shirt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Linen Cloth: 5
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Linen Gloves
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 60
+    ingredients:
+      Linen Cloth: 2
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+  - result: Linen Pants
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
       Linen Cloth: 3
+    require:
+      - Sewing Kit
+    preserve:
+      - Sewing Kit
+    maxWorkers: 1
+
+#leather
+
+  - result: Leather Boots
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Leather: 2
+      Twine: 1
+    require:
+      - Metal Sewing Kit
+    preserve:
+      - Metal Sewing Kit
+    maxWorkers: 1
+
+  - result: Leather Hat
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 60
+    ingredients:
+      Leather: 1
+      Twine: 1
+    require:
+      - Metal Sewing Kit
+    preserve:
+      - Metal Sewing Kit
+    maxWorkers: 1
+
+  - result: Leather Shirt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Leather: 5
+      Twine: 1
+    require:
+      - Metal Sewing Kit
+    preserve:
+      - Metal Sewing Kit
+    maxWorkers: 1
+
+  - result: Leather Gloves
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 60
+    ingredients:
+      Leather: 2
+      Twine: 1
+    require:
+      - Metal Sewing Kit
+    preserve:
+      - Metal Sewing Kit
+    maxWorkers: 1
+
+  - result: Leather Pants
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Leather: 3
+      Twine: 1
+    require:
+      - Metal Sewing Kit
+    preserve:
+      - Metal Sewing Kit
     maxWorkers: 1
 

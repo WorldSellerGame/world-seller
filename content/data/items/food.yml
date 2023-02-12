@@ -1,13 +1,372 @@
 
-Raspberry Cupcake:
-  name: Raspberry Cupcake
-  description: A cupcake topped with a single raspberry.
+
+#####################
+
+Pine Nuts:
+  name: Pine Nuts
+  description: Mmmmmmmm, seeds.
   type: Food
   category: Foods
   rarity: Common
   durability: 1
-  value: 5
-  icon: cupcake
-  foodDuration: 5
+  value: 1
+  icon: meal
   stats:
-    attack: 5
+    healing: 50
+
+Cooked Cropfish:
+  name: Pine Nuts
+  description: Once cooked you can eat them whole. Although, I would rather not eat them at all.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-fish
+  stats:
+    healing: 50
+
+#
+
+Barbecued Squirrel:
+  name: Barbecued Squirrel
+  description: Squirrel on a stick. Tastes like chicken.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+Vegetable Soup:
+  name: Vegetable Soup
+  description: Simple and easy. Can be eaten, used in other dishes, or cooked more to make simple veggie stock.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+#
+
+Roast Bunny:
+  name: Roasted Bunny
+  description: Simple hardy food.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+Pan Fried Panfish:
+  name: Pan Fried Panfish
+  description: Panfish get their name for fitting in a pan. 
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-fish
+  stats:
+    healing: 50
+
+#
+
+Baked Fallfish:
+  name: Baked Fallfish
+  description: Baked is healthier then fried. A bit more sad though.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-fish
+  stats:
+    healing: 50
+
+Bunny Stew:
+  name: Bunny Stew
+  description: A solid, well rounded, tasty meal.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+Candied Apple:
+  name: Candied Apple
+  description: A tasty treat made by dipping an apple in caramelized sugar.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: apple
+  stats:
+    healing: 50
+
+#
+
+Duck Roast:
+  name: Duck Roast
+  description: Roast Duck is a treat and quite filling.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-bird
+  stats:
+    healing: 50
+
+Fried Frog Legs:
+  name: Fried Frog Legs
+  description: Though claimed to be a delicacy, they do taste like water chicken.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: frog-foot
+  stats:
+    healing: 50
+
+Cooked Trout:
+  name: Cooked Trout
+  description: Perhaps best enjoyed now and then lest you want to affect the trout population.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-fish
+  stats:
+    healing: 50
+
+Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a pseudo potion
+  name: Strawberry Jam
+  description: Tasty jam thats smooth... maybe a little too smooth.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: jar
+  stats:
+    healing: 50
+
+Raspberry Jam:
+  name: Raspberry Jam
+  description: Tasty jam thats thick... maybe a little too thick.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: jar
+  stats:
+    healing: 50
+
+#
+
+Bread:
+  name: Bread
+  description: Warm, flaky bread is hard to beat and easy to make in large quantities.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: bread
+  stats:
+    healing: 50
+
+Baked Breaded Bass:
+  name: Baked Breaded Bass
+  description: Reminds you of times past. A more filling way to prepare fish and inexpensive to boot.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-fish
+  stats:
+    healing: 50
+
+Roast Turkey:
+  name: Roast Turkey
+  description: A tad labor intensive, but undeniably a heavenly feast.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cooked-bird
+  stats:
+    healing: 50
+
+#
+
+Venison Steak:
+  name: Venison Steak
+  description: Lean meat with a unique taste.  
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+Apple Pie:
+  name: Apple Pie
+  description: A mainstay dessert whose warm smell makes it hard to hold back, with many a mouths burned from pie too hot.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: pie
+  stats:
+    healing: 50
+
+Pumpkin Pie:
+  name: Pumpkin Pie
+  description: Made of pumpkins, nutmeg, and deliciousness. #I couldn't figure out how to italicize this (you can't)
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: pie
+  stats:
+    healing: 50
+
+Cookie: #egg required - Im sorry little one you will be be added next time
+  name: Cookie
+  description: Easy to make in large batches. They can last quite a while but are exceptional when warm.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cookie
+  stats:
+    healing: 50
+
+#
+
+Mixed Fruit Juice:
+  name: Mixed Fruit Juice
+  description: Hits the spot - any time, any where.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: cup
+  stats:
+    healing: 50
+
+Duck Eggs Benedict:
+  name: Duck Eggs Benedict
+  description: One of the most complicated ways to prepare two eggs.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+#
+
+Honey Ham: 
+  name: Honey Ham
+  description: A feast to be sure. Rich, succulent meat with a diverse flavor.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+Spicy Catfish Stew: 
+  name: Spicy Catfish Stew
+  description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: hot-meal
+  stats:
+    healing: 50
+
+#
+
+Pompano Ceviche: 
+  name: Pompano Ceviche
+  description: Refreshing and filling, this dish is unique and undeniably a treat.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: meal
+  stats:
+    healing: 50
+
+Banana Bread: 
+  name: Banana Bread
+  description: Lush, moist, sweet, and filling. 
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: bread
+  stats:
+    healing: 50
+
+Elk Jerky:
+  name: Elk Jerky
+  description: Long lasting and easy to store in large amounts. Initially designed by necessity, but still often made for its flavour.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 1
+  value: 1
+  icon: meal
+  stats:
+    healing: 50
+
+
+
+###I should go farther by tier
+#bear
+#moose
+#shark
+#pufferfish
+#grouse
+
+#This will be easy enough to continue I think I should stop here though? 
+  #yeah I need combat there will be tons of horse shit to add later
+
+# FUcking Balance fuck that piss
+

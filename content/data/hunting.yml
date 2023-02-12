@@ -94,13 +94,15 @@ locations:
     cooldownTime: 20
     resources:
       - name: Deer Meat
-        weight: 5
+        weight: 12
       - name: Deer Antler
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
     maxWorkers: 1
 
   - name: Cedrics Woods (Turkey)
@@ -132,13 +134,15 @@ locations:
     cooldownTime: 25
     resources:
       - name: Boar Meat
-        weight: 4
+        weight: 12
       - name: Boar Tusk
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
     maxWorkers: 1
 
   - name: Coniferous forest (Elk)
@@ -153,13 +157,15 @@ locations:
     cooldownTime: 25
     resources:
       - name: Elk Meat
-        weight: 4
+        weight: 12
       - name: Elk Antler
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
     maxWorkers: 1
 
   - name: Magic Swamp (Alligator)
@@ -195,13 +201,15 @@ locations:
     cooldownTime: 30
     resources:
       - name: Moose Meat
-        weight: 6
+        weight: 18
       - name: Moose Antler
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 2
+        weight: 6
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
     maxWorkers: 1
 
   - name: Small Stream
@@ -223,6 +231,8 @@ locations:
         weight: 2
       - name: Bone
         weight: 1
+      - name: Fat
+        weight: 2
     maxWorkers: 1
 
   - name: Old Elvish Woods (Grouse)

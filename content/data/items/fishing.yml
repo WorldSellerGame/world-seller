@@ -1,25 +1,38 @@
 
-Pine Fishing Rod:
-  name: Pine Fishing Rod
+Cedar Fishing Rod:
+  name: Cedar Fishing Rod
   description: A simple fishing rod.
   type: FishingRod
   category: Tools
   rarity: Common
   durability: 50
   value: 10
-  icon: fishingpole
+  icon: fishing-pole
   stats:
     fishingPower: 3
 
-Stone Bait:
-  name: Stone Bait
-  description: Somewhat ineffective bait, but it'll do.
-  type: FishingBait
+Oak Fishing Rod:
+  name: Oak Fishing Rod
+  description: A stout fishing rod.
+  type: FishingRod
   category: Tools
   rarity: Common
   durability: 50
-  value: 1
-  canStack: true
-  icon: fishingpole
+  value: 10
+  icon: fishing-pole
   stats:
-    fishingSpeed: 3
+    fishingPower: 3
+
+Ash Fishing Rod:
+  name: Ash Fishing Rod
+  description: A nice fishing rod.
+  type: FishingRod
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: fishing-pole
+  stats:
+    fishingPower: 3
+
+#bait will be re added during balance #It will be mostly items that work right away as bait or convert via skills

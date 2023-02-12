@@ -1,7 +1,43 @@
 
+Knitted Pants:
+  name: Knitted Pants
+  description: Pants made of Yarn.
+  type: LegArmor
+  category: Armor
+  rarity: Common
+  durability: 5
+  value: 10
+  icon: pants
+  stats:
+    armor: 1
+
+Fur Pants:
+  name: Fur Pants
+  description: Pants made of Fur.
+  type: LegArmor
+  category: Armor
+  rarity: Common
+  durability: 25
+  value: 10
+  icon: pants
+  stats:
+    armor: 3
+
 Linen Pants:
   name: Linen Pants
   description: Pants made of linen cloth.
+  type: LegArmor
+  category: Armor
+  rarity: Common
+  durability: 15
+  value: 10
+  icon: pants
+  stats:
+    speed: 2
+
+Leather Pants:
+  name: Leather Pants
+  description: Pants made of Leather.
   type: LegArmor
   category: Armor
   rarity: Common

@@ -1,17 +1,4 @@
 
-Raspberry Juice:
-  name: Raspberry Juice
-  description: A bottle of the finest raspberry juice.
-  type: Potion
-  category: Foods
-  rarity: Common
-  durability: 5
-  value: 3
-  icon: bottle
-  stats:
-    healing: 50
-  effects:
-    - effect: PotionHeal
 
 Dandelion Tea:
   name: Dandelion Tea

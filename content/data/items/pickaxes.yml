@@ -10,3 +10,27 @@ Stone Pickaxe:
   icon: pickaxe
   stats:
     pickaxePower: 3
+
+Copper Pickaxe:
+  name: Copper Pickaxe
+  description: A pickaxe made of Copper.
+  type: Pickaxe
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: pickaxe
+  stats:
+    pickaxePower: 3
+
+Iron Pickaxe:
+  name: Iron Pickaxe
+  description: A pickaxe made of Iron.
+  type: Pickaxe
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: pickaxe
+  stats:
+    pickaxePower: 3

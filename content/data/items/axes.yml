@@ -10,3 +10,27 @@ Stone Axe:
   icon: axe
   stats:
     axePower: 3
+
+Copper Axe:
+  name: Copper Axe
+  description: An axe made of Copper.
+  type: Axe
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: axe
+  stats:
+    axePower: 3
+
+Iron Axe:
+  name: Iron Axe
+  description: An axe made of Iron.
+  type: Axe
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 10
+  icon: axe
+  stats:
+    axePower: 3

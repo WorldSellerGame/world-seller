@@ -1,7 +1,43 @@
 
+Knitted Boots:
+  name: Knitted Boots
+  description: Boots made, ineffectively, of Yarn.
+  type: FootArmor
+  category: Armor
+  rarity: Common
+  durability: 5
+  value: 10
+  icon: boots
+  stats:
+    armor: 1
+
+Fur Boots:
+  name: Fur Boots
+  description: Boots with the fur.
+  type: FootArmor
+  category: Armor
+  rarity: Common
+  durability: 25
+  value: 10
+  icon: boots
+  stats:
+    armor: 3
+
 Linen Boots:
   name: Linen Boots
-  description: Boots made, ineffectively, of linen cloth.
+  description: Boots made of linen cloth.
+  type: FootArmor
+  category: Armor
+  rarity: Common
+  durability: 15
+  value: 10
+  icon: boots
+  stats:
+    speed: 2
+
+Leather Boots:
+  name: Leather Boots
+  description: Boots made of leather.
   type: FootArmor
   category: Armor
   rarity: Common
