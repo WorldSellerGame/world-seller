@@ -25,7 +25,7 @@ Fur:
   icon: 'hide'
 
 Twine: 
-  description: Tightly spun plant fiber. Can vary in thickness depending on the application 
+  description: Tightly spun plant fiber. Can vary in thickness depending on the application.
   category: Refined Materials
   rarity: Common
   icon: 'spool'
