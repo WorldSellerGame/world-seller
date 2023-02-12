@@ -318,12 +318,12 @@ const loadContent = async () => {
         hasBad = true;
       }
 
-      if(!isArray(recipe.require)) {
+      if(recipe.require && !isArray(recipe.require)) {
         console.log(`⚠ Recipe ${result} require is not an array.`);
         hasBad = true;
       }
 
-      if(!isArray(recipe.preserve)) {
+      if(recipe.preserve && !isArray(recipe.preserve)) {
         console.log(`⚠ Recipe ${result} preserve is not an array.`);
         hasBad = true;
       }
