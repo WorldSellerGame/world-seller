@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const readdir = require('recursive-readdir');
-const { isUndefined } = require('lodash');
+const { isUndefined, isArray } = require('lodash');
 
 const validCategories = ['Tools', 'Armor', 'Foods', 'Jewelry', 'Potions', 'Seeds', 'Miscellaneous', 'Raw Materials', 'Refined Materials', 'Crafting Tables', 'Weapons'];
 
@@ -315,6 +315,16 @@ const loadContent = async () => {
 
       if(!isValidItem(result)) {
         console.log(`⚠ Recipe result ${result} is not a valid resource or item.`);
+        hasBad = true;
+      }
+
+      if(!isArray(recipe.require)) {
+        console.log(`⚠ Recipe ${result} require is not an array.`);
+        hasBad = true;
+      }
+
+      if(!isArray(recipe.preserve)) {
+        console.log(`⚠ Recipe ${result} preserve is not an array.`);
         hasBad = true;
       }
 
