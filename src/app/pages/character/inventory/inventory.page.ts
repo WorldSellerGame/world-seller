@@ -25,11 +25,11 @@ export class InventoryPage implements OnInit {
   }
 
   itemCategories(items: IGameItem[]): string[] {
-    return sortBy(uniq(items.filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
+    return sortBy(uniq((items || []).filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
   }
 
   itemsInCategory(items: IGameItem[], category: string): IGameItem[] {
-    return sortBy(items.filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
+    return sortBy((items || []).filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
   }
 
   quickSell(item: IGameItem) {
