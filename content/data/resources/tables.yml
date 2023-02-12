@@ -200,7 +200,7 @@ Knitting Needles:
   icon: 'needle'
 
 Sewing Kit: 
-  description: Used stich material together. String not included.
+  description: Used stitch material together. String not included.
   category: Crafting Tables
   rarity: Common
   icon: 'needle'
@@ -218,7 +218,7 @@ Loom:
   icon: 'loom'
 
 Metal Sewing Kit: 
-  description: Used stich tougher material together. String not included.
+  description: Used stitch tougher material together. String not included.
   category: Crafting Tables
   rarity: Common
   icon: 'needle'
@@ -226,7 +226,7 @@ Metal Sewing Kit:
 # Jewelry, Going to use other catagories crafting things all the time
 
 Jewelry Tools:
-  description: A few tools for puncturing holding smashing and stitching.
+  description: A few tools for puncturing, holding, smashing, and stitching. #HOW DID YOU SPELL IT RIGHT HERE
   category: Crafting Tables
   rarity: Common
   icon: 'toolbox'
