@@ -30,9 +30,9 @@ recipes:
     ingredients:
       Dandelion: 12
     require:
-      -Dandelion
+      - Dandelion
     preserve:
-      -Dandelion
+      - Dandelion
     maxWorkers: 1
 
   - result: Braided Anklet
@@ -60,9 +60,9 @@ recipes:
       Twine: 2
       Jewelry Tools: 1
     require:
-      -Jewelry Tools
+      - Jewelry Tools
     preserve:
-      -Jewelry Tools
+      - Jewelry Tools
     maxWorkers: 1
 
   - result: Bone Belt
@@ -74,9 +74,9 @@ recipes:
       Twine: 6
       Jewelry Tools: 1
     require:
-      -Jewelry Tools
+      - Jewelry Tools
     preserve:
-      -Jewelry Tools
+      - Jewelry Tools
     maxWorkers: 1
 
   - result: Boar Tusk Anklet
@@ -88,9 +88,9 @@ recipes:
       Twine: 2
       Jewelry Tools: 1
     require:
-      -Jewelry Tools
+      - Jewelry Tools
     preserve:
-      -Jewelry Tools
+      - Jewelry Tools
     maxWorkers: 1
 
   - result: Boar Tusk Belt
@@ -102,9 +102,9 @@ recipes:
       Twine: 6
       Jewelry Tools: 1
     require:
-      -Jewelry Tools
+      - Jewelry Tools
     preserve:
-      -Jewelry Tools
+      - Jewelry Tools
     maxWorkers: 1
 
 # Metal #god fucking damnit god fucking fuck you fucking fuckers  I DONT WANT TO SUB DIVED INGOTS ONTO SMALLER FUCKING PORTIONS FRUCK SHIT ASS FUCK SHIT GODDAMN... Ahem mabye its not so bad... if it is bad though I am going to blow up the moon I bet there in a mcraft mod for doing that
@@ -117,9 +117,9 @@ recipes:
       Copper Ingot: 1
       Metal Jewelry Tools: 1
     require:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     preserve:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     maxWorkers: 1
 
   - result: Copper Tongue Piercing
@@ -130,9 +130,9 @@ recipes:
       Copper Ingot: 1
       Metal Jewelry Tools: 1
     require:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     preserve:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     maxWorkers: 1
 
   - result: Quartz Copper Ring
@@ -144,9 +144,9 @@ recipes:
       Cut Quartz: 1
       Metal Jewelry Tools: 1
     require:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     preserve:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     maxWorkers: 1
 
   - result: Quartz Copper Tongue Piercing
@@ -158,9 +158,9 @@ recipes:
       Cut Quartz: 1
       Metal Jewelry Tools: 1
     require:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     preserve:
-      -Metal Jewelry Tools
+      - Metal Jewelry Tools
     maxWorkers: 1
 
 ##iron because fuck
@@ -173,9 +173,9 @@ recipes:
       Iron Ingot: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
 
   - result: Iron Tongue Piercing
@@ -186,9 +186,9 @@ recipes:
       Iron Ingot: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
 
   - result: Quartz Iron Ring
@@ -200,9 +200,9 @@ recipes:
       Cut Quartz: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
 
   - result: Quartz Iron Tongue Piercing
@@ -214,9 +214,9 @@ recipes:
       Cut Quartz: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
 
   - result: Tanzanite Iron Ring
@@ -228,9 +228,9 @@ recipes:
       Cut Tanzanite: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
 
   - result: Tanzanite Iron Tongue Piercing
@@ -242,7 +242,7 @@ recipes:
       Cut Tanzanite: 1
       Iron Jewelry Tools: 1
     require:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     preserve:
-      -Iron Jewelry Tools
+      - Iron Jewelry Tools
     maxWorkers: 1
