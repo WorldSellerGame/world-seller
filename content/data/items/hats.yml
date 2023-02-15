@@ -17,7 +17,7 @@ Fur Hat:
   type: HeadArmor
   category: Armor
   rarity: Common
-  durability: 25
+  durability: 10
   value: 10
   icon: hat
   stats:
@@ -41,8 +41,8 @@ Leather Hat:
   type: HeadArmor
   category: Armor
   rarity: Common
-  durability: 50
+  durability: 20
   value: 10
   icon: hat
   stats:
-    armor: 1
+    armor: 5

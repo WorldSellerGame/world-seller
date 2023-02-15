@@ -5,11 +5,12 @@ Stone Sickle:
   type: Scythe
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 10
   value: 10
   icon: scythe
   stats:
     scythePower: 3
+    scytheSpeed: 0
 
 Copper Sickle:
   name: Copper Sickle
@@ -17,11 +18,12 @@ Copper Sickle:
   type: Scythe
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 15
   value: 10
   icon: scythe
   stats:
-    scythePower: 3
+    scythePower: 5
+    scytheSpeed: 15
 
 Iron Sickle:
   name: Iron Sickle
@@ -29,8 +31,9 @@ Iron Sickle:
   type: Scythe
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 20
   value: 10
   icon: scythe
   stats:
-    scythePower: 3
+    scythePower: 15
+    scytheSpeed: -5
