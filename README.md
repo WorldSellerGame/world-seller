@@ -115,7 +115,7 @@ Items require:
 * `icon` - the name of the SVG file in `src/assets/icon`
 * `type` - the type of the item (Pickaxe, Axe, FishingRod, FishingBait, Scythe, HuntingTool, Weapon, LegArmor, ChestArmor, HeadArmor, FootArmor, HandArmor, Jewelry, Food, Potion)
 * `category` - the rarity of the item (see Item Categories)
-* `durability` - how many uses the item can take
+* `durability` - how many uses the item can take (`-1` = infinite)
 * `value` - how much the item sells for (base; selling via shop sells it for 3x this value to start)
 * `givesAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats

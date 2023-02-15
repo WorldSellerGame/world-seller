@@ -197,6 +197,11 @@ export class CharSelectState {
       return;
     }
 
+    // any value less than 0 will never break
+    if(currentItem.durability < 0) {
+      return;
+    }
+
     const newDurability = Math.max(0, currentItem.durability - 1);
 
     // only break if it is freshly breaking
