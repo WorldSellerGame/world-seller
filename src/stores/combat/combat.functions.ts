@@ -75,6 +75,10 @@ export function useItemInSlot(ctx: StateContext<IGameCombat>, { slot }: UseItemI
     return;
   }
 
+  if(itemRef.durability === -1) {
+    return;
+  }
+
   const newDurability = itemRef.durability - 1;
   if(newDurability <= 0) {
     ctx.setState(patch<IGameCombat>({
