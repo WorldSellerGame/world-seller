@@ -8,3 +8,15 @@ StrengthenBasic:
   statusEffectType: StatModification
   statModifications:
     attack: 5
+
+######## Basic skill ability effects (May be moved) Regardless I will use all of these all the fucking time I think so best to get it right
+
+SpeedBuff1:
+  name: Speed 1
+  description: Gained +5 attack.
+  icon: arrow-forward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: 3

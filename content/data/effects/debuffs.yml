@@ -8,3 +8,5 @@ WeakenBasic:
   statusEffectType: StatModification
   statModifications:
     attack: -5
+
+######## Basic skill ability effects (May be moved)

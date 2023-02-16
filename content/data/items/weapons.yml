@@ -10,7 +10,7 @@ Stone Knife:
   durability: 10
   value: 10
   icon: knife
-  givesAbility: Stab
+  givesAbility: Shank
   stats:
     attack: 3
 
@@ -23,7 +23,7 @@ Copper Sword:
   durability: 15
   value: 10
   icon: sword
-  givesAbility: Stab
+  givesAbility: Cleave
   stats:
     attack: 7
 
@@ -50,7 +50,7 @@ Iron Sword:
   durability: 20
   value: 10
   icon: sword
-  givesAbility: Stab
+  givesAbility: Risky Swing
   stats:
     attack: 10
 
@@ -63,7 +63,7 @@ Iron Dagger:
   durability: 20
   value: 10
   icon: knife
-  givesAbility: Stab
+  givesAbility: Hemorrhaging Stab
   stats:
     attack: 6
     speed: 3 #perhaps 3?

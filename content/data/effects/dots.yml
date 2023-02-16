@@ -7,3 +7,12 @@ PoisonWeak:
   turnsLeft: 5
   statusEffectType: DamageOverTime
   damageOverTime: 5
+
+Bleed1:
+  name: Bleed
+  description: Uh oh, some one has a hole in them.
+  icon: drop
+  color: "#ff0000"
+  turnsLeft: 4
+  statusEffectType: DamageOverTime
+  damageOverTime: 3

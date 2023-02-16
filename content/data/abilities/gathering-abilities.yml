@@ -1,0 +1,75 @@
+##
+### Examples (to be adjusted)
+
+Hunting1:
+  name: Hunter's Precise Shot I
+  description: Snipe a single enemy for bonus damage.
+  icon: hunting
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.2
+      variance: 0.1
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 3
+  energyCost: 5
+  requires:
+    hunting: 10
+
+Hunting2:
+  name: Hunter's Precise Shot II
+  description: Snipe a single enemy for bonus damage.
+  icon: hunting
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.3
+      variance: 0.1
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 3
+  energyCost: 6
+  requires:
+    hunting: 20
+  replaces: Hunting1
+
+
+Foraging1:
+  name: Forager's Heal I
+  description: Heal yourself.
+  icon: foraging
+  target: Self
+  type: Physical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 5
+  requires:
+    foraging: 10
+
+### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
+    # I think I want skill ability's spaced every 15? or maybe thats silly 
+    # for now I think basic at 10 and 30 will be fine and uniques in between at 20 but likely will space them out more
+
+
+FishingBasic1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    fishing: 10
