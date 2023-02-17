@@ -45,6 +45,7 @@
     "angular-svg-icon": "^15.0.0",
     "fantastical": "^2.0.1",
     "fs-extra": "^11.1.0",
+    "gameanalytics": "^4.4.5",
     "ionicons": "^6.0.3",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",

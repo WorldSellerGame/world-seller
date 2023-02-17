@@ -24,6 +24,7 @@
                   <ion-button expand="block"
                               (click)="upgradeCounter()"
                               [disabled]="!canUpgradeCounter(pageData.coins || 0, pageData.shop?.saleCounterLevel || 0)"
+                              [analyticsClick]="'Peripheral:Mercantile:Upgrade:Counter'"
                               fill="outline">
                     <span *ngIf="isCounterMaxLevel(pageData.shop?.saleCounterLevel || 0)">Counter is max level</span>
                     <span *ngIf="!isCounterMaxLevel(pageData.shop?.saleCounterLevel || 0)">
@@ -37,6 +38,7 @@
                   <ion-button expand="block"
                               (click)="upgradeRegister()"
                               [disabled]="!canUpgradeRegister(pageData.coins || 0, pageData.shop?.saleBonusLevel || 0)"
+                              [analyticsClick]="'Peripheral:Mercantile:Upgrade:Register'"
                               fill="outline">
                     <span *ngIf="isRegisterMaxLevel(pageData.shop?.saleBonusLevel || 0)">Register is max level</span>
                     <span *ngIf="!isRegisterMaxLevel(pageData.shop?.saleBonusLevel || 0)">
@@ -50,6 +52,7 @@
                   <ion-button expand="block"
                               (click)="upgradeDecorations()"
                               [disabled]="!canUpgradeDecorations(pageData.coins || 0, pageData.shop?.decorationsLevel || 0)"
+                              [analyticsClick]="'Peripheral:Mercantile:Upgrade:Decorations'"
                               fill="outline">
                     <span *ngIf="isDecorationsMaxLevel(pageData.shop?.decorationsLevel || 0)">Decoration is max level</span>
                     <span *ngIf="!isDecorationsMaxLevel(pageData.shop?.decorationsLevel || 0)">
@@ -122,9 +125,11 @@
                     mercantileWorkers: mercantileWorkers$ | async,
                     allocated: ((mercantileWorkers$ | async)?.workerAllocations || []).length
                   } as workerData">
-                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker()">-</ion-button>
+                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker()"
+                                [analyticsClick]="'Peripheral:Mercantile:AddWorker'">-</ion-button>
                     <div>{{ workerData.allocated | number }}/{{ maxWorkers() }}</div>
-                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated >= maxWorkers() || !workerData.mercantileWorkers?.canAssignWorker" (click)="allocateWorker()">+</ion-button>
+                    <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated >= maxWorkers() || !workerData.mercantileWorkers?.canAssignWorker" (click)="allocateWorker()"
+                                [analyticsClick]="'Peripheral:Mercantile:RemoveWorker'">+</ion-button>
                   </ng-container>
                 </ion-col>
               </ion-row>

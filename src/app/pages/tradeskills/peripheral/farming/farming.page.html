@@ -51,7 +51,8 @@
               <ion-button fill="clear"
                           *ngIf="plot.result"
                           [disabled]="plot.currentDuration > 0"
-                          (click)="harvest(i)">
+                          (click)="harvest(i)"
+                          [analyticsClick]="'Peripheral:Farming:Harvest:' + plot.result">
                 Harvest
               </ion-button>
             </ion-card>
@@ -75,7 +76,8 @@
                     </ion-label>
                     <ion-button fill="clear"
                                 [class.no-skillups]="!seed.canGiveLevel"
-                                (click)="plant(currentPlantIndex, seed.name)">Plant</ion-button>
+                                (click)="plant(currentPlantIndex, seed.name)"
+                                [analyticsClick]="'Peripheral:Farming:Plant:' + seed.name">Plant</ion-button>
                   </ion-item>
                 </ion-list>
               </ion-card-content>

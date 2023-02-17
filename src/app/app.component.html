@@ -25,21 +25,33 @@
 
             <div class="sublist-divider"></div>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of gatheringTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-            </ion-item>
+            <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
+              <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering' + p.title">
+                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+                </ion-item>
+              </ng-container>
+            </ng-container>
 
             <div class="sublist-divider"></div>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of refiningTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-            </ion-item>
+            <ng-container *ngFor="let p of refiningTradeskills; let i = index">
+              <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining' + p.title">
+                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+                </ion-item>
+              </ng-container>
+            </ng-container>
 
             <div class="sublist-divider"></div>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" *ngFor="let p of peripheralTradeskills; let i = index">
-              <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-            </ion-item>
+            <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
+              <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral' + p.title">
+                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+                </ion-item>
+              </ng-container>
+            </ng-container>
 
           </ion-menu-toggle>
         </ion-list>
@@ -85,7 +97,13 @@
             <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked">
+                  <ion-item routerDirection="root"
+                            [routerLink]="['/game', characterSlot, p.url]"
+                            lines="none"
+                            detail="false"
+                            routerLinkActive="selected"
+                            [disabled]="!tsData.isUnlocked"
+                            [analyticsClick]="'Navigate:Gathering' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -109,7 +127,13 @@
             <ng-container *ngFor="let p of refiningTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked">
+                  <ion-item routerDirection="root"
+                            [routerLink]="['/game', characterSlot, p.url]"
+                            lines="none"
+                            detail="false"
+                            routerLinkActive="selected"
+                            [disabled]="!tsData.isUnlocked"
+                            [analyticsClick]="'Navigate:Refining' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -133,7 +157,13 @@
             <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked">
+                  <ion-item routerDirection="root"
+                            [routerLink]="['/game', characterSlot, p.url]"
+                            lines="none"
+                            detail="false"
+                            routerLinkActive="selected"
+                            [disabled]="!tsData.isUnlocked"
+                            [analyticsClick]="'Navigate:Peripheral' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">

@@ -17,11 +17,13 @@ import { ResourceIconComponent } from './components/resource-icon/resource-icon.
 import { SkillDisplayComponent } from './components/skill-display/skill-display.component';
 import { StatLineComponent } from './components/stat-line/stat-line.component';
 import { TimeResourceIconComponent } from './components/time-resource-icon/time-resource-icon.component';
+import { AnalyticsClickDirective } from './directives/analytics-click.directive';
 
 @NgModule({
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent],
+    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
+    AnalyticsClickDirective],
   imports: [
     CommonModule,
     IonicModule,
@@ -30,6 +32,7 @@ import { TimeResourceIconComponent } from './components/time-resource-icon/time-
   ],
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent]
+    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
+    AnalyticsClickDirective]
 })
 export class SharedModule { }

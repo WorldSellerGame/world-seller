@@ -9,7 +9,7 @@
               Gathering from {{ currentLocation.location.name }} for another <strong>{{ currentLocation.duration }}s</strong>.
             </div>
 
-            <ion-button color="danger" fill="clear" (click)="cancelGather()">Cancel</ion-button>
+            <ion-button color="danger" fill="clear" (click)="cancelGather()" [analyticsClick]="'Gathering:Cancel:' + tradeskill">Cancel</ion-button>
           </ion-card-content>
 
           <ng-template #noGathering>
@@ -51,8 +51,9 @@
                         *ngIf="!(cooldowns$ | async)?.[location.name]"
                         [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
                         [disabled]="currentLocation$ | async"
-                        (click)="gather(location)">
-              Fish
+                        (click)="gather(location)"
+                        [analyticsClick]="'Gathering:' + tradeskill + ':Gather:' + location.name">
+              Gather
             </ion-button>
 
             <ng-container *ngIf="{
@@ -60,11 +61,13 @@
               allocated: workersAllocatedToLocation((gatheringWorkers$ | async)?.workerAllocations ?? [], location)
             } as workerData">
               <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)">-</ion-button>
+                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)"
+                            [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">-</ion-button>
 
                 <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
 
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)">+</ion-button>
+                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)"
+                            [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">+</ion-button>
               </div>
             </ng-container>
           </div>
