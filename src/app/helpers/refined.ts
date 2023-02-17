@@ -81,7 +81,11 @@ export function cancelRefineJob(ctx: StateContext<IGameRefining>, jobIndex: numb
   if(shouldRefundResources) {
     const job = ctx.getState().recipeQueue[jobIndex];
     const resourceRefunds = Object.keys(job.recipe.ingredients)
-      .map(ingredient => ({ [ingredient]: job.recipe.ingredients[ingredient] * job.totalLeft }))
+      .map(ingredient => (job.recipe.preserve || []).includes(ingredient)
+        ? {}
+        : ({ [ingredient]: job.recipe.ingredients[ingredient] * job.totalLeft })
+      )
+      .filter(Boolean)
       .reduce((acc, cur) => merge(acc, cur), {});
 
     ctx.dispatch(new GainResources(resourceRefunds));
