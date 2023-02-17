@@ -190,6 +190,12 @@ export class CombatState {
       char.currentSpeed = random(1, char.stats[Stat.Speed]);
     });
 
+    // every 10th level requires a dungeon dive
+    let shouldGiveSkillPoint = threatData.maxSkillGainLevel > state.level;
+    if(state.level !== 0 && (state.level % 10) !== 0) {
+      shouldGiveSkillPoint = false;
+    }
+
     ctx.setState(patch<IGameCombat>({
       currentPlayer,
       currentEncounter: {
@@ -200,8 +206,7 @@ export class CombatState {
         isLockedForEnemies: false,
         shouldExitDungeon,
 
-        // every 10th level requires a dungeon dive
-        shouldGiveSkillPoint: (state.level % 10) !== 0 && threatData.maxSkillGainLevel > state.level
+        shouldGiveSkillPoint
       }
     }));
   }
