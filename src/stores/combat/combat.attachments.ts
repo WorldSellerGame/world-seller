@@ -1,4 +1,5 @@
 import { IAttachment } from '../../interfaces/store';
+import { DeleteCharacter } from '../charselect/charselect.actions';
 import {
   AddCombatLogMessage,
   ConsumeFoodCharges,
@@ -37,6 +38,7 @@ import {
 
 
 export const attachments: IAttachment[] = [
+  { action: DeleteCharacter, handler: resetCombat },
   { action: UnlockCombat, handler: unlockCombat },
   { action: ResetCombat, handler: resetCombat },
   { action: EndCombat, handler: endCombat },
