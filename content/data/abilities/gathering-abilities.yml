@@ -73,3 +73,239 @@ FishingBasic1:
   energyCost: 3
   requires:
     fishing: 10
+    combat: 1
+
+FishingBasic2:
+  name: Fisherman's Swiftness II
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    fishing: 30
+    combat: 31
+  replaces: FishingBasic1
+
+ForagingBasic1:
+  name: Forager's Insight I
+  description: Increase your Healing.
+  icon: healing-buff
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    foraging: 10
+    combat: 1
+ 
+ForagingBasic2:
+  name: Forager's Insight II
+  description: Increase your Healing.
+  icon: healing-buff
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    foraging: 30
+    combat: 31
+  replaces: ForagingBasic1
+ 
+HuntingBasic1:
+  name: Hunter's Focus I
+  description: Increase your Attack.
+  icon: eye-target
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    hunting: 10
+    combat: 1
+ 
+HuntingBasic2:
+  name: Hunter's Focus II
+  description: Increase your Attack.
+  icon: eye-target
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    hunting: 30
+    combat: 31
+  replaces: HuntingBasic1
+ 
+LoggingBasic1:
+  name: Lumberjack's Endurance I
+  description: Increase your max Health.
+  icon: heart-plus
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    logging: 10
+    combat: 1
+ 
+LoggingBasic2:
+  name: Lumberjack's Endurance II
+  description: Increase your max Health.
+  icon: heart-plus
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    logging: 30
+    combat: 31
+  replaces: LoggingBasic1
+ 
+MiningBasic1:
+  name: Miner's Fortitude I
+  description: Increase your Armor.
+  icon: shield
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    mining: 10
+    combat: 1
+ 
+MiningBasic2:
+  name: Miner's Fortitude II
+  description: Increase your Armor.
+  icon: shield
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    mining: 30
+    combat: 31
+  replaces: MiningBasic1
+ 
+#### 
+ ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
+####
+
+FishingUnique1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 5
+  requires:
+    fishing: 20
+    combat: 16
+ 
+ForagingUnique1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 5
+  requires:
+    foraging: 20
+    combat: 16
+ 
+HuntingUnique1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 5
+  requires:
+    hunting: 20
+    combat: 16
+ 
+LoggingUnique1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 5
+  requires:
+    logging: 20
+    combat: 16
+ 
+MiningUnique1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 5
+  requires:
+    mining: 20
+    combat: 16
+ 
+ 

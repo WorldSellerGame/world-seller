@@ -10,3 +10,103 @@ WeakenBasic:
     attack: -5
 
 ######## Basic skill ability effects (May be moved)
+
+SpeedDebuff1:
+  name: Slow 1
+  description: Decreases Speed by 3.
+  icon: arrow-backward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -3
+
+SpeedDebuff2:
+  name: Slow 2
+  description: Decreases Speed by 5.
+  icon: arrow-backward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -5
+ 
+HealingDebuff1:
+  name: Necrosis 1
+  description: Decreases Healing by 3.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -3
+
+HealingDebuff2:
+  name: Necrosis 2
+  description: Decreases Healing by 5.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -5
+ 
+AttackDebuff1:
+  name: Weaken 1
+  description: Decreases Attack by 3.
+  icon: sword-shatter
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: -3
+
+AttackDebuff2:
+  name: Weaken 2
+  description: Decreases Attack by 5.
+  icon: sword-shatter
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: -5
+ 
+HealthDebuff1:
+  name: Debilitate 1
+  description: Decreases Max Health by 3.
+  icon: heart-minus
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    health: -3
+
+HealthDebuff2:
+  name: Debilitate 2
+  description: Decreases Max Health by 5.
+  icon: heart-minus
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    health: -5
+ 
+ArmorDebuff1:
+  name: Shred 1
+  description: Decreases Armor by 3.
+  icon: shield-down
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: -3
+
+ArmorDebuff2:
+  name: Shred 2
+  description: Decreases Armor by 5.
+  icon: shield-down
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: -5
