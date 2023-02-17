@@ -3,16 +3,16 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { sample, sampleSize } from 'lodash';
 import { findUniqueTileInDungeonFloor } from '../../app/helpers';
 import {
-    DungeonNode, DungeonTile, IDungeon, IDungeonFloor,
-    IGameCombat, IGameDungeonState, IGameEncounterCharacter
+  DungeonNode, DungeonTile, IDungeon, IDungeonFloor,
+  IGameCombat, IGameDungeonState, IGameEncounterCharacter
 } from '../../interfaces';
 import { GainItemOrResource } from '../charselect/charselect.actions';
 import { NotifyInfo } from '../game/game.actions';
 import { InitiateCombat } from './combat.actions';
 import { acquireItemDrops } from './combat.functions';
 import {
-    EmptyDungeonTile, FullyHeal, GainPercentageOfDungeonLoot,
-    LeaveDungeon, MoveInDungeon, MoveInDungeonByDelta
+  EmptyDungeonTile, FullyHeal, GainPercentageOfDungeonLoot,
+  LeaveDungeon, MoveInDungeon, MoveInDungeonByDelta
 } from './dungeon.actions';
 
 export function fullyHeal(ctx: StateContext<IGameCombat>) {
