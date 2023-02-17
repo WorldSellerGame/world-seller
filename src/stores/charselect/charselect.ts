@@ -1,13 +1,28 @@
 
 
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
-import { NotifyError, NotifyInfo, NotifyWarning, UpdateAllItems } from '../game/game.actions';
-import { BreakItem, DecreaseDurability, GainJobResult, GainResources, SaveActiveCharacter } from './charselect.actions';
+import { UnlockAlchemy } from '../alchemy/alchemy.actions';
+import { UnlockBlacksmithing } from '../blacksmithing/blacksmithing.actions';
+import { UnlockCombat } from '../combat/combat.actions';
+import { UnlockCooking } from '../cooking/cooking.actions';
+import { UnlockFarming } from '../farming/farming.actions';
+import { UnlockFishing } from '../fishing/fishing.actions';
+import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, UpdateAllItems } from '../game/game.actions';
+import { UnlockHunting } from '../hunting/hunting.actions';
+import { UnlockJewelcrafting } from '../jewelcrafting/jewelcrafting.actions';
+import { UnlockMercantile } from '../mercantile/mercantile.actions';
+import { UnlockMining } from '../mining/mining.actions';
+import { UnlockProspecting } from '../prospecting/prospecting.actions';
+import { UnlockWeaving } from '../weaving/weaving.actions';
+import {
+  BreakItem, DecreaseDurability, DiscoverResourceOrItem,
+  GainItemOrResource, GainResources, SaveActiveCharacter
+} from './charselect.actions';
 import { attachments } from './charselect.attachments';
 import { defaultCharSelect } from './charselect.functions';
 
@@ -19,6 +34,7 @@ import { defaultCharSelect } from './charselect.functions';
 export class CharSelectState {
 
   constructor(
+    private store: Store,
     private itemCreatorService: ItemCreatorService
   ) {
     attachments.forEach(({ action, handler }) => {
@@ -54,6 +70,11 @@ export class CharSelectState {
   @Selector()
   static activeCharacterEquipment(state: ICharSelect) {
     return this.activeCharacter(state)?.equipment ?? {};
+  }
+
+  @Selector()
+  static activeCharacterDiscoveries(state: ICharSelect) {
+    return this.activeCharacter(state)?.discoveries ?? {};
   }
 
   @Action(UpdateAllItems)
@@ -107,6 +128,115 @@ export class CharSelectState {
     ctx.setState(patch({ characters }));
   }
 
+  @Action(DiscoverResourceOrItem)
+  async discoverResourceOrItem(ctx: StateContext<ICharSelect>, { itemName }: DiscoverResourceOrItem) {
+
+    const state = ctx.getState();
+    const activeCharacter = state.characters[state.currentCharacter];
+    const discoveries = activeCharacter.discoveries || {};
+
+    // attempt to unlock other content
+    const checkDiscoveries = { ...discoveries, [itemName]: true };
+    const checkSnapshot = this.store.snapshot();
+
+    if(!checkSnapshot.fishing.unlocked && checkDiscoveries['Plant Fiber']) {
+      ctx.dispatch([
+        new UnlockFishing(),
+        new NotifySuccess('You can now go fishing!')
+      ]);
+    }
+
+    if(!checkSnapshot.hunting.unlocked && checkDiscoveries['Stone']) {
+      ctx.dispatch([
+        new UnlockHunting(),
+        new NotifySuccess('You can now go hunting!')
+      ]);
+    }
+
+    if(!checkSnapshot.mining.unlocked && checkDiscoveries['Pine Log']) {
+      ctx.dispatch([
+        new UnlockMining(),
+        new NotifySuccess('You can now go mining!')
+      ]);
+    }
+
+    if(!checkSnapshot.alchemy.unlocked && checkDiscoveries['Pine Needle'] && checkDiscoveries['Oven']) {
+      ctx.dispatch([
+        new UnlockAlchemy(),
+        new NotifySuccess('You can now do alchemy!')
+      ]);
+    }
+
+    if(!checkSnapshot.blacksmithing.unlocked && checkDiscoveries['Stone'] && checkDiscoveries['Pine Log']) {
+      ctx.dispatch([
+        new UnlockBlacksmithing(),
+        new NotifySuccess('You can now do blacksmithing!')
+      ]);
+    }
+
+    if(!checkSnapshot.cooking.unlocked && checkDiscoveries['Pinecone']) {
+      ctx.dispatch([
+        new UnlockCooking(),
+        new NotifySuccess('You can now cook!')
+      ]);
+    }
+
+    if(!checkSnapshot.jewelcrafting.unlocked && checkDiscoveries['Dandelion']) {
+      ctx.dispatch([
+        new UnlockJewelcrafting(),
+        new NotifySuccess('You can now craft jewelry!')
+      ]);
+    }
+
+    if(!checkSnapshot.weaving.unlocked && checkDiscoveries['Whorl']) {
+      ctx.dispatch([
+        new UnlockWeaving(),
+        new NotifySuccess('You can now do weaving!')
+      ]);
+    }
+
+    if(!checkSnapshot.combat.unlocked && checkDiscoveries['Stone Knife']) {
+      ctx.dispatch([
+        new UnlockCombat(),
+        new NotifySuccess('You can now engage in combat!')
+      ]);
+    }
+
+    if(!checkSnapshot.farming.unlocked && checkDiscoveries['Carrot Seed']) {
+      ctx.dispatch([
+        new UnlockFarming(),
+        new NotifySuccess('You can now go farming!')
+      ]);
+    }
+
+    if(!checkSnapshot.mercantile.unlocked && checkDiscoveries['Coin']) {
+      ctx.dispatch([
+        new UnlockMercantile(),
+        new NotifySuccess('You can now engage in mercantile acts!')
+      ]);
+    }
+
+    if(!checkSnapshot.prospecting.unlocked && checkDiscoveries['Stone']) {
+      ctx.dispatch([
+        new UnlockProspecting(),
+        new NotifySuccess('You can now prospect stones for gems!')
+      ]);
+    }
+
+    // save ourselves the patch
+    if(discoveries[itemName]) {
+      return;
+    }
+
+    ctx.setState(patch<ICharSelect>({
+      characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
+        discoveries: patch<Record<string, boolean>>({
+          [itemName]: true
+        })
+      }))
+    }));
+  }
+
   @Action(GainResources)
   async gainResources(ctx: StateContext<ICharSelect>, { resources, shouldNotify }: GainResources) {
 
@@ -127,12 +257,18 @@ export class CharSelectState {
       return;
     }
 
+    // discover all of the resources
+    ctx.dispatch(earnedResources.map(r => new DiscoverResourceOrItem(r)));
+
     const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
     ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
   }
 
-  @Action(GainJobResult)
-  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainJobResult) {
+  @Action(GainItemOrResource)
+  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
+
+    const state = ctx.getState();
+    const activeCharacter = state.characters[state.currentCharacter];
 
     if(itemName === 'nothing') {
       ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
@@ -153,11 +289,12 @@ export class CharSelectState {
       return;
     }
 
+    // discover the thing if it's an item (resources are handled elsewhere)
+    ctx.dispatch(new DiscoverResourceOrItem(itemName));
+
     ctx.dispatch(new NotifyInfo(`Gained ${itemName} x${quantity}!`));
 
-    const state = ctx.getState();
-
-    const existingItem = state.characters[state.currentCharacter].inventory.find(item => item.name === itemName);
+    const existingItem = activeCharacter.inventory.find(item => item.name === itemName);
 
     if(existingItem && createdItem.canStack) {
       ctx.setState(patch<ICharSelect>({

@@ -14,6 +14,7 @@ export interface IGameMercantileStockpile {
 
 export interface IGameMercantile {
   version: number;
+  unlocked: boolean;
   level: number;
 
   shop: IGameMercantileShop;

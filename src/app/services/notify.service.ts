@@ -34,4 +34,13 @@ export class NotifyService {
       timeout: 5000
     });
   }
+
+  public success(message: string) {
+    Notify.success(message, {
+      useIcon: false,
+      clickToClose: true,
+      fontSize: '15px',
+      timeout: 5000
+    });
+  }
 }

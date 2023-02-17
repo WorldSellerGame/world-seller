@@ -7,10 +7,15 @@ import { CancelBlacksmithingJob, StartBlacksmithingJob } from './blacksmithing.a
 
 export const defaultBlacksmithing: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockBlacksmithing(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetBlacksmithing(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultBlacksmithing());

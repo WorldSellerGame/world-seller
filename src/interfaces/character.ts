@@ -10,6 +10,7 @@ export interface IPlayerCharacter extends ICharacter {
   lastTotalLevel: number;
   resources: Record<string, number>;
   inventory: IGameItem[];
+  discoveries: Record<string, boolean>;
 }
 
 export interface IEnemyDrop {

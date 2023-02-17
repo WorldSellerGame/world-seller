@@ -22,7 +22,8 @@ export const defaultCharacter: (name: string) => IPlayerCharacter = (name: strin
   tradeskillInformation: {},
   resources: {},
   inventory: [],
-  equipment: {}
+  equipment: {},
+  discoveries: {}
 });
 
 export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { GameOption, IOptions } from '../../../../interfaces';
 import { OptionsState } from '../../../../stores';
+import { UnlockForaging } from '../../../../stores/foraging/foraging.actions';
+import { UnlockLogging } from '../../../../stores/logging/logging.actions';
 import { GainCoins } from '../../../../stores/mercantile/mercantile.actions';
 import { SetOption } from '../../../../stores/options/options.actions';
 import { MetaService } from '../../../services/meta.service';
@@ -42,5 +44,9 @@ export class SettingsPage implements OnInit {
 
   addManyCoins() {
     this.store.dispatch(new GainCoins(1000));
+  }
+
+  unlockBasics() {
+    this.store.dispatch([new UnlockForaging(), new UnlockLogging()]);
   }
 }

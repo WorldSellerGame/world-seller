@@ -5,7 +5,7 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { NotifyService } from '../../app/services/notify.service';
 import { IGame } from '../../interfaces';
-import { NotifyError, NotifyInfo, NotifyWarning } from './game.actions';
+import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning } from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 
@@ -35,6 +35,11 @@ export class GameState {
   @Action(NotifyInfo)
   notifyInfo(ctx: StateContext<IGame>, { message }: NotifyInfo) {
     this.notify.notify(message);
+  }
+
+  @Action(NotifySuccess)
+  notifySuccess(ctx: StateContext<IGame>, { message }: NotifySuccess) {
+    this.notify.success(message);
   }
 
 }

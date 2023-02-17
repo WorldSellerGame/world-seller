@@ -20,13 +20,18 @@ export class SaveActiveCharacter {
   constructor() {}
 }
 
+export class DiscoverResourceOrItem {
+  static type = '[CharSelect] Discover Resource Or Item';
+  constructor(public itemName: string) {}
+}
+
 export class GainResources {
   static type = '[CharSelect] Gain Resources';
   constructor(public resources: Record<string, number>, public shouldNotify = true) {}
 }
 
-export class GainJobResult {
-  static type = '[CharSelect] Gain Job Result';
+export class GainItemOrResource {
+  static type = '[CharSelect] Gain Item Or Resource';
   constructor(public itemName: string, public quantity = 1) {}
 }
 

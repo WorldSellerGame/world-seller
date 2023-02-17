@@ -14,6 +14,7 @@ export interface IGameGatherLocation {
 
 export interface IGameGathering {
   version: number;
+  unlocked: boolean;
   level: number;
   currentLocation?: IGameGatherLocation;
   currentLocationDurationInitial: number;
