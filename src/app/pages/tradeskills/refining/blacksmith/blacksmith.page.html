@@ -5,109 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ng-container *ngIf="{
-    level: level$ | async,
-    resources: resources$ | async,
-    queueInfo: currentQueue$ | async
-  } as pageData">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Crafting Queue</ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-              <ng-container>
-                <div *ngIf="pageData.queueInfo?.queue?.length === 0">No items currently being crafted.</div>
-
-                <ion-list>
-                  <ion-item *ngFor="let craftItem of pageData.queueInfo?.queue || []; let i = index; trackBy:trackBy">
-                    <app-game-icon slot="start" [icon]="iconForRecipe(craftItem.recipe)"></app-game-icon>
-
-                    <ion-label>
-                      <h2>{{ craftItem.recipe.result }} x{{ craftItem.totalLeft }} &middot; <app-countdown [duration]="craftItem.currentDuration"></app-countdown></h2>
-                    </ion-label>
-
-                    <ion-button color="danger" slot="end" fill="clear" (click)="cancel(i)">Cancel</ion-button>
-                  </ion-item>
-                </ion-list>
-              </ng-container>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Craftable Recipes</ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-              <ion-list>
-                <ion-item *ngFor="let recipe of visibleRecipes(pageData.resources || {}, locationData.recipes)">
-                  <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
-
-                  <ion-label>
-                    <h2>
-                      <strong>{{ recipe.result }}</strong>
-                    </h2>
-
-                    <div class="resources">
-                      <app-time-resource-icon [time]="recipe.craftTime * (amounts[recipe.result] || 1)"
-                                              [inlineIconSize]="true"
-                                              [emphasizeText]="false"></app-time-resource-icon>
-
-                      <app-resource-icon [name]="resource.key"
-                                          [quantity]="recipe.preserve?.includes(resource.key) ? resource.value : resource.value * (amounts[recipe.result] || 1)"
-                                          [maxQuantity]="pageData.resources?.[resource.key] || 0"
-                                          [showX]="true"
-                                          [inlineIconSize]="true"
-                                          [emphasizeText]="false"
-                                          [angryColorWhenQuantityExceedsMax]="true"
-                                          *ngFor="let resource of recipe.ingredients | keyvalue"></app-resource-icon>
-                    </div>
-                  </ion-label>
-
-                  <div slot="end">
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col class="craft-buttons">
-                          <ion-button color="primary" fill="outline" (click)="modifyAmount(recipe, -1)" [disabled]="!amounts[recipe.result] || amounts[recipe.result] <= 1">-</ion-button>
-                          <div class="amount">{{ amounts[recipe.result] || 1 }}</div>
-                          <ion-button color="primary" fill="outline" (click)="modifyAmount(recipe, 1)">+</ion-button>
-                          <ion-button class="craft"
-                                      fill="clear"
-                                      (click)="craft(recipe, amounts[recipe.result] || 1)"
-                                      [disabled]="isQueueFull(pageData.queueInfo) || !canCraftRecipe(pageData.resources || {}, recipe, amounts[recipe.result] || 1)"
-                                      [class.no-skillups]="(pageData.level || 0) >= recipe.level.max">Craft</ion-button>
-                        </ion-col>
-                      </ion-row>
-
-                      <ng-container *ngIf="{
-                        refiningWorkers: refiningWorkers$ | async,
-                        allocated: workersAllocatedToRecipe((refiningWorkers$ | async)?.workerAllocations ?? [], recipe)
-                      } as workerData">
-                        <ion-row *ngIf="recipe.maxWorkers > 0 && workerData.refiningWorkers?.hasWorkers">
-                          <ion-col class="worker-buttons">
-                            <ion-button color="secondary" fill="outline" (click)="unassignWorker(recipe)" [disabled]="workerData.allocated <= 0">-</ion-button>
-                            <div class="amount">{{ workerData.allocated | number }}/{{ recipe.maxWorkers }}</div>
-                            <ion-button color="secondary" fill="outline" (click)="assignWorker(recipe)" [disabled]="workerData.allocated >= recipe.maxWorkers || !workerData.refiningWorkers?.canAssignWorker">+</ion-button>
-                          </ion-col>
-                        </ion-row>
-                      </ng-container>
-                    </ion-grid>
-                  </div>
-                </ion-item>
-              </ion-list>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ng-container>
+  <app-refining-page-display
+    [tradeskill]="'blacksmithing'"
+    [level$]="level$"
+    [resources$]="resources$"
+    [currentQueue$]="currentQueue$"
+    [refiningWorkers$]="refiningWorkers$"
+    [locationData]="locationData"
+    [startAction]="startAction"
+    [cancelAction]="cancelAction"
+  ></app-refining-page-display>
 </ion-content>

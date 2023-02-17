@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { BlacksmithingState, CharSelectState, WorkersState } from '../../../../../stores';
 
-import { sortBy } from 'lodash';
 import { CancelBlacksmithingJob, StartBlacksmithingJob } from '../../../../../stores/blacksmithing/blacksmithing.actions';
-import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../../../stores/workers/workers.actions';
-import { canCraftRecipe } from '../../../../helpers';
 import { ContentService } from '../../../../services/content.service';
-import { ItemCreatorService } from '../../../../services/item-creator.service';
 
 @Component({
   selector: 'app-blacksmith',
@@ -22,8 +18,13 @@ export class BlacksmithPage implements OnInit {
     return this.contentService.blacksmithing;
   }
 
-  public amounts: Record<string, number> = {};
-  public recipes$!: Observable<IGameRecipe[]>;
+  public get startAction() {
+    return StartBlacksmithingJob;
+  }
+
+  public get cancelAction() {
+    return CancelBlacksmithingJob;
+  }
 
   @Select(BlacksmithingState.level) level$!: Observable<number>;
   @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
@@ -35,65 +36,9 @@ export class BlacksmithPage implements OnInit {
     hasWorkers: boolean;
   }>;
 
-  constructor(private store: Store, private itemCreatorService: ItemCreatorService, private contentService: ContentService) { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-  }
-
-  isQueueFull(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
-    if(!queueInfo) {
-      return false;
-    }
-
-    const { queue, size } = queueInfo;
-    return queue.length >= size;
-  }
-
-  trackBy(index: number) {
-    return index;
-  }
-
-  visibleRecipes(resources: Record<string, number>, recipes: IGameRecipe[]): IGameRecipe[] {
-    const validRecipes = recipes.filter((recipe: IGameRecipe) => {
-      const required = recipe.require || [];
-      return required.every((req) => resources[req] > 0);
-    });
-
-    return sortBy(validRecipes, 'result');
-  }
-
-  iconForRecipe(recipe: IGameRecipe) {
-    return this.itemCreatorService.iconFor(recipe.result);
-  }
-
-  modifyAmount(recipe: IGameRecipe, amount: number) {
-    this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
-  }
-
-  canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {
-    return canCraftRecipe(resources, recipe, amount);
-  }
-
-  craft(recipe: IGameRecipe, amount = 1) {
-    this.amounts[recipe.result] = 1;
-
-    this.store.dispatch(new StartBlacksmithingJob(recipe, amount));
-  }
-
-  cancel(jobIndex: number) {
-    this.store.dispatch(new CancelBlacksmithingJob(jobIndex));
-  }
-
-  workersAllocatedToRecipe(allWorkers: IGameWorkersRefining[], recipe: IGameRecipe): number {
-    return allWorkers.filter(w => w.recipe.result === recipe.result && w.tradeskill === 'blacksmithing').length;
-  }
-
-  assignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new AssignRefiningWorker('blacksmithing', recipe));
-  }
-
-  unassignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new UnassignRefiningWorker('blacksmithing', recipe));
   }
 
 }
