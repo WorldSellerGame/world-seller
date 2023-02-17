@@ -3,7 +3,8 @@
 <ng-container *ngIf="{
   level: level$ | async,
   resources: resources$ | async,
-  queueInfo: currentQueue$ | async
+  queueInfo: currentQueue$ | async,
+  discoveries: discoveries$ | async
 } as pageData">
   <ion-grid>
     <ion-row>
@@ -43,7 +44,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let recipe of visibleRecipes(pageData.resources || {}, locationData.recipes)">
+              <ion-item *ngFor="let recipe of visibleRecipes(pageData.discoveries || {}, locationData.recipes)">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
 
                 <ion-label>

@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
+import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ItemCreatorService } from '../../services/item-creator.service';
@@ -27,6 +28,8 @@ export class RefiningPageDisplayComponent implements OnInit {
   @Input() locationData: { recipes: IGameRecipe[] } = { recipes: [] };
   @Input() startAction: any;
   @Input() cancelAction: any;
+
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
 
   public amounts: Record<string, number> = {};
 
@@ -55,10 +58,10 @@ export class RefiningPageDisplayComponent implements OnInit {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
   }
 
-  visibleRecipes(resources: Record<string, number>, recipes: IGameRecipe[]): IGameRecipe[] {
+  visibleRecipes(discoveries: Record<string, boolean>, recipes: IGameRecipe[]): IGameRecipe[] {
     const validRecipes = recipes.filter((recipe: IGameRecipe) => {
       const required = recipe.require || [];
-      return required.every((req) => resources[req] > 0);
+      return required.every((req) => discoveries[req]);
     });
 
     return sortBy(validRecipes, 'result');
