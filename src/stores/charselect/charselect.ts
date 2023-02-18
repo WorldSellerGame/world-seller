@@ -81,6 +81,9 @@ export class CharSelectState {
   async updateAllItems(ctx: StateContext<ICharSelect>) {
     const state = ctx.getState();
     const characters = state.characters.map(char => {
+      if(!char) {
+        return;
+      }
 
       const inventory = char.inventory.map((oldItem) => {
 
