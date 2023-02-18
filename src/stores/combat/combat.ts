@@ -6,7 +6,7 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import {
-  applyDeltas, calculateSpeedBonus, defaultStatsZero,
+  applyDeltas, calculateStatFromState, defaultStatsZero,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
   getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
@@ -137,11 +137,13 @@ export class CombatState {
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(ctx, activePlayer);
+      currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
     }
 
     // sync things in case we have a persistent character
-    currentPlayer.stats[Stat.Speed] = calculateSpeedBonus(activePlayer);
+    currentPlayer.stats[Stat.Speed] = calculateStatFromState(
+      store, activePlayer, Stat.Speed
+    );
 
     // set up enemies for combat
     const enemyNamesAndCounts: Record<string, number> = {};
@@ -421,7 +423,7 @@ export class CombatState {
       return;
     }
 
-    const dungeonCharacter = getPlayerCharacterReadyForCombat(ctx, activePlayer);
+    const dungeonCharacter = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
 
     const startPos = findUniqueTileInDungeonFloor(dungeon, 0, DungeonTile.Entrance);
     if(!startPos) {

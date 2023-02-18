@@ -1,7 +1,13 @@
+import { IStatGains } from '../../interfaces';
 
 export class TickTimer {
   static type = '[Game] Tick Timer';
   constructor(public ticks = 1) {}
+}
+
+export class SetStatGains {
+  static type = '[Game] Set Stat Gains';
+  constructor(public statGains: IStatGains) {}
 }
 
 export class UpdateAllItems {
