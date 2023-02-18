@@ -71,6 +71,16 @@ AttackBuff2:
   statModifications:
     attack: 5
  
+AttackBuff3:
+  name: Attack 3
+  description: Increases Attack by 8.
+  icon: sword-hand
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: 8
+
 HealthBuff1:
   name: Health 1
   description: Increases Max Health by 3.
@@ -111,4 +121,25 @@ ArmorBuff2:
   statModifications:
     armor: 5
  
+EnergyBuff1:
+  name: Energize 1
+  description: Increases Energy by 3.
+  icon: bolt
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: 3
+    energy: 3
+
+EnergyBuff2:
+  name: Energize 2
+  description: Increases Energy by 5.
+  icon: bolt
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: 5
+    energy: 5
  

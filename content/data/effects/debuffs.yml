@@ -110,3 +110,26 @@ ArmorDebuff2:
   statusEffectType: StatModification
   statModifications:
     armor: -5
+
+EnergyDebuff1:
+  name: Enfeeble 1
+  description: Decreases Energy by 3.
+  icon: enfeeble
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: -3
+    energy: -3
+
+EnergyDebuff2:
+  name: Enfeeble 2
+  description: Decreases Energy by 5.
+  icon: enfeeble
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: -5
+    energy: -5
+ 

@@ -228,81 +228,91 @@ MiningBasic2:
  ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
 ####
 
-FishingUnique1:
-  name: Fisherman's Swiftness I
-  description: Increase your Speed.
-  icon: arrow-forward
-  target: Self
-  type: Physical
+FishingUnique1: #I am taking your energy fucker
+  name: Tire Em Out I
+  description: Drain an opponents energy.
+  icon: enfeeble
+  target: Single
+  type: Magical
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: SpeedBuff1
-  cooldown: 1
+      effectName: EnergyDebuff1
+  cooldown: 2
   energyCost: 5
   requires:
     fishing: 20
     combat: 16
  
-ForagingUnique1:
-  name: Fisherman's Swiftness I
-  description: Increase your Speed.
-  icon: arrow-forward
+ForagingUnique1: 
+  name: Treat
+  description: Have a little snack.
+  icon: strawberry
   target: Self
-  type: Physical
-  stats: []
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 2
+      variance: 0.5
   effects:
-    - effect: ApplyEffect
-      effectName: SpeedBuff1
-  cooldown: 1
+    - effect: SingleTargetHeal
+  cooldown: 2
   energyCost: 5
   requires:
     foraging: 20
     combat: 16
  
-HuntingUnique1:
-  name: Fisherman's Swiftness I
-  description: Increase your Speed.
-  icon: arrow-forward
-  target: Self
+HuntingUnique1: #Should I use power or skill level
+  name: Hunter's Precise Strike
+  description: Deal damage based on hunting level.
+  icon: eye-target
+  target: Single
   type: Physical
-  stats: []
+  stats:
+    - stat: hunting
+      multiplier: 0.5
+      variance: 0.25
   effects:
-    - effect: ApplyEffect
-      effectName: SpeedBuff1
-  cooldown: 1
+    - effect: SingleTargetAttack
+  cooldown: 2
   energyCost: 5
   requires:
     hunting: 20
     combat: 16
  
-LoggingUnique1:
-  name: Fisherman's Swiftness I
-  description: Increase your Speed.
-  icon: arrow-forward
-  target: Self
+LoggingUnique1: #chop chop Yeah actually just really boring simple chop
+  name: Split
+  description: Simple and effective.
+  icon: axe-swing
+  target: Single
   type: Physical
-  stats: []
+  stats: 
+    - stat: attack 
+      multiplier: 2.0
+      variance: 0.1
   effects:
-    - effect: ApplyEffect
-      effectName: SpeedBuff1
-  cooldown: 1
+    - effect: SingleTargetAttack
+  cooldown: 2
   energyCost: 5
   requires:
     logging: 20
     combat: 16
  
-MiningUnique1:
-  name: Fisherman's Swiftness I
-  description: Increase your Speed.
-  icon: arrow-forward
+MiningUnique1: 
+  name: Piercing Strike
+  description: Pierce your opponents armor for a devastating attack.
+  icon: ☺
   target: Self
   type: Physical
-  stats: []
+  stats: 
+    - stat: attack 
+      multiplier: 1.25
+      variance: 0.25
   effects:
     - effect: ApplyEffect
-      effectName: SpeedBuff1
-  cooldown: 1
+      effectName: ArmorDebuff1
+    - effect: SingleTargetAttack
+  cooldown: 2
   energyCost: 5
   requires:
     mining: 20

@@ -16,3 +16,21 @@ Bleed1:
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: 3
+
+Fire1:
+  name: Burning I
+  description: On fire and taking damage every turn.
+  icon: on-fire
+  color: "#ff0000"
+  turnsLeft: 4
+  statusEffectType: DamageOverTime
+  damageOverTime: 3
+
+Fire2:
+  name: Burning 2
+  description: Ablaze and taking damage every turn.
+  icon: on-fire
+  color: "#ff0000"
+  turnsLeft: 4
+  statusEffectType: DamageOverTime
+  damageOverTime: 5

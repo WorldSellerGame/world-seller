@@ -208,79 +208,87 @@ BlacksmithingBasic2:
 ####
 
 WeavingUnique1:
-  name: Fisherman's Swiftness I
-  description: Decrease an enemy's Speed.
-  icon: arrow-forward
+  name: Wrap Up
+  description: Bind opponents in threads.
+  icon: bola
   target: Single
   type: Physical
   stats: []
   effects:
     - effect: ApplyEffect
       effectName: SpeedDebuff1
-  cooldown: 1
+    - effect: ApplyEffect
+      effectName: AttackDebuff1
+  cooldown: 2
   energyCost: 5
   requires:
     fishing: 20
     combat: 16
  
-JewelcraftingUnique1: 
-  name: Fisherman's Swiftness I
+JewelcraftingUnique1:
+  name: Armor Shatter
   description: Decrease an enemy's Speed.
-  icon: arrow-forward
-  target: Single
-  type: Physical
+  icon: shatter
+  target: Self
+  type: Magical
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: SpeedDebuff1
-  cooldown: 1
+      effectName: ArmorDebuff2
+    - effect: ApplyEffect
+      effectName: AttackBuff3
+  cooldown: 2
   energyCost: 5
   requires:
     jewelcrafting: 20
+    combat: 16
  
-CookingUnique1:
-  name: Fisherman's Swiftness I
-  description: Decrease an enemy's Speed.
-  icon: arrow-forward
+CookingUnique1: #tthis is broken for sure
+  name: Snack
+  description: Have a little treat.
+  icon: cookie
   target: Single
-  type: Physical
+  type: Magical
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: SpeedDebuff1
-  cooldown: 1
+      effectName: Regen1
+  cooldown: 2
   energyCost: 5
   requires:
     cooking: 20
     combat: 16
  
-AlchemyUnique1:
-  name: Fisherman's Swiftness I
-  description: Decrease an enemy's Speed.
-  icon: arrow-forward
+AlchemyUnique1: 
+  name: Light Aflame
+  description: Light some one on fire. Its not ethical, but it is effective.
+  icon: on-fire
   target: Single
-  type: Physical
+  type: Magical
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: SpeedDebuff1
-  cooldown: 1
+      effectName: Fire2
+  cooldown: 2
   energyCost: 5
   requires:
     alchemy: 20
     combat: 16
  
-BlacksmithingUnique1:
-  name: Fisherman's Swiftness I
-  description: Decrease an enemy's Speed.
-  icon: arrow-forward
+BlacksmithingUnique1: 
+  name: Armor Bash
+  description: An attack that gets stronger the more armor you have.
+  icon: armor-punch
   target: Single
   type: Physical
-  stats: []
-  effects:
-    - effect: ApplyEffect
-      effectName: SpeedDebuff1
-  cooldown: 1
+  stats:
+    - stat: attack
+      multiplier: 1
+      variance: 0.5
+    - stat: armor
+      multiplier: 1
+      variance: 0.0
+  cooldown: 2
   energyCost: 5
   requires:
     blacksmithing: 20
