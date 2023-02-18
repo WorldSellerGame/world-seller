@@ -1,5 +1,5 @@
-import { sum } from 'lodash';
-import { IGameItem, IPlayerCharacter, ItemType, Stat } from '../../interfaces';
+import { get, sum } from 'lodash';
+import { IGameItem, IPlayerCharacter, IStatGain, ItemType, Stat } from '../../interfaces';
 
 export function defaultStatsZero(): Record<Stat, number> {
   return {
@@ -28,33 +28,41 @@ export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, s
   return sum(Object.values(equipment).map((item) => item?.stats[stat] ?? 0));
 }
 
-export function calculateSpeedBonus(character: IPlayerCharacter): number {
-  return Math.floor(character.lastTotalLevel / 25);
+export function calculateStatFromState(state: any, character: IPlayerCharacter, stat: Stat): number {
+  const statGains: IStatGain[] = state.game.statGains[stat] ?? [];
+
+  return statGains.reduce((total, statGain) => {
+    const { levelStat, divisor } = statGain;
+
+    let value = 0;
+
+    if(levelStat === 'lastTotalLevel') {
+      value = character.lastTotalLevel;
+    } else {
+      value = get(character, `skills.${levelStat}.level`, 0);
+    }
+
+    return total + Math.floor(value / divisor);
+  }, 0);
 }
 
-export function calculateHealingBonus(character: IPlayerCharacter): number {
-  return Math.floor(character.lastTotalLevel / 20);
+export function calculateHealthFromState(state: any, character: IPlayerCharacter): number {
+  return calculateStatFromState(state, character, Stat.HealthBonus)
+       + calculateStat(character.equipment, Stat.HealthBonus);
 }
 
-export function calculateAttackBonus(character: IPlayerCharacter): number {
-  return Math.floor(character.lastTotalLevel / 15);
+export function calculateEnergyFromState(state: any, character: IPlayerCharacter): number {
+  return calculateStatFromState(state, character, Stat.EnergyBonus)
+       + calculateStat(character.equipment, Stat.EnergyBonus);
 }
 
-export function calculateMaxHealth(character: IPlayerCharacter): number {
-  return character.lastTotalLevel + calculateStat(character.equipment, Stat.HealthBonus);
-}
-
-export function calculateMaxEnergy(character: IPlayerCharacter): number {
-  return Math.floor(character.lastTotalLevel / 10) + calculateStat(character.equipment, Stat.EnergyBonus);
-}
-
-export function getStatTotals(character: IPlayerCharacter): Record<Stat, number> {
+export function getStatTotals(state: any, character: IPlayerCharacter): Record<Stat, number> {
   const totals: Record<string, number> = {
-    health: calculateMaxHealth(character),
-    energy: calculateMaxEnergy(character),
-    attack: calculateAttackBonus(character),
-    healing: calculateHealingBonus(character),
-    speed: calculateSpeedBonus(character)
+    health: calculateHealthFromState(state, character),
+    energy: calculateEnergyFromState(state, character),
+    attack: calculateStatFromState(state, character, Stat.Attack),
+    healing: calculateStatFromState(state, character, Stat.Healing),
+    speed: calculateStatFromState(state, character, Stat.Speed),
   };
 
   Object.keys(character.equipment).forEach(slot => {

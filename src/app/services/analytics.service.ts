@@ -15,7 +15,6 @@ export class AnalyticsService {
 
   init() {
     this.analytics = gameanalytics.GameAnalytics;
-    this.analytics.setEnabledInfoLog(!environment.production);
     this.analytics.configureBuild(`${environment.platform} ${this.metaService.version}`);
     this.analytics.initialize(environment.gameanalytics.game, environment.gameanalytics.key);
   }

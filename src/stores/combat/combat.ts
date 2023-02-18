@@ -6,7 +6,7 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import {
-  applyDeltas, calculateSpeedBonus, defaultStatsZero,
+  applyDeltas, calculateStatFromState, defaultStatsZero,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
   getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
@@ -21,7 +21,7 @@ import { TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
-  LowerEnemyCooldown, LowerPlayerCooldown, PlayerCooldownSkill,
+  LowerEnemyCooldown, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
 } from './combat.actions';
 import { attachments } from './combat.attachments';
@@ -137,11 +137,13 @@ export class CombatState {
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(ctx, activePlayer);
+      currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
     }
 
     // sync things in case we have a persistent character
-    currentPlayer.stats[Stat.Speed] = calculateSpeedBonus(activePlayer);
+    currentPlayer.stats[Stat.Speed] = calculateStatFromState(
+      store, activePlayer, Stat.Speed
+    );
 
     // set up enemies for combat
     const enemyNamesAndCounts: Record<string, number> = {};
@@ -261,18 +263,19 @@ export class CombatState {
         return;
       }
 
-      const target = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef, effectRef);
-
-      const deltas = abilityFunc(ctx, {
-        ability: chosenSkillRef,
-        source: enemy,
-        target,
-        useStats: enemy.stats,
-        allowBonusStats: true,
-        statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
+      const targets = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef, effectRef);
+      targets.forEach(target => {
+        const deltas = abilityFunc(ctx, {
+          ability: chosenSkillRef,
+          source: enemy,
+          target,
+          useStats: enemy.stats,
+          allowBonusStats: true,
+          statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
+        });
+        deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
+        applyDeltas(ctx, enemy, target, deltas);
       });
-      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
-      applyDeltas(ctx, enemy, target, deltas);
     });
 
     // cool down the skill
@@ -312,12 +315,10 @@ export class CombatState {
         return;
       }
 
-      // lower all other cooldowns by 1 first
-      ctx.dispatch([
-        new LowerPlayerCooldown()
-      ]);
-
       const target = encounter.enemies[targetIndex];
+      if(isDead(target)) {
+        return;
+      }
 
       const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
       const deltas = abilityFunc(ctx, {
@@ -353,11 +354,6 @@ export class CombatState {
 
   @Action(TargetSelfWithAbility)
   targetSelfWithAbility(ctx: StateContext<IGameCombat>, { ability, abilitySlot, fromItem }: TargetSelfWithAbility) {
-
-    // lower all other cooldowns by 1 first
-    ctx.dispatch([
-      new LowerPlayerCooldown()
-    ]);
 
     const currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
@@ -427,7 +423,7 @@ export class CombatState {
       return;
     }
 
-    const dungeonCharacter = getPlayerCharacterReadyForCombat(ctx, activePlayer);
+    const dungeonCharacter = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
 
     const startPos = findUniqueTileInDungeonFloor(dungeon, 0, DungeonTile.Entrance);
     if(!startPos) {
@@ -565,34 +561,38 @@ export class CombatState {
     allies: IGameEncounterCharacter[],
     skill: IGameCombatAbility,
     effect: IGameCombatAbilityEffect
-  ): IGameEncounterCharacter {
+  ): IGameEncounterCharacter[] {
 
     switch(skill.target) {
       case CombatAbilityTarget.Ally: {
         if(isHealEffect(effect)) {
           const validAllies = allies.filter(x => x.currentHealth > 0 && x.currentHealth < x.maxHealth);
           if(validAllies.length > 0) {
-            return sample(validAllies) as IGameEncounterCharacter;
+            return [sample(validAllies) as IGameEncounterCharacter];
           }
         }
 
-        return sample(allies) as IGameEncounterCharacter;
+        return [sample(allies) as IGameEncounterCharacter];
       }
 
       case CombatAbilityTarget.Self: {
-        return self;
+        return [self];
       }
 
       case CombatAbilityTarget.Single: {
-        return player;
+        return [player];
       }
 
       case CombatAbilityTarget.AllEnemies: {
-        return player;
+        return [player];
+      }
+
+      case CombatAbilityTarget.All: {
+        return [player, ...allies];
       }
 
       default: {
-        return self;
+        return [self];
       }
     }
   }

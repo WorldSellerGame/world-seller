@@ -5,6 +5,7 @@ import { CombatAbilityTarget, IGameCombatAbility, IGameEncounter, IGameEncounter
 import { CombatState } from '../../../../../../stores';
 import {
   EndCombat, EndCombatAndResetPlayer,
+  LowerPlayerCooldown,
   TargetEnemyWithAbility, TargetSelfWithAbility, UseItemInSlot
 } from '../../../../../../stores/combat/combat.actions';
 import { ContentService } from '../../../../../services/content.service';
@@ -103,7 +104,7 @@ export class CombatDisplayComponent implements OnInit {
     this.activeAbilityInfo = this.getAbility(item.effects?.[0]?.effect || '');
   }
 
-  targetEnemy(index: number, enemy: IGameEncounterCharacter, source: IGameEncounterCharacter) {
+  targetEnemy(index: number, enemy: IGameEncounterCharacter, source: IGameEncounterCharacter, encounter: IGameEncounter) {
     if(!this.activeAbilityInfo || !this.canTargetEnemy(enemy)) {
       return;
     }
@@ -114,12 +115,47 @@ export class CombatDisplayComponent implements OnInit {
       this.store.dispatch(new UseItemInSlot(this.activeItemIndex));
     }
 
-    this.store.dispatch(new TargetEnemyWithAbility(index, source, this.activeAbilityInfo, this.activeAbilityIndex, useItem));
-    this.unselectAbility();
-    this.unselectItem();
+    const finish = () => {
+      this.unselectAbility();
+      this.unselectItem();
+    };
+
+    const ability = this.activeAbilityInfo;
+    const targetting = ability.target;
+
+    // hit all enemies only
+    if(targetting === CombatAbilityTarget.AllEnemies) {
+      this.store.dispatch([
+        new LowerPlayerCooldown(),
+        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem))
+      ]);
+
+      finish();
+      return;
+    }
+
+    // hit self and all enemies
+    if(targetting === CombatAbilityTarget.All) {
+      this.store.dispatch([
+        new LowerPlayerCooldown(),
+        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem)),
+        new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
+      ]);
+
+      finish();
+      return;
+    }
+
+    // default: hit this enemy only
+    this.store.dispatch([
+      new LowerPlayerCooldown(),
+      new TargetEnemyWithAbility(index, source, this.activeAbilityInfo, this.activeAbilityIndex, useItem)
+    ]);
+
+    finish();
   }
 
-  targetSelf() {
+  targetSelf(self: IGameEncounterCharacter, encounter: IGameEncounter) {
     if(!this.activeAbilityInfo || !this.canTargetSelf()) {
       return;
     }
@@ -130,9 +166,34 @@ export class CombatDisplayComponent implements OnInit {
       this.store.dispatch(new UseItemInSlot(this.activeItemIndex));
     }
 
-    this.store.dispatch(new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem));
-    this.unselectAbility();
-    this.unselectItem();
+
+    const finish = () => {
+      this.unselectAbility();
+      this.unselectItem();
+    };
+
+    const ability = this.activeAbilityInfo;
+    const targetting = ability.target;
+
+    // hit self and all enemies
+    if(targetting === CombatAbilityTarget.All) {
+      this.store.dispatch([
+        new LowerPlayerCooldown(),
+        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, self, ability, this.activeAbilityIndex, useItem)),
+        new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
+      ]);
+
+      finish();
+      return;
+    }
+
+    // default: hit self only
+    this.store.dispatch([
+      new LowerPlayerCooldown(),
+      new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
+    ]);
+
+    finish();
   }
 
 }

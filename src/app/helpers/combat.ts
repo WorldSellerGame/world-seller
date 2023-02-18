@@ -9,7 +9,7 @@ import {
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
-import { calculateMaxEnergy, calculateMaxHealth, defaultStatsZero, getStatTotals } from './stats';
+import { calculateStatFromState, defaultStatsZero, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
 
@@ -47,7 +47,6 @@ export function dispatchCorrectCombatEndEvent(ctx: StateContext<IGameCombat>, en
 
   ctx.dispatch([new EndCombat(), new ChangeThreats(), ...durabilityLosses]);
 }
-
 
 function hasPlayerWonCombat(ctx: StateContext<IGameCombat>): boolean {
 
@@ -219,10 +218,14 @@ export function applyDeltas(
   });
 }
 
-export function getPlayerCharacterReadyForCombat(ctx: StateContext<IGameCombat>, activePlayer: IPlayerCharacter): IGameEncounterCharacter {
+export function getPlayerCharacterReadyForCombat(
+  store: any,
+  ctx: StateContext<IGameCombat>,
+  activePlayer: IPlayerCharacter
+): IGameEncounterCharacter {
   const state = ctx.getState();
 
-  const stats = merge(defaultStatsZero(), getStatTotals(activePlayer));
+  const stats = merge(defaultStatsZero(), getStatTotals(state, activePlayer));
 
   state.activeFoods.forEach(food => {
     if(!food) {
@@ -254,9 +257,9 @@ export function getPlayerCharacterReadyForCombat(ctx: StateContext<IGameCombat>,
     statusEffects: [],
     drops: [],
     currentSpeed: 0,
-    currentEnergy: calculateMaxEnergy(activePlayer),
-    maxEnergy: calculateMaxEnergy(activePlayer),
-    currentHealth: calculateMaxHealth(activePlayer),
-    maxHealth: calculateMaxHealth(activePlayer)
+    currentHealth: calculateStatFromState(store, activePlayer, Stat.HealthBonus),
+    maxHealth: calculateStatFromState(store, activePlayer, Stat.HealthBonus),
+    currentEnergy: calculateStatFromState(store, activePlayer, Stat.EnergyBonus),
+    maxEnergy: calculateStatFromState(store, activePlayer, Stat.EnergyBonus),
   };
 }

@@ -23,10 +23,14 @@ import * as weaving from '../../assets/content/weaving.json';
 
 import { cloneDeep } from 'lodash';
 import * as characterNames from '../../assets/content/character-names.json';
+import * as statGains from '../../assets/content/stat-gains.json';
+
+import { Store } from '@ngxs/store';
 import {
   IDungeon, IEnemyCharacter, IGameCombatAbility,
   IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect
 } from '../../interfaces';
+import { SetStatGains } from '../../stores/game/game.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -116,6 +120,10 @@ export class ContentService {
     return (characterNames as any).default || characterNames;
   }
 
+  public get statGains() {
+    return (statGains as any).default || statGains;
+  }
+
   // aggregates
   public readonly locationHashes = {
     fishing: {},
@@ -133,7 +141,7 @@ export class ContentService {
     weaving: {}
   };
 
-  constructor() {
+  constructor(private store: Store) {
     this.init();
   }
 
@@ -149,6 +157,11 @@ export class ContentService {
     this.recipeHashes.cooking = this.toHash(this.cooking.recipes, 'result');
     this.recipeHashes.jewelcrafting = this.toHash(this.jewelcrafting.recipes, 'result');
     this.recipeHashes.weaving = this.toHash(this.weaving.recipes, 'result');
+
+    // wait for @@INIT to finish
+    setTimeout(() => {
+      this.store.dispatch(new SetStatGains(this.statGains));
+    }, 0);
   }
 
   private toHash(arr: any[], key: string) {

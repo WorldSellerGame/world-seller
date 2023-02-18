@@ -67,7 +67,7 @@ export class EquipmentPage implements OnInit {
   }
 
   statTotals(character: IPlayerCharacter): Record<string, number> {
-    return getStatTotals(character);
+    return getStatTotals(this.store.snapshot(), character);
   }
 
   getItemRarity(item: IGameItem): string {

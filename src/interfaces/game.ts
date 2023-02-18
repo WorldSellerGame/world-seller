@@ -73,8 +73,20 @@ export enum ItemType {
   Potion = 'Potion'
 }
 
+export interface IStatGain {
+  levelStat: 'lastTotalLevel' | 'alchemy' | 'blacksmithing'
+  | 'combat' | 'cooking' | 'farming' | 'fishing'
+  | 'foraging' | 'hunting' | 'jewelcrafting' | 'logging'
+  | 'mercantile' | 'mining' | 'prospecting' | 'weaving';
+
+  divisor: number;
+}
+
+export type IStatGains = Partial<Record<Stat, IStatGain[]>>;
+
 export interface IGame {
   version: number;
+  statGains: IStatGains;
 }
 
 export interface IGameItem {
