@@ -194,7 +194,7 @@ export class CombatState {
 
     // every 10th level requires a dungeon dive
     let shouldGiveSkillPoint = threatData.maxSkillGainLevel > state.level;
-    if((state.level % 10) !== 0) {
+    if((state.level % 10) === 0) {
       shouldGiveSkillPoint = false;
     }
 
