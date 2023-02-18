@@ -79,7 +79,7 @@ HealthDebuff1:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    health: -3
+    healthBonus: -3
 
 HealthDebuff2:
   name: Debilitate 2
@@ -89,7 +89,7 @@ HealthDebuff2:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    health: -5
+    healthBonus: -5
  
 ArmorDebuff1:
   name: Shred 1
