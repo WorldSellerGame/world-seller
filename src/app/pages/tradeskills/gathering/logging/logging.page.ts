@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { LoggingState, WorkersState } from '../../../../../stores';
 import { CancelLogging, SetLoggingLocation } from '../../../../../stores/logging/logging.actions';
-import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../../../stores/workers/workers.actions';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -16,6 +15,14 @@ export class LoggingPage implements OnInit {
 
   public get locationData() {
     return this.contentService.logging;
+  }
+
+  public get setAction() {
+    return SetLoggingLocation;
+  }
+
+  public get cancelAction() {
+    return CancelLogging;
   }
 
   @Select(LoggingState.level) level$!: Observable<number>;
@@ -30,30 +37,6 @@ export class LoggingPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
-  }
-
-  visibleLocations(locations: IGameGatherLocation[], currentLevel = 0) {
-    return locations.filter(location => currentLevel >= location.level.min);
-  }
-
-  gather(location: IGameGatherLocation) {
-    this.store.dispatch(new SetLoggingLocation(location));
-  }
-
-  cancelGather() {
-    this.store.dispatch(new CancelLogging());
-  }
-
-  workersAllocatedToLocation(allWorkers: IGameWorkersGathering[], location: IGameGatherLocation): number {
-    return allWorkers.filter(w => w.location.name === location.name && w.tradeskill === 'logging').length;
-  }
-
-  allocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new AssignGatheringWorker('logging', location));
-  }
-
-  unallocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new UnassignGatheringWorker('logging', location));
   }
 
 }

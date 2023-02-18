@@ -6,78 +6,15 @@
 
 <ion-content [fullscreen]="true">
 
-  <ng-container *ngIf="{ level: level$ | async } as skillLevel">
-    <ion-grid>
-      <ion-row class="status-row">
-        <ion-col>
-          <ion-card>
-            <ion-card-content class="thin-status-card" *ngIf="currentLocation$ | async as currentLocation; else noGathering">
-              <div>
-                Gathering from {{ currentLocation.location.name }} for another <strong>{{ currentLocation.duration }}s</strong>.
-              </div>
+  <app-gathering-page-display
+    [tradeskill]="'hunting'"
+    [level$]="level$"
+    [currentLocation$]="currentLocation$"
+    [cooldowns$]="cooldowns$"
+    [gatheringWorkers$]="gatheringWorkers$"
+    [locationData]="locationData"
+    [setAction]="setAction"
+    [cancelAction]="cancelAction"
+  ></app-gathering-page-display>
 
-              <ion-button color="danger" fill="clear" (click)="cancelGather()">Cancel</ion-button>
-            </ion-card-content>
-
-            <ng-template #noGathering>
-              <ion-card-content class="thin-status-card">
-                <div>
-                  You're not currently hunting.
-                </div>
-              </ion-card-content>
-            </ng-template>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(locationData.locations, skillLevel.level || 0)">
-          <ion-card class="location-card">
-            <ion-card-header>
-              <ion-card-title>{{ location.name }}</ion-card-title>
-              <ion-card-subtitle>{{ location.description }}</ion-card-subtitle>
-            </ion-card-header>
-
-            <ion-card-content>
-              <div>Gives after <strong>{{ location.gatherTime }}s</strong>:</div>
-              <div class="resources">
-                <app-resource-icon *ngFor="let resource of location.resources" [name]="resource.name"></app-resource-icon>
-              </div>
-            </ion-card-content>
-
-            <div class="location-footer">
-
-              <ion-button class="user-action" fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
-                <ion-spinner color="warning"></ion-spinner>
-                <span class="ion-margin-start ion-margin-end">Cooldown</span>
-                <app-countdown [duration]="cooldown"></app-countdown>
-              </ion-button>
-
-              <ion-button class="user-action"
-                          fill="clear"
-                          *ngIf="!(cooldowns$ | async)?.[location.name]"
-                          [class.no-skillups]="(skillLevel.level || 0) >= location.level.max"
-                          [disabled]="currentLocation$ | async"
-                          (click)="gather(location)">
-                Hunt
-              </ion-button>
-
-              <ng-container *ngIf="{
-                gatheringWorkers: gatheringWorkers$ | async,
-                allocated: workersAllocatedToLocation((gatheringWorkers$ | async)?.workerAllocations ?? [], location)
-              } as workerData">
-                <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
-                  <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)">-</ion-button>
-
-                  <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
-
-                  <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)">+</ion-button>
-                </div>
-              </ng-container>
-            </div>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ng-container>
 </ion-content>

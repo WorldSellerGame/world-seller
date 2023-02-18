@@ -28,7 +28,7 @@
                     <ion-label>
                       <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
                       <p><app-stat-line [item]="item"></app-stat-line></p>
-                      <p>{{ item.durability | number }} Durability</p>
+                      <p *ngIf="item.durability !== -1">{{ item.durability | number }} Durability</p>
                     </ion-label>
                   </ng-container>
                 </ion-item>
@@ -57,7 +57,7 @@
                     <ion-label>
                       <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
                       <p><app-stat-line [item]="item"></app-stat-line></p>
-                      <p>{{ item.durability | number }} Durability</p>
+                      <p *ngIf="item.durability !== -1">{{ item.durability | number }} Durability</p>
                     </ion-label>
                   </ng-container>
                 </ion-item>

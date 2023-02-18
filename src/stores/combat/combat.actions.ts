@@ -1,5 +1,10 @@
 import { IGameCombatAbility, IGameEncounterCharacter, IGameItem } from '../../interfaces';
 
+export class UnlockCombat {
+  static type = '[Combat] Unlock';
+  constructor() {}
+}
+
 export class SetSkill {
   static type = '[Combat] Set Skill';
   constructor(public skill: string, public slot: number) {}

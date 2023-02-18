@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  platform: 'web',
+  gameanalytics: {
+    game: '54e16e53be300ab8adb7a3a9fd032ac0',
+    key: '87f86587d3f4c13572a434d641c4be98e1607937'
+  }
 };
 
 /*

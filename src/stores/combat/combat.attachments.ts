@@ -1,4 +1,5 @@
 import { IAttachment } from '../../interfaces/store';
+import { DeleteCharacter } from '../charselect/charselect.actions';
 import {
   AddCombatLogMessage,
   ConsumeFoodCharges,
@@ -11,7 +12,7 @@ import {
   PlayerCooldownSkill,
   PlayerSpeedReset,
   ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
-  SetSkill, TickEnemyEffects, TickPlayerEffects, UseItemInSlot
+  SetSkill, TickEnemyEffects, TickPlayerEffects, UnlockCombat, UseItemInSlot
 } from './combat.actions';
 import {
   addCombatLogMessage,
@@ -23,7 +24,7 @@ import {
   resetCombat, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
   setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
-  setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, useItemInSlot
+  setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, unlockCombat, useItemInSlot
 } from './combat.functions';
 
 import {
@@ -37,6 +38,8 @@ import {
 
 
 export const attachments: IAttachment[] = [
+  { action: DeleteCharacter, handler: resetCombat },
+  { action: UnlockCombat, handler: unlockCombat },
   { action: ResetCombat, handler: resetCombat },
   { action: EndCombat, handler: endCombat },
   { action: EndCombatAndResetPlayer, handler: endCombatAndResetPlayer },

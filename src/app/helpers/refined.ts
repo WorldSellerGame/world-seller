@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
 import { IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
-import { GainJobResult, GainResources } from '../../stores/charselect/charselect.actions';
+import { GainItemOrResource, GainResources } from '../../stores/charselect/charselect.actions';
 
 export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any) {
 
@@ -22,7 +22,7 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
   if(newTicks <= 0) {
 
     // get a new item
-    ctx.dispatch(new GainJobResult(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)));
+    ctx.dispatch(new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)));
 
     // attempt a level up
     if(job.recipe.level.max > state.level) {
@@ -81,7 +81,11 @@ export function cancelRefineJob(ctx: StateContext<IGameRefining>, jobIndex: numb
   if(shouldRefundResources) {
     const job = ctx.getState().recipeQueue[jobIndex];
     const resourceRefunds = Object.keys(job.recipe.ingredients)
-      .map(ingredient => ({ [ingredient]: job.recipe.ingredients[ingredient] * job.totalLeft }))
+      .map(ingredient => (job.recipe.preserve || []).includes(ingredient)
+        ? {}
+        : ({ [ingredient]: job.recipe.ingredients[ingredient] * job.totalLeft })
+      )
+      .filter(Boolean)
       .reduce((acc, cur) => merge(acc, cur), {});
 
     ctx.dispatch(new GainResources(resourceRefunds));

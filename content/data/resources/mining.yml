@@ -1,71 +1,83 @@
 
 Clay:
+  name: Clay
   description: Used to do clay things.
   category: Raw Materials
   rarity: Common
   icon: 'clay'
 
 Stone:
+  name: Stone
   description: Used to do stone things.
   category: Raw Materials
   rarity: Common
   icon: 'stone'
 
 Gravel:
+  name: Gravel
   description: Used to do gravel things.
   category: Raw Materials
   rarity: Common
   icon: 'gravel'
 
 Sand:
+  name: Sand
   description: Used to do sand things.
   category: Raw Materials
   rarity: Common
   icon: 'sand'
 
 Limestone:
+  name: Limestone
   description: Used to do lime things. Not for food.
   category: Raw Materials
   rarity: Common
   icon: 'limestone'
 
 Copper Ore:
+  name: Copper Ore
   description: Used to do copper things, but later.
   category: Raw Materials
   rarity: Uncommon
   icon: 'iron-ore'
 
 Brimstone:
+  name: Brimstone
   description: Stinky yellow rock.
   category: Raw Materials
   rarity: Uncommon
-  icon: 'stone' 
+  icon: 'stone'
 
 Iron Ore:
+  name: Iron Ore
   description: Used to do iron things, but later.
   category: Raw Materials
   rarity: Uncommon
   icon: 'iron-ore'
 
 White Clay:
+  name: White Clay
   description: Used to make ceramics.
   category: Raw Materials
   rarity: Uncommon
   icon: 'powder'
 
 Adamantite Ore:
+  name: Adamantite Ore
   description: Used to do Adamantite things, but later.
   category: Raw Materials
   rarity: Rare
   icon: 'adamantite-ore'
 
 Quartz:
+  name: Quartz
   description: Used to do crystal things.
   category: Raw Materials
   rarity: Uncommon
   icon: 'quartz'
 
 Tanzanite:
+  name: Tanzanite
   description: Used to do tanzanite things.
   category: Raw Materials
   rarity: Rare

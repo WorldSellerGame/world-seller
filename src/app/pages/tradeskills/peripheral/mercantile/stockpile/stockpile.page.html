@@ -18,7 +18,8 @@
           <ion-row>
             <ion-col>
               <div class="upgrade-label">&nbsp;</div>
-              <ion-button expand="block" [disabled]="hasNoItems(pageData.stockpile?.items || [])" (click)="quickSellAll()" fill="outline">Quick Sell All</ion-button>
+              <ion-button expand="block" [disabled]="hasNoItems(pageData.stockpile?.items || [])" (click)="quickSellAll()" fill="outline"
+                          [analyticsClick]="'Peripheral:Mercantile:Action:QuickSellAll'">Quick Sell All</ion-button>
             </ion-col>
 
             <ion-col>
@@ -26,6 +27,7 @@
               <ion-button expand="block"
                           (click)="upgradeStorage()"
                           [disabled]="!canUpgradeStorage(pageData.coins || 0, pageData.stockpile?.limitLevel || 0)"
+                          [analyticsClick]="'Peripheral:Mercantile:Upgrade:Storage'"
                           fill="outline">
                 <span *ngIf="isStockpileStorageMaxLevel(pageData.stockpile?.limitLevel || 0)">Storage is max level</span>
                 <span *ngIf="!isStockpileStorageMaxLevel(pageData.stockpile?.limitLevel || 0)">

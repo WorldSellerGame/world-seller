@@ -7,10 +7,15 @@ import { CancelAlchemyJob, StartAlchemyJob } from './alchemy.actions';
 
 export const defaultAlchemy: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockAlchemy(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetAlchemy(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultAlchemy());

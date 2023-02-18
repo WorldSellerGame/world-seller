@@ -1,5 +1,9 @@
 import { IGameItem } from '../../interfaces';
 
+export class UnlockMercantile {
+  static type = '[Mercantile] Unlock';
+}
+
 export class GainCoins {
   static type = '[Mercantile] Gain Coins';
   constructor(public amount: number) {}

@@ -8,6 +8,7 @@ export interface IGameFarmingPlot {
 
 export interface IGameFarming {
   version: number;
+  unlocked: boolean;
   level: number;
   plots: IGameFarmingPlot[];
   maxPlots: number;

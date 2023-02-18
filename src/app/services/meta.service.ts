@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 
@@ -15,12 +14,16 @@ export class MetaService {
         || this.versionInfo.hash;
   }
 
-  constructor(private http: HttpClient, private store: Store) { }
+  constructor(private store: Store) { }
 
-  init() {
-    this.http.get('assets/version.json').subscribe((data: any) => {
-      this.versionInfo = data;
-    });
+  async init(): Promise<void> {
+    try {
+      const versionFile = await fetch('assets/version.json');
+      const versionData = await versionFile.json();
+      this.versionInfo = versionData;
+    } catch {
+      console.error('Could not load version.json - probably on local.');
+    }
   }
 
   exportCharacter(slot: number = 0) {

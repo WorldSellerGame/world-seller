@@ -20,7 +20,8 @@
               <ion-card-title>Worker Acquisition</ion-card-title>
               <ion-card-subtitle class="buy-action">
                 Idle Workers: {{ (pageData.workersAndAllocated?.max || 0) - (pageData.workersAndAllocated?.current || 0) }}
-                <ion-button size="sm" fill="clear" (click)="buyWorker()" [disabled]="!canBuyWorker(pageData.coins || 0, pageData.maxWorkers || 0)">Buy Worker for {{ nextWorkerCost(pageData.maxWorkers || 0) | number }} coins</ion-button>
+                <ion-button size="sm" fill="clear" (click)="buyWorker()" [disabled]="!canBuyWorker(pageData.coins || 0, pageData.maxWorkers || 0)"
+                            [analyticsClick]="'Peripheral:Mercantile:BuyWorker'">Buy Worker for {{ nextWorkerCost(pageData.maxWorkers || 0) | number }} coins</ion-button>
               </ion-card-subtitle>
             </ion-card-header>
           </ion-card>

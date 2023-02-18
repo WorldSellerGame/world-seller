@@ -7,10 +7,15 @@ import { CancelCookingJob, StartCookingJob } from './cooking.actions';
 
 export const defaultCooking: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockCooking(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetCooking(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultCooking());

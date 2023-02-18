@@ -13,6 +13,7 @@ import {
 
 export const defaultMercantile: () => IGameMercantile = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   shop: {
     forSale: [],
@@ -25,6 +26,10 @@ export const defaultMercantile: () => IGameMercantile = () => ({
     limitLevel: 0
   }
 });
+
+export function unlockMercantile(ctx: StateContext<IGameMercantile>) {
+  ctx.patchState({ unlocked: true });
+}
 
 // register functions
 export function maxShopRegisterLevel() {

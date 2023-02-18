@@ -23,3 +23,8 @@ export class NotifyInfo {
   static type = '[Game] Notify Info';
   constructor(public message: string) {}
 }
+
+export class NotifySuccess {
+  static type = '[Game] Notify Success';
+  constructor(public message: string) {}
+}

@@ -39,7 +39,8 @@
               <ion-button slot="end"
                           fill="clear"
                           [class.no-skillups]="(pageData.level || 0) > dungeon.givesPointAtCombatLevel"
-                          (click)="embark(dungeon)">Embark</ion-button>
+                          (click)="embark(dungeon)"
+                          [analyticsClick]="'Peripheral:Combat:Dungeon:Embark:' + dungeon.name">Embark</ion-button>
             </ion-item>
           </ion-list>
         </ion-card-content>

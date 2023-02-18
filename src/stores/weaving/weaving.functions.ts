@@ -7,10 +7,15 @@ import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
 
 export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockWeaving(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetWeaving(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultWeaving());

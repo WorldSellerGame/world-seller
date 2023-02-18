@@ -20,6 +20,7 @@ export interface IGameRefiningRecipe {
 
 export interface IGameRefining {
   version: number;
+  unlocked: boolean;
   level: number;
   queueSize: number;
   recipeQueue: IGameRefiningRecipe[];

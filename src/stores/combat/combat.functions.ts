@@ -15,12 +15,13 @@ import {
 } from './combat.actions';
 
 import { applyDeltas, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
-import { AddItemToInventory, GainJobResult, RemoveItemFromInventory } from '../charselect/charselect.actions';
+import { AddItemToInventory, GainItemOrResource, RemoveItemFromInventory } from '../charselect/charselect.actions';
 import { NotifyInfo } from '../game/game.actions';
 
 
 export const defaultCombat: () => IGameCombat = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   activeSkills: [],
   activeItems: [],
@@ -31,6 +32,10 @@ export const defaultCombat: () => IGameCombat = () => ({
   threatChangeTicks: 3600,
   threats: []
 });
+
+export function unlockCombat(ctx: StateContext<IGameCombat>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetCombat(ctx: StateContext<IGameCombat>) {
   ctx.setState(defaultCombat());
@@ -72,6 +77,10 @@ export function useItemInSlot(ctx: StateContext<IGameCombat>, { slot }: UseItemI
 
   const itemRef = state.activeItems[slot];
   if(!itemRef) {
+    return;
+  }
+
+  if(itemRef.durability === -1) {
     return;
   }
 
@@ -325,7 +334,7 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, drops: IGameEnc
 
       ctx.dispatch([
         new AddCombatLogMessage(`You got ${amount}x ${resource}!`),
-        new GainJobResult(resource, amount)
+        new GainItemOrResource(resource, amount)
       ]);
     }
 
@@ -349,7 +358,7 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, drops: IGameEnc
 
       ctx.dispatch([
         new AddCombatLogMessage(`You got ${amount}x ${item}!`),
-        ...Array(amount).fill(undefined).map(() => new GainJobResult(item, amount))
+        ...Array(amount).fill(undefined).map(() => new GainItemOrResource(item, amount))
       ]);
     }
   });

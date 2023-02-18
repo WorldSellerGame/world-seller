@@ -118,6 +118,7 @@ export interface IGameCombatAbility {
 
 export interface IGameCombat {
   version: number;
+  unlocked: boolean;
   level: number;
 
   currentPlayer?: IGameEncounterCharacter;

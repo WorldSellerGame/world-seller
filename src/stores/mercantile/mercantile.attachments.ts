@@ -3,7 +3,7 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
   GainCoins, QuickSellAllFromStockpile, QuickSellItemFromInventory, QuickSellItemFromStockpile,
-  SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem, UpgradeShopCounter, UpgradeShopDecorations,
+  SellItem, SendToInventory, SendToStockpile, SpendCoins, UnlockMercantile, UnsellItem, UpgradeShopCounter, UpgradeShopDecorations,
   UpgradeShopRegister, UpgradeStockpileSize
 } from './mercantile.actions';
 import {
@@ -11,11 +11,13 @@ import {
   removeFromStockpile,
   resetMercantile,
   sellItem,
-  sendToStockpile, spendCoins, unsellItem, upgradeShopCounter, upgradeShopDecorations, upgradeShopRegister, upgradeStockpileSize
+  sendToStockpile, spendCoins, unlockMercantile, unsellItem,
+  upgradeShopCounter, upgradeShopDecorations, upgradeShopRegister, upgradeStockpileSize
 } from './mercantile.functions';
 
 
 export const attachments: IAttachment[] = [
+  { action: UnlockMercantile, handler: unlockMercantile },
   { action: TickTimer, handler: decreaseDuration },
   { action: DeleteCharacter, handler: resetMercantile },
   { action: GainCoins, handler: gainCoins },

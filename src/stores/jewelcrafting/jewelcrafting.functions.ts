@@ -7,10 +7,15 @@ import { CancelJewelcraftingJob, StartJewelcraftingJob } from './jewelcrafting.a
 
 export const defaultJewelcrafting: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockJewelcrafting(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetJewelcrafting(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultJewelcrafting());
