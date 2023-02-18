@@ -29,7 +29,6 @@ export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, s
 }
 
 export function calculateStatFromState(state: any, character: IPlayerCharacter, stat: Stat): number {
-  console.log(state.game);
   const statGains: IStatGain[] = state.game.statGains?.[stat] ?? [];
 
   return statGains.reduce((total, statGain) => {

@@ -14,6 +14,10 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 
 ## Development-related Topics
 
+### Debug Commands
+
+`window.gainItem(itemName, quantity)` - gain an item in X quantity. For items, quantity should be 1. Resources can be set to any value.
+
 ### Reloading Game Content
 
 `npm run load:content`
