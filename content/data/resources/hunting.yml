@@ -1,65 +1,76 @@
 
 Squirrel Meat:
+  name: Squirrel Meat
   description: Tastes like chicken.
   category: Foods
   rarity: Common
   icon: 'meat'
 
 Bunny Meat:
+  name: Bunny Meat
   description: Great in stews.
   category: Foods
   rarity: Common
   icon: 'meat'
 
 Duck Meat:
+  name: Duck Meat
   description: A high quality meal.
   category: Foods
   rarity: Common
   icon: 'meat'
 
 Turkey Meat:
+  name: Turkey Meat
   description: Big bird feeds a lot of folks.
   category: Foods
   rarity: Common
   icon: 'meat'
 
 Deer Meat:
+  name: Deer Meat
   description: Venison is a welcome sight on any table.
   category: Foods
   rarity: Common
   icon: 'meat'
 
 Boar Meat:
+  name: Boar Meat
   description: They fight back, but bacon is worth some scars.
   category: Foods
   rarity: Uncommon
   icon: 'meat'
 
 Elk Meat:
+  name: Elk Meat
   description: Generally thought to better tasting venison than deer.
   category: Foods
   rarity: Uncommon
   icon: 'meat'
 
 Alligator Meat:
+  name: Alligator Meat
   description: Tastes like a mix of chicken and fish. Better than expected.
   category: Foods
   rarity: Uncommon
   icon: 'meat'
 
 Moose Meat:
+  name: Moose Meat
   description: Lean and tasty and although some people prefer elk its hard to beat feeding a family for an entire winter.
   category: Foods
   rarity: Rare
   icon: 'meat'
 
 Bear Meat:
+  name: Bear Meat
   description: Bear meat is similar to venison, but tastes like their last meal.
   category: Foods
   rarity: Rare
   icon: 'meat'
 
 Grouse Meat:
+  name: Grouse Meat
   description: Very rare and considered to be one of the highest quality ingredients for cooking, it's small though.
   category: Foods
   rarity: Epic
@@ -67,72 +78,84 @@ Grouse Meat:
 
 ######################################################################################################################################
 Bone:
+  name: Bone
   description: Used to bone things.
   category: Raw Materials
   rarity: Common
   icon: 'bone'
 
 Fat:
+  name: Fat
   description: Lipids have uses.
   category: Raw Materials
   rarity: Common
   icon: 'fat'
 
 Hide:
+  name: Hide
   description: Hide from larger animals, uses are varied with selling pelts and making clothes being the most common.
   category: Raw Materials
   rarity: Common
   icon: 'hide'
 
 Feather:
+  name: Feather
   description: Used for feather things.
   category: Raw Materials
   rarity: Common
   icon: 'feather'
 
 Deer Antler:
+  name: Deer Antler
   description: Mostly decorative, making tools out of this material not too practical any more.
   category: Foods
   rarity: Common
   icon: 'antler'
 
 Elk Antler:
+  name: Elk Antler
   description: Mostly decorative, making tools out of this material not too practical any more.
   category: Foods
   rarity: Uncommon
   icon: 'antler'
 
 Boar Tusk:
+  name: Boar Tusk
   description: Mostly decorative, making tools out of this material not too practical any more.
   category: Foods
   rarity: Uncommon
   icon: 'tusk'
 
 Alligator Hide:
+  name: Alligator Hide
   description: Hard and scaly.
   category: Raw Materials
   rarity: Uncommon
   icon: 'hide'
 
 Alligator Tooth:
+  name: Alligator Tooth
   description: Gnarly, useful in niche applications outside of jewelry.
   category: Raw Materials
   rarity: Common
   icon: 'tooth'
 
 Bear Tooth:
+  name: Bear Tooth
   description: Gnarly, useful in niche applications outside of jewelry.
   category: Raw Materials
   rarity: Rare
   icon: 'tooth'
 
 Moose Antler:
+  name: Moose Antler
   description: Mostly decorative, making tools out of this material not too practical any more.
   category: Foods
   rarity: Rare
   icon: 'antler'
 
 Grouse Feather:
+  name: Grouse Feather
   description: A beautiful long feather.
   category: Raw Materials
   rarity: Epic

@@ -111,6 +111,7 @@ export interface IGameResourceTransform {
 }
 
 export interface IGameResource {
+  name: string;
   description: string;
   icon: string;
   rarity: Rarity;

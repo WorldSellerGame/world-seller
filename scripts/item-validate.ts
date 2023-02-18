@@ -44,6 +44,16 @@ const loadContent = async () => {
     }
 
     const resource = allResources[key];
+    if(!resource.name) {
+      console.log(`⚠ Resource ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(resource.name && resource.name.length > 32) {
+      console.log(`⚠ Resource ${key} has a name that is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     if(!validCategories.includes(resource.category)) {
       console.log(`⚠ Resource ${key} has an invalid category ${resource.category}.`);
       hasBad = true;
