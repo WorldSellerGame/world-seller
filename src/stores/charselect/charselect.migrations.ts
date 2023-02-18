@@ -15,7 +15,7 @@ export const charselectStoreMigrations = [
       version: 2,
       characters: state.characters.map(char => {
         if(char.discoveries) {
-          return;
+          return char;
         }
 
         char.discoveries = {};
