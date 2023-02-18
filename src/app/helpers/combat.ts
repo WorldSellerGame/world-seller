@@ -9,7 +9,7 @@ import {
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
-import { calculateStatFromState, defaultStatsZero, getStatTotals } from './stats';
+import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
 
@@ -225,7 +225,7 @@ export function getPlayerCharacterReadyForCombat(
 ): IGameEncounterCharacter {
   const state = ctx.getState();
 
-  const stats = merge(defaultStatsZero(), getStatTotals(state, activePlayer));
+  const stats = merge(defaultStatsZero(), getStatTotals(store, activePlayer));
 
   state.activeFoods.forEach(food => {
     if(!food) {
@@ -257,9 +257,9 @@ export function getPlayerCharacterReadyForCombat(
     statusEffects: [],
     drops: [],
     currentSpeed: 0,
-    currentHealth: calculateStatFromState(store, activePlayer, Stat.HealthBonus),
-    maxHealth: calculateStatFromState(store, activePlayer, Stat.HealthBonus),
-    currentEnergy: calculateStatFromState(store, activePlayer, Stat.EnergyBonus),
-    maxEnergy: calculateStatFromState(store, activePlayer, Stat.EnergyBonus),
+    currentHealth: calculateHealthFromState(store, activePlayer),
+    maxHealth: calculateHealthFromState(store, activePlayer),
+    currentEnergy: calculateEnergyFromState(store, activePlayer),
+    maxEnergy: calculateEnergyFromState(store, activePlayer),
   };
 }
