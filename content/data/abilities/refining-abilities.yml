@@ -183,7 +183,7 @@ BlacksmithingBasic1:
   cooldown: 1
   energyCost: 3
   requires:
-    Blacksmithing: 10
+    blacksmithing: 10
     combat: 5
  
 BlacksmithingBasic2:
