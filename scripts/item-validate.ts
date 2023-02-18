@@ -38,6 +38,11 @@ const loadContent = async () => {
   const farming = await fs.readJson('src/assets/content/farming.json');
 
   Object.keys(allResources).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Resource ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const resource = allResources[key];
     if(!validCategories.includes(resource.category)) {
       console.log(`⚠ Resource ${key} has an invalid category ${resource.category}.`);
@@ -74,7 +79,22 @@ const loadContent = async () => {
   });
 
   Object.keys(allItems).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Item ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const item = allItems[key];
+
+    if(!item.name) {
+      console.log(`⚠ Item ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(item.name && item.name.length > 32) {
+      console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
+      hasBad = true;
+    }
 
     if(!validCategories.includes(item.category)) {
       console.log(`⚠ Item ${key} has an invalid category ${item.category}.`);
@@ -110,45 +130,65 @@ const loadContent = async () => {
   });
 
   Object.keys(allAbilities).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const skill = allAbilities[key];
 
     if(!skill.name) {
-      console.log(`⚠ Skill ${key} has no name.`);
+      console.log(`⚠ Ability ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(skill.name && skill.name.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
     if(!skill.description) {
-      console.log(`⚠ Skill ${key} has no description.`);
+      console.log(`⚠ Ability ${key} has no description.`);
       hasBad = true;
     }
 
     if(!skill.icon) {
-      console.log(`⚠ Skill ${key} has no icon.`);
+      console.log(`⚠ Ability ${key} has no icon.`);
       hasBad = true;
     }
 
     if(!validTargets.includes(skill.target)) {
-      console.log(`⚠ Skill ${key} has an invalid target.`);
+      console.log(`⚠ Ability ${key} has an invalid target.`);
       hasBad = true;
     }
 
     if(!skill.type) {
-      console.log(`⚠ Skill ${key} has an invalid type.`);
+      console.log(`⚠ Ability ${key} has an invalid type.`);
       hasBad = true;
     }
 
     if(!validateIcon(skill.icon)) {
-      console.log(`⚠ Skill ${key} has an invalid icon ${skill.icon}.`);
+      console.log(`⚠ Ability ${key} has an invalid icon ${skill.icon}.`);
       hasBad = true;
     }
 
   });
 
   Object.keys(allEnemies).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const enemy = allEnemies[key];
 
     if(!enemy.name) {
       console.log(`⚠ Enemy ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(enemy.name && enemy.name.length > 32) {
+      console.log(`⚠ Enemy ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
@@ -205,10 +245,20 @@ const loadContent = async () => {
   });
 
   Object.keys(allThreats).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const threat = allThreats[key];
 
     if(!threat.name) {
       console.log(`⚠ Threat ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(threat.name && threat.name.length > 32) {
+      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
@@ -246,10 +296,20 @@ const loadContent = async () => {
   });
 
   Object.keys(allEffects).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
     const effect = allEffects[key];
 
     if(!effect.name) {
       console.log(`⚠ Effect ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(effect.name && effect.name.length > 32) {
+      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
