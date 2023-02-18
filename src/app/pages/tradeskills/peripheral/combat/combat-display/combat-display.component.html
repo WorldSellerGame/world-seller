@@ -17,7 +17,7 @@
                  *ngFor="let monster of encounterData.encounter.enemies; let i = index"
                  [class.highlight]="canTargetEnemy(monster)"
                  [class.dead]="monster.currentHealth <= 0"
-                 (click)="targetEnemy(i, monster, encounterData.player)">
+                 (click)="targetEnemy(i, monster, encounterData.player, encounterData.encounter)">
               <div class="icon">
                 <app-game-icon [icon]="monster.icon" [bigSize]="true"></app-game-icon>
               </div>
@@ -67,7 +67,7 @@
           <ion-col class="player-stats">
             <ion-card class="player"
                       [class.highlight]="canTargetSelf()"
-                      (click)="targetSelf()">
+                      (click)="targetSelf(encounterData.player, encounterData.encounter)">
               <ion-card-header>
                 <ion-card-title>{{ encounterData.player.name }}</ion-card-title>
               </ion-card-header>

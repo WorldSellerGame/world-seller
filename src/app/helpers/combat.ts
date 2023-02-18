@@ -48,7 +48,6 @@ export function dispatchCorrectCombatEndEvent(ctx: StateContext<IGameCombat>, en
   ctx.dispatch([new EndCombat(), new ChangeThreats(), ...durabilityLosses]);
 }
 
-
 function hasPlayerWonCombat(ctx: StateContext<IGameCombat>): boolean {
 
   const encounter = ctx.getState().currentEncounter;
