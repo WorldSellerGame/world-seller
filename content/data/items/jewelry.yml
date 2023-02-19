@@ -7,7 +7,7 @@ Dandelion Crown:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 2
+  durability: 5
   value: 10
   icon: 'ring'
   stats:
@@ -19,7 +19,7 @@ Braided Belt:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring'
   stats:
@@ -31,7 +31,7 @@ Braided Anklet:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring'
   stats:
@@ -43,7 +43,7 @@ Copper Ring:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring'
   stats:
@@ -55,7 +55,7 @@ Copper Tongue Piercing:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'tongue-piercing'
   stats:
@@ -69,7 +69,7 @@ Bone Belt:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'bone-string'
   stats:
@@ -81,7 +81,7 @@ Bone Anklet:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'bone-string'
   stats:
@@ -93,7 +93,7 @@ Quartz Copper Ring:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring-with-stone'
   stats:
@@ -105,7 +105,7 @@ Quartz Copper Tongue Piercing:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'tongue-piercing'
   stats:
@@ -119,7 +119,7 @@ Iron Ring:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring'
   stats:
@@ -131,7 +131,7 @@ Iron Tongue Piercing:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'tongue-piercing'
   stats:
@@ -143,7 +143,7 @@ Boar Tusk Belt:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'bone-string'
   stats:
@@ -155,7 +155,7 @@ Boar Tusk Anklet:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'bone-string'
   stats:
@@ -167,7 +167,7 @@ Quartz Iron Ring:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring-with-stone'
   stats:
@@ -179,7 +179,7 @@ Quartz Iron Tongue Piercing:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'tongue-piercing'
   stats:
@@ -191,7 +191,7 @@ Tanzanite Iron Ring:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'ring-with-stone'
   stats:
@@ -203,7 +203,7 @@ Tanzanite Iron Tongue Piercing:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
+  durability: -1
   value: 10
   icon: 'tongue-piercing'
   stats:

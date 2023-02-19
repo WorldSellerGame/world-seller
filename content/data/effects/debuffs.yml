@@ -8,3 +8,125 @@ WeakenBasic:
   statusEffectType: StatModification
   statModifications:
     attack: -5
+
+######## Basic skill ability effects (May be moved)
+
+SpeedDebuff1:
+  name: Slow I
+  description: Decreases Speed by 3.
+  icon: arrow-backward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -3
+
+SpeedDebuff2:
+  name: Slow II
+  description: Decreases Speed by 5.
+  icon: arrow-backward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -5
+
+HealingDebuff1:
+  name: Necrosis I
+  description: Decreases Healing by 3.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -3
+
+HealingDebuff2:
+  name: Necrosis II
+  description: Decreases Healing by 5.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -5
+
+AttackDebuff1:
+  name: Weaken I
+  description: Decreases Attack by 3.
+  icon: sword-shatter
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: -3
+
+AttackDebuff2:
+  name: Weaken II
+  description: Decreases Attack by 5.
+  icon: sword-shatter
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: -5
+
+HealthDebuff1:
+  name: Debilitate I
+  description: Decreases Max Health by 10.
+  icon: heart-minus
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    healthBonus: -10
+
+HealthDebuff2:
+  name: Debilitate II
+  description: Decreases Max Health by 15.
+  icon: heart-minus
+  color: "#00ff00"
+  turnsLeft: 7
+  statusEffectType: StatModification
+  statModifications:
+    healthBonus: -15
+
+ArmorDebuff1:
+  name: Shred I
+  description: Decreases Armor by 3.
+  icon: shield-down
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: -3
+
+ArmorDebuff2:
+  name: Shred II
+  description: Decreases Armor by 5.
+  icon: shield-down
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: -5
+
+EnergyDebuff1:
+  name: Enfeeble I
+  description: Decreases Energy by 5.
+  icon: enfeeble
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: -5
+
+EnergyDebuff2:
+  name: Enfeeble II
+  description: Decreases Energy by 10.
+  icon: enfeeble
+  color: "#00ff00"
+  turnsLeft: 7
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: -10

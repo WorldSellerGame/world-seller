@@ -1,0 +1,295 @@
+##
+
+
+### Examples (to be changed or adjusted)
+
+Alchemy1:
+  name: Alchemist's Poison Gas I
+  description: Poison an enemy.
+  icon: alchemy
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: PoisonWeak
+  cooldown: 10
+  energyCost: 5
+  requires:
+    alchemy: 10
+
+
+Blacksmithing1:
+  name: Blacksmith's Sharpen I
+  description: Increase your own attack.
+  icon: blacksmithing
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: StrengthenBasic
+  cooldown: 10
+  energyCost: 5
+  requires:
+    alchemy: 10
+
+
+### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
+
+
+WeavingBasic1:
+  name: Weaver's Tangle I
+  description: Decrease an enemy's Speed.
+  icon: arrow-backward
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedDebuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    weaving: 10
+    combat: 5
+
+WeavingBasic2:
+  name: Weaver's Tangle II
+  description: Decrease an enemy's Speed.
+  icon: arrow-backward
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedDebuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    weaving: 30
+    combat: 31
+  replaces: WeavingBasic1
+
+JewelcraftingBasic1:
+  name: Jeweler's Anathema I
+  description: Decrease an enemy's Healing.
+  icon: healing-debuff
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    jewelcrafting: 10
+    combat: 5
+ 
+JewelcraftingBasic2:
+  name: Jeweler's Anathema II
+  description: Decrease an enemy's Healing.
+  icon: healing-debuff
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingDebuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    jewelcrafting: 30
+    combat: 31
+  replaces: JewelcraftingBasic1
+ 
+CookingBasic1:
+  name: Cooks Grease I
+  description: Decrease an enemy's Attack.
+  icon: sword-shatter
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackDebuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    cooking: 10
+    combat: 5
+ 
+CookingBasic2:
+  name: Cooks Grease II
+  description: Decrease an enemy's Attack.
+  icon: sword-shatter
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackDebuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    cooking: 30
+    combat: 31
+  replaces: CookingBasic1
+ 
+AlchemyBasic1:
+  name: Alchemist's Debilitate I
+  description: Decrease an enemy's max Health.
+  icon: heart-minus
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    alchemy: 10
+    combat: 5
+ 
+AlchemyBasic2:
+  name: Alchemist's Debilitate II
+  description: Decrease an enemy's max Health.
+  icon: heart-minus
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthDebuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    alchemy: 30
+    combat: 31
+  replaces: AlchemyBasic1
+ 
+BlacksmithingBasic1:
+  name: Smith's Armor Crush I
+  description: Decrease an enemy's Armor.
+  icon: shield-down
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorDebuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    blacksmithing: 10
+    combat: 5
+ 
+BlacksmithingBasic2:
+  name: Smith's Armor Crush II
+  description: Decrease an enemy's Armor.
+  icon: shield-down
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorDebuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    blacksmithing: 30
+    combat: 31
+  replaces: BlacksmithingBasic1
+ 
+#### 
+ ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
+####
+
+WeavingUnique1:
+  name: Wrap Up
+  description: Bind opponents in threads.
+  icon: bola
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedDebuff1
+    - effect: ApplyEffect
+      effectName: AttackDebuff1
+  cooldown: 2
+  energyCost: 5
+  requires:
+    fishing: 20
+    combat: 16
+ 
+JewelcraftingUnique1:
+  name: Armor Shatter
+  description: Decrease an enemy's Speed.
+  icon: shatter
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorDebuff2
+    - effect: ApplyEffect
+      effectName: AttackBuff3
+  cooldown: 2
+  energyCost: 5
+  requires:
+    jewelcrafting: 20
+    combat: 16
+ 
+CookingUnique1: #tthis is broken for sure
+  name: Snack
+  description: Have a little treat.
+  icon: cookie
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  cooldown: 2
+  energyCost: 5
+  requires:
+    cooking: 20
+    combat: 16
+ 
+AlchemyUnique1: 
+  name: Light Aflame
+  description: Light some one on fire. Its not ethical, but it is effective.
+  icon: on-fire
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Fire2
+  cooldown: 2
+  energyCost: 5
+  requires:
+    alchemy: 20
+    combat: 16
+ 
+BlacksmithingUnique1: 
+  name: Armor Bash
+  description: An attack that gets stronger the more armor you have.
+  icon: armor-punch
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1
+      variance: 0.5
+    - stat: armor
+      multiplier: 1
+      variance: 0.0
+  cooldown: 2
+  energyCost: 5
+  requires:
+    blacksmithing: 20
+    combat: 16

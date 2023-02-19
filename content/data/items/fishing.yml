@@ -5,11 +5,12 @@ Cedar Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 10
   value: 10
   icon: fishing-pole
   stats:
     fishingPower: 3
+    fishingSpeed: 0
 
 Oak Fishing Rod:
   name: Oak Fishing Rod
@@ -17,11 +18,12 @@ Oak Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 15
   value: 10
   icon: fishing-pole
   stats:
-    fishingPower: 3
+    fishingPower: 5
+    fishingSpeed: 15
 
 Ash Fishing Rod:
   name: Ash Fishing Rod
@@ -29,10 +31,11 @@ Ash Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 20
   value: 10
   icon: fishing-pole
   stats:
-    fishingPower: 3
+    fishingPower: 15
+    fishingSpeed: -5
 
 #bait will be re added during balance #It will be mostly items that work right away as bait or convert via skills

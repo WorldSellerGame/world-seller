@@ -1,0 +1,18 @@
+# I am well well well aware this is redundant
+
+
+
+#target - the target of the ability (Self, Ally [for enemies], Single [single target, opposite side])
+
+#effect can be BasicAttack, UtilityEscape, SingleTargetAttack, SingleTargetHeal, ApplyEffect
+
+
+
+#statusEffectType - the type of the status effect (StatModification, DamageOverTime)# 
+
+# healing 
+# attack 
+# armor
+# speed 
+# healthBonus 
+# energyBonus 

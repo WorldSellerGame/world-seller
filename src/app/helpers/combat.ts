@@ -153,7 +153,26 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
     const statMods = applyStatusEffect.statModifications || {};
     if(statMods) {
       Object.keys(statMods).forEach(key => {
-        character.stats[key as Stat] = Math.max(character.stats[key as Stat] + (statMods?.[key as Stat] ?? 0), 1);
+        const bonusValue = (statMods?.[key as Stat] ?? 0);
+
+        switch(key) {
+          case 'healthBonus': {
+            character.maxHealth = Math.floor(character.maxHealth + bonusValue);
+            character.currentHealth = Math.floor(character.currentHealth + bonusValue);
+            break;
+          }
+
+          case 'energyBonus': {
+            character.maxEnergy = Math.floor(character.maxHealth + bonusValue);
+            character.currentEnergy = Math.floor(character.currentEnergy + bonusValue);
+            break;
+          }
+
+          default: {
+            character.stats[key as Stat] = Math.max(character.stats[key as Stat] + bonusValue, 1);
+            break;
+          }
+        }
       });
     }
   }
@@ -164,7 +183,26 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
     const statMods = unapplyStatusEffect.statModifications || {};
     if(statMods) {
       Object.keys(statMods).forEach(key => {
-        character.stats[key as Stat] = Math.max(character.stats[key as Stat] - (statMods?.[key as Stat] ?? 0), 1);
+        const bonusValue = (statMods?.[key as Stat] ?? 0);
+
+        switch(key) {
+          case 'healthBonus': {
+            character.maxHealth = Math.floor(character.maxHealth - bonusValue);
+            character.currentHealth = Math.min(character.maxHealth, character.currentHealth);
+            break;
+          }
+
+          case 'energyBonus': {
+            character.maxEnergy = Math.floor(character.maxHealth - bonusValue);
+            character.currentEnergy = Math.min(character.maxHealth, character.currentHealth);
+            break;
+          }
+
+          default: {
+            character.stats[key as Stat] = Math.max(character.stats[key as Stat] - bonusValue, 1);
+            break;
+          }
+        }
       });
     }
   }

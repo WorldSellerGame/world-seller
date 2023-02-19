@@ -7,10 +7,10 @@ Stone Knife:
   type: Weapon
   category: Weapons
   rarity: Common
-  durability: 50
+  durability: 10
   value: 10
   icon: knife
-  givesAbility: Stab
+  givesAbility: Shank
   stats:
     attack: 3
 
@@ -20,12 +20,12 @@ Copper Sword:
   type: Weapon
   category: Weapons
   rarity: Common
-  durability: 50
+  durability: 15
   value: 10
   icon: sword
-  givesAbility: Stab
+  givesAbility: Cleave
   stats:
-    attack: 3
+    attack: 7
 
 Copper Dagger:
   name: Copper Dagger
@@ -33,12 +33,13 @@ Copper Dagger:
   type: Weapon
   category: Weapons
   rarity: Common
-  durability: 50
+  durability: 15
   value: 10
   icon: knife
   givesAbility: Stab
   stats:
-    attack: 3
+    attack: 4
+    speed: 1
 
 Iron Sword: 
   name: Iron Sword
@@ -46,12 +47,12 @@ Iron Sword:
   type: Weapon
   category: Weapons
   rarity: Common
-  durability: 50
+  durability: 20
   value: 10
   icon: sword
-  givesAbility: Stab
+  givesAbility: Risky Swing
   stats:
-    attack: 3
+    attack: 10
 
 Iron Dagger:
   name: Iron Dagger
@@ -59,12 +60,13 @@ Iron Dagger:
   type: Weapon
   category: Weapons
   rarity: Common
-  durability: 50
+  durability: 20
   value: 10
   icon: knife
-  givesAbility: Stab
+  givesAbility: Hemorrhaging Stab
   stats:
-    attack: 3
+    attack: 6
+    speed: 3 #perhaps 3?
 
 ### Dropped
 

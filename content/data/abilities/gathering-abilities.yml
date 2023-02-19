@@ -1,0 +1,321 @@
+##
+### Examples (to be adjusted)
+
+Hunting1:
+  name: Hunter's Precise Shot I
+  description: Snipe a single enemy for bonus damage.
+  icon: hunting
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.2
+      variance: 0.1
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 3
+  energyCost: 5
+  requires:
+    hunting: 10
+
+Hunting2:
+  name: Hunter's Precise Shot II
+  description: Snipe a single enemy for bonus damage.
+  icon: hunting
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.3
+      variance: 0.1
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 3
+  energyCost: 6
+  requires:
+    hunting: 20
+  replaces: Hunting1
+
+
+Foraging1:
+  name: Forager's Heal I
+  description: Heal yourself.
+  icon: foraging
+  target: Self
+  type: Physical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 5
+  requires:
+    foraging: 10
+
+### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
+    # I think I want skill ability's spaced every 15? or maybe thats silly 
+    # for now I think basic at 10 and 30 will be fine and uniques in between at 20 but likely will space them out more
+
+
+FishingBasic1:
+  name: Fisherman's Swiftness I
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    fishing: 10
+    combat: 1
+
+FishingBasic2:
+  name: Fisherman's Swiftness II
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    fishing: 30
+    combat: 31
+  replaces: FishingBasic1
+
+ForagingBasic1:
+  name: Forager's Insight I
+  description: Increase your Healing.
+  icon: healing-buff
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    foraging: 10
+    combat: 1
+ 
+ForagingBasic2:
+  name: Forager's Insight II
+  description: Increase your Healing.
+  icon: healing-buff
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    foraging: 30
+    combat: 31
+  replaces: ForagingBasic1
+ 
+HuntingBasic1:
+  name: Hunter's Focus I
+  description: Increase your Attack.
+  icon: eye-target
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    hunting: 10
+    combat: 1
+ 
+HuntingBasic2:
+  name: Hunter's Focus II
+  description: Increase your Attack.
+  icon: eye-target
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    hunting: 30
+    combat: 31
+  replaces: HuntingBasic1
+ 
+LoggingBasic1:
+  name: Lumberjack's Endurance I
+  description: Increase your max Health.
+  icon: heart-plus
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    logging: 10
+    combat: 1
+ 
+LoggingBasic2:
+  name: Lumberjack's Endurance II
+  description: Increase your max Health.
+  icon: heart-plus
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: HealthBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    logging: 30
+    combat: 31
+  replaces: LoggingBasic1
+ 
+MiningBasic1:
+  name: Miner's Fortitude I
+  description: Increase your Armor.
+  icon: shield
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorBuff1
+  cooldown: 1
+  energyCost: 3
+  requires:
+    mining: 10
+    combat: 1
+ 
+MiningBasic2:
+  name: Miner's Fortitude II
+  description: Increase your Armor.
+  icon: shield
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorBuff2
+  cooldown: 1
+  energyCost: 6
+  requires:
+    mining: 30
+    combat: 31
+  replaces: MiningBasic1
+ 
+#### 
+ ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
+####
+
+FishingUnique1: #I am taking your energy fucker
+  name: Tire Em Out I
+  description: Drain an opponents energy.
+  icon: enfeeble
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: EnergyDebuff1
+  cooldown: 2
+  energyCost: 5
+  requires:
+    fishing: 20
+    combat: 16
+ 
+ForagingUnique1: 
+  name: Treat
+  description: Have a little snack.
+  icon: strawberry
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 2
+      variance: 0.5
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 2
+  energyCost: 5
+  requires:
+    foraging: 20
+    combat: 16
+ 
+HuntingUnique1: #Should I use power or skill level
+  name: Hunter's Precise Strike
+  description: Deal damage based on hunting level.
+  icon: eye-target
+  target: Single
+  type: Physical
+  stats:
+    - stat: hunting
+      multiplier: 0.5
+      variance: 0.25
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 2
+  energyCost: 5
+  requires:
+    hunting: 20
+    combat: 16
+ 
+LoggingUnique1: #chop chop Yeah actually just really boring simple chop
+  name: Split
+  description: Simple and effective.
+  icon: axe-swing
+  target: Single
+  type: Physical
+  stats: 
+    - stat: attack 
+      multiplier: 2.0
+      variance: 0.1
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 2
+  energyCost: 5
+  requires:
+    logging: 20
+    combat: 16
+ 
+MiningUnique1: 
+  name: Piercing Strike
+  description: Pierce your opponents armor for a devastating attack.
+  icon: ☺
+  target: Self
+  type: Physical
+  stats: 
+    - stat: attack 
+      multiplier: 1.25
+      variance: 0.25
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorDebuff1
+    - effect: SingleTargetAttack
+  cooldown: 2
+  energyCost: 5
+  requires:
+    mining: 20
+    combat: 16
+ 
+ 
