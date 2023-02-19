@@ -55,7 +55,7 @@ Foraging1:
     foraging: 10
 
 ### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
-    # I think I want skill ability's spaced every 15? or maybe thats silly 
+    # I think I want skill ability's spaced every 15? or maybe thats silly
     # for now I think basic at 10 and 30 will be fine and uniques in between at 20 but likely will space them out more
 
 
@@ -107,7 +107,7 @@ ForagingBasic1:
   requires:
     foraging: 10
     combat: 1
- 
+
 ForagingBasic2:
   name: Forager's Insight II
   description: Increase your Healing.
@@ -124,7 +124,7 @@ ForagingBasic2:
     foraging: 30
     combat: 31
   replaces: ForagingBasic1
- 
+
 HuntingBasic1:
   name: Hunter's Focus I
   description: Increase your Attack.
@@ -140,7 +140,7 @@ HuntingBasic1:
   requires:
     hunting: 10
     combat: 1
- 
+
 HuntingBasic2:
   name: Hunter's Focus II
   description: Increase your Attack.
@@ -157,7 +157,7 @@ HuntingBasic2:
     hunting: 30
     combat: 31
   replaces: HuntingBasic1
- 
+
 LoggingBasic1:
   name: Lumberjack's Endurance I
   description: Increase your max Health.
@@ -173,7 +173,7 @@ LoggingBasic1:
   requires:
     logging: 10
     combat: 1
- 
+
 LoggingBasic2:
   name: Lumberjack's Endurance II
   description: Increase your max Health.
@@ -190,7 +190,7 @@ LoggingBasic2:
     logging: 30
     combat: 31
   replaces: LoggingBasic1
- 
+
 MiningBasic1:
   name: Miner's Fortitude I
   description: Increase your Armor.
@@ -206,7 +206,7 @@ MiningBasic1:
   requires:
     mining: 10
     combat: 1
- 
+
 MiningBasic2:
   name: Miner's Fortitude II
   description: Increase your Armor.
@@ -223,8 +223,8 @@ MiningBasic2:
     mining: 30
     combat: 31
   replaces: MiningBasic1
- 
-#### 
+
+####
  ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
 ####
 
@@ -243,8 +243,8 @@ FishingUnique1: #I am taking your energy fucker
   requires:
     fishing: 20
     combat: 16
- 
-ForagingUnique1: 
+
+ForagingUnique1:
   name: Treat
   description: Have a little snack.
   icon: strawberry
@@ -261,7 +261,7 @@ ForagingUnique1:
   requires:
     foraging: 20
     combat: 16
- 
+
 HuntingUnique1: #Should I use power or skill level
   name: Hunter's Precise Strike
   description: Deal damage based on hunting level.
@@ -279,15 +279,15 @@ HuntingUnique1: #Should I use power or skill level
   requires:
     hunting: 20
     combat: 16
- 
+
 LoggingUnique1: #chop chop Yeah actually just really boring simple chop
   name: Split
   description: Simple and effective.
   icon: axe-swing
   target: Single
   type: Physical
-  stats: 
-    - stat: attack 
+  stats:
+    - stat: attack
       multiplier: 2.0
       variance: 0.1
   effects:
@@ -297,15 +297,15 @@ LoggingUnique1: #chop chop Yeah actually just really boring simple chop
   requires:
     logging: 20
     combat: 16
- 
-MiningUnique1: 
+
+MiningUnique1:
   name: Piercing Strike
   description: Pierce your opponents armor for a devastating attack.
-  icon: ☺
+  icon: hungry-face
   target: Self
   type: Physical
-  stats: 
-    - stat: attack 
+  stats:
+    - stat: attack
       multiplier: 1.25
       variance: 0.25
   effects:
@@ -317,5 +317,4 @@ MiningUnique1:
   requires:
     mining: 20
     combat: 16
- 
- 
+
