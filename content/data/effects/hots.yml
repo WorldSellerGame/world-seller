@@ -1,6 +1,6 @@
 
 Regen1:
-  name: Regenerate 1
+  name: Regenerate I
   description: Regenerates health over time.
   icon: healing
   color: "#00ff00"
@@ -9,7 +9,7 @@ Regen1:
   damageOverTime: -3
 
 Regen2:
-  name: Regenerate 2
+  name: Regenerate II
   description: Regenerates health over time.
   icon: healing
   color: "#00ff00"

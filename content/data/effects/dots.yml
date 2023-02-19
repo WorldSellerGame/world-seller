@@ -27,7 +27,7 @@ Fire1:
   damageOverTime: 3
 
 Fire2:
-  name: Burning 2
+  name: Burning II
   description: Ablaze and taking damage every turn.
   icon: on-fire
   color: "#ff0000"

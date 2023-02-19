@@ -12,7 +12,7 @@ StrengthenBasic:
 ######## Basic skill ability effects (May be moved) Regardless I will use all of these all the fucking time I think so best to get it right
 
 SpeedBuff1:
-  name: Speed 1
+  name: Speed I
   description: Increases Speed by 3.
   icon: arrow-forward
   color: "#00ff00"
@@ -22,7 +22,7 @@ SpeedBuff1:
     speed: 3
 
 SpeedBuff2:
-  name: Speed 2
+  name: Speed II
   description: Increases Speed by 5.
   icon: arrow-forward
   color: "#00ff00"
@@ -32,7 +32,7 @@ SpeedBuff2:
     speed: 5
 
 HealingBuff1:
-  name: Healing 1
+  name: Healing I
   description: Increases Healing by 3.
   icon: healing-buff
   color: "#00ff00"
@@ -42,7 +42,7 @@ HealingBuff1:
     healing: 3
 
 HealingBuff2:
-  name: Healing 2
+  name: Healing II
   description: Increases Healing by 5.
   icon: healing-buff
   color: "#00ff00"
@@ -52,7 +52,7 @@ HealingBuff2:
     healing: 5
 
 AttackBuff1:
-  name: Attack 1
+  name: Attack I
   description: Increases Attack by 3.
   icon: sword-hand
   color: "#00ff00"
@@ -62,7 +62,7 @@ AttackBuff1:
     attack: 3
 
 AttackBuff2:
-  name: Attack 2
+  name: Attack II
   description: Increases Attack by 5.
   icon: sword-hand
   color: "#00ff00"
@@ -72,7 +72,7 @@ AttackBuff2:
     attack: 5
 
 AttackBuff3:
-  name: Attack 3
+  name: Attack III
   description: Increases Attack by 8.
   icon: sword-hand
   color: "#00ff00"
@@ -82,7 +82,7 @@ AttackBuff3:
     attack: 8
 
 HealthBuff1:
-  name: Health 1
+  name: Health I
   description: Increases Max Health by 15.
   icon: heart-plus
   color: "#00ff00"
@@ -92,7 +92,7 @@ HealthBuff1:
     healthBonus: 15
 
 HealthBuff2:
-  name: Health 2
+  name: Health II
   description: Increases Max Health by 20.
   icon: heart-plus
   color: "#00ff00"
@@ -102,7 +102,7 @@ HealthBuff2:
     healthBonus: 20
 
 ArmorBuff1:
-  name: Armor 1
+  name: Armor I
   description: Increases Armor by 3.
   icon: shield
   color: "#00ff00"
@@ -112,7 +112,7 @@ ArmorBuff1:
     armor: 3
 
 ArmorBuff2:
-  name: Armor 2
+  name: Armor II
   description: Increases Armor by 5.
   icon: shield
   color: "#00ff00"
@@ -122,7 +122,7 @@ ArmorBuff2:
     armor: 5
 
 EnergyBuff1:
-  name: Energize 1
+  name: Energize I
   description: Increases Max Energy by 10.
   icon: bolt
   color: "#00ff00"
@@ -132,7 +132,7 @@ EnergyBuff1:
     energyBonus: 10
 
 EnergyBuff2:
-  name: Energize 2
+  name: Energize II
   description: Increases Energy by 15.
   icon: bolt
   color: "#00ff00"
