@@ -30,7 +30,7 @@ SpeedBuff2:
   statusEffectType: StatModification
   statModifications:
     speed: 5
- 
+
 HealingBuff1:
   name: Healing 1
   description: Increases Healing by 3.
@@ -50,7 +50,7 @@ HealingBuff2:
   statusEffectType: StatModification
   statModifications:
     healing: 5
- 
+
 AttackBuff1:
   name: Attack 1
   description: Increases Attack by 3.
@@ -70,7 +70,7 @@ AttackBuff2:
   statusEffectType: StatModification
   statModifications:
     attack: 5
- 
+
 AttackBuff3:
   name: Attack 3
   description: Increases Attack by 8.
@@ -83,24 +83,24 @@ AttackBuff3:
 
 HealthBuff1:
   name: Health 1
-  description: Increases Max Health by 3.
+  description: Increases Max Health by 15.
   icon: heart-plus
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 10
   statusEffectType: StatModification
   statModifications:
-    healthBonus: 3
+    healthBonus: 15
 
 HealthBuff2:
   name: Health 2
-  description: Increases Max Health by 5.
+  description: Increases Max Health by 20.
   icon: heart-plus
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 12
   statusEffectType: StatModification
   statModifications:
-    healthBonus: 5
- 
+    healthBonus: 20
+
 ArmorBuff1:
   name: Armor 1
   description: Increases Armor by 3.
@@ -120,26 +120,24 @@ ArmorBuff2:
   statusEffectType: StatModification
   statModifications:
     armor: 5
- 
+
 EnergyBuff1:
   name: Energize 1
-  description: Increases Energy by 3.
+  description: Increases Max Energy by 10.
   icon: bolt
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 8
   statusEffectType: StatModification
   statModifications:
-    energyBonus: 3
-    energy: 3
+    energyBonus: 10
 
 EnergyBuff2:
   name: Energize 2
-  description: Increases Energy by 5.
+  description: Increases Energy by 15.
   icon: bolt
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 10
   statusEffectType: StatModification
   statModifications:
-    energyBonus: 5
-    energy: 5
- 
+    energyBonus: 15
+
