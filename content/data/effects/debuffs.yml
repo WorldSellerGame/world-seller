@@ -30,7 +30,7 @@ SpeedDebuff2:
   statusEffectType: StatModification
   statModifications:
     speed: -5
- 
+
 HealingDebuff1:
   name: Necrosis 1
   description: Decreases Healing by 3.
@@ -50,7 +50,7 @@ HealingDebuff2:
   statusEffectType: StatModification
   statModifications:
     healing: -5
- 
+
 AttackDebuff1:
   name: Weaken 1
   description: Decreases Attack by 3.
@@ -70,27 +70,27 @@ AttackDebuff2:
   statusEffectType: StatModification
   statModifications:
     attack: -5
- 
+
 HealthDebuff1:
   name: Debilitate 1
-  description: Decreases Max Health by 3.
+  description: Decreases Max Health by 10.
   icon: heart-minus
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 5
   statusEffectType: StatModification
   statModifications:
-    healthBonus: -3
+    healthBonus: -10
 
 HealthDebuff2:
   name: Debilitate 2
-  description: Decreases Max Health by 5.
+  description: Decreases Max Health by 15.
   icon: heart-minus
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 7
   statusEffectType: StatModification
   statModifications:
-    healthBonus: -5
- 
+    healthBonus: -15
+
 ArmorDebuff1:
   name: Shred 1
   description: Decreases Armor by 3.
@@ -113,23 +113,20 @@ ArmorDebuff2:
 
 EnergyDebuff1:
   name: Enfeeble 1
-  description: Decreases Energy by 3.
-  icon: enfeeble
-  color: "#00ff00"
-  turnsLeft: 3
-  statusEffectType: StatModification
-  statModifications:
-    energyBonus: -3
-    energy: -3
-
-EnergyDebuff2:
-  name: Enfeeble 2
   description: Decreases Energy by 5.
   icon: enfeeble
   color: "#00ff00"
-  turnsLeft: 3
+  turnsLeft: 5
   statusEffectType: StatModification
   statModifications:
     energyBonus: -5
-    energy: -5
- 
+
+EnergyDebuff2:
+  name: Enfeeble 2
+  description: Decreases Energy by 10.
+  icon: enfeeble
+  color: "#00ff00"
+  turnsLeft: 7
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: -10
