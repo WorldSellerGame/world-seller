@@ -7,7 +7,10 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
-import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies } from '../../stores/combat/combat.actions';
+import {
+  AddCombatLogMessage, ChangeThreats,
+  EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies
+} from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
 import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
 
