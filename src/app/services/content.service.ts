@@ -187,6 +187,14 @@ export class ContentService {
     return `${firstName} ${secondName}`;
   }
 
+  public isResource(name: string) {
+    return !!this.resources[name];
+  }
+
+  public isItem(name: string) {
+    return !!this.items[name];
+  }
+
   public getLocationsForSkill(skill: keyof typeof this.locationHashes) {
     return this.locationHashes[skill];
   }

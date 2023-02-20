@@ -38,18 +38,27 @@
     <ion-row>
       <ion-col>
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Craftable Recipes</ion-card-title>
-          </ion-card-header>
-
           <ion-card-content>
-            <ion-list>
+            <ion-segment class="mb-1" [(ngModel)]="type">
+              <ion-segment-button value="resources">
+                Craftable Resources
+              </ion-segment-button>
+
+              <ion-segment-button value="items">
+                Craftable Items
+              </ion-segment-button>
+            </ion-segment>
+
+            <ion-list class="scrollable-list">
               <ion-item *ngFor="let recipe of visibleRecipes(pageData.discoveries || {}, locationData.recipes)">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
 
                 <ion-label>
                   <h2>
                     <strong>{{ recipe.result }}</strong>
+                    <div class="resource-notifier" *ngIf="type === 'resources'">
+                      <small>You have {{ pageData.resources?.[recipe.result] || 0 | number }} of these.</small>
+                    </div>
                   </h2>
 
                   <div class="resources">

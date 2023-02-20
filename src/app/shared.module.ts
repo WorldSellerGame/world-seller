@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CombatFoodDisplayComponent } from './components/combat-food-display/combat-food-display.component';
 import { CombatItemDisplayComponent } from './components/combat-item-display/combat-item-display.component';
@@ -26,6 +27,7 @@ import { AnalyticsClickDirective } from './directives/analytics-click.directive'
     AnalyticsClickDirective],
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
     NgxTippyModule,
     AngularSvgIconModule
