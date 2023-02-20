@@ -7,6 +7,7 @@ import { MetaService } from 'src/app/services/meta.service';
 import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
+import { defaultOptions } from '../../../../stores/options/options.functions';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +54,10 @@ export class HomePage implements OnInit {
       const finish = () => {
         inputEl.value = '';
       };
+
+      if(!charFile.options) {
+        charFile.options = defaultOptions();
+      }
 
       this.store.reset(charFile);
       finish();

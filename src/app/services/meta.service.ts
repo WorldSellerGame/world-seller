@@ -28,7 +28,7 @@ export class MetaService {
 
   exportCharacter(slot: number = 0) {
     this.store.selectOnce(data => data).subscribe(data => {
-      const ignoredKeys: string[] = [];
+      const ignoredKeys: string[] = ['options'];
 
       const charData = data.charselect.characters[slot];
       const charName = charData.name;
