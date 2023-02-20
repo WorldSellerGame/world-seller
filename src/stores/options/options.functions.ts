@@ -9,7 +9,9 @@ export const defaultOptions: () => IOptions = () => ({
   [GameOption.DebugMode]: false,
   [GameOption.ColorTheme]: 'dark',
   [GameOption.SidebarDisplay]: 'full',
-  [GameOption.TickTimer]: 1
+  [GameOption.TickTimer]: 1,
+  [GameOption.TelemetryErrors]: true,
+  [GameOption.TelemetrySavefiles]: true,
 });
 
 export function setOption(ctx: StateContext<IOptions>, { option, value }: SetOption) {

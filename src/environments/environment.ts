@@ -8,6 +8,10 @@ export const environment = {
   gameanalytics: {
     game: '54e16e53be300ab8adb7a3a9fd032ac0',
     key: '87f86587d3f4c13572a434d641c4be98e1607937'
+  },
+  rollbar: {
+    environment: 'local',
+    apiKey: 'c34a4c9b582b4fe3bd6bfc48666687ed'
   }
 };
 

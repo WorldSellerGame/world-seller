@@ -45,6 +45,29 @@
         </ion-card>
 
         <ion-card>
+          <ion-card-header>
+            <ion-card-title>Telemetry</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Send Errors to Developer</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetryErrors"
+                                       (click)="setOption('telemetryErrors', !options.telemetryErrors)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Send Savefile With Errors</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetrySavefiles"
+                                       [disabled]="!options.telemetryErrors"
+                                       (click)="setOption('telemetrySavefiles', !options.telemetrySavefiles)"></ion-toggle>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
           <ion-card-content>
             <ion-item routerDirection="root" [routerLink]="['']" lines="none" detail="false" routerLinkActive="selected" class="cursor-pointer">
               <ion-icon slot="start" color="primary" name="home"></ion-icon>

@@ -4,6 +4,8 @@ export enum GameOption {
   ColorTheme = 'colorTheme',
   SidebarDisplay = 'sidebarDisplay',
   TickTimer = 'tickTimer',
+  TelemetryErrors = 'telemetryErrors',
+  TelemetrySavefiles = 'telemetrySavefiles',
 }
 
 export interface IOptions {
@@ -12,4 +14,6 @@ export interface IOptions {
   [GameOption.ColorTheme]: string;
   [GameOption.SidebarDisplay]: string;
   [GameOption.TickTimer]: number;
+  [GameOption.TelemetryErrors]: boolean;
+  [GameOption.TelemetrySavefiles]: boolean;
 }
