@@ -41,6 +41,10 @@ export class GameloopService {
         }
 
         const characterSlot = +(route.snapshot.paramMap.get('slot') || '-1');
+        if(this.currentCharacterSlot === characterSlot) {
+          return;
+        }
+
         this.currentCharacterSlot = characterSlot;
         this.store.dispatch(new SetActiveCharacter(characterSlot));
       });
