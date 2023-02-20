@@ -12,6 +12,7 @@ import {
   getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
+import { VisualsService } from '../../app/services/visuals.service';
 import {
   CombatAbilityTarget, DungeonTile, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
@@ -38,7 +39,7 @@ import { EnterDungeon } from './dungeon.actions';
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService) {
+  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -86,6 +87,25 @@ export class CombatState {
   @Selector()
   static threatInfo(state: IGameCombat) {
     return { threats: state.threats, threatChangeTicks: state.threatChangeTicks };
+  }
+
+  private emitDamageNumber(target: IGameEncounterCharacter, combat: IGameCombat, value: number) {
+    let slot = '';
+
+    if(target === combat.currentPlayer) {
+      slot = 'player';
+    }
+
+    if(combat.currentEncounter) {
+      const index = combat.currentEncounter.enemies.findIndex(x => x === target);
+      if(index !== -1) {
+        slot = `enemy-${index}`;
+      }
+    }
+
+    if(slot) {
+      this.visuals.emitDamageNumber(slot, value);
+    }
   }
 
   @Action(UpdateAllItems)
@@ -278,7 +298,14 @@ export class CombatState {
           statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
         });
         deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
+
+        const hp = target.currentHealth;
         applyDeltas(ctx, enemy, target, deltas);
+        const newHp = target.currentHealth;
+
+        if(hp !== newHp) {
+          this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+        }
       });
     });
 
@@ -334,7 +361,14 @@ export class CombatState {
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
       deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      const hp = target.currentHealth;
       applyDeltas(ctx, source, target, deltas);
+      const newHp = target.currentHealth;
+
+      if(hp !== newHp) {
+        this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+      }
 
       if(isDead(target)) {
         ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
@@ -381,7 +415,14 @@ export class CombatState {
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
       deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      const hp = currentPlayer.currentHealth;
       applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
+      const newHp = currentPlayer.currentHealth;
+
+      if(hp !== newHp) {
+        this.emitDamageNumber(currentPlayer, ctx.getState(), newHp - hp);
+      }
     });
 
     ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));

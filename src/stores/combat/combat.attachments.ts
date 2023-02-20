@@ -11,7 +11,7 @@ import {
   LowerPlayerCooldown,
   PlayerCooldownSkill,
   PlayerSpeedReset,
-  ResetCombat, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
+  ResetCombat, ResetCombatSoft, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
   SetSkill, TickEnemyEffects, TickPlayerEffects, UnlockCombat, UseItemInSlot
 } from './combat.actions';
 import {
@@ -21,7 +21,7 @@ import {
   endCombatAndResetPlayer,
   lowerEnemyCooldowns,
   lowerPlayerCooldowns,
-  resetCombat, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
+  resetCombat, resetCombatSoft, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
   setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
   setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, unlockCombat, useItemInSlot
@@ -41,6 +41,7 @@ export const attachments: IAttachment[] = [
   { action: DeleteCharacter, handler: resetCombat },
   { action: UnlockCombat, handler: unlockCombat },
   { action: ResetCombat, handler: resetCombat },
+  { action: ResetCombatSoft, handler: resetCombatSoft },
   { action: EndCombat, handler: endCombat },
   { action: EndCombatAndResetPlayer, handler: endCombatAndResetPlayer },
   { action: SetSkill, handler: setSkillInSlot },

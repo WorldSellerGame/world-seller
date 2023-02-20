@@ -35,6 +35,11 @@ export class ResetCombat {
   constructor() {}
 }
 
+export class ResetCombatSoft {
+  static type = '[Combat] Soft Reset';
+  constructor() {}
+}
+
 export class EndCombat {
   static type = '[Combat] End';
   constructor() {}

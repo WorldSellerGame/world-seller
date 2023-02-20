@@ -18,6 +18,14 @@
                  [class.highlight]="canTargetEnemy(monster)"
                  [class.dead]="monster.currentHealth <= 0"
                  (click)="targetEnemy(i, monster, encounterData.player, encounterData.encounter)">
+
+
+              <div class="damage-number"
+                   [style.left.px]="deltaIdx * 40"
+                   [class.negative]="delta.value < 0"
+                   [class.positive]="delta.value > 0"
+                   *ngFor="let delta of hpDeltas['enemy-' + i]; let deltaIdx = index">{{ delta.value > 0 ? '+' : '' }}{{ delta.value | number }}</div>
+
               <div class="icon">
                 <app-game-icon [icon]="monster.icon" [bigSize]="true"></app-game-icon>
               </div>
@@ -73,6 +81,13 @@
               </ion-card-header>
 
               <ion-card-content>
+
+                <div class="damage-number"
+                     [style.left.px]="deltaIdx * 40"
+                     [class.negative]="delta.value < 0"
+                     [class.positive]="delta.value > 0"
+                     *ngFor="let delta of hpDeltas['player']; let deltaIdx = index">{{ delta.value > 0 ? '+' : '' }}{{ delta.value | number  }}</div>
+
                 <ion-list>
                   <ion-item>
                     <ion-row class="stat-row">
@@ -143,7 +158,7 @@
                               class="cursor-pointer"
                               [class.active-skill]="i === activeItemIndex"
                               (click)="selectItem(item, i)"
-                              [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, item.effects?.[0]?.effect || '', i)">
+                              [disabled]="encounterData.encounter.isLocked">
                       <app-combat-item-display [item]="item" [showEffectInfo]="true" [showUses]="false"></app-combat-item-display>
 
                       <ion-text color="warning" slot="end" *ngIf="item.durability > 0">

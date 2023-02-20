@@ -7,7 +7,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
-import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock } from '../../stores/combat/combat.actions';
+import { AddCombatLogMessage, ChangeThreats, EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
 import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
 
@@ -80,7 +80,9 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
   }
 
   if(hasPlayerWonCombat(ctx)) {
-    ctx.dispatch(new AddCombatLogMessage('You have won combat!'));
+    ctx.dispatch([
+      new AddCombatLogMessage('You have won combat!')
+    ]);
 
     // if we're leaving the dungeon on win, do that and level up
     if(currentEncounter.shouldExitDungeon) {
@@ -106,7 +108,9 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
 
   } else if(hasEnemyWonCombat(ctx)) {
-    ctx.dispatch(new AddCombatLogMessage('You have lost combat!'));
+    ctx.dispatch([
+      new AddCombatLogMessage('You have lost combat!')
+    ]);
 
     if(currentDungeon) {
       ctx.dispatch([
@@ -116,7 +120,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
   }
 
-  ctx.dispatch(new SetCombatLock(true));
+  ctx.dispatch([new SetCombatLock(true), new SetCombatLockForEnemies(true)]);
 
   setTimeout(() => {
     dispatchCorrectCombatEndEvent(ctx, currentEncounter);
