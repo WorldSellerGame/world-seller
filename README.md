@@ -36,6 +36,12 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 1. Add the store to `stores/index.ts`
 1. Add the migrations file to `stores/migrations.ts`
 
+### Adding a New Sound Effect
+
+1. Make the sound effect (BFXR)
+1. Compress the sound effect [here](https://www.freeconvert.com/wav-compressor) (if it doesn't compress, use the original)
+1. Place it in `src/assets/sfx`
+
 ### Adding a New SVG
 
 1. Find the SVG [here](https://seiyria.com/gameicons-font/).

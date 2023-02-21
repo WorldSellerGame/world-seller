@@ -20,7 +20,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
-import { TickTimer, UpdateAllItems } from '../game/game.actions';
+import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
@@ -309,6 +309,12 @@ export class CombatState {
 
         if(hp !== newHp) {
           this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+
+          if(target === currentPlayer) {
+            ctx.dispatch(new PlaySFX('combat-hit-player'));
+          } else {
+            ctx.dispatch(new PlaySFX('combat-hit-enemy'));
+          }
         }
       });
     });
@@ -372,7 +378,18 @@ export class CombatState {
 
       if(hp !== newHp) {
         this.emitDamageNumber(target, ctx.getState(), newHp - hp);
-        ctx.dispatch(new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)));
+
+        if(newHp - hp < 0) {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)),
+            new PlaySFX('combat-hit-enemy')
+          ]);
+        } else {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)),
+            new PlaySFX('combat-effect')
+          ]);
+        }
       }
 
       if(isDead(target)) {
@@ -432,9 +449,15 @@ export class CombatState {
         this.emitDamageNumber(currentPlayer, ctx.getState(), newHp - hp);
 
         if(newHp - hp < 0) {
-          ctx.dispatch(new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)));
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)),
+            new PlaySFX('combat-hit-player')
+          ]);
         } else {
-          ctx.dispatch(new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)));
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)),
+            new PlaySFX('combat-effect')
+          ]);
         }
       }
     });

@@ -14,6 +14,7 @@ import {
   EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies
 } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
+import { PlaySFX } from '../../stores/game/game.actions';
 import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
@@ -87,6 +88,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
   if(hasPlayerWonCombat(ctx)) {
     ctx.dispatch([
       new AddCombatLogMessage('You have won combat!'),
+      new PlaySFX('combat-win'),
       new IncrementStat(AchievementStat.CombatThreatsBeaten)
     ]);
 
@@ -102,7 +104,8 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
         new GainPercentageOfDungeonLoot(100),
         new LeaveDungeon(),
         new IncrementStat(`Dungeon${level}`),
-        new IncrementStat(AchievementStat.CombatDungeonsWon)
+        new IncrementStat(AchievementStat.CombatDungeonsWon),
+        new PlaySFX('dungeon-win')
       ]);
     }
 
@@ -118,6 +121,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
   } else if(hasEnemyWonCombat(ctx)) {
     ctx.dispatch([
       new AddCombatLogMessage('You have lost combat!'),
+      new PlaySFX('combat-lose'),
       new IncrementStat(AchievementStat.Deaths)
     ]);
 

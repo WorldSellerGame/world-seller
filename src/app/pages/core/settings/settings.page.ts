@@ -40,6 +40,14 @@ export class SettingsPage implements OnInit {
     this.setOption(GameOption.TickTimer, $event.detail.value);
   }
 
+  changeMasterVolume($event: any) {
+    this.setOption(GameOption.SoundMaster, $event.detail.value);
+  }
+
+  changeSFXVolume($event: any) {
+    this.setOption(GameOption.SoundSFX, $event.detail.value);
+  }
+
   exportCharacter(slot: number) {
     this.metaService.exportCharacter(slot);
   }

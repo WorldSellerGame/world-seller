@@ -6,6 +6,7 @@ import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { GainResources } from '../../stores/charselect/charselect.actions';
 import { CancelFishing } from '../../stores/fishing/fishing.actions';
 import { CancelForaging } from '../../stores/foraging/foraging.actions';
+import { PlaySFX } from '../../stores/game/game.actions';
 import { CancelHunting } from '../../stores/hunting/hunting.actions';
 import { CancelLogging } from '../../stores/logging/logging.actions';
 import { CancelMining } from '../../stores/mining/mining.actions';
@@ -56,7 +57,8 @@ export function decreaseGatherTimer(
     ctx.dispatch(new cancelProto()).subscribe(() => {
       ctx.dispatch([
         new GainResources(gainedResources),
-        new IncrementStat(incrementStatOnFinish, 1)
+        new IncrementStat(incrementStatOnFinish, 1),
+        new PlaySFX('tradeskill-finish')
       ]);
     });
   }
@@ -88,6 +90,7 @@ export function setGatheringLocation(ctx: StateContext<IGameGathering>, location
 
   ctx.dispatch([
     ...cancelAllGathering(),
+    new PlaySFX('tradeskill-start')
   ]).subscribe(() => {
     const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
 

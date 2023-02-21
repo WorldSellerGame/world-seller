@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { NotifyService } from '../../app/services/notify.service';
+import { VisualsService } from '../../app/services/visuals.service';
 import { IGame } from '../../interfaces';
-import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning } from './game.actions';
+import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, PlaySFX } from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 
@@ -16,7 +17,7 @@ import { defaultGame } from './game.functions';
 @Injectable()
 export class GameState {
 
-  constructor(private notify: NotifyService) {
+  constructor(private notify: NotifyService, private visuals: VisualsService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(GameState, action, handler);
     });
@@ -40,6 +41,11 @@ export class GameState {
   @Action(NotifySuccess)
   notifySuccess(ctx: StateContext<IGame>, { message }: NotifySuccess) {
     this.notify.success(message);
+  }
+
+  @Action(PlaySFX)
+  playSFX(ctx: StateContext<IGame>, { sfx }: PlaySFX) {
+    this.visuals.playSoundEffect(sfx);
   }
 
 }

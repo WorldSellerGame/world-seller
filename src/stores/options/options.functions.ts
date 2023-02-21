@@ -10,6 +10,8 @@ export const defaultOptions: () => IOptions = () => ({
   [GameOption.ColorTheme]: 'dark',
   [GameOption.SidebarDisplay]: 'full',
   [GameOption.TickTimer]: 1,
+  [GameOption.SoundMaster]: 0.5,
+  [GameOption.SoundSFX]: 1,
   [GameOption.TelemetryErrors]: true,
   [GameOption.TelemetrySavefiles]: true,
 });

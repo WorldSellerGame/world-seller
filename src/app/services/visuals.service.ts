@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Howl } from 'howler';
 import { Subject } from 'rxjs';
+import { GameOption } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +15,23 @@ export class VisualsService {
     return this.damageSub.asObservable();
   }
 
-  constructor() { }
+  constructor(private store: Store) {}
 
   emitDamageNumber(slot: string, value: number) {
     this.damageSub.next({ slot, value });
+  }
+
+  playSoundEffect(sound: string) {
+    const options = this.store.snapshot().options;
+
+    const masterPercent = (options[GameOption.SoundMaster] || 1) / 100;
+    const sfxPercent = (options[GameOption.SoundSFX] || 1) / 100;
+
+    const soundByte = new Howl({
+      src: [`assets/sfx/${sound}.wav`],
+      volume: masterPercent * sfxPercent
+    });
+
+    soundByte.play();
   }
 }

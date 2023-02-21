@@ -4,6 +4,7 @@ import { cloneDeep, merge, random, zipObject } from 'lodash';
 import { AchievementStat, IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../../stores/charselect/charselect.actions';
+import { PlaySFX } from '../../stores/game/game.actions';
 
 export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any, incrementStat: AchievementStat) {
 
@@ -25,7 +26,8 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
     // get a new item
     ctx.dispatch([
       new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
-      new IncrementStat(incrementStat)
+      new IncrementStat(incrementStat),
+      new PlaySFX('tradeskill-finish')
     ]);
 
     // attempt a level up
@@ -68,7 +70,10 @@ export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Recor
 }
 
 export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number) {
-  ctx.dispatch(new GainResources(getRecipeIngredientCosts(job, quantity)));
+  ctx.dispatch([
+    new GainResources(getRecipeIngredientCosts(job, quantity)),
+    new PlaySFX('tradeskill-start')
+  ]);
 
   ctx.setState(patch<IGameRefining>({
     recipeQueue: append<IGameRefiningRecipe>([{
