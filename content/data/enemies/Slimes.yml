@@ -1,0 +1,22 @@
+Slime: #Goo
+  name: Slime
+  icon: slime
+  description: A common harmless variety, not a real threat other than to molds and moss.
+
+  health: 25
+  energy: 0
+
+  idleChance: 50
+
+  stats:
+    attack: 0
+    armor: 5
+    speed: 10
+
+  abilities: {}
+
+  drops: #goo l8r
+    - resource: Coin
+      min: 0
+      max: 10
+      chance: 100
