@@ -13,7 +13,7 @@ Slime: #Goo
     armor: 5
     speed: 10
 
-  abilities: {}
+  abilities: []
 
   drops: #goo l8r
     - resource: Coin

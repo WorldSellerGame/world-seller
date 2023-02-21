@@ -38,10 +38,6 @@ GoblinShaman1: # To be moved and re named
   energyCost: 8
   requires: {}
 
-
-
-
-
 GoblinLord1:
   name: PepShout
   description: If a pep talk is good being louder must be great.
