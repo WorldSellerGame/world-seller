@@ -157,7 +157,6 @@ export function gainPercentageOfDungeonLoot(ctx: StateContext<IGameCombat>, { pe
   const state = ctx.getState();
 
   if(!state.currentDungeon) {
-    console.log('no danga???');
     return;
   }
 
