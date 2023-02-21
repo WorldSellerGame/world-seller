@@ -1,7 +1,7 @@
 
 .character-select {
-  margin-top: 20vh;
-  margin-bottom: 20vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .character-actions {
@@ -27,4 +27,19 @@
 
 .announcement {
   min-height: 150px;
+}
+
+.announcement-row {
+  margin-bottom: 50px;
+}
+
+.actions-row {
+  margin-top: 50px;
+}
+
+.header-row {
+  font-size: 4em;
+  text-align: center;
+
+  margin-bottom: 50px;
 }
