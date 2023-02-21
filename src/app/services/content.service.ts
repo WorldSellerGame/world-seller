@@ -30,7 +30,7 @@ import { Store } from '@ngxs/store';
 import {
   IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
-  IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect
+  IGameEnemyThreat, IGameGatherLocation, IGameItem, IGameRecipe, IGameResource, IGameResourceTransform, IGameStatusEffect, IStatGains
 } from '../../interfaces';
 import { SetStatGains } from '../../stores/game/game.actions';
 
@@ -73,51 +73,51 @@ export class ContentService {
   }
 
   // other skills
-  public get alchemy() {
+  public get alchemy(): { recipes: IGameRecipe[] } {
     return (alchemy as any).default || alchemy;
   }
 
-  public get blacksmithing() {
+  public get blacksmithing(): { recipes: IGameRecipe[] } {
     return (blacksmithing as any).default || blacksmithing;
   }
 
-  public get cooking() {
+  public get cooking(): { recipes: IGameRecipe[] } {
     return (cooking as any).default || cooking;
   }
 
-  public get farming() {
+  public get farming(): { transforms: IGameResourceTransform[] } {
     return (farming as any).default || farming;
   }
 
-  public get fishing() {
+  public get fishing(): { locations: IGameGatherLocation[] } {
     return (fishing as any).default || fishing;
   }
 
-  public get foraging() {
+  public get foraging(): { locations: IGameGatherLocation[] } {
     return (foraging as any).default || foraging;
   }
 
-  public get hunting() {
+  public get hunting(): { locations: IGameGatherLocation[] } {
     return (hunting as any).default || hunting;
   }
 
-  public get jewelcrafting() {
+  public get jewelcrafting(): { recipes: IGameRecipe[] } {
     return (jewelcrafting as any).default || jewelcrafting;
   }
 
-  public get logging() {
+  public get logging(): { locations: IGameGatherLocation[] } {
     return (logging as any).default || logging;
   }
 
-  public get mining() {
+  public get mining(): { locations: IGameGatherLocation[] } {
     return (mining as any).default || mining;
   }
 
-  public get prospecting() {
+  public get prospecting(): { transforms: IGameResourceTransform[] } {
     return (prospecting as any).default || prospecting;
   }
 
-  public get weaving() {
+  public get weaving(): { recipes: IGameRecipe[] } {
     return (weaving as any).default || weaving;
   }
 
@@ -126,7 +126,7 @@ export class ContentService {
     return (characterNames as any).default || characterNames;
   }
 
-  public get statGains() {
+  public get statGains(): IStatGains {
     return (statGains as any).default || statGains;
   }
 
@@ -193,55 +193,55 @@ export class ContentService {
     return `${firstName} ${secondName}`;
   }
 
-  public isResource(name: string) {
+  public isResource(name: string): boolean {
     return !!this.resources[name];
   }
 
-  public isItem(name: string) {
+  public isItem(name: string): boolean {
     return !!this.items[name];
   }
 
-  public getLocationsForSkill(skill: keyof typeof this.locationHashes) {
+  public getLocationsForSkill(skill: keyof typeof this.locationHashes): Record<string, IGameGatherLocation> {
     return this.locationHashes[skill];
   }
 
-  public getRecipesForSkill(skill: keyof typeof this.recipeHashes) {
+  public getRecipesForSkill(skill: keyof typeof this.recipeHashes): Record<string, IGameRecipe> {
     return this.recipeHashes[skill];
   }
 
-  public getResourceByName(name: string) {
+  public getResourceByName(name: string): IGameResource {
     return cloneDeep(this.resources[name]);
   }
 
-  public getItemByName(name: string) {
+  public getItemByName(name: string): IGameItem {
     return cloneDeep(this.items[name]);
   }
 
-  public getAllAbilities() {
+  public getAllAbilities(): Record<string, IGameCombatAbility> {
     return cloneDeep(this.abilities);
   }
 
-  public getAbilityByName(name: string) {
+  public getAbilityByName(name: string): IGameCombatAbility {
     return cloneDeep(this.abilities[name]);
   }
 
-  public getEnemyByName(name: string) {
+  public getEnemyByName(name: string): IEnemyCharacter {
     return cloneDeep(this.enemies[name]);
   }
 
-  public getAllThreats() {
+  public getAllThreats(): Record<string, IGameEnemyThreat> {
     return cloneDeep(this.threats);
   }
 
-  public getThreatByName(name: string) {
+  public getThreatByName(name: string): IGameEnemyThreat {
     return cloneDeep(this.threats[name]);
   }
 
-  public getEffectByName(name: string) {
+  public getEffectByName(name: string): IGameStatusEffect {
     return cloneDeep(this.effects[name]);
   }
 
-  public getAllDungeons() {
+  public getAllDungeons(): Record<string, IDungeon> {
     return cloneDeep(this.dungeons);
   }
 
@@ -253,7 +253,7 @@ export class ContentService {
     return cloneDeep(this.achievements[name]);
   }
 
-  public getAllAchievements() {
+  public getAllAchievements(): Record<string, IAchievement> {
     return cloneDeep(this.achievements);
   }
 

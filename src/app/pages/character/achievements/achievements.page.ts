@@ -32,7 +32,8 @@ export class AchievementsPage implements OnInit, OnDestroy {
         .map(x => ({ ...allAchievements[x], unearned: true }));
 
       this.earnedAchievements = achievements;
-      this.achievementsInOrder = [...earnedAchievements, ...unearnedAchievements].filter(Boolean);
+      this.achievementsInOrder = [...earnedAchievements, ...unearnedAchievements]
+        .filter(Boolean) as (IAchievement & { unearned: boolean })[];
     });
   }
 
