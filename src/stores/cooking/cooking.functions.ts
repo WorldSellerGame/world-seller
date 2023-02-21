@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelCookingJob, StartCookingJob } from './cooking.actions';
 
@@ -22,7 +22,7 @@ export function resetCooking(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelCookingJob);
+  decreaseRefineTimer(ctx, ticks, CancelCookingJob, AchievementStat.RefineCooking);
 }
 
 export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelCookingJob) {

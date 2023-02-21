@@ -1,7 +1,8 @@
 import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
-import { IGameGatherLocation, IGameGathering } from '../../interfaces';
+import { AchievementStat, IGameGatherLocation, IGameGathering } from '../../interfaces';
+import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { GainResources } from '../../stores/charselect/charselect.actions';
 import { CancelFishing } from '../../stores/fishing/fishing.actions';
 import { CancelForaging } from '../../stores/foraging/foraging.actions';
@@ -18,7 +19,13 @@ export function getResourceRewardsForLocation(location: IGameGatherLocation) {
   return gainedResources;
 }
 
-export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: number, cdrValue: number, cancelProto: any) {
+export function decreaseGatherTimer(
+  ctx: StateContext<IGameGathering>,
+  ticks: number,
+  cdrValue: number,
+  cancelProto: any,
+  incrementStatOnFinish: AchievementStat
+) {
   const state = ctx.getState();
 
   lowerGatheringCooldowns(ctx, ticks);
@@ -47,7 +54,10 @@ export function decreaseGatherTimer(ctx: StateContext<IGameGathering>, ticks: nu
     }
 
     ctx.dispatch(new cancelProto()).subscribe(() => {
-      ctx.dispatch(new GainResources(gainedResources));
+      ctx.dispatch([
+        new GainResources(gainedResources),
+        new IncrementStat(incrementStatOnFinish, 1)
+      ]);
     });
   }
 }

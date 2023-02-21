@@ -18,6 +18,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
 import { MetaService } from './services/meta.service';
 import { RollbarErrorHandler, RollbarService } from './services/rollbar.service';
@@ -62,11 +63,17 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     {
       provide: APP_INITIALIZER,
       multi: true,
-      deps: [MetaService, AnalyticsService, RollbarService],
-      useFactory: (metaService: MetaService, analyticsService: AnalyticsService, rollbarService: RollbarService) => async () => {
+      deps: [MetaService, AnalyticsService, RollbarService, AchievementsService],
+      useFactory: (
+        metaService: MetaService,
+        analyticsService: AnalyticsService,
+        rollbarService: RollbarService,
+        achievementsService: AchievementsService
+      ) => async () => {
         await metaService.init();
         analyticsService.init();
         rollbarService.init();
+        achievementsService.init();
       }
     },
     { provide: ErrorHandler, useClass: RollbarErrorHandler },

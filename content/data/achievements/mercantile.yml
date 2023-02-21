@@ -1,0 +1,48 @@
+MercantileWorkers1:
+  name: Workers I
+  description: Buy 1 worker.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 1
+
+MercantileWorkers2:
+  name: Workers II
+  description: Buy 5 workers.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 5
+
+MercantileWorkers3:
+  name: Workers III
+  description: Buy 25 workers.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 25
+
+MercantileSell1:
+  name: Merchant I
+  description: Sell 100 items.
+  icon: mercantile
+  stat: mercantileSell
+  requiredValue: 100
+
+MercantileSell2:
+  name: Merchant II
+  description: Sell 1000 items.
+  icon: mercantile
+  stat: mercantileSell
+  requiredValue: 1000
+
+MercantileSell3:
+  name: Merchant III
+  description: Sell 10000 items.
+  icon: mercantile
+  stat: mercantileSell
+  requiredValue: 10000
+
+MercantileSell4:
+  name: Merchant IV
+  description: Sell 100000 items.
+  icon: mercantile
+  stat: mercantileSell
+  requiredValue: 100000

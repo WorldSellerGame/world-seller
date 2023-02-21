@@ -1,10 +1,11 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
-import { IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
+import { AchievementStat, IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
+import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../../stores/charselect/charselect.actions';
 
-export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any) {
+export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any, incrementStat: AchievementStat) {
 
   const state = ctx.getState();
 
@@ -22,7 +23,10 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
   if(newTicks <= 0) {
 
     // get a new item
-    ctx.dispatch(new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)));
+    ctx.dispatch([
+      new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
+      new IncrementStat(incrementStat)
+    ]);
 
     // attempt a level up
     if(job.recipe.level.max > state.level) {

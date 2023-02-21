@@ -8,6 +8,7 @@ import { GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charsel
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
+import { NotifyService } from './services/notify.service';
 
 interface IMenuItem {
   title: string;
@@ -158,6 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
+    private readonly notifyService: NotifyService,
     private readonly gameloopService: GameloopService
   ) { }
 
@@ -175,11 +177,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.debug = this.debugMode$.subscribe(debugMode => {
       if(!debugMode) {
         (window as any).gainItem = () => {};
+        (window as any).gainAchievement = () => {};
         return;
       }
 
       (window as any).gainItem = (item: string, amount: number) => {
         this.store.dispatch(new GainItemOrResource(item, amount));
+      };
+
+      (window as any).gainAchievement = (achievementText: string) => {
+        this.notifyService.achievement(achievementText);
       };
     });
   }

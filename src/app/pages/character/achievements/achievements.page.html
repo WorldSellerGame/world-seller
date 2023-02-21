@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Achievements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    stats: stats$ | async
+  } as pageData">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let achievement of achievementsInOrder" sizeMd="6" sizeSm="12" sizeXs="12" sizeLg="4">
+          <ion-card [class.unearned]="achievement.unearned">
+            <ion-card-header>
+              <ion-card-title class="icon-title">
+                <app-game-icon [icon]="achievement.icon" [inlineIconSize]="true"></app-game-icon>
+
+                {{ achievement.name }}
+              </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <p>
+                {{ achievement.description }}
+              </p>
+
+              <p class="display-value">
+                {{ displayValue(pageData.stats?.[achievement.stat] ?? 0, achievement.requiredValue) | number }} / {{ achievement.requiredValue | number }}
+              </p>
+
+              <ion-progress-bar class="achievement-progress" color="primary" [value]="(pageData.stats?.[achievement.stat] ?? 0) / achievement.requiredValue"></ion-progress-bar>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

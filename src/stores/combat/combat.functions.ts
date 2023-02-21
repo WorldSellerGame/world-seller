@@ -478,7 +478,6 @@ export function tickEnemyEffects(ctx: StateContext<IGameCombat>, { enemyIndex }:
     }
 
     if(effect.turnsLeft <= 0) {
-
       applyDeltas(ctx, enemy, enemy, [
         { target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect }
       ]);

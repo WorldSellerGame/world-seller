@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { cloneDeep } from 'lodash';
 import * as seedrandom from 'seedrandom';
 
 import * as abilities from '../../assets/content/abilities.json';
+import * as achievements from '../../assets/content/achievements.json';
 import * as alchemy from '../../assets/content/alchemy.json';
 import * as blacksmithing from '../../assets/content/blacksmithing.json';
 import * as cooking from '../../assets/content/cooking.json';
@@ -21,12 +23,12 @@ import * as resources from '../../assets/content/resources.json';
 import * as threats from '../../assets/content/threats.json';
 import * as weaving from '../../assets/content/weaving.json';
 
-import { cloneDeep } from 'lodash';
 import * as characterNames from '../../assets/content/character-names.json';
 import * as statGains from '../../assets/content/stat-gains.json';
 
 import { Store } from '@ngxs/store';
 import {
+  IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
   IGameEnemyThreat, IGameItem, IGameResource, IGameStatusEffect
 } from '../../interfaces';
@@ -64,6 +66,10 @@ export class ContentService {
 
   private get dungeons(): Record<string, IDungeon> {
     return (dungeons as any).default || dungeons;
+  }
+
+  private get achievements(): Record<string, any> {
+    return (achievements as any).default || achievements;
   }
 
   // other skills
@@ -239,8 +245,16 @@ export class ContentService {
     return cloneDeep(this.dungeons);
   }
 
-  public getDungeonByName(name: string) {
+  public getDungeonByName(name: string): IDungeon {
     return cloneDeep(this.dungeons[name]);
+  }
+
+  public getAchievementByName(name: string): IAchievement {
+    return cloneDeep(this.achievements[name]);
+  }
+
+  public getAllAchievements() {
+    return cloneDeep(this.achievements);
   }
 
 }

@@ -87,10 +87,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tradeskills/peripheral/combat/combat.module').then( m => m.CombatPageModule)
   },
   {
+    path: 'game/:slot/achievements',
+    loadChildren: () => import('./pages/character/achievements/achievements.module').then( m => m.AchievementsPageModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''
   }
+
 ];
 
 @NgModule({

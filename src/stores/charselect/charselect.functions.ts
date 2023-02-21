@@ -1,8 +1,10 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 
+import { sum } from 'lodash';
 import { calculateBrokenItemStats } from '../../app/helpers';
-import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
+import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import {
   AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
   GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
@@ -68,6 +70,9 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources }: Gai
   if(!currentCharacter) {
     return;
   }
+
+  const gainedResources = sum(Object.values(resources));
+  ctx.dispatch(new IncrementStat(AchievementStat.ResourcesGained, gainedResources));
 
   Object.keys(resources).forEach(resource => {
     if(!currentCharacter.resources[resource]) {

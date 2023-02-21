@@ -1,4 +1,5 @@
 
+export * from './achievements/achievements.migrations';
 export * from './alchemy/alchemy.migrations';
 export * from './blacksmithing/blacksmithing.migrations';
 export * from './charselect/charselect.migrations';

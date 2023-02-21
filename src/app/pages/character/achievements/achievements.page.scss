@@ -1,0 +1,30 @@
+
+.unearned {
+  opacity: 0.5;
+}
+
+.display-value {
+  position: absolute;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+
+.achievement-progress {
+  margin-top: 10px;
+  height: 20px;
+}
+
+.icon-title {
+  display: flex;
+  align-items: center;
+
+  app-game-icon {
+    margin-right: 10px;
+  }
+}

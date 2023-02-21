@@ -1,0 +1,126 @@
+
+CombatThreatsEngage1:
+  name: Threatening I
+  description: Engage in combat with 10 threats.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 10
+
+CombatThreatsEngage2:
+  name: Threatening II
+  description: Engage in combat with 100 threats.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 100
+
+CombatThreatsEngage3:
+  name: Threatening III
+  description: Engage in combat with 1000 threats.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 1000
+
+CombatThreatsEngage4:
+  name: Threatening IV
+  description: Engage in combat with 10000 threats.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 10000
+
+CombatThreatsEngage5:
+  name: Threatening V
+  description: Engage in combat with 100000 threats.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 100000
+
+CombatThreatsWin1:
+  name: Victorious I
+  description: Win combat with 10 threats.
+  icon: combat
+  stat: combatThreatsWon
+  requiredValue: 10
+
+CombatThreatsWin2:
+  name: Victorious II
+  description: Win combat with 100 threats.
+  icon: combat
+  stat: combatThreatsWon
+  requiredValue: 100
+
+CombatThreatsWin3:
+  name: Victorious III
+  description: Win combat with 1000 threats.
+  icon: combat
+  stat: combatThreatsWon
+  requiredValue: 1000
+
+CombatThreatsWin4:
+  name: Victorious IV
+  description: Win combat with 10000 threats.
+  icon: combat
+  stat: combatThreatsWon
+  requiredValue: 10000
+
+CombatThreatsWin5:
+  name: Victorious V
+  description: Win combat with 100000 threats.
+  icon: combat
+  stat: combatThreatsWon
+  requiredValue: 100000
+
+CombatDungeonEnter1:
+  name: Adventurous I
+  description: Enter 1 dungeon.
+  icon: combat
+  stat: combatDungeonsEntered
+  requiredValue: 1
+
+CombatDungeonEnter2:
+  name: Adventurous II
+  description: Enter 5 dungeons.
+  icon: combat
+  stat: combatDungeonsEntered
+  requiredValue: 5
+
+CombatDungeonEnter3:
+  name: Adventurous III
+  description: Enter 25 dungeons.
+  icon: combat
+  stat: combatDungeonsEntered
+  requiredValue: 25
+
+CombatDungeonEnter4:
+  name: Adventurous IV
+  description: Enter 100 dungeons.
+  icon: combat
+  stat: combatDungeonsEntered
+  requiredValue: 100
+
+CombatDungeonWin1:
+  name: Dungeon Master I
+  description: Win 1 dungeon.
+  icon: combat
+  stat: combatDungeonsWon
+  requiredValue: 1
+
+CombatDungeonWin2:
+  name: Dungeon Master II
+  description: Win 5 dungeons.
+  icon: combat
+  stat: combatDungeonsWon
+  requiredValue: 5
+
+CombatDungeonWin3:
+  name: Dungeon Master III
+  description: Win 25 dungeons.
+  icon: combat
+  stat: combatDungeonsWon
+  requiredValue: 25
+
+CombatDungeonWin4:
+  name: Dungeon Master IV
+  description: Win 100 dungeons.
+  icon: combat
+  stat: combatDungeonsWon
+  requiredValue: 100

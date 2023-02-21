@@ -1,7 +1,8 @@
 import { StateContext } from '@ngxs/store';
 
 import { append, insertItem, patch, removeItem } from '@ngxs/store/operators';
-import { IGameWorkers, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../interfaces';
+import { AchievementStat, IGameWorkers, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import { spendCoins } from '../mercantile/mercantile.functions';
 import { AssignGatheringWorker, AssignRefiningWorker, UnassignGatheringWorker, UnassignRefiningWorker } from './workers.actions';
 
@@ -70,6 +71,8 @@ export function buyWorker(ctx: StateContext<IGameWorkers>) {
   const curWorkers = ctx.getState().maxWorkers;
 
   spendCoins(ctx, { amount: nextWorkerCost(curWorkers) });
+
+  ctx.dispatch(new IncrementStat(AchievementStat.MercantileBuyWorkers));
 
   ctx.setState(patch<IGameWorkers>({
     maxWorkers: curWorkers + 1,

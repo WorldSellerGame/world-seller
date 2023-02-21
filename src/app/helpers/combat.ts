@@ -3,9 +3,11 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { clamp, merge, random, sum } from 'lodash';
 import * as CombatActions from '../../app/helpers/abilities';
 import {
+  AchievementStat,
   IAttackParams, ICombatDelta, IGameCombat, IGameCombatAbility,
   IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
+import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import {
   AddCombatLogMessage, ChangeThreats,
@@ -84,7 +86,8 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
 
   if(hasPlayerWonCombat(ctx)) {
     ctx.dispatch([
-      new AddCombatLogMessage('You have won combat!')
+      new AddCombatLogMessage('You have won combat!'),
+      new IncrementStat(AchievementStat.CombatThreatsBeaten)
     ]);
 
     // if we're leaving the dungeon on win, do that and level up
@@ -97,7 +100,9 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
 
       ctx.dispatch([
         new GainPercentageOfDungeonLoot(100),
-        new LeaveDungeon()
+        new LeaveDungeon(),
+        new IncrementStat(`Dungeon${level}`),
+        new IncrementStat(AchievementStat.CombatDungeonsWon)
       ]);
     }
 
@@ -112,7 +117,8 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
 
   } else if(hasEnemyWonCombat(ctx)) {
     ctx.dispatch([
-      new AddCombatLogMessage('You have lost combat!')
+      new AddCombatLogMessage('You have lost combat!'),
+      new IncrementStat(AchievementStat.Deaths)
     ]);
 
     if(currentDungeon) {

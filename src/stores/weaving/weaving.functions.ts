@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
 
@@ -22,7 +22,7 @@ export function resetWeaving(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelWeavingJob);
+  decreaseRefineTimer(ctx, ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
 }
 
 export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelWeavingJob) {

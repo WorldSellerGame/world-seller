@@ -3,7 +3,8 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem } from '@ngxs/store/operators';
 import { random, sum } from 'lodash';
 import { itemValue } from '../../app/helpers';
-import { IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
+import { AchievementStat, IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
@@ -135,6 +136,10 @@ export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: 
       soldItems.push(item);
     }
   });
+
+  if(soldItems.length > 0) {
+    ctx.dispatch(new IncrementStat(AchievementStat.MercantileSellItems, soldItems.length));
+  }
 
   const soldValue = sum(soldItems.map(item => itemValue(item, 1 + 2 + shopRegisterMultiplier(state.level))));
   gainCoins(ctx, { amount: soldValue });

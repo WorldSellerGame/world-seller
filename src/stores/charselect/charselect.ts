@@ -5,7 +5,8 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
-import { ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
+import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import { UnlockAlchemy } from '../alchemy/alchemy.actions';
 import { UnlockBlacksmithing } from '../blacksmithing/blacksmithing.actions';
 import { UnlockCombat } from '../combat/combat.actions';
@@ -293,9 +294,11 @@ export class CharSelectState {
     }
 
     // discover the thing if it's an item (resources are handled elsewhere)
-    ctx.dispatch(new DiscoverResourceOrItem(itemName));
-
-    ctx.dispatch(new NotifyInfo(`Gained ${itemName} x${quantity}!`));
+    ctx.dispatch([
+      new NotifyInfo(`Gained ${itemName} x${quantity}!`),
+      new DiscoverResourceOrItem(itemName),
+      new IncrementStat(AchievementStat.ItemsGained, quantity)
+    ]);
 
     const existingItem = activeCharacter.inventory.find(item => item.name === itemName);
 

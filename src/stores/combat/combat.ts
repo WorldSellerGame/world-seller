@@ -14,10 +14,12 @@ import {
 import { ContentService } from '../../app/services/content.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import {
+  AchievementStat,
   CombatAbilityTarget, DungeonTile, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import { TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
@@ -222,6 +224,8 @@ export class CombatState {
       shouldGiveSkillPoint = true;
     }
 
+    ctx.dispatch(new IncrementStat(AchievementStat.CombatThreatsEngaged));
+
     ctx.setState(patch<IGameCombat>({
       currentPlayer,
       currentEncounter: {
@@ -368,10 +372,14 @@ export class CombatState {
 
       if(hp !== newHp) {
         this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+        ctx.dispatch(new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)));
       }
 
       if(isDead(target)) {
-        ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
+        ctx.dispatch([
+          new AddCombatLogMessage(`${target.name} has been slain!`),
+          new IncrementStat(AchievementStat.Kills)
+        ]);
         acquireItemDrops(ctx, target.drops);
       }
     });
@@ -422,6 +430,12 @@ export class CombatState {
 
       if(hp !== newHp) {
         this.emitDamageNumber(currentPlayer, ctx.getState(), newHp - hp);
+
+        if(newHp - hp < 0) {
+          ctx.dispatch(new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)));
+        } else {
+          ctx.dispatch(new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)));
+        }
       }
     });
 
@@ -474,6 +488,8 @@ export class CombatState {
     if(!startPos) {
       return;
     }
+
+    ctx.dispatch(new IncrementStat(AchievementStat.CombatDungeonsEntered));
 
     ctx.setState(patch<IGameCombat>({
       currentPlayer: dungeonCharacter,
