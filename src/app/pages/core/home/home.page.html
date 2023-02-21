@@ -1,73 +1,132 @@
 <ion-content>
   <ion-grid class="character-select" *ngIf="characters$ | async as characters">
-    <ion-row *ngFor="let character of characters; let i = index">
+    <ion-row>
       <ion-col sizeMd="6" offsetMd="3">
-
-        <ion-card class="announcement" *ngIf="announcementService.latestAnnouncement as ann">
-          <ion-card-header>
-            <ion-card-title>
-              Latest Announcement: <a target="_blank" [href]="ann.link">{{ ann.title }}</a>
-            </ion-card-title>
-          </ion-card-header>
-
+        <ion-card color="light">
           <ion-card-content>
-            {{ announcementService.latestAnnouncement.summary }}
+
+            <ion-row class="header-row">
+              <ion-col>
+                World Seller
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="announcement-row">
+              <ion-col>
+                <ion-card class="announcement">
+                  <ng-container *ngIf="announcementService.latestAnnouncement as ann; else loading">
+                    <ion-card-header>
+                      <ion-card-title>
+                        Latest Announcement: <a target="_blank" [href]="ann.link">{{ ann.title }}</a>
+                      </ion-card-title>
+                    </ion-card-header>
+
+                    <ion-card-content>
+                      {{ announcementService.latestAnnouncement.summary }}
+                    </ion-card-content>
+                  </ng-container>
+
+                  <ng-template #loading>
+                    <ion-card-content>
+                      <ion-spinner></ion-spinner> Loading latest announcement...
+                    </ion-card-content>
+                  </ng-template>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let character of characters; let i = index">
+              <ion-col>
+
+                <ion-card *ngIf="character">
+                  <ion-card-header>
+                    <ion-card-title>{{ character.name }}</ion-card-title>
+                    <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
+                    <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
+
+                    <ion-button class="character-actions" fill="clear" (click)="popover.present($event)">
+                      <ion-icon slot="icon-only" name="settings"></ion-icon>
+                    </ion-button>
+
+                    <ion-popover #popover [dismissOnSelect]="true">
+                      <ng-template>
+                        <ion-content>
+                          <ion-list>
+                            <ion-item class="cursor-pointer" (click)="exportCharacter(i)">
+                              <ion-icon slot="start" color="secondary" name="download"></ion-icon>
+                              Export Character
+                            </ion-item>
+
+                            <ion-item class="cursor-pointer" (click)="deleteCharacter(i)">
+                              <ion-icon slot="start" color="danger" name="trash"></ion-icon>
+                              Delete Character
+                            </ion-item>
+                          </ion-list>
+                        </ion-content>
+                      </ng-template>
+                    </ion-popover>
+
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-button expand="block" (click)="playCharacter(i)">Play</ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="canMakeNewCharacter(characters)">
+              <ion-col>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Create New Character</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p>You can only have one character.</p>
+                  </ion-card-content>
+
+                  <div class="card-footer">
+                    <ion-button expand="block" routerLink="/new">Create</ion-button>
+                    <div class="text">or</div>
+                    <ion-button expand="block" color="secondary" (click)="characterImporter.click()">Import</ion-button>
+
+                    <input type="file" #characterImporter class="hidden" accept=".ws" (change)="importCharacter($event, characterImporter)"/>
+                  </div>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="actions-row">
+              <ion-col>
+                <ion-card>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button fill="clear" target="_blank" href="https://worldsellergame.com">
+                        <ion-icon slot="icon-only" name="home"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+                      <ion-button fill="clear" target="_blank" href="https://blog.worldsellergame.com">
+                        <ion-icon slot="icon-only" name="megaphone"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+                      <ion-button fill="clear" target="_blank" href="https://discord.worldsellergame.com">
+                        <ion-icon slot="icon-only" name="logo-discord"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col></ion-col>
+
+                    <ion-col></ion-col>
+
+                    <ion-col></ion-col>
+                  </ion-row>
+                </ion-card>
+              </ion-col>
+            </ion-row>
           </ion-card-content>
-        </ion-card>
-
-        <ion-card *ngIf="character">
-          <ion-card-header>
-            <ion-card-title>{{ character.name }}</ion-card-title>
-            <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
-            <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
-
-            <ion-button class="character-actions" fill="clear" (click)="popover.present($event)">
-              <ion-icon slot="icon-only" name="settings"></ion-icon>
-            </ion-button>
-
-            <ion-popover #popover [dismissOnSelect]="true">
-              <ng-template>
-                <ion-content>
-                  <ion-list>
-                    <ion-item class="cursor-pointer" (click)="exportCharacter(i)">
-                      <ion-icon slot="start" color="secondary" name="download"></ion-icon>
-                      Export Character
-                    </ion-item>
-
-                    <ion-item class="cursor-pointer" (click)="deleteCharacter(i)">
-                      <ion-icon slot="start" color="danger" name="trash"></ion-icon>
-                      Delete Character
-                    </ion-item>
-                  </ion-list>
-                </ion-content>
-              </ng-template>
-            </ion-popover>
-
-          </ion-card-header>
-          <ion-card-content>
-            <ion-button expand="block" (click)="playCharacter(i)">Play</ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row *ngIf="canMakeNewCharacter(characters)">
-      <ion-col sizeMd="4" offsetMd="4">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Create New Character</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>You can only have one character.</p>
-          </ion-card-content>
-
-          <div class="card-footer">
-            <ion-button expand="block" routerLink="/new">Create</ion-button>
-            <div class="text">or</div>
-            <ion-button expand="block" color="secondary" (click)="characterImporter.click()">Import</ion-button>
-
-            <input type="file" #characterImporter class="hidden" accept=".ws" (change)="importCharacter($event, characterImporter)"/>
-          </div>
         </ion-card>
       </ion-col>
     </ion-row>
