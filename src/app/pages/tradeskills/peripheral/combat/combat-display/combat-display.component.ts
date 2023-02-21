@@ -52,7 +52,7 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     this.hpSub?.unsubscribe();
   }
 
-  displayItems(items: IGameItem[]) {
+  displayItems(items: IGameItem[] = []) {
     return items.filter(Boolean);
   }
 

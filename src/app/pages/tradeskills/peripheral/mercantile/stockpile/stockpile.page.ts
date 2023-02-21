@@ -30,11 +30,11 @@ export class StockpilePage implements OnInit {
     return items.length === 0;
   }
 
-  itemCategories(items: IGameItem[]): string[] {
+  itemCategories(items: IGameItem[] = []): string[] {
     return sortBy(uniq(items.filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
   }
 
-  itemsInCategory(items: IGameItem[], category: string): IGameItem[] {
+  itemsInCategory(items: IGameItem[] = [], category: string): IGameItem[] {
     return sortBy(items.filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
   }
 

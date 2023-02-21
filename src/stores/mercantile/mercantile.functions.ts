@@ -127,7 +127,7 @@ export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: 
 
   const soldItems: IGameItem[] = [];
 
-  const items = state.shop.forSale;
+  const items = state.shop.forSale || [];
   items.forEach(item => {
     item.sellTicks ??= 0;
     item.sellTicks += ticks;
