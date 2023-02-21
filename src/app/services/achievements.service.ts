@@ -53,6 +53,11 @@ export class AchievementsService {
   }
 
   unlockAchievement(achievementKey: string, achievement: IAchievement) {
+    if(this.achievements[achievementKey]) {
+      return;
+    }
+
+    this.achievements[achievementKey] = true;
     this.store.dispatch(new UnlockAchievement(achievementKey));
     this.notifyService.achievement(`Achievement Unlocked: ${achievement.name} - ${achievement.description}`);
   }
