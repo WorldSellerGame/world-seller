@@ -12,12 +12,15 @@ import {
   getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
+import { VisualsService } from '../../app/services/visuals.service';
 import {
+  AchievementStat,
   CombatAbilityTarget, DungeonTile, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
-import { TickTimer, UpdateAllItems } from '../game/game.actions';
+import { IncrementStat } from '../achievements/achievements.actions';
+import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
@@ -38,7 +41,7 @@ import { EnterDungeon } from './dungeon.actions';
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService) {
+  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -86,6 +89,25 @@ export class CombatState {
   @Selector()
   static threatInfo(state: IGameCombat) {
     return { threats: state.threats, threatChangeTicks: state.threatChangeTicks };
+  }
+
+  private emitDamageNumber(target: IGameEncounterCharacter, combat: IGameCombat, value: number) {
+    let slot = '';
+
+    if(target === combat.currentPlayer) {
+      slot = 'player';
+    }
+
+    if(combat.currentEncounter) {
+      const index = combat.currentEncounter.enemies.findIndex(x => x === target);
+      if(index !== -1) {
+        slot = `enemy-${index}`;
+      }
+    }
+
+    if(slot) {
+      this.visuals.emitDamageNumber(slot, value);
+    }
   }
 
   @Action(UpdateAllItems)
@@ -202,6 +224,8 @@ export class CombatState {
       shouldGiveSkillPoint = true;
     }
 
+    ctx.dispatch(new IncrementStat(AchievementStat.CombatThreatsEngaged));
+
     ctx.setState(patch<IGameCombat>({
       currentPlayer,
       currentEncounter: {
@@ -278,7 +302,20 @@ export class CombatState {
           statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
         });
         deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -chosenSkillRef.energyCost });
+
+        const hp = target.currentHealth;
         applyDeltas(ctx, enemy, target, deltas);
+        const newHp = target.currentHealth;
+
+        if(hp !== newHp) {
+          this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+
+          if(target === currentPlayer) {
+            ctx.dispatch(new PlaySFX('combat-hit-player'));
+          } else {
+            ctx.dispatch(new PlaySFX('combat-hit-enemy'));
+          }
+        }
       });
     });
 
@@ -334,10 +371,32 @@ export class CombatState {
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
       deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      const hp = target.currentHealth;
       applyDeltas(ctx, source, target, deltas);
+      const newHp = target.currentHealth;
+
+      if(hp !== newHp) {
+        this.emitDamageNumber(target, ctx.getState(), newHp - hp);
+
+        if(newHp - hp < 0) {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)),
+            new PlaySFX('combat-hit-enemy')
+          ]);
+        } else {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)),
+            new PlaySFX('combat-effect')
+          ]);
+        }
+      }
 
       if(isDead(target)) {
-        ctx.dispatch(new AddCombatLogMessage(`${target.name} has been slain!`));
+        ctx.dispatch([
+          new AddCombatLogMessage(`${target.name} has been slain!`),
+          new IncrementStat(AchievementStat.Kills)
+        ]);
         acquireItemDrops(ctx, target.drops);
       }
     });
@@ -381,7 +440,26 @@ export class CombatState {
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
       deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      const hp = currentPlayer.currentHealth;
       applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
+      const newHp = currentPlayer.currentHealth;
+
+      if(hp !== newHp) {
+        this.emitDamageNumber(currentPlayer, ctx.getState(), newHp - hp);
+
+        if(newHp - hp < 0) {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Damage, Math.abs(newHp - hp)),
+            new PlaySFX('combat-hit-player')
+          ]);
+        } else {
+          ctx.dispatch([
+            new IncrementStat(AchievementStat.Healing, Math.abs(newHp - hp)),
+            new PlaySFX('combat-effect')
+          ]);
+        }
+      }
     });
 
     ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
@@ -433,6 +511,8 @@ export class CombatState {
     if(!startPos) {
       return;
     }
+
+    ctx.dispatch(new IncrementStat(AchievementStat.CombatDungeonsEntered));
 
     ctx.setState(patch<IGameCombat>({
       currentPlayer: dungeonCharacter,

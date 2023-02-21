@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { IGameGathering, ItemType, Stat } from '../../interfaces';
+import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
 import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -48,7 +48,7 @@ export class HuntingState {
   decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const cdrValue = calculateStat(equipment, Stat.HuntingSpeed);
-    decreaseGatherTimer(ctx, ticks, cdrValue, CancelHunting);
+    decreaseGatherTimer(ctx, ticks, cdrValue, CancelHunting, AchievementStat.GatherHunting);
   }
 
   @Action(SetHuntingLocation)

@@ -42,6 +42,32 @@ export function resetCombat(ctx: StateContext<IGameCombat>) {
 }
 
 /**
+ * Fully heal combat participants, don't reset anything else.
+ */
+export function resetCombatSoft(ctx: StateContext<IGameCombat>) {
+  const state = ctx.getState();
+
+  if(!state.currentPlayer || !state.currentEncounter) {
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      currentHealth: state.currentPlayer.maxHealth,
+      currentEnergy: state.currentPlayer.maxEnergy
+    }),
+    currentEncounter: patch<IGameEncounter>({
+      enemies: state.currentEncounter.enemies.map(enemy => ({
+        ...enemy,
+        currentHealth: enemy.maxHealth,
+        currentEnergy: enemy.maxEnergy
+      }))
+    })
+  }));
+
+}
+
+/**
  * End the current combat but do not reset the player stats (in case of subsequent fights).
  *
  */
@@ -452,7 +478,6 @@ export function tickEnemyEffects(ctx: StateContext<IGameCombat>, { enemyIndex }:
     }
 
     if(effect.turnsLeft <= 0) {
-
       applyDeltas(ctx, enemy, enemy, [
         { target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect }
       ]);

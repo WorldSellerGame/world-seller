@@ -6,6 +6,7 @@ import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../..
 import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
+import { ContentService } from '../../services/content.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
 
 @Component({
@@ -31,9 +32,14 @@ export class RefiningPageDisplayComponent implements OnInit {
 
   @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
 
+  public type = 'resources';
   public amounts: Record<string, number> = {};
 
-  constructor(private store: Store, private itemCreatorService: ItemCreatorService) {}
+  constructor(
+    private store: Store,
+    private contentService: ContentService,
+    private itemCreatorService: ItemCreatorService
+  ) {}
 
   ngOnInit() {}
 
@@ -59,10 +65,22 @@ export class RefiningPageDisplayComponent implements OnInit {
   }
 
   visibleRecipes(discoveries: Record<string, boolean>, recipes: IGameRecipe[]): IGameRecipe[] {
-    const validRecipes = recipes.filter((recipe: IGameRecipe) => {
-      const required = recipe.require || [];
-      return required.every((req) => discoveries[req]);
-    });
+    const validRecipes = recipes
+      .filter((recipe: IGameRecipe) => {
+        if(this.type === 'resources') {
+          return this.contentService.isResource(recipe.result);
+        }
+
+        if(this.type === 'items') {
+          return this.contentService.isItem(recipe.result);
+        }
+
+        return false;
+      })
+      .filter((recipe: IGameRecipe) => {
+        const required = recipe.require || [];
+        return required.every((req) => discoveries[req]);
+      });
 
     return sortBy(validRecipes, 'result');
   }

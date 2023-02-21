@@ -4,11 +4,13 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { GameOption, IOptions } from '../../../../interfaces';
 import { OptionsState } from '../../../../stores';
+import { ResetAchievements, ResetStats } from '../../../../stores/achievements/achievements.actions';
 import { UnlockForaging } from '../../../../stores/foraging/foraging.actions';
 import { UnlockLogging } from '../../../../stores/logging/logging.actions';
 import { GainCoins } from '../../../../stores/mercantile/mercantile.actions';
 import { SetOption } from '../../../../stores/options/options.actions';
 import { MetaService } from '../../../services/meta.service';
+import { NotifyService } from '../../../services/notify.service';
 
 @Component({
   selector: 'app-settings',
@@ -23,7 +25,7 @@ export class SettingsPage implements OnInit {
     return !environment.production || window.location.href.includes('deploy-preview');
   }
 
-  constructor(private store: Store, public metaService: MetaService) { }
+  constructor(private store: Store, public metaService: MetaService, private notifyService: NotifyService) { }
 
   ngOnInit() {
   }
@@ -38,6 +40,14 @@ export class SettingsPage implements OnInit {
     this.setOption(GameOption.TickTimer, $event.detail.value);
   }
 
+  changeMasterVolume($event: any) {
+    this.setOption(GameOption.SoundMaster, $event.detail.value);
+  }
+
+  changeSFXVolume($event: any) {
+    this.setOption(GameOption.SoundSFX, $event.detail.value);
+  }
+
   exportCharacter(slot: number) {
     this.metaService.exportCharacter(slot);
   }
@@ -48,5 +58,43 @@ export class SettingsPage implements OnInit {
 
   unlockBasics() {
     this.store.dispatch([new UnlockForaging(), new UnlockLogging()]);
+  }
+
+  resetStats() {
+    this.notifyService.confirm(
+      'Reset Stats',
+      'Are you sure you want to reset your stats? This cannot be undone.',
+      [
+        {
+          text: 'No, Keep',
+          role: 'cancel'
+        },
+        {
+          text: 'Yes, Reset',
+          handler: () => {
+            this.store.dispatch(new ResetStats());
+          }
+        }
+      ]
+    );
+  }
+
+  resetAchievements() {
+    this.notifyService.confirm(
+      'Reset Achievements',
+      'Are you sure you want to reset your achievements? This cannot be undone.',
+      [
+        {
+          text: 'No, Keep',
+          role: 'cancel'
+        },
+        {
+          text: 'Yes, Reset',
+          handler: () => {
+            this.store.dispatch(new ResetAchievements());
+          }
+        }
+      ]
+    );
   }
 }

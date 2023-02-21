@@ -1,23 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { CombatAbilityTarget, IGameCombatAbility, IGameEncounter, IGameEncounterCharacter, IGameItem } from '../../../../../../interfaces';
+import { Observable, Subscription } from 'rxjs';
+import {
+  CombatAbilityTarget, IGameCombatAbility,
+  IGameEncounter, IGameEncounterCharacter, IGameItem
+} from '../../../../../../interfaces';
 import { CombatState } from '../../../../../../stores';
 import {
   EndCombat, EndCombatAndResetPlayer,
   LowerPlayerCooldown,
+  ResetCombatSoft,
   TargetEnemyWithAbility, TargetSelfWithAbility, UseItemInSlot
 } from '../../../../../../stores/combat/combat.actions';
 import { ContentService } from '../../../../../services/content.service';
+import { VisualsService } from '../../../../../services/visuals.service';
 
 @Component({
   selector: 'app-combat-display',
   templateUrl: './combat-display.component.html',
   styleUrls: ['./combat-display.component.scss'],
 })
-export class CombatDisplayComponent implements OnInit {
+export class CombatDisplayComponent implements OnInit, OnDestroy {
 
   public readonly debugActions = [
+    { icon: 'bandage', text: 'Soft Reset Combat',         action: ResetCombatSoft },
     { icon: 'refresh', text: 'End Combat & Reset Player', action: EndCombatAndResetPlayer },
     { icon: 'trash',   text: 'End Combat (No Reset)',     action: EndCombat },
   ];
@@ -29,13 +35,22 @@ export class CombatDisplayComponent implements OnInit {
   public activeAbilityIndex = -1;
   public activeAbilityInfo: IGameCombatAbility | undefined;
 
+  private hpSub!: Subscription;
+  public hpDeltas: Record<string, Array<{ value: number }>> = {};
+
   @Select(CombatState.activeItems) activeItems$!: Observable<IGameItem[]>;
   @Select(CombatState.activeFoods) activeFoods$!: Observable<IGameItem[]>;
   @Select(CombatState.currentEncounter) currentEncounter$!: Observable<{ encounter: IGameEncounter; player: IGameEncounterCharacter }>;
 
-  constructor(private store: Store, private contentService: ContentService) { }
+  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.hpSub = this.visuals.damage$.subscribe(({ slot, value }) => this.displayDamageNumber(slot, value));
+  }
+
+  ngOnDestroy() {
+    this.hpSub?.unsubscribe();
+  }
 
   displayItems(items: IGameItem[]) {
     return items.filter(Boolean);
@@ -104,12 +119,24 @@ export class CombatDisplayComponent implements OnInit {
     this.activeAbilityInfo = this.getAbility(item.effects?.[0]?.effect || '');
   }
 
+  displayDamageNumber(slot: string, damage: number) {
+    setTimeout(() => {
+      this.hpDeltas[slot] = this.hpDeltas[slot] || [];
+      this.hpDeltas[slot].push({ value: damage });
+    }, 0);
+
+    setTimeout(() => {
+      this.hpDeltas[slot].shift();
+    }, 1000);
+  }
+
   targetEnemy(index: number, enemy: IGameEncounterCharacter, source: IGameEncounterCharacter, encounter: IGameEncounter) {
     if(!this.activeAbilityInfo || !this.canTargetEnemy(enemy)) {
       return;
     }
 
-    const useItem = this.store.snapshot().combat.activeItems[this.activeItemIndex];
+    const oldState = this.store.snapshot().combat;
+    const useItem = oldState.activeItems[this.activeItemIndex];
 
     if(this.activeItemIndex >= 0) {
       this.store.dispatch(new UseItemInSlot(this.activeItemIndex));
@@ -166,6 +193,7 @@ export class CombatDisplayComponent implements OnInit {
       this.store.dispatch(new UseItemInSlot(this.activeItemIndex));
     }
 
+    const oldState = this.store.snapshot().combat;
 
     const finish = () => {
       this.unselectAbility();

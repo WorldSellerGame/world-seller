@@ -45,6 +45,29 @@
         </ion-card>
 
         <ion-card>
+          <ion-card-header>
+            <ion-card-title>Telemetry</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Send Errors to Developer</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetryErrors"
+                                       (click)="setOption('telemetryErrors', !options.telemetryErrors)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Send Savefile With Errors</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetrySavefiles"
+                                       [disabled]="!options.telemetryErrors"
+                                       (click)="setOption('telemetrySavefiles', !options.telemetrySavefiles)"></ion-toggle>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
           <ion-card-content>
             <ion-item routerDirection="root" [routerLink]="['']" lines="none" detail="false" routerLinkActive="selected" class="cursor-pointer">
               <ion-icon slot="start" color="primary" name="home"></ion-icon>
@@ -59,8 +82,39 @@
         </ion-card>
       </ion-col>
 
-      <ion-col sizeMd="4" *ngIf="showDevOptions">
+      <ion-col sizeMd="4">
         <ion-card>
+          <ion-card-header>
+            <ion-card-title>Achievements</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item class="cursor-pointer" [routerLink]="['../achievements']" routerLinkActive="selected" lines="none" detail="false">
+                <ion-icon slot="start" name="trophy"></ion-icon>
+                <ion-label>
+                  View Achievements
+                </ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="resetStats()">
+                <ion-icon slot="start" name="warning"></ion-icon>
+                <ion-label>
+                  Reset Stats
+                </ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="resetAchievements()">
+                <ion-icon slot="start" name="warning"></ion-icon>
+                <ion-label>
+                  Reset Achievements
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="showDevOptions">
           <ion-card-header>
             <ion-card-title>Dev Tools</ion-card-title>
           </ion-card-header>
@@ -88,6 +142,33 @@
       </ion-col>
 
       <ion-col sizeMd="4">
+
+        <ion-card *ngIf="showDevOptions">
+          <ion-card-header>
+            <ion-card-title>Sound</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Master Volume</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>{{ options.soundMaster }}%</ion-label>
+                <ion-range [value]="options.soundMaster" [ticks]="true" [min]="0" [max]="100" (ionChange)="changeMasterVolume($event)"></ion-range>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>SFX Volume</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>{{ options.soundSFX }}%</ion-label>
+                <ion-range [value]="options.soundSFX" [ticks]="true" [min]="0" [max]="100" (ionChange)="changeSFXVolume($event)"></ion-range>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
         <ion-card>
           <ion-card-header>
             <ion-card-title>Links</ion-card-title>

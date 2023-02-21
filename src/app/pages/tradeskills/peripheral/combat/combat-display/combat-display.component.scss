@@ -14,6 +14,7 @@
       max-width: 25%;
       min-width: 150px;
       max-height: 190px;
+      position: relative;
 
       &.dead {
         opacity: 0.5;
@@ -119,4 +120,44 @@
     animation: HighlightSelf 1000ms ease-out infinite alternate;
   }
 
+}
+
+.damage-number {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  right: 0;
+  font-size: 2rem;
+  animation: up 1500ms;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  animation-iteration-count: infinite;
+  transform-origin: center;
+
+  &.negative {
+    color: var(--ion-color-danger);
+  }
+
+  &.positive {
+    color: var(--ion-color-success);
+  }
+
+  @keyframes up {
+    0% {
+      transform: scale(0) translateY(0%);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+      transform: scale(1) translateY(-50%);
+    }
+
+    100% {
+      transform: translateY(-100%) rotateZ(15deg);
+      opacity: 0;
+    }
+  }
 }

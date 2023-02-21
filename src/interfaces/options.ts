@@ -4,6 +4,10 @@ export enum GameOption {
   ColorTheme = 'colorTheme',
   SidebarDisplay = 'sidebarDisplay',
   TickTimer = 'tickTimer',
+  SoundMaster = 'soundMaster',
+  SoundSFX = 'soundSFX',
+  TelemetryErrors = 'telemetryErrors',
+  TelemetrySavefiles = 'telemetrySavefiles',
 }
 
 export interface IOptions {
@@ -12,4 +16,8 @@ export interface IOptions {
   [GameOption.ColorTheme]: string;
   [GameOption.SidebarDisplay]: string;
   [GameOption.TickTimer]: number;
+  [GameOption.SoundMaster]: number;
+  [GameOption.SoundSFX]: number;
+  [GameOption.TelemetryErrors]: boolean;
+  [GameOption.TelemetrySavefiles]: boolean;
 }

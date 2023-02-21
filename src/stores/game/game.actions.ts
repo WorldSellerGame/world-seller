@@ -5,6 +5,11 @@ export class TickTimer {
   constructor(public ticks = 1) {}
 }
 
+export class PlaySFX {
+  static type = '[Game] Play SFX';
+  constructor(public sfx: string) {}
+}
+
 export class SetStatGains {
   static type = '[Game] Set Stat Gains';
   constructor(public statGains: IStatGains) {}

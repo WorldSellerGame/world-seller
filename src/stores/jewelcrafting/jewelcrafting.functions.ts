@@ -1,7 +1,7 @@
 import { StateContext } from '@ngxs/store';
 
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelJewelcraftingJob, StartJewelcraftingJob } from './jewelcrafting.actions';
 
@@ -22,7 +22,7 @@ export function resetJewelcrafting(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelJewelcraftingJob);
+  decreaseRefineTimer(ctx, ticks, CancelJewelcraftingJob, AchievementStat.RefineJewelcrafting);
 }
 
 export function cancelJewelcraftingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelJewelcraftingJob) {

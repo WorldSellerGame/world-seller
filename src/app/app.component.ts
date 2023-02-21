@@ -159,7 +159,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private notify: NotifyService,
+    private readonly notifyService: NotifyService,
     private readonly gameloopService: GameloopService
   ) { }
 
@@ -174,24 +174,19 @@ export class AppComponent implements OnInit, OnDestroy {
       this.store.dispatch(new SyncTotalLevel(level));
     });
 
-    const oldError = window.onerror;
-
     this.debug = this.debugMode$.subscribe(debugMode => {
       if(!debugMode) {
         (window as any).gainItem = () => {};
-        window.onerror = oldError;
+        (window as any).gainAchievement = () => {};
         return;
       }
 
-      window.onerror = (error: Event | string) => {
-        const message = (error as ErrorEvent).message ?? error;
-
-        this.notify.error(message);
-        console.error(error);
-      };
-
       (window as any).gainItem = (item: string, amount: number) => {
         this.store.dispatch(new GainItemOrResource(item, amount));
+      };
+
+      (window as any).gainAchievement = (achievementText: string) => {
+        this.notifyService.achievement(achievementText);
       };
     });
   }

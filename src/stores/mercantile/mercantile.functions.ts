@@ -3,9 +3,10 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem } from '@ngxs/store/operators';
 import { random, sum } from 'lodash';
 import { itemValue } from '../../app/helpers';
-import { IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
+import { AchievementStat, IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
-import { TickTimer } from '../game/game.actions';
+import { PlaySFX, TickTimer } from '../game/game.actions';
 import {
   GainCoins, QuickSellItemFromInventory, QuickSellItemFromStockpile,
   SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
@@ -136,6 +137,10 @@ export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: 
     }
   });
 
+  if(soldItems.length > 0) {
+    ctx.dispatch(new IncrementStat(AchievementStat.MercantileSellItems, soldItems.length));
+  }
+
   const soldValue = sum(soldItems.map(item => itemValue(item, 1 + 2 + shopRegisterMultiplier(state.level))));
   gainCoins(ctx, { amount: soldValue });
 
@@ -207,11 +212,13 @@ export function unsellItem(ctx: StateContext<IGameMercantile>, { item }: UnsellI
 
 export function quickSellFromInventory(ctx: StateContext<IGameMercantile>, { item }: QuickSellItemFromInventory) {
   gainCoins(ctx, { amount: itemValue(item) });
+  ctx.dispatch(new PlaySFX('action-sell'));
 }
 
 export function quickSellItemFromStockpile(ctx: StateContext<IGameMercantile>, { item }: QuickSellItemFromStockpile) {
   gainCoins(ctx, { amount: itemValue(item) });
   removeFromStockpile(ctx, { item });
+  ctx.dispatch(new PlaySFX('action-sell'));
 }
 
 export function quickSellAllFromStockpile(ctx: StateContext<IGameMercantile>) {

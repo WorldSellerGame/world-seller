@@ -78,7 +78,7 @@ export class FarmingPage implements OnInit {
     this.store.dispatch(new HarvestPlantFromFarm(plotIndex));
   }
 
-  private getSeedTransform(seed: string): IGameResourceTransform {
+  private getSeedTransform(seed: string): IGameResourceTransform | undefined {
     return this.locationData.transforms.find((t: IGameResourceTransform) => t.startingItem === seed);
   }
 

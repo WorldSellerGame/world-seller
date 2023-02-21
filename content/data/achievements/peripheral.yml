@@ -1,0 +1,56 @@
+
+Farming1:
+  name: Farming I
+  description: Harvest 10 times.
+  icon: farming
+  stat: farmingHarvest
+  requiredValue: 10
+
+Farming2:
+  name: Farming II
+  description: Harvest 100 times.
+  icon: farming
+  stat: farmingHarvest
+  requiredValue: 100
+
+Farming3:
+  name: Farming III
+  description: Harvest 1000 times.
+  icon: farming
+  stat: farmingHarvest
+  requiredValue: 1000
+
+Farming4:
+  name: Farming IV
+  description: Harvest 10000 times.
+  icon: farming
+  stat: farmingHarvest
+  requiredValue: 10000
+
+Prospecting1:
+  name: Prospecting I
+  description: Prospect 10 times.
+  icon: prospecting
+  stat: prospectingProspects
+  requiredValue: 10
+
+Prospecting2:
+  name: Prospecting II
+  description: Prospect 100 times.
+  icon: prospecting
+  stat: prospectingProspects
+  requiredValue: 100
+
+Prospecting3:
+  name: Prospecting III
+  description: Prospect 1000 times.
+  icon: prospecting
+  stat: prospectingProspects
+  requiredValue: 1000
+
+Prospecting4:
+  name: Prospecting IV
+  description: Prospect 10000 times.
+  icon: prospecting
+  stat: prospectingProspects
+  requiredValue: 10000
