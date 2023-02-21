@@ -8,6 +8,7 @@ import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
 import { defaultOptions } from '../../../../stores/options/options.functions';
+import { AnnouncementService } from '../../../services/announcements.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
     private store: Store,
     private router: Router,
     private alertCtrl: AlertController,
-    public metaService: MetaService
+    public metaService: MetaService,
+    public announcementService: AnnouncementService
   ) { }
 
   ngOnInit() {
