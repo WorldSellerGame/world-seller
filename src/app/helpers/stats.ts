@@ -64,11 +64,17 @@ export function calculateEnergyFromState(state: any, character: IPlayerCharacter
 export function getStatTotals(state: any, character: IPlayerCharacter): Record<Stat, number> {
   const totals: Record<string, number> = {
     health: calculateHealthFromState(state, character),
-    energy: calculateEnergyFromState(state, character),
-    attack: calculateStatFromState(state, character, Stat.Attack),
-    healing: calculateStatFromState(state, character, Stat.Healing),
-    speed: calculateStatFromState(state, character, Stat.Speed),
+    energy: calculateEnergyFromState(state, character)
   };
+
+  // we don't want to calculate health/energy twice
+  Object.values(Stat).forEach((stat) => {
+    if(stat === Stat.HealthBonus || stat === Stat.EnergyBonus) {
+      return;
+    }
+
+    totals[stat] = calculateStatFromState(state, character, stat as Stat);
+  });
 
   Object.keys(character.equipment).forEach(slot => {
     const item = character.equipment[slot as ItemType];
