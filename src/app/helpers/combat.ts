@@ -92,12 +92,12 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
       new IncrementStat(AchievementStat.CombatThreatsBeaten)
     ]);
 
+    let shouldGiveSkillPoint = currentEncounter.shouldGiveSkillPoint;
+
     // if we're leaving the dungeon on win, do that and level up
     if(currentEncounter.shouldExitDungeon) {
-      if(currentDungeon?.dungeon.givesPointAtCombatLevel === level) {
-        ctx.setState(patch<IGameCombat>({
-          level: level + 1
-        }));
+      if(((currentDungeon?.dungeon.givesPointAtCombatLevel ?? 0) + 10) > level) {
+        shouldGiveSkillPoint = true;
       }
 
       ctx.dispatch([
@@ -110,7 +110,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
 
     // can I get a levelup?
-    if(currentEncounter.shouldGiveSkillPoint) {
+    if(shouldGiveSkillPoint) {
       ctx.setState(patch<IGameCombat>({
         level: level + 1
       }));
