@@ -42,7 +42,11 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   @Select(CombatState.activeFoods) activeFoods$!: Observable<IGameItem[]>;
   @Select(CombatState.currentEncounter) currentEncounter$!: Observable<{ encounter: IGameEncounter; player: IGameEncounterCharacter }>;
 
-  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) { }
+  constructor(
+    private store: Store,
+    private contentService: ContentService,
+    private visuals: VisualsService,
+  ) { }
 
   ngOnInit() {
     this.hpSub = this.visuals.damage$.subscribe(({ slot, value }) => this.displayDamageNumber(slot, value));
@@ -52,7 +56,7 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     this.hpSub?.unsubscribe();
   }
 
-  displayItems(items: IGameItem[]) {
+  displayItems(items: IGameItem[] = []) {
     return items.filter(Boolean);
   }
 

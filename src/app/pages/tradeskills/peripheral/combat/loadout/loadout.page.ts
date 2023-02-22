@@ -40,8 +40,9 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.allUsableItems = this.inventory$.subscribe(items => {
-      this.usableItems = items.filter(item => (item.effects?.length ?? 0) > 0);
-      this.usableFoods = items.filter(item => (item.foodDuration ?? 0) > 0);
+      const checkItems = items || [];
+      this.usableItems = checkItems.filter(item => (item.effects?.length ?? 0) > 0);
+      this.usableFoods = checkItems.filter(item => (item.foodDuration ?? 0) > 0);
     });
 
     this.level = this.store.subscribe(state => {

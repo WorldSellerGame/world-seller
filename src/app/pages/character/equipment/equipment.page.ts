@@ -45,7 +45,7 @@ export class EquipmentPage implements OnInit {
   loadEquipment(slot: ItemType) {
     this.currentEquipSlot = slot;
 
-    const items = this.store.selectSnapshot(CharSelectState.activeCharacterInventory);
+    const items = this.store.selectSnapshot(CharSelectState.activeCharacterInventory) || [];
     this.equippableItems = items.filter(item => item.type === slot);
   }
 

@@ -46,7 +46,12 @@ export enum Stat {
   Attack = 'attack',
   EnergyBonus = 'energyBonus',
   HealthBonus = 'healthBonus',
-  Speed = 'speed'
+  Speed = 'speed',
+
+  HealingPerRound = 'healingPerRound',
+  HealingPerCombat = 'healingPerCombat',
+  EnergyPerRound = 'energyPerRound',
+  EnergyPerCombat = 'energyPerCombat',
 }
 
 export enum ItemType {

@@ -85,5 +85,12 @@
 }
 
 ion-content {
-  --background: url(./assets/core/splash.png) no-repeat center/200% local;
+}
+
+ion-content {
+  --background: url(./assets/core/splash-dark.png) no-repeat center center/cover;
+
+  &.bright {
+    --background: url(./assets/core/splash.png) no-repeat center center/cover;
+  }
 }

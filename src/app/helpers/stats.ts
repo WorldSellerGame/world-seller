@@ -20,7 +20,12 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,
     [Stat.HealthBonus]: 0,
-    [Stat.Speed]: 0
+    [Stat.Speed]: 0,
+
+    [Stat.HealingPerRound]: 0,
+    [Stat.HealingPerCombat]: 0,
+    [Stat.EnergyPerRound]: 0,
+    [Stat.EnergyPerCombat]: 0
   };
 }
 
@@ -59,11 +64,17 @@ export function calculateEnergyFromState(state: any, character: IPlayerCharacter
 export function getStatTotals(state: any, character: IPlayerCharacter): Record<Stat, number> {
   const totals: Record<string, number> = {
     health: calculateHealthFromState(state, character),
-    energy: calculateEnergyFromState(state, character),
-    attack: calculateStatFromState(state, character, Stat.Attack),
-    healing: calculateStatFromState(state, character, Stat.Healing),
-    speed: calculateStatFromState(state, character, Stat.Speed),
+    energy: calculateEnergyFromState(state, character)
   };
+
+  // we don't want to calculate health/energy twice
+  Object.values(Stat).forEach((stat) => {
+    if(stat === Stat.HealthBonus || stat === Stat.EnergyBonus) {
+      return;
+    }
+
+    totals[stat] = calculateStatFromState(state, character, stat as Stat);
+  });
 
   Object.keys(character.equipment).forEach(slot => {
     const item = character.equipment[slot as ItemType];
@@ -83,6 +94,10 @@ export function getStatTotals(state: any, character: IPlayerCharacter): Record<S
 
   if(totals['energy'] < 0) {
     totals['energy'] = 0;
+  }
+
+  if(totals[Stat.Speed] <= 0) {
+    totals[Stat.Speed] = 1;
   }
 
   return totals;

@@ -33,7 +33,6 @@ export class AnnouncementService {
       const feed = await parser.parseURL('https://blog.worldsellergame.com/feed.xml');
 
       this.allAnnouncements = feed.items;
-      console.log(feed.items);
     } catch {
       console.error('Could not fetch announcements.');
     }

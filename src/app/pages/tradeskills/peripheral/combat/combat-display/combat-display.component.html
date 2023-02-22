@@ -31,7 +31,7 @@
               </div>
 
               <div class="name">
-                {{ monster.name }}
+                {{ monster.name }} <app-debug-text>(Speed {{ monster.currentSpeed }}/{{ monster.stats.speed }})</app-debug-text>
               </div>
 
               <div class="health">
@@ -77,7 +77,9 @@
                       [class.highlight]="canTargetSelf()"
                       (click)="targetSelf(encounterData.player, encounterData.encounter)">
               <ion-card-header>
-                <ion-card-title>{{ encounterData.player.name }}</ion-card-title>
+                <ion-card-title>
+                  {{ encounterData.player.name }} <app-debug-text>(Speed {{ encounterData.player.currentSpeed }}/{{ encounterData.player.stats.speed }})</app-debug-text>
+                </ion-card-title>
               </ion-card-header>
 
               <ion-card-content>

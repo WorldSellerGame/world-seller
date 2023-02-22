@@ -19,7 +19,7 @@ SpeedDebuff1:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    speed: -3
+    speed: 3
 
 SpeedDebuff2:
   name: Slow II
@@ -29,7 +29,7 @@ SpeedDebuff2:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    speed: -5
+    speed: 5
 
 HealingDebuff1:
   name: Necrosis I

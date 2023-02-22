@@ -92,12 +92,12 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
       new IncrementStat(AchievementStat.CombatThreatsBeaten)
     ]);
 
+    let shouldGiveSkillPoint = currentEncounter.shouldGiveSkillPoint;
+
     // if we're leaving the dungeon on win, do that and level up
     if(currentEncounter.shouldExitDungeon) {
-      if(currentDungeon?.dungeon.givesPointAtCombatLevel === level) {
-        ctx.setState(patch<IGameCombat>({
-          level: level + 1
-        }));
+      if(((currentDungeon?.dungeon.givesPointAtCombatLevel ?? 0) + 10) > level) {
+        shouldGiveSkillPoint = true;
       }
 
       ctx.dispatch([
@@ -110,7 +110,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
 
     // can I get a levelup?
-    if(currentEncounter.shouldGiveSkillPoint) {
+    if(shouldGiveSkillPoint) {
       ctx.setState(patch<IGameCombat>({
         level: level + 1
       }));
@@ -186,6 +186,15 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           }
 
           default: {
+            // double check so when applying a buff the stat doesn't go below 1
+            // this prevents a bug that would make the base stat larger when the buff unapplies
+            const baseStat = character.stats[key as Stat];
+            const appliedValue = baseStat + bonusValue;
+
+            if(appliedValue <= 0) {
+              applyStatusEffect.statModifications[key as Stat] = bonusValue - appliedValue + 1;
+            }
+
             character.stats[key as Stat] = Math.max(character.stats[key as Stat] + bonusValue, 1);
             break;
           }
@@ -210,8 +219,8 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           }
 
           case 'energyBonus': {
-            character.maxEnergy = Math.floor(character.maxHealth - bonusValue);
-            character.currentEnergy = Math.min(character.maxHealth, character.currentHealth);
+            character.maxEnergy = Math.floor(character.maxEnergy - bonusValue);
+            character.currentEnergy = Math.min(character.maxEnergy, character.currentEnergy);
             break;
           }
 
