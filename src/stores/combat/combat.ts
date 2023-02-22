@@ -9,7 +9,7 @@ import {
   applyDeltas, calculateStatFromState, defaultStatsZero,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getPlayerCharacterReadyForCombat, getTotalLevel, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import { VisualsService } from '../../app/services/visuals.service';
@@ -478,9 +478,7 @@ export class CombatState {
 
   @Action(ChangeThreats)
   changeThreats(ctx: StateContext<IGameCombat>) {
-    const store = this.store.snapshot();
-
-    const playerLevel = getTotalLevel(store);
+    const playerLevel = ctx.getState().level;
     const validThreats = Object.keys(this.contentService.getAllThreats())
       .map(x => ({ id: x, threat: this.contentService.getThreatByName(x) }))
       .filter(
