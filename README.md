@@ -197,6 +197,10 @@ Effects require:
 * `statModifications` - if `statusEffectType` is StatModification, this can be specified to boost the stats of the target by the specified amounts
 * `damageOverTime` - if `statusEffectType` is DamageOverTime, this can be specified to deal the specified amount of damage to the target each turn (negative values = healing)
 
+Note:
+
+If you choose to modify speed, it works the opposite of other stats - negative speed = faster.
+
 #### Adding a New Enemy
 
 1. Add the enemy under any file in the `content/enemies` folder (file names are used here are purely organizational).

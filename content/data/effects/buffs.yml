@@ -19,7 +19,7 @@ SpeedBuff1:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    speed: 3
+    speed: -3
 
 SpeedBuff2:
   name: Speed II
@@ -29,7 +29,7 @@ SpeedBuff2:
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    speed: 5
+    speed: -5
 
 HealingBuff1:
   name: Healing I
