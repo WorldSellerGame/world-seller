@@ -47,12 +47,34 @@
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.logo {
-  position: absolute;
-  right: -94px;
-  top: 9px;
-  z-index: 0;
-  transform: rotate(20deg);
+.top-row {
+  padding-right: 100px;
+}
 
-  width: 128px;
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 100px;
+    margin-left: 150px;
+
+    .logo {
+      position: absolute;
+      top: 15px;
+      left: -75px;
+      z-index: 0;
+      transform: rotate(20deg);
+
+      width: 128px;
+    }
+
+    .text {
+      z-index: 2;
+    }
+  }
 }
