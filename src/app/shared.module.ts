@@ -9,6 +9,7 @@ import { CombatFoodDisplayComponent } from './components/combat-food-display/com
 import { CombatItemDisplayComponent } from './components/combat-item-display/combat-item-display.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
 import { DebugActionMenuComponent } from './components/debug-action-menu/debug-action-menu.component';
+import { DebugTextComponent } from './components/debug-text/debug-text.component';
 import { GameIconComponent } from './components/game-icon/game-icon.component';
 import { GatheringPageDisplayComponent } from './components/gathering-page-display/gathering-page-display.component';
 import { ItemIconComponent } from './components/item-icon/item-icon.component';
@@ -24,7 +25,7 @@ import { AnalyticsClickDirective } from './directives/analytics-click.directive'
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective],
+    AnalyticsClickDirective, DebugTextComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -35,6 +36,6 @@ import { AnalyticsClickDirective } from './directives/analytics-click.directive'
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective]
+    AnalyticsClickDirective, DebugTextComponent]
 })
 export class SharedModule { }
