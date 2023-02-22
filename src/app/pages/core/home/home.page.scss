@@ -38,9 +38,21 @@
 }
 
 .header-row {
-  font-size: 5em;
+  position: relative;
+  font-size: 6em;
   text-align: center;
 
   margin-top: 30px;
   margin-bottom: 30px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.logo {
+  position: absolute;
+  right: -94px;
+  top: 9px;
+  z-index: 0;
+  transform: rotate(20deg);
+
+  width: 128px;
 }
