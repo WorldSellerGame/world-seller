@@ -222,7 +222,7 @@ export class CombatState {
 
     [currentPlayer, ...enemies].forEach(char => {
       char.stats[Stat.Speed] = maxSpeed - char.stats[Stat.Speed];
-      char.currentSpeed = random(1, char.stats[Stat.Speed]);
+      char.currentSpeed = random(char.stats[Stat.Speed] / 2, char.stats[Stat.Speed]);
     });
 
     // every 10th level requires a dungeon dive
