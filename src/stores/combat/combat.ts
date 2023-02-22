@@ -15,7 +15,7 @@ import { ContentService } from '../../app/services/content.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import {
   AchievementStat,
-  CombatAbilityTarget, DungeonTile, IGameCombat, IGameCombatAbility,
+  CombatAbilityTarget, DungeonTile, ICombatDelta, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
 } from '../../interfaces';
@@ -162,6 +162,17 @@ export class CombatState {
       currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
     }
 
+    // do on-combat-start heals
+    currentPlayer.currentHealth = Math.min(
+      currentPlayer.currentHealth + currentPlayer.stats[Stat.HealingPerCombat],
+      currentPlayer.maxHealth
+    );
+
+    currentPlayer.currentEnergy = Math.min(
+      currentPlayer.currentEnergy + currentPlayer.stats[Stat.EnergyPerCombat],
+      currentPlayer.maxEnergy
+    );
+
     // sync things in case we have a persistent character
     currentPlayer.stats[Stat.Speed] = calculateStatFromState(
       store, activePlayer, Stat.Speed
@@ -255,6 +266,25 @@ export class CombatState {
     // dead enemies don't get to play the game
     if(enemy.currentHealth <= 0) {
       return;
+    }
+
+    const preTurnDeltas: ICombatDelta[] = [];
+    const healingPerRound = enemy.stats[Stat.HealingPerRound];
+    const energyPerRound = enemy.stats[Stat.EnergyPerRound];
+
+    if(healingPerRound > 0) {
+      ctx.dispatch(new AddCombatLogMessage(`${enemy.name} healed ${healingPerRound} HP!`));
+      preTurnDeltas.push({ target: 'source', attribute: 'currentHealth', delta: healingPerRound });
+      this.emitDamageNumber(currentPlayer, ctx.getState(), healingPerRound);
+    }
+
+    if(energyPerRound > 0) {
+      ctx.dispatch(new AddCombatLogMessage(`${enemy.name} restored ${energyPerRound} energy!`));
+      preTurnDeltas.push({ target: 'source', attribute: 'currentEnergy', delta: energyPerRound });
+    }
+
+    if(preTurnDeltas.length > 0) {
+      applyDeltas(ctx, enemy, enemy, preTurnDeltas);
     }
 
     ctx.dispatch([
@@ -576,6 +606,25 @@ export class CombatState {
 
         // unlock combat when the player can do something
         if(newSpeed <= 0) {
+          const preTurnDeltas: ICombatDelta[] = [];
+          const healingPerRound = player.stats[Stat.HealingPerRound];
+          const energyPerRound = player.stats[Stat.EnergyPerRound];
+
+          if(healingPerRound > 0) {
+            ctx.dispatch(new AddCombatLogMessage(`${player.name} healed ${healingPerRound} HP!`));
+            preTurnDeltas.push({ target: 'source', attribute: 'currentHealth', delta: healingPerRound });
+            this.emitDamageNumber(player, ctx.getState(), healingPerRound);
+          }
+
+          if(energyPerRound > 0) {
+            ctx.dispatch(new AddCombatLogMessage(`${player.name} restored ${energyPerRound} energy!`));
+            preTurnDeltas.push({ target: 'source', attribute: 'currentEnergy', delta: energyPerRound });
+          }
+
+          if(preTurnDeltas.length > 0) {
+            applyDeltas(ctx, player, player, preTurnDeltas);
+          }
+
           canSomeoneAct = true;
           ctx.dispatch(new SetCombatLock(false));
           break;

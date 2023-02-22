@@ -92,6 +92,10 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 * `speed` - how fast the creature goes in combat, relative to other creatures
 * `healthBonus` - boost to the creatures max health
 * `energyBonus` - boost to the creatures max energy
+* `healingPerRound` - how much health the creature regenerates per round
+* `energyPerRound` - how much energy the creature regenerates per round
+* `healingPerCombat` - how much health the creature regenerates per combat (at the start)
+* `energyPerCombat` - how much energy the creature regenerates per combat (at the start)
 
 #### Dungeon Nodes
 

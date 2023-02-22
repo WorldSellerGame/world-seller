@@ -20,7 +20,12 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,
     [Stat.HealthBonus]: 0,
-    [Stat.Speed]: 0
+    [Stat.Speed]: 0,
+
+    [Stat.HealingPerRound]: 0,
+    [Stat.HealingPerCombat]: 0,
+    [Stat.EnergyPerRound]: 0,
+    [Stat.EnergyPerCombat]: 0
   };
 }
 
