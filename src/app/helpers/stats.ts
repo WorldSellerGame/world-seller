@@ -96,5 +96,9 @@ export function getStatTotals(state: any, character: IPlayerCharacter): Record<S
     totals['energy'] = 0;
   }
 
+  if(totals[Stat.Speed] <= 0) {
+    totals[Stat.Speed] = 1;
+  }
+
   return totals;
 }
