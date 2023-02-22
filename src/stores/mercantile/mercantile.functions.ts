@@ -3,7 +3,10 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem } from '@ngxs/store/operators';
 import { random, sum } from 'lodash';
 import { itemValue } from '../../app/helpers';
-import { AchievementStat, IGameItem, IGameMercantile, IGameMercantileExchange, IGameMercantileShop, IGameMercantileStockpile, Rarity } from '../../interfaces';
+import {
+  AchievementStat, IGameItem, IGameMercantile,
+  IGameMercantileExchange, IGameMercantileShop, IGameMercantileStockpile, Rarity
+} from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
