@@ -4,7 +4,7 @@ import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
 import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
-import { GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { DiscoverResourceOrItem, GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
@@ -177,12 +177,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.debug = this.debugMode$.subscribe(debugMode => {
       if(!debugMode) {
         (window as any).gainItem = () => {};
+        (window as any).discover = () => {};
         (window as any).gainAchievement = () => {};
         return;
       }
 
       (window as any).gainItem = (item: string, amount: number) => {
         this.store.dispatch(new GainItemOrResource(item, amount));
+      };
+
+      (window as any).discover = (item: string) => {
+        this.store.dispatch(new DiscoverResourceOrItem(item));
       };
 
       (window as any).gainAchievement = (achievementText: string) => {

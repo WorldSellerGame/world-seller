@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./workers/workers.module').then( m => m.WorkersPageModule)
       },
       {
+        path: 'exchange',
+        loadChildren: () => import('./exchange/exchange.module').then( m => m.ExchangePageModule)
+      },
+      {
         path: '**',
         pathMatch: 'full',
         redirectTo: 'shop'

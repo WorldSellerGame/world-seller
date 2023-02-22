@@ -54,6 +54,8 @@ export class RollbarErrorHandler implements ErrorHandler {
   }
 
   handleError(err: any): void {
+    console.error(err);
+
     const savefile = this.store.snapshot();
 
     // check if the user will let errors be sent

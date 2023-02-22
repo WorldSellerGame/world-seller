@@ -3,7 +3,7 @@ import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem } from '@ngxs/store/operators';
 import { random, sum } from 'lodash';
 import { itemValue } from '../../app/helpers';
-import { AchievementStat, IGameItem, IGameMercantile, IGameMercantileShop, IGameMercantileStockpile } from '../../interfaces';
+import { AchievementStat, IGameItem, IGameMercantile, IGameMercantileExchange, IGameMercantileShop, IGameMercantileStockpile, Rarity } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
@@ -25,6 +25,12 @@ export const defaultMercantile: () => IGameMercantile = () => ({
   stockpile: {
     items: [],
     limitLevel: 0
+  },
+  exchange: {
+    items: [],
+    lastPaidForRotate: 0,
+    currentTick: 3600,
+    exchangeLevel: 0
   }
 });
 
@@ -299,6 +305,128 @@ export function upgradeShopCounter(ctx: StateContext<IGameMercantile>) {
   ctx.setState(patch<IGameMercantile>({
     shop: patch<IGameMercantileShop>({
       saleCounterLevel: state.shop.saleCounterLevel + 1
+    })
+  }));
+}
+
+
+// exchange functions
+export function maxExchangeLevel() {
+  return 7;
+}
+
+export function maxExchangeSizeUpgradeCost(newLevel: number) {
+  return 1000 * (newLevel + 1);
+}
+
+export function exchangeTicks() {
+  return 3600;
+}
+
+export function totalExchangeItems(exchangeLevel: number) {
+  return 3 + exchangeLevel;
+}
+
+export function exchangeRotateCost(nextRotateLevel: number) {
+  return 100 * (nextRotateLevel + 1);
+}
+
+export function costMultiplierByRarity(rarity: Rarity): number {
+  switch(rarity) {
+    case Rarity.Broken: return 1;
+    case Rarity.Common: return 2;
+    case Rarity.Uncommon: return 5;
+    case Rarity.Rare: return 25;
+    case Rarity.Epic: return 50;
+    case Rarity.Legendary: return 100;
+
+    default: return 1;
+  }
+}
+
+export function costToSwapRarityToRarity(from: Rarity, to: Rarity) {
+  switch(from) {
+    case Rarity.Junk: {
+      switch(to) {
+        case Rarity.Common:     return 7;
+        case Rarity.Uncommon:   return 15;
+        case Rarity.Rare:       return 25;
+        case Rarity.Epic:       return 50;
+        case Rarity.Legendary:  return 100;
+
+        default: return -1;
+      }
+    }
+
+    case Rarity.Common: {
+      switch(to) {
+        case Rarity.Uncommon:   return 5;
+        case Rarity.Rare:       return 15;
+        case Rarity.Epic:       return 25;
+        case Rarity.Legendary:  return 50;
+
+        default: return -1;
+      }
+    }
+
+    case Rarity.Uncommon: {
+      switch(to) {
+        case Rarity.Rare:       return 7;
+        case Rarity.Epic:       return 15;
+        case Rarity.Legendary:  return 35;
+
+        default: return -1;
+      }
+    }
+
+    case Rarity.Rare: {
+      switch(to) {
+        case Rarity.Epic:       return 10;
+        case Rarity.Legendary:  return 25;
+
+        default: return -1;
+      }
+    }
+
+    case Rarity.Epic: {
+      switch(to) {
+        case Rarity.Legendary:  return 5;
+
+        default: return -1;
+      }
+    }
+
+    default: return -1;
+  }
+}
+
+export function rotateExchange(ctx: StateContext<IGameMercantile>) {
+  const state = ctx.getState();
+
+  const rotateCost = exchangeRotateCost(state.exchange.lastPaidForRotate + 1);
+  spendCoins(ctx, { amount: rotateCost });
+
+  ctx.setState(patch<IGameMercantile>({
+    exchange: patch<IGameMercantileExchange>({
+      items: [],
+      lastPaidForRotate: state.exchange.lastPaidForRotate + 1
+    })
+  }));
+}
+
+export function upgradeExchange(ctx: StateContext<IGameMercantile>) {
+  const state = ctx.getState();
+
+  if(state.exchange.exchangeLevel >= maxExchangeLevel()) {
+    return;
+  }
+
+  const cost = maxExchangeSizeUpgradeCost(state.exchange.exchangeLevel);
+  spendCoins(ctx, { amount: cost });
+
+  ctx.setState(patch<IGameMercantile>({
+    exchange: patch<IGameMercantileExchange>({
+      exchangeLevel: state.exchange.exchangeLevel + 1
     })
   }));
 }
