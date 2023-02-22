@@ -6,7 +6,10 @@ import { CharSelectState, MercantileState } from '../../../../../../stores';
 import { IncrementStat } from '../../../../../../stores/achievements/achievements.actions';
 import { GainResources } from '../../../../../../stores/charselect/charselect.actions';
 import { RotateExchangeGoods, SpendCoins, UpgradeExchange } from '../../../../../../stores/mercantile/mercantile.actions';
-import { costMultiplierByRarity, costToSwapRarityToRarity, exchangeRotateCost, maxExchangeLevel, maxExchangeSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
+import {
+  costMultiplierByRarity, costToSwapRarityToRarity,
+  exchangeRotateCost, maxExchangeLevel, maxExchangeSizeUpgradeCost
+} from '../../../../../../stores/mercantile/mercantile.functions';
 import { ContentService } from '../../../../../services/content.service';
 
 @Component({
@@ -23,6 +26,10 @@ export class ExchangePage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+  }
+
+  trackBy(index: number) {
+    return index;
   }
 
   isExchangeMaxLevel(currentLevel: number): boolean {

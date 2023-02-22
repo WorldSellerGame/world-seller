@@ -81,7 +81,7 @@
                   <ion-col><ion-spinner></ion-spinner> Exchange goods are currently rotating...</ion-col>
                 </ion-row>
 
-                <ion-row class="good-row" *ngFor="let good of pageData.exchange?.items || []">
+                <ion-row class="good-row" *ngFor="let good of pageData.exchange?.items || []; trackBy: trackBy">
                   <ion-col sizeMd="3">
                     <app-resource-icon [name]="good.costItem"></app-resource-icon>
                     <span class="you-have">You have {{ pageData.resources?.[good.costItem] || 0 | number }}.</span>
