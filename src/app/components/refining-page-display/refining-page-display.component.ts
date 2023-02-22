@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
@@ -14,7 +14,7 @@ import { ItemCreatorService } from '../../services/item-creator.service';
   templateUrl: './refining-page-display.component.html',
   styleUrls: ['./refining-page-display.component.scss'],
 })
-export class RefiningPageDisplayComponent implements OnInit {
+export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
 
   @Input() tradeskill = '';
   @Input() level$!: Observable<number>;
@@ -31,9 +31,13 @@ export class RefiningPageDisplayComponent implements OnInit {
   @Input() cancelAction: any;
 
   @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
+  private discoveriesSub!: Subscription;
 
-  public type = 'resources';
+  public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
+
+  public resourceRecipes: IGameRecipe[] = [];
+  public itemRecipes: IGameRecipe[] = [];
 
   constructor(
     private store: Store,
@@ -41,7 +45,20 @@ export class RefiningPageDisplayComponent implements OnInit {
     private itemCreatorService: ItemCreatorService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.discoveriesSub = this.discoveries$.subscribe((discoveries) => {
+      this.resourceRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'resources');
+      this.itemRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'items');
+
+      if(!this.type) {
+        this.type = this.resourceRecipes.length > 0 ? 'resources' : 'items';
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.discoveriesSub?.unsubscribe();
+  }
 
   isQueueFull(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
     if(!queueInfo) {
@@ -64,14 +81,14 @@ export class RefiningPageDisplayComponent implements OnInit {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
   }
 
-  visibleRecipes(discoveries: Record<string, boolean>, recipes: IGameRecipe[]): IGameRecipe[] {
+  visibleRecipes(discoveries: Record<string, boolean>, recipes: IGameRecipe[], type: 'resources'|'items'): IGameRecipe[] {
     const validRecipes = recipes
       .filter((recipe: IGameRecipe) => {
-        if(this.type === 'resources') {
+        if(type === 'resources') {
           return this.contentService.isResource(recipe.result);
         }
 
-        if(this.type === 'items') {
+        if(type === 'items') {
           return this.contentService.isItem(recipe.result);
         }
 
