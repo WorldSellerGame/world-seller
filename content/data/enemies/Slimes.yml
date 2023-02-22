@@ -1,10 +1,10 @@
-Slime: #Goo
+Slime1: #Goo
   name: Slime
   icon: slime
   description: A common harmless variety, not a real threat other than to molds and moss.
 
   health: 25
-  energy: 0
+  energy: 1
 
   idleChance: 50
 
