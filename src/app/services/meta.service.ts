@@ -8,7 +8,7 @@ import { defaultOptions } from '../../stores/options/options.functions';
 })
 export class MetaService {
 
-  private versionInfo: any = { tag: '', semverString: '', raw: '', hash: 'v.local' };
+  private versionInfo: any = { tag: 'v.local', semverString: '', raw: 'v.local', hash: 'v.local' };
   public get version(): string {
     return this.versionInfo.tag
         || this.versionInfo.semverString
