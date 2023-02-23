@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Exchange</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{
+    exchange: exchange$ | async,
+    resources: resources$ | async,
+    coins: coins$ | async
+  } as pageData">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-row>
+                <ion-col>
+                  <div class="upgrade-label">Rotate Exchange Resources</div>
+                  <ion-button expand="block"
+                              (click)="rotateExchange()"
+                              [disabled]="!canRotateExchange(pageData.coins || 0, pageData.exchange?.lastPaidForRotate || 0)"
+                              [analyticsClick]="'Peripheral:Mercantile:Upgrade:RotateResources'"
+                              fill="outline">
+                    <span>
+                      Rotate Resources ({{ exchangeRotateCost(pageData.exchange?.lastPaidForRotate || 0) | number }} coins)
+                    </span>
+                  </ion-button>
+                </ion-col>
+
+                <ion-col>
+                  <div class="upgrade-label">Exchange Slots +{{ pageData.exchange?.exchangeLevel || 0 }}</div>
+                  <ion-button expand="block"
+                              (click)="upgradeExchange()"
+                              [disabled]="!canUpgradeExchange(pageData.coins || 0, pageData.exchange?.exchangeLevel || 0)"
+                              [analyticsClick]="'Peripheral:Mercantile:Upgrade:Exchange'"
+                              fill="outline">
+                    <span *ngIf="isExchangeMaxLevel(pageData.exchange?.exchangeLevel || 0)">Exchange is max level</span>
+                    <span *ngIf="!isExchangeMaxLevel(pageData.exchange?.exchangeLevel || 0)">
+                      +1 Exchange Slot ({{ exchangeUpgradeCost(pageData.exchange?.exchangeLevel || 0) | number }} coins)
+                    </span>
+                  </ion-button>
+                </ion-col>
+
+                <ion-col class="true-center">
+                  <span *ngIf="(pageData.exchange?.currentTick || 0) > 0">Goods rotate in&nbsp;</span>
+                  <app-countdown *ngIf="(pageData.exchange?.currentTick || 0) > 0" [duration]="(pageData.exchange?.currentTick || 0)"></app-countdown>
+                  <span *ngIf="(pageData.exchange?.currentTick || 0) <= 0">Rotating...</span>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row class="header-row">
+                  <ion-col sizeMd="3">
+                    Your Item
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    Exchanged For
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    Swap
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    Buy
+                  </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="(pageData.exchange?.items || []).length === 0">
+                  <ion-col><ion-spinner></ion-spinner> Exchange goods are currently rotating...</ion-col>
+                </ion-row>
+
+                <ion-row class="good-row" *ngFor="let good of pageData.exchange?.items || []; trackBy: trackBy">
+                  <ion-col sizeMd="3">
+                    <app-resource-icon [name]="good.costItem"></app-resource-icon>
+                    <span class="you-have">You have {{ pageData.resources?.[good.costItem] || 0 | number }}.</span>
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    <app-resource-icon [name]="good.forItem"></app-resource-icon>
+                    <span class="you-have">You have {{ pageData.resources?.[good.forItem] || 0 | number }}.</span>
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    <ng-container *ngIf="exchangeRateForResource(good.costItem, good.forItem) as rate">
+                      <ion-button size="small" expand="block" [disabled]="(pageData.resources?.[good.costItem] || 0) < rate.cost" (click)="doResourceExchange(good.costItem, good.forItem, 1)">
+                        {{ rate.cost }} for {{ rate.gain }}
+                      </ion-button>
+
+                      <ion-button size="small" expand="block" [disabled]="(pageData.resources?.[good.costItem] || 0) < rate.cost * 10" (click)="doResourceExchange(good.costItem, good.forItem, 10)">
+                        {{ rate.cost * 10 }} for {{ rate.gain * 10 }}
+                      </ion-button>
+                    </ng-container>
+                  </ion-col>
+
+                  <ion-col sizeMd="3">
+                    <ng-container *ngIf="costForResource(good.forItem) as cost">
+                      <ion-button size="small" expand="block" [disabled]="(pageData.coins || 0) < cost" (click)="doResourceBuy(good.forItem, 1)">
+                        1 for {{ costForResource(good.forItem) | number }} coins
+                      </ion-button>
+
+                      <ion-button size="small" expand="block" [disabled]="(pageData.coins || 0) < cost * 10" (click)="doResourceBuy(good.forItem, 10)">
+                        10 for {{ costForResource(good.forItem) * 10 | number }} coins
+                      </ion-button>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

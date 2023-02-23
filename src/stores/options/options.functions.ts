@@ -7,7 +7,7 @@ import { SetOption } from './options.actions';
 export const defaultOptions: () => IOptions = () => ({
   version: 0,
   [GameOption.DebugMode]: false,
-  [GameOption.ColorTheme]: 'dark',
+  [GameOption.ColorTheme]: 'worldseller',
   [GameOption.SidebarDisplay]: 'full',
   [GameOption.TickTimer]: 1,
   [GameOption.SoundMaster]: 0.5,

@@ -7,3 +7,11 @@
 .resource-container {
   margin-bottom: 5px;
 }
+
+.resources {
+  margin-top: 2em;
+  padding-left: 10px;
+
+  overflow-y: auto;
+  max-height: calc(100vh - 350px);
+}

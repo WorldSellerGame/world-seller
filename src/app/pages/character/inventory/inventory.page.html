@@ -17,10 +17,17 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of itemCategories(items)" [class.hidden]="!resourceCategory">
-              <div class="resource-title">{{ resourceCategory }}</div>
+            <ion-col size="3" *ngFor="let resourceCategory of itemCategories(items); trackBy: trackBy">
+              <ion-button expand="block" [fill]="resourceCategory === activeCategory ? 'solid' : 'outline'" (click)="changeCategory(resourceCategory)">
+                {{ resourceCategory }} ({{ itemsInCategory(items, resourceCategory).length }})
+              </ion-button>
+            </ion-col>
+          </ion-row>
 
-              <div class="resource-container" *ngFor="let item of itemsInCategory(items, resourceCategory)">
+          <ion-row class="resources" *ngIf="activeCategory">
+            <ion-col [sizeMd]="3" *ngFor="let item of itemsInCategory(items, activeCategory); trackBy: trackBy">
+
+              <div class="resource-container">
                 <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
 
                 <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">

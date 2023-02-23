@@ -1,5 +1,17 @@
 import { IGameItem } from './game';
 
+export interface IGameMercantileExchangeItem {
+  costItem: string;
+  forItem: string;
+}
+
+export interface IGameMercantileExchange {
+  items: IGameMercantileExchangeItem[];
+  currentTick: number;
+  lastPaidForRotate: number;
+  exchangeLevel: number;
+}
+
 export interface IGameMercantileShop {
   forSale: IGameItem[];
   saleCounterLevel: number;
@@ -19,4 +31,5 @@ export interface IGameMercantile {
 
   shop: IGameMercantileShop;
   stockpile: IGameMercantileStockpile;
+  exchange: IGameMercantileExchange;
 }

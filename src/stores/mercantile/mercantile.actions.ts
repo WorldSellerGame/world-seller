@@ -68,3 +68,13 @@ export class UpgradeStockpileSize {
   static type = '[Mercantile] Upgrade Stockpile Size';
   constructor() {}
 }
+
+export class RotateExchangeGoods {
+  static type = '[Mercantile] Rotate Exchange Goods';
+  constructor() {}
+}
+
+export class UpgradeExchange {
+  static type = '[Mercantile] Upgrade Exchange';
+  constructor() {}
+}

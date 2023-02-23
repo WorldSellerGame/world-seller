@@ -29,6 +29,8 @@ export enum AchievementStat {
 
   MercantileBuyWorkers = 'mercantileBuyWorkers',
   MercantileSellItems = 'mercantileSellItems',
+  MercantileExchangeSwap = 'mercantileExchangeSwap',
+  MercantileExchangeBuy = 'mercantileExchangeBuy',
 
   ProspectingProspects = 'prospectingProspects',
 }

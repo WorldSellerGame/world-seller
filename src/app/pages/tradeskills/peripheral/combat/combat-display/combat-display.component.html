@@ -35,7 +35,7 @@
               </div>
 
               <div class="health">
-                <ion-progress-bar [value]="monster.currentHealth / monster.maxHealth" color="danger"></ion-progress-bar>
+                <ion-progress-bar [value]="monster.currentHealth / monster.maxHealth" color="health"></ion-progress-bar>
               </div>
 
               <div class="effects">
@@ -98,7 +98,7 @@
                       </ion-col>
 
                       <ion-col class="progress-bar" size="7">
-                        <ion-progress-bar [value]="encounterData.player.currentHealth / encounterData.player.maxHealth" color="danger"></ion-progress-bar>
+                        <ion-progress-bar [value]="encounterData.player.currentHealth / encounterData.player.maxHealth" color="health"></ion-progress-bar>
                       </ion-col>
 
                       <ion-col>
@@ -115,7 +115,7 @@
                       </ion-col>
 
                       <ion-col class="progress-bar" size="7">
-                        <ion-progress-bar [value]="encounterData.player.currentEnergy / encounterData.player.maxEnergy" color="warning"></ion-progress-bar>
+                        <ion-progress-bar [value]="encounterData.player.currentEnergy / encounterData.player.maxEnergy" color="energy"></ion-progress-bar>
                       </ion-col>
 
                       <ion-col>
@@ -163,7 +163,7 @@
                               [disabled]="encounterData.encounter.isLocked">
                       <app-combat-item-display [item]="item" [showEffectInfo]="true" [showUses]="false"></app-combat-item-display>
 
-                      <ion-text color="warning" slot="end" *ngIf="item.durability > 0">
+                      <ion-text color="energy" slot="end" *ngIf="item.durability > 0">
                         {{ item.durability }} use(s)
                       </ion-text>
                     </ion-item>
@@ -194,7 +194,7 @@
                             [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, ability, i)">
                     <app-skill-display [skill]="ability"></app-skill-display>
 
-                    <ion-text color="warning" slot="end" *ngIf="encounterData.player.cooldowns[i] > 0">
+                    <ion-text color="energy" slot="end" *ngIf="encounterData.player.cooldowns[i] > 0">
                       {{ encounterData.player.cooldowns[i] }} turn(s)
                     </ion-text>
                   </ion-item>

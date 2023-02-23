@@ -24,6 +24,13 @@
           <ng-container *ngIf="workersAndAllocated$ | async as workerAllocations">({{ workerAllocations.current }}/{{ workerAllocations.max }})</ng-container>
         </ion-label>
       </ion-tab-button>
+
+      <ion-tab-button tab="exchange">
+        <ion-icon name="swap-horizontal"></ion-icon>
+        <ion-label>
+          Exchange
+        </ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>

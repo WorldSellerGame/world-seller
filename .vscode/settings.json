@@ -3,5 +3,6 @@
         "BOOOOOOOOOOOOOM",
         "Debuff"
     ],
-    "svg.preview.background": "custom"
+    "svg.preview.background": "custom",
+    "discord.enabled": true
 }

@@ -49,6 +49,8 @@ locations:
         weight: 8
       - name: Mushroom
         weight: 3
+      - name: Sap
+        weight: 1
       - name: Poisonous Mushroom
         weight: 1
       - name: Carrot
@@ -56,8 +58,6 @@ locations:
       - name: Carrot Seed
         weight: 3
       - name: Worm
-        weight: 1
-      - name: Sap
         weight: 1
     maxWorkers: 1
 

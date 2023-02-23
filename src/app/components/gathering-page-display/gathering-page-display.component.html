@@ -28,11 +28,11 @@
         <ion-card class="location-card">
           <ion-card-header>
             <ion-card-title>{{ location.name }}</ion-card-title>
-            <ion-card-subtitle>{{ location.description }}</ion-card-subtitle>
+            <ion-card-subtitle class="location-description">{{ location.description }}</ion-card-subtitle>
+            <ion-card-subtitle>Gives after <strong>{{ location.gatherTime }}s</strong>:</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
-            <div>Gives after <strong>{{ location.gatherTime }}s</strong>:</div>
             <div class="resources">
               <app-resource-icon *ngFor="let resource of location.resources" [name]="resource.name"></app-resource-icon>
             </div>

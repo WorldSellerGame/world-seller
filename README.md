@@ -17,6 +17,7 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 ### Debug Commands
 
 `window.gainItem(itemName, quantity)` - gain an item in X quantity. For items, quantity should be 1. Resources can be set to any value.
+`window.discover(itemOrResourceName)` - discover an item or resource. Can make things show up quicker on the exchange, or anything else that requires discovery.
 
 ### Reloading Game Content
 
@@ -163,7 +164,6 @@ Recipes require:
 * `require` - an array of strings, each of which is a requirement for this recipe to be available and visible (see other recipes for examples)
 * `preserve` - an array of strings, each of which is NOT consumed when creating this item (crafting tables f.ex.)
 * `maxWorkers` - how many workers can craft this item at once
-
 
 #### Adding a New Ability
 

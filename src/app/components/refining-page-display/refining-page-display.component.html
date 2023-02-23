@@ -40,17 +40,17 @@
         <ion-card>
           <ion-card-content>
             <ion-segment class="mb-1" [(ngModel)]="type">
-              <ion-segment-button value="resources">
-                Craftable Resources
+              <ion-segment-button value="resources" [disabled]="resourceRecipes.length === 0">
+                Craftable Resources ({{ resourceRecipes.length }})
               </ion-segment-button>
 
-              <ion-segment-button value="items">
-                Craftable Items
+              <ion-segment-button value="items" [disabled]="itemRecipes.length === 0">
+                Craftable Items ({{ itemRecipes.length }})
               </ion-segment-button>
             </ion-segment>
 
             <ion-list class="scrollable-list">
-              <ion-item *ngFor="let recipe of visibleRecipes(pageData.discoveries || {}, locationData.recipes)">
+              <ion-item *ngFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
 
                 <ion-label>

@@ -17,12 +17,16 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col [sizeMd]="3" *ngFor="let resourceCategory of resourceCategories(resources)" [class.hidden]="!resourceCategory">
-              <div class="resource-title">{{ resourceCategory }}</div>
+            <ion-col size="3" *ngFor="let resourceCategory of resourceCategories(resources); trackBy: trackBy">
+              <ion-button expand="block" [fill]="resourceCategory === activeCategory ? 'solid' : 'outline'" (click)="changeCategory(resourceCategory)">
+                {{ resourceCategory }} ({{ resourcesInCategory(resources, resourceCategory).length }})
+              </ion-button>
+            </ion-col>
+          </ion-row>
 
-              <div class="resource-container" *ngFor="let resource of resourcesInCategory(resources, resourceCategory)">
-                <app-resource-icon [name]="resource" [quantity]="resources[resource]"></app-resource-icon>
-              </div>
+          <ion-row class="resources" *ngIf="activeCategory">
+            <ion-col size="3" *ngFor="let resource of resourcesInCategory(resources, activeCategory); trackBy: trackBy">
+              <app-resource-icon [name]="resource" [quantity]="resources[resource]"></app-resource-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
