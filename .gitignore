@@ -69,3 +69,4 @@ Thumbs.db
 
 src/assets/content
 version.json
+src/assets/*.md

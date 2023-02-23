@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
+import { marked } from 'marked';
 import * as Migrations from '../../stores/migrations';
 import { defaultOptions } from '../../stores/options/options.functions';
 
@@ -20,7 +22,10 @@ export class MetaService {
         || this.versionInfo.hash;
   }
 
-  constructor(private store: Store) { }
+  private changelogCurrent = '';
+  private changelogAll = '';
+
+  constructor(private store: Store, private alertCtrl: AlertController) { }
 
   async init(): Promise<void> {
     try {
@@ -29,6 +34,22 @@ export class MetaService {
       this.versionInfo = versionData;
     } catch {
       console.error('Could not load version.json - probably on local.');
+    }
+
+    try {
+      const changelog = await fetch('assets/CHANGELOG.md');
+      const changelogData = await changelog.text();
+      this.changelogAll = changelogData;
+    } catch {
+      console.error('Could not load changelog (all) - probably on local.');
+    }
+
+    try {
+      const changelog = await fetch('assets/CHANGELOG-current.md');
+      const changelogData = await changelog.text();
+      this.changelogCurrent = changelogData;
+    } catch {
+      console.error('Could not load changelog (current) - probably on local.');
     }
   }
 
@@ -66,5 +87,16 @@ export class MetaService {
     });
 
     this.store.reset(data);
+  }
+
+  async showChangelog() {
+    const alert = await this.alertCtrl.create({
+      header: 'Changelog',
+      cssClass: 'changelog',
+      message: marked.parse(this.changelogAll),
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
