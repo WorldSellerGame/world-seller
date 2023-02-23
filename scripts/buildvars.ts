@@ -13,3 +13,4 @@ try {
 }
 
 fs.writeJson(`${__dirname}/../src/assets/version.json`, gitRev);
+console.log('Wrote version information', gitRev);
