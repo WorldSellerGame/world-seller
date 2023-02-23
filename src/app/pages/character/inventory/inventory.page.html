@@ -25,7 +25,7 @@
           </ion-row>
 
           <ion-row class="resources" *ngIf="activeCategory">
-            <ion-col [sizeMd]="3" *ngFor="let item of itemsInCategory(items, activeCategory)">
+            <ion-col [sizeMd]="3" *ngFor="let item of itemsInCategory(items, activeCategory); trackBy: trackBy">
 
               <div class="resource-container">
                 <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
