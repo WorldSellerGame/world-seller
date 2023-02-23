@@ -1,0 +1,105 @@
+
+Zombie1: #meat bag with some effect that make long combat dangerous
+  name: Zombie
+  icon: zombie
+  description: A hardy opponent with a dangerous bite
+
+  health: 70
+  energy: 8
+
+  idleChance: 25
+
+  stats:
+    attack: 7
+    armor: 2
+    speed: 2
+
+  abilities:
+    - RotAttack1
+    - UndeadRegen1
+
+  drops: 
+    - resource: Coin
+      min: 10
+      max: 25
+      chance: 100
+
+Skeleton1: #Glass cannon
+  name: Skeleton
+  icon: skeleton
+  description: A more fragile fighter using weapons and some devastating attacks.
+
+  health: 25
+  energy: 10
+
+  idleChance: 10
+
+  stats:
+    attack: 10
+    armor: 6
+    speed: 5
+
+  abilities: 
+    - RotAttack2
+    - RotAttack2
+    - ApplyDoom1
+
+  drops: #cursed sword
+    - resource: Coin
+      min: 10
+      max: 25
+      chance: 100
+
+Monstrosity1: #tanky low dmg with a absolutely devastating multi hit
+  name: Monstrosity
+  icon: monstrosity
+  description: A mess of a thing that lacks cohesion in fighting but packs a terrifying flailing attack.
+
+  health: 70
+  energy: 10
+
+  idleChance: 25
+
+  stats:
+    attack: 4
+    armor: 2
+    speed: 5
+
+  abilities:
+    - ApplyEnergyBuff1
+    - UndeadRegen1
+    - RotAttack3
+
+  drops: #l8r
+    - resource: Coin
+      min: 10
+      max: 25
+      chance: 100
+
+Mummy1: #solo boss with self sustain (using the new stat) normal damaging attacks and a devastating multi curse
+  name: Mummy
+  icon: mummy
+  description: The source of all the undead near the temple, a dangerous opponent of unholy strength and terrifying curses. But how did the Mummy end up here...
+
+  health: 90 #healing per turn may make this too high
+  energy: 10
+
+  idleChance: 2
+
+  stats:
+    attack: 15 #hmm
+    armor: 8
+    speed: 5
+    healingPerRound: 5
+
+  abilities:
+    - ApplyEnergyBuff1
+    - Mummy1
+    - ApplyDoom1 #or maybe just one
+
+  drops: #l8r
+    - resource: Coin
+      min: 10
+      max: 25
+      chance: 100
+

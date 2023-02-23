@@ -288,6 +288,8 @@ BlacksmithingUnique1:
     - stat: armor
       multiplier: 1
       variance: 0.0
+  effects:
+    - effect: SingleTargetAttack
   cooldown: 2
   energyCost: 5
   requires:

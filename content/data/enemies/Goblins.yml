@@ -91,7 +91,7 @@ GoblinLord1: #aoe buffs and like one debuff
   health: 70
   energy: 25
 
-  idleChance: 25
+  idleChance: 10
 
   stats:
     attack: 10

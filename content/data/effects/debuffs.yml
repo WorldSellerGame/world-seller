@@ -130,3 +130,17 @@ EnergyDebuff2:
   statusEffectType: StatModification
   statModifications:
     energyBonus: -10
+
+#Compound/enemy
+
+Rot1:
+  name: Rot I 
+  description: Damage every turn reduced healing and reduced max hp.
+  icon: heart-bitten
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications: #one of these functionally does 26-30 damage depending wether or not death checks are calculated before or after that health restore.
+    healthBonus: -10
+    healing: -3
+    healingPerRound: -4 #lmao

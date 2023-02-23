@@ -149,7 +149,7 @@ GoblinAll:
     - Goblin2
     - GoblinShaman1
 
-GoblinDangerous:
+GoblinDangerous: #flow over
   name: Goblin Strike Team
   icon: goblin-big
   description: Not to be messed with.

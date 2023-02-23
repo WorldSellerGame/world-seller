@@ -17,15 +17,29 @@ ApplyFire1:
   energyCost: 5
   requires: {}
 
+ApplyEnergyBuff1: 
+  name: Charge Up
+  description: Charing Up, likely for a powerful attack?
+  icon: bolt
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
+  cooldown: 3
+  energyCost: 0
+  requires: {}
+
 
 ###Monster specific (Most could be mover later if needed)
 
-
+#gobbo
 
 GoblinShaman1: # To be moved and re named
   name: Goblish Heal I
   description: Heal your allies.
-  icon: foraging
+  icon: healing
   target: Ally
   type: Magical
   stats:
@@ -71,7 +85,7 @@ GoblinLord3:
   description: "Nice armor, well except for that little hole right there."
   icon: point
   target: Single
-  type: Magical
+  type: Physical
   stats: []
   effects:
     - effect: ApplyEffect
@@ -79,3 +93,121 @@ GoblinLord3:
   cooldown: 3
   energyCost: 5
   requires: {}
+
+#Undead
+
+UndeadRegen1:
+  name: Undead Resilience 
+  description: The dead stay risen for a reason.
+  icon: heart-bitten
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2 #2 could be too much could be substituted for regen1 + armor1
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack1:
+  name: Rotting Bite
+  description: Chomp.
+  icon: heart-bitten
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 0.75
+      variance: 0.25
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 #this could be uncompounded but I think I like it as is
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack2:
+  name: Rotting Bite
+  description: A decisive strike that directly affects wellbeing and ability to heal.
+  icon: knife-dripping
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1.5
+      variance: 0.5
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealingDebuff2 
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack3:
+  name: Thrash To The Grave
+  description: The mass of bones and teeth lashes out with unholy ferocity.
+  icon: monstrosity
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1.5
+      variance: 0.5
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 
+  cooldown: 1
+  energyCost: 15
+  requires: {}
+
+ApplyDoom1:
+  name: Mark of Instant Pain
+  description: A Large amount of damage at the end of the targets next turn.
+  icon: skull-mask
+  target: Single
+  type: Magical
+  stats: []
+  effects: 
+    - effect: ApplyEffect
+      effectName: Doom1 
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+Mummy1:
+  name: Mummy's Curse
+  description: Straight from the source.
+  icon: curse
+  target: Single
+  type: Magical
+  stats: []
+  effects: 
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: Rot1
+    - effect: ApplyEffect
+      effectName: Rot1
+  cooldown: 0
+  energyCost: 15
+  requires: {}
+
+
+
+
+
+#huge multi attack for monstrosity #just damage?
+#Charge up for the mummy lord and the monstrosity #Is this good?
+#Mummy triple rot #Number of times 
