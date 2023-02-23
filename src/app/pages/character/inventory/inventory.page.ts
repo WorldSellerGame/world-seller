@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy, uniq } from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
@@ -11,13 +11,36 @@ import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../
   templateUrl: './inventory.page.html',
   styleUrls: ['./inventory.page.scss'],
 })
-export class InventoryPage implements OnInit {
+export class InventoryPage implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
+
+  public activeCategory = '';
+  public categorySub!: Subscription;
 
   constructor(private store: Store) { }
 
   ngOnInit() {
+    this.categorySub = this.inventory$.subscribe(x => {
+      if (this.hasNoItems(x)) {
+        this.activeCategory = '';
+        return;
+      }
+
+      this.activeCategory = this.itemCategories(x)[0];
+    });
+  }
+
+  ngOnDestroy() {
+    this.categorySub?.unsubscribe();
+  }
+
+  trackBy(index: number) {
+    return index;
+  }
+
+  changeCategory(category: string) {
+    this.activeCategory = category;
   }
 
   hasNoItems(items: IGameItem[]): boolean {
