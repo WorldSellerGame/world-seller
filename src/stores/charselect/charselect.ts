@@ -65,7 +65,7 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterInventory(state: ICharSelect) {
-    return this.activeCharacter(state)?.inventory ?? {};
+    return this.activeCharacter(state)?.inventory ?? [];
   }
 
   @Selector()

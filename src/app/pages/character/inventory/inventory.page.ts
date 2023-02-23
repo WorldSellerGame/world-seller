@@ -47,8 +47,8 @@ export class InventoryPage implements OnInit, OnDestroy {
     return items.length === 0;
   }
 
-  itemCategories(items: IGameItem[]): string[] {
-    return sortBy(uniq((items || []).filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
+  itemCategories(items: IGameItem[] = []): string[] {
+    return sortBy(uniq(items.filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
   }
 
   itemsInCategory(items: IGameItem[], category: string): IGameItem[] {
