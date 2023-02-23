@@ -1,0 +1,43 @@
+
+
+:root {
+  --color-item-broken: #f00;
+  --color-item-junk: #666;
+  --color-item-normal: #949494;
+  --color-item-uncommon: #0a0;
+  --color-item-rare: #3a3ad3;
+  --color-item-epic: #a0a;
+  --color-item-legendary: #f80;
+
+  --title-font: 'TitleText', cursive;
+  --other-font: 'OtherText', sans-serif;
+  --ion-font-family: var(--other-font);
+}
+
+.broken {
+  color: var(--color-item-broken);
+}
+
+.normal {
+  color: var(--color-item-normal);
+}
+
+.junk {
+  color: var(--color-item-junk);
+}
+
+.uncommon {
+  color: var(--color-item-uncommon);
+}
+
+.rare {
+  color: var(--color-item-rare);
+}
+
+.epic {
+  color: var(--color-item-epic);
+}
+
+.legendary {
+  color: var(--color-item-legendary);
+}
