@@ -16,8 +16,8 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 
 ### Debug Commands
 
-`window.gainItem(itemName, quantity)` - gain an item in X quantity. For items, quantity should be 1. Resources can be set to any value.
-`window.discover(itemOrResourceName)` - discover an item or resource. Can make things show up quicker on the exchange, or anything else that requires discovery.
+* `window.gainItem(itemName, quantity)` - gain an item in X quantity. For items, quantity should be 1. Resources can be set to any value.
+* `window.discover(itemOrResourceName)` - discover an item or resource. Can make things show up quicker on the exchange, or anything else that requires discovery.
 
 ### Reloading Game Content
 
