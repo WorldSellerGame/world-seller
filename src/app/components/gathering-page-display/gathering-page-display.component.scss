@@ -6,7 +6,11 @@
 }
 
 .location-card {
-  min-height: 300px;
+  min-height: 400px;
+
+  .location-description {
+    min-height: 50px;
+  }
 }
 
 .status-row {
