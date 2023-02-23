@@ -115,7 +115,7 @@ export class CombatState {
   async updateAllItems(ctx: StateContext<IGameCombat>) {
     const state = ctx.getState();
 
-    const activeItems = state.activeItems.map(item => {
+    const activeItems = (state.activeItems || []).map(item => {
       if(!item) {
         return undefined;
       }
