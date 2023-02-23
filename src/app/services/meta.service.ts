@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
+import * as Migrations from '../../stores/migrations';
+import { defaultOptions } from '../../stores/options/options.functions';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +47,20 @@ export class MetaService {
       downloadAnchorNode.setAttribute('download', fileName);
       downloadAnchorNode.click();
     });
+  }
+
+  importCharacter(data: any) {
+    if(!data.options) {
+      data.options = defaultOptions();
+    }
+
+    // gotta migrate potentially aged savefiles
+    Object.values(Migrations).forEach(migrations => {
+      migrations.forEach(migration => {
+        data[migration.key] = migration.migrate(data[migration.key]);
+      });
+    });
+
+    this.store.reset(data);
   }
 }

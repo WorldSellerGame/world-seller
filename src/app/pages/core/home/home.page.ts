@@ -7,7 +7,6 @@ import { MetaService } from 'src/app/services/meta.service';
 import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
-import { defaultOptions } from '../../../../stores/options/options.functions';
 import { AnnouncementService } from '../../../services/announcements.service';
 
 @Component({
@@ -57,11 +56,8 @@ export class HomePage implements OnInit {
         inputEl.value = '';
       };
 
-      if(!charFile.options) {
-        charFile.options = defaultOptions();
-      }
+      this.metaService.importCharacter(charFile);
 
-      this.store.reset(charFile);
       finish();
     };
 
