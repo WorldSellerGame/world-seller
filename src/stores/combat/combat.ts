@@ -597,6 +597,35 @@ export class CombatState {
           break;
         }
 
+        // enemies get first dibs
+        checkState.currentEncounter.enemies.forEach((enemy, index) => {
+          if(checkState.currentEncounter?.isLockedForEnemies) {
+            return;
+          }
+
+          if(enemy.currentHealth <= 0) {
+            return;
+          }
+
+          const newEnemySpeed = enemy.currentSpeed - 1;
+
+          ctx.setState(patch<IGameCombat>({
+            currentEncounter: patch<IGameEncounter>({
+              enemies: updateItem<IGameEncounterCharacter>(index, patch<IGameEncounterCharacter>({
+                currentSpeed: newEnemySpeed
+              }))
+            })
+          }));
+
+          if(newEnemySpeed <= 0) {
+            canSomeoneAct = true;
+            ctx.dispatch(new EnemyTakeTurn(index));
+            return;
+          }
+
+        });
+
+        // then the player gets a chance to go
         const newSpeed = player.currentSpeed - 1;
         ctx.setState(patch<IGameCombat>({
           currentPlayer: patch<IGameEncounterCharacter>({
@@ -629,33 +658,6 @@ export class CombatState {
           ctx.dispatch(new SetCombatLock(false));
           break;
         }
-
-        checkState.currentEncounter.enemies.forEach((enemy, index) => {
-          if(checkState.currentEncounter?.isLockedForEnemies) {
-            return;
-          }
-
-          if(enemy.currentHealth <= 0) {
-            return;
-          }
-
-          const newEnemySpeed = enemy.currentSpeed - 1;
-
-          ctx.setState(patch<IGameCombat>({
-            currentEncounter: patch<IGameEncounter>({
-              enemies: updateItem<IGameEncounterCharacter>(index, patch<IGameEncounterCharacter>({
-                currentSpeed: newEnemySpeed
-              }))
-            })
-          }));
-
-          if(newEnemySpeed <= 0) {
-            canSomeoneAct = true;
-            ctx.dispatch(new EnemyTakeTurn(index));
-            return;
-          }
-
-        });
 
         numAttempts--;
       }
