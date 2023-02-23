@@ -1,4 +1,4 @@
-## 0.0.1 (2023-02-23)
+## [0.0.2](https://github.com/WorldSellerGame/world-seller/compare/223eba92af274e5e5d052bbf5f5f134eb0a2e3f6...v0.0.2) (2023-02-23)
 
 
 ### Bug Fixes
