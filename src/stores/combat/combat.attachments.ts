@@ -12,7 +12,7 @@ import {
   PlayerCooldownSkill,
   PlayerSpeedReset,
   ResetCombat, ResetCombatSoft, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
-  SetSkill, TickEnemyEffects, TickPlayerEffects, UnlockCombat, UseItemInSlot
+  SetSkill, StartCombatEndProcess, TickEnemyEffects, TickPlayerEffects, UnlockCombat, UseItemInSlot
 } from './combat.actions';
 import {
   addCombatLogMessage,
@@ -21,6 +21,7 @@ import {
   endCombatAndResetPlayer,
   lowerEnemyCooldowns,
   lowerPlayerCooldowns,
+  prepareCombatForRestart,
   resetCombat, resetCombatSoft, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
   setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
@@ -60,6 +61,7 @@ export const attachments: IAttachment[] = [
   { action: TickPlayerEffects, handler: tickPlayerEffects },
   { action: TickEnemyEffects, handler: tickEnemyEffects },
   { action: ConsumeFoodCharges, handler: consumeFoodCharges },
+  { action: StartCombatEndProcess, handler: prepareCombatForRestart },
 
   { action: FullyHeal, handler: fullyHeal },
   { action: LeaveDungeon, handler: leaveDungeon },

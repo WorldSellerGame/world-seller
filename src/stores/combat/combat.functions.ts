@@ -42,6 +42,17 @@ export function resetCombat(ctx: StateContext<IGameCombat>) {
 }
 
 /**
+ * Prepare combat for closing in 3 seconds.
+ */
+export function prepareCombatForRestart(ctx: StateContext<IGameCombat>) {
+  ctx.setState(patch<IGameCombat>({
+    currentEncounter: patch<IGameEncounter>({
+      resetInSeconds: 3
+    })
+  }));
+}
+
+/**
  * Fully heal combat participants, don't reset anything else.
  */
 export function resetCombatSoft(ctx: StateContext<IGameCombat>) {
