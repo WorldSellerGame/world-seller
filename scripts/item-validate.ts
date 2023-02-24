@@ -287,8 +287,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
-    if(!threat.level.min || !threat.level.max) {
-      console.log(`⚠ Threat ${key} has no level range.`);
+    if(!threat.level.max) {
+      console.log(`⚠ Threat ${key} has no level range max.`);
       hasBad = true;
     }
 
