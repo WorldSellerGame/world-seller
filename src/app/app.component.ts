@@ -5,11 +5,12 @@ import { Observable, Subscription, of } from 'rxjs';
 import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { DiscoverResourceOrItem, GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { DebugApplyEffectToPlayer, InitiateCombat } from '../stores/combat/combat.actions';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
 import { setMainDiscordStatus } from './helpers/electron';
+import { ContentService } from './services/content.service';
 import { GameloopService } from './services/gameloop.service';
-import { NotifyService } from './services/notify.service';
 
 interface IMenuItem {
   title: string;
@@ -160,7 +161,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private readonly notifyService: NotifyService,
+    private readonly contentService: ContentService,
     private readonly gameloopService: GameloopService
   ) { }
 
@@ -181,7 +182,8 @@ export class AppComponent implements OnInit, OnDestroy {
       if(!debugMode) {
         (window as any).gainItem = () => {};
         (window as any).discover = () => {};
-        (window as any).gainAchievement = () => {};
+        (window as any).fightThreat = () => {};
+        (window as any).applyCombatEffectToPlayer = () => {};
         return;
       }
 
@@ -193,9 +195,20 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store.dispatch(new DiscoverResourceOrItem(item));
       };
 
-      (window as any).gainAchievement = (achievementText: string) => {
-        this.notifyService.achievement(achievementText);
+      (window as any).fightThreat = (threat: string) => {
+        this.store.dispatch(new InitiateCombat(threat, true));
       };
+
+      (window as any).applyCombatEffectToPlayer = (effect: string) => {
+        const effectRef = this.contentService.getEffectByName(effect);
+        if(!effectRef) {
+          console.error(`Could not find effect ${effect}!`);
+          return;
+        }
+
+        this.store.dispatch(new DebugApplyEffectToPlayer(effectRef));
+      };
+
     });
   }
 
