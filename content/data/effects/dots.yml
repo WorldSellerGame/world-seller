@@ -43,3 +43,13 @@ Doom1:
   turnsLeft: 1
   statusEffectType: DamageOverTime
   damageOverTime: 25
+
+Rot1:
+  name: Rot I 
+  description: Damage every turn reduced healing and reduced max hp.
+  icon: heart-bitten
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statusEffectType: DamageOverTime
+  damageOverTime: 4

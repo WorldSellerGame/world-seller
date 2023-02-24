@@ -183,7 +183,7 @@ GoblinDungeonBoss: #this is way too strong lol
   icon: goblin-big
   description: Leader of these goblins, take out him and his servants and his pets and his doctor to beat him.
 
-  maxSkillGainLevel: {}
+  maxSkillGainLevel: 10
   level: {}
 
   enemies:

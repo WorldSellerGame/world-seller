@@ -123,7 +123,11 @@ RotAttack1:
   effects: 
     - effect: SingleTargetAttack
     - effect: ApplyEffect
-      effectName: Rot1 #this could be uncompounded but I think I like it as is
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
   cooldown: 3
   energyCost: 5
   requires: {}
@@ -143,7 +147,9 @@ RotAttack2:
     - effect: ApplyEffect
       effectName: Rot1 
     - effect: ApplyEffect
-      effectName: HealingDebuff2 
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff3
   cooldown: 3
   energyCost: 5
   requires: {}
@@ -168,6 +174,10 @@ RotAttack3:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
       effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
   cooldown: 1
   energyCost: 15
   requires: {}
@@ -187,7 +197,7 @@ ApplyDoom1:
   requires: {}
 
 Mummy1:
-  name: Mummy's Curse
+  name: Mummy's Curse #mabye reduce to double casting rot
   description: Straight from the source.
   icon: curse
   target: Single
@@ -197,9 +207,21 @@ Mummy1:
     - effect: ApplyEffect
       effectName: Rot1 
     - effect: ApplyEffect
-      effectName: Rot1
+      effectName: HealthDebuff1
     - effect: ApplyEffect
-      effectName: Rot1
+      effectName: HealingDebuff1
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
   cooldown: 0
   energyCost: 15
   requires: {}

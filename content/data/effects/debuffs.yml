@@ -51,6 +51,16 @@ HealingDebuff2:
   statModifications:
     healing: -5
 
+HealingDebuff3:
+  name: Necrosis III
+  description: Decreases Healing by 10.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -10
+
 AttackDebuff1:
   name: Weaken I
   description: Decreases Attack by 3.
@@ -133,14 +143,3 @@ EnergyDebuff2:
 
 #Compound/enemy
 
-Rot1:
-  name: Rot I 
-  description: Damage every turn reduced healing and reduced max hp.
-  icon: heart-bitten
-  color: "#00ff00"
-  turnsLeft: 5
-  statusEffectType: StatModification
-  statModifications: #one of these functionally does 26-30 damage depending wether or not death checks are calculated before or after that health restore.
-    healthBonus: -10
-    healing: -3
-    healingPerRound: -4 #lmao
