@@ -1,5 +1,16 @@
 
+SingleGoblidn:
+  name: Goblin
+  icon: goblin-small
+  description: A tiny lil goblin. He can't do too much to you, can he?
 
+  maxSkillGainLevel: 3
+  level:
+    min: 0
+    max: 15
+
+  enemies:
+    - Zombie1
 
 
 
