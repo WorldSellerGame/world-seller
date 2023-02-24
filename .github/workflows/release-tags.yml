@@ -93,6 +93,8 @@ jobs:
 
     - run: npm install
 
+    - run: cd electron && npm install
+
     - run: npm run load:content
 
     - run: npm run lint
