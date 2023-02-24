@@ -80,7 +80,7 @@ export class MercantileState {
   async updateAllItems(ctx: StateContext<IGameMercantile>) {
     const state = ctx.getState();
 
-    const shopItems = state.shop.forSale.map(item => {
+    const shopItems = (state.shop.forSale || []).map(item => {
       const baseItem = this.itemCreatorService.createItem(item.internalId || '');
       if(!baseItem) {
         return undefined;
@@ -92,7 +92,7 @@ export class MercantileState {
       };
     }).filter(Boolean);
 
-    const stockpileItems = state.stockpile.items.map(item => {
+    const stockpileItems = (state.stockpile.items || []).map(item => {
       const baseItem = this.itemCreatorService.createItem(item.internalId || '');
       if(!baseItem) {
         return undefined;

@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": ".",
       "prefix": "app",
       "architect": {
         "build": {
@@ -30,7 +30,12 @@
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
               },
-              "src/_redirects"
+              "src/_redirects",
+              {
+                "glob": "*.md",
+                "input": ".",
+                "output": "./assets"
+              }
             ],
             "styles": ["src/theme/index.scss", "src/global.scss"],
             "scripts": [],

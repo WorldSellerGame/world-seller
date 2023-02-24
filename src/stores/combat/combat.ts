@@ -7,6 +7,7 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import {
   applyDeltas, calculateStatFromState, defaultStatsZero,
+  dispatchCorrectCombatEndEvent,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
   getPlayerCharacterReadyForCombat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
@@ -114,7 +115,7 @@ export class CombatState {
   async updateAllItems(ctx: StateContext<IGameCombat>) {
     const state = ctx.getState();
 
-    const activeItems = state.activeItems.map(item => {
+    const activeItems = (state.activeItems || []).map(item => {
       if(!item) {
         return undefined;
       }
@@ -246,6 +247,7 @@ export class CombatState {
         isLocked: false,
         isLockedForEnemies: false,
         shouldExitDungeon,
+        resetInSeconds: -1,
 
         shouldGiveSkillPoint
       }
@@ -576,6 +578,25 @@ export class CombatState {
     }
 
     if(state.currentEncounter && state.currentPlayer) {
+
+      // check for combat ending and get out soon
+      if(state.currentEncounter.resetInSeconds === 0) {
+        dispatchCorrectCombatEndEvent(ctx, state.currentEncounter);
+        return;
+      }
+
+      if(state.currentEncounter.resetInSeconds > 0) {
+        ctx.setState(patch<IGameCombat>({
+          currentEncounter: patch<IGameEncounter>({
+
+            // unaffected by #ticks, intentionall
+            resetInSeconds: Math.max(0, state.currentEncounter.resetInSeconds - 1)
+          })
+        }));
+
+        return;
+      }
+
       let canSomeoneAct = false;
       let numAttempts = Math.max(0, ...[state.currentPlayer.currentSpeed, ...state.currentEncounter.enemies.map(x => x.currentSpeed)]);
 
@@ -597,6 +618,35 @@ export class CombatState {
           break;
         }
 
+        // enemies get first dibs
+        checkState.currentEncounter.enemies.forEach((enemy, index) => {
+          if(checkState.currentEncounter?.isLockedForEnemies) {
+            return;
+          }
+
+          if(enemy.currentHealth <= 0) {
+            return;
+          }
+
+          const newEnemySpeed = enemy.currentSpeed - 1;
+
+          ctx.setState(patch<IGameCombat>({
+            currentEncounter: patch<IGameEncounter>({
+              enemies: updateItem<IGameEncounterCharacter>(index, patch<IGameEncounterCharacter>({
+                currentSpeed: newEnemySpeed
+              }))
+            })
+          }));
+
+          if(newEnemySpeed <= 0) {
+            canSomeoneAct = true;
+            ctx.dispatch(new EnemyTakeTurn(index));
+            return;
+          }
+
+        });
+
+        // then the player gets a chance to go
         const newSpeed = player.currentSpeed - 1;
         ctx.setState(patch<IGameCombat>({
           currentPlayer: patch<IGameEncounterCharacter>({
@@ -629,33 +679,6 @@ export class CombatState {
           ctx.dispatch(new SetCombatLock(false));
           break;
         }
-
-        checkState.currentEncounter.enemies.forEach((enemy, index) => {
-          if(checkState.currentEncounter?.isLockedForEnemies) {
-            return;
-          }
-
-          if(enemy.currentHealth <= 0) {
-            return;
-          }
-
-          const newEnemySpeed = enemy.currentSpeed - 1;
-
-          ctx.setState(patch<IGameCombat>({
-            currentEncounter: patch<IGameEncounter>({
-              enemies: updateItem<IGameEncounterCharacter>(index, patch<IGameEncounterCharacter>({
-                currentSpeed: newEnemySpeed
-              }))
-            })
-          }));
-
-          if(newEnemySpeed <= 0) {
-            canSomeoneAct = true;
-            ctx.dispatch(new EnemyTakeTurn(index));
-            return;
-          }
-
-        });
 
         numAttempts--;
       }

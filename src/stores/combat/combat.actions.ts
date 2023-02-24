@@ -50,6 +50,11 @@ export class EndCombatAndResetPlayer {
   constructor() {}
 }
 
+export class StartCombatEndProcess {
+  static type = '[Combat] Start Combat End Process';
+  constructor() {}
+}
+
 export class InitiateCombat {
   static type = '[Combat] Initiate';
   constructor(public threat: string, public shouldResetPlayer = false, public shouldExitDungeon = false) {}

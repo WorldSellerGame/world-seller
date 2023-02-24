@@ -11,3 +11,16 @@ ion-content {
 ion-button, ion-segment-button {
   text-transform: none;
 }
+
+.alert-message::-webkit-scrollbar, .alert-message::-webkit-scrollbar {
+  width: 1em;
+  display: block !important;
+}
+
+.alert-message::-webkit-scrollbar-track, .alert-message::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.alert-message::-webkit-scrollbar-thumb, .alert-message::-webkit-scrollbar-thumb {
+  background-color: var(--ion-color-primary);
+}

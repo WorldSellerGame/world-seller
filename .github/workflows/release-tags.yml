@@ -25,7 +25,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm install --legacy-peer-deps
+    - run: npm install
+
+    - run: npm run load:content
 
     - run: npm run lint
 
@@ -51,13 +53,13 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Server Binary
-      id: uploadReleaseAsset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.createRelease.outputs.upload_url }}
-        asset_path: ./release/Tsavorite.exe
-        asset_name: Tsavorite.exe
-        asset_content_type: application/vnd.microsoft.portable-executable
+    # - name: Upload Binary
+    #   id: uploadReleaseAsset
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ steps.createRelease.outputs.upload_url }}
+    #     asset_path: ./release/Tsavorite.exe
+    #     asset_name: Tsavorite.exe
+    #     asset_content_type: application/vnd.microsoft.portable-executable

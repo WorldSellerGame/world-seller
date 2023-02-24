@@ -1,7 +1,7 @@
 {
   "name": "world-seller",
   "description": "who knows",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Kyle Kemp <kyle@seiyria.com>",
   "scripts": {
     "ng": "ng",
@@ -50,6 +50,7 @@
     "ionicons": "^6.0.3",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
+    "marked": "^4.2.12",
     "ngx-tippy-wrapper": "^6.0.0",
     "notiflix": "^3.2.5",
     "recursive-readdir": "^2.2.3",
@@ -74,6 +75,7 @@
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/howler": "^2.2.7",
     "@types/lodash": "^4.14.191",
+    "@types/marked": "^4.0.8",
     "@types/node": "^12.11.1",
     "@types/seedrandom": "^3.0.4",
     "@types/uuid": "^9.0.0",

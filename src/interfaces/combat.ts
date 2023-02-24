@@ -69,6 +69,7 @@ export interface IGameEncounter {
   isLockedForEnemies: boolean;
   shouldExitDungeon: boolean;
   log: string[];
+  resetInSeconds: number;
 }
 
 export interface IGameDungeonLoot {

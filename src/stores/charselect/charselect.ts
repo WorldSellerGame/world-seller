@@ -65,7 +65,7 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterInventory(state: ICharSelect) {
-    return this.activeCharacter(state)?.inventory ?? {};
+    return this.activeCharacter(state)?.inventory ?? [];
   }
 
   @Selector()
@@ -81,12 +81,12 @@ export class CharSelectState {
   @Action(UpdateAllItems)
   async updateAllItems(ctx: StateContext<ICharSelect>) {
     const state = ctx.getState();
-    const characters = state.characters.map(char => {
+    const characters = (state.characters || []).map(char => {
       if(!char) {
         return;
       }
 
-      const inventory = char.inventory.map((oldItem) => {
+      const inventory = (char.inventory || []).map((oldItem) => {
 
         // can't migrate an item with no id
         if(!oldItem.internalId) {

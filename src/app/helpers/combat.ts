@@ -11,7 +11,7 @@ import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
 import {
   AddCombatLogMessage, ChangeThreats,
-  EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies
+  EndCombat, EndCombatAndResetPlayer, SetCombatLock, SetCombatLockForEnemies, StartCombatEndProcess
 } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
 import { PlaySFX } from '../../stores/game/game.actions';
@@ -133,11 +133,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
   }
 
-  ctx.dispatch([new SetCombatLock(true), new SetCombatLockForEnemies(true)]);
-
-  setTimeout(() => {
-    dispatchCorrectCombatEndEvent(ctx, currentEncounter);
-  }, 3000);
+  ctx.dispatch([new SetCombatLock(true), new SetCombatLockForEnemies(true), new StartCombatEndProcess()]);
 }
 
 export function isDead(character: IGameEncounterCharacter): boolean {
