@@ -189,7 +189,7 @@
               </ion-item>
               <ion-item>
                 <ion-label>{{ options.tickTimer }}</ion-label>
-                <ion-range [value]="options.tickTimer" [ticks]="true" [min]="1" [max]="60" [debounce]="100" (ionChange)="changeTickTimer($event)"></ion-range>
+                <ion-range [value]="options.tickTimer" [ticks]="true" [min]="1" [max]="600" [debounce]="100" (ionChange)="changeTickTimer($event)"></ion-range>
               </ion-item>
 
               <ion-item class="cursor-pointer" (click)="addManyCoins()">
