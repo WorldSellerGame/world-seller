@@ -19,17 +19,17 @@
     "syncversion": "ts-node scripts/syncversion",
     "build:netlify": "npm run load:content && npm run buildvars && npm run build",
     "buildvars": "ts-node scripts/buildvars",
-    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "changelog:generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog:generate:current": "conventional-changelog -p angular -o CHANGELOG-current.md -r 2",
     "changelog:commit": "git commit CHANGELOG.md CHANGELOG-current.md -m \"Update changelog\" || true",
     "preversion": "npm run lint && npm run build",
-    "postversion": "npm run changelog:generate && npm run changelog:generate:current && npm run changelog:commit && npm run version:reversion && npm run push",
+    "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "postversion": "npm run changelog:generate && npm run changelog:generate:current && npm run changelog:commit && npm run syncversion && npm run version:reversion && npm run push",
     "version:reversion": "ts-node scripts/postversion.reversion",
     "push": "git push && git push --tags",
-    "bump:patch": "npm version patch -m \"chore(release): Patch %s\" && npm run syncversion",
-    "bump:minor": "npm version minor -m \"chore(release): Minor %s\" && npm run syncversion",
-    "bump:major": "npm version major -m \"chore(release): Major %s\" && npm run syncversion"
+    "bump:patch": "npm version patch -m \"chore(release): Patch %s\"",
+    "bump:minor": "npm version minor -m \"chore(release): Minor %s\"",
+    "bump:major": "npm version major -m \"chore(release): Major %s\""
   },
   "private": true,
   "dependencies": {
