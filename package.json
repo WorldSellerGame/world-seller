@@ -6,13 +6,17 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 9335",
+    "start:electron": "wait-on http://localhost:9335/ && cd electron && npm start",
+    "start:both": "concurrently --kill-others -n angular,electron \"npm start\" \"npm run start:electron\"",
     "build": "ng build --configuration production",
+    "build:electron": "npm run build && npm run syncversion && cd electron && npm run make",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint && npm run validate",
     "load:content": "ts-node scripts/content",
     "validate": "npm run validate:svgs && npm run validate:items",
     "validate:svgs": "ts-node scripts/svg-validate",
     "validate:items": "ts-node scripts/item-validate",
+    "syncversion": "ts-node scripts/syncversion",
     "build:netlify": "npm run load:content && npm run buildvars && npm run build",
     "buildvars": "ts-node scripts/buildvars",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
@@ -23,9 +27,9 @@
     "postversion": "npm run changelog:generate && npm run changelog:generate:current && npm run changelog:commit && npm run version:reversion && npm run push",
     "version:reversion": "ts-node scripts/postversion.reversion",
     "push": "git push && git push --tags",
-    "bump:patch": "npm version patch -m \"chore(release): Patch %s\"",
-    "bump:minor": "npm version minor -m \"chore(release): Minor %s\"",
-    "bump:major": "npm version major -m \"chore(release): Major %s\""
+    "bump:patch": "npm version patch -m \"chore(release): Patch %s\" && npm run syncversion",
+    "bump:minor": "npm version minor -m \"chore(release): Minor %s\" && npm run syncversion",
+    "bump:major": "npm version major -m \"chore(release): Major %s\" && npm run syncversion"
   },
   "private": true,
   "dependencies": {
@@ -81,6 +85,7 @@
     "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "5.46.1",
     "@typescript-eslint/parser": "5.46.1",
+    "concurrently": "^7.6.0",
     "conventional-changelog-cli": "^2.2.2",
     "eslint": "^8.29.0",
     "eslint-plugin-import": "^2.26.0",
@@ -89,6 +94,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "git-describe": "^4.1.1",
     "ts-node": "~8.3.0",
-    "typescript": "~4.8.4"
+    "typescript": "~4.8.4",
+    "wait-on": "^7.0.1"
   }
 }

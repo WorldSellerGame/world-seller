@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { MercantileState, WorkersState } from '../../../../../stores';
+import { setDiscordStatus } from '../../../../helpers/electron';
 
 @Component({
   selector: 'app-mercantile',
@@ -10,6 +11,7 @@ import { MercantileState, WorkersState } from '../../../../../stores';
 })
 export class MercantilePage implements OnInit {
 
+  @Select(MercantileState.level) level$!: Observable<number>;
   @Select(MercantileState.shopCounterInfo) shopCounter$!: Observable<{ current: number; max: number }>;
   @Select(MercantileState.stockpileInfo) stockpileInfo$!: Observable<{ current: number; max: number }>;
   @Select(WorkersState.workersAndAllocated) workersAndAllocated$!: Observable<{ current: number; max: number }>;
@@ -17,6 +19,13 @@ export class MercantilePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      const state = `Mercantile Lv.${level}, reviewing...`;
+
+      setDiscordStatus({
+        state
+      });
+    });
   }
 
 }

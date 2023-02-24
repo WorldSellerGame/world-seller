@@ -18,6 +18,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { isInElectron } from './helpers/electron';
 import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
 import { MetaService } from './services/meta.service';
@@ -41,7 +42,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     SharedModule,
     AngularSvgIconModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: !isDevMode() && !isInElectron(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
     NgxsModule.forRoot(allStores, {

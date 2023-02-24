@@ -3,6 +3,7 @@ import { Select } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { IAchievement } from '../../../../interfaces';
 import { AchievementsState } from '../../../../stores';
+import { setDiscordStatus } from '../../../helpers/electron';
 import { ContentService } from '../../../services/content.service';
 
 @Component({
@@ -34,6 +35,10 @@ export class AchievementsPage implements OnInit, OnDestroy {
       this.earnedAchievements = achievements;
       this.achievementsInOrder = [...earnedAchievements, ...unearnedAchievements]
         .filter(Boolean) as (IAchievement & { unearned: boolean })[];
+
+      setDiscordStatus({
+        state: `🏆 Viewing their ${Object.keys(this.earnedAchievements).length} achievements...`
+      });
     });
   }
 

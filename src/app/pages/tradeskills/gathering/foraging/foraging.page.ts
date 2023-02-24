@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { ForagingState, WorkersState } from '../../../../../stores';
 import { CancelForaging, SetForagingLocation } from '../../../../../stores/foraging/foraging.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -37,6 +38,15 @@ export class ForagingPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentLocation$.pipe(first()).subscribe(currentLocation => {
+        const state = currentLocation ? `Foraging Lv.${level} @ ${currentLocation.location.name}...` : `Foraging Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }

@@ -4,6 +4,7 @@ export * from './character';
 export * from './charselect';
 export * from './combat';
 export * from './dungeon';
+export * from './electron';
 export * from './farming';
 export * from './game';
 export * from './gathering';

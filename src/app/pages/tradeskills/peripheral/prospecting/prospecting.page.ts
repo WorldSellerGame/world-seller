@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameResourceTransform } from '../../../../../interfaces';
 import { CharSelectState, ProspectingState } from '../../../../../stores';
 import { ProspectRock } from '../../../../../stores/prospecting/prospecting.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -23,6 +24,13 @@ export class ProspectingPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      const state = `Prospecting Lv.${level}, browsing...`;
+
+      setDiscordStatus({
+        state
+      });
+    });
   }
 
   trackBy(index: number) {

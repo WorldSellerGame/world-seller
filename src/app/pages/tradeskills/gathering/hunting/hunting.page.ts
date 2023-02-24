@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { HuntingState, WorkersState } from '../../../../../stores';
 import { CancelHunting, SetHuntingLocation } from '../../../../../stores/hunting/hunting.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -37,6 +38,15 @@ export class HuntingPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentLocation$.pipe(first()).subscribe(currentLocation => {
+        const state = currentLocation ? `Hunting Lv.${level} @ ${currentLocation.location.name}...` : `Hunting Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }

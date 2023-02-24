@@ -4,6 +4,7 @@ import { sortBy, uniq } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { CharSelectState } from '../../../../stores';
 
+import { setDiscordStatus } from '../../../helpers/electron';
 import { ContentService } from '../../../services/content.service';
 
 @Component({
@@ -27,6 +28,10 @@ export class ResourcesPage implements OnInit, OnDestroy {
       }
 
       this.activeCategory = this.resourceCategories(x)[0];
+
+      setDiscordStatus({
+        state: 'Browsing their stockpile...',
+      });
     });
   }
 

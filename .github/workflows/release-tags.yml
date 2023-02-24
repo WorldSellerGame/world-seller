@@ -53,13 +53,63 @@ jobs:
         draft: false
         prerelease: false
 
-    # - name: Upload Binary
-    #   id: uploadReleaseAsset
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.createRelease.outputs.upload_url }}
-    #     asset_path: ./release/Tsavorite.exe
-    #     asset_name: Tsavorite.exe
-    #     asset_content_type: application/vnd.microsoft.portable-executable
+    - name: Output Release URL File
+      run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+    - name: Save Release URL File for publish
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_url
+        path: release_url.txt
+
+  publish-windows:
+    needs: [build]
+    name: Create Windows Binary
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+        node-version: [18]
+
+    steps:
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+
+    - name: Get Release File Name & Upload URL
+      id: getReleaseInfo
+      run: |
+        echo ::set-output name=file_name::${REPOSITORY_NAME##*/}-${TAG_REF_NAME##*/v} # RepositoryName-v1.0.0
+        value=`cat release_url/release_url.txt`
+        echo ::set-output name=upload_url::$value
+      env:
+        TAG_REF_NAME: ${{ github.ref }}
+        REPOSITORY_NAME: ${{ github.repository }}
+
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - run: npm install
+
+    - run: npm run load:content
+
+    - run: npm run lint
+
+    - run: npm run build:electron
+
+    - name: Upload Binary
+      id: uploadReleaseAsset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.getReleaseInfo.outputs.upload_url }}
+        asset_path: ./electron/out/make/squirrel.windows/x64/World Seller.exe
+        asset_name: World Seller.exe
+        asset_content_type: application/vnd.microsoft.portable-executable

@@ -7,6 +7,7 @@ import { CharSelectState, OptionsState } from '../stores';
 import { DiscoverResourceOrItem, GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charselect.actions';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel, getTotalLevel } from './helpers';
+import { setMainDiscordStatus } from './helpers/electron';
 import { GameloopService } from './services/gameloop.service';
 import { NotifyService } from './services/notify.service';
 
@@ -170,6 +171,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.level = this.store.select(state => getTotalLevel(state)).subscribe(level => {
       this.totalLevel = level;
+
+      setMainDiscordStatus(`Level ${level.toLocaleString()}`);
 
       this.store.dispatch(new SyncTotalLevel(level));
     });

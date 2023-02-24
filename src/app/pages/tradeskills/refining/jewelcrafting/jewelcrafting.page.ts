@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../../stores';
 
 import { CancelJewelcraftingJob, StartJewelcraftingJob } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -39,6 +40,17 @@ export class JewelcraftingPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentQueue$.pipe(first()).subscribe(currentQueue => {
+        const state = currentQueue.queue.length > 0
+          ? `Jewelcrafting Lv.${level} @ ${currentQueue.queue[0].recipe.result}...`
+          : `Jewelcrafting Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }
