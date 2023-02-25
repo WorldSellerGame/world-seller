@@ -28,7 +28,7 @@ export class CombatPage implements OnInit, OnDestroy {
         state = `Combat Lv.${level}, exploring ${dungeon.dungeon.name}...`;
       }
 
-      if(encounter.encounter.enemies[0]) {
+      if(encounter?.encounter?.enemies[0]) {
         state = `Combat Lv.${level}, fighting ${encounter.encounter.enemies[0].name} and more...`;
       }
 
