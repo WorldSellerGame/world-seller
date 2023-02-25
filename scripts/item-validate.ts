@@ -13,7 +13,8 @@ const validItemTypes = ['Pickaxe', 'Axe', 'FishingRod', 'FishingBait', 'Scythe',
 const validStats = [
   'pickaxePower', 'axePower', 'fishingPower', 'scythePower', 'huntingPower',
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
-  'armor', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed'
+  'armor', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
+  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
 ];
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
