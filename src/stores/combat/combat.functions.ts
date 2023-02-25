@@ -410,7 +410,7 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
     return;
   }
 
-  if(isDead(currentPlayer)) {
+  if(isDead(currentPlayer) || hasAnyoneWonCombat(ctx)) {
     return;
   }
 
