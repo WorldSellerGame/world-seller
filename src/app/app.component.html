@@ -119,9 +119,11 @@
                       <div>{{ p.requirements }}</div>
                     </ion-label>
 
-                    <ion-label class="has-timer" *ngIf="tsData.isUnlocked">
+                    <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      <p>
+                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      </p>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>
@@ -149,9 +151,11 @@
                       <div>{{ p.requirements }}</div>
                     </ion-label>
 
-                    <ion-label class="has-timer" *ngIf="tsData.isUnlocked">
+                    <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      <p>
+                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      </p>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>
@@ -179,9 +183,11 @@
                       <div>{{ p.requirements }}</div>
                     </ion-label>
 
-                    <ion-label class="has-timer" *ngIf="tsData.isUnlocked">
+                    <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      <p>
+                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
+                      </p>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>
