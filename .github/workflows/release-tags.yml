@@ -33,9 +33,6 @@ jobs:
 
     - run: npm run build
 
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: loadTagName
-
     - uses: pCYSl5EDgo/cat@master
       id: loadChangelog
       with:
@@ -79,6 +76,9 @@ jobs:
       with:
         name: release_url
 
+    - uses: little-core-labs/get-git-tag@v3.0.1
+      id: loadTagName
+
     - uses: pCYSl5EDgo/cat@master
       id: loadReleaseUrl
       with:
@@ -111,3 +111,12 @@ jobs:
         asset_path: ./electron/out/make/squirrel.windows/x64/World Seller.exe
         asset_name: World Seller.exe
         asset_content_type: application/vnd.microsoft.portable-executable
+
+    - uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        CHANNEL: windows
+        ITCH_GAME: world-seller
+        ITCH_USER: seiyria
+        PACKAGE: ./electron/out/make/squirrel.windows/x64/World Seller.exe
+        VERSION: ${{ steps.loadTagName.outputs.tag }}
