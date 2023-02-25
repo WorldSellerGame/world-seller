@@ -79,7 +79,7 @@ export class ExchangePage implements OnInit {
       return { cost: 1, gain: costToSwapRarityToRarity(forResource.rarity, costResource.rarity) };
     }
 
-    return { cost: 1, gain: 1 };
+    return { cost: 2, gain: 1 };
   }
 
   costForResource(costItem: string) {
