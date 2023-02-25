@@ -16,3 +16,13 @@ Regen2:
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: -5
+
+RegenStats:
+  name: Regenerate (Stats)
+  description: Regenerates health over time.
+  icon: healing
+  color: "#00ff00"
+  turnsLeft: 2
+  statusEffectType: StatModification
+  statModifications:
+    healingPerRound: 3
