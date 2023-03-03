@@ -46,10 +46,9 @@ Doom1:
 
 Rot1:
   name: Rot I 
-  description: Damage every turn reduced healing and reduced max hp.
+  description: Damage every turn.
   icon: heart-bitten
   color: "#00ff00"
   turnsLeft: 5
-  statusEffectType: StatModification
   statusEffectType: DamageOverTime
   damageOverTime: 4

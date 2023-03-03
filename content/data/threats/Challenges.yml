@@ -1,0 +1,105 @@
+#This shall all be deleted like literally all of it so please ignore if its bad this is just for fun and has other purposes
+
+Lordsandblobs:
+  name: Rulers Of Nothing
+  icon: skull-mask
+  description: "CHALLENGE: Goblin lords have found something weaker than goblins to rule over."
+
+  maxSkillGainLevel: 25
+  level:
+    min: 21
+    max: 30
+
+  enemies:
+    - Slime1
+    - Slime1
+    - Slime1
+    - GoblinLord1
+    - GoblinLord1
+    - Slime1
+    - Slime1
+    - Slime1
+
+
+DotGang:
+  name: Dot Gang
+  icon: skull-mask
+  description: "CHALLENGE: Oh yeah its technical enemy time."
+
+  maxSkillGainLevel: 27
+  level:
+    min: 21
+    max: 30
+
+  enemies:
+    - GoblinShaman1
+    - Skeleton1
+    - GoblinShaman1
+    - Skeleton1
+
+MultihitGang:
+  name: Multi-Hit Gang
+  icon: skull-mask
+  description: "CHALLENGE: Love the part were multi hit man said its multi time and multi hit all over them."
+
+  maxSkillGainLevel: 27
+  level:
+    min: 21
+    max: 30
+
+  enemies:
+    - Monstrosity1
+    - Goblin2
+    - Monstrosity1
+    - Goblin2
+
+DoubleMummy:
+  name: Double Mummy
+  icon: mummy
+  description: "CHALLENGE: You'll never guess what this is."
+
+  maxSkillGainLevel: 28
+  level:
+    min: 21
+    max: 30
+
+  enemies:
+    - Mummy1
+    - Mummy1
+
+
+Enemy Charcuterie:
+  name: Enemy Charcuterie
+  icon: skull-mask
+  description: "CHALLENGE: You really have to incorporate all those flavors for it to be a good board."
+
+  maxSkillGainLevel: 28
+  level:
+    min: 21
+    max: 30
+
+  enemies:
+    - Slime1
+    - Goblin1
+    - Goblin2
+    - GoblinShaman1
+    - Zombie1
+    - Skeleton1
+    - Monstrosity1
+
+
+DoubleBossRush:
+  name: Final Challenge
+  icon: skull-doom 
+  description: "CHALLENGE: I know this is mathematically possible, but Im also aware its not practically possible. Try at your own risk."
+
+  maxSkillGainLevel: 29
+  level:
+    min: 28
+    max: 30
+
+  enemies:
+    - GoblinLord1
+    - Mummy1
+    - Mummy1
+    - GoblinLord1

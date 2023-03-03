@@ -1,18 +1,4 @@
 
-SingleGoblidn:
-  name: Goblin
-  icon: goblin-small
-  description: A tiny lil goblin. He can't do too much to you, can he?
-
-  maxSkillGainLevel: 3
-  level:
-    min: 0
-    max: 15
-
-  enemies:
-    - Zombie1
-
-
 
 SingleGoblin:
   name: Goblin
@@ -101,7 +87,7 @@ GoblinWarriorDuo:
 
 GoblinMixedTrio:
   name: Goblin Trio
-  icon: goblin-small
+  icon: group-mixed
   description: Three goblins, but why does that one have a stick?
 
   maxSkillGainLevel: 8
@@ -116,7 +102,7 @@ GoblinMixedTrio:
 
 GoblinQuadruple:
   name: Goblin Party
-  icon: goblin-small
+  icon: group
   description: A party of goblins. Adventurers aren't the only ones who can party up.
 
   maxSkillGainLevel: 8
@@ -162,7 +148,7 @@ GoblinAll:
 
 GoblinDangerous: #flow over
   name: Goblin Strike Team
-  icon: goblin-big
+  icon: group-mixed
   description: Not to be messed with.
 
   maxSkillGainLevel: 9
