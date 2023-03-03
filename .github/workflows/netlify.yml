@@ -1,7 +1,10 @@
 name: Automatic Deploy
 
 on:
-  push: {}
+  push:
+    branches:
+      - master
+      
   workflow_dispatch: {}
 
 jobs:
