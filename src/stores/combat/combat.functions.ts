@@ -6,7 +6,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat
 } from '../../interfaces';
 import {
-  AddCombatLogMessage, ConsumeFoodCharges, EnemyCooldownSkill, EnemySpeedReset,
+  AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, EnemyCooldownSkill, EnemySpeedReset,
   LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
   SetFood,
@@ -410,7 +410,7 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
     return;
   }
 
-  if(isDead(currentPlayer)) {
+  if(isDead(currentPlayer) || hasAnyoneWonCombat(ctx)) {
     return;
   }
 
@@ -529,4 +529,18 @@ export function consumeFoodCharges(ctx: StateContext<IGameCombat>) {
   });
 
   ctx.setState(patch<IGameCombat>({ activeFoods: foods }));
+}
+
+/**
+ * Apply an effect to the player (debug only).
+ */
+export function applyEffectToPlayer(ctx: StateContext<IGameCombat>, { effect }: DebugApplyEffectToPlayer) {
+  const player = ctx.getState().currentPlayer;
+  if(!player) {
+    return;
+  }
+
+  applyDeltas(ctx, player, player, [
+    { target: 'source', attribute: '', delta: 0, applyStatusEffect: effect }
+  ]);
 }

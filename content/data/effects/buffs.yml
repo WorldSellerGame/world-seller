@@ -133,7 +133,7 @@ EnergyBuff1:
 
 EnergyBuff2:
   name: Energize II
-  description: Increases Energy by 15.
+  description: Increases Max Energy by 15.
   icon: bolt
   color: "#00ff00"
   turnsLeft: 5

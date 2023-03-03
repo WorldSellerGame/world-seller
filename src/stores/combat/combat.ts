@@ -216,13 +216,13 @@ export class CombatState {
     });
 
     // speed adjustments
-    const maxSpeed = 1 + Math.max(
+    const maxSpeed = Math.max(
       currentPlayer.stats[Stat.Speed],
       ...threatData.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
     );
 
     [currentPlayer, ...enemies].forEach(char => {
-      char.stats[Stat.Speed] = maxSpeed - char.stats[Stat.Speed];
+      char.stats[Stat.Speed] = Math.max(1, maxSpeed - char.stats[Stat.Speed] + 1);
       char.currentSpeed = random(Math.floor(char.stats[Stat.Speed] / 2), char.stats[Stat.Speed]);
     });
 

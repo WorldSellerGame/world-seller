@@ -24,8 +24,8 @@ export class VisualsService {
   playSoundEffect(sound: string) {
     const options = this.store.snapshot().options;
 
-    const masterPercent = (options[GameOption.SoundMaster] || 1) / 100;
-    const sfxPercent = (options[GameOption.SoundSFX] || 1) / 100;
+    const masterPercent = (options[GameOption.SoundMaster] || 100) / 100;
+    const sfxPercent = (options[GameOption.SoundSFX] || 100) / 100;
 
     const soundByte = new Howl({
       src: [`assets/sfx/${sound}.wav`],

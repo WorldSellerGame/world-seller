@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { FishingState, WorkersState } from '../../../../../stores';
 import { CancelFishing, SetFishingLocation } from '../../../../../stores/fishing/fishing.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -37,6 +38,15 @@ export class FishingPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentLocation$.pipe(first()).subscribe(currentLocation => {
+        const state = currentLocation ? `Fishing Lv.${level} @ ${currentLocation.location.name}...` : `Fishing Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }

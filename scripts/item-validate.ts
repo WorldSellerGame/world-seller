@@ -13,7 +13,8 @@ const validItemTypes = ['Pickaxe', 'Axe', 'FishingRod', 'FishingBait', 'Scythe',
 const validStats = [
   'pickaxePower', 'axePower', 'fishingPower', 'scythePower', 'huntingPower',
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
-  'armor', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed'
+  'armor', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
+  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
 ];
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
@@ -287,8 +288,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
-    if(!threat.level.min || !threat.level.max) {
-      console.log(`⚠ Threat ${key} has no level range.`);
+    if(!threat.level.max) {
+      console.log(`⚠ Threat ${key} has no level range max.`);
       hasBad = true;
     }
 

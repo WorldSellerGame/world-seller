@@ -7,6 +7,7 @@ import { MetaService } from 'src/app/services/meta.service';
 import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
+import { setDiscordStatus } from '../../../helpers/electron';
 import { AnnouncementService } from '../../../services/announcements.service';
 
 @Component({
@@ -27,6 +28,9 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    setDiscordStatus({
+      state: 'Picking a character to play...'
+    });
   }
 
   canMakeNewCharacter(characterList: IPlayerCharacter[]) {

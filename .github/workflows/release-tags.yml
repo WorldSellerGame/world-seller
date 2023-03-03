@@ -33,9 +33,6 @@ jobs:
 
     - run: npm run build
 
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: loadTagName
-
     - uses: pCYSl5EDgo/cat@master
       id: loadChangelog
       with:
@@ -53,13 +50,73 @@ jobs:
         draft: false
         prerelease: false
 
-    # - name: Upload Binary
-    #   id: uploadReleaseAsset
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ steps.createRelease.outputs.upload_url }}
-    #     asset_path: ./release/Tsavorite.exe
-    #     asset_name: Tsavorite.exe
-    #     asset_content_type: application/vnd.microsoft.portable-executable
+    - name: Output Release URL File
+      run: echo "${{ steps.createRelease.outputs.upload_url }}" > release_url.txt
+
+    - name: Save Release URL File for Publish
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_url
+        path: release_url.txt
+
+  publish-windows:
+    needs: [build]
+    name: Create Windows Binary
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest]
+        node-version: [18]
+
+    steps:
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+
+    - uses: little-core-labs/get-git-tag@v3.0.1
+      id: loadTagName
+
+    - uses: pCYSl5EDgo/cat@master
+      id: loadReleaseUrl
+      with:
+        path: release_url/release_url.txt
+
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - run: npm install
+
+    - run: cd electron && npm install
+
+    - run: npm run load:content
+
+    - run: npm run lint
+
+    - run: npm run build:electron
+
+    - name: Upload Binary
+      id: uploadReleaseAsset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.loadReleaseUrl.outputs.text }}
+        asset_path: ./electron/out/make/squirrel.windows/x64/World Seller.exe
+        asset_name: World Seller.exe
+        asset_content_type: application/vnd.microsoft.portable-executable
+
+    - uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        CHANNEL: windows
+        ITCH_GAME: world-seller
+        ITCH_USER: seiyria
+        PACKAGE: ./electron/out/make/squirrel.windows/x64/World Seller.exe
+        VERSION: ${{ steps.loadTagName.outputs.tag }}

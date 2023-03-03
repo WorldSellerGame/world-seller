@@ -10,9 +10,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Stone: 1
       Cedar Log: 1
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
   - result: Stone Axe
@@ -24,9 +24,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Stone: 4
       Cedar Log: 2
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
   - result: Stone Pickaxe
@@ -38,9 +38,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Stone: 4
       Cedar Log: 3
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
   - result: Stone Sickle
@@ -52,9 +52,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Stone: 4
       Cedar Log: 2
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
   - result: Stone Spear
@@ -66,9 +66,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Stone: 1
       Cedar Log: 4
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
   - result: Cedar Fishing Rod
@@ -80,9 +80,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Cedar Log: 3
       Twine: 5
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
 ################## copper
@@ -96,9 +96,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 1
       Oak Log: 1
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Copper Sword
@@ -110,9 +110,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 4
       Oak Log: 1
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Copper Axe
@@ -124,9 +124,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 4
       Oak Log: 2
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Copper Pickaxe
@@ -138,9 +138,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 4
       Oak Log: 3
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Copper Sickle
@@ -152,9 +152,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 4
       Oak Log: 2
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Copper Spear
@@ -166,9 +166,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 1
       Oak Log: 4
     require:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     preserve:
-      - Metal Tool Bench 
+      - Metal Tool Bench
     maxWorkers: 1
 
   - result: Oak Fishing Rod
@@ -180,9 +180,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Oak Log: 3
       Twine: 5
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
 ################## Iorn
@@ -196,9 +196,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 1
       Ash Log: 1
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Iron Sword
@@ -210,9 +210,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 4
       Ash Log: 1
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Iron Axe
@@ -224,9 +224,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 4
       Ash Log: 2
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Iron Pickaxe
@@ -238,9 +238,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 4
       Ash Log: 3
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Iron Sickle
@@ -252,9 +252,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 4
       Ash Log: 2
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Iron Spear
@@ -266,9 +266,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Iron Ingot: 1
       Ash Log: 4
     require:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     preserve:
-      - Iron Tool Bench 
+      - Iron Tool Bench
     maxWorkers: 1
 
   - result: Ash Fishing Rod
@@ -280,9 +280,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Ash Log: 3
       Twine: 5
     require:
-      - Workbench 
+      - Workbench
     preserve:
-      - Workbench 
+      - Workbench
     maxWorkers: 1
 
 ##################
@@ -773,7 +773,7 @@ recipes: #Rebalance for 900~ lines ;-;
     require:
       - Table
     preserve:
-      - Oven
+      - Table
     maxWorkers: 1
 
   - result: Fire Brick

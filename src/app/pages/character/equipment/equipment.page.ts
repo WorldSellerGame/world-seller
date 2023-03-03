@@ -5,6 +5,7 @@ import { IGameItem, IPlayerCharacter, ItemType } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { EquipItem, UnequipItem } from '../../../../stores/charselect/charselect.actions';
 import { getItemRarityClass, getStatTotals } from '../../../helpers';
+import { setDiscordStatus } from '../../../helpers/electron';
 
 @Component({
   selector: 'app-equipment',
@@ -40,6 +41,9 @@ export class EquipmentPage implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit() {
+    setDiscordStatus({
+      state: 'Browsing their equipment...'
+    });
   }
 
   loadEquipment(slot: ItemType) {

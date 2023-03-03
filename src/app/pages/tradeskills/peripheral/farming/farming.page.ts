@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameFarmingPlot, IGameResourceTransform } from '../../../../../interfaces';
 import { CharSelectState, FarmingState } from '../../../../../stores';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../../../../../stores/farming/farming.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
 import { NotifyService } from '../../../../services/notify.service';
@@ -33,6 +34,13 @@ export class FarmingPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      const state = `Farming Lv.${level}, browsing...`;
+
+      setDiscordStatus({
+        state
+      });
+    });
   }
 
   public trackBy(index: number) {

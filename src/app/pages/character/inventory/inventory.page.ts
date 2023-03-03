@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
+import { setDiscordStatus } from '../../../helpers/electron';
 
 @Component({
   selector: 'app-inventory',
@@ -28,6 +29,10 @@ export class InventoryPage implements OnInit, OnDestroy {
       }
 
       this.activeCategory = this.itemCategories(x)[0];
+
+      setDiscordStatus({
+        state: 'Browsing their inventory...'
+      });
     });
   }
 

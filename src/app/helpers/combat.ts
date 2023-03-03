@@ -221,7 +221,11 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           }
 
           default: {
-            character.stats[key as Stat] = Math.max(character.stats[key as Stat] - bonusValue, 1);
+            const statsThatStayAt1 = [Stat.Speed];
+            character.stats[key as Stat] = Math.max(
+              character.stats[key as Stat] - bonusValue,
+              statsThatStayAt1.includes(key as Stat) ? 1 : 0
+            );
             break;
           }
         }

@@ -67,6 +67,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Electron
+electron/node_modules
+electron/www
+out/
+
 src/assets/content
 version.json
 src/assets/*.md

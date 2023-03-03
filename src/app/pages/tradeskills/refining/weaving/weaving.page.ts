@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, WeavingState, WorkersState } from '../../../../../stores';
 
 import { CancelWeavingJob, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -39,5 +40,16 @@ export class WeavingPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentQueue$.pipe(first()).subscribe(currentQueue => {
+        const state = currentQueue.queue.length > 0
+          ? `Weaving Lv.${level} @ ${currentQueue.queue[0].recipe.result}...`
+          : `Weaving Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 }

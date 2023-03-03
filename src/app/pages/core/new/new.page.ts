@@ -5,6 +5,7 @@ import { Observable, first } from 'rxjs';
 import { IPlayerCharacter } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
 import { CreateCharacter } from '../../../../stores/charselect/charselect.actions';
+import { setDiscordStatus } from '../../../helpers/electron';
 
 @Component({
   selector: 'app-new',
@@ -19,15 +20,18 @@ export class NewPage implements OnInit {
 
   constructor(private router: Router, private store: Store) { }
 
+  ngOnInit() {
+    setDiscordStatus({
+      state: 'Making a new character...'
+    });
+  }
+
   cleanName() {
     return this.character.name.trim();
   }
 
   canCreate() {
     return this.cleanName();
-  }
-
-  ngOnInit() {
   }
 
   create() {

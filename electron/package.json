@@ -1,0 +1,40 @@
+{
+  "name": "world-seller",
+  "productName": "World Seller",
+  "version": "0.0.6",
+  "description": "World Seller is a game about selling the world!",
+  "main": "src/index.js",
+  "author": "World Seller Team <hi@worldsellergame.com>",
+  "scripts": {
+    "start": "npm run start:localref",
+    "start:localbuild": "npm run build:copy && npm run build:replacebasehref && electron-forge start",
+    "start:localref": "cross-env APP_URL=http://localhost:9335 electron-forge start",
+    "start:prodref": "cross-env APP_URL=https://play.worldsellergame.com electron-forge start",
+    "build": "npm run build:copy && npm run build:replacebasehref",
+    "build:copy": "cpy ../www/ .",
+    "build:replacebasehref": "replace-in-file \"\\\"/\\\"\" \"\\\"./\\\"\" www/index.html",
+    "prepackage": "npm run build",
+    "package": "electron-forge package",
+    "premake": "npm run build",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "electron-config": "^2.0.0",
+    "electron-debug": "^3.2.0",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-dmg": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "cpy-cli": "^4.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "23.1.1",
+    "replace-in-file": "^6.3.5"
+  }
+}

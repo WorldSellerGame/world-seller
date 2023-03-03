@@ -160,7 +160,7 @@ HuntingBasic2:
 
 LoggingBasic1:
   name: Lumberjack's Endurance I
-  description: Increase your max Health.
+  description: Increase your Max Health.
   icon: heart-plus
   target: Self
   type: Physical
@@ -176,7 +176,7 @@ LoggingBasic1:
 
 LoggingBasic2:
   name: Lumberjack's Endurance II
-  description: Increase your max Health.
+  description: Increase your Max Health.
   icon: heart-plus
   target: Self
   type: Physical

@@ -1,4 +1,4 @@
-import { IGameCombatAbility, IGameEncounterCharacter, IGameItem } from '../../interfaces';
+import { IGameCombatAbility, IGameEncounterCharacter, IGameItem, IGameStatusEffect } from '../../interfaces';
 
 export class UnlockCombat {
   static type = '[Combat] Unlock';
@@ -139,4 +139,9 @@ export class PlayerSpeedReset {
 export class EnemySpeedReset {
   static type = '[Combat] Enemy Speed Reset';
   constructor(public enemyIndex: number) {}
+}
+
+export class DebugApplyEffectToPlayer {
+  static type = '[Combat] Debug Apply Effect To Player';
+  constructor(public effect: IGameStatusEffect) {}
 }

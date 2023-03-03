@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { MiningState, WorkersState } from '../../../../../stores';
 import { CancelMining, SetMiningLocation } from '../../../../../stores/mining/mining.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -38,6 +39,15 @@ export class MiningPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentLocation$.pipe(first()).subscribe(currentLocation => {
+        const state = currentLocation ? `Mining Lv.${level} @ ${currentLocation.location.name}...` : `Mining Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }

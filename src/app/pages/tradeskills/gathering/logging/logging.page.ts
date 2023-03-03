@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { LoggingState, WorkersState } from '../../../../../stores';
 import { CancelLogging, SetLoggingLocation } from '../../../../../stores/logging/logging.actions';
+import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -37,6 +38,15 @@ export class LoggingPage implements OnInit {
   constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
+    this.level$.pipe(first()).subscribe(level => {
+      this.currentLocation$.pipe(first()).subscribe(currentLocation => {
+        const state = currentLocation ? `Logging Lv.${level} @ ${currentLocation.location.name}...` : `Logging Lv.${level}, browsing...`;
+
+        setDiscordStatus({
+          state
+        });
+      });
+    });
   }
 
 }

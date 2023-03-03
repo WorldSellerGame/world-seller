@@ -3,6 +3,7 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import {
   AddCombatLogMessage,
   ConsumeFoodCharges,
+  DebugApplyEffectToPlayer,
   EndCombat,
   EndCombatAndResetPlayer,
   EnemyCooldownSkill,
@@ -16,6 +17,7 @@ import {
 } from './combat.actions';
 import {
   addCombatLogMessage,
+  applyEffectToPlayer,
   consumeFoodCharges,
   endCombat,
   endCombatAndResetPlayer,
@@ -62,6 +64,7 @@ export const attachments: IAttachment[] = [
   { action: TickEnemyEffects, handler: tickEnemyEffects },
   { action: ConsumeFoodCharges, handler: consumeFoodCharges },
   { action: StartCombatEndProcess, handler: prepareCombatForRestart },
+  { action: DebugApplyEffectToPlayer, handler: applyEffectToPlayer },
 
   { action: FullyHeal, handler: fullyHeal },
   { action: LeaveDungeon, handler: leaveDungeon },
