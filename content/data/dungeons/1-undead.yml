@@ -21,8 +21,6 @@ floors:
       - [  .,  1,  1, t1, c1, t1,  1,  1,  1,  1,  1,  .]
       - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
 
-
-
   - name: Who Put This Maze Here
     layout: #21/21
       - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
@@ -131,11 +129,11 @@ treasureChests:
       drops:
         - resource: Cut Tanzanite
           amount: 4
-
+  
     - config: Copper Ring
       drops:
-        - resource: Copper Ring
-          amount: 1
+      - resource: Copper Ring
+        amount: 1
 
     - config: Quartz Iron Tongue Piercing
       drops:
