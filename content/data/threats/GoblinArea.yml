@@ -19,7 +19,7 @@ GoblinandSlime:
   icon: goblin-small
   description: Goblins can have pets too
 
-  maxSkillGainLevel: 4
+  maxSkillGainLevel: 5
   level:
     min: 1
     max: 7
@@ -35,7 +35,7 @@ SingleGoblinWarrior:
   icon: goblin-big
   description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
 
-  maxSkillGainLevel: 6
+  maxSkillGainLevel: 7
   level:
     min: 1
     max: 7
@@ -48,7 +48,7 @@ GoblinDuo:
   icon: goblin-small
   description: A pair of tiny goblins. They do get a little more threatening this way.
 
-  maxSkillGainLevel: 6
+  maxSkillGainLevel: 7
   level:
     min: 1
     max: 7
@@ -62,7 +62,7 @@ GoblinMixedDuo:
   icon: goblin-small
   description: Teaching the little fellow the ropes.
 
-  maxSkillGainLevel: 8
+  maxSkillGainLevel: 9
   level:
     min: 2
     max: 8
@@ -76,7 +76,7 @@ GoblinWarriorDuo:
   icon: goblin-big
   description: 2 Goblins ready to fight.
 
-  maxSkillGainLevel: 7
+  maxSkillGainLevel: 8
   level:
     min: 3
     max: 8
@@ -90,7 +90,7 @@ GoblinMixedTrio:
   icon: group-mixed
   description: Three goblins, but why does that one have a stick?
 
-  maxSkillGainLevel: 8
+  maxSkillGainLevel: 9
   level:
     min: 4
     max: 9
@@ -105,7 +105,7 @@ GoblinQuadruple:
   icon: group
   description: A party of goblins. Adventurers aren't the only ones who can party up.
 
-  maxSkillGainLevel: 8
+  maxSkillGainLevel: 9
   level:
     min: 4
     max: 9
@@ -121,7 +121,7 @@ GoblinWarriorTriple:
   icon: goblin-big
   description: Mean and dangerous, but it means you must be getting closer.
 
-  maxSkillGainLevel: 9
+  maxSkillGainLevel: 10
   level:
     min: 6
     max: 9
@@ -136,7 +136,7 @@ GoblinAll:
   icon: goblin-big
   description: Variety in teams leads to productivity.
 
-  maxSkillGainLevel: 9
+  maxSkillGainLevel: 10
   level:
     min: 6
     max: 9
@@ -151,7 +151,7 @@ GoblinDangerous: #flow over
   icon: group-mixed
   description: Not to be messed with.
 
-  maxSkillGainLevel: 9
+  maxSkillGainLevel: 10
   level:
     min: 7
     max: 15
@@ -169,8 +169,10 @@ GoblinDungeonBoss: #this is way too strong lol
   icon: goblin-big
   description: Leader of these goblins, take out him and his servants and his pets and his doctor to beat him.
 
-  maxSkillGainLevel: 10
-  level: {}
+  maxSkillGainLevel: 10 #Pain
+  level:
+    min: -1
+    max: -1
 
   enemies:
     - Slime1

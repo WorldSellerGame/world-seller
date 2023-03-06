@@ -5,7 +5,7 @@ Lordsandblobs:
   icon: skull-mask
   description: "CHALLENGE: Goblin lords have found something weaker than goblins to rule over."
 
-  maxSkillGainLevel: 25
+  maxSkillGainLevel: 26
   level:
     min: 21
     max: 30
@@ -26,7 +26,7 @@ DotGang:
   icon: skull-mask
   description: "CHALLENGE: Oh yeah its technical enemy time."
 
-  maxSkillGainLevel: 27
+  maxSkillGainLevel: 28
   level:
     min: 21
     max: 30
@@ -42,7 +42,7 @@ MultihitGang:
   icon: skull-mask
   description: "CHALLENGE: Love the part were multi hit man said its multi time and multi hit all over them."
 
-  maxSkillGainLevel: 27
+  maxSkillGainLevel: 28
   level:
     min: 21
     max: 30
@@ -58,7 +58,7 @@ DoubleMummy:
   icon: mummy
   description: "CHALLENGE: You'll never guess what this is."
 
-  maxSkillGainLevel: 28
+  maxSkillGainLevel: 29
   level:
     min: 21
     max: 30
@@ -73,7 +73,7 @@ Enemy Charcuterie:
   icon: skull-mask
   description: "CHALLENGE: You really have to incorporate all those flavors for it to be a good board."
 
-  maxSkillGainLevel: 28
+  maxSkillGainLevel: 29
   level:
     min: 21
     max: 30
@@ -93,7 +93,7 @@ DoubleBossRush:
   icon: skull-doom 
   description: "CHALLENGE: I know this is mathematically possible, but Im also aware its not practically possible. Try at your own risk."
 
-  maxSkillGainLevel: 29
+  maxSkillGainLevel: 30
   level:
     min: 28
     max: 30

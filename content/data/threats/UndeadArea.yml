@@ -3,7 +3,7 @@ SingleZombie:
   icon: zombie
   description: A slow fighter, but dangerous in long engagements.
 
-  maxSkillGainLevel: 13
+  maxSkillGainLevel: 14
   level:
     min: 11
     max: 14
@@ -16,7 +16,7 @@ SingleSkeleton:
   icon: skeleton
   description: Fragile they may be, they are quite dangerous and seemingly intelligent fighters.
 
-  maxSkillGainLevel: 14
+  maxSkillGainLevel: 15
   level:
     min: 11
     max: 15
@@ -29,7 +29,7 @@ SkeletonandZombie:
   icon: skeleton
   description: A Skeleton sticking close to a roaming Zombie. These skeletons seem a little too smart.
 
-  maxSkillGainLevel: 14
+  maxSkillGainLevel: 15
   level:
     min: 12
     max: 17
@@ -43,7 +43,7 @@ SingleMonstrosity:
   icon: monstrosity
   description: A mass of sinew and teeth. Unnervingly slow it seems as though it could lash out at any moment.
 
-  maxSkillGainLevel: 15
+  maxSkillGainLevel: 16
   level:
     min: 13
     max: 17
@@ -56,7 +56,7 @@ SkeletonTriple:
   icon: group
   description: A group of skeletons. Make it fast or you wont last.
 
-  maxSkillGainLevel: 18
+  maxSkillGainLevel: 19
   level:
     min: 15
     max: 19
@@ -71,7 +71,7 @@ ZombieQuintuple:
   icon: group
   description: Probably best to just run.
 
-  maxSkillGainLevel: 19
+  maxSkillGainLevel: 20
   level:
     min: 15
     max: 19
@@ -88,7 +88,7 @@ UndeadMixedTrio:
   name: Escorted Monstrosity
   icon: group-mixed
   description: Whatever's going on, you should probably put a stop to it.
-  maxSkillGainLevel: 19
+  maxSkillGainLevel: 20
   level:
     min: 16
     max: 19
@@ -103,7 +103,7 @@ UndeadMixedQuadruple:
   name: Rangled Zombie Patrol
   icon: group-mixed
   description: You must be getting close to the source of all this.
-  maxSkillGainLevel: 19
+  maxSkillGainLevel: 20
   level:
     min: 18
     max: 19
@@ -118,7 +118,7 @@ UndeadDangerous:
   name: Slaughter Team
   icon: group-mixed
   description: Technical consistent fighters and dangerous unpredictable monsters.
-  maxSkillGainLevel: 23
+  maxSkillGainLevel: 24
   level:
     min: 19
     max: 25
@@ -135,18 +135,22 @@ UndeadDungeonBoss:
   name: Mummy
   icon: mummy
   description: The source of all this rot, be swift in routing this invasive menace.
-  maxSkillGainLevel: 20
-  level: {}
+  maxSkillGainLevel: 20 # pain
+  level:
+    min: -1
+    max: -1
 
   enemies:
     - Mummy1
 
-ZombieDuo:
+ZombieDuo: #unused but could replace some of the t3's in the undead dungeon or just be deleted
   name: Zombrothers
   icon: zombie
   description: They are gonna get you dude they are going to eat you bro they are gonna grab you bud.
   maxSkillGainLevel: 20
-  level: {}
+  level:
+    min: -1
+    max: -1
 
   enemies:
     - Zombie1
@@ -157,7 +161,9 @@ MonstrosityDuo:
   icon: monstrosity
   description: Uh oh some one is gonna get a thrashing
   maxSkillGainLevel: 20
-  level: {}
+  level:
+    min: -1
+    max: -1
 
   enemies:
     - Monstrosity1
