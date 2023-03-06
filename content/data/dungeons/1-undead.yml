@@ -6,7 +6,7 @@ icon: skeleton
 givesPointAtCombatLevel: 20
 
 floors:
-  - name: Crypt Entrance 
+  - name: Crypt Entrance
     layout:
       - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,] #this is a square https://youtu.be/rreFXFnlKO4?t=238
       - [  .,  1, c1,  1,  1,  1,  1, t1,  1, t3, c1,  .,]
@@ -47,8 +47,8 @@ floors:
       - [  .,  e,  1,  1,  1,  1, t1,  1,  1,  1,  1,  1,  1,  1,  .,  1,  1,  1,  1, t1,  .,]
       - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,]
 
- 
- 
+
+
 boss: UndeadDungeonBoss
 
 threats:
@@ -131,8 +131,8 @@ treasureChests:
       drops:
         - resource: Cut Tanzanite
           amount: 4
-  
-      - config: Copper Ring
+
+    - config: Copper Ring
       drops:
         - resource: Copper Ring
           amount: 1
@@ -162,16 +162,12 @@ treasureChests:
       drops:
         - resource: Leather Boots
           amount: 1
-      drops:
         - resource: Leather Hat
           amount: 1
-      drops:
         - resource: Leather Shirt
           amount: 1
-      drops:
         - resource: Leather Gloves
           amount: 1
-      drops:
         - resource: Leather Pants
           amount: 1
 
