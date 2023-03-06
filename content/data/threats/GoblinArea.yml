@@ -5,7 +5,7 @@ SingleGoblin:
   icon: goblin-small
   description: A tiny lil goblin. He can't do too much to you, can he?
 
-  maxSkillGainLevel: 3
+  maxSkillGainLevel: 4
   level:
     min: 0
     max: 7
