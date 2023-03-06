@@ -144,7 +144,8 @@ export function isDead(character: IGameEncounterCharacter): boolean {
  * Apply a delta to a character. Currently only supports health and energy changing.
  */
 export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICombatDelta): IGameEncounterCharacter {
-  const { attribute, delta, applyStatusEffect, unapplyStatusEffect } = appliedDelta;
+  const { attribute, applyStatusEffect, unapplyStatusEffect } = appliedDelta;
+  const delta = isNaN(appliedDelta.delta) ? 0 : appliedDelta.delta;
 
   if(attribute) {
     switch(attribute) {
@@ -166,7 +167,8 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
     const statMods = applyStatusEffect.statModifications || {};
     if(statMods) {
       Object.keys(statMods).forEach(key => {
-        const bonusValue = (statMods?.[key as Stat] ?? 0);
+        const bonus = (statMods?.[key as Stat] ?? 0);
+        const bonusValue = isNaN(bonus) ? 0 : bonus;
 
         switch(key) {
           case 'healthBonus': {
@@ -205,7 +207,8 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
     const statMods = unapplyStatusEffect.statModifications || {};
     if(statMods) {
       Object.keys(statMods).forEach(key => {
-        const bonusValue = (statMods?.[key as Stat] ?? 0);
+        const bonus = (statMods?.[key as Stat] ?? 0);
+        const bonusValue = isNaN(bonus) ? 0 : bonus;
 
         switch(key) {
           case 'healthBonus': {
