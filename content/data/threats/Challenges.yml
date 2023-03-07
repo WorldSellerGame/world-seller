@@ -24,7 +24,7 @@ Lordsandblobs:
 DotGang:
   name: Dot Gang
   icon: skull-mask
-  description: "CHALLENGE: Oh yeah its technical enemy time."
+  description: "CHALLENGE: Oh yeah it's technical enemy time."
 
   maxSkillGainLevel: 28
   level:
@@ -91,7 +91,7 @@ Enemy Charcuterie:
 DoubleBossRush:
   name: Final Challenge
   icon: skull-doom 
-  description: "CHALLENGE: I know this is mathematically possible, but Im also aware its not practically possible. Try at your own risk."
+  description: "CHALLENGE: I know this is mathematically possible, but I'm also aware it's not practically possible. Try at your own risk."
 
   maxSkillGainLevel: 30
   level:
