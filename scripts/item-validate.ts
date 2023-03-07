@@ -416,6 +416,19 @@ const loadContent = async () => {
         console.log(`⚠ Dungeon ${key} has a floor with no layout.`);
         hasBad = true;
       }
+
+      floor.layout.forEach((row: any[]) => {
+        row.forEach((cell: any) => {
+          const baseCells = ['.', 1, 'e', 'x', 'b'];
+          if(baseCells.includes(cell)) return;
+
+          if(dungeon.threats[cell]) return;
+          if(dungeon.treasureChests[cell]) return;
+
+          console.log(`⚠ Dungeon ${key} has a floor with an invalid cell ${cell}.`);
+          hasBad = true;
+        });
+      });
     });
 
     Object.values(dungeon.threats || {}).forEach(threat => {
