@@ -248,7 +248,7 @@ MiningUnique1:
   name: Piercing Strike
   description: Pierce your opponents armor for a devastating attack.
   icon: hungry-face
-  target: Self
+  target: Single
   type: Physical
   stats:
     - stat: attack

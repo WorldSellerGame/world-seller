@@ -72,7 +72,7 @@ treasureChests:
       drops:
         - resource: Apple
           amount: 2
-        - resource: Bread
+        - item: Bread
           amount: 1
 
     - config: Love
@@ -82,7 +82,7 @@ treasureChests:
 
     - config: Mittens
       drops:
-        - resource: Knitted Gloves
+        - item: Knitted Gloves
           amount: 1
 
 
@@ -107,17 +107,17 @@ treasureChests:
           amount: 1
     - config: Iron
       drops:
-        - item: Iron Ingot
+        - resource: Iron Ingot
           amount: 2
     - config: Metal Construction Tools
       drops:
-        - item: Metal Construction Tools
+        - resource: Metal Construction Tools
           amount: 1
 
   c3: #loots
     - config: Iron Dagger
       drops:
-        - resource: Iron Dagger
+        - item: Iron Dagger
           amount: 3
 
     - config: Copper Pickaxe
@@ -132,12 +132,12 @@ treasureChests:
   
     - config: Copper Ring
       drops:
-      - resource: Copper Ring
+      - item: Copper Ring
         amount: 1
 
     - config: Quartz Iron Tongue Piercing
       drops:
-        - resource: Quartz Iron Tongue Piercing
+        - item: Quartz Iron Tongue Piercing
           amount: 1
 
     - config: Coins Only
@@ -158,14 +158,14 @@ treasureChests:
   c4:
     - config: Leather Armor Full Set
       drops:
-        - resource: Leather Boots
+        - item: Leather Boots
           amount: 1
-        - resource: Leather Hat
+        - item: Leather Hat
           amount: 1
-        - resource: Leather Shirt
+        - item: Leather Shirt
           amount: 1
-        - resource: Leather Gloves
+        - item: Leather Gloves
           amount: 1
-        - resource: Leather Pants
+        - item: Leather Pants
           amount: 1
 
