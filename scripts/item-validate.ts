@@ -419,7 +419,7 @@ const loadContent = async () => {
 
       floor.layout.forEach((row: any[]) => {
         row.forEach((cell: any) => {
-          const baseCells = ['.', 1, 'e', 'x', 'b'];
+          const baseCells = ['.', 1, 'e', 'x', 'b', 'f'];
           if(baseCells.includes(cell)) return;
 
           if(dungeon.threats[cell]) return;
