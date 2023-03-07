@@ -19,7 +19,7 @@ ApplyFire1:
 
 ApplyEnergyBuff1: 
   name: Charge Up
-  description: Charing Up, likely for a powerful attack?
+  description: Charging up, likely for a powerful attack?
   icon: bolt
   target: Self
   type: Magical
@@ -184,7 +184,7 @@ RotAttack3:
 
 ApplyDoom1:
   name: Mark of Instant Pain
-  description: A Large amount of damage at the end of the targets next turn.
+  description: A large amount of damage at the end of the targets next turn.
   icon: skull-mask
   target: Single
   type: Magical
