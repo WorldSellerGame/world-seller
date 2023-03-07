@@ -2,7 +2,7 @@
 Zombie1: #meat bag with some effect that make long combat dangerous
   name: Zombie
   icon: zombie
-  description: A hardy opponent with a dangerous bite
+  description: A hardy opponent with a dangerous bite.
 
   health: 70
   energy: 8
