@@ -61,7 +61,7 @@ GoblinLord1:
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: AttackBuff1
+      effectName: AttackBuff2
   cooldown: 3
   energyCost: 5
   requires: {}
@@ -133,7 +133,7 @@ RotAttack1:
   requires: {}
 
 RotAttack2:
-  name: Rotting Bite
+  name: Rotting Strike
   description: A decisive strike that directly affects wellbeing and ability to heal.
   icon: knife-dripping
   target: Single

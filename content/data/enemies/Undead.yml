@@ -89,8 +89,8 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
   stats:
     attack: 15 #hmm
     armor: 8
-    speed: 5
-    healingPerRound: 5
+    speed: 6
+    healingPerRound: 10
 
   abilities:
     - ApplyEnergyBuff1

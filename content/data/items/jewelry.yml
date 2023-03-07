@@ -220,7 +220,7 @@ Goblin Crown: #this bih already enchanted
   rarity: Rare
   durability: -1
   value: 10
-  icon: 'goblin-crown'
+  icon: goblin-crown
   givesAbility: GoblinLord1
   stats:
     attack: -1
