@@ -207,23 +207,24 @@ ForagingUnique1:
     foraging: 20
     combat: 16
 
-HuntingUnique1: #Should I use power or skill level
-  name: Hunter's Precise Strike
-  description: Deal damage based on hunting level.
-  icon: eye-target
-  target: Single
-  type: Physical
-  stats:
-    - stat: hunting
-      multiplier: 0.5
-      variance: 0.25
-  effects:
-    - effect: SingleTargetAttack
-  cooldown: 2
-  energyCost: 5
-  requires:
-    hunting: 20
-    combat: 16
+#     |HuntingUnique1: #Should I use power or skill level
+#     |  name: Hunter's Precise Strike
+#     |  description: Deal damage based on hunting level.
+#     |  icon: eye-target
+#     |  target: Single
+#     |  type: Physical
+#     |  stats:
+#     |    - stat: hunting
+#     |      multiplier: 0.5
+#     |      variance: 0.25
+#     |  effects:
+#     |    - effect: SingleTargetAttack
+#     |  cooldown: 2
+#     |  energyCost: 5
+#     |  requires:
+#     |    hunting: 20
+#     |    combat: 16
+#     |
 
 LoggingUnique1: #chop chop Yeah actually just really boring simple chop
   name: Split
