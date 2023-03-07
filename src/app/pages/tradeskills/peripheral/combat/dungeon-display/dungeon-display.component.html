@@ -59,8 +59,8 @@
           <ion-card-content>
             <ion-row>
               <ion-col>
-                <div class="dungeon-container">
-                  <div class="dungeon-row" *ngFor="let row of dungeonView(dungeon.pos, dungeon.dungeon); let y = index; trackBy: trackBy">
+                <div class="dungeon-container" *ngIf="dungeonDisplay.length > 0">
+                  <div class="dungeon-row" *ngFor="let row of dungeonDisplay; let y = index; trackBy: trackBy">
                     <div class="dungeon-col" *ngFor="let col of row; let x = index; trackBy: trackBy">
                       <app-game-icon [icon]="pageData.currentPlayer?.icon ?? 'me'" *ngIf="col === 'me'"></app-game-icon>
                       <app-game-icon [icon]="getIconForTile(dungeon.dungeon, col)" *ngIf="col !== 'me'" [color]="getColorForTile(dungeon.dungeon, col)"></app-game-icon>

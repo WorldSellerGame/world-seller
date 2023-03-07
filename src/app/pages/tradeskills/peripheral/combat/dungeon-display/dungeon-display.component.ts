@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { clamp, cloneDeep } from 'lodash';
+import { Observable, Subscription } from 'rxjs';
 import { DungeonNode, DungeonTile, IDungeon, IGameDungeonState, IGameEncounterCharacter } from '../../../../../../interfaces';
 import { CombatState } from '../../../../../../stores';
 import {
@@ -26,6 +27,9 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
   @Select(CombatState.currentPlayer) currentPlayer$!: Observable<IGameEncounterCharacter>;
   @Select(CombatState.currentDungeon) currentDungeon$!: Observable<IGameDungeonState>;
 
+  private dungeonSub!: Subscription;
+  public dungeonDisplay: DungeonNode[][] = [];
+
   constructor(private store: Store, private contentService: ContentService) { }
 
   private arrowKeys = (event: KeyboardEvent) => {
@@ -39,10 +43,21 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.addEventListener('keydown', this.arrowKeys);
+
+    this.dungeonSub = this.currentDungeon$.subscribe(dungeon => {
+      if(!dungeon) {
+        this.dungeonDisplay = [];
+        return;
+      }
+
+      this.dungeonDisplay = this.dungeonView(dungeon.pos, dungeon.dungeon);
+    });
   }
 
   ngOnDestroy() {
     document.removeEventListener('keydown', this.arrowKeys);
+
+    this.dungeonSub?.unsubscribe();
   }
 
   trackBy(index: number) {
@@ -104,15 +119,19 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
   }
 
   dungeonView(curPos: { x: number; y: number; z: number }, dungeon: IDungeon): DungeonNode[][] {
-    const offsetTop = Math.min(4, Math.max(0, curPos.y - 4));
-    const offsetLeft = Math.min(4, Math.max(0, curPos.x - 4));
+    const dungeonClone = cloneDeep(dungeon);
 
-    const view = dungeon.floors[curPos.z].layout.slice(offsetTop, offsetTop + 9);
+    dungeonClone.floors[curPos.z].layout[curPos.y][curPos.x] = 'me';
+
+    const offsetTop = clamp(curPos.y - 4, 0, dungeonClone.floors[curPos.z].layout.length);
+    const offsetLeft = clamp(curPos.x - 4, 0, dungeonClone.floors[curPos.z].layout[curPos.y].length);
+
+    const startOffsetTop = Math.min(offsetTop, dungeonClone.floors[curPos.z].layout.length - 9);
+    const view = dungeonClone.floors[curPos.z].layout.slice(startOffsetTop, startOffsetTop + 9);
     for(let i = 0; i < view.length; i++) {
-      view[i] = view[i].slice(offsetLeft, offsetLeft + 9);
+      const startOffsetLeft = Math.min(offsetLeft, view[i].length - 9);
+      view[i] = view[i].slice(startOffsetLeft, startOffsetLeft + 9);
     }
-
-    view[curPos.y - offsetTop][curPos.x - offsetLeft] = 'me';
 
     return view;
   }

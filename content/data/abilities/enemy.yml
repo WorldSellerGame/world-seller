@@ -1,8 +1,45 @@
 
-GoblishHeal1:
+
+
+
+
+ApplyFire1: 
+  name: Flame
+  description: Uh oh someones clothes are on fire. Oh wow that sucks.
+  icon: on-fire
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Fire1
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyEnergyBuff1: 
+  name: Charge Up
+  description: Charging up, likely for a powerful attack?
+  icon: bolt
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
+  cooldown: 3
+  energyCost: 0
+  requires: {}
+
+
+###Monster specific (Most could be mover later if needed)
+
+#gobbo
+
+GoblinShaman1: # To be moved and re named
   name: Goblish Heal I
-  description: Heal yourself.
-  icon: foraging
+  description: Heal your allies.
+  icon: healing
   target: Ally
   type: Magical
   stats:
@@ -12,5 +49,183 @@ GoblishHeal1:
   effects:
     - effect: SingleTargetHeal
   cooldown: 3
-  energyCost: 10
+  energyCost: 8
   requires: {}
+
+GoblinLord1:
+  name: PepShout
+  description: If a pep talk is good being louder must be great.
+  icon: shout
+  target: All
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+GoblinLord2:
+  name: Hustle Up
+  description: Hurry it up!
+  icon: shout
+  target: All
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+GoblinLord3: 
+  name: Point Weakness
+  description: "Nice armor, well except for that little hole right there."
+  icon: point
+  target: Single
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: ArmorDebuff1 #2 may be fine???
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+#Undead
+
+UndeadRegen1:
+  name: Undead Resilience 
+  description: The dead stay risen for a reason.
+  icon: heart-bitten
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2 #2 could be too much could be substituted for regen1 + armor1
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack1:
+  name: Rotting Bite
+  description: Chomp.
+  icon: heart-bitten
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 0.75
+      variance: 0.25
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack2:
+  name: Rotting Strike
+  description: A decisive strike that directly affects wellbeing and ability to heal.
+  icon: knife-dripping
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1.5
+      variance: 0.5
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff3
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+RotAttack3:
+  name: Thrash To The Grave
+  description: The mass of bones and teeth lashes out with unholy ferocity.
+  icon: monstrosity
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1.5
+      variance: 0.5
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+  cooldown: 1
+  energyCost: 15
+  requires: {}
+
+ApplyDoom1:
+  name: Mark of Instant Pain
+  description: A large amount of damage at the end of the targets next turn.
+  icon: skull-mask
+  target: Single
+  type: Magical
+  stats: []
+  effects: 
+    - effect: ApplyEffect
+      effectName: Doom1 
+  cooldown: 3
+  energyCost: 5
+  requires: {}
+
+Mummy1:
+  name: Mummy's Curse #mabye reduce to double casting rot
+  description: Straight from the source.
+  icon: curse
+  target: Single
+  type: Magical
+  stats: []
+  effects: 
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+    - effect: ApplyEffect
+      effectName: Rot1 
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+  cooldown: 0
+  energyCost: 15
+  requires: {}
+
+
+
+

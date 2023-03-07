@@ -1,38 +1,5 @@
-##
 
 
-### Examples (to be changed or adjusted)
-
-Alchemy1:
-  name: Alchemist's Poison Gas I
-  description: Poison an enemy.
-  icon: alchemy
-  target: Single
-  type: Physical
-  stats: []
-  effects:
-    - effect: ApplyEffect
-      effectName: PoisonWeak
-  cooldown: 10
-  energyCost: 5
-  requires:
-    alchemy: 10
-
-
-Blacksmithing1:
-  name: Blacksmith's Sharpen I
-  description: Increase your own attack.
-  icon: blacksmithing
-  target: Self
-  type: Physical
-  stats: []
-  effects:
-    - effect: ApplyEffect
-      effectName: StrengthenBasic
-  cooldown: 10
-  energyCost: 5
-  requires:
-    alchemy: 10
 
 
 ### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
@@ -288,6 +255,8 @@ BlacksmithingUnique1:
     - stat: armor
       multiplier: 1
       variance: 0.0
+  effects:
+    - effect: SingleTargetAttack
   cooldown: 2
   energyCost: 5
   requires:

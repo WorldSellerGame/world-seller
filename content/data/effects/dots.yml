@@ -34,3 +34,21 @@ Fire2:
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: 5
+
+Doom1:
+  name: Doom
+  description: Massive damage when you finish your next turn, use your time well...
+  icon: skull-doom
+  color: "#ff0000"
+  turnsLeft: 1
+  statusEffectType: DamageOverTime
+  damageOverTime: 25
+
+Rot1:
+  name: Rot I 
+  description: Damage every turn.
+  icon: heart-bitten
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: DamageOverTime
+  damageOverTime: 4

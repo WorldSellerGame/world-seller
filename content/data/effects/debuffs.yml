@@ -51,6 +51,16 @@ HealingDebuff2:
   statModifications:
     healing: -5
 
+HealingDebuff3:
+  name: Necrosis III
+  description: Decreases Healing by 10.
+  icon: healing-debuff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -10
+
 AttackDebuff1:
   name: Weaken I
   description: Decreases Attack by 3.
@@ -130,3 +140,6 @@ EnergyDebuff2:
   statusEffectType: StatModification
   statModifications:
     energyBonus: -10
+
+#Compound/enemy
+

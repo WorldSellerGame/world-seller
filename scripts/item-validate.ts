@@ -35,6 +35,7 @@ const loadContent = async () => {
   const allEnemies = await fs.readJson('src/assets/content/enemies.json');
   const allThreats = await fs.readJson('src/assets/content/threats.json');
   const allEffects = await fs.readJson('src/assets/content/effects.json');
+  const allDungeons = await fs.readJson('src/assets/content/dungeons.json');
 
   const farming = await fs.readJson('src/assets/content/farming.json');
 
@@ -361,6 +362,110 @@ const loadContent = async () => {
       }
     });
   })
+
+  Object.keys(allDungeons).forEach(key => {
+    const dungeon = allDungeons[key];
+
+    if(!dungeon.name) {
+      console.log(`⚠ Dungeon ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(dungeon.name && dungeon.name.length > 32) {
+      console.log(`⚠ Dungeon ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!dungeon.description) {
+      console.log(`⚠ Dungeon ${key} has no description.`);
+      hasBad = true;
+    }
+
+    if(!dungeon.icon) {
+      console.log(`⚠ Dungeon ${key} has no icon.`);
+      hasBad = true;
+    }
+
+    if(!dungeon.givesPointAtCombatLevel) {
+      console.log(`⚠ Dungeon ${key} has no givesPointAtCombatLevel.`);
+      hasBad = true;
+    }
+
+    if(!dungeon.boss) {
+      console.log(`⚠ Dungeon ${key} has no boss.`);
+      hasBad = true;
+    }
+
+    if(!allThreats[dungeon.boss]) {
+      console.log(`⚠ Dungeon ${key} has a boss for ${dungeon.boss} which is not a valid threat.`);
+      hasBad = true;
+    }
+
+    if(!dungeon.floors || dungeon.floors.length === 0) {
+      console.log(`⚠ Dungeon ${key} has no floors.`);
+      hasBad = true;
+    }
+
+    dungeon.floors.forEach((floor: any) => {
+      if(!floor.name) {
+        console.log(`⚠ Dungeon ${key} has a floor with no name.`);
+        hasBad = true;
+      }
+
+      if(!floor.layout || floor.layout.length === 0) {
+        console.log(`⚠ Dungeon ${key} has a floor with no layout.`);
+        hasBad = true;
+      }
+
+      floor.layout.forEach((row: any[]) => {
+        row.forEach((cell: any) => {
+          const baseCells = ['.', 1, 'e', 'x', 'b', 'f'];
+          if(baseCells.includes(cell)) return;
+
+          if(dungeon.threats[cell]) return;
+          if(dungeon.treasureChests[cell]) return;
+
+          console.log(`⚠ Dungeon ${key} has a floor with an invalid cell ${cell}.`);
+          hasBad = true;
+        });
+      });
+    });
+
+    Object.values(dungeon.threats || {}).forEach(threat => {
+      if(!allThreats[threat as string]) {
+        console.log(`⚠ Dungeon ${key} has a threat for ${threat} which is not a valid threat.`);
+        hasBad = true;
+      }
+    });
+
+    Object.values(dungeon.treasureChests || {}).forEach((chest: any) => {
+      chest.forEach((chestConfig: any) => {
+        const { drops } = chestConfig;
+
+        if(!drops || !drops.length) {
+          console.log(`⚠ Dungeon ${key} has a chest with no drops.`);
+          hasBad = true;
+        }
+
+        (drops || []).forEach((drop: any) => {
+          if(drop.item && !allItems[drop.item]) {
+            console.log(`⚠ Dungeon ${key} has a drop for ${drop.item} which is not a valid item.`);
+            hasBad = true;
+          }
+
+          if(drop.resource && !allResources[drop.resource]) {
+            console.log(`⚠ Dungeon ${key} has a drop for ${drop.resource} which is not a valid resource.`);
+            hasBad = true;
+          }
+
+          if(!drop.amount) {
+            console.log(`⚠ Dungeon ${key} has a drop with no amount.`);
+            hasBad = true;
+          }
+        });
+      });
+    });
+  });
 
   const isValidItem = (item: string) => {
     return item === 'nothing' || allResources[item] || allItems[item];
