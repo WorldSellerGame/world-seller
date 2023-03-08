@@ -40,6 +40,10 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
     this.locSub?.unsubscribe();
   }
 
+  trackBy(index: number) {
+    return index;
+  }
+
   visibleLocations(locations: IGameGatherLocation[], currentLevel = 0) {
     return locations.filter(location => currentLevel >= location.level.min);
   }
