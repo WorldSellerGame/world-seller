@@ -277,7 +277,7 @@ export class CombatState {
     if(healingPerRound > 0) {
       ctx.dispatch(new AddCombatLogMessage(`${enemy.name} healed ${healingPerRound} HP!`));
       preTurnDeltas.push({ target: 'source', attribute: 'currentHealth', delta: healingPerRound });
-      this.emitDamageNumber(currentPlayer, ctx.getState(), healingPerRound);
+      this.emitDamageNumber(enemy, ctx.getState(), healingPerRound);
     }
 
     if(energyPerRound > 0) {
