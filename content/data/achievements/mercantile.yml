@@ -1,0 +1,104 @@
+MercantileWorkers1:
+  name: Workers I
+  description: Buy 1 worker.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 1
+
+MercantileWorkers2:
+  name: Workers II
+  description: Buy 5 workers.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 5
+
+MercantileWorkers3:
+  name: Workers III
+  description: Buy 25 workers.
+  icon: mercantile
+  stat: mercantileBuyWorkers
+  requiredValue: 25
+
+MercantileSell1:
+  name: Merchant I
+  description: Sell 100 items.
+  icon: mercantile
+  stat: mercantileSellItems
+  requiredValue: 100
+
+MercantileSell2:
+  name: Merchant II
+  description: Sell 1000 items.
+  icon: mercantile
+  stat: mercantileSellItems
+  requiredValue: 1000
+
+MercantileSell3:
+  name: Merchant III
+  description: Sell 10000 items.
+  icon: mercantile
+  stat: mercantileSellItems
+  requiredValue: 10000
+
+MercantileSell4:
+  name: Merchant IV
+  description: Sell 100000 items.
+  icon: mercantile
+  stat: mercantileSellItems
+  requiredValue: 100000
+
+Exchanger1:
+  name: Exchanger I
+  description: Exchange 100 times at the exchange.
+  icon: mercantile
+  stat: mercantileExchangeSwap
+  requiredValue: 100
+
+Exchanger2:
+  name: Exchanger II
+  description: Exchange 1000 times at the exchange.
+  icon: mercantile
+  stat: mercantileExchangeSwap
+  requiredValue: 1000
+
+Exchanger3:
+  name: Exchanger III
+  description: Exchange 10000 times at the exchange.
+  icon: mercantile
+  stat: mercantileExchangeSwap
+  requiredValue: 10000
+
+Exchanger4:
+  name: Exchanger IV
+  description: Exchange 100000 times at the exchange.
+  icon: mercantile
+  stat: mercantileExchangeSwap
+  requiredValue: 100000
+
+PurchasingPower1:
+  name: Purchasing Power I
+  description: Buy 100 goods from the exchange.
+  icon: mercantile
+  stat: mercantileExchangeBuy
+  requiredValue: 100
+
+PurchasingPower2:
+  name: Purchasing Power II
+  description: Buy 1000 goods from the exchange.
+  icon: mercantile
+  stat: mercantileExchangeBuy
+  requiredValue: 1000
+
+PurchasingPower3:
+  name: Purchasing Power III
+  description: Buy 10000 goods from the exchange.
+  icon: mercantile
+  stat: mercantileExchangeBuy
+  requiredValue: 10000
+
+PurchasingPower4:
+  name: Purchasing Power IV
+  description: Buy 100000 goods from the exchange.
+  icon: mercantile
+  stat: mercantileExchangeBuy
+  requiredValue: 100000

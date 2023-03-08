@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Resources</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="resources$ | async as resources">
+
+    <ion-card *ngIf="hasNoResources(resources)">
+      <ion-card-content>
+        <p class="no-resources">You have no resources, yet.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!hasNoResources(resources)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3" *ngFor="let resourceCategory of resourceCategories(resources); trackBy: trackBy">
+              <ion-button expand="block" [fill]="resourceCategory === activeCategory ? 'solid' : 'outline'" (click)="changeCategory(resourceCategory)">
+                {{ resourceCategory }} ({{ resourcesInCategory(resources, resourceCategory).length }})
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="resources" *ngIf="activeCategory">
+            <ion-col size="3" *ngFor="let resource of resourcesInCategory(resources, activeCategory); trackBy: trackBy">
+              <app-resource-icon [name]="resource" [quantity]="resources[resource]"></app-resource-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

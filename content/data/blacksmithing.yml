@@ -1,47 +1,856 @@
 
-recipes:
+recipes: #Rebalance for 900~ lines ;-;
+
+  - result: Stone Knife
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Workbench : 1
+      Stone: 1
+      Cedar Log: 1
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
   - result: Stone Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
-      Stone: 3
-      Pine Log: 2
+      Workbench : 1
+      Stone: 4
+      Cedar Log: 2
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
 
   - result: Stone Pickaxe
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
-      Stone: 5
-      Pine Log: 3
+      Workbench : 1
+      Stone: 4
+      Cedar Log: 3
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
 
-  - result: Stone Scythe
+  - result: Stone Sickle
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
+      Workbench : 1
       Stone: 4
-      Pine Log: 4
+      Cedar Log: 2
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
 
   - result: Stone Spear
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
-      Stone: 2
-      Pine Log: 3
+      Workbench : 1
+      Stone: 1
+      Cedar Log: 4
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
 
-  - result: Pine Fishing Rod
+  - result: Cedar Fishing Rod
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
     craftTime: 10
     ingredients:
-      Pine Log: 2
+      Workbench : 1
+      Cedar Log: 3
+      Twine: 5
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
 
-  - result: Stone Bait
-    perCraft: { min: 1, max: 2 }
-    level: { min: 0, max: 10 }
-    craftTime: 2
+################## copper
+
+  - result: Copper Dagger
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 1
+      Oak Log: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Copper Sword
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 4
+      Oak Log: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Copper Axe
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 4
+      Oak Log: 2
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Copper Pickaxe
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 4
+      Oak Log: 3
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Copper Sickle
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 4
+      Oak Log: 2
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Copper Spear
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Metal Tool Bench : 1
+      Copper Ingot: 1
+      Oak Log: 4
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Oak Fishing Rod
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 10
+    ingredients:
+      Workbench : 1
+      Oak Log: 3
+      Twine: 5
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+################## Iorn
+
+  - result: Iron Dagger
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 1
+      Ash Log: 1
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Sword
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 4
+      Ash Log: 1
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Axe
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 4
+      Ash Log: 2
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Pickaxe
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 4
+      Ash Log: 3
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Sickle
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 4
+      Ash Log: 2
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Spear
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Iron Tool Bench : 1
+      Iron Ingot: 1
+      Ash Log: 4
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Ash Fishing Rod
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 10
+    ingredients:
+      Workbench : 1
+      Ash Log: 3
+      Twine: 5
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+##################
+  #this is where the suffering starts (Tomorrow hopefully)
+  #also refining skills may need to be named to crafting and then rename blacksmithing to refining and the add fabricating
+
+
+  #Fabrication
+
+  - result: Construction Tools # 0 to 10
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 5 }
+    craftTime: 10
+    ingredients:
+      Pine Log: 5
+      Stone: 5
+    require:
+      - Pine Log
+    maxWorkers: 1
+
+  - result: Table # 0 to 10
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 5 }
+    craftTime: 10
+    ingredients:
+      Pine Log: 10
+      Construction Tools: 1
+    require:
+      - Construction Tools
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Workbench # 5 to 15 #well 0 - 10 for tools may be fine #tbd this one is really fucking with me
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 20
+    ingredients:
+      Stone: 5
+      Pine Log: 10
+      Construction Tools: 1
+    require:
+      - Construction Tools
+      - Table
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Metal Tool Bench # 10 to 20
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
+    ingredients:
+      Stone: 4
+      Cedar Log: 10
+      Copper Ingot: 4
+      Construction Tools: 1
+    require:
+      - Construction Tools
+      - Copper Ingot
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Metal Construction Tools # 10 to 20
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
+    ingredients:
+      Cedar Log: 8
+      Copper Ingot: 6
+      Metal Tool Bench: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Tool Bench # 20 to 30
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 30
+    ingredients:
+      Stone: 4
+      Oak Log: 10
+      Iron Ingot: 4
+      Metal Construction Tools: 1
+    require:
+      - Metal Construction Tools
+      - Iron Ingot
+    preserve:
+      - Metal Construction Tools
+    maxWorkers: 1
+
+  - result: Iron Construction Tools # 20 to 30
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 30
+    ingredients:
+      Oak Log: 8
+      Iron Ingot: 6
+      Iron Tool Bench: 1
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+
+  #Refine
+
+  - result: Oven
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 5 }
+    craftTime: 10
+    ingredients:
+      Stone: 10
+      Construction Tools: 1
+    require:
+      - Construction Tools
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Brick Oven
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 20
+    ingredients:
+      Brick: 10
+      Mortar: 4
+      Construction Tools: 1
+    require:
+      - Construction Tools
+      - Brick
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Furnace
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10 , max: 20 }
+    craftTime: 30
+    ingredients:
+      Fire Brick: 12
+      Mortar: 6
+      Construction Tools: 1
+    require:
+      - Construction Tools
+      - Fire Brick
+    preserve:
+      - Construction Tools
+    maxWorkers: 1
+
+  - result: Blast Furnace
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15 , max: 25 }
+    craftTime: 30
+    ingredients:
+      Fire Brick: 15
+      Mortar: 7
+      Iron Ingot: 4
+      Metal Construction Tools: 1
+    require:
+      - Metal Construction Tools
+      - Iron Ingot
+    preserve:
+      - Metal Construction Tools
+    maxWorkers: 1
+
+  #cooking
+
+  - result: Kitchen Utensils
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 5 }
+    craftTime: 20
     ingredients:
       Stone: 2
+      Pine Log: 4
+      Workbench: 1
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+  - result: Pots and Pans
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 20
+    ingredients:
+      Clay: 8
+      Workbench: 1
+      Oven: 1
+    require:
+      - Workbench
+      - Oven
+    preserve:
+      - Workbench
+      - Oven
+    maxWorkers: 1
+
+  - result: Millstone
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 20
+    ingredients:
+      Stone: 8
+      Cedar Log: 1
+      Workbench: 1
+    require:
+      - Workbench
+      - Cedar Log
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+  - result: Metal Kitchen Utensils
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
+    ingredients:
+      Cedar Log: 2
+      Copper Ingot: 4
+      Metal Tool Bench: 1
+      Furnace: 1
+    require:
+      - Metal Tool Bench
+      - Furnace
+    preserve:
+      - Metal Tool Bench
+      - Furnace
+    maxWorkers: 1
+
+  - result: Metal Pots and Pans
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 30
+    ingredients:
+      Copper Ingot: 6
+      Metal Tool Bench: 1
+      Furnace: 1
+    require:
+      - Metal Tool Bench
+      - Furnace
+    preserve:
+      - Metal Tool Bench
+      - Furnace
+    maxWorkers: 1
+
+  #alchemy
+
+  - result: Mortar and Pestle
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 20
+    ingredients:
+      Stone: 2
+      Workbench: 1
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+  - result: Glass Set
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 30
+    ingredients:
+      Sand: 8
+      Brick Oven: 1
+      Workbench: 1
+    require:
+      - Workbench
+      - Brick Oven
+    preserve:
+      - Workbench
+      - Brick Oven
+    maxWorkers: 1
+
+  - result: Fine Glass Set
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 40
+    ingredients:
+      Sand: 10
+      Quartz Powder: 5
+      Furnace: 1
+      Metal Tool Bench: 1
+    require:
+      - Metal Tool Bench
+      - Furnace
+    preserve:
+      - Metal Tool Bench
+      - Furnace
+    maxWorkers: 1
+
+  - result: Burner
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 40
+    ingredients:
+      Copper Ingot: 1
+      Plant Fiber: 3
+      Metal Tool Bench: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+#Weaving
+
+  - result: Knitting Needles
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Cedar Log: 1
+      Workbench: 1
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+  - result: Whorl
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 20
+    ingredients:
+      Cedar Log: 1
+      Clay: 1
+      Oven: 1
+      Workbench: 1
+    require:
+      - Workbench
+      - Oven
+    preserve:
+      - Workbench
+      - Oven
+    maxWorkers: 1
+
+  - result: Sewing Kit
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 20
+    ingredients:
+      Cedar Log: 1
+      Stone: 1
+      Oven: 1
+      Workbench: 1
+    require:
+      - Workbench
+      - Oven
+    preserve:
+      - Workbench
+      - Oven
+    maxWorkers: 1
+
+  - result: Spinning Wheel
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 20
+    ingredients:
+      Oak Log: 5
+      Copper Ingot: 1
+      Metal Construction Tools: 1
+    require:
+      - Metal Construction Tools
+    preserve:
+      - Metal Construction Tools
+    maxWorkers: 1
+
+  - result: Loom
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 20
+    ingredients:
+      Oak Log: 5
+      Twine: 3
+      Copper Ingot: 1
+      Metal Construction Tools: 1
+    require:
+      - Metal Construction Tools
+    preserve:
+      - Metal Construction Tools
+    maxWorkers: 1
+
+  - result: Metal Sewing Kit
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 20
+    ingredients:
+      Copper Ingot: 1
+      Oak Log: 1
+      Metal Tool Bench: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+#jewelry
+
+  - result: Jewelry Tools
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 20
+    ingredients:
+      Stone: 3
+      Quartz: 1
+      Cedar Log: 2
+      Workbench: 1
+    require:
+      - Workbench
+    preserve:
+      - Workbench
+    maxWorkers: 1
+
+  - result: Metal Jewelry Tools
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 25 }
+    craftTime: 20
+    ingredients:
+      Copper Ingot: 2
+      Quartz: 1
+      Oak Log: 2
+      Metal Tool Bench: 1
+    require:
+      - Metal Tool Bench
+    preserve:
+      - Metal Tool Bench
+    maxWorkers: 1
+
+  - result: Iron Jewelry Tools
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 20
+    ingredients:
+      Iron Ingot: 2
+      Quartz: 1
+      Ash Log: 2
+      Iron Tool Bench: 1
+    require:
+      - Iron Tool Bench
+    preserve:
+      - Iron Tool Bench
+    maxWorkers: 1
+
+  ###Resources (necessary for crafting tables)
+
+  - result: Brick
+    perCraft: { min: 3, max: 3 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Clay: 3
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1
+
+  - result: Lime
+    perCraft: { min: 3, max: 3 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Limestone: 3
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1
+
+  - result: Mortar
+    perCraft: { min: 6, max: 7 }
+    level: { min: 5, max: 15 }
+    craftTime: 10
+    ingredients:
+      Lime: 1
+      Sand: 6
+      Table: 1
+    require:
+      - Table
+    preserve:
+      - Table
+    maxWorkers: 1
+
+  - result: Fire Brick
+    perCraft: { min: 3, max: 3 }
+    level: { min: 10, max: 20 }
+    craftTime: 20
+    ingredients:
+      White Clay: 3
+      Brick Oven: 1
+    require:
+      - Brick Oven
+    preserve:
+      - Brick Oven
+    maxWorkers: 1
+
+  - result: Copper Ingot
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 20
+    ingredients:
+      Copper Ore: 1
+      Brick Oven: 1
+    require:
+      - Brick Oven
+    preserve:
+      - Brick Oven
+    maxWorkers: 1
+
+  - result: Iron Ingot
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 30
+    ingredients:
+      Iron Ore: 3
+      Furnace: 1
+    require:
+      - Furnace
+    preserve:
+      - Furnace
+    maxWorkers: 1
+
+  - result: Glass Bottle
+    perCraft: { min: 4, max: 6 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Sand: 3
+      Brick Oven: 1
+    require:
+      - Brick Oven
+    preserve:
+      - Brick Oven
+    maxWorkers: 2
+
+  - result: Burning Oil
+    perCraft: { min: 6, max: 8 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Sap: 4
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1
+
+  - result: Charcoal
+    perCraft: { min: 8, max: 8 }
+    level: { min: 0, max: 10 }
+    craftTime: 10
+    ingredients:
+      Pine Log: 6
+      Cedar Log: 2
+      Oven: 1
+    require:
+      - Oven
+    preserve:
+      - Oven
+    maxWorkers: 1

@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Fishing Lv.{{ level$ | async }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <app-gathering-page-display
+    [tradeskill]="'fishing'"
+    [level$]="level$"
+    [currentLocation$]="currentLocation$"
+    [cooldowns$]="cooldowns$"
+    [gatheringWorkers$]="gatheringWorkers$"
+    [locationData]="locationData"
+    [setAction]="setAction"
+    [cancelAction]="cancelAction"
+  ></app-gathering-page-display>
+
+</ion-content>

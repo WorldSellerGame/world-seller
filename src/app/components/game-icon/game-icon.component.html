@@ -1,3 +1,13 @@
 
-  <svg-icon [src]="'assets/icon/' + icon + '.svg'"
-            [svgStyle]="{ 'width.px': inlineIconSize ? 24 : 32, 'fill': '#fff', 'stroke': '#000', 'stroke-width.px': 10, 'stroke-dasharray': '2,2', 'stroke-linejoin': 'round' }"></svg-icon>
+<div [class.shimmer]="shimmer">
+  <svg-icon *ngIf="icon"
+            [src]="'assets/icon/' + icon + '.svg'"
+            [svgStyle]="{
+              'width.px': size,
+              'fill': color,
+              'stroke': '#000',
+              'stroke-width.px': 10,
+              'stroke-dasharray': '2,2',
+              'stroke-linejoin': 'round'
+            }"></svg-icon>
+</div>

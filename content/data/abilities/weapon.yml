@@ -1,0 +1,105 @@
+
+### Crafted
+
+
+Shank:
+  name: Shank
+  description: A unrefined but powerful attack.
+  icon: knife
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 1.25
+      variance: 0.25
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 0
+  energyCost: 3
+  requires: {}
+
+Stab:
+  name: Stab
+  description: Strike fast to hit enemies multiple times.
+  icon: knife
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack #I wonder if speed stating on such an early ability would be okay
+      multiplier: 0.85
+      variance: 0.15
+  effects: #More realistically I wonder if its possible to make the number of hts dependent on speed #highly unnecessary though
+    - effect: SingleTargetAttack
+    - effect: SingleTargetAttack
+  cooldown: 1
+  energyCost: 4 
+  requires: {}
+
+Cleave:
+  name: Cleave
+  description: Strike with great force.
+  icon: blade-swing
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack 
+      multiplier: 2.25
+      variance: 0.25
+  effects: 
+    - effect: SingleTargetAttack
+  cooldown: 4
+  energyCost: 5 
+  requires: {}
+
+Hemorrhaging Stab:
+  name: Hemorrhaging Stab
+  description: Strike a vital.
+  icon: blade-dripping
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack 
+      multiplier: 1.0
+      variance: 0.25
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Bleed1
+  cooldown: 4
+  energyCost: 6
+  requires: {}
+
+Risky Swing:
+  name: Risky Swing
+  description: Not too consistent oh boy. If you catch them just right...
+  icon: blade-swing2
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack 
+      multiplier: 2.5
+      variance: 2.5
+  effects: 
+    - effect: SingleTargetAttack
+  cooldown: 2
+  energyCost: 9
+  requires: {}
+
+
+### Dropped
+
+GoblinStaffHeal1:
+  name: Goblish Heal I
+  description: Heal yourself.
+  icon: skull-staff
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0.5
+  effects:
+    - effect: SingleTargetHeal
+  cooldown: 3
+  energyCost: 5
+  requires: {}

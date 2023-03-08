@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription, filter, interval, map, combineLatest } from 'rxjs';
-import { ICharacter } from '../../interfaces';
+import { Observable, Subscription, combineLatest, filter, interval, map } from 'rxjs';
+import { IPlayerCharacter } from '../../interfaces';
 import { CharSelectState } from '../../stores';
 import { SetActiveCharacter } from '../../stores/charselect/charselect.actions';
 import { TickTimer } from '../../stores/game/game.actions';
@@ -12,7 +12,7 @@ import { TickTimer } from '../../stores/game/game.actions';
 })
 export class GameloopService {
 
-  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<ICharacter>;
+  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
 
   private interval!: Subscription;
 
@@ -41,6 +41,10 @@ export class GameloopService {
         }
 
         const characterSlot = +(route.snapshot.paramMap.get('slot') || '-1');
+        if(this.currentCharacterSlot === characterSlot) {
+          return;
+        }
+
         this.currentCharacterSlot = characterSlot;
         this.store.dispatch(new SetActiveCharacter(characterSlot));
       });

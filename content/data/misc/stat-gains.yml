@@ -1,0 +1,23 @@
+
+speed:
+  - levelStat: lastTotalLevel
+    divisor: 25
+
+healing:
+  - levelStat: lastTotalLevel
+    divisor: 20
+
+attack:
+  - levelStat: lastTotalLevel
+    divisor: 15
+
+  - levelStat: combat
+    divisor: 10
+
+healthBonus:
+  - levelStat: lastTotalLevel
+    divisor: 1
+
+energyBonus:
+  - levelStat: lastTotalLevel
+    divisor: 10

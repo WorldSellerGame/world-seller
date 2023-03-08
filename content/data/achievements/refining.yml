@@ -1,0 +1,140 @@
+
+Alchemy1:
+  name: Alchemy I
+  description: Do Alchemy 10 times.
+  icon: alchemy
+  stat: refineAlchemy
+  requiredValue: 10
+
+Alchemy2:
+  name: Alchemy II
+  description: Do Alchemy 100 times.
+  icon: alchemy
+  stat: refineAlchemy
+  requiredValue: 100
+
+Alchemy3:
+  name: Alchemy III
+  description: Do Alchemy 1000 times.
+  icon: alchemy
+  stat: refineAlchemy
+  requiredValue: 1000
+
+Alchemy4:
+  name: Alchemy IV
+  description: Do Alchemy 10000 times.
+  icon: alchemy
+  stat: refineAlchemy
+  requiredValue: 10000
+
+Blacksmithing1:
+  name: Blacksmithing I
+  description: Do Blacksmithing 10 times.
+  icon: blacksmithing
+  stat: refineBlacksmithing
+  requiredValue: 10
+
+Blacksmithing2:
+  name: Blacksmithing II
+  description: Do Blacksmithing 100 times.
+  icon: blacksmithing
+  stat: refineBlacksmithing
+  requiredValue: 100
+
+Blacksmithing3:
+  name: Blacksmithing III
+  description: Do Blacksmithing 1000 times.
+  icon: blacksmithing
+  stat: refineBlacksmithing
+  requiredValue: 1000
+
+Blacksmithing4:
+  name: Blacksmithing IV
+  description: Do Blacksmithing 10000 times.
+  icon: blacksmithing
+  stat: refineBlacksmithing
+  requiredValue: 10000
+
+Cooking1:
+  name: Cooking I
+  description: Do Cooking 10 times.
+  icon: cooking
+  stat: refineCooking
+  requiredValue: 10
+
+Cooking2:
+  name: Cooking II
+  description: Do Cooking 100 times.
+  icon: cooking
+  stat: refineCooking
+  requiredValue: 100
+
+Cooking3:
+  name: Cooking III
+  description: Do Cooking 1000 times.
+  icon: cooking
+  stat: refineCooking
+  requiredValue: 1000
+
+Cooking4:
+  name: Cooking IV
+  description: Do Cooking 10000 times.
+  icon: cooking
+  stat: refineCooking
+  requiredValue: 10000
+
+Jewelcrafting1:
+  name: Jewelcrafting I
+  description: Do Jewelcrafting 10 times.
+  icon: jewelcrafting
+  stat: refineJewelcrafting
+  requiredValue: 10
+
+Jewelcrafting2:
+  name: Jewelcrafting II
+  description: Do Jewelcrafting 100 times.
+  icon: jewelcrafting
+  stat: refineJewelcrafting
+  requiredValue: 100
+
+Jewelcrafting3:
+  name: Jewelcrafting III
+  description: Do Jewelcrafting 1000 times.
+  icon: jewelcrafting
+  stat: refineJewelcrafting
+  requiredValue: 1000
+
+Jewelcrafting4:
+  name: Jewelcrafting IV
+  description: Do Jewelcrafting 10000 times.
+  icon: jewelcrafting
+  stat: refineJewelcrafting
+  requiredValue: 10000
+
+Weaving1:
+  name: Weaving I
+  description: Do Weaving 10 times.
+  icon: weaving
+  stat: refineWeaving
+  requiredValue: 10
+
+Weaving2:
+  name: Weaving II
+  description: Do Weaving 100 times.
+  icon: weaving
+  stat: refineWeaving
+  requiredValue: 100
+
+Weaving3:
+  name: Weaving III
+  description: Do Weaving 1000 times.
+  icon: weaving
+  stat: refineWeaving
+  requiredValue: 1000
+
+Weaving4:
+  name: Weaving IV
+  description: Do Weaving 10000 times.
+  icon: weaving
+  stat: refineWeaving
+  requiredValue: 10000

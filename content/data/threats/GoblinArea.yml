@@ -1,0 +1,183 @@
+
+
+SingleGoblin:
+  name: Goblin
+  icon: goblin-small
+  description: A tiny lil goblin. He can't do too much to you, can he?
+
+  maxSkillGainLevel: 4
+  level:
+    min: 0
+    max: 7
+
+  enemies:
+    - Goblin1
+
+
+GoblinandSlime:
+  name: Boy and his... dog?
+  icon: goblin-small
+  description: Goblins can have pets too.
+
+  maxSkillGainLevel: 5
+  level:
+    min: 1
+    max: 7
+
+  enemies:
+    - Goblin1
+    - Slime1
+
+
+
+SingleGoblinWarrior:
+  name: Goblin
+  icon: goblin-big
+  description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
+
+  maxSkillGainLevel: 7
+  level:
+    min: 1
+    max: 7
+
+  enemies:
+    - Goblin2
+
+GoblinDuo:
+  name: Goblin Duo
+  icon: goblin-small
+  description: A pair of tiny goblins. They do get a little more threatening this way.
+
+  maxSkillGainLevel: 7
+  level:
+    min: 1
+    max: 7
+
+  enemies:
+    - Goblin1
+    - Goblin1
+
+GoblinMixedDuo:
+  name: Goblin Team Up
+  icon: goblin-small
+  description: Teaching the little fellow the ropes.
+
+  maxSkillGainLevel: 9
+  level:
+    min: 2
+    max: 8
+
+  enemies:
+    - Goblin1
+    - Goblin2
+
+GoblinWarriorDuo:
+  name: Small Goblin Patrol
+  icon: goblin-big
+  description: 2 Goblins ready to fight.
+
+  maxSkillGainLevel: 8
+  level:
+    min: 3
+    max: 8
+
+  enemies:
+    - Goblin2
+    - Goblin2
+
+GoblinMixedTrio:
+  name: Goblin Trio
+  icon: group-mixed
+  description: Three goblins, but why does that one have a stick?
+
+  maxSkillGainLevel: 9
+  level:
+    min: 4
+    max: 9
+
+  enemies:
+    - Goblin1
+    - Goblin1
+    - GoblinShaman1
+
+GoblinQuadruple:
+  name: Goblin Party
+  icon: group
+  description: A party of goblins. Adventurers aren't the only ones who can party up.
+
+  maxSkillGainLevel: 9
+  level:
+    min: 4
+    max: 9
+
+  enemies:
+    - Goblin1
+    - Goblin1
+    - Goblin1
+    - Goblin1
+
+GoblinWarriorTriple:
+  name: Goblin Patrol
+  icon: goblin-big
+  description: Mean and dangerous, but it means you must be getting closer.
+
+  maxSkillGainLevel: 10
+  level:
+    min: 6
+    max: 9
+
+  enemies:
+    - Goblin2
+    - Goblin2
+    - Goblin2
+
+GoblinAll:
+  name: Goblin Squad
+  icon: goblin-big
+  description: Variety in teams leads to productivity.
+
+  maxSkillGainLevel: 10
+  level:
+    min: 6
+    max: 9
+
+  enemies:
+    - Goblin1
+    - Goblin2
+    - GoblinShaman1
+
+GoblinDangerous: #flow over
+  name: Goblin Strike Team
+  icon: group-mixed
+  description: Not to be messed with.
+
+  maxSkillGainLevel: 10
+  level:
+    min: 7
+    max: 15
+
+  enemies:
+    - Goblin2
+    - Goblin2
+    - GoblinShaman1
+    - GoblinShaman1
+
+#Boss
+
+GoblinDungeonBoss: #this is way too strong lol
+  name: Goblin Lord
+  icon: goblin-big
+  description: Leader of these goblins, take out him and his servants and his pets and his doctor to beat him.
+
+  maxSkillGainLevel: 10 #Pain
+  level:
+    min: -1
+    max: -1
+
+  enemies:
+    - Slime1
+    - Goblin2
+    - GoblinLord1
+    - GoblinShaman1
+    - Goblin1
+    - Slime1

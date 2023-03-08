@@ -1,18 +1,28 @@
 
 Old Boot:
+  name: Old Boot
   description: Used to do boot things.
   category: Miscellaneous
   rarity: Junk
   icon: 'old-boot'
 
 Curse:
+  name: Curse
   description: Used to do punish you for things.
   category: Miscellaneous
   rarity: Junk
   icon: 'curse'
 
-Poo:
+Guano:
+  name: Guano
   description: Used to do nothing, suffer you dumbass.
   category: Miscellaneous
   rarity: Junk
   icon: 'poo'
+
+Love:
+  name: Love
+  description: Defies description.
+  category: Miscellaneous
+  rarity: Junk
+  icon: 'heart'

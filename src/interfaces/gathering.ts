@@ -9,10 +9,12 @@ export interface IGameGatherLocation {
   gatherTime: number;
   cooldownTime?: number;
   resources: IWeighted[];
+  maxWorkers: number;
 }
 
 export interface IGameGathering {
   version: number;
+  unlocked: boolean;
   level: number;
   currentLocation?: IGameGatherLocation;
   currentLocationDurationInitial: number;

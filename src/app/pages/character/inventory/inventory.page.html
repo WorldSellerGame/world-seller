@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inventory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="inventory$ | async as items">
+
+    <ion-card *ngIf="hasNoItems(items)">
+      <ion-card-content>
+        <p class="no-resources">You have no items, yet.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="!hasNoItems(items)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3" *ngFor="let resourceCategory of itemCategories(items); trackBy: trackBy">
+              <ion-button expand="block" [fill]="resourceCategory === activeCategory ? 'solid' : 'outline'" (click)="changeCategory(resourceCategory)">
+                {{ resourceCategory }} ({{ itemsInCategory(items, resourceCategory).length }})
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="resources" *ngIf="activeCategory">
+            <ion-col [sizeMd]="3" *ngFor="let item of itemsInCategory(items, activeCategory); trackBy: trackBy">
+
+              <div class="resource-container">
+                <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
+
+                <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item disabled>
+                          {{ item.name }}
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="quickSell(item)">
+                          Quick Sell ({{ (item.value || 1) * (item.quantity || 1) }} coins)
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sell(item)">
+                          Sell
+                        </ion-item>
+
+                        <ion-item class="cursor-pointer" (click)="sendToStockpile(item)">
+                          Send to Stockpile
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

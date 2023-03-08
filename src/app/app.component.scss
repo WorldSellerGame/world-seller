@@ -66,19 +66,33 @@ ion-menu ion-list {
   padding-bottom: 0;
 }
 
-ion-menu ion-note {
-  margin-bottom: 30px;
-}
-
 ion-menu ion-list-header,
 ion-menu ion-note {
   padding-left: 16px;
+  margin-bottom: 5px;
+}
+
+ion-menu ion-note:last-child {
+  margin-bottom: 20px;
 }
 
 ion-list.header {
   border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
   padding-top: 20px !important;
   padding-bottom: 20px !important;
+
+  display: flex;
+  flex-direction: column;
+
+  .coins, .level {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    app-game-icon {
+      margin-right: 10px;
+    }
+  }
 }
 
 ion-list.header ion-list-header {
@@ -100,11 +114,6 @@ app-game-icon:not([slot]) {
   margin-inline-end: 16px;
 }
 
-ion-label.has-timer {
-  display: flex;
-  justify-content: space-between;
-}
-
 .settings {
   position: absolute;
   right: 10px;
@@ -118,4 +127,8 @@ ion-label.has-timer {
   background-color: var(--ion-color-medium-shade, #fff);
   margin: 4px 0 4px 8px;
   position: relative;
+}
+
+ion-item.item.selected {
+  pointer-events: none;
 }

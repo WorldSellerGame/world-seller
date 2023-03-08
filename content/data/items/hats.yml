@@ -1,11 +1,48 @@
 
+Knitted Hat:
+  name: Knitted Hat
+  description: Hat made of Yarn.
+  type: HeadArmor
+  category: Armor
+  rarity: Common
+  durability: 5
+  value: 10
+  icon: hat
+  stats:
+    armor: 1
+
+Fur Hat:
+  name: Fur Hat
+  description: Hat made of Fur.
+  type: HeadArmor
+  category: Armor
+  rarity: Common
+  durability: 10
+  value: 10
+  icon: hat
+  stats:
+    armor: 3
+
 Linen Hat:
   name: Linen Hat
   description: Hat made of linen cloth.
   type: HeadArmor
   category: Armor
   rarity: Common
-  durability: 50
+  durability: 15
+  value: 10
   icon: hat
   stats:
-    armor: 1
+    speed: 2
+
+Leather Hat:
+  name: Leather Hat
+  description: Hat made of Leather.
+  type: HeadArmor
+  category: Armor
+  rarity: Common
+  durability: 20
+  value: 10
+  icon: hat
+  stats:
+    armor: 5

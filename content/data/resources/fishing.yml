@@ -1,78 +1,92 @@
 
 Cropfish:
+  name: Cropfish
   description: A really tiny fish.
   category: Foods
   rarity: Common
   icon: 'fish'
 
 Panfish:
+  name: Panfish
   description: A nickname for a wide varienty of small game fish.
   category: Foods
   rarity: Common
   icon: 'fish'
 
 Fallfish:
+  name: Fallfish
   description: A smaller species of river fish.
   category: Foods
   rarity: Common
   icon: 'fish'
 
 Frog:
+  name: Frog
   description: Just a slimy little guy.
   category: Foods
   rarity: Uncommon
   icon: 'frog'
 
 Trout:
+  name: Trout
   description: "A new age of darkness? ...This will affect the trout population."
   category: Foods
   rarity: Uncommon
   icon: 'fish'
 
 Bass:
+  name: Bass
   description: Small and big mouth bass are common in most lakes.
   category: Foods
   rarity: Uncommon
   icon: 'fish'
 
 Catfish:
+  name: Catfish
   description: Rare in these parts, but the species present grow huge. The taste isn't for everyone though. #Catfish cheeks are a a delicacy look it up
   category: Foods
   rarity: Rare
   icon: 'fish'
 
 Magical Frog:
+  name: Magical Frog
   description: Cursed? Blessed? Just born this way? Who knows, but there has to be a good use for this...
   category: Foods
   rarity: Legendary
   icon: 'magical-frog'
 
 Sardine:
+  name: Sardine
   description: Tiny but numerous and can be eaten whole.
   category: Foods
   rarity: Common
   icon: 'many-fish'
 
 Pompano:
+  name: Pompano
   description: Fairly common and quite tasty.
   category: Foods
   rarity: Common
   icon: 'ocean-fish'
 
 Pufferfish:
+  name: Pufferfish
   description: Best not to be eaten unless you're a master chef. Even then, is it worth the effort?
   category: Foods
   rarity: Uncommon
   icon: 'pufferfish'
 
 Octopus:
+  name: Octopus
   description: It has many uses, but not worth the effort for most folks.
   category: Foods
   rarity: Rare
-  icon: 'octopus'  
+  icon: 'octopus'
 
 Shark:
-  description: You know what a shark is and it's cool, that's what a shark is, cool. 
+  name: Shark
+  description: You know what a shark is and it's cool, that's what a shark is, cool.
   category: Foods
   rarity: Rare
   icon: 'shark'
+

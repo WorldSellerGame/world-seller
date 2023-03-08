@@ -1,11 +1,48 @@
 
-Linen Shirt:
-  name: Linen Shirt
-  description: Shirt made of linen cloth.
-  type: BodyArmor
+Knitted Shirt:
+  name: Knitted Shirt
+  description: Shirt made of Yarn.
+  type: ChestArmor
   category: Armor
   rarity: Common
-  durability: 50
+  durability: 5
+  value: 10
   icon: shirt
   stats:
     armor: 1
+
+Fur Shirt:
+  name: Fur Shirt
+  description: Shirt made of Fur.
+  type: ChestArmor
+  category: Armor
+  rarity: Common
+  durability: 10
+  value: 10
+  icon: shirt
+  stats:
+    armor: 3
+
+Linen Shirt:
+  name: Linen Shirt
+  description: Shirt made of linen cloth.
+  type: ChestArmor
+  category: Armor
+  rarity: Common
+  durability: 15
+  value: 10
+  icon: shirt
+  stats:
+    speed: 2
+
+Leather Shirt:
+  name: Leather Shirt
+  description: Shirt made of Leather.
+  type: ChestArmor
+  category: Armor
+  rarity: Common
+  durability: 20
+  value: 10
+  icon: shirt
+  stats:
+    armor: 5

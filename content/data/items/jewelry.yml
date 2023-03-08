@@ -1,11 +1,228 @@
 
-Quartz Ring:
-  name: Quartz Ring
-  description: A simple copper ring set with a cut quartz.
+
+
+Dandelion Crown:
+  name: Dandelion Crown
+  description: Dandelions braided together.
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 50
-  icon: ring
+  durability: 5
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Braided Belt:
+  name: Braided Belt
+  description: A simple braided belt.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring'
   stats:
     armor: 1
+
+Braided Anklet:
+  name: Braided Anklet
+  description: A simple braided anklet.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Copper Ring:
+  name: Copper Ring
+  description: A plain Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Copper Tongue Piercing:
+  name: Copper Tongue Piercing
+  description: A plain Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'tongue-piercing'
+  stats:
+    {}
+
+#
+
+Bone Belt:
+  name: Bone Belt
+  description: Belt strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'bone-string'
+  stats:
+    armor: 1
+
+Bone Anklet:
+  name: Bone Anklet
+  description: Anklet strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'bone-string'
+  stats:
+    {}
+
+Quartz Copper Ring:
+  name: Copper Ring
+  description: Cut Quartz in a Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Quartz Copper Tongue Piercing:
+  name: Copper Tongue Piercing
+  description: Cut Quartz in a Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'tongue-piercing'
+  stats:
+    {}
+
+###HOLY FUCK
+
+Iron Ring:
+  name: Iron Ring
+  description: A plain Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring'
+  stats:
+    {}
+
+Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: A plain Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'tongue-piercing'
+  stats:
+    {}
+
+Boar Tusk Belt:
+  name: Boar Tusk Belt
+  description: Belt strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'bone-string'
+  stats:
+    armor: 1
+
+Boar Tusk Anklet:
+  name: Boar Tusk Anklet
+  description: Anklet strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'bone-string'
+  stats:
+    {}
+
+Quartz Iron Ring:
+  name: Iron Ring
+  description: Cut Quartz set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Quartz Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: Cut Quartz set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'tongue-piercing'
+  stats:
+    {}
+
+Tanzanite Iron Ring:
+  name: Iron Ring
+  description: Cut Tanzanite set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring-with-stone'
+  stats:
+    {}
+
+Tanzanite Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: Cut Tanzanite set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'tongue-piercing'
+  stats:
+    {}
+
+#if the system becomes more modular/needs more things engraving filigree could be easy
+
+#Dropped
+Goblin Crown: #this bih already enchanted
+  name: Goblin Crown
+  description: Crown of a goblin lord. Makes you feel important.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 10
+  icon: goblin-crown
+  givesAbility: GoblinLord1
+  stats:
+    attack: -1
+    healthBonus: -1
+    speed: 3

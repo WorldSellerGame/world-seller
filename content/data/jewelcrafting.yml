@@ -1,16 +1,248 @@
 
 recipes:
-  - result: Copper Setting
-    perCraft: { min: 1, max: 2 }
-    level: { min: 0, max: 10 }
-    craftTime: 10
-    ingredients:
-      Copper Ore: 2
 
-  - result: Quartz Ring
+# Resources
+
+  - result: Cut Quartz
     perCraft: { min: 1, max: 1 }
-    level: { min: 1, max: 11 }
+    level: { min: 10, max: 20 }
     craftTime: 90
     ingredients:
-      Copper Setting: 1
+      Metal Jewelry Tools: 1
       Quartz: 1
+    maxWorkers: 1
+
+  - result: Cut Tanzanite
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Metal Jewelry Tools: 1
+      Tanzanite: 1
+    maxWorkers: 1
+
+# Non Metal
+
+  - result: Dandelion Crown
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 5 }
+    craftTime: 90
+    ingredients:
+      Dandelion: 12
+    require:
+      - Dandelion
+    preserve:
+      - Dandelion
+    maxWorkers: 1
+
+  - result: Braided Anklet
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Yarn: 2
+    maxWorkers: 1
+
+  - result: Braided Belt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 0, max: 10 }
+    craftTime: 90
+    ingredients:
+      Yarn: 6
+    maxWorkers: 1
+
+  - result: Bone Anklet
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 90
+    ingredients:
+      Bone: 2
+      Twine: 2
+      Jewelry Tools: 1
+    require:
+      - Jewelry Tools
+    preserve:
+      - Jewelry Tools
+    maxWorkers: 1
+
+  - result: Bone Belt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 5, max: 15 }
+    craftTime: 90
+    ingredients:
+      Bone: 4
+      Twine: 6
+      Jewelry Tools: 1
+    require:
+      - Jewelry Tools
+    preserve:
+      - Jewelry Tools
+    maxWorkers: 1
+
+  - result: Boar Tusk Anklet
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Boar Tusk: 2
+      Twine: 2
+      Jewelry Tools: 1
+    require:
+      - Jewelry Tools
+    preserve:
+      - Jewelry Tools
+    maxWorkers: 1
+
+  - result: Boar Tusk Belt
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 90
+    ingredients:
+      Boar Tusk: 4
+      Twine: 6
+      Jewelry Tools: 1
+    require:
+      - Jewelry Tools
+    preserve:
+      - Jewelry Tools
+    maxWorkers: 1
+
+# Metal #god fucking damnit god fucking fuck you fucking fuckers  I DONT WANT TO SUB DIVED INGOTS ONTO SMALLER FUCKING PORTIONS FRUCK SHIT ASS FUCK SHIT GODDAMN... Ahem mabye its not so bad... if it is bad though I am going to blow up the moon I bet there in a mcraft mod for doing that
+
+  - result: Copper Ring
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Copper Ingot: 1
+      Metal Jewelry Tools: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
+    maxWorkers: 1
+
+  - result: Copper Tongue Piercing
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Copper Ingot: 1
+      Metal Jewelry Tools: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
+    maxWorkers: 1
+
+  - result: Quartz Copper Ring
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Copper Ring: 1
+      Cut Quartz: 1
+      Metal Jewelry Tools: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
+    maxWorkers: 1
+
+  - result: Quartz Copper Tongue Piercing
+    perCraft: { min: 1, max: 1 }
+    level: { min: 10, max: 20 }
+    craftTime: 90
+    ingredients:
+      Iron Tongue Piercing: 1
+      Cut Quartz: 1
+      Metal Jewelry Tools: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
+    maxWorkers: 1
+
+##iron because fuck
+
+  - result: Iron Ring
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 90
+    ingredients:
+      Iron Ingot: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1
+
+  - result: Iron Tongue Piercing
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 90
+    ingredients:
+      Iron Ingot: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1
+
+  - result: Quartz Iron Ring
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 90
+    ingredients:
+      Iron Ring: 1
+      Cut Quartz: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1
+
+  - result: Quartz Iron Tongue Piercing
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 90
+    ingredients:
+      Iron Tongue Piercing: 1
+      Cut Quartz: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1
+
+  - result: Tanzanite Iron Ring
+    perCraft: { min: 1, max: 1 }
+    level: { min: 25, max: 35 }
+    craftTime: 90
+    ingredients:
+      Iron Ring: 1
+      Cut Tanzanite: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1
+
+  - result: Tanzanite Iron Tongue Piercing
+    perCraft: { min: 1, max: 1 }
+    level: { min: 25, max: 35 }
+    craftTime: 90
+    ingredients:
+      Iron Tongue Piercing: 1
+      Cut Tanzanite: 1
+      Iron Jewelry Tools: 1
+    require:
+      - Iron Jewelry Tools
+    preserve:
+      - Iron Jewelry Tools
+    maxWorkers: 1

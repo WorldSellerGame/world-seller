@@ -14,6 +14,7 @@ locations:
         weight: 2
       - name: Bone
         weight: 1
+    maxWorkers: 1
 
   - name: Pine Forest (Squirrel)
     description: A small forest nearby.
@@ -30,6 +31,7 @@ locations:
         weight: 2
       - name: Bone
         weight: 1
+    maxWorkers: 1
 
   - name: Pine Forest (Bunny)
     description: A small forest nearby.
@@ -46,9 +48,10 @@ locations:
         weight: 2
       - name: Bone
         weight: 1
+    maxWorkers: 1
 
   - name: Marsh (Frog)
-    description: A marsh with small streams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 2
       max: 4
@@ -59,10 +62,11 @@ locations:
     cooldownTime: 15
     resources:
       - name: Frog
-        weight: 702
-  
+        weight: 1
+    maxWorkers: 1
+
   - name: Marsh (Duck)
-    description: A marsh with small streams and ponds amongst it. 
+    description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 3
       max: 6
@@ -76,6 +80,7 @@ locations:
         weight: 1
       - name: Feather
         weight: 2
+    maxWorkers: 1
 
   - name: Orchard (Deer)
     description: It looks to be an abandoned apple farm amongst the wilderness. The deer seem to love the apples.
@@ -88,14 +93,17 @@ locations:
     gatherTime: 15
     cooldownTime: 20
     resources:
-      - name: Dear meat
-        weight: 5
-      - name: Dear Antlers
-        weight: 1
+      - name: Deer Meat
+        weight: 12
+      - name: Deer Antler
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
+    maxWorkers: 1
 
   - name: Cedrics Woods (Turkey)
     description: A hard wood forest. Acording to the locals fighting a bear with a spoon gets a forest named after you.
@@ -112,6 +120,7 @@ locations:
         weight: 4
       - name: Feather
         weight: 1
+    maxWorkers: 1
 
   - name: Cedrics Hunting Spot (Boar)
     description: Cedric was said to eat an entire boar by himself when hungry enough. This spot is full of them.
@@ -125,13 +134,16 @@ locations:
     cooldownTime: 25
     resources:
       - name: Boar Meat
-        weight: 4
+        weight: 12
       - name: Boar Tusk
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
+    maxWorkers: 1
 
   - name: Coniferous forest (Elk)
     description: Elk here.
@@ -145,13 +157,16 @@ locations:
     cooldownTime: 25
     resources:
       - name: Elk Meat
-        weight: 4
-      - name: Elk Antlers
-        weight: 1
+        weight: 12
+      - name: Elk Antler
+        weight: 3
       - name: Hide
-        weight: 1
+        weight: 3
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
+    maxWorkers: 1
 
   - name: Magic Swamp (Alligator)
     description: They said "don't chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
@@ -172,6 +187,7 @@ locations:
         weight: 1
       - name: Bone
         weight: 1
+    maxWorkers: 1
 
   - name: Iron Wood Grove (Moose)
     description: Moose are a rare sight outside of these woods nearly hunted to extinction in their lands by the legendary hunter, Beebo.
@@ -185,13 +201,16 @@ locations:
     cooldownTime: 30
     resources:
       - name: Moose Meat
-        weight: 6
+        weight: 18
       - name: Moose Antler
-        weight: 1
+        weight: 3
       - name: Hide
-        weight: 2
+        weight: 6
       - name: Bone
-        weight: 1
+        weight: 3
+      - name: Fat
+        weight: 2
+    maxWorkers: 1
 
   - name: Small Stream
     description: Bears are relatively common around this stream except around one particular stream pool.
@@ -212,6 +231,9 @@ locations:
         weight: 2
       - name: Bone
         weight: 1
+      - name: Fat
+        weight: 2
+    maxWorkers: 1
 
   - name: Old Elvish Woods (Grouse)
     description: The easiest place to find this elusive bird.
@@ -230,3 +252,4 @@ locations:
         weight: 1
       - name: nothing
         weight: 4
+    maxWorkers: 1

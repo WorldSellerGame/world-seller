@@ -1,0 +1,281 @@
+
+# this table covers all things associated with bsmithing made tables and resources then make/need to function
+
+#woe pain ahead
+#wait wtf where did the refined materials resources tab go lol
+
+###Resources (necessary for crafting tables)
+
+Brick:
+  name: Brick
+  description: Good for building, but also pretty handy for throwing.
+  category: Refined Materials
+  rarity: Common
+  icon: 'brick'
+
+Lime:
+  name: Lime
+  description: Useful as a binder, flux and as an alkaline material, but please don't put this on your food.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Charcoal:
+  name: Charcoal
+  description: High heat can't be beat.
+  category: Refined Materials
+  rarity: Common
+  icon: 'charcoal'
+
+Mortar: #High Heat Mortar later
+  name: Mortar
+  description: Good for building, not too good for throwing.
+  category: Refined Materials
+  rarity: Common
+  icon: 'powder'
+
+Copper Ingot:
+  name: Copper Ingot
+  description: Refined copper ore ready to be shaped.
+  category: Refined Materials
+  rarity: Common
+  icon: 'ingot'
+
+Fire Brick:
+  name: Fire Brick
+  description: High heat resistant brick.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'brick'
+
+Iron Ingot:
+  name: Iron Ingot
+  description: Refined iron ore ready to be shaped.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'ingot'
+
+Burning Oil: #likely will have more ins for making burning oil
+  name: Burning Oil
+  description: Used in glass sets, lamps, and burners. Can be made a few ways but sap is easiest.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'drop'
+
+
+###tables/Tools
+
+#Fabrication (Lists where it is used now where it is made)
+
+Table:  #also used in Cooking, Refining, Jewel Crafting and Weaving
+  name: Table
+  description: A table is a simple flat workspace for many things.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'table'
+
+Workbench:
+  name: Workbench
+  description: A table with dedicated tools and special features.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'toolbox'
+
+Construction Tools:
+  name: Construction Tools
+  description: A set of tools for making structures and otherwise.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'construction-hammer'
+
+Metal Tool Bench:
+  name: Metal Tool Bench
+  description: A table with dedicated tools and special features, but metal.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'toolbox'
+
+Metal Construction Tools:
+  name: Metal Construction Tools
+  description: A set of tools for making structures and otherwise, but metal.
+  category: Crafting Tables
+  rarity: Rare
+  icon: 'hammer-nails'
+
+Iron Tool Bench:
+  name: Iron Tool Bench
+  description: A table with dedicated tools and special features, but Iron.
+  category: Crafting Tables
+  rarity: Rare
+  icon: 'toolbox'
+
+Iron Construction Tools:
+  name: Iron Construction Tools
+  description: A set of tools for making structures and otherwise, but Iron.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'hammer-nails'
+
+#refining
+
+Oven: # Also used in Cooking and Alchemy
+  name: Oven
+  description: A very rudimentary stone oven, better than a campfire for cooking and lets you bake things.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'oven'
+
+Brick Oven: # Also used in Cooking
+  name: Brick Oven
+  description: An exceptionally useful pice of equipment, looks quite nice as well.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'oven'
+
+Furnace:
+  name: Furnace
+  description: Hot enough to melt metal.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'oven'
+
+Blast Furnace:
+  name: Blast Furnace
+  description: Exceptionally hot burning furnace for very tough materials.
+  category: Crafting Tables
+  rarity: Rare
+  icon: 'oven'
+
+#cooking
+
+Kitchen Utensils:
+  name: Kitchen Utensils
+  description: Set of varied cooking implements.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'utensils'
+
+Pots and Pans: #Also used in Early Alchemy
+  name: Pots and Pans
+  description: Oven safe.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'pot'
+
+Millstone:
+  name: Millstone
+  description: Basically a very large mortar and pestle. Mostly used to make flour.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'millstone'
+
+Metal Kitchen Utensils:
+  name: Metal Kitchen Utensils
+  description: Necessary for fine work when cooking.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'whisk'
+
+Metal Pots and Pans:
+  name: Metal Pots and Pans
+  description: Necessary for fine work when cooking in the oven.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'pot'
+
+# Alchemy
+
+Mortar and Pestle:
+  name: Mortar and Pestle
+  description: Used to grind material to powder or paste.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'mortar-and-pestle'
+
+Glass Set:
+  name: Glass Set
+  description: Rudimentary glassware and stands.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'standing-potion'
+
+Burner:
+  name: Burner
+  description: Small flame producing implement, useful when finesse is required.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'burner'
+
+Fine Glass Set:
+  name: Fine Glass Set
+  description: Glassware and stands of good quality.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'standing-potion'
+
+#Weaving
+
+Whorl:
+  name: Whorl
+  description: Used to make threads of fibers.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'whorl'
+
+Knitting Needles:
+  name: Knitting Needles
+  description: Used to knit yarn together.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+Sewing Kit:
+  name: Sewing Kit
+  description: Used stitch material together. String not included.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+Spinning Wheel:
+  name: Spinning Wheel
+  description: Used to make threads and composite threads at high speeds. Has an attached rope walk setup.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'spinning-wheel'
+
+Loom:
+  name: Loom
+  description: Used to make fabric.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'loom'
+
+Metal Sewing Kit:
+  name: Metal Sewing Kit
+  description: Used stitch tougher material together. String not included.
+  category: Crafting Tables
+  rarity: Common
+  icon: 'needle'
+
+# Jewelry, Going to use other catagories crafting things all the time
+
+Jewelry Tools:
+  name: Jewelry Tools
+  description: A few tools for puncturing, holding, smashing, and stitching. #HOW DID YOU SPELL IT RIGHT HERE
+  category: Crafting Tables
+  rarity: Common
+  icon: 'toolbox'
+
+Metal Jewelry Tools:
+  name: Metal Jewelry Tools
+  description: A set of tools appropriate for soft metals and stones.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'flat-hammer'
+
+Iron Jewelry Tools:
+  name: Iron Jewelry Tools
+  description: A set of tools appropriate for most normal metals and stones.
+  category: Crafting Tables
+  rarity: Uncommon
+  icon: 'flat-hammer'

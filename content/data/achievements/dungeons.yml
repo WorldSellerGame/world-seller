@@ -1,0 +1,7 @@
+
+Dungeon10:
+  name: Goblin Gobbler
+  description: Conquer the Goblin Hideout dungeon.
+  icon: combat
+  stat: dungeon10
+  requiredValue: 1

@@ -13,6 +13,7 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+    maxWorkers: 2
 
   - name: Long Quarry
     description: A small quarry nearby that takes a while to gather from.
@@ -28,6 +29,7 @@ locations:
         weight: 1
       - name: Stone
         weight: 1
+    maxWorkers: 0
 
   - name: Dried Out River Basin
     description: A place where a river used to flow.
@@ -45,6 +47,9 @@ locations:
         weight: 1
       - name: Gravel
         weight: 1
+      - name: Limestone
+        weight: 1
+    maxWorkers: 1
 
   - name: Abandoned Copper Mine
     description: Mostly mined-out mining operation, but you can still somewhat mine at this mine.
@@ -57,9 +62,12 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
-        weight: 5
-      - name: Copper Ore
+        weight: 10
+      - name: Brimstone
         weight: 1
+      - name: Copper Ore
+        weight: 2
+    maxWorkers: 1
 
   - name: Bat Infested Iron Mine
     description: Despite being rich in ore, this cave hasn't had the touch of mankind.
@@ -72,11 +80,16 @@ locations:
     gatherTime: 20
     resources:
       - name: Stone
+        weight: 3
+      - name: Limestone
         weight: 2
+      - name: Brimstone
+        weight: 1
       - name: Iron Ore
-        weight: 1
-      - name: Poo
-        weight: 1
+        weight: 2
+      - name: Guano
+        weight: 3
+    maxWorkers: 1
 
   - name: Grotto
     description: A naturally formed cave with pools of water.
@@ -89,13 +102,18 @@ locations:
     gatherTime: 30
     resources:
       - name: Stone
-        weight: 50
+        weight: 30
+      - name: Limestone
+        weight: 10
+      - name: White Clay
+        weight: 20
       - name: Sand
         weight: 5
       - name: Quartz
         weight: 10
       - name: Tanzanite
         weight: 1
+    maxWorkers: 1
 
   - name: Archaeological Site
     description: Ancient loacation that doubles as a resting place for the dead.
@@ -110,13 +128,18 @@ locations:
       - name: Stone
         weight: 10
       - name: Gravel
-        weight: 30
+        weight: 20
+      - name: Brimstone
+        weight: 10
       - name: Bone
         weight: 5
       - name: Tanzanite
         weight: 10
+      - name: Sap
+        weight: 1
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Deep Depth Mine
     description: Place too deep for most companies to turn a profit.
@@ -129,7 +152,9 @@ locations:
     gatherTime: 100
     resources:
       - name: Stone
-        weight: 70
+        weight: 55
+      - name: Limestone
+        weight: 15
       - name: Iron Ore
         weight: 20
       - name: Quartz
@@ -138,6 +163,7 @@ locations:
         weight: 5
       - name: Adamantite Ore
         weight: 1
+    maxWorkers: 1
 
   - name: Achient Dwarven Mine
     description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
@@ -150,7 +176,11 @@ locations:
     gatherTime: 150
     resources:
       - name: Stone
-        weight: 300
+        weight: 250
+      - name: Limestone
+        weight: 50
+      - name: Brimstone
+        weight: 10
       - name: Iron Ore
         weight: 100
       - name: Quartz
@@ -161,6 +191,7 @@ locations:
         weight: 20
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Pile of Cursed Feces
     description: Probably best not to mine here.
@@ -172,7 +203,8 @@ locations:
       max: 45
     gatherTime: 10
     resources:
-      - name: Poo
+      - name: Guano
         weight: 1
       - name: Curse
         weight: 1
+    maxWorkers: 1

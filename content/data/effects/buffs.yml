@@ -1,0 +1,143 @@
+
+StrengthenBasic:
+  name: Strengthen
+  description: Gained +5 attack.
+  icon: strong
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    attack: 5
+
+######## Basic skill ability effects (May be moved) Regardless I will use all of these all the fucking time I think so best to get it right
+
+SpeedBuff1:
+  name: Speed I
+  description: Increases Speed by 3.
+  icon: arrow-forward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -3
+
+SpeedBuff2:
+  name: Speed II
+  description: Increases Speed by 5.
+  icon: arrow-forward
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -5
+
+HealingBuff1:
+  name: Healing I
+  description: Increases Healing by 3.
+  icon: healing-buff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: 3
+
+HealingBuff2:
+  name: Healing II
+  description: Increases Healing by 5.
+  icon: healing-buff
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: 5
+
+AttackBuff1:
+  name: Attack I
+  description: Increases Attack by 3.
+  icon: sword-hand
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: 3
+
+AttackBuff2:
+  name: Attack II
+  description: Increases Attack by 5.
+  icon: sword-hand
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: 5
+
+AttackBuff3:
+  name: Attack III
+  description: Increases Attack by 8.
+  icon: sword-hand
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    attack: 8
+
+HealthBuff1:
+  name: Health I
+  description: Increases Max Health by 15.
+  icon: heart-plus
+  color: "#00ff00"
+  turnsLeft: 10
+  statusEffectType: StatModification
+  statModifications:
+    healthBonus: 15
+
+HealthBuff2:
+  name: Health II
+  description: Increases Max Health by 20.
+  icon: heart-plus
+  color: "#00ff00"
+  turnsLeft: 12
+  statusEffectType: StatModification
+  statModifications:
+    healthBonus: 20
+
+ArmorBuff1:
+  name: Armor I
+  description: Increases Armor by 3.
+  icon: shield
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: 3
+
+ArmorBuff2:
+  name: Armor II
+  description: Increases Armor by 5.
+  icon: shield
+  color: "#00ff00"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    armor: 5
+
+EnergyBuff1:
+  name: Energize I
+  description: Increases Max Energy by 10.
+  icon: bolt
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: 5
+
+EnergyBuff2:
+  name: Energize II
+  description: Increases Max Energy by 15.
+  icon: bolt
+  color: "#00ff00"
+  turnsLeft: 5
+  statusEffectType: StatModification
+  statModifications:
+    energyBonus: 10
+

@@ -1,11 +1,27 @@
+import { IGameCombatAbilityEffect } from './combat';
 
 export enum Rarity {
+  Broken = 'Broken',
   Junk = 'Junk',
   Common = 'Common',
   Uncommon = 'Uncommon',
   Rare = 'Rare',
   Epic = 'Epic',
   Legendary = 'Legendary'
+}
+
+export enum ItemCategory {
+  Tools = 'Tools',
+  Armor = 'Armor',
+  Foods = 'Foods',
+  Jewelry = 'Jewelry',
+  Potions = 'Potions',
+  Seeds = 'Seeds',
+  Miscellaneous = 'Miscellaneous',
+  RawMaterials = 'Raw Materials',
+  RefinedMaterials = 'Refined Materials',
+  CraftingTables = 'Crafting Tables',
+  Weapons = 'Weapons'
 }
 
 export enum Stat {
@@ -26,7 +42,16 @@ export enum Stat {
 
   // generic stats
   Armor = 'armor',
-  Healing = 'healing'
+  Healing = 'healing',
+  Attack = 'attack',
+  EnergyBonus = 'energyBonus',
+  HealthBonus = 'healthBonus',
+  Speed = 'speed',
+
+  HealingPerRound = 'healingPerRound',
+  HealingPerCombat = 'healingPerCombat',
+  EnergyPerRound = 'energyPerRound',
+  EnergyPerCombat = 'energyPerCombat',
 }
 
 export enum ItemType {
@@ -38,6 +63,7 @@ export enum ItemType {
   FishingBait = 'FishingBait',
   Scythe = 'Scythe',
   HuntingTool = 'HuntingTool',
+  Weapon = 'Weapon',
 
   // armor
   LegArmor = 'LegArmor',
@@ -45,32 +71,52 @@ export enum ItemType {
   HeadArmor = 'HeadArmor',
   FootArmor = 'FootArmor',
   HandArmor = 'HandArmor',
-  Jewelry = 'Jewelry'
+  Jewelry = 'Jewelry',
+
+  // usable
+  Food = 'Food',
+  Potion = 'Potion'
 }
+
+export interface IStatGain {
+  levelStat: 'lastTotalLevel' | 'alchemy' | 'blacksmithing'
+  | 'combat' | 'cooking' | 'farming' | 'fishing'
+  | 'foraging' | 'hunting' | 'jewelcrafting' | 'logging'
+  | 'mercantile' | 'mining' | 'prospecting' | 'weaving';
+
+  divisor: number;
+}
+
+export type IStatGains = Partial<Record<Stat, IStatGain[]>>;
 
 export interface IGame {
   version: number;
+  statGains: IStatGains;
 }
 
 export interface IGameItem {
+
+  // used to uniquely identify this item
+  id?: string;
+
+  // used to identify the item based on its internal name/id (for migrating items)
+  internalId?: string;
   name: string;
   description: string;
   type: ItemType;
-  category: string;
+  category: ItemCategory;
   rarity: Rarity;
   durability: number;
+  value: number;
   icon: string;
   canStack?: boolean;
   quantity?: number;
+  givesAbility?: string;
+  effects?: IGameCombatAbilityEffect[];
   stats: Record<Stat, number>;
-}
 
-export interface IGameRecipe {
-  result: string;
-  ingredients: Record<string, number>;
-  level: { min: number; max: number };
-  perCraft: { min: number; max: number };
-  craftTime: number;
+  foodDuration?: number;
+  sellTicks?: number;
 }
 
 export interface IGameResourceTransform {
@@ -82,10 +128,11 @@ export interface IGameResourceTransform {
 }
 
 export interface IGameResource {
+  name: string;
   description: string;
   icon: string;
   rarity: Rarity;
-  category: string;
+  category: ItemCategory;
 }
 
 export interface IWeighted {

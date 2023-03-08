@@ -1,23 +1,28 @@
 import { StateContext } from '@ngxs/store';
 
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
 
 export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1,
   recipeQueue: []
 });
+
+export function unlockWeaving(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetWeaving(ctx: StateContext<IGameRefining>) {
   ctx.setState(defaultWeaving());
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelWeavingJob);
+  decreaseRefineTimer(ctx, ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
 }
 
 export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelWeavingJob) {

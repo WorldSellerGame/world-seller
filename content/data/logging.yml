@@ -11,9 +11,9 @@ locations:
     resources:
       - name: Pine Log
         weight: 5
-
       - name: Plant Fiber
         weight: 2
+    maxWorkers: 1
 
   - name: Pine Forest
     description: Closest place to gather good firewood.
@@ -26,11 +26,14 @@ locations:
     gatherTime: 10
     resources:
       - name: Pine Log
-        weight: 5
+        weight: 10
       - name: Pinecone
-        weight: 1
-      - name: Plant Fiber
         weight: 2
+      - name: Plant Fiber
+        weight: 4
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Coniferous Forest
     description: A mix of different trees a little farther away.
@@ -52,6 +55,9 @@ locations:
         weight: 3
       - name: Plant Fiber
         weight: 2
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Orchard
     description: It looks to be an abandoned apple farm amongst the wilderness.
@@ -69,6 +75,7 @@ locations:
         weight: 1
       - name: Plant Fiber
         weight: 1
+    maxWorkers: 1
 
   - name: Cedrics Woods
     description: A hard wood forest. Acording to the locals fighting a bear with a spoon gets a forest named after you.
@@ -94,6 +101,9 @@ locations:
         weight: 2
       - name: Plant Fiber
         weight: 1
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Cedrics Spot
     description: Cedrics old secret spot for high quality wood.
@@ -119,6 +129,9 @@ locations:
         weight: 4
       - name: Plant Fiber
         weight: 2
+      - name: Sap
+        weight: 1
+    maxWorkers: 1
 
   - name: Iron Wood Grove
     description: Place to go for some of the hardest lumber available to most people.
@@ -142,6 +155,7 @@ locations:
         weight: 20
       - name: Hophornbeam Seed
         weight: 2
+    maxWorkers: 1
 
   - name: Dryads Chosen Select
     description: High quality wood in abundance. Best not to upset the owners if you know what's good for you.
@@ -163,10 +177,11 @@ locations:
         weight: 2
       - name: Elvish Silverwood Log
         weight: 40
-      - name: Elvish Silverwood seed
+      - name: Elvish Silverwood Seed
         weight: 2
       - name: Curse
         weight: 1
+    maxWorkers: 1
 
   - name: Old Elvish Woods
     description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people.
@@ -184,8 +199,9 @@ locations:
         weight: 3
       - name: Elvish Silverwood Log
         weight: 80
-      - name: Elvish Silverwood seed
+      - name: Elvish Silverwood Seed
         weight: 4
+    maxWorkers: 1
 
 #Brandon
   #numbers to be adjusted at later date

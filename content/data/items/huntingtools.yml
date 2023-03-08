@@ -5,7 +5,38 @@ Stone Spear:
   type: HuntingTool
   category: Tools
   rarity: Common
-  durability: 50
+  durability: 10
+  value: 10
   icon: spear
   stats:
     huntingPower: 3
+    huntingSpeed: 0
+
+Copper Spear:
+  name: Copper Spear
+  description: A hunting spear made of Copper.
+  type: HuntingTool
+  category: Tools
+  rarity: Common
+  durability: 15
+  value: 10
+  icon: spear
+  stats:
+    huntingPower: 5
+    huntingSpeed: 15
+
+Iron Spear:
+  name: Iron Spear
+  description: A hunting spear made of Iron.
+  type: HuntingTool
+  category: Tools
+  rarity: Common
+  durability: 20
+  value: 10
+  icon: spear
+  stats:
+    huntingPower: 15
+    huntingSpeed: -5
+
+
+#todo look at methods of bow implementation #it may be possible to force hunting Power to be a sudo ranged option on skills

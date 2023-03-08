@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Cooking Lv.{{ level$ | async }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-refining-page-display
+    [tradeskill]="'cooking'"
+    [level$]="level$"
+    [resources$]="resources$"
+    [currentQueue$]="currentQueue$"
+    [refiningWorkers$]="refiningWorkers$"
+    [locationData]="locationData"
+    [startAction]="startAction"
+    [cancelAction]="cancelAction"
+  ></app-refining-page-display>
+</ion-content>

@@ -7,8 +7,13 @@ import { SetOption } from './options.actions';
 export const defaultOptions: () => IOptions = () => ({
   version: 0,
   [GameOption.DebugMode]: false,
+  [GameOption.ColorTheme]: 'worldseller',
   [GameOption.SidebarDisplay]: 'full',
-  [GameOption.TickTimer]: 1
+  [GameOption.TickTimer]: 1,
+  [GameOption.SoundMaster]: 50,
+  [GameOption.SoundSFX]: 100,
+  [GameOption.TelemetryErrors]: true,
+  [GameOption.TelemetrySavefiles]: true,
 });
 
 export function setOption(ctx: StateContext<IOptions>, { option, value }: SetOption) {

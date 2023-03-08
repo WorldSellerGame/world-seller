@@ -1,0 +1,208 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings - {{ metaService.version }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="options$ | async as options">
+    <ion-row>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Main Settings</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Debug Mode</ion-label>
+                <ion-toggle slot="end" [checked]="options.debugMode"
+                                       (click)="setOption('debugMode', !options.debugMode)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Color Theme</ion-label>
+                <ion-select interface="popover" [(ngModel)]="options.colorTheme"
+                                                (ionChange)="setOption('colorTheme', options.colorTheme)">
+                  <ion-select-option value="worldseller">World Seller</ion-select-option>
+                  <ion-select-option value="light">Light</ion-select-option>
+                  <ion-select-option value="dark">Dark</ion-select-option>
+                  <ion-select-option value="spoon">Spoon</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Sidebar Display</ion-label>
+                <ion-select interface="popover" [(ngModel)]="options.sidebarDisplay"
+                                                (ionChange)="setOption('sidebarDisplay', options.sidebarDisplay)">
+                  <ion-select-option value="minimal">Minimal</ion-select-option>
+                  <ion-select-option value="compact">Compact</ion-select-option>
+                  <ion-select-option value="full">Full</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Telemetry</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Send Errors to Developer</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetryErrors"
+                                       (click)="setOption('telemetryErrors', !options.telemetryErrors)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Send Savefile With Errors</ion-label>
+                <ion-toggle slot="end" [checked]="options.telemetrySavefiles"
+                                       [disabled]="!options.telemetryErrors"
+                                       (click)="setOption('telemetrySavefiles', !options.telemetrySavefiles)"></ion-toggle>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Links</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <!--
+              <ion-item target="_blank" href="https://github.com/WorldSellerGame/world-seller">
+                <ion-icon name="logo-github" slot="start"></ion-icon>
+                <ion-label>GitHub</ion-label>
+              </ion-item>
+              -->
+              <ion-item target="_blank" href="https://worldsellergame.com">
+                <ion-icon name="home" slot="start"></ion-icon>
+                <ion-label>Homepage</ion-label>
+              </ion-item>
+
+              <ion-item target="_blank" href="https://blog.worldsellergame.com">
+                <ion-icon name="megaphone" slot="start"></ion-icon>
+                <ion-label>Blog</ion-label>
+              </ion-item>
+
+              <ion-item target="_blank" href="https://discord.worldsellergame.com">
+                <ion-icon name="logo-discord" slot="start"></ion-icon>
+                <ion-label>Discord</ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="metaService.showChangelog()">
+                <ion-icon name="book" slot="start"></ion-icon>
+                <ion-label>Changelog</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-item routerDirection="root" [routerLink]="['']" lines="none" detail="false" routerLinkActive="selected" class="cursor-pointer">
+              <ion-icon slot="start" color="primary" name="home"></ion-icon>
+              Return to Home
+            </ion-item>
+
+            <ion-item class="cursor-pointer" (click)="exportCharacter(0)">
+              <ion-icon slot="start" color="secondary" name="download"></ion-icon>
+              Export Character
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6">
+        <ion-card *ngIf="showDevOptions">
+          <ion-card-header>
+            <ion-card-title>Sound</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Master Volume</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>{{ options.soundMaster }}%</ion-label>
+                <ion-range [value]="options.soundMaster" [ticks]="true" [min]="0" [max]="100" [debounce]="100" (ionChange)="changeMasterVolume($event)"></ion-range>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>SFX Volume</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>{{ options.soundSFX }}%</ion-label>
+                <ion-range [value]="options.soundSFX" [ticks]="true" [min]="0" [max]="100" [debounce]="100" (ionChange)="changeSFXVolume($event)"></ion-range>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Achievements</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item class="cursor-pointer" [routerLink]="['../achievements']" routerLinkActive="selected" lines="none" detail="false">
+                <ion-icon slot="start" name="trophy"></ion-icon>
+                <ion-label>
+                  View Achievements
+                </ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="resetStats()">
+                <ion-icon slot="start" name="warning"></ion-icon>
+                <ion-label>
+                  Reset Stats
+                </ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="resetAchievements()">
+                <ion-icon slot="start" name="warning"></ion-icon>
+                <ion-label>
+                  Reset Achievements
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="showDevOptions">
+          <ion-card-header>
+            <ion-card-title>Dev Tools</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Ticks Per Second</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>{{ options.tickTimer }}</ion-label>
+                <ion-range [value]="options.tickTimer" [ticks]="true" [min]="1" [max]="600" [debounce]="100" (ionChange)="changeTickTimer($event)"></ion-range>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="addManyCoins()">
+                +1000 Coins
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="unlockBasics()">
+                Unlock Foraging & Logging
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

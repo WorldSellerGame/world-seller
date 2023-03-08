@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -14,12 +14,16 @@ import { NgxsModule } from '@ngxs/store';
 import * as Stores from '../stores';
 import * as Migrations from '../stores/migrations';
 
-import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared.module';
+import { isInElectron } from './helpers/electron';
+import { AchievementsService } from './services/achievements.service';
+import { AnalyticsService } from './services/analytics.service';
 import { MetaService } from './services/meta.service';
+import { RollbarErrorHandler, RollbarService } from './services/rollbar.service';
+import { SharedModule } from './shared.module';
 
 // migrations must check each key they set and migrate to make sure they don't accidentally migrate twice
 // the version of the state will always be set to 0 when a user opens the application for the first time
@@ -38,7 +42,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     SharedModule,
     AngularSvgIconModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: !isDevMode() && !isInElectron(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
     NgxsModule.forRoot(allStores, {
@@ -60,9 +64,20 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     {
       provide: APP_INITIALIZER,
       multi: true,
-      deps: [MetaService],
-      useFactory: (metaService: MetaService) => () => metaService.init()
-    }
+      deps: [MetaService, AnalyticsService, RollbarService, AchievementsService],
+      useFactory: (
+        metaService: MetaService,
+        analyticsService: AnalyticsService,
+        rollbarService: RollbarService,
+        achievementsService: AchievementsService
+      ) => async () => {
+        await metaService.init();
+        analyticsService.init();
+        rollbarService.init();
+        achievementsService.init();
+      }
+    },
+    { provide: ErrorHandler, useClass: RollbarErrorHandler },
   ],
   bootstrap: [AppComponent],
 })

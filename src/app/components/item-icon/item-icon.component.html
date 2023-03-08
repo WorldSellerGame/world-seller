@@ -1,0 +1,13 @@
+
+<div
+  class="resource-icon"
+  [ngClass]="[
+  itemClass,
+  emphasizeText ? 'emphasis' : '',
+  angryColorWhenQuantityExceedsMax && quantity > maxQuantity ? 'angry' : '',
+  name === 'nothing' ? 'nothing' : ''
+]">
+  <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
+  <span class="name" *ngIf="name" [ngxTippy]="description">{{ name }}</span>
+  <span class="quantity" *ngIf="quantity >= 0">{{ showX ? 'x' : '' }}{{ quantity | number }}{{ maxQuantity ? '/' + (maxQuantity | number) : '' }}</span>
+</div>

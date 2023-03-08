@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Prospecting Lv.{{ level$ | async }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="{ level: level$ | async } as skillLevel">
+    <ng-container *ngIf="resources$ | async as resources">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Prospectable Items</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-list>
+                  <ion-item *ngFor="let prospect of visibleProspects(skillLevel.level || 0); trackBy: trackBy">
+                    <ion-label>
+                      <h2>{{ prospect.startingItem }} x{{ resources[prospect.startingItem] || 0 }}</h2>
+                      <div class="resources-gained">
+                        <app-resource-icon [name]="resource.name"
+                                           [showX]="true"
+                                           [inlineIconSize]="true"
+                                           [emphasizeText]="false"
+                                           *ngFor="let resource of prospect.becomes"></app-resource-icon>
+                      </div>
+                    </ion-label>
+
+                    <ion-button fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
+                      [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem">
+                      Prospect
+                    </ion-button>
+                  </ion-item>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </ng-container>
+</ion-content>

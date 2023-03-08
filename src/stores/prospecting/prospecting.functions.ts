@@ -3,16 +3,22 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { pickNameWithWeights } from '../../app/helpers';
-import { IGameProspecting } from '../../interfaces';
-import { GainJobResult, GainResources, SyncTotalLevel } from '../charselect/charselect.actions';
+import { AchievementStat, IGameProspecting } from '../../interfaces';
+import { IncrementStat } from '../achievements/achievements.actions';
+import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { ProspectRock } from './prospecting.actions';
 
 export const defaultProspecting: () => IGameProspecting = () => ({
   version: 0,
+  unlocked: false,
   level: 0,
   queueSize: 1
 });
+
+export function unlockProspecting(ctx: StateContext<IGameProspecting>) {
+  ctx.patchState({ unlocked: true });
+}
 
 export function resetProspecting(ctx: StateContext<IGameProspecting>) {
   ctx.setState(defaultProspecting());
@@ -27,13 +33,14 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
   ctx.dispatch(new GainResources({ [prospect.startingItem]: -quantity }));
 
   const choice = pickNameWithWeights(prospect.becomes);
-  ctx.dispatch(new GainJobResult(choice, random(prospect.perGather.min, prospect.perGather.max)));
+  ctx.dispatch([
+    new GainItemOrResource(choice, random(prospect.perGather.min, prospect.perGather.max)),
+    new IncrementStat(AchievementStat.ProspectingProspects)
+  ]);
 
-  if(prospect.level.max > state.level) {
+  if(choice !== 'nothing' && prospect.level.max > state.level) {
     ctx.setState(patch<IGameProspecting>({
       level: state.level + 1
     }));
-
-    ctx.dispatch(new SyncTotalLevel());
   }
 };

@@ -1,5 +1,9 @@
 import { IGameRecipe } from '../../interfaces';
 
+export class UnlockWeaving {
+  static type = '[Weaving] Unlock';
+}
+
 export class StartWeavingJob {
   static type = '[Weaving] Start Job';
   constructor(public job: IGameRecipe, public quantity: number) {}

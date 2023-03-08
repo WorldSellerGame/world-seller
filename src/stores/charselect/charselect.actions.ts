@@ -15,13 +15,28 @@ export class SetActiveCharacter {
   constructor(public charSlot: number) {}
 }
 
-export class GainResources {
-  static type = '[CharSelect] Gain Resources';
-  constructor(public resources: Record<string, number>) {}
+export class SaveActiveCharacter {
+  static type = '[CharSelect] Save Active Character';
+  constructor() {}
 }
 
-export class GainJobResult {
-  static type = '[CharSelect] Gain Job Result';
+export class DiscoverResourceOrItem {
+  static type = '[CharSelect] Discover Resource Or Item';
+  constructor(public itemName: string) {}
+}
+
+export class GainResources {
+  static type = '[CharSelect] Gain Resources';
+  constructor(public resources: Record<string, number>, public shouldNotify = true) {}
+}
+
+export class GainItemOrResource {
+  static type = '[CharSelect] Gain Item Or Resource';
+  constructor(public itemName: string, public quantity = 1) {}
+}
+
+export class WorkerCreateItem {
+  static type = '[CharSelect] Worker Create Item';
   constructor(public itemName: string, public quantity = 1) {}
 }
 
@@ -47,5 +62,15 @@ export class EquipItem {
 
 export class UnequipItem {
   static type = '[CharSelect] Unequip Item';
+  constructor(public slot: ItemType) {}
+}
+
+export class BreakItem {
+  static type = '[CharSelect] Break Item';
+  constructor(public slot: ItemType) {}
+}
+
+export class DecreaseDurability {
+  static type = '[CharSelect] Decrease Durability';
   constructor(public slot: ItemType) {}
 }

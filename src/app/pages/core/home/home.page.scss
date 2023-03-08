@@ -1,0 +1,80 @@
+
+.character-select {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.character-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .text {
+    flex: 1;
+    text-align: center;
+  }
+
+  ion-button {
+    flex: 2;
+  }
+}
+
+.announcement {
+  min-height: 150px;
+}
+
+.announcement-row {
+  margin-bottom: 30px;
+}
+
+.actions-row {
+  margin-top: 30px;
+}
+
+.header-row {
+  position: relative;
+  font-size: 6em;
+  text-align: center;
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.top-row {
+  padding-right: 100px;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 100px;
+    margin-left: 150px;
+
+    .logo {
+      position: absolute;
+      top: 15px;
+      left: -75px;
+      z-index: 0;
+      transform: rotate(20deg);
+
+      width: 128px;
+    }
+
+    .text {
+      z-index: 2;
+    }
+  }
+}

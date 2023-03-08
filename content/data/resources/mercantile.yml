@@ -1,0 +1,7 @@
+
+Coin:
+  name: Coin
+  description: Used to engage in mercantile acts.
+  category: Miscellaneous
+  rarity: Common
+  icon: 'coins'

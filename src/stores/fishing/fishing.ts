@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { IGameGathering, Stat } from '../../interfaces';
+import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
+import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { CancelFishing, SetFishingLocation } from './fishing.actions';
 import { attachments } from './fishing.attachments';
@@ -47,7 +48,7 @@ export class FishingState {
   decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const cdrValue = calculateStat(equipment, Stat.FishingSpeed);
-    decreaseGatherTimer(ctx, ticks, cdrValue, CancelFishing);
+    decreaseGatherTimer(ctx, ticks, cdrValue, CancelFishing, AchievementStat.GatherFishing);
   }
 
   @Action(SetFishingLocation)
@@ -55,6 +56,11 @@ export class FishingState {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const gdrValue = calculateStat(equipment, Stat.FishingPower);
     setGatheringLocation(ctx, location, gdrValue);
+
+    ctx.dispatch([
+      new DecreaseDurability(ItemType.FishingRod),
+      new DecreaseDurability(ItemType.FishingBait)
+    ]);
   };
 
 }

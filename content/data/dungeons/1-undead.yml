@@ -1,0 +1,171 @@
+
+name: Crypt
+description: The skeletons parade the other undead around this resting place. The source of this infestation may be waiting within.
+icon: skeleton
+
+givesPointAtCombatLevel: 20
+
+floors:
+  - name: Crypt Entrance
+    layout:
+      - [  1,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .] #this is a square https://youtu.be/rreFXFnlKO4?t=238
+      - [  1,  .,  1, c1,  1,  1,  1,  1, t1,  1, t3, c1,  .]
+      - [  1,  .,  1,  .,  1,  .,  1,  .,  1,  .,  1,  .,  .]
+      - [  1,  .,  1,  .,  1,  .,  1,  .,  1,  .,  1,  1,  .]
+      - [  .,  .,  1, t3,  1,  1, t1,  1,  1,  1,  1,  .,  .]
+      - [  .,  e, t1,  .,  1,  .,  1,  .,  1,  .,  1,  1,  .]
+      - [  .,  .,  1,  .,  1,  .,  1,  .,  1,  .,  1,  x,  .]
+      - [  1,  .,  1,  1,  1,  1,  1,  1, t3,  1,  1,  .,  .]
+      - [  1,  .,  1,  .,  1,  .,  1,  .,  1,  ., t3, c1,  .]
+      - [  1,  .,  1,  .,  1,  .,  1,  .,  1,  .,  1,  .,  .]
+      - [  1,  .,  1,  1, t1, c1, t1,  1,  1,  1,  1,  1,  .]
+      - [  1,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
+
+  - name: Who Put This Maze Here
+    layout: #21/21
+      - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
+      - [  ., c2,  1,  1, t1,  1,  .,  1,  1,  1,  1,  1,  1,  1,  ., c2,  1,  1,  1, t1,  .]
+      - [  .,  .,  .,  .,  .,  1,  .,  1,  .,  .,  .,  .,  .,  1,  .,  .,  .,  1,  .,  1,  .]
+      - [  .,  1,  1,  1,  1,  1,  .,  1,  ., t2,  1,  1,  1, t3,  1,  1,  1,  1,  .,  1,  .]
+      - [  .,  1,  .,  .,  .,  .,  .,  1,  .,  1,  .,  .,  .,  .,  .,  .,  .,  .,  .,  1,  .]
+      - [  .,  1,  .,  1,  1,  1,  1, t5,  ., c3,  ., c4,  1,  1, t8,  1,  .,  1,  1,  1,  .]
+      - [  .,  1,  ., t3,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  1,  .,  1,  .,  .,  .]
+      - [  ., t3,  .,  1,  1,  1,  1,  1,  .,  1,  1,  1,  1,  1, t4,  1,  .,  1,  ., c3,  .]
+      - [  .,  1,  .,  .,  .,  .,  .,  1,  .,  1,  .,  .,  .,  .,  .,  .,  .,  1,  .,  1,  .]
+      - [  .,  1,  1,  1,  1, t3,  .,  1,  .,  1,  .,  1, t7,  1,  1,  1,  .,  1,  1,  1,  .]
+      - [  .,  1,  .,  .,  .,  1,  .,  1,  .,  f,  b,  f,  .,  .,  .,  1,  .,  .,  .,  1,  .]
+      - [  .,  1,  1,  1,  .,  1,  .,  1, t6,  1,  .,  1,  1, t4,  .,  1,  1,  1,  1, t1,  .]
+      - [  .,  1,  ., t2,  .,  1,  .,  .,  .,  .,  .,  .,  .,  1,  .,  .,  .,  .,  .,  1,  .]  #may re-close
+      - [  .,  1,  .,  1,  .,  1, t5, c3,  .,  1, t5,  1,  .,  1,  .,  1,  1,  1,  1,  1,  .]
+      - [  .,  .,  .,  1,  .,  1,  .,  .,  .,  1,  .,  1,  .,  1,  .,  1,  .,  .,  .,  .,  .]
+      - [  .,  1,  1,  1,  .,  1,  .,  1,  1,  1,  .,  1,  1,  1,  .,  1,  1, t3,  1,  1,  .]
+      - [  .,  1,  .,  .,  .,  1,  .,  1,  .,  .,  .,  .,  .,  .,  .,  .,  .,  1,  .,  1,  .]
+      - [  .,  1,  ., c2,  1,  1,  .,  1, t2,  1,  1,  1,  .,  1,  1,  1,  ., c2,  .,  1,  .]
+      - [  .,  1,  .,  .,  .,  .,  .,  .,  .,  .,  .,  1,  .,  1,  .,  1,  .,  .,  .,  1,  .]
+      - [  .,  e,  1,  1,  1,  1, t1,  1,  1,  1,  1,  1,  1,  1,  .,  1,  1,  1,  1, t1,  .]
+      - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
+
+
+
+boss: UndeadDungeonBoss
+
+threats:
+  t1: SingleZombie
+  t2: SingleMonstrosity
+  t3: SkeletonandZombie
+  t4: SkeletonTriple
+  t5: MonstrosityDuo
+  t6: ZombieQuintuple
+  t7: UndeadMixedQuadruple
+  t8: UndeadDangerous
+  t9: UndeadDungeonBoss
+
+
+treasureChests:
+  c1: #offerings
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 50
+
+    - config: Food
+      drops:
+        - resource: Apple
+          amount: 2
+        - item: Bread
+          amount: 1
+
+    - config: Love
+      drops:
+        - resource: Love
+          amount: 1
+
+    - config: Mittens
+      drops:
+        - item: Knitted Gloves
+          amount: 1
+
+
+  c2: #building materials
+    - config: Brick and Mortar
+      drops:
+        - resource: Brick
+          amount: 3
+        - resource: Mortar
+          amount: 1
+    - config: Brick and Mortar
+      drops:
+        - resource: Brick
+          amount: 3
+        - resource: Mortar
+          amount: 1
+    - config: Brick and Mortar
+      drops:
+        - resource: Brick
+          amount: 3
+        - resource: Mortar
+          amount: 1
+    - config: Iron
+      drops:
+        - resource: Iron Ingot
+          amount: 2
+    - config: Metal Construction Tools
+      drops:
+        - resource: Metal Construction Tools
+          amount: 1
+
+  c3: #loots
+    - config: Iron Dagger
+      drops:
+        - item: Iron Dagger
+          amount: 3
+
+    - config: Copper Pickaxe
+      drops:
+        - item: Copper Pickaxe
+          amount: 1
+
+    - config: Gems
+      drops:
+        - resource: Cut Tanzanite
+          amount: 4
+  
+    - config: Copper Ring
+      drops:
+      - item: Copper Ring
+        amount: 1
+
+    - config: Quartz Iron Tongue Piercing
+      drops:
+        - item: Quartz Iron Tongue Piercing
+          amount: 1
+
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 750
+
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 1000
+
+    - config: Coins Only
+      drops:
+        - resource: Coin
+          amount: 3
+
+  c4:
+    - config: Leather Armor Full Set
+      drops:
+        - item: Leather Boots
+          amount: 1
+        - item: Leather Hat
+          amount: 1
+        - item: Leather Shirt
+          amount: 1
+        - item: Leather Gloves
+          amount: 1
+        - item: Leather Pants
+          amount: 1
+
