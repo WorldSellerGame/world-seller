@@ -44,6 +44,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   public resourceRecipes: IGameRecipe[] = [];
   public itemRecipes: IGameRecipe[] = [];
 
+  public workersPerRecipe: Record<string, number> = {};
+
   constructor(
     private store: Store,
     private contentService: ContentService,
@@ -52,11 +54,16 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.setVisibleRecipes();
+    this.setRefiningWorkerHash();
   }
 
   ngOnChanges(changes: any) {
     if(changes.discoveries || changes.filterOptions || changes.resources) {
       this.setVisibleRecipes();
+    }
+
+    if(changes.refiningWorkers) {
+      this.setRefiningWorkerHash();
     }
   }
 
@@ -75,6 +82,21 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     if(this.type === 'items' && this.itemRecipes.length === 0) {
       this.type = 'resources';
     }
+  }
+
+  setRefiningWorkerHash() {
+    const workersPerRecipe: Record<string, number> = {};
+
+    this.refiningWorkers.workerAllocations.forEach((worker) => {
+      if(worker.tradeskill !== this.tradeskill) {
+        return;
+      }
+
+      workersPerRecipe[worker.recipe.result] ??= 0;
+      workersPerRecipe[worker.recipe.result]++;
+    });
+
+    this.workersPerRecipe = workersPerRecipe;
   }
 
   isQueueFull(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
@@ -150,10 +172,6 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   cancel(jobIndex: number) {
     this.store.dispatch(new this.cancelAction(jobIndex));
-  }
-
-  workersAllocatedToRecipe(allWorkers: IGameWorkersRefining[], recipe: IGameRecipe): number {
-    return allWorkers.filter(w => w.recipe.result === recipe.result && w.tradeskill === this.tradeskill).length;
   }
 
   assignWorker(recipe: IGameRecipe) {

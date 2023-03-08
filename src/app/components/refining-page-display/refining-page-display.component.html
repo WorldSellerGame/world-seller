@@ -125,19 +125,15 @@
                     </ion-col>
                   </ion-row>
 
-                  <ng-container *ngIf="{
-                    allocated: workersAllocatedToRecipe(refiningWorkers.workerAllocations, recipe)
-                  } as workerData">
-                    <ion-row *ngIf="recipe.maxWorkers > 0 && refiningWorkers.hasWorkers">
-                      <ion-col class="worker-buttons">
-                        <ion-button color="secondary" fill="outline" (click)="unassignWorker(recipe)" [disabled]="workerData.allocated <= 0"
-                                    [analyticsClick]="'Refining:' + tradeskill + ':RemoveWorker:' + recipe.result">-</ion-button>
-                        <div class="amount">{{ workerData.allocated | number }}/{{ recipe.maxWorkers }}</div>
-                        <ion-button color="secondary" fill="outline" (click)="assignWorker(recipe)" [disabled]="workerData.allocated >= recipe.maxWorkers || !refiningWorkers.canAssignWorker"
-                                    [analyticsClick]="'Refining:' + tradeskill + ':AddWorker:' + recipe.result">+</ion-button>
-                      </ion-col>
-                    </ion-row>
-                  </ng-container>
+                  <ion-row *ngIf="recipe.maxWorkers > 0 && refiningWorkers.hasWorkers">
+                    <ion-col class="worker-buttons">
+                      <ion-button color="secondary" fill="outline" (click)="unassignWorker(recipe)" [disabled]="(workersPerRecipe[recipe.result] || 0) <= 0"
+                                  [analyticsClick]="'Refining:' + tradeskill + ':RemoveWorker:' + recipe.result">-</ion-button>
+                      <div class="amount">{{ (workersPerRecipe[recipe.result] || 0) | number }}/{{ recipe.maxWorkers }}</div>
+                      <ion-button color="secondary" fill="outline" (click)="assignWorker(recipe)" [disabled]="(workersPerRecipe[recipe.result] || 0) >= recipe.maxWorkers || !refiningWorkers.canAssignWorker"
+                                  [analyticsClick]="'Refining:' + tradeskill + ':AddWorker:' + recipe.result">+</ion-button>
+                    </ion-col>
+                  </ion-row>
                 </ion-grid>
               </div>
             </ion-item>
