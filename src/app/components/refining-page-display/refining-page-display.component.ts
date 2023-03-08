@@ -46,6 +46,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   public workersPerRecipe: Record<string, number> = {};
   public canCraftRecipes: Record<string, boolean> = {};
+  public ingredients: Record<string, Array<{ name: string; amount: number }>> = {};
 
   constructor(
     private store: Store,
@@ -84,12 +85,23 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
       this.type = 'resources';
     }
 
+    this.setIngredients();
     this.setCanCrafts();
   }
 
+  setIngredients() {
+    this.ingredients = {};
+
+    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
+      this.ingredients[recipe.result] = Object.keys(recipe.ingredients || {}).map((name) => ({ name, amount: recipe.ingredients[name] }));
+    });
+  }
+
   setCanCrafts() {
-    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipes) => {
-      this.canCraftRecipes[recipes.result] = canCraftRecipe(this.resources, recipes, this.amounts[recipes.result] || 1);
+    this.canCraftRecipes = {};
+
+    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
+      this.canCraftRecipes[recipe.result] = canCraftRecipe(this.resources, recipe, this.amounts[recipe.result] || 1);
     });
   }
 
