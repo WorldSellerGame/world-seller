@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { AlchemyState, CharSelectState, WorkersState } from '../../../../../stores';
 
-import { CancelAlchemyJob, StartAlchemyJob } from '../../../../../stores/alchemy/alchemy.actions';
+import { CancelAlchemyJob, ChangeAlchemyFilterOption, StartAlchemyJob } from '../../../../../stores/alchemy/alchemy.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -27,11 +27,17 @@ export class AlchemyPage implements OnInit {
     return CancelAlchemyJob;
   }
 
+  public get optionAction() {
+    return ChangeAlchemyFilterOption;
+  }
+
   public amounts: Record<string, number> = {};
 
   @Select(AlchemyState.level) level$!: Observable<number>;
   @Select(AlchemyState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(AlchemyState.options) options$!: Observable<IGameRefiningOptions>;
 
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];

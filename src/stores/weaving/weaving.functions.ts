@@ -1,16 +1,21 @@
 import { StateContext } from '@ngxs/store';
 
+import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelWeavingJob, StartWeavingJob } from './weaving.actions';
+import { CancelWeavingJob, ChangeWeavingFilterOption, StartWeavingJob } from './weaving.actions';
 
 export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
   unlocked: false,
   level: 0,
   queueSize: 1,
-  recipeQueue: []
+  recipeQueue: [],
+  hideDiscovered: false,
+  hideNew: false,
+  hideHasIngredients: false,
+  hideHasNoIngredients: false
 });
 
 export function unlockWeaving(ctx: StateContext<IGameRefining>) {
@@ -32,3 +37,7 @@ export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartWeavingJob) {
   startRefineJob(ctx, job, quantity);
 };
+
+export function changeWeavingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeWeavingFilterOption) {
+  ctx.setState(patch<IGameRefining>({ [option]: value }));
+}

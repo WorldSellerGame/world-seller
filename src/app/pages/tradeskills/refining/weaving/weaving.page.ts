@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, WeavingState, WorkersState } from '../../../../../stores';
 
-import { CancelWeavingJob, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
+import { CancelWeavingJob, ChangeWeavingFilterOption, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -27,9 +27,15 @@ export class WeavingPage implements OnInit {
     return CancelWeavingJob;
   }
 
+  public get optionAction() {
+    return ChangeWeavingFilterOption;
+  }
+
   @Select(WeavingState.level) level$!: Observable<number>;
   @Select(WeavingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(WeavingState.options) options$!: Observable<IGameRefiningOptions>;
 
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];

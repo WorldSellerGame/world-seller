@@ -18,10 +18,17 @@ export interface IGameRefiningRecipe {
   currentDuration: number;
 }
 
-export interface IGameRefining {
+export interface IGameRefiningOptions {
+  hideDiscovered: boolean;
+  hideNew: boolean;
+  hideHasIngredients: boolean;
+  hideHasNoIngredients: boolean;
+}
+
+export type IGameRefining = {
   version: number;
   unlocked: boolean;
   level: number;
   queueSize: number;
   recipeQueue: IGameRefiningRecipe[];
-}
+} & IGameRefiningOptions;

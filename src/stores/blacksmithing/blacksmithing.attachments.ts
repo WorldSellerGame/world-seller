@@ -1,9 +1,12 @@
 import { IAttachment } from '../../interfaces/store';
 import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { CancelBlacksmithingJob, StartBlacksmithingJob, UnlockBlacksmithing } from './blacksmithing.actions';
 import {
-  cancelBlacksmithingJob, decreaseDuration,
+  CancelBlacksmithingJob, ChangeBlacksmithingFilterOption,
+  StartBlacksmithingJob, UnlockBlacksmithing
+} from './blacksmithing.actions';
+import {
+  cancelBlacksmithingJob, changeBlacksmithingOption, decreaseDuration,
   resetBlacksmithing, startBlacksmithingJob, unlockBlacksmithing
 } from './blacksmithing.functions';
 
@@ -13,5 +16,6 @@ export const attachments: IAttachment[] = [
   { action: TickTimer, handler: decreaseDuration },
   { action: DeleteCharacter, handler: resetBlacksmithing },
   { action: StartBlacksmithingJob, handler: startBlacksmithingJob },
-  { action: CancelBlacksmithingJob, handler: cancelBlacksmithingJob }
+  { action: CancelBlacksmithingJob, handler: cancelBlacksmithingJob },
+  { action: ChangeBlacksmithingFilterOption, handler: changeBlacksmithingOption }
 ];

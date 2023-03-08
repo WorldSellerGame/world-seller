@@ -1,16 +1,21 @@
 import { StateContext } from '@ngxs/store';
 
+import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelBlacksmithingJob, StartBlacksmithingJob } from './blacksmithing.actions';
+import { CancelBlacksmithingJob, ChangeBlacksmithingFilterOption, StartBlacksmithingJob } from './blacksmithing.actions';
 
 export const defaultBlacksmithing: () => IGameRefining = () => ({
   version: 0,
   unlocked: false,
   level: 0,
   queueSize: 1,
-  recipeQueue: []
+  recipeQueue: [],
+  hideDiscovered: false,
+  hideNew: false,
+  hideHasIngredients: false,
+  hideHasNoIngredients: false
 });
 
 export function unlockBlacksmithing(ctx: StateContext<IGameRefining>) {
@@ -32,3 +37,7 @@ export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIn
 export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartBlacksmithingJob) {
   startRefineJob(ctx, job, quantity);
 };
+
+export function changeBlacksmithingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeBlacksmithingFilterOption) {
+  ctx.setState(patch<IGameRefining>({ [option]: value }));
+}
