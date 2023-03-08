@@ -17,6 +17,15 @@ Bleed1:
   statusEffectType: DamageOverTime
   damageOverTime: 3
 
+Bleed2:
+  name: Bleed II
+  description: Uh oh, some one has a hole in them.
+  icon: drop
+  color: "#ff0000"
+  turnsLeft: 4
+  statusEffectType: DamageOverTime
+  damageOverTime: 5
+
 Fire1:
   name: Burning I
   description: On fire and taking damage every turn.
@@ -45,7 +54,7 @@ Doom1:
   damageOverTime: 25
 
 Rot1:
-  name: Rot I 
+  name: Rot I
   description: Damage every turn.
   icon: heart-bitten
   color: "#00ff00"

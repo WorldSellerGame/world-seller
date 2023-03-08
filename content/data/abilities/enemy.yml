@@ -5,7 +5,7 @@
 
 ApplyFire1: 
   name: Flame
-  description: Uh oh someones clothes are on fire. Oh wow that sucks.
+  description: Uh oh someones clothes are on fire. Oh wow that sucks. 
   icon: on-fire
   target: Single
   type: Magical
@@ -38,9 +38,9 @@ ApplyEnergyBuff1:
 
 GoblinShaman1: # To be moved and re named
   name: Goblish Heal I
-  description: Heal your allies.
+  description: Heal yourself. 
   icon: healing
-  target: Ally
+  target: Self
   type: Magical
   stats:
     - stat: healing
@@ -49,7 +49,7 @@ GoblinShaman1: # To be moved and re named
   effects:
     - effect: SingleTargetHeal
   cooldown: 3
-  energyCost: 8
+  energyCost: 7
   requires: {}
 
 GoblinLord1:
@@ -97,7 +97,7 @@ GoblinLord3:
 #Undead
 
 UndeadRegen1:
-  name: Undead Resilience 
+  name: Undead Resilience I
   description: The dead stay risen for a reason.
   icon: heart-bitten
   target: Self
@@ -105,10 +105,28 @@ UndeadRegen1:
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: Regen2 #2 could be too much could be substituted for regen1 + armor1
+      effectName: Regen2 # armor1 add could be done but likely not the best balance route
   cooldown: 3
   energyCost: 5
   requires: {}
+
+
+UndeadRegen2:
+  name: Undead Resilience II
+  description: The longer this goes the worse it gets.
+  icon: heart-bitten
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2 
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
+  cooldown: 3
+  energyCost: 0
+  requires: {}
+
 
 RotAttack1:
   name: Rotting Bite

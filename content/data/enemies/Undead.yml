@@ -66,8 +66,7 @@ Monstrosity1: #tanky low dmg with a absolutely devastating multi hit
     speed: 5
 
   abilities:
-    - ApplyEnergyBuff1
-    - UndeadRegen1
+    - UndeadRegen2
     - RotAttack3
 
   drops: #l8r
@@ -90,12 +89,12 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
     attack: 15 #hmm
     armor: 8
     speed: 6
-    healingPerRound: 10
+    healingPerRound: 5 #???
 
   abilities:
-    - ApplyEnergyBuff1
+    - UndeadRegen2
     - Mummy1
-    - ApplyDoom1 #or maybe just one
+    - ApplyDoom1 #or maybe 2 idk man
 
   drops: #l8r
     - resource: Coin
