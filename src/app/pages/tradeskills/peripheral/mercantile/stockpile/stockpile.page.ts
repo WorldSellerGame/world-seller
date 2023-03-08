@@ -30,6 +30,10 @@ export class StockpilePage implements OnInit, OnDestroy {
     this.categorySub = this.stockpile$.subscribe(x => {
       const items = x.items;
 
+      if(this.activeCategory && this.itemsInCategory(items, this.activeCategory).length > 0) {
+        return;
+      }
+
       if (this.hasNoItems(items)) {
         this.activeCategory = '';
         return;

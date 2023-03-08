@@ -23,6 +23,10 @@ export class InventoryPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.categorySub = this.inventory$.subscribe(x => {
+      if(this.activeCategory && this.itemsInCategory(x, this.activeCategory).length > 0) {
+        return;
+      }
+
       if (this.hasNoItems(x)) {
         this.activeCategory = '';
         return;
