@@ -1,6 +1,6 @@
 {
   "name": "world-seller",
-  "productName": "World Seller",
+  "productName": "WorldSeller",
   "version": "0.0.6",
   "description": "World Seller is a game about selling the world!",
   "main": "src/index.js",
