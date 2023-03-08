@@ -24,7 +24,7 @@
     </ion-row>
 
     <ion-row>
-      <ion-col [sizeMd]="4" *ngFor="let location of visibleLocations(locationData.locations, skillLevel.level || 0)">
+      <ion-col [sizeMd]="4" *ngFor="let location of locations">
         <ion-card class="location-card">
           <ion-card-header>
             <ion-card-title>{{ location.name }}</ion-card-title>

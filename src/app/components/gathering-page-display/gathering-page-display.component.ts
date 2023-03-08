@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../interfaces';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
 
@@ -9,7 +9,7 @@ import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/
   templateUrl: './gathering-page-display.component.html',
   styleUrls: ['./gathering-page-display.component.scss'],
 })
-export class GatheringPageDisplayComponent implements OnInit {
+export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   @Input() tradeskill = '';
   @Input() level$!: Observable<number>;
@@ -25,9 +25,20 @@ export class GatheringPageDisplayComponent implements OnInit {
   @Input() setAction: any;
   @Input() cancelAction: any;
 
+  public locations: IGameGatherLocation[] = [];
+  private locSub!: Subscription;
+
   constructor(private store: Store) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.locSub = this.level$.subscribe(level => {
+      this.locations = this.visibleLocations(this.locationData.locations, level);
+    });
+  }
+
+  ngOnDestroy() {
+    this.locSub?.unsubscribe();
+  }
 
   visibleLocations(locations: IGameGatherLocation[], currentLevel = 0) {
     return locations.filter(location => currentLevel >= location.level.min);
