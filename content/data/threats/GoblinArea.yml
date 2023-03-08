@@ -17,7 +17,7 @@ SingleGoblin:
 GoblinandSlime:
   name: Boy and his... dog?
   icon: goblin-small
-  description: Goblins can have pets too
+  description: Goblins can have pets too.
 
   maxSkillGainLevel: 5
   level:
