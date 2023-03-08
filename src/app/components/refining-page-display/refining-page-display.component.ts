@@ -45,6 +45,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   public itemRecipes: IGameRecipe[] = [];
 
   public workersPerRecipe: Record<string, number> = {};
+  public canCraftRecipes: Record<string, boolean> = {};
 
   constructor(
     private store: Store,
@@ -82,6 +83,14 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     if(this.type === 'items' && this.itemRecipes.length === 0) {
       this.type = 'resources';
     }
+
+    this.setCanCrafts();
+  }
+
+  setCanCrafts() {
+    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipes) => {
+      this.canCraftRecipes[recipes.result] = canCraftRecipe(this.resources, recipes, this.amounts[recipes.result] || 1);
+    });
   }
 
   setRefiningWorkerHash() {
@@ -118,6 +127,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   modifyAmount(recipe: IGameRecipe, amount: number) {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
+
+    this.setCanCrafts();
   }
 
   visibleRecipes(recipes: IGameRecipe[], type: 'resources'|'items'): IGameRecipe[] {

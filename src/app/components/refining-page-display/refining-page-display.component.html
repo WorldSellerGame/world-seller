@@ -119,7 +119,7 @@
                       <ion-button class="craft"
                                   fill="clear"
                                   (click)="craft(recipe, amounts[recipe.result] || 1)"
-                                  [disabled]="isQueueFull(currentQueue) || !canCraftRecipe(resources, recipe, amounts[recipe.result] || 1)"
+                                  [disabled]="isQueueFull(currentQueue) || !canCraftRecipes[recipe.result]"
                                   [class.no-skillups]="level >= recipe.level.max"
                                   [analyticsClick]="'Refining:' + tradeskill + ':Craft:' + recipe.result">Craft</ion-button>
                     </ion-col>
