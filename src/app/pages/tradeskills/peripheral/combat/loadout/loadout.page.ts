@@ -89,6 +89,10 @@ export class LoadoutPage implements OnInit, OnDestroy {
     this.allUsableItems?.unsubscribe();
   }
 
+  trackBy(index: number) {
+    return index;
+  }
+
   getItemSkills(items: Record<string, IGameItem>): string[] {
     return getSkillsFromItems(items);
   }

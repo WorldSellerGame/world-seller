@@ -132,7 +132,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item *ngIf="learnedSkills.length === 0">You don't know any abilities!</ion-item>
-                <ion-item *ngFor="let skill of learnedSkills"
+                <ion-item *ngFor="let skill of learnedSkills; trackBy: trackBy"
                           class="cursor-pointer"
                           (click)="slotSkill(skill.name, selectedAbilityLoadoutIndex)"
                           [analyticsClick]="'Peripheral:Combat:Loadout:SlotAbility:' + skill.name">
@@ -150,7 +150,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item *ngIf="usableItems.length === 0">You don't have any usable items!</ion-item>
-                <ion-item *ngFor="let item of usableItems"
+                <ion-item *ngFor="let item of usableItems; trackBy: trackBy"
                           class="cursor-pointer"
                           (click)="slotItem(item, selectedItemLoadoutIndex)"
                           [analyticsClick]="'Peripheral:Combat:Loadout:SlotItem:' + item.name">
@@ -168,7 +168,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item *ngIf="usableFoods.length === 0">You don't have any usable food items!</ion-item>
-                <ion-item *ngFor="let item of usableFoods"
+                <ion-item *ngFor="let item of usableFoods; trackBy: trackBy"
                           class="cursor-pointer"
                           (click)="slotFood(item, selectedFoodLoadoutIndex)"
                           [analyticsClick]="'Peripheral:Combat:Loadout:SlotFood:' + item.name">
