@@ -51,7 +51,7 @@
 
             <ion-list class="scrollable-list">
               <ion-item *ngFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes">
-                <app-game-icon slot="start" [icon]="iconForRecipe(recipe)"></app-game-icon>
+                <app-game-icon slot="start" [icon]="iconForRecipe(recipe)" [shimmer]="!discoveries[recipe.result]"></app-game-icon>
 
                 <ion-label>
                   <h2>

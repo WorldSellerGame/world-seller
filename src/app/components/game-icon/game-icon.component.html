@@ -1,4 +1,5 @@
 
+<div [class.shimmer]="shimmer">
   <svg-icon *ngIf="icon"
             [src]="'assets/icon/' + icon + '.svg'"
             [svgStyle]="{
@@ -9,3 +10,4 @@
               'stroke-dasharray': '2,2',
               'stroke-linejoin': 'round'
             }"></svg-icon>
+</div>

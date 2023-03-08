@@ -35,6 +35,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
 
   public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
+  public discoveries: Record<string, boolean> = {};
 
   public resourceRecipes: IGameRecipe[] = [];
   public itemRecipes: IGameRecipe[] = [];
@@ -47,6 +48,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.discoveriesSub = this.discoveries$.subscribe((discoveries) => {
+      this.discoveries = discoveries;
+
       this.resourceRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'resources');
       this.itemRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'items');
 

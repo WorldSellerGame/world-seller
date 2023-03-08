@@ -11,6 +11,7 @@ export class GameIconComponent implements OnInit {
   @Input() inlineIconSize = false;
   @Input() bigSize = false;
   @Input() color = '#fff';
+  @Input() shimmer = false;
 
   public get size(): number {
     if (this.inlineIconSize) {
