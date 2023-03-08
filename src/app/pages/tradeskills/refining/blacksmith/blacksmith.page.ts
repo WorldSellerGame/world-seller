@@ -4,7 +4,10 @@ import { Observable, first } from 'rxjs';
 import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { BlacksmithingState, CharSelectState, WorkersState } from '../../../../../stores';
 
-import { CancelBlacksmithingJob, ChangeBlacksmithingFilterOption, StartBlacksmithingJob } from '../../../../../stores/blacksmithing/blacksmithing.actions';
+import {
+  CancelBlacksmithingJob,
+  ChangeBlacksmithingFilterOption, StartBlacksmithingJob
+} from '../../../../../stores/blacksmithing/blacksmithing.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 

@@ -4,7 +4,10 @@ import { Observable, first } from 'rxjs';
 import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../../stores';
 
-import { CancelJewelcraftingJob, ChangeJewelcraftingFilterOption, StartJewelcraftingJob } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
+import {
+  CancelJewelcraftingJob,
+  ChangeJewelcraftingFilterOption, StartJewelcraftingJob
+} from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
