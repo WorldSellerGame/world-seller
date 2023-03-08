@@ -178,6 +178,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   craft(recipe: IGameRecipe, amount = 1) {
     this.amounts[recipe.result] = 1;
 
+    this.setCanCrafts();
+
     this.store.dispatch(new this.startAction(recipe, amount));
   }
 
