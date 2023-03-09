@@ -4,7 +4,10 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelJewelcraftingJob, ChangeJewelcraftingFilterOption, GainJewelcraftingLevels, StartJewelcraftingJob } from './jewelcrafting.actions';
+import {
+  CancelJewelcraftingJob, ChangeJewelcraftingFilterOption,
+  GainJewelcraftingLevels, StartJewelcraftingJob
+} from './jewelcrafting.actions';
 
 export const defaultJewelcrafting: () => IGameRefining = () => ({
   version: 0,
