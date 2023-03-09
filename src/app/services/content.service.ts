@@ -27,6 +27,7 @@ import * as characterNames from '../../assets/content/character-names.json';
 import * as statGains from '../../assets/content/stat-gains.json';
 
 import { Store } from '@ngxs/store';
+import { SvgIconRegistryService } from 'angular-svg-icon';
 import {
   IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
@@ -147,7 +148,7 @@ export class ContentService {
     weaving: {}
   };
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private svgRegistry: SvgIconRegistryService) {
     this.init();
   }
 
@@ -164,10 +165,28 @@ export class ContentService {
     this.recipeHashes.jewelcrafting = this.toHash(this.jewelcrafting.recipes, 'result');
     this.recipeHashes.weaving = this.toHash(this.weaving.recipes, 'result');
 
+    this.loadIcons();
+
     // wait for @@INIT to finish
     setTimeout(() => {
       this.store.dispatch(new SetStatGains(this.statGains));
     }, 0);
+  }
+
+  private loadIcons() {
+    const icons: Set<string> = new Set();
+
+    ['settings', 'level', 'resources', 'inventory', 'equipment', 'time'].forEach(x => icons.add(x));
+    Object.values(this.abilities).forEach(x => icons.add(x.icon));
+    Object.values(this.enemies).forEach(x => icons.add(x.icon));
+    Object.values(this.threats).forEach(x => icons.add(x.icon));
+    Object.values(this.effects).forEach(x => icons.add(x.icon));
+    Object.values(this.dungeons).forEach(x => icons.add(x.icon));
+    Object.values(this.achievements).forEach(x => icons.add(x.icon));
+    Object.values(this.resources).forEach(x => icons.add(x.icon));
+    Object.values(this.items).forEach(x => icons.add(x.icon));
+
+    Array.from(icons).forEach(icon => this.loadSVGFromURL(icon, `assets/icon/${icon}.svg`));
   }
 
   private toHash(arr: any[], key: string) {
@@ -179,6 +198,14 @@ export class ContentService {
 
   private getRandom<T>(rng: any, arr: T[]): T {
     return arr[Math.floor(rng() * arr.length)];
+  }
+
+  public loadSVGFromURL(name: string, url: string) {
+    this.svgRegistry.loadSvg(url, name)?.subscribe();
+  }
+
+  public loadSVGFromString(name: string, svg: string) {
+    this.svgRegistry.addSvg(name, svg);
   }
 
   public getCharacterNameFromSeed(seed: number) {
