@@ -30,4 +30,14 @@ export class WeavingState {
     return { queue: state.recipeQueue, size: state.queueSize };
   }
 
+  @Selector()
+  static options(state: IGameRefining) {
+    return {
+      hideDiscovered: state.hideDiscovered,
+      hideNew: state.hideNew,
+      hideHasIngredients: state.hideHasIngredients,
+      hideHasNoIngredients: state.hideHasNoIngredients
+    };
+  }
+
 }

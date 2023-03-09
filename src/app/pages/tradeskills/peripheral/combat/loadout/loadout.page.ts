@@ -67,7 +67,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
           // replace the older skill with the newer one
           if(replaces) {
-            currentlyLearnedSkills = currentlyLearnedSkills.filter(learnedSkill => learnedSkill.name === replaces);
+            currentlyLearnedSkills = currentlyLearnedSkills.filter(learnedSkill => learnedSkill.name !== replaces);
           }
 
           // replace any copies of this skill

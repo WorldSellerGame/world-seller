@@ -1,9 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
-import { Observable, Subscription } from 'rxjs';
-import { IGameRecipe, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
-import { CharSelectState } from '../../../stores';
+import { IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ContentService } from '../../services/content.service';
@@ -14,31 +12,41 @@ import { ItemCreatorService } from '../../services/item-creator.service';
   templateUrl: './refining-page-display.component.html',
   styleUrls: ['./refining-page-display.component.scss'],
 })
-export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
+export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   @Input() tradeskill = '';
-  @Input() level$!: Observable<number>;
-  @Input() currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
-  @Input() resources$!: Observable<Record<string, number>>;
-  @Input() refiningWorkers$!: Observable<{
+  @Input() level = 0;
+  @Input() currentQueue: { queue: IGameRefiningRecipe[]; size: number } = { queue: [], size: 1 };
+  @Input() resources: Record<string, number> = {};
+
+  @Input() refiningWorkers: {
     workerAllocations: IGameWorkersRefining[];
     canAssignWorker: boolean;
     hasWorkers: boolean;
-  }>;
+  } = { workerAllocations: [], canAssignWorker: false, hasWorkers: false };
 
+  @Input() filterOptions: IGameRefiningOptions = {
+    hideDiscovered: false,
+    hideNew: false,
+    hideHasIngredients: false,
+    hideHasNoIngredients: false,
+  };
+
+  @Input() discoveries: Record<string, boolean> = {};
   @Input() locationData: { recipes: IGameRecipe[] } = { recipes: [] };
   @Input() startAction: any;
   @Input() cancelAction: any;
-
-  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
-  private discoveriesSub!: Subscription;
+  @Input() changeOptionAction: any;
 
   public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
-  public discoveries: Record<string, boolean> = {};
 
   public resourceRecipes: IGameRecipe[] = [];
   public itemRecipes: IGameRecipe[] = [];
+
+  public workersPerRecipe: Record<string, number> = {};
+  public canCraftRecipes: Record<string, boolean> = {};
+  public ingredients: Record<string, Array<{ name: string; amount: number }>> = {};
 
   constructor(
     private store: Store,
@@ -47,20 +55,69 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.discoveriesSub = this.discoveries$.subscribe((discoveries) => {
-      this.discoveries = discoveries;
+    this.setVisibleRecipes();
+    this.setRefiningWorkerHash();
+  }
 
-      this.resourceRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'resources');
-      this.itemRecipes = this.visibleRecipes(discoveries, this.locationData.recipes, 'items');
+  ngOnChanges(changes: any) {
+    if(changes.discoveries || changes.filterOptions || changes.resources) {
+      this.setVisibleRecipes();
+    }
 
-      if(!this.type) {
-        this.type = this.resourceRecipes.length > 0 ? 'resources' : 'items';
-      }
+    if(changes.refiningWorkers) {
+      this.setRefiningWorkerHash();
+    }
+  }
+
+  setVisibleRecipes() {
+    this.resourceRecipes = this.visibleRecipes(this.locationData.recipes, 'resources');
+    this.itemRecipes = this.visibleRecipes(this.locationData.recipes, 'items');
+
+    if(!this.type) {
+      this.type = this.resourceRecipes.length > 0 ? 'resources' : 'items';
+    }
+
+    if(this.type === 'resources' && this.resourceRecipes.length === 0) {
+      this.type = 'items';
+    }
+
+    if(this.type === 'items' && this.itemRecipes.length === 0) {
+      this.type = 'resources';
+    }
+
+    this.setIngredients();
+    this.setCanCrafts();
+  }
+
+  setIngredients() {
+    this.ingredients = {};
+
+    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
+      this.ingredients[recipe.result] = Object.keys(recipe.ingredients || {}).map((name) => ({ name, amount: recipe.ingredients[name] }));
     });
   }
 
-  ngOnDestroy() {
-    this.discoveriesSub?.unsubscribe();
+  setCanCrafts() {
+    this.canCraftRecipes = {};
+
+    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
+      this.canCraftRecipes[recipe.result] = canCraftRecipe(this.resources, recipe, this.amounts[recipe.result] || 1);
+    });
+  }
+
+  setRefiningWorkerHash() {
+    const workersPerRecipe: Record<string, number> = {};
+
+    this.refiningWorkers.workerAllocations.forEach((worker) => {
+      if(worker.tradeskill !== this.tradeskill) {
+        return;
+      }
+
+      workersPerRecipe[worker.recipe.result] ??= 0;
+      workersPerRecipe[worker.recipe.result]++;
+    });
+
+    this.workersPerRecipe = workersPerRecipe;
   }
 
   isQueueFull(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
@@ -82,9 +139,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
 
   modifyAmount(recipe: IGameRecipe, amount: number) {
     this.amounts[recipe.result] = (this.amounts[recipe.result] || 1) + amount;
+
+    this.setCanCrafts();
   }
 
-  visibleRecipes(discoveries: Record<string, boolean>, recipes: IGameRecipe[], type: 'resources'|'items'): IGameRecipe[] {
+  visibleRecipes(recipes: IGameRecipe[], type: 'resources'|'items'): IGameRecipe[] {
     const validRecipes = recipes
       .filter((recipe: IGameRecipe) => {
         if(type === 'resources') {
@@ -99,7 +158,26 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
       })
       .filter((recipe: IGameRecipe) => {
         const required = recipe.require || [];
-        return required.every((req) => discoveries[req]);
+        return required.every((req) => this.discoveries[req]);
+      })
+      .filter((recipe: IGameRecipe) => {
+        if(this.filterOptions.hideDiscovered && this.discoveries[recipe.result]) {
+          return false;
+        }
+
+        if(this.filterOptions.hideNew && !this.discoveries[recipe.result]) {
+          return false;
+        }
+
+        if(this.filterOptions.hideHasIngredients && this.canCraftRecipe(this.resources, recipe)) {
+          return false;
+        }
+
+        if(this.filterOptions.hideHasNoIngredients && !this.canCraftRecipe(this.resources, recipe)) {
+          return false;
+        }
+
+        return true;
       });
 
     return sortBy(validRecipes, 'result');
@@ -112,15 +190,13 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
   craft(recipe: IGameRecipe, amount = 1) {
     this.amounts[recipe.result] = 1;
 
+    this.setCanCrafts();
+
     this.store.dispatch(new this.startAction(recipe, amount));
   }
 
   cancel(jobIndex: number) {
     this.store.dispatch(new this.cancelAction(jobIndex));
-  }
-
-  workersAllocatedToRecipe(allWorkers: IGameWorkersRefining[], recipe: IGameRecipe): number {
-    return allWorkers.filter(w => w.recipe.result === recipe.result && w.tradeskill === this.tradeskill).length;
   }
 
   assignWorker(recipe: IGameRecipe) {
@@ -129,6 +205,10 @@ export class RefiningPageDisplayComponent implements OnInit, OnDestroy {
 
   unassignWorker(recipe: IGameRecipe) {
     this.store.dispatch(new UnassignRefiningWorker(this.tradeskill, recipe));
+  }
+
+  changeOption(option: keyof IGameRefiningOptions, value: boolean) {
+    this.store.dispatch(new this.changeOptionAction(option, value));
   }
 
 }

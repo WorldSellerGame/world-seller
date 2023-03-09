@@ -4,6 +4,11 @@ export class UnlockMercantile {
   static type = '[Mercantile] Unlock';
 }
 
+export class GainMercantileLevels {
+  static type = '[Mercantile] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class GainCoins {
   static type = '[Mercantile] Gain Coins';
   constructor(public amount: number) {}

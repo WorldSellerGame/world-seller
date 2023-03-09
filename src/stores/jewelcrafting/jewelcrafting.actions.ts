@@ -1,7 +1,12 @@
-import { IGameRecipe } from '../../interfaces';
+import { IGameRecipe, IGameRefiningOptions } from '../../interfaces';
 
 export class UnlockJewelcrafting {
   static type = '[Jewelcrafting] Unlock';
+}
+
+export class GainJewelcraftingLevels {
+  static type = '[Jewelcrafting] Gain Levels';
+  constructor(public levels = 1) {}
 }
 
 export class StartJewelcraftingJob {
@@ -12,4 +17,9 @@ export class StartJewelcraftingJob {
 export class CancelJewelcraftingJob {
   static type = '[Jewelcrafting] Cancel Job';
   constructor(public jobIndex: number, public shouldRefundResources = true) {}
+}
+
+export class ChangeJewelcraftingFilterOption {
+  static type = '[Jewelcrafting] Change Filter Option';
+  constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }

@@ -57,7 +57,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeSkills?.[skillIndex]"
-                              (click)="unslotSkill(skillIndex)"
+                              (click)="$event.stopPropagation(); unslotSkill(skillIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotAbility'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
@@ -82,7 +82,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeItems?.[itemIndex]"
-                              (click)="unslotItem(itemIndex)"
+                              (click)="$event.stopPropagation(); unslotItem(itemIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotItem'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
@@ -107,7 +107,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeFoods?.[foodIndex]"
-                              (click)="unslotFood(foodIndex)"
+                              (click)="$event.stopPropagation(); unslotFood(foodIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotFood'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>

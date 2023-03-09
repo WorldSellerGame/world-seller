@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { isInElectron } from './helpers/electron';
 import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
+import { DebugService } from './services/debug.service';
 import { MetaService } from './services/meta.service';
 import { RollbarErrorHandler, RollbarService } from './services/rollbar.service';
 import { SharedModule } from './shared.module';
@@ -49,6 +50,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
       developmentMode: !isDevMode()
     }),
     NgxsLoggerPluginModule.forRoot({
+      disabled: !isDevMode(),
       filter: action => !action.constructor.name.includes('Timer')
     }),
     NgxsStoragePluginModule.forRoot({
@@ -64,17 +66,25 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     {
       provide: APP_INITIALIZER,
       multi: true,
-      deps: [MetaService, AnalyticsService, RollbarService, AchievementsService],
+      deps: [
+        MetaService,
+        AnalyticsService,
+        RollbarService,
+        AchievementsService,
+        DebugService
+      ],
       useFactory: (
         metaService: MetaService,
         analyticsService: AnalyticsService,
         rollbarService: RollbarService,
-        achievementsService: AchievementsService
+        achievementsService: AchievementsService,
+        debugService: DebugService
       ) => async () => {
         await metaService.init();
         analyticsService.init();
         rollbarService.init();
         achievementsService.init();
+        debugService.init();
       }
     },
     { provide: ErrorHandler, useClass: RollbarErrorHandler },

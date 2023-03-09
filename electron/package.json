@@ -1,10 +1,11 @@
 {
   "name": "world-seller",
-  "productName": "World Seller",
+  "productName": "WorldSeller",
   "version": "0.0.6",
   "description": "World Seller is a game about selling the world!",
   "main": "src/index.js",
   "author": "World Seller Team <hi@worldsellergame.com>",
+  "license": "Unlicensed",
   "scripts": {
     "start": "npm run start:localref",
     "start:localbuild": "npm run build:copy && npm run build:replacebasehref && electron-forge start",

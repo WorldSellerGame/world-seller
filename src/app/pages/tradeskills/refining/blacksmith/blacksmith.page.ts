@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { BlacksmithingState, CharSelectState, WorkersState } from '../../../../../stores';
 
-import { CancelBlacksmithingJob, StartBlacksmithingJob } from '../../../../../stores/blacksmithing/blacksmithing.actions';
+import {
+  CancelBlacksmithingJob,
+  ChangeBlacksmithingFilterOption, StartBlacksmithingJob
+} from '../../../../../stores/blacksmithing/blacksmithing.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -27,9 +30,15 @@ export class BlacksmithPage implements OnInit {
     return CancelBlacksmithingJob;
   }
 
+  public get optionAction() {
+    return ChangeBlacksmithingFilterOption;
+  }
+
   @Select(BlacksmithingState.level) level$!: Observable<number>;
   @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(BlacksmithingState.options) options$!: Observable<IGameRefiningOptions>;
 
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];

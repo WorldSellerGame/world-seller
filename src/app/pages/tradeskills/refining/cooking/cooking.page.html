@@ -5,14 +5,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-refining-page-display
-    [tradeskill]="'cooking'"
-    [level$]="level$"
-    [resources$]="resources$"
-    [currentQueue$]="currentQueue$"
-    [refiningWorkers$]="refiningWorkers$"
-    [locationData]="locationData"
-    [startAction]="startAction"
-    [cancelAction]="cancelAction"
-  ></app-refining-page-display>
+
+  <ng-container *ngIf="{
+    level: level$ | async,
+    resources: resources$ | async,
+    currentQueue: currentQueue$ | async,
+    refiningWorkers: refiningWorkers$ | async,
+    options: options$ | async,
+    discoveries: discoveries$ | async
+  } as pageData">
+
+    <app-refining-page-display
+      [tradeskill]="'alchemy'"
+      [level]="pageData.level || 0"
+      [resources]="pageData.resources || {}"
+      [currentQueue]="pageData.currentQueue || { queue: [], size: 1 }"
+      [refiningWorkers]="pageData.refiningWorkers || { workerAllocations: [], canAssignWorker: false, hasWorkers: false }"
+      [filterOptions]="pageData.options || { hideDiscovered: false, hideNew: false, hideHasIngredients: false, hideHasNoIngredients: false }"
+      [discoveries]="pageData.discoveries || {}"
+      [locationData]="locationData"
+      [startAction]="startAction"
+      [cancelAction]="cancelAction"
+      [changeOptionAction]="optionAction"
+    ></app-refining-page-display>
+
+  </ng-container>
+
 </ion-content>

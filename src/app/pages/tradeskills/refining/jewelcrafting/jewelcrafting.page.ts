@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../../stores';
 
-import { CancelJewelcraftingJob, StartJewelcraftingJob } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
+import {
+  CancelJewelcraftingJob,
+  ChangeJewelcraftingFilterOption, StartJewelcraftingJob
+} from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -27,9 +30,15 @@ export class JewelcraftingPage implements OnInit {
     return CancelJewelcraftingJob;
   }
 
+  public get optionAction() {
+    return ChangeJewelcraftingFilterOption;
+  }
+
   @Select(JewelcraftingState.level) level$!: Observable<number>;
   @Select(JewelcraftingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(JewelcraftingState.options) options$!: Observable<IGameRefiningOptions>;
 
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];

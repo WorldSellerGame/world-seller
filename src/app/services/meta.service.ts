@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { marked } from 'marked';
+import * as credits from '../../assets/content/credits.json';
 import * as Migrations from '../../stores/migrations';
 import { defaultOptions } from '../../stores/options/options.functions';
 
@@ -13,7 +14,7 @@ export class MetaService {
   private versionInfo: any = { tag: '', semverString: '', raw: 'v.local', hash: 'v.local', distance: -1 };
   public get version(): string {
     if(this.versionInfo.distance >= 0 && this.versionInfo.tag) {
-      return `${this.versionInfo.tag} (${this.versionInfo.hash})`;
+      return `${this.versionInfo.tag} (${this.versionInfo.raw})`;
     }
 
     return this.versionInfo.tag
@@ -98,5 +99,36 @@ export class MetaService {
     });
 
     await alert.present();
+  }
+
+  async showCredits() {
+    const creditsList = (credits as any).default || credits;
+
+    const html = creditsList.map(({ category, members }: any) => {
+      const membersHtml = members.map(({ name, role, contribution }: any) => {
+        const fullName = role ? `${name} (${role})` : name;
+
+        return `
+          <dt>${fullName}</dt>
+          <dd>${contribution || ''}</dd>
+        `;
+      }).join('');
+
+      return `
+        <h3>${category}</h3>
+
+        ${membersHtml}
+      `;
+    }).join('');
+
+    const alert = await this.alertCtrl.create({
+      header: 'Credits',
+      cssClass: 'credits',
+      message: html,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
   }
 }

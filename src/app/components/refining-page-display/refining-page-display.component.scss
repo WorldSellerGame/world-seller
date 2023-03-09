@@ -34,5 +34,7 @@
 
 .scrollable-list {
   overflow-y: auto;
-  max-height: calc(100vh - 350px);
+  width: 100%;
+  min-height: calc(100vh - 450px);
+  max-height: calc(100vh - 450px);
 }

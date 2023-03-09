@@ -8,6 +8,7 @@ import {
   EndCombatAndResetPlayer,
   EnemyCooldownSkill,
   EnemySpeedReset,
+  GainCombatLevels,
   LowerEnemyCooldown,
   LowerPlayerCooldown,
   PlayerCooldownSkill,
@@ -21,6 +22,7 @@ import {
   consumeFoodCharges,
   endCombat,
   endCombatAndResetPlayer,
+  gainCombatLevels,
   lowerEnemyCooldowns,
   lowerPlayerCooldowns,
   prepareCombatForRestart,
@@ -43,6 +45,7 @@ import {
 export const attachments: IAttachment[] = [
   { action: DeleteCharacter, handler: resetCombat },
   { action: UnlockCombat, handler: unlockCombat },
+  { action: GainCombatLevels, handler: gainCombatLevels },
   { action: ResetCombat, handler: resetCombat },
   { action: ResetCombatSoft, handler: resetCombatSoft },
   { action: EndCombat, handler: endCombat },

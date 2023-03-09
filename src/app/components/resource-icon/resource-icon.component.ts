@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { ContentService } from '../../services/content.service';
 
@@ -6,6 +6,7 @@ import { ContentService } from '../../services/content.service';
   selector: 'app-resource-icon',
   templateUrl: './resource-icon.component.html',
   styleUrls: ['./resource-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResourceIconComponent implements OnInit {
 

@@ -7,7 +7,7 @@ import { AchievementStat, IGameFarming, IGameFarmingPlot } from '../../interface
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
+import { GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
 export const defaultFarming: () => IGameFarming = () => ({
   version: 0,
@@ -19,6 +19,10 @@ export const defaultFarming: () => IGameFarming = () => ({
 
 export function unlockFarming(ctx: StateContext<IGameFarming>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainFarmingLevels(ctx: StateContext<IGameFarming>, { levels }: GainFarmingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetFarming(ctx: StateContext<IGameFarming>) {

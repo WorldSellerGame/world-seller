@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-time-resource-icon',
   templateUrl: './time-resource-icon.component.html',
   styleUrls: ['./time-resource-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimeResourceIconComponent implements OnInit {
 
