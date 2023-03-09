@@ -2,6 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
+import { GainLoggingLevels } from './logging.actions';
 
 export const defaultLogging: () => IGameGathering = () => ({
   version: 0,
@@ -14,6 +15,10 @@ export const defaultLogging: () => IGameGathering = () => ({
 
 export function unlockLogging(ctx: StateContext<IGameGathering>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainLoggingLevels(ctx: StateContext<IGameGathering>, { levels }: GainLoggingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetLogging(ctx: StateContext<IGameGathering>) {

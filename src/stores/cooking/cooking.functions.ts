@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelCookingJob, ChangeCookingFilterOption, StartCookingJob } from './cooking.actions';
+import { CancelCookingJob, ChangeCookingFilterOption, GainCookingLevels, StartCookingJob } from './cooking.actions';
 
 export const defaultCooking: () => IGameRefining = () => ({
   version: 0,
@@ -20,6 +20,10 @@ export const defaultCooking: () => IGameRefining = () => ({
 
 export function unlockCooking(ctx: StateContext<IGameRefining>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainCookingLevels(ctx: StateContext<IGameRefining>, { levels }: GainCookingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetCooking(ctx: StateContext<IGameRefining>) {

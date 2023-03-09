@@ -7,6 +7,7 @@ import {
 } from '../../interfaces';
 import {
   AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, EnemyCooldownSkill, EnemySpeedReset,
+  GainCombatLevels,
   LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
   SetFood,
@@ -35,6 +36,10 @@ export const defaultCombat: () => IGameCombat = () => ({
 
 export function unlockCombat(ctx: StateContext<IGameCombat>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainCombatLevels(ctx: StateContext<IGameCombat>, { levels }: GainCombatLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetCombat(ctx: StateContext<IGameCombat>) {

@@ -4,7 +4,10 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelBlacksmithingJob, ChangeBlacksmithingFilterOption, StartBlacksmithingJob } from './blacksmithing.actions';
+import {
+  CancelBlacksmithingJob, ChangeBlacksmithingFilterOption,
+  GainBlacksmithingLevels, StartBlacksmithingJob
+} from './blacksmithing.actions';
 
 export const defaultBlacksmithing: () => IGameRefining = () => ({
   version: 0,
@@ -20,6 +23,10 @@ export const defaultBlacksmithing: () => IGameRefining = () => ({
 
 export function unlockBlacksmithing(ctx: StateContext<IGameRefining>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainBlacksmithingLevels(ctx: StateContext<IGameRefining>, { levels }: GainBlacksmithingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetBlacksmithing(ctx: StateContext<IGameRefining>) {

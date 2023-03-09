@@ -7,7 +7,7 @@ import { AchievementStat, IGameProspecting } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { ProspectRock } from './prospecting.actions';
+import { GainProspectingLevels, ProspectRock } from './prospecting.actions';
 
 export const defaultProspecting: () => IGameProspecting = () => ({
   version: 0,
@@ -18,6 +18,10 @@ export const defaultProspecting: () => IGameProspecting = () => ({
 
 export function unlockProspecting(ctx: StateContext<IGameProspecting>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainProspectingLevels(ctx: StateContext<IGameProspecting>, { levels }: GainProspectingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetProspecting(ctx: StateContext<IGameProspecting>) {
