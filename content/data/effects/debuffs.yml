@@ -15,7 +15,7 @@ SpeedDebuff1:
   name: Slow I
   description: Decreases Speed by 3.
   icon: arrow-backward
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -25,7 +25,7 @@ SpeedDebuff2:
   name: Slow II
   description: Decreases Speed by 5.
   icon: arrow-backward
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -35,7 +35,7 @@ HealingDebuff1:
   name: Necrosis I
   description: Decreases Healing by 3.
   icon: healing-debuff
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -45,7 +45,7 @@ HealingDebuff2:
   name: Necrosis II
   description: Decreases Healing by 5.
   icon: healing-debuff
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -55,7 +55,7 @@ HealingDebuff3:
   name: Necrosis III
   description: Decreases Healing by 10.
   icon: healing-debuff
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -65,7 +65,7 @@ AttackDebuff1:
   name: Weaken I
   description: Decreases Attack by 3.
   icon: sword-shatter
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -75,7 +75,7 @@ AttackDebuff2:
   name: Weaken II
   description: Decreases Attack by 5.
   icon: sword-shatter
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -85,7 +85,7 @@ HealthDebuff1:
   name: Debilitate I
   description: Decreases Max Health by 10.
   icon: heart-minus
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 5
   statusEffectType: StatModification
   statModifications:
@@ -95,7 +95,7 @@ HealthDebuff2:
   name: Debilitate II
   description: Decreases Max Health by 15.
   icon: heart-minus
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 7
   statusEffectType: StatModification
   statModifications:
@@ -105,7 +105,7 @@ ArmorDebuff1:
   name: Shred I
   description: Decreases Armor by 3.
   icon: shield-down
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -115,7 +115,7 @@ ArmorDebuff2:
   name: Shred II
   description: Decreases Armor by 5.
   icon: shield-down
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
@@ -125,7 +125,7 @@ EnergyDebuff1:
   name: Enfeeble I
   description: Decreases Energy by 5.
   icon: enfeeble
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 5
   statusEffectType: StatModification
   statModifications:
@@ -135,7 +135,7 @@ EnergyDebuff2:
   name: Enfeeble II
   description: Decreases Energy by 10.
   icon: enfeeble
-  color: "#403353"
+  color: "#793A80"
   turnsLeft: 7
   statusEffectType: StatModification
   statModifications:
