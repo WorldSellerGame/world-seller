@@ -3,7 +3,7 @@ PoisonWeak:
   name: Poison
   description: Losing health over time.
   icon: poison
-  color: "#ff0000"
+  color: "#b4202a"
   turnsLeft: 5
   statusEffectType: DamageOverTime
   damageOverTime: 5
@@ -12,16 +12,25 @@ Bleed1:
   name: Bleed
   description: Uh oh, some one has a hole in them.
   icon: drop
-  color: "#ff0000"
+  color: "#b4202a"
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: 3
+
+Bleed2:
+  name: Bleed II
+  description: Uh oh, some one has a hole in them.
+  icon: drop
+  color: "#b4202a"
+  turnsLeft: 4
+  statusEffectType: DamageOverTime
+  damageOverTime: 5
 
 Fire1:
   name: Burning I
   description: On fire and taking damage every turn.
   icon: on-fire
-  color: "#ff0000"
+  color: "#b4202a"
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: 3
@@ -30,7 +39,7 @@ Fire2:
   name: Burning II
   description: Ablaze and taking damage every turn.
   icon: on-fire
-  color: "#ff0000"
+  color: "#b4202a"
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: 5
@@ -39,16 +48,16 @@ Doom1:
   name: Doom
   description: Massive damage when you finish your next turn, use your time well...
   icon: skull-doom
-  color: "#ff0000"
+  color: "##ffffff"
   turnsLeft: 1
   statusEffectType: DamageOverTime
-  damageOverTime: 25
+  damageOverTime: 30
 
 Rot1:
-  name: Rot I 
+  name: Rot I
   description: Damage every turn.
   icon: heart-bitten
-  color: "#00ff00"
+  color: "##b4202a"
   turnsLeft: 5
   statusEffectType: DamageOverTime
   damageOverTime: 4

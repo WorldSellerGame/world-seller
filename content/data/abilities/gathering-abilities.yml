@@ -1,6 +1,6 @@
 
 ### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
-    # I think I want skill ability's spaced every 15? or maybe thats silly
+    # I think I want skill ability's spaced every 11? or maybe thats silly
     # for now I think basic at 10 and 30 will be fine and uniques in between at 20 but likely will space them out more
 
 
@@ -34,7 +34,7 @@ FishingBasic2:
   energyCost: 6
   requires:
     fishing: 30
-    combat: 31
+    combat: 21
   replaces: FishingBasic1
 
 ForagingBasic1:
@@ -67,7 +67,7 @@ ForagingBasic2:
   energyCost: 6
   requires:
     foraging: 30
-    combat: 31
+    combat: 21
   replaces: ForagingBasic1
 
 HuntingBasic1:
@@ -100,7 +100,7 @@ HuntingBasic2:
   energyCost: 6
   requires:
     hunting: 30
-    combat: 31
+    combat: 21
   replaces: HuntingBasic1
 
 LoggingBasic1:
@@ -133,7 +133,7 @@ LoggingBasic2:
   energyCost: 6
   requires:
     logging: 30
-    combat: 31
+    combat: 21
   replaces: LoggingBasic1
 
 MiningBasic1:
@@ -166,7 +166,7 @@ MiningBasic2:
   energyCost: 6
   requires:
     mining: 30
-    combat: 31
+    combat: 21
   replaces: MiningBasic1
 
 ####
@@ -184,28 +184,31 @@ FishingUnique1: #I am taking your energy fucker
     - effect: ApplyEffect
       effectName: EnergyDebuff1
   cooldown: 2
-  energyCost: 5
+  energyCost: 4
   requires:
     fishing: 20
-    combat: 16
+    combat: 11
 
 ForagingUnique1:
   name: Treat
-  description: Have a little snack.
+  description: Have a little snack to heal up.
   icon: strawberry
   target: Self
   type: Magical
   stats:
     - stat: healing
-      multiplier: 2
+      multiplier: 2  #hmm
       variance: 0.5
   effects:
     - effect: SingleTargetHeal
-  cooldown: 2
-  energyCost: 5
+  cooldown: 4
+  energyCost: 7
   requires:
     foraging: 20
-    combat: 16
+    combat: 11
+
+
+#Skill level based damage effects may be possible but its likely best to leave this behind
 
 #     |HuntingUnique1: #Should I use power or skill level
 #     |  name: Hunter's Precise Strike
@@ -223,12 +226,35 @@ ForagingUnique1:
 #     |  energyCost: 5
 #     |  requires:
 #     |    hunting: 20
-#     |    combat: 16
+#     |    combat: 11
 #     |
 
-LoggingUnique1: #chop chop Yeah actually just really boring simple chop
+
+
+HuntingUnique1: #exists because I need a replacement and iron dagger unlikely to be used by most players
+  name: Strike A Vein
+  description: An attack that causes the target to take damage every turn.
+  icon: eye-target
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack 
+      multiplier: 1.0
+      variance: 0.25
+  effects: 
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Bleed1
+  cooldown: 5
+  energyCost: 5
+  requires:
+    hunting: 20
+    combat: 11
+
+
+LoggingUnique1: #Perhaps the most bread and butter shit imaginable like fuck thats so good for free
   name: Split
-  description: Simple and effective.
+  description: Simple strong attack.
   icon: axe-swing
   target: Single
   type: Physical
@@ -238,16 +264,16 @@ LoggingUnique1: #chop chop Yeah actually just really boring simple chop
       variance: 0.1
   effects:
     - effect: SingleTargetAttack
-  cooldown: 2
+  cooldown: 4
   energyCost: 5
   requires:
     logging: 20
-    combat: 16
+    combat: 11
 
 MiningUnique1:
   name: Piercing Strike
-  description: Pierce your opponents armor for a devastating attack.
-  icon: hungry-face
+  description: Pierce your opponents armor as you attack.
+  icon: shield-crack
   target: Single
   type: Physical
   stats:
@@ -258,9 +284,9 @@ MiningUnique1:
     - effect: ApplyEffect
       effectName: ArmorDebuff1
     - effect: SingleTargetAttack
-  cooldown: 2
-  energyCost: 5
+  cooldown: 3
+  energyCost: 4
   requires:
     mining: 20
-    combat: 16
+    combat: 11
 
