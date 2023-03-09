@@ -49,6 +49,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
       developmentMode: !isDevMode()
     }),
     NgxsLoggerPluginModule.forRoot({
+      disabled: !isDevMode(),
       filter: action => !action.constructor.name.includes('Timer')
     }),
     NgxsStoragePluginModule.forRoot({
