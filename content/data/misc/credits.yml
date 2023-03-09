@@ -1,0 +1,18 @@
+
+- category: Team
+  members:
+  - name: Seiyria
+    role: Programmer
+
+  - name: BNUTT
+    role: Content Creator & Tester
+
+- category: Contributors
+  members:
+    - name: Jamspoon
+      contribution: The Spoon theme
+
+- category: Special Thanks
+  members:
+    - name: You
+      contribution: For playing the game!
