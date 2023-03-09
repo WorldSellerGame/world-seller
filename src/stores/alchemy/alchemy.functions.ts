@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelAlchemyJob, ChangeAlchemyFilterOption, StartAlchemyJob } from './alchemy.actions';
+import { CancelAlchemyJob, ChangeAlchemyFilterOption, GainAlchemyLevels, StartAlchemyJob } from './alchemy.actions';
 
 export const defaultAlchemy: () => IGameRefining = () => ({
   version: 0,
@@ -20,6 +20,10 @@ export const defaultAlchemy: () => IGameRefining = () => ({
 
 export function unlockAlchemy(ctx: StateContext<IGameRefining>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainAlchemyLevels(ctx: StateContext<IGameRefining>, { levels }: GainAlchemyLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetAlchemy(ctx: StateContext<IGameRefining>) {

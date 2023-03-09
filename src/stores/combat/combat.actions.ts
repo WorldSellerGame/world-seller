@@ -5,6 +5,11 @@ export class UnlockCombat {
   constructor() {}
 }
 
+export class GainCombatLevels {
+  static type = '[Combat] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class SetSkill {
   static type = '[Combat] Set Skill';
   constructor(public skill: string, public slot: number) {}

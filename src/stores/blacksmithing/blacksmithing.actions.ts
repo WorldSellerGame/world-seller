@@ -4,6 +4,11 @@ export class UnlockBlacksmithing {
   static type = '[Blacksmithing] Unlock';
 }
 
+export class GainBlacksmithingLevels {
+  static type = '[Blacksmithing] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class StartBlacksmithingJob {
   static type = '[Blacksmithing] Start Job';
   constructor(public job: IGameRecipe, public quantity: number) {}

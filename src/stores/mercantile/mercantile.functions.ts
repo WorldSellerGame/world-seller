@@ -11,7 +11,7 @@ import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
 import {
-  GainCoins, QuickSellItemFromInventory, QuickSellItemFromStockpile,
+  GainCoins, GainMercantileLevels, QuickSellItemFromInventory, QuickSellItemFromStockpile,
   SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
 } from './mercantile.actions';
 
@@ -39,6 +39,10 @@ export const defaultMercantile: () => IGameMercantile = () => ({
 
 export function unlockMercantile(ctx: StateContext<IGameMercantile>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainMercantileLevels(ctx: StateContext<IGameMercantile>, { levels }: GainMercantileLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 // register functions

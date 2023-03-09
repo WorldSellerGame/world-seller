@@ -4,6 +4,11 @@ export class UnlockAlchemy {
   static type = '[Alchemy] Unlock';
 }
 
+export class GainAlchemyLevels {
+  static type = '[Alchemy] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class StartAlchemyJob {
   static type = '[Alchemy] Start Job';
   constructor(public job: IGameRecipe, public quantity: number) {}

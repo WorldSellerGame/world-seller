@@ -2,6 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
+import { GainForagingLevels } from './foraging.actions';
 
 export const defaultForaging: () => IGameGathering = () => ({
   version: 0,
@@ -14,6 +15,10 @@ export const defaultForaging: () => IGameGathering = () => ({
 
 export function unlockForaging(ctx: StateContext<IGameGathering>) {
   ctx.patchState({ unlocked: true });
+}
+
+export function gainForagingLevels(ctx: StateContext<IGameGathering>, { levels }: GainForagingLevels) {
+  ctx.patchState({ level: Math.max(0, ctx.getState().level + levels) });
 }
 
 export function resetForaging(ctx: StateContext<IGameGathering>) {

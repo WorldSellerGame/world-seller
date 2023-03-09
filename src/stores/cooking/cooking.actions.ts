@@ -4,6 +4,11 @@ export class UnlockCooking {
   static type = '[Cooking] Unlock';
 }
 
+export class GainCookingLevels {
+  static type = '[Cooking] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class StartCookingJob {
   static type = '[Cooking] Start Job';
   constructor(public job: IGameRecipe, public quantity: number) {}
