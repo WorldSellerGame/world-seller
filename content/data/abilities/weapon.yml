@@ -92,7 +92,7 @@ GoblinStaffHeal1:
   name: Goblish Heal I
   description: Heal yourself.
   icon: skull-staff
-  target: Ally
+  target: Self
   type: Magical
   stats:
     - stat: healing
