@@ -19,7 +19,7 @@ import { ContentService } from '../../../../services/content.service';
 export class BlacksmithPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.blacksmithing;
+    return this.contentService.getBlacksmithingRecipes();
   }
 
   public get startAction() {

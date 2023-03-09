@@ -16,7 +16,7 @@ import { ContentService } from '../../../../services/content.service';
 export class CookingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.cooking;
+    return this.contentService.getCookingRecipes();
   }
 
   public get startAction() {

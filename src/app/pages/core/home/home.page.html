@@ -135,7 +135,11 @@
 
                     <ion-col></ion-col>
 
-                    <ion-col></ion-col>
+                    <ion-col>
+                      <ion-button fill="clear" (click)="modsService.launchModManager()" color="secondary">
+                        <ion-icon slot="icon-only" name="cog"></ion-icon>
+                      </ion-button>
+                    </ion-col>
                   </ion-row>
                 </ion-card>
               </ion-col>

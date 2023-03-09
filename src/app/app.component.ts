@@ -162,7 +162,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     private readonly contentService: ContentService,
-    private readonly gameloopService: GameloopService
+    private readonly gameloopService: GameloopService,
   ) { }
 
   ngOnInit() {

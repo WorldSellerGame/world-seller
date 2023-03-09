@@ -16,7 +16,7 @@ import { ContentService } from '../../../../services/content.service';
 export class WeavingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.weaving;
+    return this.contentService.getWeavingRecipes();
   }
 
   public get startAction() {

@@ -9,6 +9,7 @@ export * from './farming';
 export * from './game';
 export * from './gathering';
 export * from './mercantile';
+export * from './mod';
 export * from './options';
 export * from './prospecting';
 export * from './refining';

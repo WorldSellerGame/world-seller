@@ -21,7 +21,7 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
     hasWorkers: boolean;
   }>;
 
-  @Input() locationData: { locations: IGameGatherLocation[] } = { locations: [] };
+  @Input() locationData: IGameGatherLocation[] = [];
   @Input() setAction: any;
   @Input() cancelAction: any;
 
@@ -32,7 +32,7 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.locSub = this.level$.subscribe(level => {
-      this.locations = this.visibleLocations(this.locationData.locations, level);
+      this.locations = this.visibleLocations(this.locationData, level);
     });
   }
 

@@ -1,5 +1,26 @@
 import { IGameCombatAbilityEffect } from './combat';
 
+export enum GatheringTradeskill {
+  Fishing = 'fishing',
+  Foraging = 'foraging',
+  Hunting = 'hunting',
+  Logging = 'logging',
+  Mining = 'mining',
+}
+
+export enum RefiningTradeskill {
+  Alchemy = 'alchemy',
+  Blacksmithing = 'blacksmithing',
+  Cooking = 'cooking',
+  Jewelcrafting = 'jewelcrafting',
+  Weaving = 'weaving',
+}
+
+export enum TransformTradeskill {
+  Farming = 'farming',
+  Prospecting = 'prospecting',
+}
+
 export enum Rarity {
   Broken = 'Broken',
   Junk = 'Junk',

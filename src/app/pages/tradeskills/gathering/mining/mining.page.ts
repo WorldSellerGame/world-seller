@@ -16,7 +16,7 @@ import { ContentService } from '../../../../services/content.service';
 export class MiningPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.mining;
+    return this.contentService.getMiningLocations();
   }
 
   public get setAction() {
