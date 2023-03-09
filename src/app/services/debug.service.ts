@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { GatheringTradeskill, OtherTradeskill, RefiningTradeskill, Tradeskill, TransformTradeskill } from '../../interfaces';
 import { OptionsState } from '../../stores';
 import { GainAlchemyLevels } from '../../stores/alchemy/alchemy.actions';
 import { GainBlacksmithingLevels } from '../../stores/blacksmithing/blacksmithing.actions';
@@ -62,26 +63,26 @@ export class DebugService {
       this.store.dispatch(new DebugApplyEffectToPlayer(effectRef));
     };
 
-    (window as any).gainLevel = (tradeskill: string, levels = 1) => {
-      switch(tradeskill.toLowerCase()) {
-        case 'alchemy':       return this.store.dispatch(new GainAlchemyLevels(levels));
-        case 'blacksmithing': return this.store.dispatch(new GainBlacksmithingLevels(levels));
-        case 'combat':        return this.store.dispatch(new GainCombatLevels(levels));
-        case 'cooking':       return this.store.dispatch(new GainCookingLevels(levels));
-        case 'farming':       return this.store.dispatch(new GainFarmingLevels(levels));
-        case 'fishing':       return this.store.dispatch(new GainFishingLevels(levels));
-        case 'foraging':      return this.store.dispatch(new GainForagingLevels(levels));
-        case 'hunting':       return this.store.dispatch(new GainHuntingLevels(levels));
-        case 'jewelcrafting': return this.store.dispatch(new GainJewelcraftingLevels(levels));
-        case 'logging':       return this.store.dispatch(new GainLoggingLevels(levels));
-        case 'mercantile':    return this.store.dispatch(new GainMercantileLevels(levels));
-        case 'mining':        return this.store.dispatch(new GainMiningLevels(levels));
-        case 'prospecting':   return this.store.dispatch(new GainProspectingLevels(levels));
-        case 'weaving':       return this.store.dispatch(new GainWeavingLevels(levels));
-        default: console.error(`Could not find tradeskill ${tradeskill}!`);
-      }
+    (window as any).gainLevel = (tradeskill: Tradeskill, levels = 1) => {
 
-      return;
+      const actionsPerTradeskill: Record<Tradeskill, any> = {
+        [RefiningTradeskill.Alchemy]:       GainAlchemyLevels,
+        [RefiningTradeskill.Blacksmithing]: GainBlacksmithingLevels,
+        [OtherTradeskill.Combat]:           GainCombatLevels,
+        [RefiningTradeskill.Cooking]:       GainCookingLevels,
+        [TransformTradeskill.Farming]:      GainFarmingLevels,
+        [GatheringTradeskill.Fishing]:      GainFishingLevels,
+        [GatheringTradeskill.Foraging]:     GainForagingLevels,
+        [GatheringTradeskill.Hunting]:      GainHuntingLevels,
+        [RefiningTradeskill.Jewelcrafting]: GainJewelcraftingLevels,
+        [GatheringTradeskill.Logging]:      GainLoggingLevels,
+        [OtherTradeskill.Mercantile]:       GainMercantileLevels,
+        [GatheringTradeskill.Mining]:       GainMiningLevels,
+        [TransformTradeskill.Prospecting]:  GainProspectingLevels,
+        [RefiningTradeskill.Weaving]:       GainWeavingLevels
+      };
+
+      this.store.dispatch(new actionsPerTradeskill[tradeskill](levels));
     };
   }
 
