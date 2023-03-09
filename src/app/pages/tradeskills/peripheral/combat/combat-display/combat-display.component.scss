@@ -31,6 +31,9 @@
       }
 
       .effects {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         margin-top: 10px;
         text-align: center;
         min-height: 30px;
