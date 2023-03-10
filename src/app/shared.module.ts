@@ -22,12 +22,14 @@ import { SkillDisplayComponent } from './components/skill-display/skill-display.
 import { StatLineComponent } from './components/stat-line/stat-line.component';
 import { TimeResourceIconComponent } from './components/time-resource-icon/time-resource-icon.component';
 import { AnalyticsClickDirective } from './directives/analytics-click.directive';
+import { ModioBrowseComponent } from './modals/modio-browse/modio-browse.component';
+import { ModioPermissionComponent } from './modals/modio-permission/modio-permission.component';
 
 @NgModule({
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent],
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,6 +41,6 @@ import { AnalyticsClickDirective } from './directives/analytics-click.directive'
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent]
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent]
 })
 export class SharedModule { }

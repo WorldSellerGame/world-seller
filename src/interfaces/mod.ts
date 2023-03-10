@@ -1,9 +1,78 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { IEnemyCharacter } from './character';
 import { IGameCombatAbility, IGameEnemyThreat, IGameStatusEffect } from './combat';
 import { IDungeon } from './dungeon';
 import { GatheringTradeskill, IGameItem, IGameResource, IGameResourceTransform, RefiningTradeskill, TransformTradeskill } from './game';
 import { IGameGatherLocation } from './gathering';
 import { IGameRecipe } from './refining';
+
+export interface IGameModStored {
+  version: string;
+  content: IGameModData;
+  icons: Array<{ name: string; data: string }>;
+}
+
+export interface IGameMods {
+  version: number;
+  modioAuthToken: string;
+  modioAuthTokenExpires: number;
+  mods: Record<number, IGameModStored>;
+}
+
+export interface IModSearchOptions {
+  query?: string;
+  tags?: string[];
+  offset?: number;
+  limit?: number;
+  sort?: string;
+}
+
+export interface IModReturnedData {
+  id: number;
+  name: string;
+  summary: string;
+  profile_url: string;
+
+  date_updated: number;
+  date_uploaded: number;
+
+  modfile: {
+    download: {
+      binary_url: string;
+      date_expires: number;
+    };
+
+    filesize: string;
+    version: string;
+  };
+
+  submitted_by: {
+    username: string;
+    profile_url: string;
+  };
+
+  logo: {
+    thumb_320x180: string;
+  };
+
+  stats: {
+    ratings_display_text: string;
+    downloads_total: number;
+  };
+
+  tags: Array<{
+    name: string;
+  }>;
+}
+
+export interface IModReturnedValue {
+  data: IModReturnedData[];
+  result_count: number;
+  result_limit: number;
+  result_offset: number;
+  result_total: number;
+}
 
 export interface IGameModData {
 

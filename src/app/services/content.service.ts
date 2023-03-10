@@ -33,7 +33,7 @@ import {
   IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
   IGameEnemyThreat, IGameGatherLocation, IGameItem,
-  IGameModData, IGameRecipe, IGameResource, IGameResourceTransform,
+  IGameModData, IGameModStored, IGameRecipe, IGameResource, IGameResourceTransform,
   IGameStatusEffect, IStatGains, RefiningTradeskill
 } from '../../interfaces';
 import { SetStatGains } from '../../stores/game/game.actions';
@@ -251,7 +251,14 @@ export class ContentService {
   }
 
   // mod functions
-  public loadMod(mod: IGameModData) {
+  public loadMod(storedMod: IGameModStored) {
+
+    const mod = storedMod.content;
+    const icons = storedMod.icons;
+
+    icons.forEach(icon => {
+      this.loadSVGFromString(icon.name, icon.data);
+    });
 
     // load gathering stuff
     Object.values(GatheringTradeskill).forEach(tradeskill => {
