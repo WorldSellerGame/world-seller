@@ -73,7 +73,7 @@ export class ModsService {
   }
 
   private async loadModsAtLaunch() {
-    const mods = this.store.snapshot().mods.mods || {};
+    const mods = this.store.snapshot().mods?.mods || {};
     Object.values(mods).forEach(mod => {
       this.contentService.loadMod(mod as IGameModStored);
     });
