@@ -57,7 +57,16 @@ Rot1:
   name: Rot I
   description: Damage every turn.
   icon: heart-bitten
-  color: "##b4202a"
+  color: "#b4202a"
   turnsLeft: 5
   statusEffectType: DamageOverTime
   damageOverTime: 4
+
+PaperCut1:
+  name: Paper Cut
+  description: Small amount of damage every turn, forever.
+  icon: slash
+  color: "#403353"
+  turnsLeft: -1
+  statusEffectType: DamageOverTime
+  damageOverTime: 1

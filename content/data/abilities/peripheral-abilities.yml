@@ -1,8 +1,70 @@
 
+#these are place holders test ability's and so on
 
 
-# all dot apply fire and combat idk 13 0r 1
+PeripheralFiller1: 
+  name: Shoddy Pyromancy
+  description: Everyone in the room being lit on fire seems beneficial, till you remember you are also in the room.
+  icon: fire-aoe
+  target: All
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Fire1
+  cooldown: 5
+  energyCost: 7
+  requires:
+    combat: 12
 
-# all enemy normal attack at 21 or 23
+PeripheralFiller2: 
+  name: Wide Strike
+  description: Hit every opponent, simple as.
+  icon: sword-swing
+  target: Single
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 0.8
+      variance: 0.25
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 2
+  energyCost: 8
+  requires:
+    alchemy: 20
+    combat: 22
 
-#and make the mummy bos item pls
+PeripheralFiller3: 
+  name: Cauterize
+  description: Hurts then heals.
+  icon: on-fire
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 2.2
+      variance: 0.25
+  effects:
+    - effect: SingleTargetAttack
+    - effect: SingleTargetHeal
+    - effect: SingleTargetHeal
+  cooldown: 4
+  energyCost: 7
+  requires:
+    combat: 22
+
+PeripheralFiller4: 
+  name: Death By A Cut
+  description: More would probably be faster, but uh if it works it works
+  icon: fire-aoe
+  target: All
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: PaperCut1
+  cooldown: 0
+  energyCost: 6
+  requires:
+    combat: 30

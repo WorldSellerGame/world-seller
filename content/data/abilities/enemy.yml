@@ -240,7 +240,7 @@ Mummy1:
       effectName: HealthDebuff1
     - effect: ApplyEffect
       effectName: HealingDebuff1
-  cooldown: 0
+  cooldown: 2
   energyCost: 15
   requires: {}
 

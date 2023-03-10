@@ -46,3 +46,21 @@ Leather Gloves:
   icon: gloves
   stats:
     armor: 5
+
+
+#Enemy 
+
+Mummy Wraps: #this bih already enchanted
+  name: Mummy Wraps
+  description: Runic markings lines theses hand wraps. Great power always comes with a cost
+  type: HeadArmor
+  category: Armor
+  rarity: Rare
+  durability: 10
+  value: 10
+  icon: hand-wrap
+  givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
+  stats:
+    attack: 3
+    armor: 1
+   #I want to make this number bigger but give more stats but inverse of the mummy's effect is really sick

@@ -197,7 +197,7 @@ ForagingUnique1:
   type: Magical
   stats:
     - stat: healing
-      multiplier: 2  #hmm
+      multiplier: 1.5  #hmm
       variance: 0.5
   effects:
     - effect: SingleTargetHeal

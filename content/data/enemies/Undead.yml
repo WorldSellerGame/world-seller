@@ -89,7 +89,7 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
     attack: 15 #hmm
     armor: 8
     speed: 6
-    healingPerRound: 5 #???
+    healingPerRound: 10 #???
 
   abilities:
     - UndeadRegen2
@@ -98,7 +98,12 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
 
   drops: #l8r
     - resource: Coin
-      min: 10
-      max: 25
+      min: 25
+      max: 45
+      chance: 100
+
+    - Item: Mummy Wraps
+      min: 1
+      max: 1
       chance: 100
 
