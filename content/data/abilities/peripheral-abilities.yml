@@ -4,7 +4,7 @@
 
 PeripheralFiller1: 
   name: Shoddy Pyromancy
-  description: Everyone in the room being lit on fire seems beneficial, till you remember you are also in the room.
+  description: Everyone in the room being lit on fire seems beneficial, until you remember you are also in the room.
   icon: fire-aoe
   target: All
   type: Magical
@@ -19,7 +19,7 @@ PeripheralFiller1:
 
 PeripheralFiller2: 
   name: Wide Strike
-  description: Hit every opponent, simple as.
+  description: Hit every opponent, simple as that.
   icon: sword-swing
   target: Single
   type: Physical
@@ -56,7 +56,7 @@ PeripheralFiller3:
 
 PeripheralFiller4: 
   name: Death By A Cut
-  description: More would probably be faster, but uh if it works it works
+  description: More would probably be faster, but uh if it works it works.
   icon: fire-aoe
   target: All
   type: Magical
