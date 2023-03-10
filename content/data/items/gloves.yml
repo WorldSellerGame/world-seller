@@ -53,7 +53,7 @@ Leather Gloves:
 Mummy Wraps: #this bih already enchanted
   name: Mummy Wraps
   description: Runic markings lines theses hand wraps. Great power always comes with a cost
-  type: HeadArmor
+  type: HandArmor
   category: Armor
   rarity: Rare
   durability: 10
@@ -61,6 +61,7 @@ Mummy Wraps: #this bih already enchanted
   icon: hand-wrap
   givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
   stats:
-    attack: 3
-    armor: 1
-   #I want to make this number bigger but give more stats but inverse of the mummy's effect is really sick
+    attack: 4
+    armor: 2
+    healing: -10
+    healthBonus: -50
