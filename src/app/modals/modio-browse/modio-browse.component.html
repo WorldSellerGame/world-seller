@@ -1,0 +1,192 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>World Seller Mods</ion-title>
+    <ion-buttons slot="end">
+      <ion-button target="_blank" href="https://mod.io/g/world-seller/r/world-seller-modding-how-to">
+        make a mod
+      </ion-button>
+
+      <ion-button target="_blank" [href]="modioLink">
+        mods @ mod.io
+      </ion-button>
+
+      <ion-button (click)="modal.dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row class="controls">
+              <ion-col size="3">
+                <ion-item class="search">
+                  <ion-input placeholder="Mod name search..." [(ngModel)]="searchQuery" [debounce]="500" (ionChange)="changeSomethingThenSearch()"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="3">
+                <ion-item class="sort">
+                  <ion-select [(ngModel)]="sort" interface="popover" placeholder="Select sort...">
+                    <ion-select-option *ngFor="let sortData of sorts" [value]="sortData.value" (ionChange)="changeSomethingThenSearch()">
+                      {{ sortData.name }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="3">
+                <ion-button color="medium" (click)="popover.present($event)" expand="block" fill="outline">
+                  Tags
+                </ion-button>
+
+                <ion-popover #popover>
+                  <ng-template>
+                    <ion-content>
+                      <ion-list>
+                        <ion-item *ngFor="let tag of tags">
+                          <ion-checkbox slot="start" [(ngModel)]="selectedTags[tag]" (ionChange)="changeSomethingThenSearch()"></ion-checkbox>
+                          <ion-label>{{ tag }}</ion-label>
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-popover>
+              </ion-col>
+
+              <ion-col size="3">
+                <ion-button color="medium" (click)="toggleSubscriptions()" expand="block" [fill]="mySubscriptions ? 'solid' : 'outline'">
+                  My Subscriptions ({{ subscriptionsInfo.result_total }}/{{ maxMods }})
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="big-row">
+      <ion-col size="8">
+        <ion-card class="middle-card">
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngIf="currentModList.data.length === 0">There aren't any mods here :(</ion-item>
+
+              <ion-item class="mod" *ngFor="let mod of currentModList.data; trackBy: trackBy" (click)="showModInfo(mod)">
+                <ion-img slot="start" [src]="mod.logo.thumb_320x180"></ion-img>
+
+                <ion-label class="ion-text-wrap">
+                  <h2 class="mod-name">
+                    <span>{{ mod.name }}</span>
+                    <ion-badge class="version" color="primary">{{ mod.modfile.version || '0.0.0' }}</ion-badge>
+                  </h2>
+                  <p>{{ mod.stats.ratings_display_text }} &middot; {{ mod.stats.downloads_total | number }} Downloads</p>
+                  <p>{{ mod.summary }}</p>
+                </ion-label>
+
+                <ion-button slot="end" fill="clear" color="primary" (click)="$event.stopPropagation(); subscribeToMod(mod)" *ngIf="!subscriptionHash[mod.id]" [disabled]="!canSubscribe">
+                  <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+                </ion-button>
+
+                <ion-button slot="end" fill="clear" color="danger" (click)="$event.stopPropagation(); unsubscribeFromMod(mod)" *ngIf="subscriptionHash[mod.id] && versionMatches(mod)">
+                  <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+                </ion-button>
+
+                <ion-button slot="end" fill="clear" color="warning" *ngIf="subscriptionHash[mod.id] && !versionMatches(mod)" [ngxTippy]="'Outdated; your version is ' + storedModData[mod.id].version">
+                  <ion-icon slot="icon-only" name="alert-circle"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-card class="middle-card">
+          <ion-card-content class="true-center" *ngIf="!activeMod">
+            Select a mod on the left side to see more information.
+          </ion-card-content>
+
+          <ion-card-content class="active-mod" *ngIf="activeMod">
+            <ion-img [src]="activeMod.logo.thumb_320x180"></ion-img>
+
+            <h1 class="mod-title">
+              <a target="_blank" [href]="activeMod.profile_url">{{ activeMod.name }}</a>
+              <ion-badge class="version" color="primary">{{ activeMod.modfile.version || '0.0.0' }}</ion-badge>
+            </h1>
+
+            <p class="author">By <a target="_blank" [href]="activeMod.submitted_by.profile_url">{{ activeMod.submitted_by.username }}</a></p>
+
+            <p class="date">
+              Updated {{ (activeMod.date_updated || activeMod.date_uploaded) * 1000 | date:'medium' }}
+            </p>
+
+            <p class="ratings">{{ activeMod.stats.ratings_display_text }} &middot; {{ activeMod.stats.downloads_total | number }} Downloads</p>
+
+            <hr>
+
+            <ion-badge class="tag" color="secondary" *ngFor="let tag of activeMod.tags">{{ tag.name }}</ion-badge>
+
+            <hr>
+
+            <p class="summary">{{ activeMod.summary }}</p>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="8">
+        <ion-card>
+          <ion-card-content>
+            <div class="pagination">
+              <ion-button color="secondary" shape="round" size="small" fill="outline" [disabled]="currentModList.result_offset === 0" (click)="previousPage()">
+                <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+              </ion-button>
+
+              <div>
+                {{ currentModList.result_offset + 1 }} - {{ currentModList.result_offset + currentModList.result_count }} of {{ currentModList.result_total }}
+              </div>
+
+              <ion-button color="secondary" shape="round" size="small" fill="outline" [disabled]="currentModList.result_offset + currentModList.result_count >= currentModList.result_total" (click)="nextPage()">
+                <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="4" class="dedicated-subscribe">
+        <ng-container *ngIf="activeMod">
+          <ion-row>
+            <ion-col>
+              <ion-button *ngIf="!subscriptionHash[activeMod.id]" expand="block" color="primary" (click)="subscribeToMod(activeMod)" [disabled]="!canSubscribe">
+                <ion-icon slot="start" name="add-circle"></ion-icon>
+                Subscribe
+              </ion-button>
+
+              <ion-button *ngIf="subscriptionHash[activeMod.id]" expand="block" color="danger" (click)="unsubscribeFromMod(activeMod)">
+                <ion-icon slot="start" name="close-circle"></ion-icon>
+                Unsubscribe
+              </ion-button>
+            </ion-col>
+
+            <ion-col *ngIf="subscriptionHash[activeMod.id] && !versionMatches(activeMod)">
+              <ion-button *ngIf="subscriptionHash[activeMod.id]" expand="block" color="primary" (click)="updateMod(activeMod)">
+                <ion-icon slot="start" name="cloud-download"></ion-icon>
+                Update
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

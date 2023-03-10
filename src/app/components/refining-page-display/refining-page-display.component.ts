@@ -33,7 +33,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   };
 
   @Input() discoveries: Record<string, boolean> = {};
-  @Input() locationData: { recipes: IGameRecipe[] } = { recipes: [] };
+  @Input() locationData: IGameRecipe[] = [];
   @Input() startAction: any;
   @Input() cancelAction: any;
   @Input() changeOptionAction: any;
@@ -70,8 +70,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   }
 
   setVisibleRecipes() {
-    this.resourceRecipes = this.visibleRecipes(this.locationData.recipes, 'resources');
-    this.itemRecipes = this.visibleRecipes(this.locationData.recipes, 'items');
+    this.resourceRecipes = this.visibleRecipes(this.locationData, 'resources');
+    this.itemRecipes = this.visibleRecipes(this.locationData, 'items');
 
     if(!this.type) {
       this.type = this.resourceRecipes.length > 0 ? 'resources' : 'items';

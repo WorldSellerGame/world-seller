@@ -9,6 +9,7 @@ import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnnouncementService } from '../../../services/announcements.service';
+import { ModsService } from '../../../services/mods.service';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomePage implements OnInit {
     private router: Router,
     private alertCtrl: AlertController,
     public metaService: MetaService,
+    public modsService: ModsService,
     public announcementService: AnnouncementService
   ) { }
 

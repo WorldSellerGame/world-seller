@@ -16,7 +16,7 @@ import { ContentService } from '../../../../services/content.service';
 export class AlchemyPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.alchemy;
+    return this.contentService.getAlchemyRecipes();
   }
 
   public get startAction() {

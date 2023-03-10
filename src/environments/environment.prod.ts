@@ -8,5 +8,11 @@ export const environment = {
   rollbar: {
     environment: 'production',
     apiKey: '4e3cb475d578456b8ef37803091dceee'
+  },
+  modio: {
+    url: 'https://api.mod.io/v1',
+    modsUrl: 'https://mod.io/g/world-seller',
+    gameId: 4781,
+    apiKey: '6b660beed0a5339dd9ce7d7a07e3d537'
   }
 };

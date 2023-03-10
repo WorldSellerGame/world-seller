@@ -57,6 +57,7 @@ export class RollbarErrorHandler implements ErrorHandler {
     console.error(err);
 
     const savefile = this.store.snapshot();
+    delete savefile.mods;
 
     // check if the user will let errors be sent
     if(savefile.options.telemetryErrors) {

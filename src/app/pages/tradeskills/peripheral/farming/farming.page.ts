@@ -17,7 +17,7 @@ import { NotifyService } from '../../../../services/notify.service';
 export class FarmingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.farming;
+    return this.contentService.getFarmingTransforms();
   }
 
   public currentPlantIndex = -1;
@@ -52,7 +52,7 @@ export class FarmingPage implements OnInit {
   }
 
   public maxLevelForSeed(seedName: string): number {
-    return this.contentService.farming.transforms.find((x: IGameResourceTransform) => x.startingItem === seedName)?.level.max ?? 0;
+    return this.locationData.find((x: IGameResourceTransform) => x.startingItem === seedName)?.level.max ?? 0;
   }
 
   public setupPlanting(plotIndex: number, currentLevel: number) {
@@ -91,7 +91,7 @@ export class FarmingPage implements OnInit {
   }
 
   private getSeedTransform(seed: string): IGameResourceTransform | undefined {
-    return this.locationData.transforms.find((t: IGameResourceTransform) => t.startingItem === seed);
+    return this.locationData.find((t: IGameResourceTransform) => t.startingItem === seed);
   }
 
 }

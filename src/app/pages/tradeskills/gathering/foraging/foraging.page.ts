@@ -15,7 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 export class ForagingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.foraging;
+    return this.contentService.getForagingLocations();
   }
 
   public get setAction() {

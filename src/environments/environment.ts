@@ -12,6 +12,12 @@ export const environment = {
   rollbar: {
     environment: 'local',
     apiKey: 'c34a4c9b582b4fe3bd6bfc48666687ed'
+  },
+  modio: {
+    url: 'https://api.test.mod.io/v1',
+    modsUrl: 'https://worldseller.test.mod.io/',
+    gameId: 1018,
+    apiKey: 'c534785e553448834f567e4d4229bdf5'
   }
 };
 

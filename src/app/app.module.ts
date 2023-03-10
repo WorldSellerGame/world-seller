@@ -23,6 +23,7 @@ import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
 import { DebugService } from './services/debug.service';
 import { MetaService } from './services/meta.service';
+import { ModsService } from './services/mods.service';
 import { RollbarErrorHandler, RollbarService } from './services/rollbar.service';
 import { SharedModule } from './shared.module';
 
@@ -71,20 +72,23 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         AnalyticsService,
         RollbarService,
         AchievementsService,
-        DebugService
+        DebugService,
+        ModsService
       ],
       useFactory: (
         metaService: MetaService,
         analyticsService: AnalyticsService,
         rollbarService: RollbarService,
         achievementsService: AchievementsService,
-        debugService: DebugService
+        debugService: DebugService,
+        modsService: ModsService
       ) => async () => {
         await metaService.init();
         analyticsService.init();
         rollbarService.init();
         achievementsService.init();
         debugService.init();
+        await modsService.init();
       }
     },
     { provide: ErrorHandler, useClass: RollbarErrorHandler },

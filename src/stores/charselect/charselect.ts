@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
+import { ContentService } from '../../app/services/content.service';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
@@ -36,6 +37,7 @@ export class CharSelectState {
 
   constructor(
     private store: Store,
+    private contentService: ContentService,
     private itemCreatorService: ItemCreatorService
   ) {
     attachments.forEach(({ action, handler }) => {
@@ -85,6 +87,16 @@ export class CharSelectState {
       if(!char) {
         return;
       }
+
+      // delete invalid resources
+      const resources = (char.resources || {});
+      Object.keys(resources).forEach(resource => {
+        if(this.contentService.getResourceByName(resource)) {
+          return;
+        }
+
+        delete resources[resource];
+      });
 
       const inventory = (char.inventory || []).map((oldItem) => {
 

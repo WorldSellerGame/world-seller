@@ -19,7 +19,7 @@ import { ContentService } from '../../../../services/content.service';
 export class JewelcraftingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.jewelcrafting;
+    return this.contentService.getJewelcraftingRecipes();
   }
 
   public get startAction() {

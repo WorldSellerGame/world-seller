@@ -1,0 +1,72 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mod.io Account</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modal.dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Step 1: Sign Into Mod.io</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>World Seller uses mod.io to manage mods. Enter your preferred email address below to sign into mod.io - it can be an email associated with an existing mod.io account, or a new email.</p>
+
+            <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input [(ngModel)]="email" type="email" placeholder="Email" (keyup.enter)="requestCode()" [disabled]="isDoing"></ion-input>
+              <ion-button slot="end" (click)="requestCode()" [disabled]="isDoing">Submit</ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="successStatus">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Step 2: Verify Your Email</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ successStatus.message }}</p>
+
+            <ion-item>
+              <ion-label>Code</ion-label>
+              <ion-input [(ngModel)]="code" type="text" placeholder="Verification Code" (keyup.enter)="submitCode()" [disabled]="isDoing"></ion-input>
+              <ion-button slot="end" (click)="submitCode()" [disabled]="isDoing">Submit</ion-button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="errorStatus">
+      <ion-col>
+        <ion-card color="danger">
+          <ion-card-header>
+            <ion-card-title>Error {{ errorStatus.error_ref }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ errorStatus.message }}</p>
+
+            <ul>
+              <li *ngFor="let error of errorStatus.errors | keyvalue">
+                {{ error.value }}
+              </li>
+            </ul>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
