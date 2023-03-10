@@ -98,7 +98,7 @@
                   <ion-icon slot="icon-only" name="close-circle"></ion-icon>
                 </ion-button>
 
-                <ion-button slot="end" fill="clear" color="warning" *ngIf="subscriptionHash[mod.id] && !versionMatches(mod)" [ngxTippy]="'Outdated; your version is ' + storedModData[mod.id].version">
+                <ion-button slot="end" fill="clear" color="warning" *ngIf="subscriptionHash[mod.id] && !versionMatches(mod)" [ngxTippy]="'Outdated; your version is ' + storedModData[mod.id]?.version || 'not installed'">
                   <ion-icon slot="icon-only" name="alert-circle"></ion-icon>
                 </ion-button>
               </ion-item>
