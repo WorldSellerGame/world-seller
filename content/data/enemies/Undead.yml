@@ -80,7 +80,7 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
   icon: mummy
   description: The source of all the undead near the temple, a dangerous opponent of unholy strength and terrifying curses. But how did the Mummy end up here...
 
-  health: 90 #healing per turn may make this too high
+  health: 90 
   energy: 10
 
   idleChance: 2
@@ -89,16 +89,21 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
     attack: 15 #hmm
     armor: 8
     speed: 6
-    healingPerRound: 5 #???
+    healingPerRound: 10 #
 
   abilities:
-    - UndeadRegen2
+    - UndeadRegen2 
     - Mummy1
     - ApplyDoom1 #or maybe 2 idk man
 
   drops: #l8r
     - resource: Coin
-      min: 10
-      max: 25
+      min: 25
+      max: 45
+      chance: 100
+
+    - item: Mummy Wraps
+      min: 1
+      max: 1
       chance: 100
 

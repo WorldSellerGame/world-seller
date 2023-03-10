@@ -212,17 +212,4 @@ Tanzanite Iron Tongue Piercing:
 #if the system becomes more modular/needs more things engraving filigree could be easy
 
 #Dropped
-Goblin Crown: #this bih already enchanted
-  name: Goblin Crown
-  description: Crown of a goblin lord. Makes you feel important.
-  type: Jewelry
-  category: Jewelry
-  rarity: Rare
-  durability: -1
-  value: 10
-  icon: goblin-crown
-  givesAbility: GoblinLord1
-  stats:
-    attack: -1
-    healthBonus: -1
-    speed: 3
+

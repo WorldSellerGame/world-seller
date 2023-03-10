@@ -46,3 +46,22 @@ Leather Gloves:
   icon: gloves
   stats:
     armor: 5
+
+
+#Enemy 
+
+Mummy Wraps: #this bih already enchanted
+  name: Mummy Wraps
+  description: Runic markings lines theses hand wraps. Great power always comes with a cost.
+  type: HandArmor
+  category: Armor
+  rarity: Rare
+  durability: 10
+  value: 10
+  icon: hand-wrap
+  givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
+  stats:
+    attack: 4
+    armor: 2
+    healing: -10
+    healthBonus: -50

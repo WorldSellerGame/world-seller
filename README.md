@@ -51,6 +51,7 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 1. Find the SVG [here](https://seiyria.com/gameicons-font/).
 1. Copy the SVG locally to `src/assets/icon`.
 1. Remove the SVGs `fill` attribute.
+1. Names of svgs are generally as follows object, a dash, and then a property of the image if relevant. Inverses of this rule are frequent and should be fixed over time.
 
 ### Creating Content
 
