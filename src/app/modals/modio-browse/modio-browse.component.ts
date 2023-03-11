@@ -77,6 +77,10 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
     return environment.modio.modsUrl;
   }
 
+  public get anyModsNeedUpdates(): boolean {
+    return this.subscriptionsInfo.data.some(mod => !this.versionMatches(mod));
+  }
+
   constructor(
     private store: Store,
     public modal: ModalController,
@@ -188,6 +192,16 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
   updateMod(mod: IModReturnedData) {
     this.modsService.downloadAndCacheMod(mod).subscribe(() => {
       this.notify.success(`Updated mod "${mod.name}"!`);
+    });
+  }
+
+  updateAllMods() {
+    this.subscriptionsInfo.data.forEach(mod => {
+      if(this.versionMatches(mod)) {
+        return;
+      }
+
+      this.updateMod(mod);
     });
   }
 

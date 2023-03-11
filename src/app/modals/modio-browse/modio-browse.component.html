@@ -3,6 +3,10 @@
   <ion-toolbar>
     <ion-title>World Seller Mods</ion-title>
     <ion-buttons slot="end">
+      <ion-button color="primary" (click)="updateAllMods()" *ngIf="anyModsNeedUpdates">
+        update all mods
+      </ion-button>
+
       <ion-button target="_blank" href="https://mod.io/g/world-seller/r/world-seller-modding-how-to">
         make a mod
       </ion-button>
@@ -98,7 +102,7 @@
                   <ion-icon slot="icon-only" name="close-circle"></ion-icon>
                 </ion-button>
 
-                <ion-button slot="end" fill="clear" color="warning" *ngIf="subscriptionHash[mod.id] && !versionMatches(mod)" [ngxTippy]="'Outdated; your version is ' + storedModData[mod.id]?.version || 'not installed'">
+                <ion-button slot="end" fill="clear" color="warning" *ngIf="subscriptionHash[mod.id] && !versionMatches(mod)" [ngxTippy]="'Outdated; your version is ' + (storedModData[mod.id] ? storedModData[mod.id].version : 'not installed')">
                   <ion-icon slot="icon-only" name="alert-circle"></ion-icon>
                 </ion-button>
               </ion-item>
