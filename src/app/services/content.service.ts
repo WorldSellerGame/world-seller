@@ -190,7 +190,10 @@ export class ContentService {
   private loadIcons() {
     const icons: Set<string> = new Set();
 
-    ['settings', 'level', 'resources', 'inventory', 'equipment', 'time'].forEach(x => icons.add(x));
+    [
+      'settings', 'level', 'resources', 'inventory', 'equipment', 'time',
+      'dungeon-tile', 'dungeon-wall', 'dungeon-heal', 'dungeon-stairs', 'me'
+    ].forEach(x => icons.add(x));
     Object.values(this.abilities).forEach(x => icons.add(x.icon));
     Object.values(this.enemies).forEach(x => icons.add(x.icon));
     Object.values(this.threats).forEach(x => icons.add(x.icon));
