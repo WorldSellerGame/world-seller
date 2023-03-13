@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
-import { IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ContentService } from '../../services/content.service';
@@ -18,6 +18,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   @Input() level = 0;
   @Input() currentQueue: { queue: IGameRefiningRecipe[]; size: number } = { queue: [], size: 1 };
   @Input() resources: Record<string, number> = {};
+  @Input() items: IGameItem[] = [];
 
   @Input() refiningWorkers: {
     workerAllocations: IGameWorkersRefining[];
@@ -47,6 +48,9 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   public workersPerRecipe: Record<string, number> = {};
   public canCraftRecipes: Record<string, boolean> = {};
   public ingredients: Record<string, Array<{ name: string; amount: number }>> = {};
+  public itemIngredients: Record<string, Array<{ name: string; amount: number }>> = {};
+
+  public summedResources: Record<string, number> = {};
 
   constructor(
     private store: Store,
@@ -57,6 +61,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.setVisibleRecipes();
     this.setRefiningWorkerHash();
+    this.setTotalResources();
   }
 
   ngOnChanges(changes: any) {
@@ -67,6 +72,14 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     if(changes.refiningWorkers) {
       this.setRefiningWorkerHash();
     }
+
+    if(changes.resources || changes.items) {
+      this.setTotalResources();
+    }
+  }
+
+  setTotalResources() {
+    this.summedResources = this.totalResourceHashForCrafting();
   }
 
   setVisibleRecipes() {
@@ -93,7 +106,13 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     this.ingredients = {};
 
     [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
-      this.ingredients[recipe.result] = Object.keys(recipe.ingredients || {}).map((name) => ({ name, amount: recipe.ingredients[name] }));
+      this.ingredients[recipe.result] = Object.keys(recipe.ingredients || {})
+        .filter(x => this.contentService.isResource(x))
+        .map((name) => ({ name, amount: recipe.ingredients[name] }));
+
+      this.itemIngredients[recipe.result] = Object.keys(recipe.ingredients || {})
+        .filter(x => this.contentService.isItem(x))
+        .map((name) => ({ name, amount: recipe.ingredients[name] }));
     });
   }
 
@@ -101,7 +120,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     this.canCraftRecipes = {};
 
     [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
-      this.canCraftRecipes[recipe.result] = canCraftRecipe(this.resources, recipe, this.amounts[recipe.result] || 1);
+      this.canCraftRecipes[recipe.result] = this.canCraftRecipe(recipe, this.amounts[recipe.result] || 1);
     });
   }
 
@@ -169,11 +188,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
           return false;
         }
 
-        if(this.filterOptions.hideHasIngredients && this.canCraftRecipe(this.resources, recipe)) {
+        if(this.filterOptions.hideHasIngredients && this.canCraftRecipe(recipe)) {
           return false;
         }
 
-        if(this.filterOptions.hideHasNoIngredients && !this.canCraftRecipe(this.resources, recipe)) {
+        if(this.filterOptions.hideHasNoIngredients && !this.canCraftRecipe(recipe)) {
           return false;
         }
 
@@ -183,8 +202,17 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     return sortBy(validRecipes, 'result');
   }
 
-  canCraftRecipe(resources: Record<string, number>, recipe: IGameRecipe, amount = 1): boolean {
-    return canCraftRecipe(resources, recipe, amount);
+  totalResourceHashForCrafting() {
+    const base = Object.assign({}, this.resources);
+    this.items.forEach(item => {
+      base[item.name] = (base[item.name] || 0) + 1;
+    });
+
+    return base;
+  }
+
+  canCraftRecipe(recipe: IGameRecipe, amount = 1): boolean {
+    return canCraftRecipe(this.summedResources, recipe, amount);
   }
 
   craft(recipe: IGameRecipe, amount = 1) {
@@ -192,7 +220,28 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
     this.setCanCrafts();
 
-    this.store.dispatch(new this.startAction(recipe, amount));
+    const itemsNeeded = Object.keys(recipe.ingredients)
+      .filter(x => this.contentService.isItem(x))
+      .filter(x => !recipe.preserve?.includes(x))
+      .map(x => ({ name: x, itemAmount: recipe.ingredients[x] * amount }));
+
+    let validItems = this.items.slice();
+
+    const itemsTaken: IGameItem[] = [];
+    itemsNeeded.forEach(({ name, itemAmount }) => {
+      for(let i = 0; i < itemAmount; i++) {
+        const itemIndex = validItems.findIndex(x => x.name === name);
+        if(itemIndex === -1) {
+          return;
+        }
+
+        const item = validItems[itemIndex];
+        itemsTaken.push(item);
+        validItems = validItems.filter(x => x !== item);
+      }
+    });
+
+    this.store.dispatch(new this.startAction(recipe, amount, itemsTaken));
   }
 
   cancel(jobIndex: number) {

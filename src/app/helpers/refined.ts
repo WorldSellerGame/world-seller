@@ -1,9 +1,9 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
-import { AchievementStat, IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
+import { AchievementStat, IGameItem, IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
-import { GainItemOrResource, GainResources } from '../../stores/charselect/charselect.actions';
+import { AddItemToInventory, GainItemOrResource, GainResources, RemoveItemFromInventory } from '../../stores/charselect/charselect.actions';
 import { PlaySFX } from '../../stores/game/game.actions';
 
 export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any, incrementStat: AchievementStat) {
@@ -48,6 +48,18 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
     newJob.currentDuration = newJob.durationPer;
     newJob.totalLeft -= 1;
 
+    if(newJob.refundItems.length > 0) {
+      const allItemNames = [...new Set(newJob.refundItems.map(x => x.name))];
+      const itemQuantitiesPerRecipe = allItemNames.map(x => ({ name: x, quantity: newJob.recipe.ingredients[x] }));
+
+      itemQuantitiesPerRecipe.forEach(({ name, quantity }) => {
+        for(let i = 0; i < quantity; i++) {
+          const lostItem = newJob.refundItems.find(x => x.name === name);
+          newJob.refundItems = newJob.refundItems.filter(x => x !== lostItem);
+        }
+      });
+    }
+
     ctx.setState(patch<IGameRefining>({
       recipeQueue: updateItem<IGameRefiningRecipe>(0, newJob)
     }));
@@ -69,9 +81,10 @@ export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Recor
   return zipObject(recipeIngredients, recipeCosts);
 }
 
-export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number) {
+export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number, refundItems: IGameItem[] = []) {
   ctx.dispatch([
     new GainResources(getRecipeIngredientCosts(job, quantity)),
+    ...refundItems.map(item => new RemoveItemFromInventory(item)),
     new PlaySFX('tradeskill-start')
   ]);
 
@@ -81,7 +94,8 @@ export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecip
       totalDurationInitial: job.craftTime * quantity,
       totalLeft: quantity,
       durationPer: job.craftTime,
-      currentDuration: job.craftTime
+      currentDuration: job.craftTime,
+      refundItems
     }])
   }));
 }
@@ -89,7 +103,9 @@ export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecip
 export function cancelRefineJob(ctx: StateContext<IGameRefining>, jobIndex: number, shouldRefundResources: boolean) {
   if(shouldRefundResources) {
     const job = ctx.getState().recipeQueue[jobIndex];
+
     const resourceRefunds = Object.keys(job.recipe.ingredients)
+      .filter(ingredient => !job.refundItems.map(x => x.name).includes(ingredient))
       .map(ingredient => (job.recipe.preserve || []).includes(ingredient)
         ? {}
         : ({ [ingredient]: job.recipe.ingredients[ingredient] * job.totalLeft })
@@ -97,7 +113,10 @@ export function cancelRefineJob(ctx: StateContext<IGameRefining>, jobIndex: numb
       .filter(Boolean)
       .reduce((acc, cur) => merge(acc, cur), {});
 
-    ctx.dispatch(new GainResources(resourceRefunds));
+    ctx.dispatch(new GainResources(resourceRefunds, false));
+
+    const itemRefunds = job.refundItems.map(item => new AddItemToInventory(item));
+    ctx.dispatch(itemRefunds);
   }
 
   ctx.setState(patch<IGameRefining>({

@@ -41,8 +41,8 @@ export function cancelJewelcraftingJob(ctx: StateContext<IGameRefining>, { jobIn
   cancelRefineJob(ctx, jobIndex, shouldRefundResources);
 }
 
-export function startJewelcraftingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartJewelcraftingJob) {
-  startRefineJob(ctx, job, quantity);
+export function startJewelcraftingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartJewelcraftingJob) {
+  startRefineJob(ctx, job, quantity, items);
 };
 
 export function changeJewelcraftingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeJewelcraftingFilterOption) {

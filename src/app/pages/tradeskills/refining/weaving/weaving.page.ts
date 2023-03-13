@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameItem, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, WeavingState, WorkersState } from '../../../../../stores';
 
 import { CancelWeavingJob, ChangeWeavingFilterOption, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
@@ -37,6 +37,7 @@ export class WeavingPage implements OnInit {
 
   @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
+  @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];
     canAssignWorker: boolean;

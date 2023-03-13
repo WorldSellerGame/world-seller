@@ -162,7 +162,7 @@ Boar Tusk Anklet:
     {}
 
 Quartz Iron Ring:
-  name: Iron Ring
+  name: Iron Ring (Quartz)
   description: Cut Quartz set into an Iron Ring.
   type: Jewelry
   category: Jewelry
@@ -174,7 +174,7 @@ Quartz Iron Ring:
     {}
 
 Quartz Iron Tongue Piercing:
-  name: Iron Tongue Piercing
+  name: Iron Tongue Piercing (Quartz)
   description: Cut Quartz set into an Iron Piercing.
   type: Jewelry
   category: Jewelry
@@ -186,7 +186,7 @@ Quartz Iron Tongue Piercing:
     {}
 
 Tanzanite Iron Ring:
-  name: Iron Ring
+  name: Iron Ring (Tanzanite)
   description: Cut Tanzanite set into an Iron Ring.
   type: Jewelry
   category: Jewelry
@@ -198,7 +198,7 @@ Tanzanite Iron Ring:
     {}
 
 Tanzanite Iron Tongue Piercing:
-  name: Iron Tongue Piercing
+  name: Iron Tongue Piercing (Tanzanite)
   description: Cut Tanzanite set into an Iron Piercing.
   type: Jewelry
   category: Jewelry

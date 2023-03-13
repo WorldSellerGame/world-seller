@@ -238,11 +238,11 @@ export class ContentService {
   }
 
   public isResource(name: string): boolean {
-    return !!this.resources[name];
+    return !!this.getResourceByName(name);
   }
 
   public isItem(name: string): boolean {
-    return !!this.items[name];
+    return !!this.getItemByName(name);
   }
 
   public getAchievementByName(name: string): IAchievement {

@@ -1,4 +1,4 @@
-import { IGameRecipe, IGameRefiningOptions } from '../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions } from '../../interfaces';
 
 export class UnlockAlchemy {
   static type = '[Alchemy] Unlock';
@@ -11,7 +11,7 @@ export class GainAlchemyLevels {
 
 export class StartAlchemyJob {
   static type = '[Alchemy] Start Job';
-  constructor(public job: IGameRecipe, public quantity: number) {}
+  constructor(public job: IGameRecipe, public quantity: number, public items: IGameItem[] = []) {}
 }
 
 export class CancelAlchemyJob {

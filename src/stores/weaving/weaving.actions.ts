@@ -1,4 +1,4 @@
-import { IGameRecipe, IGameRefiningOptions } from '../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions } from '../../interfaces';
 
 export class UnlockWeaving {
   static type = '[Weaving] Unlock';
@@ -11,7 +11,7 @@ export class GainWeavingLevels {
 
 export class StartWeavingJob {
   static type = '[Weaving] Start Job';
-  constructor(public job: IGameRecipe, public quantity: number) {}
+  constructor(public job: IGameRecipe, public quantity: number, public items: IGameItem[] = []) {}
 }
 
 export class CancelWeavingJob {

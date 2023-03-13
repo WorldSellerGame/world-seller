@@ -12,13 +12,15 @@
     currentQueue: currentQueue$ | async,
     refiningWorkers: refiningWorkers$ | async,
     options: options$ | async,
-    discoveries: discoveries$ | async
+    discoveries: discoveries$ | async,
+    items: items$ | async
   } as pageData">
 
     <app-refining-page-display
       [tradeskill]="'alchemy'"
       [level]="pageData.level || 0"
       [resources]="pageData.resources || {}"
+      [items]="pageData.items || []"
       [currentQueue]="pageData.currentQueue || { queue: [], size: 1 }"
       [refiningWorkers]="pageData.refiningWorkers || { workerAllocations: [], canAssignWorker: false, hasWorkers: false }"
       [filterOptions]="pageData.options || { hideDiscovered: false, hideNew: false, hideHasIngredients: false, hideHasNoIngredients: false }"

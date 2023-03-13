@@ -1,4 +1,4 @@
-import { IGameRecipe, IGameRefiningOptions } from '../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions } from '../../interfaces';
 
 export class UnlockJewelcrafting {
   static type = '[Jewelcrafting] Unlock';
@@ -11,7 +11,7 @@ export class GainJewelcraftingLevels {
 
 export class StartJewelcraftingJob {
   static type = '[Jewelcrafting] Start Job';
-  constructor(public job: IGameRecipe, public quantity: number) {}
+  constructor(public job: IGameRecipe, public quantity: number, public items: IGameItem[] = []) {}
 }
 
 export class CancelJewelcraftingJob {

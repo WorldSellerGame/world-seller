@@ -102,11 +102,20 @@
                     <app-resource-icon *ngFor="let resource of ingredients[recipe.result]"
                                        [name]="resource.name"
                                        [quantity]="recipe.preserve?.includes(resource.name) ? resource.amount : resource.amount * (amounts[recipe.result] || 1)"
-                                       [maxQuantity]="resources[resource.name] || 0"
+                                       [maxQuantity]="summedResources[resource.name] || 0"
                                        [showX]="true"
                                        [inlineIconSize]="true"
                                        [emphasizeText]="false"
                                        [angryColorWhenQuantityExceedsMax]="true"></app-resource-icon>
+
+                    <app-item-icon *ngFor="let item of itemIngredients[recipe.result]"
+                                   [name]="item.name"
+                                   [quantity]="recipe.preserve?.includes(item.name) ? item.amount : item.amount * (amounts[recipe.result] || 1)"
+                                   [maxQuantity]="summedResources[item.name] || 0"
+                                   [showX]="true"
+                                   [inlineIconSize]="true"
+                                   [emphasizeText]="false"
+                                   [angryColorWhenQuantityExceedsMax]="true"></app-item-icon>
                   </div>
                 </ion-label>
 

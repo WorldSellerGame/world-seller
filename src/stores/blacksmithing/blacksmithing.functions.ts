@@ -41,8 +41,8 @@ export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIn
   cancelRefineJob(ctx, jobIndex, shouldRefundResources);
 }
 
-export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartBlacksmithingJob) {
-  startRefineJob(ctx, job, quantity);
+export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartBlacksmithingJob) {
+  startRefineJob(ctx, job, quantity, items);
 };
 
 export function changeBlacksmithingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeBlacksmithingFilterOption) {

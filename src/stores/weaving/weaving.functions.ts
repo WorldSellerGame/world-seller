@@ -38,8 +38,8 @@ export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
   cancelRefineJob(ctx, jobIndex, shouldRefundResources);
 }
 
-export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartWeavingJob) {
-  startRefineJob(ctx, job, quantity);
+export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartWeavingJob) {
+  startRefineJob(ctx, job, quantity, items);
 };
 
 export function changeWeavingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeWeavingFilterOption) {

@@ -1,3 +1,4 @@
+import { IGameItem } from './game';
 
 export interface IGameRecipe {
   result: string;
@@ -16,6 +17,7 @@ export interface IGameRefiningRecipe {
   totalLeft: number;
   durationPer: number;
   currentDuration: number;
+  refundItems: IGameItem[];
 }
 
 export interface IGameRefiningOptions {

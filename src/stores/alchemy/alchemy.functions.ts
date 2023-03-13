@@ -38,8 +38,8 @@ export function cancelAlchemyJob(ctx: StateContext<IGameRefining>, { jobIndex, s
   cancelRefineJob(ctx, jobIndex, shouldRefundResources);
 }
 
-export function startAlchemyJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartAlchemyJob) {
-  startRefineJob(ctx, job, quantity);
+export function startAlchemyJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartAlchemyJob) {
+  startRefineJob(ctx, job, quantity, items);
 };
 
 export function changeAlchemyOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeAlchemyFilterOption) {

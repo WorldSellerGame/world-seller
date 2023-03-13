@@ -38,8 +38,8 @@ export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
   cancelRefineJob(ctx, jobIndex, shouldRefundResources);
 }
 
-export function startCookingJob(ctx: StateContext<IGameRefining>, { job, quantity }: StartCookingJob) {
-  startRefineJob(ctx, job, quantity);
+export function startCookingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartCookingJob) {
+  startRefineJob(ctx, job, quantity, items);
 };
 
 export function changeCookingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeCookingFilterOption) {

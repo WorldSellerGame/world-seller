@@ -267,7 +267,10 @@ export class CharSelectState {
       ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
     }
 
-    const earnedResources = Object.keys(resources).filter(x => x !== 'nothing').filter(x => resources[x] > 0);
+    const earnedResources = Object.keys(resources)
+      .filter(x => x !== 'nothing')
+      .filter(x => resources[x] > 0)
+      .filter(x => this.contentService.isResource(x));
 
     if(earnedResources.length === 0) {
       return;
@@ -282,6 +285,10 @@ export class CharSelectState {
 
   @Action(GainItemOrResource)
   async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
+
+    if(!this.contentService.isItem(itemName) && !this.contentService.isResource(itemName)) {
+      return;
+    }
 
     const state = ctx.getState();
     const activeCharacter = state.characters[state.currentCharacter];

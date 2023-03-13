@@ -467,8 +467,12 @@ const loadContent = async () => {
     });
   });
 
+  const isValidResource = (item: string) => {
+    return allResources[item];
+  }
+
   const isValidItem = (item: string) => {
-    return item === 'nothing' || allResources[item] || allItems[item];
+    return item === 'nothing' || isValidResource(item) || allItems[item];
   }
 
   const files = await readdir('src/assets/content', ['items.json', 'resources.json']);
@@ -506,7 +510,7 @@ const loadContent = async () => {
 
       Object.keys(recipe.ingredients).forEach(ingredient => {
         if(!isValidItem(ingredient)) {
-          console.log(`⚠ Recipe ingredient ${ingredient} is not a valid resource or item.`);
+          console.log(`⚠ Recipe ingredient ${ingredient} is not a valid resource.`);
           hasBad = true;
         }
       });
