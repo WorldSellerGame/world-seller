@@ -260,6 +260,8 @@ export class CharSelectState {
       return;
     }
 
+    console.log(resources, shouldNotify);
+
     const resourceNames = Object.keys(resources);
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);
 

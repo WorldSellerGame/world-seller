@@ -27,7 +27,7 @@ export class DiscoverResourceOrItem {
 
 export class GainResources {
   static type = '[CharSelect] Gain Resources';
-  constructor(public resources: Record<string, number>, public shouldNotify = true) {}
+  constructor(public resources: Record<string, number>, public shouldNotify = true, public countsForAchievements = true) {}
 }
 
 export class GainItemOrResource {

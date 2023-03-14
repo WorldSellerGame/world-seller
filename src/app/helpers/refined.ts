@@ -82,8 +82,15 @@ export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Recor
 }
 
 export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number, refundItems: IGameItem[] = []) {
+
+  const recipeCosts = getRecipeIngredientCosts(job, quantity);
+  const doesRecipeCostAnything = Object.keys(recipeCosts).length > 0;
+
+  if(doesRecipeCostAnything) {
+    ctx.dispatch(new GainResources(recipeCosts));
+  }
+
   ctx.dispatch([
-    new GainResources(getRecipeIngredientCosts(job, quantity)),
     ...refundItems.map(item => new RemoveItemFromInventory(item)),
     new PlaySFX('tradeskill-start')
   ]);
@@ -113,7 +120,7 @@ export function cancelRefineJob(ctx: StateContext<IGameRefining>, jobIndex: numb
       .filter(Boolean)
       .reduce((acc, cur) => merge(acc, cur), {});
 
-    ctx.dispatch(new GainResources(resourceRefunds, false));
+    ctx.dispatch(new GainResources(resourceRefunds, false, false));
 
     const itemRefunds = job.refundItems.map(item => new AddItemToInventory(item));
     ctx.dispatch(itemRefunds);

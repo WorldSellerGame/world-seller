@@ -31,8 +31,6 @@ recipes:
       Dandelion: 12
     require:
       - Dandelion
-    preserve:
-      - Dandelion
     maxWorkers: 1
 
   - result: Braided Anklet
