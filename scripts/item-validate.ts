@@ -39,6 +39,7 @@ const loadContent = async () => {
 
   const farming = await fs.readJson('src/assets/content/farming.json');
 
+  const resourceNames: Record<string, boolean> = {};
   Object.keys(allResources).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Resource ${key} is too long (>32 characters).`);
@@ -48,6 +49,11 @@ const loadContent = async () => {
     const resource = allResources[key];
     if(!resource.name) {
       console.log(`⚠ Resource ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(resource.name && resourceNames[resource.name]) {
+      console.log(`⚠ Resource ${key} has a duplicate name ${resource.name}.`);
       hasBad = true;
     }
 
@@ -90,6 +96,7 @@ const loadContent = async () => {
     }
   });
 
+  const itemNames: Record<string, boolean> = {};
   Object.keys(allItems).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Item ${key} is too long (>32 characters).`);
@@ -100,6 +107,11 @@ const loadContent = async () => {
 
     if(!item.name) {
       console.log(`⚠ Item ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(item.name && itemNames[item.name]) {
+      console.log(`⚠ Item ${key} has a duplicate name ${item.name}.`);
       hasBad = true;
     }
 
@@ -141,6 +153,7 @@ const loadContent = async () => {
     });
   });
 
+  const abilityNames: Record<string, boolean> = {};
   Object.keys(allAbilities).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Ability ${key} is too long (>32 characters).`);
@@ -151,6 +164,11 @@ const loadContent = async () => {
 
     if(!skill.name) {
       console.log(`⚠ Ability ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(skill.name && abilityNames[skill.name]) {
+      console.log(`⚠ Ability ${key} has a duplicate name ${skill.name}.`);
       hasBad = true;
     }
 
@@ -186,6 +204,7 @@ const loadContent = async () => {
 
   });
 
+  const enemyNames: Record<string, boolean> = {};
   Object.keys(allEnemies).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Ability ${key} is too long (>32 characters).`);
@@ -196,6 +215,11 @@ const loadContent = async () => {
 
     if(!enemy.name) {
       console.log(`⚠ Enemy ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(enemy.name && enemyNames[enemy.name]) {
+      console.log(`⚠ Enemy ${key} has a duplicate name ${enemy.name}.`);
       hasBad = true;
     }
 
@@ -256,6 +280,7 @@ const loadContent = async () => {
     });
   });
 
+  const threatNames: Record<string, boolean> = {};
   Object.keys(allThreats).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Threat ${key} is too long (>32 characters).`);
@@ -266,6 +291,11 @@ const loadContent = async () => {
 
     if(!threat.name) {
       console.log(`⚠ Threat ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(threat.name && threatNames[threat.name]) {
+      console.log(`⚠ Threat ${key} has a duplicate name ${threat.name}.`);
       hasBad = true;
     }
 
@@ -307,6 +337,7 @@ const loadContent = async () => {
     })
   });
 
+  const effectNames: Record<string, boolean> = {};
   Object.keys(allEffects).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Effect ${key} is too long (>32 characters).`);
@@ -317,6 +348,11 @@ const loadContent = async () => {
 
     if(!effect.name) {
       console.log(`⚠ Effect ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(effect.name && effectNames[effect.name]) {
+      console.log(`⚠ Effect ${key} has a duplicate name ${effect.name}.`);
       hasBad = true;
     }
 
@@ -363,11 +399,17 @@ const loadContent = async () => {
     });
   })
 
+  const dungeonNames: Record<string, boolean> = {};
   Object.keys(allDungeons).forEach(key => {
     const dungeon = allDungeons[key];
 
     if(!dungeon.name) {
       console.log(`⚠ Dungeon ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(dungeon.name && dungeonNames[dungeon.name]) {
+      console.log(`⚠ Dungeon ${key} has a duplicate name ${dungeon.name}.`);
       hasBad = true;
     }
 
