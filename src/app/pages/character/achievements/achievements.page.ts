@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
+import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IAchievement } from '../../../../interfaces';
 import { AchievementsState } from '../../../../stores';
@@ -27,10 +28,11 @@ export class AchievementsPage implements OnInit, OnDestroy {
     this.achievementSub = this.achievements$.subscribe(achievements => {
       const allAchievements = this.contentService.getAllAchievements();
 
-      const earnedAchievements = Object.keys(achievements).map(x => allAchievements[x]);
-      const unearnedAchievements = Object.keys(allAchievements)
+      const earnedAchievements = sortBy(Object.keys(achievements).map(x => allAchievements[x]), 'name');
+      const unearnedAchievements = sortBy(Object.keys(allAchievements)
         .filter(x => !achievements[x])
-        .map(x => ({ ...allAchievements[x], unearned: true }));
+        .map(x => ({ ...allAchievements[x], unearned: true })),
+      'name');
 
       this.earnedAchievements = achievements;
       this.achievementsInOrder = [...earnedAchievements, ...unearnedAchievements]
