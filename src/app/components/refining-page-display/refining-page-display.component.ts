@@ -1,7 +1,9 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
+import { Observable, Subscription } from 'rxjs';
 import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
+import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ContentService } from '../../services/content.service';
@@ -11,13 +13,16 @@ import { ItemCreatorService } from '../../services/item-creator.service';
   selector: 'app-refining-page-display',
   templateUrl: './refining-page-display.component.html',
   styleUrls: ['./refining-page-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RefiningPageDisplayComponent implements OnInit, OnChanges {
+export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestroy {
+
+  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
+  @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
   @Input() tradeskill = '';
   @Input() level = 0;
   @Input() currentQueue: { queue: IGameRefiningRecipe[]; size: number } = { queue: [], size: 1 };
-  @Input() resources: Record<string, number> = {};
   @Input() items: IGameItem[] = [];
 
   @Input() refiningWorkers: {
@@ -33,7 +38,6 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     hideHasNoIngredients: false,
   };
 
-  @Input() discoveries: Record<string, boolean> = {};
   @Input() locationData: IGameRecipe[] = [];
   @Input() startAction: any;
   @Input() cancelAction: any;
@@ -41,6 +45,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
+  public resources: Record<string, number> = {};
+  public discoveries: Record<string, boolean> = {};
 
   public resourceRecipes: IGameRecipe[] = [];
   public itemRecipes: IGameRecipe[] = [];
@@ -52,6 +58,9 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
 
   public summedResources: Record<string, number> = {};
 
+  private resourcesSub!: Subscription;
+  private discoveriesSub!: Subscription;
+
   constructor(
     private store: Store,
     private contentService: ContentService,
@@ -62,10 +71,24 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
     this.setVisibleRecipes();
     this.setRefiningWorkerHash();
     this.setTotalResources();
+
+    this.resourcesSub = this.resources$.subscribe((resources) => {
+      console.log({ resources });
+      this.resources = resources;
+
+      this.setVisibleRecipes();
+      this.setTotalResources();
+    });
+
+    this.discoveriesSub = this.discoveries$.subscribe((discoveries) => {
+      this.discoveries = discoveries;
+
+      this.setVisibleRecipes();
+    });
   }
 
   ngOnChanges(changes: any) {
-    if(changes.discoveries || changes.filterOptions || changes.resources) {
+    if(changes.discoveries || changes.filterOptions) {
       this.setVisibleRecipes();
     }
 
@@ -73,9 +96,14 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges {
       this.setRefiningWorkerHash();
     }
 
-    if(changes.resources || changes.items) {
+    if(changes.items) {
       this.setTotalResources();
     }
+  }
+
+  ngOnDestroy() {
+    this.resourcesSub?.unsubscribe();
+    this.discoveriesSub?.unsubscribe();
   }
 
   setTotalResources() {

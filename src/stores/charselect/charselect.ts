@@ -57,7 +57,7 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterResources(state: ICharSelect) {
-    return this.activeCharacter(state)?.resources ?? {};
+    return { ...this.activeCharacter(state)?.resources ?? {} };
   }
 
   @Selector()
@@ -72,12 +72,12 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterEquipment(state: ICharSelect) {
-    return this.activeCharacter(state)?.equipment ?? {};
+    return { ...this.activeCharacter(state)?.equipment ?? {} };
   }
 
   @Selector()
   static activeCharacterDiscoveries(state: ICharSelect) {
-    return this.activeCharacter(state)?.discoveries ?? {};
+    return { ...this.activeCharacter(state)?.discoveries ?? {} };
   }
 
   @Action(UpdateAllItems)
@@ -259,8 +259,6 @@ export class CharSelectState {
     if(!shouldNotify) {
       return;
     }
-
-    console.log(resources, shouldNotify);
 
     const resourceNames = Object.keys(resources);
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);

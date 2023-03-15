@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameItem, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { AlchemyState, CharSelectState, WorkersState } from '../../../../../stores';
 
 import { CancelAlchemyJob, ChangeAlchemyFilterOption, StartAlchemyJob } from '../../../../../stores/alchemy/alchemy.actions';
@@ -15,9 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class AlchemyPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getAlchemyRecipes();
-  }
+  public locationData: IGameRecipe[] = [];
 
   public get startAction() {
     return StartAlchemyJob;
@@ -37,8 +35,6 @@ export class AlchemyPage implements OnInit {
   @Select(AlchemyState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(AlchemyState.options) options$!: Observable<IGameRefiningOptions>;
 
-  @Select(CharSelectState.activeCharacterDiscoveries) discoveries$!: Observable<Record<string, boolean>>;
-  @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
   @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];
@@ -49,6 +45,8 @@ export class AlchemyPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.locationData = this.contentService.getAlchemyRecipes();
+
     this.level$.pipe(first()).subscribe(level => {
       this.currentQueue$.pipe(first()).subscribe(currentQueue => {
         const state = currentQueue.queue.length > 0
