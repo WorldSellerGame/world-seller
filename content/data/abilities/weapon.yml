@@ -25,14 +25,15 @@ Stab:
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 0.85
       variance: 0.15
-  effects: 
+      bonus: 1
+  effects:
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack
   cooldown: 1
-  energyCost: 4 
+  energyCost: 4
   requires: {}
 
 Cleave:
@@ -42,13 +43,13 @@ Cleave:
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 2.25
       variance: 0.25
-  effects: 
+  effects:
     - effect: SingleTargetAttack
   cooldown: 4
-  energyCost: 5 
+  energyCost: 5
   requires: {}
 
 Hemorrhaging Stab:
@@ -58,10 +59,10 @@ Hemorrhaging Stab:
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 0.85
       variance: 0.15
-  effects: 
+  effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
       effectName: Bleed2
@@ -76,10 +77,10 @@ Risky Swing:
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 2.5
       variance: 2.5
-  effects: 
+  effects:
     - effect: SingleTargetAttack
   cooldown: 4
   energyCost: 7

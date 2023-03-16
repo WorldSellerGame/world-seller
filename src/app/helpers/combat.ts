@@ -26,10 +26,11 @@ export function getCombatFunction(action: string): (ctx: StateContext<IGameComba
 export function calculateAbilityDamageForUser(ability: IGameCombatAbility, stats: Record<Stat, number>): number {
   const totalAbilityValue = sum(ability.stats.map(stat => {
     const baseValue = stats[stat.stat] * stat.multiplier;
+    const bonusValue = stat.bonus ?? 0;
     const variance = Math.floor(baseValue * stat.variance);
     const varianceValue = random(-variance, variance);
 
-    return baseValue + varianceValue;
+    return baseValue + varianceValue + bonusValue;
   }));
 
   return Math.max(0, Math.floor(totalAbilityValue));

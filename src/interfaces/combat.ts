@@ -108,7 +108,7 @@ export interface IGameCombatAbility {
   icon: string;
   target: CombatAbilityTarget;
   type: CombatSkillType;
-  stats: Array<{ stat: Stat; multiplier: number; variance: number }>;
+  stats: Array<{ stat: Stat; multiplier: number; variance: number; bonus: number }>;
   effects: IGameCombatAbilityEffect[];
   multiplier: number;
   cooldown: number;

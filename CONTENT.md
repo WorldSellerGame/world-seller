@@ -125,13 +125,23 @@ Abilities require:
 * `type` - the type of the ability (Physical, Magical)
 * `cooldown` - how long the ability is on cooldown for (in turns)
 * `energyCost` - how much energy the ability costs
+* `stats` - the stats the ability scales from, in no particular order (see Ability Stat Sub-object)
 * `effects` - the effects the ability has, in order (`effect` can be BasicAttack, UtilityEscape, SingleTargetAttack, SingleTargetHeal, ApplyEffect. if `effectName` is specified in conjuction with ApplyEffect, it will apply that effect to the target)
 * `requires` - the tradeskills and levels required to know this skill. 
 * `replaces` - optional, the skill this one replaces (by ability id)
 
-Note:
+## Ability Stat Sub-object
+
+* `stat` - the stat to scale from
+* `multiplier` - the multiplier of the scaling (1.5 = 150% of the `stat`)
+* `variance` - the variance of the scaling (0.5 = 50% of the `stat`)
+* `bonus` - the bonus to add at the end of the math
+
+## Targetting Information
 
 You _can_ specify `target=All` and `target=AllEnemies` with an effect of `SingleTargetAttack` or `SingleTargetHeal` or `ApplyEffect`. These are _separate_ things. `SingleTargetAttack` with `target=All` will attack all enemies (and yourself). Think of the effect as the kind of action happening, and the targetting being who it's happening to. 
+
+
 
 # Adding a New Status Effect
 

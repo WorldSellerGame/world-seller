@@ -202,6 +202,28 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    skill.stats.forEach((stat: any) => {
+      if(!stat.stat) {
+        console.log(`⚠ Ability ${key} has a stat with no stat set.`);
+        hasBad = true;
+      }
+
+      if(!stat.multiplier || isNaN(stat.multiplier)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) multiplier.`);
+        hasBad = true;
+      }
+
+      if(!stat.variance && isNaN(stat.variance)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) variance.`);
+        hasBad = true;
+      }
+
+      if(stat.bonus && isNaN(stat.bonus)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) bonus.`);
+        hasBad = true;
+      }
+    })
+
   });
 
   const enemyNames: Record<string, boolean> = {};
