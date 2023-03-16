@@ -31,3 +31,19 @@ PotionDamage:
   cooldown: 0
   energyCost: 0
   requires: {}
+
+PotionDamageAOE:
+  name: Potion Damage AOE
+  description: Damage all enemies. Iorn
+  icon: fire-bottle
+  target: AllEnemies
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1
+      variance: 0
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 0
+  energyCost: 0
+  requires: {}

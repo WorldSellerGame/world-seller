@@ -34,7 +34,7 @@ Potion of Fire:
   value: 3
   icon: fire-bottle
   stats:
-    attack: 50 #burning effect baby
+    attack: 50 
   effects:
     - effect: PotionDamage
 
@@ -233,7 +233,9 @@ Potion of Compressed Fire:
   value: 3
   icon: fire-bottle
   stats:
-    healing: 50 #KA FUCKING BOOOOOOOOOOOOOM
+    attack: 50 
+  effects:
+    - effect: PotionDamageAOE
 
 Confusion Concoction:
   name: Confusion Concoction
