@@ -50,4 +50,5 @@ export interface IAchievement {
 
   stat: AchievementStat;
   requiredValue: number;
+  isHidden?: boolean;
 }

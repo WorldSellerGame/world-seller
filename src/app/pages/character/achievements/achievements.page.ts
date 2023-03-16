@@ -31,7 +31,8 @@ export class AchievementsPage implements OnInit, OnDestroy {
       const earnedAchievements = sortBy(Object.keys(achievements).map(x => allAchievements[x]), 'name');
       const unearnedAchievements = sortBy(Object.keys(allAchievements)
         .filter(x => !achievements[x])
-        .map(x => ({ ...allAchievements[x], unearned: true })),
+        .map(x => ({ ...allAchievements[x], unearned: true }))
+        .filter(x => !x.isHidden),
       'name');
 
       this.earnedAchievements = achievements;

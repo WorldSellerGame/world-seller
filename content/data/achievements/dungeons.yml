@@ -5,6 +5,7 @@ Dungeon10:
   icon: combat
   stat: dungeon10
   requiredValue: 1
+  isHidden: true
 
 Dungeon20:
   name: Mummy Muncher
@@ -12,3 +13,4 @@ Dungeon20:
   icon: combat
   stat: dungeon20
   requiredValue: 1
+  isHidden: true
