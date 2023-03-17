@@ -9,11 +9,15 @@
         {{ item.name }}
       </div>
 
-      <div class="effect" *ngIf="effectInfo && showEffectInfo">
-        <strong>{{ item.effects?.[0]?.effect }}</strong>: {{ effectInfo }}
-      </div>
+      <ng-container *ngIf="showEffectInfo">
+        <div class="effect" *ngFor="let effect of item.effects">
+          <ng-container *ngIf="getAbility(effect.effect) as effectRef">
+            <strong>{{ effectRef.name }}</strong>: {{ effectRef.description }}
+          </ng-container>
+        </div>
+      </ng-container>
 
-      <div class="effect-uses" *ngIf="effectInfo && showEffectInfo && showUses">
+      <div class="effect-uses" *ngIf="showEffectInfo && showUses">
         <ion-text color="energy">{{ item.durability }} Use(s)</ion-text>
       </div>
     </ion-col>

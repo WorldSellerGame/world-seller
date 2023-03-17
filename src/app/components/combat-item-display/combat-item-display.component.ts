@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IGameItem } from '../../../interfaces';
+import { IGameCombatAbility, IGameItem } from '../../../interfaces';
 import { getItemRarityClass } from '../../helpers';
 import { ContentService } from '../../services/content.service';
 
@@ -18,16 +18,12 @@ export class CombatItemDisplayComponent implements OnInit {
     return getItemRarityClass(this.item);
   }
 
-  get effectInfo() {
-    if(!this.item.effects) {
-      return '';
-    }
-
-    return this.contentService.getAbilityByName(this.item.effects[0].effect)?.description || '';
-  }
-
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {}
+
+  getAbility(name: string): IGameCombatAbility {
+    return this.contentService.getAbilityByName(name) || '';
+  }
 
 }
