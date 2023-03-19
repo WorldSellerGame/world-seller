@@ -45,6 +45,7 @@
 * `scytheSpeedPercent` - cooldown reduction on harvesting
 * `huntingSpeedPercent` - cooldown reduction on hunting
 * `armor` - physical damage reduction
+* `mitigation` - physical damage reduction (%, capped at 75%)
 * `healing` - boost to healing skills
 * `attack` - boost to physical damage
 * `speed` - how fast the creature goes in combat, relative to other creatures

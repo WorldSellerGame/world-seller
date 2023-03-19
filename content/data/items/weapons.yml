@@ -14,7 +14,7 @@ Stone Knife:
   stats:
     attack: 3
 
-Copper Sword: 
+Copper Sword:
   name: Copper Sword
   description: An arming sword made of Copper.
   type: Weapon
@@ -41,7 +41,7 @@ Copper Dagger:
     attack: 4
     speed: 1
 
-Iron Sword: 
+Iron Sword:
   name: Iron Sword
   description: An arming sword made of Iron.
   type: Weapon
@@ -83,4 +83,3 @@ Goblin Staff:
   stats:
     attack: 5
     healing: 10
- 

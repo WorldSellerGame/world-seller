@@ -28,6 +28,7 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.HuntingSpeedPercent]: 0,
 
     [Stat.Armor]: 0,
+    [Stat.Mitigation]: 0,
     [Stat.Healing]: 0,
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,

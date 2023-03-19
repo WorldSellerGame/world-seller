@@ -12,8 +12,11 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
 
   const baseDamage = calculateAbilityDamageForUser(ability, opts.useStats);
   const armor = opts.allowBonusStats ? Math.max(0, target.stats[Stat.Armor]) : 0;
+  const mitigation = opts.allowBonusStats ? Math.min(75, Math.max(0, target.stats[Stat.Mitigation])) : 0;
 
-  const damage = Math.max(0, baseDamage - armor);
+  const unmitigatedDamage = baseDamage - armor;
+  const mitigatedDamage = (mitigation / 100) * baseDamage;
+  const damage = Math.max(0, unmitigatedDamage - mitigatedDamage);
 
   return {
     damage,

@@ -82,6 +82,7 @@ export enum Stat {
 
   // generic stats
   Armor = 'armor',
+  Mitigation = 'mitigation',
   Healing = 'healing',
   Attack = 'attack',
   EnergyBonus = 'energyBonus',
