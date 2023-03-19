@@ -13,6 +13,7 @@ import {
   getPlayerCharacterReadyForCombat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
+import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import {
   AchievementStat,
@@ -42,7 +43,12 @@ import { EnterDungeon } from './dungeon.actions';
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) {
+  constructor(
+    private store: Store,
+    private contentService: ContentService,
+    private itemCreator: ItemCreatorService,
+    private visuals: VisualsService
+  ) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -115,31 +121,13 @@ export class CombatState {
   async updateAllItems(ctx: StateContext<IGameCombat>) {
     const state = ctx.getState();
 
-    const activeItems = (state.activeItems || []).map(item => {
-      if(!item) {
-        return undefined;
-      }
+    const activeItems = (state.activeItems || [])
+      .map(item => item ? this.itemCreator.migrateItem(item) : undefined)
+      .filter(Boolean);
 
-      const baseItem = this.contentService.getItemByName(item.internalId || '');
-      if(!baseItem) {
-        return undefined;
-      }
-
-      return merge({}, baseItem, item);
-    }).filter(Boolean);
-
-    const activeFoods = state.activeFoods.map(item => {
-      if(!item) {
-        return undefined;
-      }
-
-      const baseItem = this.contentService.getItemByName(item.internalId || '');
-      if(!baseItem) {
-        return undefined;
-      }
-
-      return merge({}, baseItem, item);
-    }).filter(Boolean);
+    const activeFoods = state.activeFoods
+      .map(item => item ? this.itemCreator.migrateItem(item) : undefined)
+      .filter(Boolean);
 
     ctx.setState(patch<IGameCombat>({ activeItems, activeFoods }));
   }
