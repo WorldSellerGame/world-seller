@@ -25,7 +25,7 @@
                   </ng-container>
 
                   <ng-container *ngIf="character.equipment[tool.type] as item">
-                    <ion-label>
+                    <ion-label class="ion-text-wrap">
                       <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
                       <p><app-stat-line [item]="item"></app-stat-line></p>
                       <p *ngIf="item.durability !== -1">{{ item.durability | number }} Durability</p>
@@ -54,7 +54,7 @@
                   </ng-container>
 
                   <ng-container *ngIf="character.equipment[armor.type] as item">
-                    <ion-label>
+                    <ion-label class="ion-text-wrap">
                       <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
                       <p><app-stat-line [item]="item"></app-stat-line></p>
                       <p *ngIf="item.durability !== -1">{{ item.durability | number }} Durability</p>
@@ -109,7 +109,7 @@
               <ion-list *ngIf="equippableItems.length > 0">
                 <ion-item *ngFor="let item of equippableItems">
                   <app-game-icon slot="start" [icon]="item.icon"></app-game-icon>
-                  <ion-label>
+                  <ion-label class="ion-text-wrap">
                     <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
                     <p><app-stat-line [item]="item" [withRespectTo]="character.equipment[currentEquipSlot]"></app-stat-line></p>
                   </ion-label>

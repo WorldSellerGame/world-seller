@@ -28,7 +28,12 @@ export function isLocationOnCooldown(ctx: StateContext<IGameGathering>, location
   return !!state.cooldowns[location.name];
 }
 
-export function putLocationOnCooldown(ctx: StateContext<IGameGathering>, location: IGameGatherLocation, cdrValue: number) {
+export function putLocationOnCooldown(
+  ctx: StateContext<IGameGathering>,
+  location: IGameGatherLocation,
+  cdrValue: number,
+  cdrPercent: number
+) {
 
   if(!location.cooldownTime) {
     return;
@@ -36,10 +41,12 @@ export function putLocationOnCooldown(ctx: StateContext<IGameGathering>, locatio
 
   const state = ctx.getState();
 
+  const locationCooldownReduction = location.cooldownTime * cdrPercent;
+
   ctx.setState(patch<IGameGathering>({
     cooldowns: {
       ...state.cooldowns,
-      [location.name]: Math.max(0, location.cooldownTime - cdrValue || 0)
+      [location.name]: Math.max(0, location.cooldownTime - (locationCooldownReduction || 0) - (cdrValue || 0))
     }
   }));
 }

@@ -9,11 +9,23 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.ScythePower]: 0,
     [Stat.HuntingPower]: 0,
 
+    [Stat.PickaxePowerPercent]: 0,
+    [Stat.AxePowerPercent]: 0,
+    [Stat.FishingPowerPercent]: 0,
+    [Stat.ScythePowerPercent]: 0,
+    [Stat.HuntingPowerPercent]: 0,
+
     [Stat.PickaxeSpeed]: 0,
     [Stat.AxeSpeed]: 0,
     [Stat.FishingSpeed]: 0,
     [Stat.ScytheSpeed]: 0,
     [Stat.HuntingSpeed]: 0,
+
+    [Stat.PickaxeSpeedPercent]: 0,
+    [Stat.AxeSpeedPercent]: 0,
+    [Stat.FishingSpeedPercent]: 0,
+    [Stat.ScytheSpeedPercent]: 0,
+    [Stat.HuntingSpeedPercent]: 0,
 
     [Stat.Armor]: 0,
     [Stat.Healing]: 0,
