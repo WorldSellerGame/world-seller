@@ -29,11 +29,21 @@
 * `fishingPower` - time reduction on fishing
 * `scythePower` - time reduction on harvesting
 * `huntingPower` - time reduction on hunting
+* `pickaxePowerPercent` - time reduction on mining (a 10 second node with a power of 50% becomes a 5 second node)
+* `axePowerPercent` - time reduction on logging
+* `fishingPowerPercent` - time reduction on fishing
+* `scythePowerPercent` - time reduction on harvesting
+* `huntingPowerPercent` - time reduction on hunting
 * `pickaxeSpeed` - cooldown reduction on mining (a 10 second cooldown with a power of 3 becomes a 7 second cooldown)
 * `axeSpeed` - cooldown reduction on logging
 * `fishingSpeed` - cooldown reduction on fishing
 * `scytheSpeed` - cooldown reduction on harvesting
 * `huntingSpeed` - cooldown reduction on hunting
+* `pickaxeSpeedPercent` - cooldown reduction on mining (a 10 second cooldown with a power of 50% becomes a 5 second cooldown)
+* `axeSpeedPercent` - cooldown reduction on logging
+* `fishingSpeedPercent` - cooldown reduction on fishing
+* `scytheSpeedPercent` - cooldown reduction on harvesting
+* `huntingSpeedPercent` - cooldown reduction on hunting
 * `armor` - physical damage reduction
 * `healing` - boost to healing skills
 * `attack` - boost to physical damage
