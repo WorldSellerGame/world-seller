@@ -22,8 +22,8 @@ export class EquipmentPage implements OnInit {
   public toolSlots = [
     { name: 'Pickaxe',      icon: 'pickaxe',      type: ItemType.Pickaxe },
     { name: 'Axe',          icon: 'axe',          type: ItemType.Axe },
-    { name: 'Fishing Rod',  icon: 'fishing-pole',  type: ItemType.FishingRod },
-    { name: 'Fishing Bait', icon: 'fishing-pole',  type: ItemType.FishingBait },
+    { name: 'Fishing Rod',  icon: 'fishing-pole', type: ItemType.FishingRod },
+    { name: 'Fishing Bait', icon: 'fishing-pole', type: ItemType.FishingBait },
     { name: 'Scythe',       icon: 'scythe',       type: ItemType.Scythe },
     { name: 'Hunting Tool', icon: 'spear',        type: ItemType.HuntingTool },
     { name: 'Weapon',       icon: 'knife',        type: ItemType.Weapon }

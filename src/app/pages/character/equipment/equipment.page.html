@@ -78,16 +78,18 @@
                   You don't have any stats. How unfortunate!
                 </ion-item>
 
-                <ion-item *ngFor="let stat of statTotals(character) | keyvalue" [class.hidden]="stat.value === 0">
-                  <ion-row class="stat-row">
-                    <ion-col>
-                      {{ stat.key | titlecase }}
-                    </ion-col>
-                    <ion-col class="stat-value">
-                      {{ stat.value | number }}
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
+                <ng-container *ngIf="statTotals(character) as totals">
+                  <ion-item *ngFor="let stat of totals | keyvalue" [class.hidden]="stat.value === 0">
+                    <ion-row class="stat-row">
+                      <ion-col>
+                        <app-stat-name-display [stat]="stat.key"></app-stat-name-display>
+                      </ion-col>
+                      <ion-col class="stat-value">
+                        {{ stat.value | number }}
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ng-container>
               </ion-list>
             </ion-card-content>
           </ion-card>
