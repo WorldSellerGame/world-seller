@@ -31,7 +31,7 @@
 
             <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -41,7 +41,7 @@
 
             <ng-container *ngFor="let p of refiningTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -51,7 +51,7 @@
 
             <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -111,7 +111,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Gathering' + p.title">
+                            [analyticsClick]="'Navigate:Gathering:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -143,7 +143,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Refining' + p.title">
+                            [analyticsClick]="'Navigate:Refining:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -175,7 +175,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Peripheral' + p.title">
+                            [analyticsClick]="'Navigate:Peripheral:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
