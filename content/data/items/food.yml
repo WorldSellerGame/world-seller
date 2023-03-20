@@ -12,7 +12,9 @@ Pine Nuts:
   value: 1
   icon: meal
   stats:
-    healing: 50
+    healing: 5 #Cure minor ailments
+  effects:
+    - effect: ItemSelfHeal
 
 Cooked Cropfish:
   name: Pine Nuts
