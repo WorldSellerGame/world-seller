@@ -74,11 +74,11 @@
 
             <ion-card-content>
               <ion-list>
-                <ion-item *ngIf="(statTotals(character) | keyvalue).length === 0">
-                  You don't have any stats. How unfortunate!
-                </ion-item>
-
                 <ng-container *ngIf="statTotals(character) as totals">
+                  <ion-item *ngIf="(totals | keyvalue).length === 0">
+                    You don't have any stats. How unfortunate!
+                  </ion-item>
+
                   <ion-item *ngFor="let stat of totals | keyvalue" [class.hidden]="stat.value === 0">
                     <ion-row class="stat-row">
                       <ion-col>
