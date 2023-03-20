@@ -20,6 +20,7 @@ import { RefiningPageDisplayComponent } from './components/refining-page-display
 import { ResourceIconComponent } from './components/resource-icon/resource-icon.component';
 import { SkillDisplayComponent } from './components/skill-display/skill-display.component';
 import { StatLineComponent } from './components/stat-line/stat-line.component';
+import { StatNameDisplayComponent } from './components/stat-name-display/stat-name-display.component';
 import { TimeResourceIconComponent } from './components/time-resource-icon/time-resource-icon.component';
 import { AnalyticsClickDirective } from './directives/analytics-click.directive';
 import { ModioBrowseComponent } from './modals/modio-browse/modio-browse.component';
@@ -29,7 +30,7 @@ import { ModioPermissionComponent } from './modals/modio-permission/modio-permis
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent],
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -41,6 +42,6 @@ import { ModioPermissionComponent } from './modals/modio-permission/modio-permis
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent]
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent]
 })
 export class SharedModule { }

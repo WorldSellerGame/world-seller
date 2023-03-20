@@ -48,14 +48,20 @@ export class LoggingState {
   decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const cdrValue = calculateStat(equipment, Stat.AxeSpeed);
-    decreaseGatherTimer(ctx, ticks, cdrValue, CancelLogging, AchievementStat.GatherLogging);
+    const cdrPercent = calculateStat(equipment, Stat.AxeSpeedPercent);
+    const reducedValue = cdrPercent / 100;
+
+    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelLogging, AchievementStat.GatherLogging);
   }
 
   @Action(SetLoggingLocation)
   setLocation(ctx: StateContext<IGameGathering>, { location }: SetLoggingLocation) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const gdrValue = calculateStat(equipment, Stat.AxePower);
-    setGatheringLocation(ctx, location, gdrValue);
+    const gdrPercent = calculateStat(equipment, Stat.AxePowerPercent);
+    const reducedValue = (gdrPercent / 100) * location.gatherTime;
+
+    setGatheringLocation(ctx, location, gdrValue + reducedValue);
     ctx.dispatch(new DecreaseDurability(ItemType.Axe));
   };
 

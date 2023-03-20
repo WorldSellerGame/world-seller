@@ -35,4 +35,20 @@ export class ItemCreatorService {
 
     return baseItem;
   }
+
+  public migrateItem(oldItem: IGameItem): IGameItem | undefined {
+    if(!oldItem) {
+      return undefined;
+    }
+
+    const baseItem = this.createItem(oldItem.internalId || '', oldItem.quantity);
+    if(!baseItem) {
+      return undefined;
+    }
+
+    baseItem.durability = oldItem.durability;
+    baseItem.stats = oldItem.stats;
+
+    return baseItem;
+  }
 }

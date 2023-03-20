@@ -192,8 +192,12 @@ export class ContentService {
 
     [
       'settings', 'level', 'resources', 'inventory', 'equipment', 'time',
-      'dungeon-tile', 'dungeon-wall', 'dungeon-heal', 'dungeon-stairs', 'me'
+      'dungeon-tile', 'dungeon-wall', 'dungeon-heal', 'dungeon-stairs', 'dungeon-chest', 'me',
+      'fishing', 'foraging', 'hunting', 'logging', 'mining',
+      'alchemy', 'blacksmithing', 'cooking', 'jewelcrafting', 'weaving',
+      'farming', 'prospecting', 'combat', 'mercantile'
     ].forEach(x => icons.add(x));
+
     Object.values(this.abilities).forEach(x => icons.add(x.icon));
     Object.values(this.enemies).forEach(x => icons.add(x.icon));
     Object.values(this.threats).forEach(x => icons.add(x.icon));

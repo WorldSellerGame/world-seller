@@ -48,14 +48,20 @@ export class ForagingState {
   decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const cdrValue = calculateStat(equipment, Stat.ScytheSpeed);
-    decreaseGatherTimer(ctx, ticks, cdrValue, CancelForaging, AchievementStat.GatherForaging);
+    const cdrPercent = calculateStat(equipment, Stat.ScytheSpeedPercent);
+    const reducedValue = cdrPercent / 100;
+
+    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelForaging, AchievementStat.GatherForaging);
   }
 
   @Action(SetForagingLocation)
   setLocation(ctx: StateContext<IGameGathering>, { location }: SetForagingLocation) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const gdrValue = calculateStat(equipment, Stat.ScythePower);
-    setGatheringLocation(ctx, location, gdrValue);
+    const gdrPercent = calculateStat(equipment, Stat.ScythePowerPercent);
+    const reducedValue = (gdrPercent / 100) * location.gatherTime;
+
+    setGatheringLocation(ctx, location, gdrValue + reducedValue);
     ctx.dispatch(new DecreaseDurability(ItemType.Scythe));
   };
 

@@ -61,6 +61,12 @@ export enum Stat {
   ScythePower = 'scythePower',
   HuntingPower = 'huntingPower',
 
+  PickaxePowerPercent = 'pickaxePowerPercent',
+  AxePowerPercent = 'axePowerPercent',
+  FishingPowerPercent = 'fishingPowerPercent',
+  ScythePowerPercent = 'scythePowerPercent',
+  HuntingPowerPercent = 'huntingPowerPercent',
+
   // speed reduces the cooldown time of a gather node by seconds
   PickaxeSpeed = 'pickaxeSpeed',
   AxeSpeed = 'axeSpeed',
@@ -68,8 +74,15 @@ export enum Stat {
   ScytheSpeed = 'scytheSpeed',
   HuntingSpeed = 'huntingSpeed',
 
+  PickaxeSpeedPercent = 'pickaxeSpeedPercent',
+  AxeSpeedPercent = 'axeSpeedPercent',
+  FishingSpeedPercent = 'fishingSpeedPercent',
+  ScytheSpeedPercent = 'scytheSpeedPercent',
+  HuntingSpeedPercent = 'huntingSpeedPercent',
+
   // generic stats
   Armor = 'armor',
+  Mitigation = 'mitigation',
   Healing = 'healing',
   Attack = 'attack',
   EnergyBonus = 'energyBonus',

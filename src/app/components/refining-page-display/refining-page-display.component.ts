@@ -73,7 +73,6 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     this.setTotalResources();
 
     this.resourcesSub = this.resources$.subscribe((resources) => {
-      console.log({ resources });
       this.resources = resources;
 
       this.setVisibleRecipes();

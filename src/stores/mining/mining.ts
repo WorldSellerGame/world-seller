@@ -48,14 +48,20 @@ export class MiningState {
   decreaseDuration(ctx: StateContext<IGameGathering>, { ticks }: TickTimer) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const cdrValue = calculateStat(equipment, Stat.PickaxeSpeed);
-    decreaseGatherTimer(ctx, ticks, cdrValue, CancelMining, AchievementStat.GatherMining);
+    const cdrPercent = calculateStat(equipment, Stat.PickaxeSpeedPercent);
+    const reducedValue = cdrPercent / 100;
+
+    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelMining, AchievementStat.GatherMining);
   }
 
   @Action(SetMiningLocation)
   setLocation(ctx: StateContext<IGameGathering>, { location }: SetMiningLocation) {
     const equipment = this.store.selectSnapshot(CharSelectState.activeCharacterEquipment);
     const gdrValue = calculateStat(equipment, Stat.PickaxePower);
-    setGatheringLocation(ctx, location, gdrValue);
+    const gdrPercent = calculateStat(equipment, Stat.PickaxePowerPercent);
+    const reducedValue = (gdrPercent / 100) * location.gatherTime;
+
+    setGatheringLocation(ctx, location, gdrValue + reducedValue);
     ctx.dispatch(new DecreaseDurability(ItemType.Pickaxe));
   };
 

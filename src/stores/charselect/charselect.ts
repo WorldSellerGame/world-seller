@@ -98,23 +98,9 @@ export class CharSelectState {
         delete resources[resource];
       });
 
-      const inventory = (char.inventory || []).map((oldItem) => {
-
-        // can't migrate an item with no id
-        if(!oldItem.internalId) {
-          return undefined;
-        }
-
-        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
-        if(!newItem) {
-          return undefined;
-        }
-
-        newItem.durability = oldItem.durability;
-        newItem.stats = oldItem.stats;
-
-        return newItem;
-      }, []).filter(Boolean);
+      const inventory = (char.inventory || [])
+        .map((oldItem) => this.itemCreatorService.migrateItem(oldItem))
+        .filter(Boolean);
 
       const equipment = Object.keys(char.equipment).reduce((acc, key) => {
         const oldItem = char.equipment[key as ItemType];
@@ -122,20 +108,12 @@ export class CharSelectState {
           return { ...acc };
         }
 
-        // can't migrate an item with no id
-        if(!oldItem.internalId) {
+        const migratedItem = this.itemCreatorService.migrateItem(oldItem);
+        if(!migratedItem) {
           return { ...acc };
         }
 
-        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
-        if(!newItem) {
-          return { ...acc };
-        }
-
-        newItem.durability = oldItem.durability;
-        newItem.stats = oldItem.stats;
-
-        return { ...acc, [key]: newItem };
+        return { ...acc, [key]: migratedItem };
       }, {});
 
       return { ...char, inventory, equipment };

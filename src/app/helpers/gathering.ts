@@ -24,6 +24,7 @@ export function decreaseGatherTimer(
   ctx: StateContext<IGameGathering>,
   ticks: number,
   cdrValue: number,
+  cdrPercent: number,
   cancelProto: any,
   incrementStatOnFinish: AchievementStat
 ) {
@@ -46,7 +47,7 @@ export function decreaseGatherTimer(
 
     const gainedResources = getResourceRewardsForLocation(location);
 
-    putLocationOnCooldown(ctx, location, cdrValue);
+    putLocationOnCooldown(ctx, location, cdrValue, cdrPercent);
 
     if(location.level.max > state.level) {
       ctx.setState(patch<IGameGathering>({
@@ -92,7 +93,7 @@ export function setGatheringLocation(ctx: StateContext<IGameGathering>, location
     ...cancelAllGathering(),
     new PlaySFX('tradeskill-start')
   ]).subscribe(() => {
-    const gatherTime = Math.max(0, location.gatherTime - gdrValue || 0);
+    const gatherTime = Math.max(1, location.gatherTime - (gdrValue || 0));
 
     ctx.setState(patch<IGameGathering>({
       currentLocation: location,
