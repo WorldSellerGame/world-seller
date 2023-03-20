@@ -31,6 +31,61 @@ ApplyEnergyBuff1:
   energyCost: 0
   requires: {}
 
+ApplyPoison1: 
+  name: Minor Poison
+  description: It uh poisons. Notably takes longer than fire to do its damage
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison1
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison2: 
+  name: Poison
+  description: It uh poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison2
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison3: 
+  name: Greater Poison
+  description: It uh poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison3
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison4: 
+  name: Da Big Poison
+  description: It uh poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison4
+  cooldown: 2
+  energyCost: 5
+  requires: {}
 
 ###Monster specific (Most could be mover later if needed)
 

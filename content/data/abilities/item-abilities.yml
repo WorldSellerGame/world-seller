@@ -1,9 +1,9 @@
+#this is the most obnoxious thing in the whole world Im not doing this
 
-
-PotionHeal:
-  name: Potion Heal
+ItemSelfHeal:
+  name: Item Heal
   description: Heal yourself.
-  icon: healing
+  icon: attack
   target: Self
   type: Magical
   stats:
@@ -16,9 +16,25 @@ PotionHeal:
   energyCost: 0
   requires: {}
 
-PotionDamage:
-  name: Potion Damage
+ItemSingleDamage:
+  name: Item Damage
   description: Damage an enemy.
+  icon: fire-bottle
+  target: Single
+  type: Magical
+  stats:
+    - stat: attack
+      multiplier: 1
+      variance: 0
+  effects:
+    - effect: SingleTargetAttack
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
+ItemAoeDamage:
+  name: Item Aoe Damage
+  description: Damage all enemies.
   icon: fire-bottle
   target: Single
   type: Magical
