@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { GameOption, IOptions } from '../../../../interfaces';
-import { OptionsState } from '../../../../stores';
+import { ModsState, OptionsState } from '../../../../stores';
 import { ResetAchievements, ResetStats } from '../../../../stores/achievements/achievements.actions';
 import { UnlockForaging } from '../../../../stores/foraging/foraging.actions';
 import { UnlockLogging } from '../../../../stores/logging/logging.actions';
@@ -21,6 +21,7 @@ import { NotifyService } from '../../../services/notify.service';
 export class SettingsPage implements OnInit {
 
   @Select(OptionsState.options) options$!: Observable<IOptions>;
+  @Select(ModsState.themes) themes$!: Observable<Array<{ name: string; value: string }>>;
 
   public get showDevOptions() {
     return !environment.production || window.location.href.includes('deploy-preview');

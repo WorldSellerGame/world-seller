@@ -11,6 +11,7 @@ export interface IGameModStored {
   version: string;
   content: IGameModData;
   icons: Array<{ name: string; data: string }>;
+  themes: Array<{ name: string; data: string }>;
 }
 
 export interface IGameMods {
@@ -103,5 +104,8 @@ export interface IGameModData {
   enemies?: Record<string, IEnemyCharacter>;
   threats?: Record<string, IGameEnemyThreat>;
   dungeons?: Record<string, IDungeon>;
+
+  // added content
+  themes?: Array<{ name: string; value: string; file: string }>;
 
 }

@@ -26,6 +26,10 @@ export function cacheMod(ctx: StateContext<IGameMods>, { modId, modData }: Cache
 
 export function uncacheMod(ctx: StateContext<IGameMods>, { modId }: UncacheMod) {
   const mods = ctx.getState().mods || {};
+  const currentMod = mods[modId];
   delete mods[modId];
+
+  const modThemes = currentMod.themes;
+  console.log('unload themes', modThemes);
   ctx.patchState({ mods });
 }

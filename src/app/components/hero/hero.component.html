@@ -15,7 +15,7 @@
   </ion-note>
 
   <ng-container *ngIf="oocTicks$ | async as oocTicks">
-    <ion-item class="stats" *ngIf="currentPlayer$ | async as playerStats" [class.hidden]="currentlyInCombat">
+    <ion-item lines="none" class="stats" *ngIf="currentPlayer$ | async as playerStats" [class.hidden]="currentlyInCombat">
       <ion-row>
         <ion-col size="6">
           <ion-progress-bar [value]="playerStats.currentHealth / playerStats.maxHealth" color="health" [ngxTippy]="healthTooltip"></ion-progress-bar>

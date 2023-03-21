@@ -157,7 +157,7 @@ export class ModsService {
   public getAuthCodeForEmail(code: string) {
     const body = new URLSearchParams();
     body.set('security_code', code);
-    body.set('date_expires', (Date.now() + 31536000).toString());
+    body.set('date_expires', (Math.floor(Date.now() / 1000) + 31436000).toString());
 
     return this.http.post(
       `${environment.modio.url}/oauth/emailexchange?api_key=${environment.modio.apiKey}`,
@@ -273,6 +273,7 @@ export class ModsService {
 
         const modData = {};
         const icons: Array<{ name: string; data: string }> = [];
+        const themes: Array<{ name: string; data: string }> = [];
 
         await Promise.all(zipEntries.map(async entry => {
           const reader = new TextWriter();
@@ -298,9 +299,21 @@ export class ModsService {
               data: entryText
             });
           }
+
+          if(entry.filename.includes('.css')) {
+            const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
+            if(!filename) {
+              return;
+            }
+
+            themes.push({
+              name: filename,
+              data: entryText
+            });
+          }
         }));
 
-        const savedMod = { version: mod.modfile.version || '0.0.0', content: modData, icons };
+        const savedMod: IGameModStored = { version: mod.modfile.version || '0.0.0', content: modData, icons, themes };
         this.contentService.loadMod(savedMod);
         this.store.dispatch(new CacheMod(mod.id, savedMod));
 

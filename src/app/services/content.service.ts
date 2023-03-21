@@ -29,6 +29,7 @@ import * as statGains from '../../assets/content/stat-gains.json';
 import { Store } from '@ngxs/store';
 import { SvgIconRegistryService } from 'angular-svg-icon';
 import {
+  GameOption,
   GatheringTradeskill,
   IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
@@ -37,6 +38,7 @@ import {
   IGameStatusEffect, IStatGains, RefiningTradeskill
 } from '../../interfaces';
 import { SetStatGains } from '../../stores/game/game.actions';
+import { SetOption } from '../../stores/options/options.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -262,9 +264,20 @@ export class ContentService {
 
     const mod = storedMod.content;
     const icons = storedMod.icons;
+    const themes = storedMod.themes;
 
     icons.forEach(icon => {
       this.loadSVGFromString(icon.name, icon.data);
+    });
+
+    themes.forEach(theme => {
+      document.getElementById(`theme-${theme.name}`)?.remove();
+
+      const themeEl = document.createElement('style');
+      themeEl.id = `theme-${theme.name}`;
+      themeEl.textContent = theme.data.toString();
+
+      document.head.appendChild(themeEl);
     });
 
     // load gathering stuff
@@ -325,7 +338,7 @@ export class ContentService {
 
   public unloadMod(mod: IGameModData) {
 
-    // load gathering stuff
+    // unload gathering stuff
     Object.values(GatheringTradeskill).forEach(tradeskill => {
       const locations = mod[tradeskill];
       if(!locations) {
@@ -343,7 +356,7 @@ export class ContentService {
       });
     });
 
-    // load refining stuff
+    // unload refining stuff
     Object.values(RefiningTradeskill).forEach(tradeskill => {
       const recipes = mod[tradeskill];
       if(!recipes) {
@@ -372,6 +385,18 @@ export class ContentService {
       Object.keys(data).forEach(name => {
         delete this.modCacheRecords[key][name];
       });
+    });
+
+    // unload themes
+    mod.themes?.forEach(theme => {
+      const themeEl = document.getElementById(`theme-${theme.name}`);
+      themeEl?.remove();
+
+      // reset theme if we're unloading a theme we're currently using
+      const isUsingTheme = document.getElementsByClassName(`theme-${theme.name}`).length > 0;
+      if(isUsingTheme) {
+        this.store.dispatch(new SetOption(GameOption.ColorTheme, 'worldseller'));
+      }
     });
   }
 
