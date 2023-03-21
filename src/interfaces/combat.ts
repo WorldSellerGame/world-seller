@@ -131,6 +131,9 @@ export interface IGameCombat {
 
   threatChangeTicks: number;
   threats: string[];
+
+  oocHealTicks: number;
+  oocEnergyTicks: number;
 }
 
 export interface IAttackParams {

@@ -38,6 +38,10 @@
                           {{ item.name }}
                         </ion-item>
 
+                        <ion-item class="cursor-pointer" (click)="eat(item)" *ngIf="item.category === 'Foods' && (item.stats?.healing || 0) > 0">
+                          Eat To Heal
+                        </ion-item>
+
                         <ion-item class="cursor-pointer" (click)="quickSell(item)">
                           Quick Sell ({{ (item.value || 1) * (item.quantity || 1) }} coins)
                         </ion-item>

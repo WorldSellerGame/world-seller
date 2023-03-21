@@ -8,13 +8,14 @@ import {
 import {
   AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, EnemyCooldownSkill, EnemySpeedReset,
   GainCombatLevels,
-  LowerEnemyCooldown, PlayerCooldownSkill, SetCombatLock,
+  LowerEnemyCooldown, OOCEatFood, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
   SetFood,
   SetItem,
   SetSkill, TickEnemyEffects, UseItemInSlot
 } from './combat.actions';
 
+import { clamp } from 'lodash';
 import { applyDeltas, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 import { AddItemToInventory, GainItemOrResource, RemoveItemFromInventory } from '../charselect/charselect.actions';
 import { NotifyInfo } from '../game/game.actions';
@@ -31,7 +32,9 @@ export const defaultCombat: () => IGameCombat = () => ({
   currentEncounter: undefined,
   currentPlayer: undefined,
   threatChangeTicks: 3600,
-  threats: []
+  threats: [],
+  oocEnergyTicks: 10,
+  oocHealTicks: 10
 });
 
 export function unlockCombat(ctx: StateContext<IGameCombat>) {
@@ -547,5 +550,51 @@ export function applyEffectToPlayer(ctx: StateContext<IGameCombat>, { effect }: 
 
   applyDeltas(ctx, player, player, [
     { target: 'source', attribute: '', delta: 0, applyStatusEffect: effect }
+  ]);
+}
+
+export function oocPlayerHeal(ctx: StateContext<IGameCombat>, { amount }: OOCPlayerHeal) {
+  const state = ctx.getState();
+  if(!state.currentPlayer || state.currentEncounter) {
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      currentHealth: clamp(state.currentPlayer.maxHealth, 0, state.currentPlayer.currentHealth + amount)
+    })
+  }));
+}
+
+export function oocPlayerEnergy(ctx: StateContext<IGameCombat>, { amount }: OOCPlayerEnergy) {
+  const state = ctx.getState();
+  if(!state.currentPlayer || state.currentEncounter) {
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      currentEnergy: clamp(state.currentPlayer.maxEnergy, 0, state.currentPlayer.currentEnergy + amount)
+    })
+  }));
+}
+
+export function oocEatFood(ctx: StateContext<IGameCombat>, { item }: OOCEatFood) {
+  const state = ctx.getState();
+  if(!state.currentPlayer || state.currentEncounter) {
+    return;
+  }
+
+  const healing = item.stats[Stat.Healing] ?? 0;
+  const energy = item.stats[Stat.Energy] ?? 0;
+  if(healing <= 0 && energy <= 0) {
+    return;
+  }
+
+  ctx.dispatch([
+    new RemoveItemFromInventory(item),
+    new OOCPlayerHeal(healing),
+    new OOCPlayerEnergy(energy),
+    new NotifyInfo(`You healed ${healing} HP and ${energy} Energy!`)
   ]);
 }

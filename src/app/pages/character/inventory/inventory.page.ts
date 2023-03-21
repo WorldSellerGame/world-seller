@@ -4,6 +4,7 @@ import { sortBy, uniq } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
 import { CharSelectState } from '../../../../stores';
+import { OOCEatFood } from '../../../../stores/combat/combat.actions';
 import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
 
@@ -62,6 +63,10 @@ export class InventoryPage implements OnInit, OnDestroy {
 
   itemsInCategory(items: IGameItem[], category: string): IGameItem[] {
     return sortBy((items || []).filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
+  }
+
+  eat(item: IGameItem) {
+    this.store.dispatch(new OOCEatFood(item));
   }
 
   quickSell(item: IGameItem) {

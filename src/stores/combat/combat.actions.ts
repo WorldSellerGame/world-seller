@@ -150,3 +150,18 @@ export class DebugApplyEffectToPlayer {
   static type = '[Combat] Debug Apply Effect To Player';
   constructor(public effect: IGameStatusEffect) {}
 }
+
+export class OOCPlayerHeal {
+  static type = '[Combat] OOC Player Heal';
+  constructor(public amount: number) {}
+}
+
+export class OOCPlayerEnergy {
+  static type = '[Combat] OOC Player Energy';
+  constructor(public amount: number) {}
+}
+
+export class OOCEatFood {
+  static type = '[Combat] OOC Eat Food';
+  constructor(public item: IGameItem) {}
+}

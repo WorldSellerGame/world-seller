@@ -14,6 +14,7 @@ import { DebugActionMenuComponent } from './components/debug-action-menu/debug-a
 import { DebugTextComponent } from './components/debug-text/debug-text.component';
 import { GameIconComponent } from './components/game-icon/game-icon.component';
 import { GatheringPageDisplayComponent } from './components/gathering-page-display/gathering-page-display.component';
+import { HeroComponent } from './components/hero/hero.component';
 import { ItemIconComponent } from './components/item-icon/item-icon.component';
 import { ItemComponent } from './components/item/item.component';
 import { RefiningPageDisplayComponent } from './components/refining-page-display/refining-page-display.component';
@@ -30,7 +31,8 @@ import { ModioPermissionComponent } from './modals/modio-permission/modio-permis
   declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent],
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
+    HeroComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,6 +44,7 @@ import { ModioPermissionComponent } from './modals/modio-permission/modio-permis
   exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
     GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
     CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent]
+    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
+    HeroComponent]
 })
 export class SharedModule { }

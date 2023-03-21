@@ -2,12 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
-import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
-import { CharSelectState, OptionsState } from '../stores';
-import { SyncTotalLevel } from '../stores/charselect/charselect.actions';
+import { IGameRefiningRecipe } from '../interfaces';
+import { OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
-import { getMercantileLevel, getTotalLevel } from './helpers';
-import { setMainDiscordStatus } from './helpers/electron';
+import { getMercantileLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
 
 interface IMenuItem {
@@ -27,8 +25,6 @@ interface IMenuItem {
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
-  @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
@@ -163,19 +159,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.gameloopService.init();
 
     this.store.dispatch(new UpdateAllItems());
-
-    this.level = this.store.select(state => getTotalLevel(state)).subscribe(level => {
-      this.totalLevel = level;
-
-      setMainDiscordStatus(`Level ${level.toLocaleString()}`);
-
-      this.store.dispatch(new SyncTotalLevel(level));
-    });
   }
 
   ngOnDestroy() {
     this.gameloopService.stop();
-    this.level?.unsubscribe();
   }
 
 }

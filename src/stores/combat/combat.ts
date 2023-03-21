@@ -26,7 +26,7 @@ import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
-  LowerEnemyCooldown, PlayerCooldownSkill,
+  LowerEnemyCooldown, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
 } from './combat.actions';
 import { attachments } from './combat.attachments';
@@ -91,6 +91,11 @@ export class CombatState {
     }
 
     return { encounter: state.currentEncounter, player: state.currentPlayer };
+  }
+
+  @Selector()
+  static oocTicks(state: IGameCombat) {
+    return { health: state.oocHealTicks, energy: state.oocEnergyTicks };
   }
 
   @Selector()
@@ -571,6 +576,7 @@ export class CombatState {
       }));
     }
 
+    // reset combat or change turns
     if(state.currentEncounter && state.currentPlayer) {
 
       // check for combat ending and get out soon
@@ -676,6 +682,27 @@ export class CombatState {
 
         numAttempts--;
       }
+    }
+
+    // ooc healing
+    if(!state.currentEncounter && state.currentPlayer) {
+      let healingTicks = state.oocHealTicks ?? 10;
+      let energyTicks = state.oocEnergyTicks ?? 10;
+
+      if(healingTicks <= 0 && state.currentPlayer.currentHealth < state.currentPlayer.maxHealth) {
+        ctx.dispatch(new OOCPlayerHeal(1));
+        healingTicks = 10;
+      }
+
+      if(energyTicks <= 0 && state.currentPlayer.currentEnergy < state.currentPlayer.maxEnergy) {
+        ctx.dispatch(new OOCPlayerEnergy(1));
+        energyTicks = 10;
+      }
+
+      ctx.setState(patch<IGameCombat>({
+        oocHealTicks: healingTicks - ticks,
+        oocEnergyTicks: energyTicks - ticks
+      }));
     }
   }
 

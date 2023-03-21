@@ -30,6 +30,7 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.Armor]: 0,
     [Stat.Mitigation]: 0,
     [Stat.Healing]: 0,
+    [Stat.Energy]: 0,
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,
     [Stat.HealthBonus]: 0,

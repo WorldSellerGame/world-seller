@@ -11,6 +11,9 @@ import {
   GainCombatLevels,
   LowerEnemyCooldown,
   LowerPlayerCooldown,
+  OOCEatFood,
+  OOCPlayerEnergy,
+  OOCPlayerHeal,
   PlayerCooldownSkill,
   PlayerSpeedReset,
   ResetCombat, ResetCombatSoft, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
@@ -25,6 +28,9 @@ import {
   gainCombatLevels,
   lowerEnemyCooldowns,
   lowerPlayerCooldowns,
+  oocEatFood,
+  oocPlayerEnergy,
+  oocPlayerHeal,
   prepareCombatForRestart,
   resetCombat, resetCombatSoft, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
   setCombatLockForEnemies,
@@ -74,5 +80,8 @@ export const attachments: IAttachment[] = [
   { action: EmptyDungeonTile, handler: emptyDungeonTile },
   { action: MoveInDungeonByDelta, handler: moveInDungeonByDelta },
   { action: MoveInDungeon, handler: moveInDungeon },
-  { action: GainPercentageOfDungeonLoot, handler: gainPercentageOfDungeonLoot }
+  { action: GainPercentageOfDungeonLoot, handler: gainPercentageOfDungeonLoot },
+  { action: OOCPlayerHeal, handler: oocPlayerHeal },
+  { action: OOCPlayerEnergy, handler: oocPlayerEnergy },
+  { action: OOCEatFood, handler: oocEatFood }
 ];

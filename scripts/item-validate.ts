@@ -15,7 +15,7 @@ const validStats = [
   'pickaxePowerPercent', 'axePowerPercent', 'fishingPowerPercent', 'scythePowerPercent', 'huntingPowerPercent',
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
   'pickaxeSpeedPercent', 'axeSpeedPercent', 'fishingSpeedPercent', 'scytheSpeedPercent', 'huntingSpeedPercent',
-  'armor', 'mitigation', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
+  'armor', 'mitigation', 'healing', 'energy', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
   'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
 ];
 

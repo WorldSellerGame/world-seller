@@ -1,0 +1,43 @@
+
+
+ion-list.header {
+  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+
+  display: flex;
+  flex-direction: column;
+
+  .coins, .level {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin-top: 5px;
+
+    app-game-icon {
+      margin-right: 10px;
+    }
+  }
+
+  .stats ion-row {
+    width: 100%;
+
+    ion-progress-bar {
+      height: 10px;
+    }
+  }
+
+  ion-list-header {
+    font-size: 22px;
+    font-weight: 600;
+
+    min-height: 20px;
+  }
+}
+
+ion-note {
+  padding-left: 16px;
+  margin-bottom: 5px;
+}
+

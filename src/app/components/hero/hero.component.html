@@ -1,0 +1,48 @@
+
+
+<ion-list class="header" *ngIf="activeCharacter$ | async as character">
+
+  <ion-list-header>{{ character.name }}</ion-list-header>
+
+  <ion-note class="level">
+    <app-game-icon icon="level" [inlineIconSize]="true"></app-game-icon>
+    Level {{ totalLevel | number }}
+  </ion-note>
+
+  <ion-note class="coins">
+    <app-game-icon icon="coins" [inlineIconSize]="true"></app-game-icon>
+    {{ coins$ | async | number }} Coins
+  </ion-note>
+
+  <ng-container *ngIf="oocTicks$ | async as oocTicks">
+    <ion-item class="stats" *ngIf="currentPlayer$ | async as playerStats" [class.hidden]="currentlyInCombat">
+      <ion-row>
+        <ion-col size="6">
+          <ion-progress-bar [value]="playerStats.currentHealth / playerStats.maxHealth" color="health" [ngxTippy]="healthTooltip"></ion-progress-bar>
+
+          <ng-template #healthTooltip>
+            <div>
+              {{ playerStats.currentHealth }} / {{ playerStats.maxHealth }} HP
+            </div>
+            <div *ngIf="oocTicks.health > 0">
+              +1 in <app-countdown [duration]="oocTicks.health"></app-countdown>
+            </div>
+          </ng-template>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-progress-bar [value]="playerStats.currentEnergy / playerStats.maxEnergy" color="energy" [ngxTippy]="energyTooltip"></ion-progress-bar>
+
+          <ng-template #energyTooltip>
+            <div>
+              {{ playerStats.currentEnergy }} / {{ playerStats.maxEnergy }} Energy
+            </div>
+            <div *ngIf="oocTicks.energy > 0">
+              +1 in <app-countdown [duration]="oocTicks.energy"></app-countdown>
+            </div>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ng-container>
+</ion-list>
