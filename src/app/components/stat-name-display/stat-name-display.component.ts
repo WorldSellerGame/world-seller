@@ -16,7 +16,7 @@ export class StatNameDisplayComponent implements OnInit {
 
   public readonly statNames: Record<Stat, string> = {
     ['health' as Stat]: 'Health',
-    [Stat.Energy]: 'Energy',
+    ['energy' as Stat]: 'Energy',
 
     [Stat.PickaxePower]: 'Pickaxe Power',
     [Stat.AxePower]: 'Axe Power',
@@ -58,7 +58,7 @@ export class StatNameDisplayComponent implements OnInit {
 
   public readonly tooltips: Record<Stat, string> = {
     ['health' as Stat]: 'Your total health',
-    [Stat.Energy]: 'Your total energy',
+    ['energy' as Stat]: 'Your total energy',
 
     [Stat.PickaxePower]: 'Mining nodes will take less time (in seconds) to complete',
     [Stat.AxePower]: 'Logging nodes will take less time (in seconds) to complete',

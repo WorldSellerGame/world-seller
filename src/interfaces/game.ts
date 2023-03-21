@@ -84,7 +84,6 @@ export enum Stat {
   Armor = 'armor',
   Mitigation = 'mitigation',
   Healing = 'healing',
-  Energy = 'energy',
   Attack = 'attack',
   EnergyBonus = 'energyBonus',
   HealthBonus = 'healthBonus',
@@ -155,6 +154,8 @@ export interface IGameItem {
   quantity?: number;
   givesAbility?: string;
   effects?: IGameCombatAbilityEffect[];
+  oocHealth?: number;
+  oocEnergy?: number;
   stats: Record<Stat, number>;
 
   foodDuration?: number;

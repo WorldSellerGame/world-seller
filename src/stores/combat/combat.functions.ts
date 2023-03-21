@@ -585,8 +585,8 @@ export function oocEatFood(ctx: StateContext<IGameCombat>, { item }: OOCEatFood)
     return;
   }
 
-  const healing = item.stats[Stat.Healing] ?? 0;
-  const energy = item.stats[Stat.Energy] ?? 0;
+  const healing = item.oocHealth ?? 0;
+  const energy = item.oocEnergy ?? 0;
   if(healing <= 0 && energy <= 0) {
     return;
   }

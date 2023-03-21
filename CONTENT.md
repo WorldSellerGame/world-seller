@@ -93,6 +93,8 @@ Items require:
 * `givesAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats
 * `foodDuration` - optional, if specified, the item can be used as a food for combat and will give its `stats` every combat
+* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to health
+* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to energy
 
 # Adding a New Gathering Location
 

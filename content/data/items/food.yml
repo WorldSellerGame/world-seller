@@ -11,8 +11,11 @@ Pine Nuts:
   durability: 1
   value: 1
   icon: meal
+  oocHealth: 5
+  oocEnergy: 5
   stats:
     healing: 50
+
 
 Cooked Cropfish:
   name: Pine Nuts
