@@ -7,7 +7,7 @@ locations:
     level:
       min: 0
       max: 10
-    gatherTime: 10
+    gatherTime: 20
     cooldownTime: 20
     resources:
       - name: nothing
@@ -26,7 +26,7 @@ locations:
     level:
       min: 5
       max: 10
-    gatherTime: 10
+    gatherTime: 20
     cooldownTime: 20
     resources:
       - name: Old Boot
@@ -44,8 +44,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 15
-    cooldownTime: 20
+    gatherTime: 115
+    cooldownTime: 115
     resources:
       - name: Old Boot
         weight: 1
@@ -65,8 +65,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 20
-    cooldownTime: 20
+    gatherTime: 230
+    cooldownTime: 230
     resources:
       - name: Old Boot
         weight: 5
@@ -84,8 +84,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 20
-    cooldownTime: 30
+    gatherTime: 410
+    cooldownTime: 410
     resources:
       - name: Old Boot
         weight: 1
@@ -107,8 +107,8 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 5
-    cooldownTime: 120
+    gatherTime: 700
+    cooldownTime: 700
     resources:
       - name: Trout
         weight: 1
@@ -122,8 +122,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 30
-    cooldownTime: 40
+    gatherTime: 1120
+    cooldownTime: 1120
     resources:
       - name: Old Boot
         weight: 1
@@ -143,8 +143,8 @@ locations:
     level:
       min: 35
       max: 50
-    gatherTime: 30
-    cooldownTime: 60
+    gatherTime: 2595
+    cooldownTime: 2595
     resources:
       - name: Panfish
         weight: 20
@@ -183,8 +183,8 @@ locations:
     level:
       min: 45
       max: 55
-    gatherTime: 45
-    cooldownTime: 80
+    gatherTime: 3785
+    cooldownTime: 3785
     resources:
       - name: Sardine
         weight: 5
@@ -200,8 +200,8 @@ locations:
     level:
       min: 50
       max: 60
-    gatherTime: 60
-    cooldownTime: 80
+    gatherTime: 5390
+    cooldownTime: 5390
     resources:
       - name: Pompano
         weight: 20
@@ -219,8 +219,8 @@ locations:
     level:
       min: 55
       max: 65
-    gatherTime: 60
-    cooldownTime: 240
+    gatherTime: 7530
+    cooldownTime: 7530
     resources:
       - name: Pompano
         weight: 5
