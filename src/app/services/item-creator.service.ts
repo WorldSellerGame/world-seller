@@ -48,7 +48,11 @@ export class ItemCreatorService {
 
     baseItem.durability = oldItem.durability;
     baseItem.foodDuration = oldItem.foodDuration;
-    baseItem.stats = oldItem.stats;
+
+    // we only want to migrate stats if it's not food. otherwise we want the correct stats
+    if(!baseItem.foodDuration) {
+      baseItem.stats = oldItem.stats;
+    }
 
     return baseItem;
   }

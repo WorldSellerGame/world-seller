@@ -19,7 +19,7 @@ import {
   AchievementStat,
   CombatAbilityTarget, DungeonTile, ICombatDelta, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
-  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
+  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
@@ -148,7 +148,9 @@ export class CombatState {
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
+      currentPlayer = getPlayerCharacterReadyForCombat(
+        store, ctx, activePlayer, this.getBonusStats(ctx), this.getBonusEffects(ctx)
+      );
     }
 
     // do on-combat-start heals
@@ -741,6 +743,32 @@ export class CombatState {
         return [self];
       }
     }
+  }
+
+  private getBonusStats(ctx: StateContext<IGameCombat>) {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => x?.stats || {} as Partial<Record<Stat, number>>)
+      .reduce((prev, cur) => {
+        if(!cur) {
+          return prev;
+        }
+
+        Object.keys(cur).forEach(key => {
+          prev[key as Stat] = (prev[key as Stat] || 0) + (cur[key as Stat] || 0);
+        });
+
+        return prev;
+      }, {});
+  }
+
+  private getBonusEffects(ctx: StateContext<IGameCombat>): IGameStatusEffect[] {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => (x?.effects || []))
+      .flat()
+      .filter(x => x.effect === 'ApplyEffect' && x.effectName)
+      .map(x => this.contentService.getEffectByName(x.effectName as string));
   }
 
 }

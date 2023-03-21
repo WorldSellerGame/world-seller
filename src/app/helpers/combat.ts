@@ -5,7 +5,7 @@ import * as CombatActions from '../../app/helpers/abilities';
 import {
   AchievementStat,
   IAttackParams, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
+  IGameEncounter, IGameEncounterCharacter, IGameItem, IGameStatusEffect, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
@@ -289,28 +289,19 @@ export function applyDeltas(
 export function getPlayerCharacterReadyForCombat(
   store: any,
   ctx: StateContext<IGameCombat>,
-  activePlayer: IPlayerCharacter
+  activePlayer: IPlayerCharacter,
+  bonusStats: Partial<Record<Stat, number>> = {},
+  bonusEffects: IGameStatusEffect[] = []
 ): IGameEncounterCharacter {
   const state = ctx.getState();
 
   const stats = merge(defaultStatsZero(), getStatTotals(store, activePlayer));
 
-  state.activeFoods.forEach(food => {
-    if(!food) {
-      return;
-    }
-
-    const foodStats = food.stats;
-    if(!foodStats) {
-      return;
-    }
-
-    Object.keys(foodStats).forEach(stat => {
-      stats[stat as Stat] += foodStats[stat as Stat];
-    });
+  Object.keys(bonusStats).forEach(stat => {
+    stats[stat as Stat] += (bonusStats[stat as Stat] || 0);
   });
 
-  return {
+  const character = {
     name: activePlayer.name,
     icon: 'me',
     abilities: [
@@ -330,4 +321,13 @@ export function getPlayerCharacterReadyForCombat(
     currentEnergy: calculateEnergyFromState(store, activePlayer),
     maxEnergy: calculateEnergyFromState(store, activePlayer),
   };
+
+  const appliedEffects: ICombatDelta[] = bonusEffects.map(x => ({ target: 'target', attribute: '', applyStatusEffect: x, delta: 0 }));
+
+  let returnedCharacter: IGameEncounterCharacter = character;
+  appliedEffects.forEach(delta => {
+    returnedCharacter = applyDelta(returnedCharacter, delta);
+  });
+
+  return returnedCharacter;
 }

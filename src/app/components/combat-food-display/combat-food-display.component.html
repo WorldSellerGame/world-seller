@@ -13,6 +13,10 @@
         <app-stat-line [item]="item"></app-stat-line>
       </div>
 
+      <div class="effects" *ngIf="effects.length > 0">
+        Applies {{ effects.join(', ') }}
+      </div>
+
       <div class="uses">
         <ion-text color="energy">{{ item.foodDuration }} Combat(s)</ion-text>
       </div>
