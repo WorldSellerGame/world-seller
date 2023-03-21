@@ -1,10 +1,10 @@
 
 Regen1:
   name: Regenerate I
-  description: Regenerates health over time.
+  description: Regenerates a little health over time.
   icon: healing
   color: "#59c135"
-  turnsLeft: 4
+  turnsLeft: 3
   statusEffectType: DamageOverTime
   damageOverTime: -3
 
@@ -16,6 +16,24 @@ Regen2:
   turnsLeft: 4
   statusEffectType: DamageOverTime
   damageOverTime: -5
+
+Regen3:
+  name: Regenerate III
+  description: Regenerates a lot of health over time.
+  icon: healing
+  color: "#59c135"
+  turnsLeft: 5
+  statusEffectType: DamageOverTime
+  damageOverTime: -7
+
+Regen4:
+  name: Regenerate IV
+  description: Regenerates a ton of health over time.
+  icon: healing
+  color: "#59c135"
+  turnsLeft: 6
+  statusEffectType: DamageOverTime
+  damageOverTime: -9
 
 RegenStats:
   name: Regenerate (Stats)

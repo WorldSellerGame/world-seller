@@ -12,9 +12,11 @@ Pine Nuts:
   value: 1
   icon: meal
   stats:
-    healing: 5 #Cure minor ailments
+    healing: 3
   effects:
     - effect: ItemSelfHeal
+  foodDuration: 2
+
 
 Cooked Cropfish:
   name: Pine Nuts
@@ -26,7 +28,10 @@ Cooked Cropfish:
   value: 1
   icon: cooked-fish
   stats:
-    healing: 50
+    healing: 3
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 2    
 
 #
 
@@ -40,7 +45,10 @@ Barbecued Squirrel:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 5 
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 2    
 
 Vegetable Soup:
   name: Vegetable Soup
@@ -52,7 +60,10 @@ Vegetable Soup:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 5 
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 2
 
 #
 
@@ -66,7 +77,10 @@ Roast Bunny:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 7
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 3
 
 Pan Fried Panfish:
   name: Pan Fried Panfish
@@ -78,7 +92,10 @@ Pan Fried Panfish:
   value: 1
   icon: cooked-fish
   stats:
-    healing: 50
+    healing: {}
+  effects:
+    - effect: ApplyRegen1
+  foodDuration: 2
 
 #
 
@@ -92,7 +109,11 @@ Baked Fallfish:
   value: 1
   icon: cooked-fish
   stats:
-    healing: 50
+    healing: 2
+  effects:
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen1
+  foodDuration: 2
 
 Bunny Stew:
   name: Bunny Stew
@@ -104,7 +125,10 @@ Bunny Stew:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 3
 
 Candied Apple:
   name: Candied Apple
@@ -116,7 +140,11 @@ Candied Apple:
   value: 1
   icon: apple
   stats:
-    healing: 50
+    healing: 2
+  effects:
+    - effect: ItemSelfHeal
+    - effect: FishingBasic1
+  foodDuration: 2
 
 #
 
@@ -130,7 +158,10 @@ Duck Roast:
   value: 1
   icon: cooked-bird
   stats:
-    healing: 50
+    healing: 12
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 3
 
 Fried Frog Legs:
   name: Fried Frog Legs
@@ -142,7 +173,11 @@ Fried Frog Legs:
   value: 1
   icon: frog-foot
   stats:
-    healing: 50
+    healing: 3
+  effects:
+    - effect: ItemSelfHeal
+    - effect: ApplyEnergyBuff1
+  foodDuration: 2
 
 Cooked Trout:
   name: Cooked Trout
@@ -154,7 +189,12 @@ Cooked Trout:
   value: 1
   icon: cooked-fish
   stats:
-    healing: 50
+    healing: 5 
+  effects:
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen1
+  foodDuration: 3
+
 
 Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a pseudo potion
   name: Strawberry Jam
@@ -166,7 +206,11 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   value: 1
   icon: jar
   stats:
-    healing: 50
+    healing: {}
+  effects:
+    - effect: FishingBasic2
+  foodDuration: 1
+
 
 Raspberry Jam:
   name: Raspberry Jam
@@ -178,7 +222,10 @@ Raspberry Jam:
   value: 1
   icon: jar
   stats:
-    healing: 50
+    healing: {}
+  effects:
+    - effect: FishingBasic2
+  foodDuration: 1
 
 #
 
@@ -192,7 +239,10 @@ Bread:
   value: 1
   icon: bread
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 5
 
 Baked Breaded Bass:
   name: Baked Breaded Bass
@@ -204,7 +254,11 @@ Baked Breaded Bass:
   value: 1
   icon: cooked-fish
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen1
+  foodDuration: 3
 
 Roast Turkey:
   name: Roast Turkey
@@ -216,7 +270,10 @@ Roast Turkey:
   value: 1
   icon: cooked-bird
   stats:
-    healing: 50
+    healing: 18
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 3
 
 #
 
@@ -230,7 +287,11 @@ Venison Steak:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 15
+  effects:
+    - effect: ItemSelfHeal
+    - effect: HuntingBasic2
+  foodDuration: 3
 
 Apple Pie:
   name: Apple Pie
@@ -242,7 +303,12 @@ Apple Pie:
   value: 1
   icon: pie
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ForagingBasic2    
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen1
+  foodDuration: 2
 
 Pumpkin Pie:
   name: Pumpkin Pie
@@ -254,7 +320,11 @@ Pumpkin Pie:
   value: 1
   icon: pie
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen2
+  foodDuration: 2
 
 Cookie: #egg required - Im sorry little one you will be be added next time
   name: Cookie
@@ -266,7 +336,11 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   value: 1
   icon: cookie
   stats:
-    healing: 50
+    healing: 3 
+  effects:
+    - effect: ItemSelfHeal
+    - effect: FishingBasic2
+  foodDuration: 6
 
 #
 
@@ -280,7 +354,15 @@ Mixed Fruit Juice:
   value: 1
   icon: cup
   stats:
-    healing: 50
+    healing: 5 
+  effects:
+    - effect: ItemSelfHeal
+    - effect: FishingBasic1
+    - effect: ForagingBasic1
+    - effect: HuntingBasic1
+    - effect: LoggingBasic1
+    - effect: MiningBasic1
+  foodDuration: 1
 
 Duck Eggs Benedict:
   name: Duck Eggs Benedict
@@ -292,8 +374,10 @@ Duck Eggs Benedict:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
-
+    healing: 20
+  effects:
+    - effect: ItemSelfHealRandom
+  foodDuration: 3
 #
 
 Honey Ham: 
@@ -306,7 +390,10 @@ Honey Ham:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 25
+  effects:
+    - effect: ItemSelfHeal
+  foodDuration: 4
 
 Spicy Catfish Stew: 
   name: Spicy Catfish Stew
@@ -318,7 +405,12 @@ Spicy Catfish Stew:
   value: 1
   icon: hot-meal
   stats:
-    healing: 50
+    healing: 15
+  effects:
+    - effect: ItemSelfHeal
+    - effect: FishingBasic1
+    - effect: HuntingBasic1
+  foodDuration: 4
 
 #
 
@@ -332,7 +424,11 @@ Pompano Ceviche:
   value: 1
   icon: meal
   stats:
-    healing: 50
+    healing: 7
+  effects:
+    - effect: ItemSelfHeal
+    - effect: FishingBasic3
+  foodDuration: 2
 
 Banana Bread: 
   name: Banana Bread
@@ -344,7 +440,12 @@ Banana Bread:
   value: 1
   icon: bread
   stats:
-    healing: 50
+    healing: 10
+  effects:
+    - effect: ForagingBasic2    
+    - effect: ItemSelfHeal
+    - effect: ApplyRegen2
+  foodDuration: 4
 
 Elk Jerky:
   name: Elk Jerky
@@ -356,7 +457,11 @@ Elk Jerky:
   value: 1
   icon: meal
   stats:
-    healing: 50
+    healing: 25
+  effects:
+    - effect: ItemSelfHeal
+    - effect: HuntingBasic2
+  foodDuration: 6
 
 
 

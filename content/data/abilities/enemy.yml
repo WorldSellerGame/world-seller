@@ -31,6 +31,64 @@ ApplyEnergyBuff1:
   energyCost: 0
   requires: {}
 
+
+ApplyRegen1: 
+  name: Regen I
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen2: 
+  name: Regen II
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen3: 
+  name: Regen III
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen3
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen4: 
+  name: Regen IV
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen4
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+
 ApplyPoison1: 
   name: Minor Poison
   description: It uh poisons. Notably takes longer than fire to do its damage

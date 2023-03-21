@@ -13,6 +13,7 @@ Dandelion Tea:
     healing: 5 #Cure minor ailments
   effects:
     - effect: ItemSelfHeal
+
     
 Pine Needle Tea:
   name: Pine Needle Tea
@@ -79,6 +80,7 @@ Potion of Minor Healing:
   durability: 1
   value: 3
   icon: heart-bottle
+  stats:
     healing: 15
   effects:
     - effect: ItemSelfHeal #Small health gain
@@ -164,6 +166,7 @@ Potion of Acid:
   durability: 1
   value: 3
   icon: toxic-bottle
+  stats:
     attack: 35
   effects:
     - effect: ItemSingleDamage 
@@ -177,6 +180,7 @@ Antidote:
   durability: 1
   value: 3
   icon: heart-bottle
+  stats:
     healing: 30
   effects:
     - effect: ItemSelfHeal #self explanatory description
@@ -268,7 +272,7 @@ Potion of Compressed Fire:
   value: 3
   icon: fire-bottle
   stats:
-    attack: {}
+    attack: 50
   effects:
     - effect: PotionDamageAOE
 

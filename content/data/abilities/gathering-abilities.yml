@@ -37,6 +37,21 @@ FishingBasic2:
     combat: 21
   replaces: FishingBasic1
 
+FishingBasic3: # THIS ISNT GIVEN TO PLAYERS YET
+  name: Fisherman's Swiftness III 
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff3
+  cooldown: 1
+  energyCost: 6
+  requires: {}
+
+
 ForagingBasic1:
   name: Forager's Insight I
   description: Increase your Healing.

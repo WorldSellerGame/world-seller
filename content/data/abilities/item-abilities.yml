@@ -1,9 +1,9 @@
-#this is the most obnoxious thing in the whole world Im not doing this
+#basic
 
 ItemSelfHeal:
   name: Item Heal
   description: Heal yourself.
-  icon: attack
+  icon: healing
   target: Self
   type: Magical
   stats:
@@ -44,6 +44,25 @@ PotionDamageAOE:
       variance: 0
   effects:
     - effect: SingleTargetAttack
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
+
+### Unique MiningBasic1
+
+ItemSelfHealRandom:
+  name: Item Heal Random
+  description: Heal yourself for an amount. How much? Just eat it and find out.
+  icon: healing
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 1
+  effects:
+    - effect: SingleTargetHeal
   cooldown: 0
   energyCost: 0
   requires: {}
