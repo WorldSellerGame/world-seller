@@ -47,6 +47,7 @@ export class ItemCreatorService {
     }
 
     baseItem.durability = oldItem.durability;
+    baseItem.foodDuration = oldItem.foodDuration;
     baseItem.stats = oldItem.stats;
 
     return baseItem;
