@@ -64,6 +64,25 @@ transforms:
     level: { min: 0, max: 10 }
     gatherTime: 600
 
+
+###
+
+  - startingItem: Pinecone
+    becomes:
+      - name: Pine Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
+  - startingItem: Cedar Seed
+    becomes:
+      - name: Cedar Log
+        weight: 1
+    perGather: { min: 3, max: 10 }
+    level: { min: 0, max: 10 }
+    gatherTime: 600
+
   - startingItem: Acorn
     becomes:
       - name: Oak Log

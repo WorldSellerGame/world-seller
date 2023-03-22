@@ -7,8 +7,8 @@ locations:
     level:
       min: 0
       max: 10
-    gatherTime: 20
-    cooldownTime: 20
+    gatherTime: 10
+    cooldownTime: 10
     resources:
       - name: Pine Log
         weight: 5
