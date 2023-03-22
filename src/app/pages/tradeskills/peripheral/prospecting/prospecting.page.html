@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Prospecting Lv.{{ level$ | async }}</ion-title>
+    <ion-title>Transmutation Lv.{{ level$ | async }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
           <ion-col>
             <ion-card>
               <ion-card-header>
-                <ion-card-title>Prospectable Items</ion-card-title>
+                <ion-card-title>Transmutable Items</ion-card-title>
               </ion-card-header>
 
               <ion-card-content>
@@ -31,7 +31,7 @@
 
                     <ion-button fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
                       [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem">
-                      Prospect
+                      Transmute
                     </ion-button>
                   </ion-item>
                 </ion-list>

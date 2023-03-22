@@ -135,7 +135,7 @@ export class AppComponent implements OnInit, OnDestroy {
       timer: of(0),
       level: this.store.select(state => getMercantileLevel(state)) },
 
-    { title: 'Prospecting',    url: 'prospecting',    icon: 'prospecting',
+    { title: 'Transmutation',    url: 'transmutation',    icon: 'prospecting',
       requirements: 'Discover Stone',
       unlocked: this.store.select(state => state.prospecting.unlocked),
       timer: of(0),
