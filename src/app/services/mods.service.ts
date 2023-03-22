@@ -249,6 +249,68 @@ export class ModsService {
     );
   }
 
+  public async getModDataFromZipData(data: ArrayBuffer) {
+    const zipBlob = new Blob([data]);
+    const blobReader = new BlobReader(zipBlob);
+    const zipReader = new ZipReader(blobReader);
+
+    const zipEntries = await zipReader.getEntries();
+
+    const customizer = (objValue: any, srcValue: any) => {
+      if(isArray(objValue)) {
+        return objValue.concat(srcValue);
+      }
+
+      return srcValue;
+    };
+
+    const modData = {};
+    const icons: Array<{ name: string; data: string }> = [];
+    const themes: Array<{ name: string; data: string }> = [];
+
+    await Promise.all(zipEntries.map(async entry => {
+      const reader = new TextWriter();
+      const entryText = await entry.getData(reader);
+
+      if(entry.filename.includes('.json')) {
+        try {
+          const parsedData = JSON.parse(entryText);
+          mergeWith(modData, parsedData, customizer);
+        } catch {
+          console.error('Failed to parse mod data', entryText);
+        }
+      }
+
+      if(entry.filename.includes('.svg')) {
+        const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
+        if(!filename) {
+          return;
+        }
+
+        icons.push({
+          name: filename,
+          data: entryText
+        });
+      }
+
+      if(entry.filename.includes('.css')) {
+        const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
+        if(!filename) {
+          return;
+        }
+
+        themes.push({
+          name: filename,
+          data: entryText
+        });
+      }
+    }));
+
+    await zipReader.close();
+
+    return { modData, icons, themes };
+  }
+
   public downloadAndCacheMod(mod: IModReturnedData) {
     return this.http.get(
       mod.modfile.download.binary_url,
@@ -257,67 +319,18 @@ export class ModsService {
       }
     ).pipe(
       tap(async (data) => {
-        const zipBlob = new Blob([data]);
-        const blobReader = new BlobReader(zipBlob);
-        const zipReader = new ZipReader(blobReader);
+        const { modData, icons, themes } = await this.getModDataFromZipData(data);
 
-        const zipEntries = await zipReader.getEntries();
-
-        const customizer = (objValue: any, srcValue: any) => {
-          if(isArray(objValue)) {
-            return objValue.concat(srcValue);
-          }
-
-          return srcValue;
+        const savedMod: IGameModStored = {
+          version: mod.modfile.version || '0.0.0',
+          content: modData,
+          icons, themes,
+          name: mod.name,
+          id: mod.id
         };
 
-        const modData = {};
-        const icons: Array<{ name: string; data: string }> = [];
-        const themes: Array<{ name: string; data: string }> = [];
-
-        await Promise.all(zipEntries.map(async entry => {
-          const reader = new TextWriter();
-          const entryText = await entry.getData(reader);
-
-          if(entry.filename.includes('.json')) {
-            try {
-              const parsedData = JSON.parse(entryText);
-              mergeWith(modData, parsedData, customizer);
-            } catch {
-              console.error('Failed to parse mod data', entryText);
-            }
-          }
-
-          if(entry.filename.includes('.svg')) {
-            const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
-            if(!filename) {
-              return;
-            }
-
-            icons.push({
-              name: filename,
-              data: entryText
-            });
-          }
-
-          if(entry.filename.includes('.css')) {
-            const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
-            if(!filename) {
-              return;
-            }
-
-            themes.push({
-              name: filename,
-              data: entryText
-            });
-          }
-        }));
-
-        const savedMod: IGameModStored = { version: mod.modfile.version || '0.0.0', content: modData, icons, themes };
         this.contentService.loadMod(savedMod);
         this.store.dispatch(new CacheMod(mod.id, savedMod));
-
-        await zipReader.close();
       })
     );
 

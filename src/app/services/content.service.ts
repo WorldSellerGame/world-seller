@@ -261,6 +261,10 @@ export class ContentService {
 
   // mod functions
   public loadMod(storedMod: IGameModStored) {
+    const existingMod = this.store.snapshot().mods.mods[storedMod.id];
+    if(existingMod) {
+      this.unloadMod(existingMod);
+    }
 
     const mod = storedMod.content;
     const icons = storedMod.icons;

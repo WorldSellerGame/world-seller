@@ -7,10 +7,10 @@ export class SetModioAuthToken {
 
 export class CacheMod {
   static type = '[Mods] Cache Mod';
-  constructor(public modId: number, public modData: IGameModStored) {}
+  constructor(public modId: number | string, public modData: IGameModStored, public isLocal = false) {}
 }
 
 export class UncacheMod {
   static type = '[Mods] Uncache Mod';
-  constructor(public modId: number) {}
+  constructor(public modId: number | string) {}
 }

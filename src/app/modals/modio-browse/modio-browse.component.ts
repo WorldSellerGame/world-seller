@@ -7,6 +7,8 @@ import { Observable, Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IGameModStored, IModReturnedData, IModReturnedValue } from '../../../interfaces';
 import { ModsState } from '../../../stores';
+import { CacheMod, UncacheMod } from '../../../stores/mods/mods.actions';
+import { ContentService } from '../../services/content.service';
 import { ModsService } from '../../services/mods.service';
 import { NotifyService } from '../../services/notify.service';
 
@@ -18,8 +20,10 @@ import { NotifyService } from '../../services/notify.service';
 export class ModioBrowseComponent implements OnInit, OnDestroy {
 
   @Select(ModsState.mods) mods$!: Observable<Record<number, IGameModStored>>;
+  @Select(ModsState.localMods) localMods$!: Observable<Array<string | number>>;
+
   private modSub!: Subscription;
-  public storedModData: Record<number, IGameModStored> = {};
+  public storedModData: Record<number | string, IGameModStored> = {};
 
   public searchQuery = '';
   public selectedTags: Record<string, boolean> = {};
@@ -85,6 +89,7 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
     private store: Store,
     public modal: ModalController,
     private modsService: ModsService,
+    private contentService: ContentService,
     private notify: NotifyService
   ) { }
 
@@ -204,6 +209,46 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
 
       this.updateMod(mod);
     });
+  }
+
+  importTestMod(e: any, inputEl: HTMLInputElement) {
+    if (!e || !e.target || !e.target.files) {
+      return;
+    }
+
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const zipFile = (ev.target as FileReader).result as ArrayBuffer;
+
+      const finish = () => {
+        inputEl.value = '';
+      };
+
+      const { modData, icons, themes } = await this.modsService.getModDataFromZipData(zipFile);
+
+      const localMod: IGameModStored = {
+        version: 'LOCAL',
+        content: modData,
+        icons, themes,
+        name: file.name,
+        id: `LOCAL-${file.name}`
+      };
+
+      this.contentService.loadMod(localMod);
+      this.store.dispatch(new CacheMod(localMod.id, localMod, true));
+
+      finish();
+    };
+
+    reader.readAsArrayBuffer(file);
+  }
+
+  removeTestMod(mod: IGameModStored) {
+    const existingMod = this.store.snapshot().mods.mods[mod.id];
+    this.contentService.unloadMod(existingMod);
+    this.store.dispatch(new UncacheMod(mod.id));
   }
 
 }

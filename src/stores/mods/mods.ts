@@ -28,6 +28,11 @@ export class ModsState {
   }
 
   @Selector()
+  static localMods(state: IGameMods) {
+    return state.localMods;
+  }
+
+  @Selector()
   static themes(state: IGameMods) {
     return Object.values(state.mods).map(mod => mod.content.themes || []).flat();
   }

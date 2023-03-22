@@ -8,7 +8,10 @@ import { IGameGatherLocation } from './gathering';
 import { IGameRecipe } from './refining';
 
 export interface IGameModStored {
+  name: string;
+  id: string | number;
   version: string;
+
   content: IGameModData;
   icons: Array<{ name: string; data: string }>;
   themes: Array<{ name: string; data: string }>;
@@ -18,7 +21,8 @@ export interface IGameMods {
   version: number;
   modioAuthToken: string;
   modioAuthTokenExpires: number;
-  mods: Record<number, IGameModStored>;
+  mods: Record<string | number, IGameModStored>;
+  localMods: Array<string | number>;
 }
 
 export interface IModSearchOptions {

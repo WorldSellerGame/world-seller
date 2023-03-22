@@ -7,7 +7,8 @@ export const defaultMods: () => IGameMods = () => ({
   version: 0,
   modioAuthToken: '',
   modioAuthTokenExpires: -1,
-  mods: {}
+  mods: {},
+  localMods: []
 });
 
 export function resetMods(ctx: StateContext<IGameMods>) {
@@ -18,15 +19,23 @@ export function setAuthToken(ctx: StateContext<IGameMods>, { token, expiresAt }:
   ctx.patchState({ modioAuthToken: token, modioAuthTokenExpires: expiresAt });
 }
 
-export function cacheMod(ctx: StateContext<IGameMods>, { modId, modData }: CacheMod) {
+export function cacheMod(ctx: StateContext<IGameMods>, { modId, modData, isLocal }: CacheMod) {
   const mods = ctx.getState().mods || {};
   mods[modId] = modData;
-  ctx.patchState({ mods });
+
+  const localMods = ctx.getState().localMods || [];
+  if(isLocal) {
+    localMods.push(modId);
+  }
+
+  ctx.patchState({ mods, localMods });
 }
 
 export function uncacheMod(ctx: StateContext<IGameMods>, { modId }: UncacheMod) {
   const mods = ctx.getState().mods || {};
   delete mods[modId];
 
-  ctx.patchState({ mods });
+  const localMods = (ctx.getState().localMods || []).filter(id => id !== modId);
+
+  ctx.patchState({ mods, localMods });
 }
