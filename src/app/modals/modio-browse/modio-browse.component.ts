@@ -95,7 +95,8 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
 
     this.modsService.getBaseGameInfo().subscribe((data: any) => {
       this.totalMods = data.stats.mods_count_total;
-      this.tags = [...new Set(...data.tag_options.map((options: any) => options.tags))].sort() as string[];
+      const allOptions = data.tag_options.map((options: any) => options.tags).flat();
+      this.tags = [...new Set(allOptions)].sort() as string[];
     });
 
     this.search();
