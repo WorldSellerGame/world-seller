@@ -20,7 +20,7 @@ transforms:
       - name: Apple Wood Log
         weight: 10
       - name: Apple Seed
-        weight: 1      
+        weight: 2
     perGather: { min: 3, max: 10 }
     level: { min: 5, max: 15 }
     gatherTime: 460 
