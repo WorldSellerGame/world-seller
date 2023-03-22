@@ -264,7 +264,7 @@ export class ContentService {
 
     const mod = storedMod.content;
     const icons = storedMod.icons;
-    const themes = storedMod.themes;
+    const themes = storedMod.themes || [];
 
     icons.forEach(icon => {
       this.loadSVGFromString(icon.name, icon.data);
@@ -388,7 +388,7 @@ export class ContentService {
     });
 
     // unload themes
-    mod.themes?.forEach(theme => {
+    mod?.themes?.forEach(theme => {
       const themeEl = document.getElementById(`theme-${theme.name}`);
       themeEl?.remove();
 
