@@ -118,7 +118,7 @@ locations:
     cooldownTime: 700
     resources:
       - name: Wheat
-        weight: 1
+        weight: 20  
     maxWorkers: 1
 
   - name: Stream Bank
