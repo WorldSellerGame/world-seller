@@ -3,8 +3,10 @@ import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { marked } from 'marked';
 import * as credits from '../../assets/content/credits.json';
+import { NotifyInfo } from '../../stores/game/game.actions';
 import * as Migrations from '../../stores/migrations';
 import { defaultOptions } from '../../stores/options/options.functions';
+import { isInElectron } from '../helpers/electron';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +25,14 @@ export class MetaService {
         || this.versionInfo.hash;
   }
 
+  private versionMismatch = false;
+
   private changelogCurrent = '';
   private changelogAll = '';
+
+  public get shouldUpdateVersion() {
+    return this.versionMismatch && isInElectron();
+  }
 
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
@@ -51,6 +59,27 @@ export class MetaService {
       this.changelogCurrent = changelogData;
     } catch {
       console.error('Could not load changelog (current) - probably on local.');
+    }
+
+    this.checkVersionAgainstLiveVersion();
+  }
+
+  private async checkVersionAgainstLiveVersion() {
+    if(!isInElectron()) {
+      return;
+    }
+
+    try {
+      const liveVersionFile = await fetch('https://play.worldsellergame.com/assets/version.json');
+      const liveVersionData = await liveVersionFile.json();
+
+      if(this.versionInfo.hash !== liveVersionData.hash) {
+        this.versionMismatch = true;
+        this.store.dispatch(new NotifyInfo(`Version ${liveVersionData.tag} is available! Head to settings to update.`));
+      }
+
+    } catch {
+      console.error('Could not load live version data. Probably not a big deal.');
     }
   }
 
