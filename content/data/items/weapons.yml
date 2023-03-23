@@ -19,7 +19,7 @@ Copper Sword:
   description: An arming sword made of Copper.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: sword
@@ -32,7 +32,7 @@ Copper Dagger:
   description: A dagger made of Copper.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: knife
@@ -46,7 +46,7 @@ Iron Sword:
   description: An arming sword made of Iron.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: sword
@@ -59,7 +59,7 @@ Iron Dagger:
   description: A dagger made of Iron.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: knife
@@ -75,7 +75,7 @@ Goblin Staff:
   description: A staff stolen shamelessly from a goblin.
   type: Weapon
   category: Weapons
-  rarity: Uncommon
+  rarity: Rare
   durability: 50
   value: 10
   icon: skull-staff

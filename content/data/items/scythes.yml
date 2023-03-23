@@ -17,7 +17,7 @@ Copper Sickle:
   description: A scythe made of Copper.
   type: Scythe
   category: Tools
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: scythe
@@ -30,7 +30,7 @@ Iron Sickle:
   description: A scythe made of Iron.
   type: Scythe
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: scythe

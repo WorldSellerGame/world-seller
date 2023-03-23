@@ -31,14 +31,14 @@ Mortar: #High Heat Mortar later
   name: Mortar
   description: Good for building, not too good for throwing.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'powder'
 
 Copper Ingot:
   name: Copper Ingot
   description: Refined copper ore ready to be shaped.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'ingot'
 
 Fire Brick:
@@ -52,7 +52,7 @@ Iron Ingot:
   name: Iron Ingot
   description: Refined iron ore ready to be shaped.
   category: Refined Materials
-  rarity: Uncommon
+  rarity: Rare
   icon: 'ingot'
 
 Burning Oil: #likely will have more ins for making burning oil
@@ -99,7 +99,7 @@ Metal Construction Tools:
   name: Metal Construction Tools
   description: A set of tools for making structures and otherwise, but metal.
   category: Crafting Tables
-  rarity: Rare
+  rarity: Uncommon
   icon: 'hammer-nails'
 
 Iron Tool Bench:
@@ -113,7 +113,7 @@ Iron Construction Tools:
   name: Iron Construction Tools
   description: A set of tools for making structures and otherwise, but Iron.
   category: Crafting Tables
-  rarity: Uncommon
+  rarity: Rare
   icon: 'hammer-nails'
 
 #refining
@@ -129,21 +129,21 @@ Brick Oven: # Also used in Cooking
   name: Brick Oven
   description: An exceptionally useful pice of equipment, looks quite nice as well.
   category: Crafting Tables
-  rarity: Common
+  rarity: Uncommon
   icon: 'oven'
 
 Furnace:
   name: Furnace
   description: Hot enough to melt metal.
   category: Crafting Tables
-  rarity: Uncommon
+  rarity: Rare
   icon: 'oven'
 
 Blast Furnace:
   name: Blast Furnace
   description: Exceptionally hot burning furnace for very tough materials.
   category: Crafting Tables
-  rarity: Rare
+  rarity: Epic
   icon: 'oven'
 
 #cooking
@@ -277,5 +277,5 @@ Iron Jewelry Tools:
   name: Iron Jewelry Tools
   description: A set of tools appropriate for most normal metals and stones.
   category: Crafting Tables
-  rarity: Uncommon
+  rarity: Rare
   icon: 'flat-hammer'

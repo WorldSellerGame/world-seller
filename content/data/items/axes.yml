@@ -17,7 +17,7 @@ Copper Axe:
   description: An axe made of Copper.
   type: Axe
   category: Tools
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: axe
@@ -30,7 +30,7 @@ Iron Axe:
   description: An axe made of Iron.
   type: Axe
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: axe

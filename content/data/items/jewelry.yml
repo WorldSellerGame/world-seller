@@ -42,7 +42,7 @@ Copper Ring:
   description: A plain Copper Ring.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'ring'
@@ -54,7 +54,7 @@ Copper Tongue Piercing:
   description: A plain Copper Piercing.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'tongue-piercing'
@@ -68,7 +68,7 @@ Bone Belt:
   description: Belt strung with Bone.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'bone-string'
@@ -80,7 +80,7 @@ Bone Anklet:
   description: Anklet strung with Bone.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'bone-string'
@@ -92,7 +92,7 @@ Quartz Copper Ring:
   description: Cut Quartz in a Copper Ring.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'ring-with-stone'
@@ -104,7 +104,7 @@ Quartz Copper Tongue Piercing:
   description: Cut Quartz in a Copper Piercing.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Uncommon
   durability: -1
   value: 10
   icon: 'tongue-piercing'
@@ -118,7 +118,7 @@ Iron Ring:
   description: A plain Iron Ring.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'ring'
@@ -130,7 +130,7 @@ Iron Tongue Piercing:
   description: A plain Iron Piercing.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'tongue-piercing'
@@ -142,7 +142,7 @@ Boar Tusk Belt:
   description: Belt strung with Boar Tusk.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'bone-string'
@@ -154,7 +154,7 @@ Boar Tusk Anklet:
   description: Anklet strung with Boar Tusk.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'bone-string'
@@ -166,7 +166,7 @@ Quartz Iron Ring:
   description: Cut Quartz set into an Iron Ring.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'ring-with-stone'
@@ -178,7 +178,7 @@ Quartz Iron Tongue Piercing:
   description: Cut Quartz set into an Iron Piercing.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Rare
   durability: -1
   value: 10
   icon: 'tongue-piercing'
@@ -190,7 +190,7 @@ Tanzanite Iron Ring:
   description: Cut Tanzanite set into an Iron Ring.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Epic
   durability: -1
   value: 10
   icon: 'ring-with-stone'
@@ -202,7 +202,7 @@ Tanzanite Iron Tongue Piercing:
   description: Cut Tanzanite set into an Iron Piercing.
   type: Jewelry
   category: Jewelry
-  rarity: Common
+  rarity: Epic
   durability: -1
   value: 10
   icon: 'tongue-piercing'

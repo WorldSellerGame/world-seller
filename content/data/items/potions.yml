@@ -38,8 +38,7 @@ Potion of Fire:
   durability: 1
   value: 3
   icon: fire-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyFire1
 
@@ -52,8 +51,7 @@ Potion of Minor Poison:
   durability: 1
   value: 3
   icon: toxic-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyPoison1 #small poison effect
 
@@ -66,8 +64,7 @@ Potion of Simple Blinding:
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: CookingBasic1 #blind that bitch lower their accuracy and take their currency
 
@@ -76,7 +73,7 @@ Potion of Minor Healing:
   description: Tasty and red like it should be.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: heart-bottle
@@ -90,12 +87,11 @@ Potion of Small Speed:
   description: Moving faster is generally good.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: FishingBasic1 #Small initiative increase 
 
@@ -104,12 +100,11 @@ Potion of Minor Strength:
   description: Strength to smite your enemies, or, you know, hit them with a big stick.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: HuntingBasic2 #small damage increase
 
@@ -118,12 +113,11 @@ Potion of Minor Magic Maximize:
   description: Increase magic potential.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyEnergyBuff1 #small magic increase (maybe lump together with pot o strength?)
 
@@ -132,12 +126,11 @@ Potion of Weakness:
   description: Turn their arms to noodles and their mouths into the round type of noodles.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: CookingBasic2 #Lower damage dealt (all types)
 
@@ -146,12 +139,11 @@ Potion of Minor Mud:
   description: Lets your enemies flow like muck. Will cover them in way more than should fit in that bottle.
   type: Potion
   category: Potions
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: WeavingBasic1 #Slows a little bit
 
@@ -209,8 +201,7 @@ Mages Little Helper:
   durability: 1
   value: 3
   icon: bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyEnergyBuff1 #Magic up + Speed Up
     - effect: FishingBasic2
@@ -220,12 +211,11 @@ Poison of Leaden Limbs: ##
   description: Poison that weakens the victims ability to fight.
   type: Potion
   category: Potions
-  rarity: Uncommon
+  rarity: Rare
   durability: 1
   value: 3
   icon: toxic-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: CookingBasic2 #Poision + Weak
     - effect: ApplyPoison2
@@ -235,7 +225,7 @@ Warriors Draught:
   description: Helpful for any fighter in pinch.
   type: Potion
   category: Potions
-  rarity: Uncommon
+  rarity: Rare
   durability: 1
   value: 3
   icon: heart-bottle
@@ -250,12 +240,11 @@ Dazzler:
   description: Helps you escape in a cloud of glitter. #Escape (not sure if guaranteed or just high percent)
   type: Potion
   category: Potions
-  rarity: Uncommon
+  rarity: Rare
   durability: 1
   value: 3
   icon: spiral-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: UtilityEscape #escape mechanic
 
@@ -267,7 +256,7 @@ Potion of Compressed Fire:
   description: Kaboom.
   type: Potion
   category: Potions
-  rarity: Rare
+  rarity: Epic
   durability: 1
   value: 3
   icon: fire-bottle
@@ -281,12 +270,11 @@ Confusion Concoction:
   description: Uh oh, it's kicking in. Oh wait no... its expired
   type: Potion
   category: Potions
-  rarity: Rare
+  rarity: Epic
   durability: 1
   value: 3
   icon: spiral-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyDoom1 #Random target selection and random ability selection (I wonder if there would be a super niche self use case)
     - effect: AlchemyBasic2
@@ -296,12 +284,11 @@ Minthy's Sleep Medication: ###
   description: "Good night"
   type: Potion
   category: Potions
-  rarity: Rare
+  rarity: Epic
   durability: 1
   value: 3
   icon: toxic-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyPoison3 #Poision
 
@@ -312,11 +299,10 @@ Oil Of Mortality:
   description: A poison named for its humbling effect. Often used on victims who survived a previous attempt.
   type: Potion
   category: Potions
-  rarity: Epic
+  rarity: Legendary
   durability: 1
   value: 3
   icon: toxic-bottle
-  stats:
-    attack: {}
+  stats: {}
   effects:
     - effect: ApplyPoison4 #Poison

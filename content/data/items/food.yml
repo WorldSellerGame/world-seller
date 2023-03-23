@@ -104,7 +104,7 @@ Baked Fallfish:
   description: Baked is healthier then fried. A bit more sad though.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: cooked-fish
@@ -120,7 +120,7 @@ Bunny Stew:
   description: A solid, well rounded, tasty meal.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: hot-meal
@@ -135,7 +135,7 @@ Candied Apple:
   description: A tasty treat made by dipping an apple in caramelized sugar.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: apple
@@ -153,7 +153,7 @@ Duck Roast:
   description: Roast Duck is a treat and quite filling.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: cooked-bird
@@ -168,7 +168,7 @@ Fried Frog Legs:
   description: Though claimed to be a delicacy, they do taste like water chicken.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: frog-foot
@@ -184,7 +184,7 @@ Cooked Trout:
   description: Perhaps best enjoyed now and then lest you want to affect the trout population.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: cooked-fish
@@ -201,7 +201,7 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   description: Tasty jam thats smooth... maybe a little too smooth.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: jar
@@ -217,7 +217,7 @@ Raspberry Jam:
   description: Tasty jam thats thick... maybe a little too thick.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: jar
@@ -234,7 +234,7 @@ Bread:
   description: Warm, flaky bread is hard to beat and easy to make in large quantities.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: bread
@@ -249,7 +249,7 @@ Baked Breaded Bass:
   description: Reminds you of times past. A more filling way to prepare fish and inexpensive to boot.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: cooked-fish
@@ -265,7 +265,7 @@ Roast Turkey:
   description: A tad labor intensive, but undeniably a heavenly feast.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
   value: 1
   icon: cooked-bird
@@ -275,14 +275,14 @@ Roast Turkey:
     - effect: ItemSelfHeal
   foodDuration: 3
 
-#
+# 
 
 Venison Steak:
   name: Venison Steak
   description: Lean meat with a unique taste.  
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: hot-meal
@@ -298,7 +298,7 @@ Apple Pie:
   description: A mainstay dessert whose warm smell makes it hard to hold back, with many a mouths burned from pie too hot.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: pie
@@ -315,7 +315,7 @@ Pumpkin Pie:
   description: Made of pumpkins, nutmeg, and deliciousness. #I couldn't figure out how to italicize this (you can't)
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: pie
@@ -331,7 +331,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   description: Easy to make in large batches. They can last quite a while but are exceptional when warm.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: cookie
@@ -349,7 +349,7 @@ Mixed Fruit Juice:
   description: Hits the spot - any time, any where.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: cup
@@ -369,7 +369,7 @@ Duck Eggs Benedict:
   description: One of the most complicated ways to prepare two eggs.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: hot-meal
@@ -385,7 +385,7 @@ Honey Ham:
   description: A feast to be sure. Rich, succulent meat with a diverse flavor.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: hot-meal
@@ -400,7 +400,7 @@ Spicy Catfish Stew:
   description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
   value: 1
   icon: hot-meal
@@ -419,7 +419,7 @@ Pompano Ceviche:
   description: Refreshing and filling, this dish is unique and undeniably a treat.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
   value: 1
   icon: meal
@@ -435,7 +435,7 @@ Banana Bread:
   description: Lush, moist, sweet, and filling. 
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
   value: 1
   icon: bread
@@ -452,7 +452,7 @@ Elk Jerky:
   description: Long lasting and easy to store in large amounts. Initially designed by necessity, but still often made for its flavour.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
   value: 1
   icon: meal

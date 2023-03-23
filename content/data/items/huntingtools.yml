@@ -17,7 +17,7 @@ Copper Spear:
   description: A hunting spear made of Copper.
   type: HuntingTool
   category: Tools
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: spear
@@ -30,7 +30,7 @@ Iron Spear:
   description: A hunting spear made of Iron.
   type: HuntingTool
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: spear

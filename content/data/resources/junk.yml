@@ -8,14 +8,14 @@ Old Boot:
 
 Curse:
   name: Curse
-  description: Used to do punish you for things.
+  description: Yeah this isn't good. Looks like its not going away either.
   category: Miscellaneous
   rarity: Junk
   icon: 'curse'
 
 Guano:
   name: Guano
-  description: Used to do nothing, suffer you dumbass.
+  description: Its poop, what are you gonna do with poop?
   category: Miscellaneous
   rarity: Junk
   icon: 'poo'

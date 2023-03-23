@@ -16,7 +16,7 @@ Fur Boots:
   description: Boots with the fur.
   type: FootArmor
   category: Armor
-  rarity: Common
+  rarity: Uncommon
   durability: 10
   value: 10
   icon: boots
@@ -28,7 +28,7 @@ Linen Boots:
   description: Boots made of linen cloth.
   type: FootArmor
   category: Armor
-  rarity: Common
+  rarity: Rare
   durability: 15
   value: 10
   icon: boots
@@ -40,7 +40,7 @@ Leather Boots:
   description: Boots made of leather.
   type: FootArmor
   category: Armor
-  rarity: Common
+  rarity: Epic
   durability: 20
   value: 10
   icon: boots

@@ -17,7 +17,7 @@ Oak Fishing Rod:
   description: A stout fishing rod.
   type: FishingRod
   category: Tools
-  rarity: Common
+  rarity: Unommon
   durability: 15
   value: 10
   icon: fishing-pole
@@ -30,7 +30,7 @@ Ash Fishing Rod:
   description: A nice fishing rod.
   type: FishingRod
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: fishing-pole

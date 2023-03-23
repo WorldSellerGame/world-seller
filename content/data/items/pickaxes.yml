@@ -17,7 +17,7 @@ Copper Pickaxe:
   description: A pickaxe made of Copper.
   type: Pickaxe
   category: Tools
-  rarity: Common
+  rarity: Uncommon
   durability: 15
   value: 10
   icon: pickaxe
@@ -30,7 +30,7 @@ Iron Pickaxe:
   description: A pickaxe made of Iron.
   type: Pickaxe
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
   value: 10
   icon: pickaxe

@@ -16,7 +16,7 @@ Fur Pants:
   description: Pants made of Fur.
   type: LegArmor
   category: Armor
-  rarity: Common
+  rarity: Uncommon
   durability: 10
   value: 10
   icon: pants
@@ -28,7 +28,7 @@ Linen Pants:
   description: Pants made of linen cloth.
   type: LegArmor
   category: Armor
-  rarity: Common
+  rarity: Rare
   durability: 15
   value: 10
   icon: pants
@@ -40,7 +40,7 @@ Leather Pants:
   description: Pants made of Leather.
   type: LegArmor
   category: Armor
-  rarity: Common
+  rarity: Epic
   durability: 20
   value: 10
   icon: pants
