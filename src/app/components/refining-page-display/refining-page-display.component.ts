@@ -2,7 +2,10 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameResource, IGameWorkersRefining } from '../../../interfaces';
+import {
+  IGameItem, IGameRecipe, IGameRefiningOptions,
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining
+} from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
