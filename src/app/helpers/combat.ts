@@ -179,7 +179,7 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           }
 
           case 'energyBonus': {
-            character.maxEnergy = Math.floor(character.maxHealth + bonusValue);
+            character.maxEnergy = Math.floor(character.maxEnergy + bonusValue);
             character.currentEnergy = Math.floor(character.currentEnergy + bonusValue);
             break;
           }
