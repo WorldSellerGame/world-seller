@@ -15,6 +15,7 @@ export interface IGameModStored {
   content: IGameModData;
   icons: Array<{ name: string; data: string }>;
   themes: Array<{ name: string; data: string }>;
+  sounds: Record<string, string>;
 }
 
 export interface IGameMods {

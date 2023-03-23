@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
-import { BlobReader, TextWriter } from '@zip.js/zip.js';
+import { BlobReader, TextWriter, Uint8ArrayWriter, ZipReader } from '@zip.js/zip.js';
 import { isArray, mergeWith } from 'lodash';
 import { tap } from 'rxjs';
 
-import { ZipReader } from '@zip.js/zip.js';
 import { environment } from '../../environments/environment';
 import { IGameModStored, IModReturnedData, IModSearchOptions } from '../../interfaces';
 import { UpdateAllItems } from '../../stores/game/game.actions';
@@ -267,10 +266,16 @@ export class ModsService {
     const modData = {};
     const icons: Array<{ name: string; data: string }> = [];
     const themes: Array<{ name: string; data: string }> = [];
+    const sounds: Record<string, string> = {};
 
     await Promise.all(zipEntries.map(async entry => {
       const reader = new TextWriter();
       const entryText = await entry.getData(reader);
+
+      const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
+      if(!filename) {
+        return;
+      }
 
       if(entry.filename.includes('.json')) {
         try {
@@ -282,11 +287,6 @@ export class ModsService {
       }
 
       if(entry.filename.includes('.svg')) {
-        const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
-        if(!filename) {
-          return;
-        }
-
         icons.push({
           name: filename,
           data: entryText
@@ -294,21 +294,32 @@ export class ModsService {
       }
 
       if(entry.filename.includes('.css')) {
-        const filename = entry.filename?.split(/[\\/]/g)?.pop()?.split('.')[0];
-        if(!filename) {
-          return;
-        }
-
         themes.push({
           name: filename,
           data: entryText
         });
       }
+
+      if(entry.filename.includes('.wav')) {
+        const uint8reader = new Uint8ArrayWriter();
+        const uint8data = await entry.getData(uint8reader);
+
+        const chunkSize = 0x8000;
+        const length = uint8data.length;
+
+        let result = '';
+        for(let index = 0; index < length; index += chunkSize) {
+          const slice = uint8data.subarray(index, Math.min(index + chunkSize, length));
+          result += String.fromCharCode.apply(null, slice as unknown as number[]);
+        }
+
+        sounds[filename] = btoa(result);
+      }
     }));
 
     await zipReader.close();
 
-    return { modData, icons, themes };
+    return { modData, icons, themes, sounds };
   }
 
   public downloadAndCacheMod(mod: IModReturnedData) {
@@ -319,13 +330,14 @@ export class ModsService {
       }
     ).pipe(
       tap(async (data) => {
-        const { modData, icons, themes } = await this.getModDataFromZipData(data);
+        const { modData, icons, themes, sounds } = await this.getModDataFromZipData(data);
 
         const savedMod: IGameModStored = {
           version: mod.modfile.version || '0.0.0',
           content: modData,
           icons, themes,
           name: mod.name,
+          sounds,
           id: mod.id
         };
 

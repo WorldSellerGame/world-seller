@@ -19,7 +19,7 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 * `window.gainItem(itemName, quantity)` - gain an item in X quantity. For items, quantity should be 1. Resources can be set to any value.
 * `window.discover(itemOrResourceName)` - discover an item or resource. Can make things show up quicker on the exchange, or anything else that requires discovery.
 * `window.fightThreat(threatName)` - begin combat against a specific threat.
-* `window.applyCombatEffectToPlayer)` - add a specifically named effect to the player in combat.
+* `window.applyCombatEffectToPlayer(effect)` - add a specifically named effect to the player in combat.
 * `window.gainLevel(tradeskill, levels)` - gain a number of levels for a tradeskill (levels can be negative).
 
 ### Reloading Game Content

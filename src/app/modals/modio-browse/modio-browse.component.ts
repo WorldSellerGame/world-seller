@@ -226,13 +226,14 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
         inputEl.value = '';
       };
 
-      const { modData, icons, themes } = await this.modsService.getModDataFromZipData(zipFile);
+      const { modData, icons, themes, sounds } = await this.modsService.getModDataFromZipData(zipFile);
 
       const localMod: IGameModStored = {
         version: 'LOCAL',
         content: modData,
         icons, themes,
         name: file.name,
+        sounds,
         id: `LOCAL-${file.name}`
       };
 

@@ -15,6 +15,14 @@ mod.zip
   - icons
     - myicon1.svg
     - myicon2.svg
+
+  - sfx
+    - sound-1.wav
+    - sound-2.wav
+
+  - themes
+    - file1.css
+    - file2.css
 ```
 
 ### Content
@@ -42,7 +50,9 @@ A JSON file can optionally have any of the following properties:
 
   "enemies": Map<EnemyName, EnemyData>,
   "threats": Map<ThreatName, ThreatData>,
-  "dungeons": Map<DungeonName, DungeonData>
+  "dungeons": Map<DungeonName, DungeonData>,
+
+  "themes": Array<{ name: string, value: string }>
 }
 ```
 
@@ -233,6 +243,24 @@ Dungeons require:
 ### Icons
 
 Icons must be SVGs (at this time). When adding an SVG, please make sure there are no `fill` attributes in it - this will make it so the browser can style them correctly to match the theme of the game.
+
+### Themes
+
+Themes must use CSS, and should encapsulate their variables and other global changes under the global theme class. See the Hackerman theme for an example.
+
+### Sound Effects
+
+Sound effects must be named the same as the what they are in the game. They can't be configured otherwise, and must match to override the default sound effects. The list of sounds in the game are as follows:
+
+- `action-sell.wav`
+- `combat-effect.wav`
+- `combat-hit-enemy.wav`
+- `combat-hit-player.wav`
+- `combat-lose.wav`
+- `combat-win.wav`
+- `dungeon-win.wav`
+- `tradeskill-finish.wav`
+- `tradeskill-start.wav`
 
 ### Zip File
 
