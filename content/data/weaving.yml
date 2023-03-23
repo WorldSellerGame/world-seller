@@ -139,7 +139,7 @@ recipes:
     level: { min: 0, max: 10 }
     craftTime: 60
     ingredients:
-      Yarn: 1
+      Yarn: 2
     require:
       - Knitting Needles
     preserve:
@@ -175,7 +175,7 @@ recipes:
     level: { min: 0, max: 10 }
     craftTime: 90
     ingredients:
-      Yarn: 3
+      Yarn: 5
     require:
       - Knitting Needles
     preserve:
@@ -202,7 +202,7 @@ recipes:
     level: { min: 5, max: 15 }
     craftTime: 60
     ingredients:
-      Fur: 1
+      Fur: 2
       Yarn: 1
     require:
       - Sewing Kit
@@ -241,7 +241,7 @@ recipes:
     level: { min: 5, max: 15 }
     craftTime: 90
     ingredients:
-      Fur: 3
+      Fur: 5
       Yarn: 1
     require:
       - Sewing Kit
@@ -268,7 +268,7 @@ recipes:
     level: { min: 10, max: 20 }
     craftTime: 60
     ingredients:
-      Linen Cloth: 1
+      Linen Cloth: 2
     require:
       - Sewing Kit
     preserve:
@@ -304,7 +304,7 @@ recipes:
     level: { min: 10, max: 20 }
     craftTime: 90
     ingredients:
-      Linen Cloth: 3
+      Linen Cloth: 5
     require:
       - Sewing Kit
     preserve:
@@ -331,7 +331,7 @@ recipes:
     level: { min: 15, max: 30}
     craftTime: 60
     ingredients:
-      Leather: 1
+      Leather: 2
       Twine: 1
     require:
       - Metal Sewing Kit
@@ -370,7 +370,7 @@ recipes:
     level: { min: 15, max: 25 }
     craftTime: 90
     ingredients:
-      Leather: 3
+      Leather: 5
       Twine: 1
     require:
       - Metal Sewing Kit

@@ -18,7 +18,7 @@ Fur Hat:
   category: Armor
   rarity: Uncommon
   durability: 10
-  value: 10
+  value: 50
   icon: hat
   stats:
     armor: 3
@@ -30,7 +30,7 @@ Linen Hat:
   category: Armor
   rarity: Rare
   durability: 15
-  value: 10
+  value: 125
   icon: hat
   stats:
     speed: 2
@@ -42,7 +42,7 @@ Leather Hat:
   category: Armor
   rarity: Epic
   durability: 20
-  value: 10
+  value: 250
   icon: hat
   stats:
     armor: 5
@@ -57,7 +57,7 @@ Goblin Crown: #this bih already enchanted
   category: Armor
   rarity: Legendary
   durability: 10
-  value: 10
+  value: 250
   icon: goblin-crown
   givesAbility: GoblinLord1
   stats:

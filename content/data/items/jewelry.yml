@@ -8,7 +8,7 @@ Dandelion Crown:
   category: Jewelry
   rarity: Common
   durability: 5
-  value: 10
+  value: 5
   icon: 'ring'
   stats:
     {}
@@ -20,7 +20,7 @@ Braided Belt:
   category: Jewelry
   rarity: Common
   durability: -1
-  value: 10
+  value: 20
   icon: 'ring'
   stats:
     armor: 1
@@ -44,7 +44,7 @@ Copper Ring:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 50
   icon: 'ring'
   stats:
     {}
@@ -56,7 +56,7 @@ Copper Tongue Piercing:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 50
   icon: 'tongue-piercing'
   stats:
     {}
@@ -70,7 +70,7 @@ Bone Belt:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 200
   icon: 'bone-string'
   stats:
     armor: 1
@@ -82,7 +82,7 @@ Bone Anklet:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 100
   icon: 'bone-string'
   stats:
     {}
@@ -94,7 +94,7 @@ Quartz Copper Ring:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 200
   icon: 'ring-with-stone'
   stats:
     {}
@@ -106,7 +106,7 @@ Quartz Copper Tongue Piercing:
   category: Jewelry
   rarity: Uncommon
   durability: -1
-  value: 10
+  value: 200
   icon: 'tongue-piercing'
   stats:
     {}
@@ -120,7 +120,7 @@ Iron Ring:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 250
   icon: 'ring'
   stats:
     {}
@@ -132,7 +132,7 @@ Iron Tongue Piercing:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 250
   icon: 'tongue-piercing'
   stats:
     {}
@@ -144,7 +144,7 @@ Boar Tusk Belt:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 400
   icon: 'bone-string'
   stats:
     armor: 1
@@ -156,7 +156,7 @@ Boar Tusk Anklet:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 200
   icon: 'bone-string'
   stats:
     {}
@@ -168,7 +168,7 @@ Quartz Iron Ring:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 300
   icon: 'ring-with-stone'
   stats:
     {}
@@ -180,7 +180,7 @@ Quartz Iron Tongue Piercing:
   category: Jewelry
   rarity: Rare
   durability: -1
-  value: 10
+  value: 300
   icon: 'tongue-piercing'
   stats:
     {}
@@ -192,7 +192,7 @@ Tanzanite Iron Ring:
   category: Jewelry
   rarity: Epic
   durability: -1
-  value: 10
+  value: 600
   icon: 'ring-with-stone'
   stats:
     {}
@@ -204,7 +204,7 @@ Tanzanite Iron Tongue Piercing:
   category: Jewelry
   rarity: Epic
   durability: -1
-  value: 10
+  value: 600
   icon: 'tongue-piercing'
   stats:
     {}

@@ -9,7 +9,7 @@ Pine Nuts:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 5
   icon: meal
   oocHealth: 5
   oocEnergy: 5
@@ -28,7 +28,7 @@ Cooked Cropfish:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 5
   icon: cooked-fish
   stats:
     healing: 3
@@ -45,7 +45,7 @@ Barbecued Squirrel:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 10
   icon: hot-meal
   stats:
     healing: 5 
@@ -60,7 +60,7 @@ Vegetable Soup:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 10
   icon: hot-meal
   stats:
     healing: 5 
@@ -77,7 +77,7 @@ Roast Bunny:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 15
   icon: hot-meal
   stats:
     healing: 7
@@ -92,7 +92,7 @@ Pan Fried Panfish:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 15
   icon: cooked-fish
   stats:
     healing: {}
@@ -109,7 +109,7 @@ Baked Fallfish:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 25
   icon: cooked-fish
   stats:
     healing: 2
@@ -125,7 +125,7 @@ Bunny Stew:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 25
   icon: hot-meal
   stats:
     healing: 10
@@ -140,7 +140,7 @@ Candied Apple:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: apple
   stats:
     healing: 2
@@ -158,7 +158,7 @@ Duck Roast:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: cooked-bird
   stats:
     healing: 12
@@ -173,7 +173,7 @@ Fried Frog Legs:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: frog-foot
   stats:
     healing: 3
@@ -189,7 +189,7 @@ Cooked Trout:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: cooked-fish
   stats:
     healing: 5 
@@ -206,7 +206,7 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: jar
   stats:
     healing: {}
@@ -222,7 +222,7 @@ Raspberry Jam:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: jar
   stats:
     healing: {}
@@ -239,7 +239,7 @@ Bread:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: bread
   stats:
     healing: 10
@@ -254,7 +254,7 @@ Baked Breaded Bass:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: cooked-fish
   stats:
     healing: 10
@@ -270,7 +270,7 @@ Roast Turkey:
   category: Foods
   rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: cooked-bird
   stats:
     healing: 18
@@ -287,7 +287,7 @@ Venison Steak:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 100
   icon: hot-meal
   stats:
     healing: 15
@@ -303,7 +303,7 @@ Apple Pie:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 150
   icon: pie
   stats:
     healing: 10
@@ -320,7 +320,7 @@ Pumpkin Pie:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 150
   icon: pie
   stats:
     healing: 10
@@ -336,7 +336,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 100
   icon: cookie
   stats:
     healing: 3 
@@ -354,7 +354,7 @@ Mixed Fruit Juice:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 250
   icon: cup
   stats:
     healing: 5 
@@ -374,7 +374,7 @@ Duck Eggs Benedict:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 500
   icon: hot-meal
   stats:
     healing: 20
@@ -390,7 +390,7 @@ Honey Ham:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 300
   icon: hot-meal
   stats:
     healing: 25
@@ -405,7 +405,7 @@ Spicy Catfish Stew:
   category: Foods
   rarity: Rare
   durability: 1
-  value: 1
+  value: 300
   icon: hot-meal
   stats:
     healing: 15
@@ -424,7 +424,7 @@ Pompano Ceviche:
   category: Foods
   rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: meal
   stats:
     healing: 7
@@ -440,7 +440,7 @@ Banana Bread:
   category: Foods
   rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: bread
   stats:
     healing: 10
@@ -457,7 +457,7 @@ Elk Jerky:
   category: Foods
   rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: meal
   stats:
     healing: 25

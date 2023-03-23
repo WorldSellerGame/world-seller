@@ -21,7 +21,7 @@ Copper Sword:
   category: Weapons
   rarity: Uncommon
   durability: 15
-  value: 10
+  value: 100
   icon: sword
   givesAbility: Cleave
   stats:
@@ -34,7 +34,7 @@ Copper Dagger:
   category: Weapons
   rarity: Uncommon
   durability: 15
-  value: 10
+  value: 50
   icon: knife
   givesAbility: Stab
   stats:
@@ -47,7 +47,7 @@ Iron Sword:
   type: Weapon
   category: Weapons
   rarity: Rare
-  durability: 20
+  durability: 500
   value: 10
   icon: sword
   givesAbility: Risky Swing
@@ -60,7 +60,7 @@ Iron Dagger:
   type: Weapon
   category: Weapons
   rarity: Rare
-  durability: 20
+  durability: 250
   value: 10
   icon: knife
   givesAbility: Hemorrhaging Stab
@@ -76,7 +76,7 @@ Goblin Staff:
   type: Weapon
   category: Weapons
   rarity: Rare
-  durability: 50
+  durability: 100
   value: 10
   icon: skull-staff
   givesAbility: GoblinStaffHeal1

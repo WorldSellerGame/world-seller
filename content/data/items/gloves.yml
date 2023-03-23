@@ -18,7 +18,7 @@ Fur Gloves:
   category: Armor
   rarity: Uncommon
   durability: 10
-  value: 10
+  value: 50
   icon: gloves
   stats:
     armor: 3
@@ -30,7 +30,7 @@ Linen Gloves:
   category: Armor
   rarity: Rare
   durability: 15
-  value: 10
+  value: 125
   icon: gloves
   stats:
     speed: 2
@@ -42,7 +42,7 @@ Leather Gloves:
   category: Armor
   rarity: Epic
   durability: 20
-  value: 10
+  value: 250
   icon: gloves
   stats:
     armor: 5
@@ -57,7 +57,7 @@ Mummy Wraps: #this bih already enchanted
   category: Armor
   rarity: Legendary
   durability: 10
-  value: 10
+  value: 500
   icon: hand-wrap
   givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
   stats:

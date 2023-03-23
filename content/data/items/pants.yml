@@ -6,7 +6,7 @@ Knitted Pants:
   category: Armor
   rarity: Common
   durability: 5
-  value: 10
+  value: 20
   icon: pants
   stats:
     armor: 1
@@ -17,7 +17,7 @@ Fur Pants:
   type: LegArmor
   category: Armor
   rarity: Uncommon
-  durability: 10
+  durability: 100
   value: 10
   icon: pants
   stats:
@@ -30,7 +30,7 @@ Linen Pants:
   category: Armor
   rarity: Rare
   durability: 15
-  value: 10
+  value: 250
   icon: pants
   stats:
     speed: 2
@@ -42,7 +42,7 @@ Leather Pants:
   category: Armor
   rarity: Epic
   durability: 20
-  value: 10
+  value: 500
   icon: pants
   stats:
     armor: 5

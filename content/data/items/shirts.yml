@@ -6,7 +6,7 @@ Knitted Shirt:
   category: Armor
   rarity: Common
   durability: 5
-  value: 10
+  value: 20
   icon: shirt
   stats:
     armor: 1
@@ -18,7 +18,7 @@ Fur Shirt:
   category: Armor
   rarity: Uncommon
   durability: 10
-  value: 10
+  value: 100
   icon: shirt
   stats:
     armor: 3
@@ -30,7 +30,7 @@ Linen Shirt:
   category: Armor
   rarity:  Rare
   durability: 15
-  value: 10
+  value: 250
   icon: shirt
   stats:
     speed: 2
@@ -42,7 +42,7 @@ Leather Shirt:
   category: Armor
   rarity: Epic
   durability: 20
-  value: 10
+  value: 500
   icon: shirt
   stats:
     armor: 5

@@ -7,7 +7,7 @@ Dandelion Tea:
   category: Foods
   rarity: Common
   durability: 1
-  value: 3
+  value: 5
   icon: hot-cup
   stats:
     healing: 5 #Cure minor ailments
@@ -22,7 +22,7 @@ Pine Needle Tea:
   category: Potions
   rarity: Common
   durability: 1
-  value: 3
+  value: 5
   icon: hot-cup
   stats:
     healing: 5
@@ -36,7 +36,7 @@ Potion of Fire:
   category: Potions
   rarity: Common
   durability: 1
-  value: 3
+  value: 15
   icon: fire-bottle
   stats: {}
   effects:
@@ -49,7 +49,7 @@ Potion of Minor Poison:
   category: Potions
   rarity: Common
   durability: 1
-  value: 3
+  value: 10
   icon: toxic-bottle
   stats: {}
   effects:
@@ -62,7 +62,7 @@ Potion of Simple Blinding:
   category: Potions
   rarity: Common
   durability: 1
-  value: 3
+  value: 5
   icon: bottle
   stats: {}
   effects:
@@ -75,7 +75,7 @@ Potion of Minor Healing:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: heart-bottle
   stats:
     healing: 15
@@ -89,7 +89,7 @@ Potion of Small Speed:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: bottle
   stats: {}
   effects:
@@ -102,7 +102,7 @@ Potion of Minor Strength:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: bottle
   stats: {}
   effects:
@@ -115,7 +115,7 @@ Potion of Minor Magic Maximize:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: bottle
   stats: {}
   effects:
@@ -128,7 +128,7 @@ Potion of Weakness:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: bottle
   stats: {}
   effects:
@@ -141,7 +141,7 @@ Potion of Minor Mud:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 50
   icon: bottle
   stats: {}
   effects:
@@ -156,7 +156,7 @@ Potion of Acid:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 100
   icon: toxic-bottle
   stats:
     attack: 35
@@ -170,7 +170,7 @@ Antidote:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 100
   icon: heart-bottle
   stats:
     healing: 30
@@ -184,7 +184,7 @@ Bottled Brambles:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 250
   icon: bottle
   stats:
     attack: 20
@@ -199,7 +199,7 @@ Mages Little Helper:
   category: Potions
   rarity: Uncommon
   durability: 1
-  value: 3
+  value: 250
   icon: bottle
   stats: {}
   effects:
@@ -213,7 +213,7 @@ Poison of Leaden Limbs: ##
   category: Potions
   rarity: Rare
   durability: 1
-  value: 3
+  value: 250
   icon: toxic-bottle
   stats: {}
   effects:
@@ -227,7 +227,7 @@ Warriors Draught:
   category: Potions
   rarity: Rare
   durability: 1
-  value: 3
+  value: 250
   icon: heart-bottle
   stats:
     healing: 20
@@ -242,7 +242,7 @@ Dazzler:
   category: Potions
   rarity: Rare
   durability: 1
-  value: 3
+  value: 250
   icon: spiral-bottle
   stats: {}
   effects:
@@ -258,7 +258,7 @@ Potion of Compressed Fire:
   category: Potions
   rarity: Epic
   durability: 1
-  value: 3
+  value: 500
   icon: fire-bottle
   stats:
     attack: 50
@@ -272,7 +272,7 @@ Confusion Concoction:
   category: Potions
   rarity: Epic
   durability: 1
-  value: 3
+  value: 500
   icon: spiral-bottle
   stats: {}
   effects:
@@ -286,7 +286,7 @@ Minthy's Sleep Medication: ###
   category: Potions
   rarity: Epic
   durability: 1
-  value: 3
+  value: 500
   icon: toxic-bottle
   stats: {}
   effects:
@@ -301,7 +301,7 @@ Oil Of Mortality:
   category: Potions
   rarity: Legendary
   durability: 1
-  value: 3
+  value: 1000
   icon: toxic-bottle
   stats: {}
   effects:

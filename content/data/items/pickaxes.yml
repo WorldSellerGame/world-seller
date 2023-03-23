@@ -6,7 +6,7 @@ Stone Pickaxe:
   category: Tools
   rarity: Common
   durability: 10
-  value: 10
+  value: 20
   icon: pickaxe
   stats:
     pickaxePowerPercent:  25
@@ -19,7 +19,7 @@ Copper Pickaxe:
   category: Tools
   rarity: Uncommon
   durability: 15
-  value: 10
+  value: 100
   icon: pickaxe
   stats:
     pickaxePowerPercent:  50
@@ -32,7 +32,7 @@ Iron Pickaxe:
   category: Tools
   rarity: Rare
   durability: 20
-  value: 10
+  value: 500
   icon: pickaxe
   stats:
     pickaxePowerPercent:  75

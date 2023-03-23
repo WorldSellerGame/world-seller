@@ -5,7 +5,7 @@ Stone Spear:
   type: HuntingTool
   category: Tools
   rarity: Common
-  durability: 10
+  durability: 20
   value: 10
   icon: spear
   stats:
@@ -19,7 +19,7 @@ Copper Spear:
   category: Tools
   rarity: Uncommon
   durability: 15
-  value: 10
+  value: 50
   icon: spear
   stats:
     huntingPowerPercent:  50
@@ -32,7 +32,7 @@ Iron Spear:
   category: Tools
   rarity: Rare
   durability: 20
-  value: 10
+  value: 250
   icon: spear
   stats:
     huntingPowerPercent:  75

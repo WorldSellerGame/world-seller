@@ -18,7 +18,7 @@ Fur Boots:
   category: Armor
   rarity: Uncommon
   durability: 10
-  value: 10
+  value: 50
   icon: boots
   stats:
     armor: 3
@@ -30,7 +30,7 @@ Linen Boots:
   category: Armor
   rarity: Rare
   durability: 15
-  value: 10
+  value: 125
   icon: boots
   stats:
     speed: 2
@@ -42,7 +42,7 @@ Leather Boots:
   category: Armor
   rarity: Epic
   durability: 20
-  value: 10
+  value: 250
   icon: boots
   stats:
     armor: 5
