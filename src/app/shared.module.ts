@@ -16,9 +16,11 @@ import { GameIconComponent } from './components/game-icon/game-icon.component';
 import { GatheringPageDisplayComponent } from './components/gathering-page-display/gathering-page-display.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { ItemIconComponent } from './components/item-icon/item-icon.component';
+import { ItemTooltipComponent } from './components/item-tooltip/item-tooltip.component';
 import { ItemComponent } from './components/item/item.component';
 import { RefiningPageDisplayComponent } from './components/refining-page-display/refining-page-display.component';
 import { ResourceIconComponent } from './components/resource-icon/resource-icon.component';
+import { ResourceTooltipComponent } from './components/resource-tooltip/resource-tooltip.component';
 import { SkillDisplayComponent } from './components/skill-display/skill-display.component';
 import { StatLineComponent } from './components/stat-line/stat-line.component';
 import { StatNameDisplayComponent } from './components/stat-name-display/stat-name-display.component';
@@ -27,12 +29,14 @@ import { AnalyticsClickDirective } from './directives/analytics-click.directive'
 import { ModioBrowseComponent } from './modals/modio-browse/modio-browse.component';
 import { ModioPermissionComponent } from './modals/modio-permission/modio-permission.component';
 
+const sharedComponents = [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
+  GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
+  CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
+  AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
+  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent];
+
 @NgModule({
-  declarations: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
-    GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
-    HeroComponent],
+  declarations: sharedComponents,
   imports: [
     CommonModule,
     FormsModule,
@@ -41,10 +45,6 @@ import { ModioPermissionComponent } from './modals/modio-permission/modio-permis
     AngularSvgIconModule,
     ScrollingModule
   ],
-  exports: [ResourceIconComponent, ItemIconComponent, TimeResourceIconComponent, CountdownComponent,
-    GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
-    CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
-    AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
-    HeroComponent]
+  exports: sharedComponents
 })
 export class SharedModule { }

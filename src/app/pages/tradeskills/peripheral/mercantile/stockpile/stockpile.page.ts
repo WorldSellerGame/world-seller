@@ -47,8 +47,8 @@ export class StockpilePage implements OnInit, OnDestroy {
     this.categorySub?.unsubscribe();
   }
 
-  trackBy(index: number) {
-    return index;
+  trackBy<IGameItem>(index: number, item: IGameItem): string {
+    return (item as any).id || index.toString();
   }
 
   changeCategory(category: string) {

@@ -1,0 +1,23 @@
+
+<div>
+  <strong [ngClass]="[itemClass]">{{ item.name }} &middot; {{ item.category }}</strong>
+</div>
+
+<div>
+  {{ item.description }}
+</div>
+
+<div class="stats" *ngIf="hasStats && !effects">
+  <div><strong>Stats</strong></div>
+  <app-stat-line [item]="item"></app-stat-line>
+</div>
+
+<div class="gives" *ngIf="ability">
+  <div><strong>Equipped Ability</strong></div>
+  {{ ability }}
+</div>
+
+<div class="effects" *ngIf="effects">
+  <div><strong>Effects</strong></div>
+  Applies {{ effects }}
+</div>
