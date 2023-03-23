@@ -43,6 +43,23 @@ function singleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): 
   };
 }
 
+function singleTargetEnergyHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): { damage: number; deltas: ICombatDelta[] } {
+
+  const { source, ability } = opts;
+
+  const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
+  const healingBonus = opts.allowBonusStats ? source.stats[Stat.EnergyHealing] : 0;
+
+  const damage = Math.max(0, baseHeal + healingBonus);
+
+  return {
+    damage,
+    deltas: [
+      { target: 'target', attribute: 'currentEnergy', delta: damage }
+    ]
+  };
+}
+
 export function BasicAttack(ctx: StateContext<IGameCombat>, opts: IAttackParams): ICombatDelta[] {
 
   const { source, target } = opts;
@@ -95,6 +112,18 @@ export function SingleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackPa
   const { damage, deltas } = singleTargetHeal(ctx, opts);
 
   ctx.dispatch(new AddCombatLogMessage(`${source.name} used "${ability.name}" on ${target.name} and healed ${damage} health!`));
+
+  return [
+    ...deltas
+  ];
+}
+
+export function SingleTargetEnergyHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): ICombatDelta[] {
+
+  const { source, target, ability } = opts;
+  const { damage, deltas } = singleTargetEnergyHeal(ctx, opts);
+
+  ctx.dispatch(new AddCombatLogMessage(`${source.name} used "${ability.name}" on ${target.name} and restored ${damage} energy!`));
 
   return [
     ...deltas

@@ -84,6 +84,7 @@ export enum Stat {
   Armor = 'armor',
   Mitigation = 'mitigation',
   Healing = 'healing',
+  EnergyHealing = 'energyHealing',
   Attack = 'attack',
   EnergyBonus = 'energyBonus',
   HealthBonus = 'healthBonus',
