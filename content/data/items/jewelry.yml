@@ -88,7 +88,7 @@ Bone Anklet:
     {}
 
 Quartz Copper Ring:
-  name: Copper Ring
+  name: Quartz Copper Ring
   description: Cut Quartz in a Copper Ring.
   type: Jewelry
   category: Jewelry
@@ -100,7 +100,7 @@ Quartz Copper Ring:
     {}
 
 Quartz Copper Tongue Piercing:
-  name: Copper Tongue Piercing
+  name: Quartz Copper Tongue Piercing
   description: Cut Quartz in a Copper Piercing.
   type: Jewelry
   category: Jewelry

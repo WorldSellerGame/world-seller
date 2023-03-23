@@ -59,6 +59,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    resourceNames[resource.name] = true;
+
     if(resource.name && resource.name.length > 32) {
       console.log(`⚠ Resource ${key} has a name that is too long (>32 characters).`);
       hasBad = true;
@@ -116,6 +118,8 @@ const loadContent = async () => {
       console.log(`⚠ Item ${key} has a duplicate name ${item.name}.`);
       hasBad = true;
     }
+
+    itemNames[item.name] = true;
 
     if(item.name && item.name.length > 32) {
       console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
