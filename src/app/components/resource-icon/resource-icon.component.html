@@ -12,6 +12,6 @@
   <span class="quantity" *ngIf="quantity >= 0">{{ showX ? 'x' : '' }}{{ quantity | number }}{{ maxQuantity ? '/' + (maxQuantity | number) : '' }}</span>
 
   <ng-template #tooltip>
-    <app-resource-tooltip [resource]="resource"></app-resource-tooltip>
+    <app-resource-tooltip *ngIf="resource" [resource]="resource"></app-resource-tooltip>
   </ng-template>
 </div>
