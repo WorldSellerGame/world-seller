@@ -246,7 +246,7 @@ Icons must be SVGs (at this time). When adding an SVG, please make sure there ar
 
 ### Themes
 
-Themes must use CSS, and should encapsulate their variables and other global changes under the global theme class. See the Hackerman theme for an example.
+Themes must use CSS, and should encapsulate their variables and other global changes under the global theme class. The theme `value` should be in one of the CSS files, as `theme-${value}`. See the Hackerman theme for an example.
 
 ### Sound Effects
 
