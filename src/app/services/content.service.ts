@@ -29,6 +29,7 @@ import * as statGains from '../../assets/content/stat-gains.json';
 import { Store } from '@ngxs/store';
 import { SvgIconRegistryService } from 'angular-svg-icon';
 import {
+  GameOption,
   GatheringTradeskill,
   IAchievement,
   IDungeon, IEnemyCharacter, IGameCombatAbility,
@@ -37,6 +38,7 @@ import {
   IGameStatusEffect, IStatGains, RefiningTradeskill
 } from '../../interfaces';
 import { SetStatGains } from '../../stores/game/game.actions';
+import { SetOption } from '../../stores/options/options.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -162,6 +164,8 @@ export class ContentService {
     [RefiningTradeskill.Weaving]: {}
   };
 
+  private soundEffectOverrides: Record<string, string> = {};
+
   constructor(private store: Store, private svgRegistry: SvgIconRegistryService) {
     this.init();
   }
@@ -259,12 +263,32 @@ export class ContentService {
 
   // mod functions
   public loadMod(storedMod: IGameModStored) {
+    const existingMod = this.store.snapshot().mods.mods[storedMod.id];
+    if(existingMod) {
+      this.unloadMod(existingMod);
+    }
 
     const mod = storedMod.content;
     const icons = storedMod.icons;
+    const themes = storedMod.themes || [];
+    const sounds = storedMod.sounds || {};
+
+    Object.keys(sounds).forEach(sound => {
+      this.formatModSound(sound, sounds[sound]);
+    });
 
     icons.forEach(icon => {
       this.loadSVGFromString(icon.name, icon.data);
+    });
+
+    themes.forEach(theme => {
+      document.getElementById(`theme-${theme.name}`)?.remove();
+
+      const themeEl = document.createElement('style');
+      themeEl.id = `theme-${theme.name}`;
+      themeEl.textContent = theme.data.toString();
+
+      document.head.appendChild(themeEl);
     });
 
     // load gathering stuff
@@ -323,11 +347,11 @@ export class ContentService {
     });
   }
 
-  public unloadMod(mod: IGameModData) {
+  public unloadMod(mod: IGameModStored) {
 
-    // load gathering stuff
+    // unload gathering stuff
     Object.values(GatheringTradeskill).forEach(tradeskill => {
-      const locations = mod[tradeskill];
+      const locations = mod.content[tradeskill];
       if(!locations) {
         return;
       }
@@ -343,9 +367,9 @@ export class ContentService {
       });
     });
 
-    // load refining stuff
+    // unload refining stuff
     Object.values(RefiningTradeskill).forEach(tradeskill => {
-      const recipes = mod[tradeskill];
+      const recipes = mod.content[tradeskill];
       if(!recipes) {
         return;
       }
@@ -362,7 +386,7 @@ export class ContentService {
     });
 
     ['resources', 'items', 'abilities', 'effects', 'enemies', 'threats', 'dungeons'].forEach(key => {
-      const data = mod[key as keyof IGameModData] as Record<string, any>;
+      const data = mod.content[key as keyof IGameModStored['content']] as Record<string, any>;
       if(!data) {
         return;
       }
@@ -372,6 +396,23 @@ export class ContentService {
       Object.keys(data).forEach(name => {
         delete this.modCacheRecords[key][name];
       });
+    });
+
+    // unload sounds
+    Object.keys(mod.sounds || {}).forEach(sound => {
+      delete this.soundEffectOverrides[sound];
+    });
+
+    // unload themes
+    mod?.themes?.forEach(theme => {
+      const themeEl = document.getElementById(`theme-${theme.name}`);
+      themeEl?.remove();
+
+      // reset theme if we're unloading a theme we're currently using
+      const isUsingTheme = document.getElementsByClassName(`theme-${theme.name}`).length > 0;
+      if(isUsingTheme) {
+        this.store.dispatch(new SetOption(GameOption.ColorTheme, 'worldseller'));
+      }
     });
   }
 
@@ -388,6 +429,14 @@ export class ContentService {
 
   private uncacheOldItem(name: string) {
     delete this.modOldItems[name];
+  }
+
+  private formatModSound(soundName: string, soundString: string) {
+    this.soundEffectOverrides[soundName] = `data:audio/wav;base64,${soundString}`;
+  }
+
+  public getOverrideSoundEffect(name: string): string | undefined {
+    return this.soundEffectOverrides[name];
   }
 
   // mod-enabled getters

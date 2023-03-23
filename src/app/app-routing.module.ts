@@ -75,7 +75,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tradeskills/peripheral/farming/farming.module').then( m => m.FarmingPageModule)
   },
   {
-    path: 'game/:slot/prospecting',
+    path: 'game/:slot/transmutation',
     loadChildren: () => import('./pages/tradeskills/peripheral/prospecting/prospecting.module').then( m => m.ProspectingPageModule)
   },
   {

@@ -169,8 +169,8 @@ BlacksmithingBasic2:
     blacksmithing: 30
     combat: 21
   replaces: BlacksmithingBasic1
- 
-#### 
+
+####
  ########## Unique refining ability skills (curent setup is going to be uniform and at 20)
 ####
 
@@ -191,7 +191,7 @@ WeavingUnique1:
   requires:
     fishing: 20
     combat: 15
- 
+
 JewelcraftingUnique1:
   name: Armor Shatter
   description: Cast off your defenses to gain great attacking power.
@@ -209,7 +209,7 @@ JewelcraftingUnique1:
   requires:
     jewelcrafting: 20
     combat: 15
- 
+
 CookingUnique1: #tthis is broken for sure
   name: Snack
   description: Have a little treat to heal over time.
@@ -225,10 +225,10 @@ CookingUnique1: #tthis is broken for sure
   requires:
     cooking: 20
     combat: 15
- 
-AlchemyUnique1: 
+
+AlchemyUnique1:
   name: Light Aflame
-  description: Light some one on fire or damage over time. Its not ethical, but it is effective.
+  description: Light some one on fire or damage over time. It's not ethical, but it is effective.
   icon: on-fire
   target: Single
   type: Magical
@@ -241,8 +241,8 @@ AlchemyUnique1:
   requires:
     alchemy: 20
     combat: 15
- 
-BlacksmithingUnique1: 
+
+BlacksmithingUnique1:
   name: Armor Bash
   description: An attack that gets stronger the more armor you have.
   icon: armor-punch

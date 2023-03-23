@@ -154,6 +154,8 @@ export interface IGameItem {
   quantity?: number;
   givesAbility?: string;
   effects?: IGameCombatAbilityEffect[];
+  oocHealth?: number;
+  oocEnergy?: number;
   stats: Record<Stat, number>;
 
   foodDuration?: number;

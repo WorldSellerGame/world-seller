@@ -19,14 +19,14 @@ import {
   AchievementStat,
   CombatAbilityTarget, DungeonTile, ICombatDelta, IGameCombat, IGameCombatAbility,
   IGameCombatAbilityEffect,
-  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
+  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
-  LowerEnemyCooldown, PlayerCooldownSkill,
+  LowerEnemyCooldown, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
 } from './combat.actions';
 import { attachments } from './combat.attachments';
@@ -94,6 +94,11 @@ export class CombatState {
   }
 
   @Selector()
+  static oocTicks(state: IGameCombat) {
+    return { health: state.oocHealTicks, energy: state.oocEnergyTicks };
+  }
+
+  @Selector()
   static threatInfo(state: IGameCombat) {
     return { threats: state.threats, threatChangeTicks: state.threatChangeTicks };
   }
@@ -148,7 +153,9 @@ export class CombatState {
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
+      currentPlayer = getPlayerCharacterReadyForCombat(
+        store, ctx, activePlayer, this.getBonusStats(ctx), this.getBonusEffects(ctx)
+      );
     }
 
     // do on-combat-start heals
@@ -569,6 +576,7 @@ export class CombatState {
       }));
     }
 
+    // reset combat or change turns
     if(state.currentEncounter && state.currentPlayer) {
 
       // check for combat ending and get out soon
@@ -675,6 +683,27 @@ export class CombatState {
         numAttempts--;
       }
     }
+
+    // ooc healing
+    if(!state.currentEncounter && state.currentPlayer) {
+      let healingTicks = state.oocHealTicks ?? 10;
+      let energyTicks = state.oocEnergyTicks ?? 10;
+
+      if(healingTicks <= 0 && state.currentPlayer.currentHealth < state.currentPlayer.maxHealth) {
+        ctx.dispatch(new OOCPlayerHeal(1));
+        healingTicks = 10;
+      }
+
+      if(energyTicks <= 0 && state.currentPlayer.currentEnergy < state.currentPlayer.maxEnergy) {
+        ctx.dispatch(new OOCPlayerEnergy(1));
+        energyTicks = 10;
+      }
+
+      ctx.setState(patch<IGameCombat>({
+        oocHealTicks: healingTicks - ticks,
+        oocEnergyTicks: energyTicks - ticks
+      }));
+    }
   }
 
   private enemyChooseValidAbilities(enemy: IGameEncounterCharacter, allies: IGameEncounterCharacter[]): string[] {
@@ -741,6 +770,32 @@ export class CombatState {
         return [self];
       }
     }
+  }
+
+  private getBonusStats(ctx: StateContext<IGameCombat>) {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => x?.stats || {} as Partial<Record<Stat, number>>)
+      .reduce((prev, cur) => {
+        if(!cur) {
+          return prev;
+        }
+
+        Object.keys(cur).forEach(key => {
+          prev[key as Stat] = (prev[key as Stat] || 0) + (cur[key as Stat] || 0);
+        });
+
+        return prev;
+      }, {});
+  }
+
+  private getBonusEffects(ctx: StateContext<IGameCombat>): IGameStatusEffect[] {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => (x?.effects || []))
+      .flat()
+      .filter(x => x.effect === 'ApplyEffect' && x.effectName)
+      .map(x => this.contentService.getEffectByName(x.effectName as string));
   }
 
 }

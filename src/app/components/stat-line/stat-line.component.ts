@@ -16,7 +16,7 @@ export class StatLineComponent implements OnInit {
   ngOnInit() {}
 
   public allStats(): Stat[] {
-    return Object.keys(this.item.stats) as Stat[];
+    return Object.keys(this.item.stats || {}).filter(stat => this.item.stats[stat as Stat] > 0) as Stat[];
   }
 
 }

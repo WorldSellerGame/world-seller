@@ -63,23 +63,12 @@
 
       <ng-template #expandedSidebar>
         <ion-content>
-          <ion-list class="header" *ngIf="activeCharacter$ | async as character">
-            <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']"
-                        [analyticsClick]="'Navigate:Character:Settings'">
-              <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
-            </ion-button>
+          <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']"
+                      [analyticsClick]="'Navigate:Character:Settings'">
+            <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
+          </ion-button>
 
-            <ion-list-header>{{ character.name }}</ion-list-header>
-            <ion-note class="level">
-              <app-game-icon icon="level" [inlineIconSize]="true"></app-game-icon>
-              Level {{ totalLevel | number }}
-            </ion-note>
-
-            <ion-note class="coins">
-              <app-game-icon icon="coins" [inlineIconSize]="true"></app-game-icon>
-              {{ coins$ | async | number }} Coins
-            </ion-note>
-          </ion-list>
+          <app-hero></app-hero>
 
           <ion-list>
             <ion-menu-toggle [autoHide]="false">

@@ -88,10 +88,18 @@
 
                 <ion-label>
                   <h2>
-                    <strong>{{ recipe.result }}</strong>
+                    <strong [ngxTippy]="tooltip">
+                      {{ recipe.result }}
+                    </strong>
+
                     <div class="resource-notifier" *ngIf="type === 'resources'">
                       <small>You have {{ resources[recipe.result] || 0 | number }} of these.</small>
                     </div>
+
+                    <ng-template #tooltip>
+                      <app-item-tooltip *ngIf="type === 'items' && itemOutputs[recipe.result]" [item]="itemOutputs[recipe.result]"></app-item-tooltip>
+                      <app-resource-tooltip *ngIf="type === 'resources' && resourceOutputs[recipe.result]" [resource]="resourceOutputs[recipe.result]"></app-resource-tooltip>
+                    </ng-template>
                   </h2>
 
                   <div class="resources">

@@ -11,6 +11,8 @@ Pine Nuts:
   durability: 1
   value: 1
   icon: meal
+  oocHealth: 5
+  oocEnergy: 5
   stats:
     healing: 3
   effects:
@@ -18,8 +20,9 @@ Pine Nuts:
   foodDuration: 2
 
 
+
 Cooked Cropfish:
-  name: Pine Nuts
+  name: Cooked Cropfish
   description: Once cooked you can eat them whole. Although, I would rather not eat them at all.
   type: Food
   category: Foods
@@ -84,7 +87,7 @@ Roast Bunny:
 
 Pan Fried Panfish:
   name: Pan Fried Panfish
-  description: Panfish get their name for fitting in a pan. 
+  description: Panfish get their name for fitting in a pan.
   type: Food
   category: Foods
   rarity: Common
@@ -279,7 +282,7 @@ Roast Turkey:
 
 Venison Steak:
   name: Venison Steak
-  description: Lean meat with a unique taste.  
+  description: Lean meat with a unique taste.
   type: Food
   category: Foods
   rarity: Rare
@@ -380,7 +383,7 @@ Duck Eggs Benedict:
   foodDuration: 3
 #
 
-Honey Ham: 
+Honey Ham:
   name: Honey Ham
   description: A feast to be sure. Rich, succulent meat with a diverse flavor.
   type: Food
@@ -395,7 +398,7 @@ Honey Ham:
     - effect: ItemSelfHeal
   foodDuration: 4
 
-Spicy Catfish Stew: 
+Spicy Catfish Stew:
   name: Spicy Catfish Stew
   description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
   type: Food
@@ -414,7 +417,7 @@ Spicy Catfish Stew:
 
 #
 
-Pompano Ceviche: 
+Pompano Ceviche:
   name: Pompano Ceviche
   description: Refreshing and filling, this dish is unique and undeniably a treat.
   type: Food
@@ -430,9 +433,9 @@ Pompano Ceviche:
     - effect: FishingBasic3
   foodDuration: 2
 
-Banana Bread: 
+Banana Bread:
   name: Banana Bread
-  description: Lush, moist, sweet, and filling. 
+  description: Lush, moist, sweet, and filling.
   type: Food
   category: Foods
   rarity: Epic
@@ -472,7 +475,7 @@ Elk Jerky:
 #pufferfish
 #grouse
 
-#This will be easy enough to continue I think I should stop here though? 
+#This will be easy enough to continue I think I should stop here though?
   #yeah I need combat there will be tons of horse shit to add later
 
 # FUcking Balance fuck that piss

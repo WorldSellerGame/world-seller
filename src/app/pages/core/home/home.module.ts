@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { HomePage } from './home.page';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxTippyModule,
     HomePageRoutingModule
   ],
   declarations: [HomePage]

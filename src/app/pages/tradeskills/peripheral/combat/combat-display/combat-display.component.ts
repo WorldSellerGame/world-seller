@@ -31,9 +31,14 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   public readonly selfTargets = [CombatAbilityTarget.All, CombatAbilityTarget.Self];
   public readonly enemyTargets = [CombatAbilityTarget.All, CombatAbilityTarget.AllEnemies, CombatAbilityTarget.Single];
 
+  // TODO: activeAbilityInfo needs to be an array so all effects can happen - items that have multiple effects don't trigger correctly
   public activeItemIndex = -1;
   public activeAbilityIndex = -1;
-  public activeAbilityInfo: IGameCombatAbility | undefined;
+  public activeAbilityInfo: IGameCombatAbility[] | undefined;
+
+  public get firstAbilityForTargetting(): IGameCombatAbility | undefined {
+    return this.activeAbilityInfo?.[0];
+  }
 
   private hpSub!: Subscription;
   public hpDeltas: Record<string, Array<{ value: number }>> = {};
@@ -70,15 +75,15 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   }
 
   canTargetSelf() {
-    if(!this.activeAbilityInfo) {
+    if(!this.firstAbilityForTargetting) {
       return false;
     }
 
-    return this.selfTargets.includes(this.activeAbilityInfo.target);
+    return this.selfTargets.includes(this.firstAbilityForTargetting.target);
   }
 
   canTargetEnemy(enemy: IGameEncounterCharacter) {
-    if(!this.activeAbilityInfo) {
+    if(!this.firstAbilityForTargetting) {
       return false;
     }
 
@@ -86,7 +91,7 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    return this.enemyTargets.includes(this.activeAbilityInfo.target);
+    return this.enemyTargets.includes(this.firstAbilityForTargetting.target);
   }
 
   unselectAbility() {
@@ -103,7 +108,7 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     }
 
     this.activeAbilityIndex = abilityIndex;
-    this.activeAbilityInfo = this.getAbility(ability);
+    this.activeAbilityInfo = [this.getAbility(ability)];
   }
 
   unselectItem() {
@@ -120,7 +125,9 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     }
 
     this.activeItemIndex = itemIndex;
-    this.activeAbilityInfo = this.getAbility(item.effects?.[0]?.effect || '');
+    if(item.effects) {
+      this.activeAbilityInfo = item.effects.map(effect => this.getAbility(effect.effect));
+    }
   }
 
   displayDamageNumber(slot: string, damage: number) {
@@ -151,39 +158,40 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
       this.unselectItem();
     };
 
-    const ability = this.activeAbilityInfo;
-    const targetting = ability.target;
+    this.activeAbilityInfo.forEach(ability => {
+      const targetting = ability.target;
 
-    // hit all enemies only
-    if(targetting === CombatAbilityTarget.AllEnemies) {
+      // hit all enemies only
+      if(targetting === CombatAbilityTarget.AllEnemies) {
+        this.store.dispatch([
+          new LowerPlayerCooldown(),
+          ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem))
+        ]);
+
+        finish();
+        return;
+      }
+
+      // hit self and all enemies
+      if(targetting === CombatAbilityTarget.All) {
+        this.store.dispatch([
+          new LowerPlayerCooldown(),
+          ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem)),
+          new TargetSelfWithAbility(ability, this.activeAbilityIndex, useItem)
+        ]);
+
+        finish();
+        return;
+      }
+
+      // default: hit this enemy only
       this.store.dispatch([
         new LowerPlayerCooldown(),
-        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem))
+        new TargetEnemyWithAbility(index, source, ability, this.activeAbilityIndex, useItem)
       ]);
 
       finish();
-      return;
-    }
-
-    // hit self and all enemies
-    if(targetting === CombatAbilityTarget.All) {
-      this.store.dispatch([
-        new LowerPlayerCooldown(),
-        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, source, ability, this.activeAbilityIndex, useItem)),
-        new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
-      ]);
-
-      finish();
-      return;
-    }
-
-    // default: hit this enemy only
-    this.store.dispatch([
-      new LowerPlayerCooldown(),
-      new TargetEnemyWithAbility(index, source, this.activeAbilityInfo, this.activeAbilityIndex, useItem)
-    ]);
-
-    finish();
+    });
   }
 
   targetSelf(self: IGameEncounterCharacter, encounter: IGameEncounter) {
@@ -197,35 +205,34 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
       this.store.dispatch(new UseItemInSlot(this.activeItemIndex));
     }
 
-    const oldState = this.store.snapshot().combat;
-
     const finish = () => {
       this.unselectAbility();
       this.unselectItem();
     };
 
-    const ability = this.activeAbilityInfo;
-    const targetting = ability.target;
+    this.activeAbilityInfo.forEach(ability => {
+      const targetting = ability.target;
 
-    // hit self and all enemies
-    if(targetting === CombatAbilityTarget.All) {
+      // hit self and all enemies
+      if(targetting === CombatAbilityTarget.All) {
+        this.store.dispatch([
+          new LowerPlayerCooldown(),
+          ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, self, ability, this.activeAbilityIndex, useItem)),
+          new TargetSelfWithAbility(ability, this.activeAbilityIndex, useItem)
+        ]);
+
+        finish();
+        return;
+      }
+
+      // default: hit self only
       this.store.dispatch([
         new LowerPlayerCooldown(),
-        ...encounter.enemies.map((x, i) => new TargetEnemyWithAbility(i, self, ability, this.activeAbilityIndex, useItem)),
-        new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
+        new TargetSelfWithAbility(ability, this.activeAbilityIndex, useItem)
       ]);
 
       finish();
-      return;
-    }
-
-    // default: hit self only
-    this.store.dispatch([
-      new LowerPlayerCooldown(),
-      new TargetSelfWithAbility(this.activeAbilityInfo, this.activeAbilityIndex, useItem)
-    ]);
-
-    finish();
+    });
   }
 
 }

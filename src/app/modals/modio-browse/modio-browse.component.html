@@ -7,6 +7,10 @@
         update all mods
       </ion-button>
 
+      <input type="file" #modTester class="hidden" accept=".zip" (change)="importTestMod($event, modTester)"/>
+
+      <ion-button expand="block" color="secondary" (click)="modTester.click()">test a mod</ion-button>
+
       <ion-button target="_blank" href="https://mod.io/g/world-seller/r/world-seller-modding-how-to">
         make a mod
       </ion-button>
@@ -80,6 +84,30 @@
         <ion-card class="middle-card">
           <ion-card-content>
             <ion-list>
+              <ng-container *ngIf="localMods$ | async as localMods">
+                <ng-container *ngIf="localMods.length > 0">
+                  <ion-list-header>Local Mods</ion-list-header>
+
+                  <ion-item class="mod local" *ngFor="let modId of localMods; trackBy: trackBy">
+                    <ng-container *ngIf="storedModData[modId] as mod">
+                      <ion-label class="ion-text-wrap">
+                        <h2 class="mod-name">
+                          <span>{{ mod.name }}</span>
+                          <ion-badge class="version" color="primary">{{ mod.version }}</ion-badge>
+                        </h2>
+                      </ion-label>
+
+                      <ion-button slot="end" fill="clear" color="danger" (click)="$event.stopPropagation(); removeTestMod(mod)">
+                        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+                      </ion-button>
+                    </ng-container>
+                  </ion-item>
+
+                  <ion-list-header>Subscribed Mods</ion-list-header>
+                </ng-container>
+
+              </ng-container>
+
               <ion-item *ngIf="currentModList.data.length === 0">There aren't any mods here :(</ion-item>
 
               <ion-item class="mod" *ngFor="let mod of currentModList.data; trackBy: trackBy" (click)="showModInfo(mod)">

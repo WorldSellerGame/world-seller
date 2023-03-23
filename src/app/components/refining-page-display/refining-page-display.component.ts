@@ -2,7 +2,10 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../interfaces';
+import {
+  IGameItem, IGameRecipe, IGameRefiningOptions,
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining
+} from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
@@ -55,6 +58,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   public canCraftRecipes: Record<string, boolean> = {};
   public ingredients: Record<string, Array<{ name: string; amount: number }>> = {};
   public itemIngredients: Record<string, Array<{ name: string; amount: number }>> = {};
+  public itemOutputs: Record<string, IGameItem> = {};
+  public resourceOutputs: Record<string, IGameResource> = {};
 
   public summedResources: Record<string, number> = {};
 
@@ -127,6 +132,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
     this.setIngredients();
     this.setCanCrafts();
+    this.setResults();
   }
 
   setIngredients() {
@@ -148,6 +154,19 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
     [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
       this.canCraftRecipes[recipe.result] = this.canCraftRecipe(recipe, this.amounts[recipe.result] || 1);
+    });
+  }
+
+  setResults() {
+    this.itemOutputs = {};
+    this.resourceOutputs = {};
+
+    this.itemRecipes.forEach((recipe) => {
+      this.itemOutputs[recipe.result] = this.contentService.getItemByName(recipe.result) as IGameItem;
+    });
+
+    this.resourceRecipes.forEach((recipe) => {
+      this.resourceOutputs[recipe.result] = this.contentService.getResourceByName(recipe.result) as IGameResource;
     });
   }
 
