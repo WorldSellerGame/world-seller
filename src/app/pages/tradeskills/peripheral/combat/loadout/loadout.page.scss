@@ -2,3 +2,8 @@
 ion-item.highlight {
   border-left: 5px solid var(--ion-color-primary, #3880ff);
 }
+
+.constrain-size {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
