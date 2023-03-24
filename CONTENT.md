@@ -175,8 +175,6 @@ Abilities require:
 
 You _can_ specify `target=All` and `target=AllEnemies` with an effect of `SingleTargetAttack` or `SingleTargetHeal` or `SingleTargetEnergyHeal` or `ApplyEffect`. These are _separate_ things. `SingleTargetAttack` with `target=All` will attack all enemies (and yourself). Think of the effect as the kind of action happening, and the targetting being who it's happening to. 
 
-
-
 # Adding a New Status Effect
 
 1. Add the effect under any file in the `content/effects` folder (file names are used here are purely organizational).

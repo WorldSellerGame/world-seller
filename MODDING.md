@@ -89,12 +89,23 @@ A JSON file can optionally have any of the following properties:
 * `fishingPower` - time reduction on fishing
 * `scythePower` - time reduction on harvesting
 * `huntingPower` - time reduction on hunting
+* `pickaxePowerPercent` - time reduction on mining (a 10 second node with a power of 50% becomes a 5 second node)
+* `axePowerPercent` - time reduction on logging
+* `fishingPowerPercent` - time reduction on fishing
+* `scythePowerPercent` - time reduction on harvesting
+* `huntingPowerPercent` - time reduction on hunting
 * `pickaxeSpeed` - cooldown reduction on mining (a 10 second cooldown with a power of 3 becomes a 7 second cooldown)
 * `axeSpeed` - cooldown reduction on logging
 * `fishingSpeed` - cooldown reduction on fishing
 * `scytheSpeed` - cooldown reduction on harvesting
 * `huntingSpeed` - cooldown reduction on hunting
+* `pickaxeSpeedPercent` - cooldown reduction on mining (a 10 second cooldown with a power of 50% becomes a 5 second cooldown)
+* `axeSpeedPercent` - cooldown reduction on logging
+* `fishingSpeedPercent` - cooldown reduction on fishing
+* `scytheSpeedPercent` - cooldown reduction on harvesting
+* `huntingSpeedPercent` - cooldown reduction on hunting
 * `armor` - physical damage reduction
+* `mitigation` - physical damage reduction (%, capped at 75%)
 * `healing` - boost to healing skills
 * `attack` - boost to physical damage
 * `speed` - how fast the creature goes in combat, relative to other creatures
@@ -116,6 +127,8 @@ A JSON file can optionally have any of the following properties:
 
 ##### Adding a New Resource
 
+1. Add the resource under the corresponding tradeskill in the `content/resources` folder (file names are used purely for organization).
+
 Resources require:
 
 * `description` - shown in game
@@ -126,6 +139,7 @@ Resources require:
 
 ##### Adding a New Item
 
+1. Add the item under the corresponding tradeskill in the `content/items` folder (file names are used purely for organization).
 
 Items require:
 
@@ -139,8 +153,33 @@ Items require:
 * `givesPlayerAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats
 * `foodDuration` - optional, if specified, the item can be used as a food for combat and will give its `stats` every combat
+* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to health
+* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to energy
+* `effects` - optional, if specified, these effects will apply to the player when they enter combat (if it's `type='Food'`). Format: `{ effect: 'ApplyEffect', effectName: 'EffectToApply' }`
+* `abilities` - optional, if specified, these abilities will happen when the player uses the item in combat (food, potions, etc)
+
+###### Creating Food
+
+Food is a particularly flexible item type. It can be used in combat to give a boost to the player, or out of combat to restore health or energy. With food, you have a few knobs you can twist to get the desired effect:
+
+Out of combat:
+
+- `oocHealth` - how much health the food restores out of combat
+- `oocEnergy` - how much energy the food restores out of combat
+
+When entering combat:
+
+- `stats` - the stats the food gives to the player when starting combat
+- `foodDuration` - how many combats the food lasts for
+- `effects` - the effects the food gives to the player when starting combat
+
+When in combat:
+
+- `abilities` - the abilities the food gives to the player when used in combat as an item
 
 ##### Adding a New Gathering Location
+
+1. Add the location under the corresponding tradeskill in the `content/` folder (file names are used here for the specific tradeskill they give content for).
 
 Gathering requires:
 
@@ -153,6 +192,8 @@ Gathering requires:
 * `maxWorkers` - how many workers can gather from this node at once
 
 ##### Adding a New Recipe
+
+1. Add the recipe under the corresponding tradeskill in the `content/` folder (file names are used here for the specific tradeskill they give content for).
 
 Recipes require:
 
@@ -167,6 +208,8 @@ Recipes require:
 
 ##### Adding a New Ability
 
+1. Add the ability under any file in the `content/abilities` folder (file names are used here are purely organizational).
+
 Abilities require:
 
 * `name` - shown in game
@@ -176,15 +219,25 @@ Abilities require:
 * `type` - the type of the ability (Physical, Magical)
 * `cooldown` - how long the ability is on cooldown for (in turns)
 * `energyCost` - how much energy the ability costs
+* `stats` - the stats the ability scales from, in no particular order (see Ability Stat Sub-object)
 * `effects` - the effects the ability has, in order (`effect` can be BasicAttack, UtilityEscape, SingleTargetAttack, SingleTargetHeal, SingleTargetEnergyHeal, ApplyEffect. if `effectName` is specified in conjuction with ApplyEffect, it will apply that effect to the target)
 * `requires` - the tradeskills and levels required to know this skill. 
 * `replaces` - optional, the skill this one replaces (by ability id)
 
-Note:
+###### Ability Stat Sub-object
+
+* `stat` - the stat to scale from
+* `multiplier` - the multiplier of the scaling (1.5 = 150% of the `stat`)
+* `variance` - the variance of the scaling (0.5 = 50% of the `total`)
+* `bonus` - the bonus to add at the end of the math
+
+###### Targetting Information
 
 You _can_ specify `target=All` and `target=AllEnemies` with an effect of `SingleTargetAttack` or `SingleTargetHeal` or `SingleTargetEnergyHeal` or `ApplyEffect`. These are _separate_ things. `SingleTargetAttack` with `target=All` will attack all enemies (and yourself). Think of the effect as the kind of action happening, and the targetting being who it's happening to. 
 
 ##### Adding a New Status Effect
+
+1. Add the effect under any file in the `content/effects` folder (file names are used here are purely organizational).
 
 Effects require:
 
@@ -203,6 +256,8 @@ If you choose to modify speed, it works the opposite of other stats - negative s
 
 ##### Adding a New Enemy
 
+1. Add the enemy under any file in the `content/enemies` folder (file names are used here are purely organizational).
+
 Enemies require:
 
 * `name` - shown in game
@@ -217,6 +272,8 @@ Enemies require:
 
 ##### Adding a New Threat
 
+1. Add the threat under any file in the `content/threats` folder (file names are used here are purely organizational).
+
 Threats require:
 
 * `name` - shown in game
@@ -228,6 +285,8 @@ Threats require:
 
 ##### Adding a New Dungeon
 
+1. Add the dungeon under any file in the `content/dungeons` folder (file names are used here are purely organizational, _but_ consider naming them in order with a brief description, e.g. `1-goblin` for "level 1" and "there are goblins here").
+
 Dungeons require:
 
 * `name` - shown in game
@@ -238,6 +297,7 @@ Dungeons require:
 * `boss` - the threat name of the boss of the dungeon (when beaten, the player will be given a point and exit the dungeon)
 * `threats` - a mapping of keys to threat names - the keys will be placed in the floor layout, and the threat names must be threats that exist
 * `treasureChests` - a mapping of keys to the possible rewards given by the chest - each type of chest can have a randomized set of rewards, and they can have multiple rewards (see examples)
+
 
 
 ### Icons
