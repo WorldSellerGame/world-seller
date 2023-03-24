@@ -67,7 +67,7 @@ Burning Oil: #likely will have more ins for making burning oil
 
 #Fabrication (Lists where it is used now where it is made)
 
-Table#also used in Cooking, Refining, Jewel Crafting and Weaving
+Table: #also used in Cooking, Refining, Jewel Crafting and Weaving
   name: Table
   description: A table is a simple flat workspace for many things.
   category: Crafting Tables
