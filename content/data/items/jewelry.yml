@@ -11,10 +11,10 @@ Dandelion Crown:
   value: 5
   icon: 'ring'
   stats:
-    loggingPowerPercent: 3
+    axePowerPercent: 3
     fishingPowerPercent: 3
-    foragingPowerPercent: 3
-    miningPowerPercent: 3
+    scythePowerPercent: 3
+    pickaxePowerPercent: 3
     huntingPowerPercent: 3
 
 Braided Belt:
