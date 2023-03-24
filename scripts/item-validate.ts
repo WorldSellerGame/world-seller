@@ -606,7 +606,12 @@ const loadContent = async () => {
       });
 
       if(isUndefined(recipe.maxWorkers)) {
-        console.log(`⚠ Recipe ${recipe.name} is missing maxWorkers.`);
+        console.log(`⚠ Recipe ${result} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(recipe.craftTime <= 0) {
+        console.log(`⚠ Recipe ${result} has a craftTime of ${recipe.craftTime} (must be > 0).`);
         hasBad = true;
       }
     });
@@ -647,6 +652,16 @@ const loadContent = async () => {
 
       if(isUndefined(location.maxWorkers)) {
         console.log(`⚠ Location ${location.name} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(location.gatherTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a gatherTime of ${location.gatherTime} (must be > 0).`);
+        hasBad = true;
+      }
+
+      if(location.cooldownTime && location.cooldownTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a cooldownTime of ${location.cooldownTime} (must be > 0).`);
         hasBad = true;
       }
     });
