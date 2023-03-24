@@ -553,6 +553,9 @@ export function applyEffectToPlayer(ctx: StateContext<IGameCombat>, { effect }: 
   ]);
 }
 
+/**
+ * Set the players health in combat (debug only).
+ */
 export function debugSetCombatHealth(ctx: StateContext<IGameCombat>, { value }: DebugSetPlayerHealth) {
   const player = ctx.getState().currentPlayer;
   if(!player) {
@@ -566,6 +569,9 @@ export function debugSetCombatHealth(ctx: StateContext<IGameCombat>, { value }: 
   }));
 }
 
+/**
+ * Set the players energy in combat (debug only).
+ */
 export function debugSetCombatEnergy(ctx: StateContext<IGameCombat>, { value }: DebugSetPlayerEnergy) {
   const player = ctx.getState().currentPlayer;
   if(!player) {
