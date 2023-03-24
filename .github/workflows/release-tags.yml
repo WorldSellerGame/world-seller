@@ -73,7 +73,7 @@ jobs:
       with:
         source_file: '${{ steps.getBlogPost.outputs.filename }}'
         destination_repo: 'WorldSellerGame/blog'
-        destination_folder: 'posts'
+        destination_folder: '_posts'
         user_email: 'kyle@seiyria.com'
         user_name: 'seiyria'
         commit_message: 'Add version notes'
