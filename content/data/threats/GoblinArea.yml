@@ -31,7 +31,7 @@ GoblinandSlime:
 
 
 SingleGoblinWarrior:
-  name: Goblin
+  name: Goblin (Big)
   icon: goblin-big
   description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
 

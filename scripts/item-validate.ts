@@ -178,6 +178,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    abilityNames[skill.name] = true;
+
     if(skill.name && skill.name.length > 32) {
       console.log(`⚠ Ability ${key} is too long (>32 characters).`);
       hasBad = true;
@@ -250,6 +252,8 @@ const loadContent = async () => {
       console.log(`⚠ Enemy ${key} has a duplicate name ${enemy.name}.`);
       hasBad = true;
     }
+
+    enemyNames[enemy.name] = true;
 
     if(enemy.name && enemy.name.length > 32) {
       console.log(`⚠ Enemy ${key} is too long (>32 characters).`);
@@ -327,6 +331,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    threatNames[threat.name] = true;
+
     if(threat.name && threat.name.length > 32) {
       console.log(`⚠ Threat ${key} is too long (>32 characters).`);
       hasBad = true;
@@ -384,6 +390,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    effectNames[effect.name] = true;
+
     if(effect.name && effect.name.length > 32) {
       console.log(`⚠ Effect ${key} is too long (>32 characters).`);
       hasBad = true;
@@ -440,6 +448,8 @@ const loadContent = async () => {
       console.log(`⚠ Dungeon ${key} has a duplicate name ${dungeon.name}.`);
       hasBad = true;
     }
+
+    dungeonNames[dungeon.name] = true;
 
     if(dungeon.name && dungeon.name.length > 32) {
       console.log(`⚠ Dungeon ${key} is too long (>32 characters).`);

@@ -18,7 +18,7 @@ Poison2:
   damageOverTime: 4
 
 Poison3:
-  name: Poison II
+  name: Poison III
   description: Losing health over time.
   icon: poison
   color: "#b4202a"

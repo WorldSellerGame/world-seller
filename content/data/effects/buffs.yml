@@ -32,7 +32,7 @@ SpeedBuff2:
     speed: -5
 
 SpeedBuff3: #I want it broken so I shall make it broken
-  name: Speed II
+  name: Speed III
   description: Increases Speed by 8.
   icon: arrow-forward
   color: "#249fde"
