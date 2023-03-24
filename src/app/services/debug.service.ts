@@ -6,7 +6,10 @@ import { OptionsState } from '../../stores';
 import { GainAlchemyLevels } from '../../stores/alchemy/alchemy.actions';
 import { GainBlacksmithingLevels } from '../../stores/blacksmithing/blacksmithing.actions';
 import { DiscoverResourceOrItem, GainItemOrResource } from '../../stores/charselect/charselect.actions';
-import { DebugApplyEffectToPlayer, DebugSetPlayerEnergy, DebugSetPlayerHealth, GainCombatLevels, InitiateCombat } from '../../stores/combat/combat.actions';
+import {
+  DebugApplyEffectToPlayer, DebugSetPlayerEnergy,
+  DebugSetPlayerHealth, GainCombatLevels, InitiateCombat
+} from '../../stores/combat/combat.actions';
 import { GainCookingLevels } from '../../stores/cooking/cooking.actions';
 import { GainFarmingLevels } from '../../stores/farming/farming.actions';
 import { GainFishingLevels } from '../../stores/fishing/fishing.actions';

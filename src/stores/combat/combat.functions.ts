@@ -6,7 +6,8 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat
 } from '../../interfaces';
 import {
-  AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, DebugSetPlayerEnergy, DebugSetPlayerHealth, EnemyCooldownSkill, EnemySpeedReset,
+  AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer,
+  DebugSetPlayerEnergy, DebugSetPlayerHealth, EnemyCooldownSkill, EnemySpeedReset,
   GainCombatLevels,
   LowerEnemyCooldown, OOCEatFood, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
