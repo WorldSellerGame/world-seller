@@ -30,7 +30,7 @@ Cooked Cropfish:
   icon: cooked-fish
   oocHealth: 3
   stats:
-    healingPerCombat: 10
+    energyPerCombat: 10
   foodDuration: 2
 
 #
@@ -47,7 +47,7 @@ Barbecued Squirrel:
   oocHealth: 1
   oocEnergy: 1
   stats:
-    healingPerRound: 3
+    energyPerRound: 3
   foodDuration: 2
 
 Vegetable Soup:

@@ -93,10 +93,29 @@ Items require:
 * `givesPlayerAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats
 * `foodDuration` - optional, if specified, the item can be used as a food for combat and will give its `stats` every combat
-* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to health
-* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to energy
-* `effects`
-* `abilities`
+* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to health
+* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to energy
+* `effects` - optional, if specified, these effects will apply to the player when they enter combat (if it's `type='Food'`). Format: `{ effect: 'ApplyEffect', effectName: 'EffectToApply' }`
+* `abilities` - optional, if specified, these abilities will happen when the player uses the item in combat (food, potions, etc)
+
+## Creating Food
+
+Food is a particularly flexible item type. It can be used in combat to give a boost to the player, or out of combat to restore health or energy. With food, you have a few knobs you can twist to get the desired effect:
+
+Out of combat:
+
+- `oocHealth` - how much health the food restores out of combat
+- `oocEnergy` - how much energy the food restores out of combat
+
+When entering combat:
+
+- `stats` - the stats the food gives to the player when starting combat
+- `foodDuration` - how many combats the food lasts for
+- `effects` - the effects the food gives to the player when starting combat
+
+When in combat:
+
+- `abilities` - the abilities the food gives to the player when used in combat as an item
 
 # Adding a New Gathering Location
 
@@ -155,8 +174,6 @@ Abilities require:
 ## Targetting Information
 
 You _can_ specify `target=All` and `target=AllEnemies` with an effect of `SingleTargetAttack` or `SingleTargetHeal` or `SingleTargetEnergyHeal` or `ApplyEffect`. These are _separate_ things. `SingleTargetAttack` with `target=All` will attack all enemies (and yourself). Think of the effect as the kind of action happening, and the targetting being who it's happening to. 
-
-
 
 # Adding a New Status Effect
 
