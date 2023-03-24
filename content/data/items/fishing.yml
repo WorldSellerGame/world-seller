@@ -9,7 +9,7 @@ Cedar Fishing Rod:
   value: 10
   icon: fishing-pole
   stats:
-    fishingPowerPercent:  25
+    fishingPowerPercent: 10
     fishingSpeed: 50
 
 Oak Fishing Rod:
@@ -22,7 +22,7 @@ Oak Fishing Rod:
   value: 50
   icon: fishing-pole
   stats:
-    fishingPowerPercent:  50
+    fishingPowerPercent: 20
     fishingSpeed: 410
 
 Ash Fishing Rod:
@@ -35,7 +35,7 @@ Ash Fishing Rod:
   value: 250
   icon: fishing-pole
   stats:
-    fishingPowerPercent:  75
+    fishingPowerPercent: 30
     fishingSpeed: 1730
 
 #bait will be re added during balance #It will be mostly items that work right away as bait or convert via skills

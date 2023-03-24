@@ -9,7 +9,7 @@ Stone Axe:
   value: 20
   icon: axe
   stats:
-    axePowerPercent:  25
+    axePowerPercent: 10
     axeSpeed: 50
 
 Copper Axe:
@@ -22,7 +22,7 @@ Copper Axe:
   value: 100
   icon: axe
   stats:
-    axePowerPercent:  50
+    axePowerPercent: 20
     axeSpeed: 410
 
 Iron Axe:
@@ -35,5 +35,5 @@ Iron Axe:
   value: 500
   icon: axe
   stats:
-    axePowerPercent:  75
+    axePowerPercent: 30
     axeSpeed: 1730

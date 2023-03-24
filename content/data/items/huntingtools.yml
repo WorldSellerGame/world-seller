@@ -9,7 +9,7 @@ Stone Spear:
   value: 10
   icon: spear
   stats:
-    huntingPowerPercent:  25
+    huntingPowerPercent: 10
     huntingSpeed: 50
 
 Copper Spear:
@@ -22,7 +22,7 @@ Copper Spear:
   value: 50
   icon: spear
   stats:
-    huntingPowerPercent:  50
+    huntingPowerPercent: 20
     huntingSpeed: 410
 
 Iron Spear:
@@ -35,7 +35,7 @@ Iron Spear:
   value: 250
   icon: spear
   stats:
-    huntingPowerPercent:  75
+    huntingPowerPercent: 30
     huntingSpeed: 1730
 
 

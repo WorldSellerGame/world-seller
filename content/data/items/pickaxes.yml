@@ -9,7 +9,7 @@ Stone Pickaxe:
   value: 20
   icon: pickaxe
   stats:
-    pickaxePowerPercent:  25
+    pickaxePowerPercent: 10
     pickaxeSpeed: 50
 
 Copper Pickaxe:
@@ -22,7 +22,7 @@ Copper Pickaxe:
   value: 100
   icon: pickaxe
   stats:
-    pickaxePowerPercent:  50
+    pickaxePowerPercent: 20
     pickaxeSpeed: 410
 
 Iron Pickaxe:
@@ -35,5 +35,5 @@ Iron Pickaxe:
   value: 500
   icon: pickaxe
   stats:
-    pickaxePowerPercent:  75
+    pickaxePowerPercent: 30
     pickaxeSpeed: 1730

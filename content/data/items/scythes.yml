@@ -9,7 +9,7 @@ Stone Sickle:
   value: 10
   icon: scythe
   stats:
-    scythePowerPercent:  25
+    scythePowerPercent: 10
     scytheSpeed: 50
 
 Copper Sickle:
@@ -22,7 +22,7 @@ Copper Sickle:
   value: 100
   icon: scythe
   stats:
-    scythePowerPercent:  50
+    scythePowerPercent: 20
     scytheSpeed: 410
 
 Iron Sickle:
@@ -31,9 +31,9 @@ Iron Sickle:
   type: Scythe
   category: Tools
   rarity: Rare
-  durability: 
+  durability:
   value: 500
   icon: scythe
   stats:
-    scythePowerPercent:  75
+    scythePowerPercent: 30
     scytheSpeed: 1730

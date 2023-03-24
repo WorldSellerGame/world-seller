@@ -28,7 +28,7 @@ Linen Shirt:
   description: Shirt made of linen cloth.
   type: ChestArmor
   category: Armor
-  rarity:  Rare
+  rarity: Rare
   durability: 15
   value: 250
   icon: shirt
