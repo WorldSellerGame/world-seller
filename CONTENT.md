@@ -98,6 +98,25 @@ Items require:
 * `effects` - optional, if specified, these effects will apply to the player when they enter combat (if it's `type='Food'`). Format: `{ effect: 'ApplyEffect', effectName: 'EffectToApply' }`
 * `abilities` - optional, if specified, these abilities will happen when the player uses the item in combat (food, potions, etc)
 
+## Creating Food
+
+Food is a particularly flexible item type. It can be used in combat to give a boost to the player, or out of combat to restore health or energy. With food, you have a few knobs you can twist to get the desired effect:
+
+Out of combat:
+
+- `oocHealth` - how much health the food restores out of combat
+- `oocEnergy` - how much energy the food restores out of combat
+
+When entering combat:
+
+- `stats` - the stats the food gives to the player when starting combat
+- `foodDuration` - how many combats the food lasts for
+- `effects` - the effects the food gives to the player when starting combat
+
+When in combat:
+
+- `abilities` - the abilities the food gives to the player when used in combat as an item
+
 # Adding a New Gathering Location
 
 1. Add the location under the corresponding tradeskill in the `content/` folder (file names are used here for the specific tradeskill they give content for).
