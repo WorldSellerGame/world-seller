@@ -261,7 +261,7 @@ Potion of Compressed Fire:
   stats:
     attack: 50
   effects:
-    - effect: PotionDamageAOE
+    - effect: ItemAOEDamage
 
 Confusion Concoction:
   name: Confusion Concoction

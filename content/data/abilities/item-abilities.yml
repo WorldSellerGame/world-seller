@@ -32,8 +32,8 @@ ItemSingleDamage:
   energyCost: 0
   requires: {}
 
-PotionDamageAOE:
-  name: Potion Damage AOE
+ItemAOEDamage:
+  name: Item Damage+
   description: Damage all enemies. 
   icon: fire-bottle
   target: AllEnemies
