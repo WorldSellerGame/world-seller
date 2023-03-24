@@ -18,8 +18,6 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
   const mitigatedDamage = (mitigation / 100) * baseDamage;
   const damage = Math.max(0, unmitigatedDamage - mitigatedDamage);
 
-  console.log({ baseDamage, armor, mitigation, mitigatedDamage, unmitigatedDamage, damage });
-
   return {
     damage,
     deltas: [
