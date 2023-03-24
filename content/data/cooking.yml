@@ -623,6 +623,7 @@ recipes:
       - Metal Pots and Pans
     maxWorkers: 1
 
+
   - result: Elk Jerky
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 55 }
@@ -643,3 +644,4 @@ recipes:
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
+
