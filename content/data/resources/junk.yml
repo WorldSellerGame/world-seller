@@ -8,14 +8,14 @@ Old Boot:
 
 Curse:
   name: Curse
-  description: Yeah this isn't good. Looks like its not going away either.
+  description: Yeah this isn't good. Looks like it's not going away either.
   category: Miscellaneous
   rarity: Junk
   icon: 'curse'
 
 Guano:
   name: Guano
-  description: Its poop, what are you gonna do with poop?
+  description: It's poop, what are you gonna do with poop?
   category: Miscellaneous
   rarity: Junk
   icon: 'poo'
