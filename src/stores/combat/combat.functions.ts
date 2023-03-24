@@ -6,7 +6,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameItem, Stat
 } from '../../interfaces';
 import {
-  AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, EnemyCooldownSkill, EnemySpeedReset,
+  AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer, DebugSetPlayerEnergy, DebugSetPlayerHealth, EnemyCooldownSkill, EnemySpeedReset,
   GainCombatLevels,
   LowerEnemyCooldown, OOCEatFood, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
@@ -553,6 +553,35 @@ export function applyEffectToPlayer(ctx: StateContext<IGameCombat>, { effect }: 
   ]);
 }
 
+export function debugSetCombatHealth(ctx: StateContext<IGameCombat>, { value }: DebugSetPlayerHealth) {
+  const player = ctx.getState().currentPlayer;
+  if(!player) {
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      currentHealth: value
+    })
+  }));
+}
+
+export function debugSetCombatEnergy(ctx: StateContext<IGameCombat>, { value }: DebugSetPlayerEnergy) {
+  const player = ctx.getState().currentPlayer;
+  if(!player) {
+    return;
+  }
+
+  ctx.setState(patch<IGameCombat>({
+    currentPlayer: patch<IGameEncounterCharacter>({
+      currentEnergy: value
+    })
+  }));
+}
+
+/**
+ * Heal out of combat (usually by eating food, but sometimes natural regen).
+ */
 export function oocPlayerHeal(ctx: StateContext<IGameCombat>, { amount }: OOCPlayerHeal) {
   const state = ctx.getState();
   if(!state.currentPlayer || state.currentEncounter) {
@@ -566,6 +595,9 @@ export function oocPlayerHeal(ctx: StateContext<IGameCombat>, { amount }: OOCPla
   }));
 }
 
+/**
+ * Restore energy out of combat (usually by eating food, but sometimes natural regen).
+ */
 export function oocPlayerEnergy(ctx: StateContext<IGameCombat>, { amount }: OOCPlayerEnergy) {
   const state = ctx.getState();
   if(!state.currentPlayer || state.currentEncounter) {
@@ -579,6 +611,9 @@ export function oocPlayerEnergy(ctx: StateContext<IGameCombat>, { amount }: OOCP
   }));
 }
 
+/**
+ * Eat food out of combat, to heal, exclusively.
+ */
 export function oocEatFood(ctx: StateContext<IGameCombat>, { item }: OOCEatFood) {
   const state = ctx.getState();
   if(!state.currentPlayer || state.currentEncounter) {

@@ -21,6 +21,8 @@ Ensure you have NodeJS v18 (needed for structuredClone).
 * `window.fightThreat(threatName)` - begin combat against a specific threat.
 * `window.applyCombatEffectToPlayer(effect)` - add a specifically named effect to the player in combat.
 * `window.gainLevel(tradeskill, levels)` - gain a number of levels for a tradeskill (levels can be negative).
+* `window.setCombatHealth(value)` - set the player's health in combat to the specified value.
+* `window.setCombatEnergy(value)` - set the player's energy in combat to the specified value.
 
 ### Reloading Game Content
 
