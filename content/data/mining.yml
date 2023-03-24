@@ -1,13 +1,17 @@
+
+# Mid gather time, mid cooldown
+
 locations:
   - name: Nearby Quarry
     description: A small quarry nearby.
     perGather:
-      min: 5
-      max: 10
+      min: 2
+      max: 4
     level:
       min: 0
       max: 10
     gatherTime: 10
+    cooldownTime: 10
     resources:
       - name: Clay
         weight: 1
@@ -15,31 +19,16 @@ locations:
         weight: 1
     maxWorkers: 2
 
-  - name: Long Quarry
-    description: A small quarry nearby that takes a while to gather from.
-    perGather:
-      min: 50
-      max: 100
-    level:
-      min: 1
-      max: 10
-    gatherTime: 100
-    resources:
-      - name: Clay
-        weight: 1
-      - name: Stone
-        weight: 1
-    maxWorkers: 0
-
   - name: Dried Out River Basin
     description: A place where a river used to flow.
     perGather:
-      min: 5
-      max: 15
+      min: 3
+      max: 6
     level:
       min: 5
       max: 15
-    gatherTime: 15
+    gatherTime: 25
+    cooldownTime: 25
     resources:
       - name: Clay
         weight: 1
@@ -54,12 +43,13 @@ locations:
   - name: Abandoned Copper Mine
     description: Mostly mined-out mining operation, but you can still somewhat mine at this mine.
     perGather:
-      min: 10
-      max: 15
+      min: 4
+      max: 8
     level:
       min: 10
       max: 20
-    gatherTime: 20
+    gatherTime: 50
+    cooldownTime: 50
     resources:
       - name: Stone
         weight: 10
@@ -72,12 +62,13 @@ locations:
   - name: Bat Infested Iron Mine
     description: Despite being rich in ore, this cave hasn't had the touch of mankind.
     perGather:
-      min: 10
-      max: 15
+      min: 5
+      max: 10
     level:
       min: 15
-      max: 20
-    gatherTime: 20
+      max: 225
+    gatherTime: 75
+    cooldownTime: 75
     resources:
       - name: Stone
         weight: 3
@@ -94,12 +85,13 @@ locations:
   - name: Grotto
     description: A naturally formed cave with pools of water.
     perGather:
-      min: 15
-      max: 25
+      min: 6
+      max: 12
     level:
       min: 20
-      max: 35
-    gatherTime: 30
+      max: 30
+    gatherTime: 200
+    cooldownTime: 200
     resources:
       - name: Stone
         weight: 30
@@ -118,12 +110,13 @@ locations:
   - name: Archaeological Site
     description: Ancient loacation that doubles as a resting place for the dead.
     perGather:
-      min: 3
-      max: 5
+      min: 7
+      max: 14
     level:
       min: 25
-      max: 40
-    gatherTime: 15
+      max: 35
+    gatherTime: 500
+    cooldownTime: 500
     resources:
       - name: Stone
         weight: 10
@@ -144,12 +137,13 @@ locations:
   - name: Deep Depth Mine
     description: Place too deep for most companies to turn a profit.
     perGather:
-      min: 25
-      max: 50
+      min: 8
+      max: 16
     level:
       min: 30
       max: 40
-    gatherTime: 100
+    gatherTime: 700
+    cooldownTime: 700
     resources:
       - name: Stone
         weight: 55
@@ -168,12 +162,13 @@ locations:
   - name: Achient Dwarven Mine
     description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
     perGather:
-      min: 50
-      max: 150
+      min: 9
+      max: 18
     level:
       min: 35
       max: 45
-    gatherTime: 150
+    gatherTime: 1000
+    cooldownTime: 1000
     resources:
       - name: Stone
         weight: 250
@@ -196,12 +191,13 @@ locations:
   - name: Pile of Cursed Feces
     description: Probably best not to mine here.
     perGather:
-      min: 50
-      max: 50
+      min: 11
+      max: 22
     level:
       min: 45
       max: 45
-    gatherTime: 10
+    gatherTime: 300
+    cooldownTime: 300
     resources:
       - name: Guano
         weight: 1

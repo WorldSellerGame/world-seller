@@ -147,7 +147,7 @@ Abilities require:
 
 * `stat` - the stat to scale from
 * `multiplier` - the multiplier of the scaling (1.5 = 150% of the `stat`)
-* `variance` - the variance of the scaling (0.5 = 50% of the `stat`)
+* `variance` - the variance of the scaling (0.5 = 50% of the `total`)
 * `bonus` - the bonus to add at the end of the math
 
 ## Targetting Information

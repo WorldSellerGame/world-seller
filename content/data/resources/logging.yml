@@ -108,18 +108,16 @@ Elvish Silverwood Log:
   name: Elvish Silverwood Log
   description: Log from an ancient now extinct genus of tree domesticated by the elves long ago. They hold the secret to planting and growing these living fossils. Some of the best material possible for tool crafting.
   category: Raw Materials
-  rarity: Legendary
+  rarity: Epic
   icon: 'log'
 
 Elvish Silverwood Seed:
   name: Elvish Silverwood Seed
   description: Used to plant silverwoods in the farm. Getting they to actually grow is nigh impossible.
   category: Seeds
-  rarity: Legendary
+  rarity: Epic
   icon: 'seed'
 
 
 
-#Brandon
-  #Raritys must be lowered one tier later on for some wood
-  #Testing to make sure the raritys work properly lel
+

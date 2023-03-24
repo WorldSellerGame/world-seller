@@ -31,6 +31,16 @@ SpeedBuff2:
   statModifications:
     speed: -5
 
+SpeedBuff3: #I want it broken so I shall make it broken
+  name: Speed III
+  description: Increases Speed by 8.
+  icon: arrow-forward
+  color: "#249fde"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    speed: -8
+
 HealingBuff1:
   name: Healing I
   description: Increases Healing by 3.
@@ -123,7 +133,7 @@ ArmorBuff2:
 
 EnergyBuff1:
   name: Energize I
-  description: Increases Max Energy by 10.
+  description: Increases Max Energy by 5.
   icon: bolt
   color: "#249fde"
   turnsLeft: 5
@@ -133,7 +143,7 @@ EnergyBuff1:
 
 EnergyBuff2:
   name: Energize II
-  description: Increases Max Energy by 15.
+  description: Increases Max Energy by 10.
   icon: bolt
   color: "#249fde"
   turnsLeft: 5

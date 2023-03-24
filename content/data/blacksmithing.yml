@@ -90,7 +90,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Dagger
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 1
@@ -104,7 +104,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Sword
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 4
@@ -118,7 +118,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 4
@@ -132,7 +132,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Pickaxe
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 4
@@ -146,7 +146,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Sickle
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 4
@@ -160,7 +160,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Spear
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Metal Tool Bench : 1
       Copper Ingot: 1
@@ -174,7 +174,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Oak Fishing Rod
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Workbench : 1
       Oak Log: 3
@@ -190,7 +190,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Dagger
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 1
@@ -204,7 +204,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Sword
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 4
@@ -218,7 +218,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 4
@@ -232,7 +232,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Pickaxe
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 4
@@ -246,7 +246,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Sickle
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 4
@@ -260,7 +260,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Spear
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Iron Tool Bench : 1
       Iron Ingot: 1
@@ -274,7 +274,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Ash Fishing Rod
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 50
     ingredients:
       Workbench : 1
       Ash Log: 3
@@ -295,7 +295,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Construction Tools # 0 to 10
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: 10
+    craftTime: 120
     ingredients:
       Pine Log: 5
       Stone: 5
@@ -306,7 +306,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Table # 0 to 10
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: 10
+    craftTime: 180
     ingredients:
       Pine Log: 10
       Construction Tools: 1
@@ -364,7 +364,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Tool Bench # 20 to 30
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 30
+    craftTime: 40
     ingredients:
       Stone: 4
       Oak Log: 10
@@ -380,7 +380,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Construction Tools # 20 to 30
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 30
+    craftTime: 40
     ingredients:
       Oak Log: 8
       Iron Ingot: 6
@@ -397,7 +397,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Oven
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: 10
+    craftTime: 240
     ingredients:
       Stone: 10
       Construction Tools: 1
@@ -425,7 +425,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Furnace
     perCraft: { min: 1, max: 1 }
     level: { min: 10 , max: 20 }
-    craftTime: 30
+    craftTime: 300
     ingredients:
       Fire Brick: 12
       Mortar: 6
@@ -440,7 +440,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Blast Furnace
     perCraft: { min: 1, max: 1 }
     level: { min: 15 , max: 25 }
-    craftTime: 30
+    craftTime: 600
     ingredients:
       Fire Brick: 15
       Mortar: 7
@@ -458,7 +458,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Kitchen Utensils
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: 20
+    craftTime: 300
     ingredients:
       Stone: 2
       Pine Log: 4
@@ -472,7 +472,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Pots and Pans
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 20
+    craftTime: 10
     ingredients:
       Clay: 8
       Workbench: 1
@@ -488,7 +488,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Millstone
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 20
+    craftTime: 10
     ingredients:
       Stone: 8
       Cedar Log: 1
@@ -538,7 +538,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Mortar and Pestle
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 20
+    craftTime: 10
     ingredients:
       Stone: 2
       Workbench: 1
@@ -551,7 +551,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Glass Set
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 30
+    craftTime: 20
     ingredients:
       Sand: 8
       Brick Oven: 1
@@ -567,7 +567,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Fine Glass Set
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 40
+    craftTime: 50
     ingredients:
       Sand: 10
       Quartz Powder: 5
@@ -647,7 +647,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Spinning Wheel
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 20
+    craftTime: 30
     ingredients:
       Oak Log: 5
       Copper Ingot: 1
@@ -661,7 +661,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Loom
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 20
+    craftTime: 40
     ingredients:
       Oak Log: 5
       Twine: 3
@@ -676,7 +676,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Metal Sewing Kit
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 20
+    craftTime: 50
     ingredients:
       Copper Ingot: 1
       Oak Log: 1
@@ -707,7 +707,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Metal Jewelry Tools
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 25 }
-    craftTime: 20
+    craftTime: 450
     ingredients:
       Copper Ingot: 2
       Quartz: 1
@@ -722,7 +722,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Jewelry Tools
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 20
+    craftTime: 50
     ingredients:
       Iron Ingot: 2
       Quartz: 1
@@ -765,7 +765,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Mortar
     perCraft: { min: 6, max: 7 }
     level: { min: 5, max: 15 }
-    craftTime: 10
+    craftTime: 20
     ingredients:
       Lime: 1
       Sand: 6
@@ -779,7 +779,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Fire Brick
     perCraft: { min: 3, max: 3 }
     level: { min: 10, max: 20 }
-    craftTime: 20
+    craftTime: 30
     ingredients:
       White Clay: 3
       Brick Oven: 1
@@ -792,7 +792,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Copper Ingot
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 20
+    craftTime: 40
     ingredients:
       Copper Ore: 1
       Brick Oven: 1
@@ -805,7 +805,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Iron Ingot
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 30
+    craftTime: 50
     ingredients:
       Iron Ore: 3
       Furnace: 1

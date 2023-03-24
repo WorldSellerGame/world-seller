@@ -1,11 +1,3 @@
-
-Flour:
-  name: Flour
-  description: Used in bake goods.
-  category: Refined Materials
-  rarity: Common
-  icon: 'flour'
-
 Vegetable Stock:
   name: Vegetable Stock
   description: Veggie stock is better than water in most savory/hardy dishes.
@@ -13,25 +5,30 @@ Vegetable Stock:
   rarity: Common
   icon: 'flour'
 
-##########
+Flour:
+  name: Flour
+  description: Used in bake goods.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'flour'
 
 Syrup: #actually use this later
   name: Syrup
   description: Used to sweeten and solidify certain food. It can also be further refined.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'drop'
 
 Sugar:
   name: Sugar
   description: Used to sweeten baked goods or anything really.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'powder'
 
 Tallow:
   name: Tallow
   description: Shortening has lots of applications.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'tallow'

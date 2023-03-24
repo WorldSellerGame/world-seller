@@ -4,14 +4,14 @@ Oven Mitts: # used in Cooking, Refining, and Alchemy
   name: Oven Mitts
   description: Please don't grab it with just your hands. Can be used over gloves.
   category: Crafting Tables
-  rarity: Common
+  rarity: Uncommon
   icon: 'mitts'
 
 Linen Cloth:
   name: Linen Cloth
   description: Spun and woven together from plant fibers.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'fabric'
 
 Yarn:
@@ -32,10 +32,10 @@ Twine:
   name: Twine
   description: Tightly spun plant fiber. Can vary in thickness depending on the application.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'spool'
 
-Twine Oven Mitts: # used in Cooking, Refining, and Alchemy
+Twine Oven Mitts:
   name: Twine Oven Mitts
   description: High heat resistant Oven Mitts.
   category: Crafting Tables
@@ -44,16 +44,16 @@ Twine Oven Mitts: # used in Cooking, Refining, and Alchemy
 
 Rope:
   name: Rope
-  description: Undoubtedly a useful thing, yet it is but a string. #leave this punctuation as is
+  description: Undoubtedly a useful thing, yet it is but a string. 
   category: Refined Materials
-  rarity: Uncommon
+  rarity: Rare
   icon: 'spool'
 
 Leather:
   name: Leather
   description: Processed hide, long lasting and tough.
   category: Refined Materials
-  rarity: Uncommon
+  rarity: Rare
   icon: 'fabric'
 
 #blankets

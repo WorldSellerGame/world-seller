@@ -1,3 +1,6 @@
+
+# Low gather time, low cooldown
+
 locations:
   - name: Nearby Forest
     description: Over-harvested forest with little bounty.
@@ -8,6 +11,7 @@ locations:
       min: 0
       max: 10
     gatherTime: 10
+    cooldownTime: 2
     resources:
       - name: Dandelion
         weight: 1
@@ -21,7 +25,8 @@ locations:
     level:
       min: 5
       max: 10
-    gatherTime: 10
+    gatherTime: 20
+    cooldownTime: 3
     resources:
       - name: Pine Needle
         weight: 1
@@ -41,7 +46,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 15
+    gatherTime: 60
+    cooldownTime: 10
     resources:
       - name: Dandelion
         weight: 1
@@ -69,7 +75,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 20
+    gatherTime: 120
+    cooldownTime: 25
     resources:
       - name: Apple
         weight: 8
@@ -87,8 +94,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 25
-    cooldownTime: 10
+    gatherTime: 200
+    cooldownTime: 40
     resources:
       - name: Raspberry
         weight: 20
@@ -105,26 +112,28 @@ locations:
   - name: Wheat Meadow
     description: A field of wheat, pretty cool right?
     perGather:
-      min: 8
-      max: 18
+      min: 7
+      max: 14
     level:
       min: 25
       max: 35
-    gatherTime: 25
+    gatherTime: 300
+    cooldownTime: 60
     resources:
       - name: Wheat
-        weight: 1
+        weight: 20
     maxWorkers: 1
 
   - name: Stream Bank
     description: Soggy.
     perGather:
-      min: 6
-      max: 12
+      min: 8
+      max: 16
     level:
       min: 30
       max: 40
-    gatherTime: 30
+    gatherTime: 500
+    cooldownTime: 120
     resources:
       - name: Plant Fiber
         weight: 25
@@ -149,13 +158,13 @@ locations:
   - name: Abandoned Homestead
     description: A small home with an over grown garden attached. Who can say what happened.
     perGather:
-      min: 4
-      max: 8
+      min: 9
+      max: 18
     level:
       min: 35
       max: 45
-    gatherTime: 40
-    cooldownTime: 240
+    gatherTime: 800
+    cooldownTime: 180
     resources:
       - name: Mushroom
         weight: 2
@@ -172,12 +181,13 @@ locations:
   - name: Iron Wood Grove
     description: Best place to go searching for bee hives.
     perGather:
-      min: 6
-      max: 12
+      min: 10
+      max: 20
     level:
       min: 40
       max: 50
-    gatherTime: 50
+    gatherTime: 1100
+    cooldownTime: 250
     resources:
       - name: Mushroom
         weight: 30
@@ -198,12 +208,13 @@ locations:
   - name: Near Ocean Jungle
     description: Stack bananas till the morning comes.
     perGather:
-      min: 6
-      max: 12
+      min: 11
+      max: 22
     level:
       min: 45
       max: 55
-    gatherTime: 60
+    gatherTime: 1800
+    cooldownTime: 370
     resources:
       - name: Plant Fiber
         quantity: 5
@@ -215,12 +226,13 @@ locations:
   - name: Seashore
     description: Many things here you cannot grow back home making their value worth the trip.
     perGather:
-      min: 6
-      max: 12
+      min: 12
+      max: 24
     level:
       min: 50
       max: 60
-    gatherTime: 60
+    gatherTime: 2500
+    cooldownTime: 500
     resources:
       - name: Plant Fiber
         quantity: 5
@@ -236,12 +248,13 @@ locations:
   - name: Grave of the Forest Nymph
     description: Roses grow supernaturally thick in this small clearing. Best not to disturb the graves of spirits.
     perGather:
-      min: 5
-      max: 5
+      min: 13
+      max: 26
     level:
       min: 55
       max: 65
-    gatherTime: 60
+    gatherTime: 3500
+    cooldownTime: 750
     resources:
       - name: Rose
         quantity: 5
@@ -253,13 +266,13 @@ locations:
   - name: Old Elvish Woods
     description: The Silverwood trees prevent other plants from growing the fungus do not care.
     perGather:
-      min: 6
-      max: 12
+      min: 14
+      max: 28
     level:
       min: 60
       max: 70
-    gatherTime: 120
-    cooldownTime: 480
+    gatherTime: 4500
+    cooldownTime: 1000
     resources:
       - name: Mushroom
         weight: 90
