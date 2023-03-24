@@ -34,7 +34,7 @@ Cooked Cropfish:
     healing: 3
   effects:
     - effect: ItemSelfHeal
-  foodDuration: 2    
+  foodDuration: 2
 
 #
 
@@ -48,10 +48,10 @@ Barbecued Squirrel:
   value: 10
   icon: hot-meal
   stats:
-    healing: 5 
+    healing: 5
   effects:
     - effect: ItemSelfHeal
-  foodDuration: 2    
+  foodDuration: 2
 
 Vegetable Soup:
   name: Vegetable Soup
@@ -63,7 +63,7 @@ Vegetable Soup:
   value: 10
   icon: hot-meal
   stats:
-    healing: 5 
+    healing: 5
   effects:
     - effect: ItemSelfHeal
   foodDuration: 2
@@ -94,8 +94,7 @@ Pan Fried Panfish:
   durability: 1
   value: 15
   icon: cooked-fish
-  stats:
-    healing: {}
+  stats: {}
   effects:
     - effect: ApplyRegen1
   foodDuration: 2
@@ -192,7 +191,7 @@ Cooked Trout:
   value: 50
   icon: cooked-fish
   stats:
-    healing: 5 
+    healing: 5
   effects:
     - effect: ItemSelfHeal
     - effect: ApplyRegen1
@@ -208,8 +207,7 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   durability: 1
   value: 75
   icon: jar
-  stats:
-    healing: {}
+  stats: {}
   effects:
     - effect: FishingBasic2
   foodDuration: 1
@@ -224,8 +222,7 @@ Raspberry Jam:
   durability: 1
   value: 75
   icon: jar
-  stats:
-    healing: {}
+  stats: {}
   effects:
     - effect: FishingBasic2
   foodDuration: 1
@@ -278,7 +275,7 @@ Roast Turkey:
     - effect: ItemSelfHeal
   foodDuration: 3
 
-# 
+#
 
 Venison Steak:
   name: Venison Steak
@@ -308,7 +305,7 @@ Apple Pie:
   stats:
     healing: 10
   effects:
-    - effect: ForagingBasic2    
+    - effect: ForagingBasic2
     - effect: ItemSelfHeal
     - effect: ApplyRegen1
   foodDuration: 2
@@ -339,7 +336,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   value: 100
   icon: cookie
   stats:
-    healing: 3 
+    healing: 3
   effects:
     - effect: ItemSelfHeal
     - effect: FishingBasic2
@@ -357,7 +354,7 @@ Mixed Fruit Juice:
   value: 250
   icon: cup
   stats:
-    healing: 5 
+    healing: 5
   effects:
     - effect: ItemSelfHeal
     - effect: FishingBasic1
@@ -445,7 +442,7 @@ Banana Bread:
   stats:
     healing: 10
   effects:
-    - effect: ForagingBasic2    
+    - effect: ForagingBasic2
     - effect: ItemSelfHeal
     - effect: ApplyRegen2
   foodDuration: 4

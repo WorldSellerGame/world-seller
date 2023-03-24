@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const readdir = require('recursive-readdir');
-const { isUndefined, isArray } = require('lodash');
+const { isUndefined, isArray, isNumber } = require('lodash');
 
 const validCategories = ['Tools', 'Armor', 'Foods', 'Jewelry', 'Potions', 'Seeds', 'Miscellaneous', 'Raw Materials', 'Refined Materials', 'Crafting Tables', 'Weapons'];
 
@@ -156,6 +156,11 @@ const loadContent = async () => {
         console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
         hasBad = true;
       }
+
+      if(!isNumber(item.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        hasBad = true;
+      }
     });
   });
 
@@ -288,6 +293,11 @@ const loadContent = async () => {
     Object.keys(enemy.stats).forEach(stat => {
       if(!validStats.includes(stat)) {
         console.log(`⚠ Enemy ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+
+      if(!isNumber(enemy.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
         hasBad = true;
       }
     });
