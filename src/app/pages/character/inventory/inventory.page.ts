@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { sortBy, uniq } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
-import { CharSelectState } from '../../../../stores';
+import { CharSelectState, CombatState } from '../../../../stores';
 import { OOCEatFood } from '../../../../stores/combat/combat.actions';
 import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
@@ -16,6 +16,7 @@ import { setDiscordStatus } from '../../../helpers/electron';
 export class InventoryPage implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
+  @Select(CombatState.currentEncounter) encounter$!: Observable<any>;
 
   public activeCategory = '';
   public categorySub!: Subscription;
