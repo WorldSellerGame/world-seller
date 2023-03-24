@@ -43,8 +43,8 @@ export function defaultStatsZero(): Record<Stat, number> {
   };
 }
 
-export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, stat: Stat): number {
-  return sum(Object.values(equipment).map((item) => item?.stats[stat] ?? 0));
+export function getStat(stats: Record<Stat, number> = defaultStatsZero(), stat: Stat): number {
+  return stats?.[stat] ?? 0;
 }
 
 export function calculateStatFromState(state: any, character: IPlayerCharacter, stat: Stat): number {
@@ -63,6 +63,10 @@ export function calculateStatFromState(state: any, character: IPlayerCharacter, 
 
     return total + Math.floor(value / divisor);
   }, 0);
+}
+
+export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, stat: Stat): number {
+  return sum(Object.values(equipment).filter(Boolean).map((item) => getStat(item.stats, stat as Stat)));
 }
 
 export function calculateHealthFromState(state: any, character: IPlayerCharacter): number {
@@ -98,7 +102,7 @@ export function getStatTotals(state: any, character: IPlayerCharacter): Record<S
 
     Object.keys(item.stats).forEach(statStr => {
       const stat = statStr as Stat;
-      totals[stat] = (totals[stat] || 0) + (item.stats[stat] ?? 0);
+      totals[stat] = (totals[stat] || 0) + getStat(item.stats, stat);
     });
   });
 

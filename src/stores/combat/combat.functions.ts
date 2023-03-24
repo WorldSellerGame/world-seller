@@ -17,7 +17,7 @@ import {
 } from './combat.actions';
 
 import { clamp } from 'lodash';
-import { applyDeltas, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
+import { applyDeltas, getStat, handleCombatEnd, hasAnyoneWonCombat, isDead } from '../../app/helpers';
 import { AddItemToInventory, GainItemOrResource, RemoveItemFromInventory } from '../charselect/charselect.actions';
 import { NotifyInfo } from '../game/game.actions';
 
@@ -289,7 +289,7 @@ export function resetPlayerSpeed(ctx: StateContext<IGameCombat>) {
 
   ctx.setState(patch<IGameCombat>({
     currentPlayer: patch<IGameEncounterCharacter>({
-      currentSpeed: currentPlayer.stats[Stat.Speed]
+      currentSpeed: getStat(currentPlayer.stats, Stat.Speed)
     })
   }));
 }
@@ -307,7 +307,7 @@ export function resetEnemySpeed(ctx: StateContext<IGameCombat>, { enemyIndex }: 
   ctx.setState(patch<IGameCombat>({
     currentEncounter: patch<IGameEncounter>({
       enemies: updateItem<IGameEncounterCharacter>(enemyIndex, patch<IGameEncounterCharacter>({
-        currentSpeed: enemy.stats[Stat.Speed]
+        currentSpeed: getStat(enemy.stats, Stat.Speed)
       }))
     })
   }));

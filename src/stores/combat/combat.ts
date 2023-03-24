@@ -10,7 +10,7 @@ import {
   dispatchCorrectCombatEndEvent,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getPlayerCharacterReadyForCombat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, getStat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
@@ -160,12 +160,12 @@ export class CombatState {
 
     // do on-combat-start heals
     currentPlayer.currentHealth = Math.min(
-      currentPlayer.currentHealth + currentPlayer.stats[Stat.HealingPerCombat],
+      currentPlayer.currentHealth + getStat(currentPlayer.stats, Stat.HealingPerCombat),
       currentPlayer.maxHealth
     );
 
     currentPlayer.currentEnergy = Math.min(
-      currentPlayer.currentEnergy + currentPlayer.stats[Stat.EnergyPerCombat],
+      currentPlayer.currentEnergy + getStat(currentPlayer.stats, Stat.EnergyPerCombat),
       currentPlayer.maxEnergy
     );
 
@@ -212,13 +212,15 @@ export class CombatState {
 
     // speed adjustments
     const maxSpeed = Math.max(
-      currentPlayer.stats[Stat.Speed],
+      getStat(currentPlayer.stats, Stat.Speed),
       ...threatData.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
     );
 
     [currentPlayer, ...enemies].forEach(char => {
-      char.stats[Stat.Speed] = Math.max(1, maxSpeed - char.stats[Stat.Speed] + 1);
-      char.currentSpeed = random(Math.floor(char.stats[Stat.Speed] / 2), char.stats[Stat.Speed]);
+      char.stats[Stat.Speed] = Math.max(1, maxSpeed - getStat(char.stats, Stat.Speed) + 1);
+
+      const speed = getStat(char.stats, Stat.Speed);
+      char.currentSpeed = random(Math.floor(speed / 2), speed);
     });
 
     // every 10th level requires a dungeon dive
@@ -266,8 +268,8 @@ export class CombatState {
     }
 
     const preTurnDeltas: ICombatDelta[] = [];
-    const healingPerRound = enemy.stats[Stat.HealingPerRound];
-    const energyPerRound = enemy.stats[Stat.EnergyPerRound];
+    const healingPerRound = getStat(enemy.stats, Stat.HealingPerRound);
+    const energyPerRound = getStat(enemy.stats, Stat.EnergyPerRound);
 
     if(healingPerRound > 0) {
       ctx.dispatch(new AddCombatLogMessage(`${enemy.name} healed ${healingPerRound} HP!`));
@@ -661,8 +663,8 @@ export class CombatState {
         // unlock combat when the player can do something
         if(newSpeed <= 0) {
           const preTurnDeltas: ICombatDelta[] = [];
-          const healingPerRound = player.stats[Stat.HealingPerRound];
-          const energyPerRound = player.stats[Stat.EnergyPerRound];
+          const healingPerRound = getStat(player.stats, Stat.HealingPerRound);
+          const energyPerRound = getStat(player.stats, Stat.EnergyPerRound);
 
           if(healingPerRound > 0) {
             ctx.dispatch(new AddCombatLogMessage(`${player.name} healed ${healingPerRound} HP!`));

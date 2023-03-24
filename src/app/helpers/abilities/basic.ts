@@ -5,14 +5,15 @@ import { IAttackParams, ICombatDelta, IGameCombat, Stat } from '../../../interfa
 import { AddCombatLogMessage, SetCombatLock, SetCombatLockForEnemies } from '../../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../../stores/combat/dungeon.actions';
 import { calculateAbilityDamageForUser, dispatchCorrectCombatEndEvent } from '../combat';
+import { getStat } from '../stats';
 
 function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackParams): { damage: number; deltas: ICombatDelta[] } {
 
   const { source, target, ability } = opts;
 
   const baseDamage = calculateAbilityDamageForUser(ability, opts.useStats);
-  const armor = opts.allowBonusStats ? Math.max(0, target.stats[Stat.Armor]) : 0;
-  const mitigation = opts.allowBonusStats ? Math.min(75, Math.max(0, target.stats[Stat.Mitigation] ?? 0)) : 0;
+  const armor = opts.allowBonusStats ? Math.max(0, getStat(target.stats, Stat.Armor)) : 0;
+  const mitigation = opts.allowBonusStats ? Math.min(75, Math.max(0, getStat(target.stats, Stat.Mitigation))) : 0;
 
   const unmitigatedDamage = baseDamage - armor;
   const mitigatedDamage = (mitigation / 100) * baseDamage;
@@ -31,7 +32,7 @@ function singleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): 
   const { source, ability } = opts;
 
   const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
-  const healingBonus = opts.allowBonusStats ? source.stats[Stat.Healing] : 0;
+  const healingBonus = opts.allowBonusStats ? getStat(source.stats, Stat.Healing) : 0;
 
   const damage = Math.max(0, baseHeal + healingBonus);
 
@@ -48,7 +49,7 @@ function singleTargetEnergyHeal(ctx: StateContext<IGameCombat>, opts: IAttackPar
   const { source, ability } = opts;
 
   const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
-  const healingBonus = opts.allowBonusStats ? source.stats[Stat.EnergyHealing] : 0;
+  const healingBonus = opts.allowBonusStats ? getStat(source.stats, Stat.EnergyHealing) : 0;
 
   const damage = Math.max(0, baseHeal + healingBonus);
 

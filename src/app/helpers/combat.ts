@@ -15,7 +15,7 @@ import {
 } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
 import { PlaySFX } from '../../stores/game/game.actions';
-import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
+import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStat, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
 
@@ -187,14 +187,14 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           default: {
             // double check so when applying a buff the stat doesn't go below 1
             // this prevents a bug that would make the base stat larger when the buff unapplies
-            const baseStat = character.stats[key as Stat];
+            const baseStat = getStat(character.stats, key as Stat);
             const appliedValue = baseStat + bonusValue;
 
             if(appliedValue <= 0) {
               applyStatusEffect.statModifications[key as Stat] = bonusValue - appliedValue + 1;
             }
 
-            character.stats[key as Stat] = Math.max(character.stats[key as Stat] + bonusValue, 1);
+            character.stats[key as Stat] = Math.max(getStat(character.stats, key as Stat) + bonusValue, 1);
             break;
           }
         }
@@ -227,7 +227,7 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           default: {
             const statsThatStayAt1 = [Stat.Speed];
             character.stats[key as Stat] = Math.max(
-              character.stats[key as Stat] - bonusValue,
+              getStat(character.stats, key as Stat) - bonusValue,
               statsThatStayAt1.includes(key as Stat) ? 1 : 0
             );
             break;
