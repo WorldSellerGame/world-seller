@@ -93,10 +93,10 @@ Items require:
 * `givesPlayerAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats
 * `foodDuration` - optional, if specified, the item can be used as a food for combat and will give its `stats` every combat
-* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to health
-* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to energy
-* `effects`
-* `abilities`
+* `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to health
+* `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Food'`) and restore this value to energy
+* `effects` - optional, if specified, these effects will apply to the player when they enter combat (if it's `type='Food'`). Format: `{ effect: 'ApplyEffect', effectName: 'EffectToApply' }`
+* `abilities` - optional, if specified, these abilities will happen when the player uses the item in combat (food, potions, etc)
 
 # Adding a New Gathering Location
 
