@@ -17,7 +17,7 @@ Oak Fishing Rod:
   description: A stout fishing rod.
   type: FishingRod
   category: Tools
-  rarity: Unommon
+  rarity: Uncommon
   durability: 15
   value: 50
   icon: fishing-pole

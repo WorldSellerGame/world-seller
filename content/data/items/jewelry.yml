@@ -23,7 +23,7 @@ Braided Belt:
   value: 20
   icon: 'ring'
   stats:
-    armor: 1
+    {}
 
 Braided Anklet:
   name: Braided Anklet
@@ -73,7 +73,7 @@ Bone Belt:
   value: 200
   icon: 'bone-string'
   stats:
-    armor: 1
+    {}
 
 Bone Anklet:
   name: Bone Anklet
@@ -147,7 +147,7 @@ Boar Tusk Belt:
   value: 400
   icon: 'bone-string'
   stats:
-    armor: 1
+    {}
 
 Boar Tusk Anklet:
   name: Boar Tusk Anklet

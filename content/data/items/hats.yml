@@ -9,7 +9,7 @@ Knitted Hat:
   value: 10
   icon: hat
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Hat:
   name: Fur Hat
@@ -21,7 +21,7 @@ Fur Hat:
   value: 50
   icon: hat
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Hat:
   name: Linen Hat
@@ -45,7 +45,7 @@ Leather Hat:
   value: 250
   icon: hat
   stats:
-    armor: 5
+    mitigation: 12
 
 ###
 

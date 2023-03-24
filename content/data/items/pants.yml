@@ -9,7 +9,7 @@ Knitted Pants:
   value: 20
   icon: pants
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Pants:
   name: Fur Pants
@@ -21,7 +21,7 @@ Fur Pants:
   value: 10
   icon: pants
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Pants:
   name: Linen Pants
@@ -45,4 +45,4 @@ Leather Pants:
   value: 500
   icon: pants
   stats:
-    armor: 5
+    mitigation: 12

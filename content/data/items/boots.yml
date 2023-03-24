@@ -9,7 +9,7 @@ Knitted Boots:
   value: 10
   icon: boots
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Boots:
   name: Fur Boots
@@ -21,7 +21,7 @@ Fur Boots:
   value: 50
   icon: boots
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Boots:
   name: Linen Boots
@@ -45,4 +45,4 @@ Leather Boots:
   value: 250
   icon: boots
   stats:
-    armor: 5
+    mitigation: 12

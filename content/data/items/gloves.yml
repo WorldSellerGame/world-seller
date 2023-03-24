@@ -9,7 +9,7 @@ Knitted Gloves:
   value: 10
   icon: gloves
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Gloves:
   name: Fur Gloves
@@ -21,7 +21,7 @@ Fur Gloves:
   value: 50
   icon: gloves
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Gloves:
   name: Linen Gloves
@@ -45,7 +45,7 @@ Leather Gloves:
   value: 250
   icon: gloves
   stats:
-    armor: 5
+    mitigation: 12
 
 
 #Enemy 
