@@ -23,7 +23,6 @@ export class ItemTooltipComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    console.log(this.item);
     this.hasStats = Object.keys(this.item.stats || {}).length > 0;
     this.effects = (this.item.effects || [])
       .map(x => x.effect)

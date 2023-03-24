@@ -108,7 +108,7 @@
                 You don't have any items of this type in your inventory.
               </div>
 
-              <ion-list *ngIf="equippableItems.length > 0">
+              <ion-list *ngIf="equippableItems.length > 0" class="constrain-size">
                 <ion-item *ngFor="let item of equippableItems">
                   <app-game-icon slot="start" [icon]="item.icon"></app-game-icon>
                   <ion-label class="ion-text-wrap">

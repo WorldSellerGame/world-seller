@@ -4,15 +4,15 @@
 
 #target - the target of the ability (Self, Ally [for enemies], Single [single target, opposite side])
 
-#effect can be BasicAttack, UtilityEscape, SingleTargetAttack, SingleTargetHeal, ApplyEffect
+#effect can be BasicAttack, UtilityEscape, SingleTargetAttack, SingleTargetHeal, SingleTargetEnergyHeal, ApplyEffect
 
 
 
-#statusEffectType - the type of the status effect (StatModification, DamageOverTime)# 
+#statusEffectType - the type of the status effect (StatModification, DamageOverTime)#
 
-# healing 
-# attack 
+# healing
+# attack
 # armor
-# speed 
-# healthBonus 
-# energyBonus 
+# speed
+# healthBonus
+# energyBonus
