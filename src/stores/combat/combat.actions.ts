@@ -151,6 +151,16 @@ export class DebugApplyEffectToPlayer {
   constructor(public effect: IGameStatusEffect) {}
 }
 
+export class DebugSetPlayerHealth {
+  static type = '[Combat] Debug Set Player Health';
+  constructor(public value: number) {}
+}
+
+export class DebugSetPlayerEnergy {
+  static type = '[Combat] Debug Set Player Energy';
+  constructor(public value: number) {}
+}
+
 export class OOCPlayerHeal {
   static type = '[Combat] OOC Player Heal';
   constructor(public amount: number) {}

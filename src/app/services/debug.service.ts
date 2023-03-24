@@ -6,7 +6,10 @@ import { OptionsState } from '../../stores';
 import { GainAlchemyLevels } from '../../stores/alchemy/alchemy.actions';
 import { GainBlacksmithingLevels } from '../../stores/blacksmithing/blacksmithing.actions';
 import { DiscoverResourceOrItem, GainItemOrResource } from '../../stores/charselect/charselect.actions';
-import { DebugApplyEffectToPlayer, GainCombatLevels, InitiateCombat } from '../../stores/combat/combat.actions';
+import {
+  DebugApplyEffectToPlayer, DebugSetPlayerEnergy,
+  DebugSetPlayerHealth, GainCombatLevels, InitiateCombat
+} from '../../stores/combat/combat.actions';
 import { GainCookingLevels } from '../../stores/cooking/cooking.actions';
 import { GainFarmingLevels } from '../../stores/farming/farming.actions';
 import { GainFishingLevels } from '../../stores/fishing/fishing.actions';
@@ -53,6 +56,14 @@ export class DebugService {
       this.store.dispatch(new InitiateCombat(threat, true));
     };
 
+    (window as any).setCombatHealth = (value: number) => {
+      this.store.dispatch(new DebugSetPlayerHealth(value));
+    };
+
+    (window as any).setCombatEnergy = (value: number) => {
+      this.store.dispatch(new DebugSetPlayerEnergy(value));
+    };
+
     (window as any).applyCombatEffectToPlayer = (effect: string) => {
       const effectRef = this.contentService.getEffectByName(effect);
       if(!effectRef) {
@@ -92,5 +103,7 @@ export class DebugService {
     (window as any).fightThreat = () => {};
     (window as any).applyCombatEffectToPlayer = () => {};
     (window as any).gainLevel = () => {};
+    (window as any).setCombatHealth = () => {};
+    (window as any).setCombatEnergy = () => {};
   }
 }

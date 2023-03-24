@@ -470,7 +470,11 @@ export class CombatState {
         allowBonusStats: !fromItem,
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
-      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      // items do not cost energy
+      if(ability.energyCost > 0 && !fromItem) {
+        deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+      }
 
       const hp = currentPlayer.currentHealth;
       applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
