@@ -127,8 +127,6 @@ A JSON file can optionally have any of the following properties:
 
 ##### Adding a New Resource
 
-1. Add the resource under the corresponding tradeskill in the `content/resources` folder (file names are used purely for organization).
-
 Resources require:
 
 * `description` - shown in game
@@ -138,8 +136,6 @@ Resources require:
 
 
 ##### Adding a New Item
-
-1. Add the item under the corresponding tradeskill in the `content/items` folder (file names are used purely for organization).
 
 Items require:
 
@@ -179,8 +175,6 @@ When in combat:
 
 ##### Adding a New Gathering Location
 
-1. Add the location under the corresponding tradeskill in the `content/` folder (file names are used here for the specific tradeskill they give content for).
-
 Gathering requires:
 
 * `name` - shown in game
@@ -192,8 +186,6 @@ Gathering requires:
 * `maxWorkers` - how many workers can gather from this node at once
 
 ##### Adding a New Recipe
-
-1. Add the recipe under the corresponding tradeskill in the `content/` folder (file names are used here for the specific tradeskill they give content for).
 
 Recipes require:
 
@@ -207,8 +199,6 @@ Recipes require:
 * `maxWorkers` - how many workers can craft this item at once
 
 ##### Adding a New Ability
-
-1. Add the ability under any file in the `content/abilities` folder (file names are used here are purely organizational).
 
 Abilities require:
 
@@ -237,8 +227,6 @@ You _can_ specify `target=All` and `target=AllEnemies` with an effect of `Single
 
 ##### Adding a New Status Effect
 
-1. Add the effect under any file in the `content/effects` folder (file names are used here are purely organizational).
-
 Effects require:
 
 * `name` - shown in game
@@ -256,8 +244,6 @@ If you choose to modify speed, it works the opposite of other stats - negative s
 
 ##### Adding a New Enemy
 
-1. Add the enemy under any file in the `content/enemies` folder (file names are used here are purely organizational).
-
 Enemies require:
 
 * `name` - shown in game
@@ -272,8 +258,6 @@ Enemies require:
 
 ##### Adding a New Threat
 
-1. Add the threat under any file in the `content/threats` folder (file names are used here are purely organizational).
-
 Threats require:
 
 * `name` - shown in game
@@ -284,8 +268,6 @@ Threats require:
 * `enemies` - the enemies the threat will spawn - see threats for how to declare this, and see Enemies for the valid enemies
 
 ##### Adding a New Dungeon
-
-1. Add the dungeon under any file in the `content/dungeons` folder (file names are used here are purely organizational, _but_ consider naming them in order with a brief description, e.g. `1-goblin` for "level 1" and "there are goblins here").
 
 Dungeons require:
 
