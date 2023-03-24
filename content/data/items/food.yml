@@ -11,12 +11,10 @@ Pine Nuts:
   durability: 1
   value: 5
   icon: meal
-  oocHealth: 5
-  oocEnergy: 5
+  oocHealth: 1
+  oocEnergy: 1
   stats:
-    healing: 3
-  effects:
-    - effect: ItemSelfHeal
+    healingPerCombat: 5
   foodDuration: 2
 
 
@@ -30,10 +28,9 @@ Cooked Cropfish:
   durability: 1
   value: 5
   icon: cooked-fish
+  oocHealth: 3
   stats:
-    healing: 3
-  effects:
-    - effect: ItemSelfHeal
+    healingPerCombat: 10
   foodDuration: 2
 
 #
@@ -47,10 +44,10 @@ Barbecued Squirrel:
   durability: 1
   value: 10
   icon: hot-meal
+  oocHealth: 1
+  oocEnergy: 1
   stats:
-    healing: 5
-  effects:
-    - effect: ItemSelfHeal
+    healingPerRound: 3
   foodDuration: 2
 
 Vegetable Soup:
@@ -62,10 +59,10 @@ Vegetable Soup:
   durability: 1
   value: 10
   icon: hot-meal
+  oocHealth: 5
+  oocEnergy: 1
   stats:
-    healing: 5
-  effects:
-    - effect: ItemSelfHeal
+    healingPerRound: 6
   foodDuration: 2
 
 #
@@ -79,10 +76,9 @@ Roast Bunny:
   durability: 1
   value: 15
   icon: hot-meal
+  oocHealth: 1
   stats:
-    healing: 7
-  effects:
-    - effect: ItemSelfHeal
+    healingPerRound: 10
   foodDuration: 3
 
 Pan Fried Panfish:
@@ -94,9 +90,11 @@ Pan Fried Panfish:
   durability: 1
   value: 15
   icon: cooked-fish
+  oocHealth: 2
   stats: {}
   effects:
-    - effect: ApplyRegen1
+    - effect: ApplyEffect
+      effectName: Regen1
   foodDuration: 2
 
 #
@@ -110,11 +108,12 @@ Baked Fallfish:
   durability: 1
   value: 25
   icon: cooked-fish
+  oocHealth: 5
   stats:
-    healing: 2
+    healingPerCombat: 5
   effects:
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen1
+    - effect: ApplyEffect
+      effectName: Regen1
   foodDuration: 2
 
 Bunny Stew:
@@ -126,10 +125,11 @@ Bunny Stew:
   durability: 1
   value: 25
   icon: hot-meal
+  oocHealth: 2
+  oocEnergy: 2
   stats:
     healing: 10
-  effects:
-    - effect: ItemSelfHeal
+    healingPerCombat: 10
   foodDuration: 3
 
 Candied Apple:
@@ -141,11 +141,12 @@ Candied Apple:
   durability: 1
   value: 50
   icon: apple
+  oocEnergy: 3
   stats:
-    healing: 2
+    healingPerCombat: 10
   effects:
-    - effect: ItemSelfHeal
-    - effect: FishingBasic1
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
   foodDuration: 2
 
 #
@@ -159,10 +160,10 @@ Duck Roast:
   durability: 1
   value: 50
   icon: cooked-bird
+  oocHealth: 10
   stats:
     healing: 12
-  effects:
-    - effect: ItemSelfHeal
+    healingPerRound: 5
   foodDuration: 3
 
 Fried Frog Legs:
@@ -174,11 +175,14 @@ Fried Frog Legs:
   durability: 1
   value: 50
   icon: frog-foot
+  oocHealth: 2
   stats:
     healing: 3
+    healingPerCombat: 5
+    healingPerRound: 3
   effects:
-    - effect: ItemSelfHeal
-    - effect: ApplyEnergyBuff1
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
   foodDuration: 2
 
 Cooked Trout:
@@ -190,11 +194,12 @@ Cooked Trout:
   durability: 1
   value: 50
   icon: cooked-fish
+  oocHealth: 5
   stats:
     healing: 5
   effects:
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen1
+    - effect: ApplyEffect
+      effectName: Regen1
   foodDuration: 3
 
 
@@ -208,8 +213,10 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   value: 75
   icon: jar
   stats: {}
+  oocEnergy: 3
   effects:
-    - effect: FishingBasic2
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
   foodDuration: 1
 
 
@@ -222,9 +229,11 @@ Raspberry Jam:
   durability: 1
   value: 75
   icon: jar
+  oocEnergy: 3
   stats: {}
   effects:
-    - effect: FishingBasic2
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
   foodDuration: 1
 
 #
@@ -238,10 +247,9 @@ Bread:
   durability: 1
   value: 50
   icon: bread
+  oocEnergy: 5
   stats:
-    healing: 10
-  effects:
-    - effect: ItemSelfHeal
+    healingPerCombat: 10
   foodDuration: 5
 
 Baked Breaded Bass:
@@ -253,11 +261,12 @@ Baked Breaded Bass:
   durability: 1
   value: 75
   icon: cooked-fish
+  oocEnergy: 5
   stats:
-    healing: 10
+    healingPerCombat: 10
   effects:
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen1
+    - effect: ApplyEffect
+      effectName: Regen1
   foodDuration: 3
 
 Roast Turkey:
@@ -269,10 +278,9 @@ Roast Turkey:
   durability: 1
   value: 75
   icon: cooked-bird
+  oocEnergy: 10
   stats:
-    healing: 18
-  effects:
-    - effect: ItemSelfHeal
+    healingPerCombat: 20
   foodDuration: 3
 
 #
@@ -286,11 +294,13 @@ Venison Steak:
   durability: 1
   value: 100
   icon: hot-meal
+  oocEnergy: 10
   stats:
-    healing: 15
+    healingPerCombat: 10
+    healingPerRound: 3
   effects:
-    - effect: ItemSelfHeal
-    - effect: HuntingBasic2
+    - effect: ApplyEffect
+      effectName: AttackBuff2
   foodDuration: 3
 
 Apple Pie:
@@ -302,12 +312,15 @@ Apple Pie:
   durability: 1
   value: 150
   icon: pie
+  oocHealth: 5
+  oocEnergy: 1
   stats:
-    healing: 10
+    healingPerCombat: 10
   effects:
-    - effect: ForagingBasic2
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen1
+    - effect: ApplyEffect
+      effectName: Regen1
+    - effect: ApplyEffect
+      effectName: HealingBuff2
   foodDuration: 2
 
 Pumpkin Pie:
@@ -319,11 +332,12 @@ Pumpkin Pie:
   durability: 1
   value: 150
   icon: pie
+  oocHealth: 15
   stats:
-    healing: 10
+    healingPerCombat: 10
   effects:
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen2
+    - effect: ApplyEffect
+      effectName: Regen2
   foodDuration: 2
 
 Cookie: #egg required - Im sorry little one you will be be added next time
@@ -335,11 +349,13 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   durability: 1
   value: 100
   icon: cookie
+  oocHealth: 5
+  oocEnergy: 5
   stats:
-    healing: 3
+    healingPerCombat: 3
   effects:
-    - effect: ItemSelfHeal
-    - effect: FishingBasic2
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
   foodDuration: 6
 
 #
@@ -353,15 +369,20 @@ Mixed Fruit Juice:
   durability: 1
   value: 250
   icon: cup
+  oocEnergy: 30
   stats:
-    healing: 5
+    healingPerCombat: 5
   effects:
-    - effect: ItemSelfHeal
-    - effect: FishingBasic1
-    - effect: ForagingBasic1
-    - effect: HuntingBasic1
-    - effect: LoggingBasic1
-    - effect: MiningBasic1
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: HealingBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+    - effect: ApplyEffect
+      effectName: HealthBuff1
+    - effect: ApplyEffect
+      effectName: ArmorBuff1
   foodDuration: 1
 
 Duck Eggs Benedict:
@@ -373,10 +394,14 @@ Duck Eggs Benedict:
   durability: 1
   value: 500
   icon: hot-meal
+  oocHealth: 10
+  oocEnergy: 2
   stats:
-    healing: 20
-  effects:
-    - effect: ItemSelfHealRandom
+    healingPerCombat: 5
+    healingPerRound: 5
+    healing: 10
+  abilities:
+    - abilityName: ItemSelfHealRandom
   foodDuration: 3
 #
 
@@ -389,10 +414,11 @@ Honey Ham:
   durability: 1
   value: 300
   icon: hot-meal
+  oocHealth: 15
   stats:
     healing: 25
-  effects:
-    - effect: ItemSelfHeal
+  abilities:
+    - abilityName: ItemSelfHeal
   foodDuration: 4
 
 Spicy Catfish Stew:
@@ -404,12 +430,17 @@ Spicy Catfish Stew:
   durability: 1
   value: 300
   icon: hot-meal
+  oocHealth: 15
+  oocEnergy: 5
   stats:
     healing: 15
+  abilities:
+    - abilityName: ItemSelfHeal
   effects:
-    - effect: ItemSelfHeal
-    - effect: FishingBasic1
-    - effect: HuntingBasic1
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
   foodDuration: 4
 
 #
@@ -423,11 +454,14 @@ Pompano Ceviche:
   durability: 1
   value: 500
   icon: meal
+  oocHealth: 15
   stats:
     healing: 7
+  abilities:
+    - abilityName: ItemSelfHeal
   effects:
-    - effect: ItemSelfHeal
-    - effect: FishingBasic3
+    - effect: ApplyEffect
+      effectName: SpeedBuff3
   foodDuration: 2
 
 Banana Bread:
@@ -439,12 +473,16 @@ Banana Bread:
   durability: 1
   value: 500
   icon: bread
+  oocHealth: 30
   stats:
     healing: 10
+  abilities:
+    - abilityName: ItemSelfHeal
   effects:
-    - effect: ForagingBasic2
-    - effect: ItemSelfHeal
-    - effect: ApplyRegen2
+    - effect: ApplyEffect
+      effectName: Regen2
+    - effect: ApplyEffect
+      effectName: HealingBuff2
   foodDuration: 4
 
 Elk Jerky:
@@ -456,11 +494,14 @@ Elk Jerky:
   durability: 1
   value: 500
   icon: meal
+  oocEnergy: 30
   stats:
     healing: 25
+  abilities:
+    - abilityName: ItemSelfHeal
   effects:
-    - effect: ItemSelfHeal
-    - effect: HuntingBasic2
+    - effect: ApplyEffect
+      effectName: AttackBuff2
   foodDuration: 6
 
 

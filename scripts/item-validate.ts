@@ -100,65 +100,65 @@ const loadContent = async () => {
     }
   });
 
-  const itemNames: Record<string, boolean> = {};
-  Object.keys(allItems).forEach(key => {
+  const effectNames: Record<string, boolean> = {};
+  Object.keys(allEffects).forEach(key => {
     if(key.length > 32) {
-      console.log(`⚠ Item ${key} is too long (>32 characters).`);
+      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
-    const item = allItems[key];
+    const effect = allEffects[key];
 
-    if(!item.name) {
-      console.log(`⚠ Item ${key} has no name.`);
+    if(!effect.name) {
+      console.log(`⚠ Effect ${key} has no name.`);
       hasBad = true;
     }
 
-    if(item.name && itemNames[item.name]) {
-      console.log(`⚠ Item ${key} has a duplicate name ${item.name}.`);
+    if(effect.name && effectNames[effect.name]) {
+      console.log(`⚠ Effect ${key} has a duplicate name ${effect.name}.`);
       hasBad = true;
     }
 
-    itemNames[item.name] = true;
+    effectNames[effect.name] = true;
 
-    if(item.name && item.name.length > 32) {
-      console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
+    if(effect.name && effect.name.length > 32) {
+      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
       hasBad = true;
     }
 
-    if(!validCategories.includes(item.category)) {
-      console.log(`⚠ Item ${key} has an invalid category ${item.category}.`);
+    if(!effect.description) {
+      console.log(`⚠ Effect ${key} has no description.`);
       hasBad = true;
     }
 
-    if(!validRarities.includes(item.rarity)) {
-      console.log(`⚠ Item ${key} has an invalid rarity ${item.rarity}.`);
+    if(!effect.icon) {
+      console.log(`⚠ Effect ${key} has no icon.`);
       hasBad = true;
     }
 
-    if(!validItemTypes.includes(item.type)) {
-      console.log(`⚠ Item ${key} has an invalid type ${item.type}.`);
+    if(!effect.color) {
+      console.log(`⚠ Effect ${key} has no color.`);
       hasBad = true;
     }
 
-    if(isUndefined(item.value)) {
-      console.log(`⚠ Item ${key} is missing value.`);
+    if(!effect.turnsLeft) {
+      console.log(`⚠ Effect ${key} has no turns left.`);
       hasBad = true;
     }
 
-    if(!validateIcon(item.icon)) {
-      console.log(`⚠ Item ${key} has an invalid icon ${item.icon}.`);
+    if(!validStatusTypes.includes(effect.statusEffectType)) {
+      console.log(`⚠ Effect ${key} has an invalid type.`);
       hasBad = true;
     }
 
-    Object.keys(item.stats || {}).forEach(stat => {
+    if(!validateIcon(effect.icon)) {
+      console.log(`⚠ Effect ${key} has an invalid icon ${effect.icon}.`);
+      hasBad = true;
+    }
+
+    Object.keys(effect.statModifications || {}).forEach(stat => {
       if(!validStats.includes(stat)) {
-        console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
-        hasBad = true;
-      }
-
-      if(!isNumber(item.stats[stat])) {
-        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        console.log(`⚠ Effect ${key} has an invalid stat ${stat}.`);
         hasBad = true;
       }
     });
@@ -235,8 +235,102 @@ const loadContent = async () => {
         console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) bonus.`);
         hasBad = true;
       }
-    })
+    });
 
+    (skill.effects || []).forEach((effect: any) => {
+      if(!effect.effectName) return;
+
+      if(!allEffects[effect.effectName]) {
+        console.log(`⚠ Ability ${key} has an effect ${effect.effectName} which does not exist.`);
+        hasBad = true;
+      }
+    });
+
+  });
+
+  const itemNames: Record<string, boolean> = {};
+  Object.keys(allItems).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Item ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    const item = allItems[key];
+
+    if(!item.name) {
+      console.log(`⚠ Item ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(item.name && itemNames[item.name]) {
+      console.log(`⚠ Item ${key} has a duplicate name ${item.name}.`);
+      hasBad = true;
+    }
+
+    itemNames[item.name] = true;
+
+    if(item.name && item.name.length > 32) {
+      console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!validCategories.includes(item.category)) {
+      console.log(`⚠ Item ${key} has an invalid category ${item.category}.`);
+      hasBad = true;
+    }
+
+    if(!validRarities.includes(item.rarity)) {
+      console.log(`⚠ Item ${key} has an invalid rarity ${item.rarity}.`);
+      hasBad = true;
+    }
+
+    if(!validItemTypes.includes(item.type)) {
+      console.log(`⚠ Item ${key} has an invalid type ${item.type}.`);
+      hasBad = true;
+    }
+
+    if(isUndefined(item.value)) {
+      console.log(`⚠ Item ${key} is missing value.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(item.icon)) {
+      console.log(`⚠ Item ${key} has an invalid icon ${item.icon}.`);
+      hasBad = true;
+    }
+
+    Object.keys(item.stats || {}).forEach(stat => {
+      if(!validStats.includes(stat)) {
+        console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+
+      if(!isNumber(item.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        hasBad = true;
+      }
+    });
+
+    if(item.type === 'Food' && !item.oocHealth && !item.oocEnergy) {
+      console.log(`⚠ Item ${key} is a food item with no oocHealth or oocEnergy - it should do something out of combat.`);
+      hasBad = true;
+    }
+
+    (item.abilities || []).forEach((ability: any) => {
+      if(!allAbilities[ability.abilityName]) {
+        console.log(`⚠ Item ${key} has an ability ${ability.abilityName} which does not exist.`);
+        hasBad = true;
+      }
+    });
+
+    (item.effects || []).forEach((effect: any) => {
+      if(effect.effect !== 'ApplyEffect') return;
+
+      if(!allEffects[effect.effectName]) {
+        console.log(`⚠ Item ${key} has an effect ${effect.effectName} which does not exist.`);
+        hasBad = true;
+      }
+    });
   });
 
   const enemyNames: Record<string, boolean> = {};
@@ -380,70 +474,6 @@ const loadContent = async () => {
       }
     })
   });
-
-  const effectNames: Record<string, boolean> = {};
-  Object.keys(allEffects).forEach(key => {
-    if(key.length > 32) {
-      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    const effect = allEffects[key];
-
-    if(!effect.name) {
-      console.log(`⚠ Effect ${key} has no name.`);
-      hasBad = true;
-    }
-
-    if(effect.name && effectNames[effect.name]) {
-      console.log(`⚠ Effect ${key} has a duplicate name ${effect.name}.`);
-      hasBad = true;
-    }
-
-    effectNames[effect.name] = true;
-
-    if(effect.name && effect.name.length > 32) {
-      console.log(`⚠ Effect ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    if(!effect.description) {
-      console.log(`⚠ Effect ${key} has no description.`);
-      hasBad = true;
-    }
-
-    if(!effect.icon) {
-      console.log(`⚠ Effect ${key} has no icon.`);
-      hasBad = true;
-    }
-
-    if(!effect.color) {
-      console.log(`⚠ Effect ${key} has no color.`);
-      hasBad = true;
-    }
-
-    if(!effect.turnsLeft) {
-      console.log(`⚠ Effect ${key} has no turns left.`);
-      hasBad = true;
-    }
-
-    if(!validStatusTypes.includes(effect.statusEffectType)) {
-      console.log(`⚠ Effect ${key} has an invalid type.`);
-      hasBad = true;
-    }
-
-    if(!validateIcon(effect.icon)) {
-      console.log(`⚠ Effect ${key} has an invalid icon ${effect.icon}.`);
-      hasBad = true;
-    }
-
-    Object.keys(effect.statModifications || {}).forEach(stat => {
-      if(!validStats.includes(stat)) {
-        console.log(`⚠ Effect ${key} has an invalid stat ${stat}.`);
-        hasBad = true;
-      }
-    });
-  })
 
   const dungeonNames: Record<string, boolean> = {};
   Object.keys(allDungeons).forEach(key => {

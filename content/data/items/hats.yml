@@ -59,7 +59,7 @@ Goblin Crown: #this bih already enchanted
   durability: 10
   value: 250
   icon: goblin-crown
-  givesAbility: GoblinLord1
+  givesPlayerAbility: GoblinLord1
   stats:
     attack: -2
     armor: -2

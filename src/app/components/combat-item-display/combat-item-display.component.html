@@ -10,9 +10,9 @@
       </div>
 
       <ng-container *ngIf="showEffectInfo">
-        <div class="effect" *ngFor="let effect of item.effects; trackBy: trackBy">
-          <ng-container *ngIf="getAbility(effect.effect) as effectRef">
-            <strong>{{ effectRef.name }}</strong>: {{ effectRef.description }}
+        <div class="effect" *ngFor="let ability of item.abilities; trackBy: trackBy">
+          <ng-container *ngIf="getAbility(ability.abilityName || '') as abilityRef" [class.hidden]="!abilityRef">
+            <strong>{{ abilityRef.name }}</strong>: {{ abilityRef.description }}
           </ng-container>
         </div>
       </ng-container>

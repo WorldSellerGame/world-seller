@@ -10,7 +10,7 @@ Stone Knife:
   durability: 10
   value: 10
   icon: knife
-  givesAbility: Shank
+  givesPlayerAbility: Shank
   stats:
     attack: 3
 
@@ -23,7 +23,7 @@ Copper Sword:
   durability: 15
   value: 100
   icon: sword
-  givesAbility: Cleave
+  givesPlayerAbility: Cleave
   stats:
     attack: 7
 
@@ -36,7 +36,7 @@ Copper Dagger:
   durability: 15
   value: 50
   icon: knife
-  givesAbility: Stab
+  givesPlayerAbility: Stab
   stats:
     attack: 4
     speed: 1
@@ -50,7 +50,7 @@ Iron Sword:
   durability: 500
   value: 10
   icon: sword
-  givesAbility: Risky Swing
+  givesPlayerAbility: Risky Swing
   stats:
     attack: 10
 
@@ -63,7 +63,7 @@ Iron Dagger:
   durability: 250
   value: 10
   icon: knife
-  givesAbility: Hemorrhaging Stab
+  givesPlayerAbility: Hemorrhaging Stab
   stats:
     attack: 6
     speed: 3
@@ -79,7 +79,7 @@ Goblin Staff:
   durability: 100
   value: 10
   icon: skull-staff
-  givesAbility: GoblinStaffHeal1
+  givesPlayerAbility: GoblinStaffHeal1
   stats:
     attack: 5
     healing: 10
