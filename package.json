@@ -13,6 +13,7 @@
     "build:netlify": "npm run load:content && npm run buildvars && npm run build",
     "build:copypost": "cpy CHANGELOG.md CHANGELOG-current.md CONTENT.md MODDING.md www/assets",
     "buildvars": "ts-node scripts/buildvars",
+    "blogpost:generate": "ts-node scripts/blog-version-notes",
     "changelog:generate": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog:generate:current": "conventional-changelog -p angular -o CHANGELOG-current.md -r 2",
     "changelog:commit": "git commit CHANGELOG.md CHANGELOG-current.md -m \"Update changelog\" || true",
