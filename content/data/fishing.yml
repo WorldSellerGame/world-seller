@@ -1,3 +1,6 @@
+
+# High gather time, low cooldown
+
 locations:
   - name: Big Ditch
     description: A very small body of water.
@@ -8,7 +11,7 @@ locations:
       min: 0
       max: 10
     gatherTime: 10
-    cooldownTime: 10
+    cooldownTime: 3
     resources:
       - name: nothing
         weight: 1
@@ -27,7 +30,7 @@ locations:
       min: 5
       max: 10
     gatherTime: 20
-    cooldownTime: 20
+    cooldownTime: 6
     resources:
       - name: Old Boot
         weight: 1
@@ -44,8 +47,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 120
+    cooldownTime: 30
     resources:
       - name: Old Boot
         weight: 1
@@ -65,8 +68,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 230
-    cooldownTime: 230
+    gatherTime: 240
+    cooldownTime: 60
     resources:
       - name: Old Boot
         weight: 5
@@ -84,8 +87,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 410
-    cooldownTime: 410
+    gatherTime: 400
+    cooldownTime: 100
     resources:
       - name: Old Boot
         weight: 1
@@ -108,7 +111,7 @@ locations:
       min: 25
       max: 35
     gatherTime: 700
-    cooldownTime: 700
+    cooldownTime: 180
     resources:
       - name: Trout
         weight: 1
@@ -123,7 +126,7 @@ locations:
       min: 30
       max: 40
     gatherTime: 1120
-    cooldownTime: 1120
+    cooldownTime: 270
     resources:
       - name: Old Boot
         weight: 1
@@ -144,7 +147,7 @@ locations:
       min: 35
       max: 45
     gatherTime: 2595
-    cooldownTime: 2595
+    cooldownTime: 500
     resources:
       - name: Panfish
         weight: 20
@@ -169,7 +172,7 @@ locations:
       min: 40
       max: 50
     gatherTime: 45
-    cooldownTime: 45
+    cooldownTime: 5
     resources:
       - name: Sardine
         weight: 1
@@ -183,8 +186,8 @@ locations:
     level:
       min: 45
       max: 55
-    gatherTime: 3785
-    cooldownTime: 3785
+    gatherTime: 3085
+    cooldownTime: 600
     resources:
       - name: Sardine
         weight: 5
@@ -200,8 +203,8 @@ locations:
     level:
       min: 50
       max: 60
-    gatherTime: 5390
-    cooldownTime: 5390
+    gatherTime: 4390
+    cooldownTime: 800
     resources:
       - name: Pompano
         weight: 20
@@ -219,8 +222,8 @@ locations:
     level:
       min: 55
       max: 65
-    gatherTime: 7530
-    cooldownTime: 7530
+    gatherTime: 5530
+    cooldownTime: 1000
     resources:
       - name: Pompano
         weight: 5

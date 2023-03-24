@@ -1,3 +1,6 @@
+
+# Mid gather time, mid cooldown
+
 locations:
   - name: Nearby Quarry
     description: A small quarry nearby.
@@ -24,8 +27,8 @@ locations:
     level:
       min: 5
       max: 15
-    gatherTime: 50
-    cooldownTime: 50
+    gatherTime: 25
+    cooldownTime: 25
     resources:
       - name: Clay
         weight: 1
@@ -45,8 +48,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 50
+    cooldownTime: 50
     resources:
       - name: Stone
         weight: 10
@@ -64,8 +67,8 @@ locations:
     level:
       min: 15
       max: 225
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 75
+    cooldownTime: 75
     resources:
       - name: Stone
         weight: 3
@@ -87,8 +90,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 410
-    cooldownTime: 410
+    gatherTime: 200
+    cooldownTime: 200
     resources:
       - name: Stone
         weight: 30
@@ -112,8 +115,8 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 1120
-    cooldownTime: 1120
+    gatherTime: 500
+    cooldownTime: 500
     resources:
       - name: Stone
         weight: 10
@@ -139,8 +142,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 1120
-    cooldownTime: 1120
+    gatherTime: 700
+    cooldownTime: 700
     resources:
       - name: Stone
         weight: 55
@@ -164,8 +167,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime: 1730
-    cooldownTime: 1730
+    gatherTime: 1000
+    cooldownTime: 1000
     resources:
       - name: Stone
         weight: 250
@@ -193,8 +196,8 @@ locations:
     level:
       min: 45
       max: 45
-    gatherTime: 1730
-    cooldownTime: 1730
+    gatherTime: 300
+    cooldownTime: 300
     resources:
       - name: Guano
         weight: 1

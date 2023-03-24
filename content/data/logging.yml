@@ -1,3 +1,6 @@
+
+# Low gather time, high cooldown
+
 locations:
   - name: Fallen Trees
     description: Gather up what you can from already dead wood.
@@ -7,7 +10,7 @@ locations:
     level:
       min: 0
       max: 10
-    gatherTime: 10
+    gatherTime: 5
     cooldownTime: 10
     resources:
       - name: Pine Log
@@ -24,7 +27,7 @@ locations:
     level:
       min: 5
       max: 10
-    gatherTime: 20
+    gatherTime: 10
     cooldownTime: 20
     resources:
       - name: Pine Log
@@ -45,8 +48,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 30
+    cooldownTime: 60
     resources:
       - name: Pine Log
         weight: 10
@@ -70,8 +73,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 230
-    cooldownTime: 230
+    gatherTime: 60
+    cooldownTime: 120
     resources:
       - name: Apple Wood Log
         weight: 5
@@ -89,8 +92,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 410
-    cooldownTime: 410
+    gatherTime: 100
+    cooldownTime: 200
     resources:
       - name: Cedar Log
         weight: 10
@@ -118,8 +121,8 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 700
-    cooldownTime: 700
+    gatherTime: 200
+    cooldownTime: 300
     resources:
       - name: Cedar Log
         weight: 5
@@ -147,8 +150,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 1120
-    cooldownTime: 1120
+    gatherTime: 400
+    cooldownTime: 600
     resources:
       - name: Oak Log
         weight: 5
@@ -172,8 +175,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime: 1730
-    cooldownTime: 1730
+    gatherTime: 500
+    cooldownTime: 900
     resources:
       - name: Ash Log
         weight: 10
@@ -199,8 +202,8 @@ locations:
     level:
       min: 40
       max: 50
-    gatherTime: 2595
-    cooldownTime: 2595
+    gatherTime: 1000
+    cooldownTime: 1500
     resources:
       - name: Hophornbeam Log
         weight: 30

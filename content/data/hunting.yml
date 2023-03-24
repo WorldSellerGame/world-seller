@@ -1,3 +1,6 @@
+
+# Low gather time, mid cooldown
+
 locations:
   - name: Nearby Forest (Squirrel)
     description: A small forest nearby.
@@ -25,7 +28,7 @@ locations:
       min: 5
       max: 10
     gatherTime: 20
-    cooldownTime: 20
+    cooldownTime: 10
     resources:
       - name: Squirrel Meat
         weight: 2
@@ -41,8 +44,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 60
+    cooldownTime: 30
     resources:
       - name: Bunny Meat
         weight: 2
@@ -58,8 +61,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 230
-    cooldownTime: 230
+    gatherTime: 120
+    cooldownTime: 60
     resources:
       - name: Frog
         weight: 1
@@ -90,8 +93,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 410
-    cooldownTime: 410
+    gatherTime: 200
+    cooldownTime: 100
     resources:
       - name: Deer Meat
         weight: 12
@@ -113,8 +116,8 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 700
-    cooldownTime: 700
+    gatherTime: 300
+    cooldownTime: 150
     resources:
       - name: Turkey Meat
         weight: 4
@@ -130,8 +133,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 1120
-    cooldownTime: 1120
+    gatherTime: 500
+    cooldownTime: 250
     resources:
       - name: Boar Meat
         weight: 12
@@ -153,8 +156,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime:
-    cooldownTime: 
+    gatherTime: 1000
+    cooldownTime: 500
     resources:
       - name: Elk Meat
         weight: 12
@@ -176,8 +179,8 @@ locations:
     level:
       min: 40
       max: 50
-    gatherTime: 2595
-    cooldownTime: 2595
+    gatherTime: 1500
+    cooldownTime: 750
     resources:
       - name: Alligator Meat
         weight: 4
@@ -197,8 +200,8 @@ locations:
     level:
       min: 45
       max: 55
-    gatherTime: 3785
-    cooldownTime: 3785
+    gatherTime: 2500
+    cooldownTime: 1200
     resources:
       - name: Moose Meat
         weight: 18
@@ -220,8 +223,8 @@ locations:
     level:
       min: 50
       max: 60
-    gatherTime: 5390
-    cooldownTime: 5390
+    gatherTime: 3000
+    cooldownTime: 1500
     resources:
       - name: Bear Meat
         weight: 6
@@ -243,8 +246,8 @@ locations:
     level:
       min: 60
       max: 70
-    gatherTime: 10340
-    cooldownTime: 10340
+    gatherTime: 5000
+    cooldownTime: 2500
     resources:
       - name: Grouse Meat
         weight: 1

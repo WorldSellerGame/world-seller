@@ -1,3 +1,6 @@
+
+# Low gather time, low cooldown
+
 locations:
   - name: Nearby Forest
     description: Over-harvested forest with little bounty.
@@ -8,7 +11,7 @@ locations:
       min: 0
       max: 10
     gatherTime: 10
-    cooldownTime: 10
+    cooldownTime: 2
     resources:
       - name: Dandelion
         weight: 1
@@ -23,7 +26,7 @@ locations:
       min: 5
       max: 10
     gatherTime: 20
-    cooldownTime: 20
+    cooldownTime: 3
     resources:
       - name: Pine Needle
         weight: 1
@@ -43,8 +46,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 115
-    cooldownTime: 115
+    gatherTime: 60
+    cooldownTime: 10
     resources:
       - name: Dandelion
         weight: 1
@@ -72,8 +75,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 230
-    cooldownTime: 230
+    gatherTime: 120
+    cooldownTime: 25
     resources:
       - name: Apple
         weight: 8
@@ -91,8 +94,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 410
-    cooldownTime: 410
+    gatherTime: 200
+    cooldownTime: 40
     resources:
       - name: Raspberry
         weight: 20
@@ -114,11 +117,11 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 700
-    cooldownTime: 700
+    gatherTime: 300
+    cooldownTime: 60
     resources:
       - name: Wheat
-        weight: 20  
+        weight: 20
     maxWorkers: 1
 
   - name: Stream Bank
@@ -129,8 +132,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 1120
-    cooldownTime: 1120
+    gatherTime: 500
+    cooldownTime: 120
     resources:
       - name: Plant Fiber
         weight: 25
@@ -160,8 +163,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime: 1730
-    cooldownTime: 1730
+    gatherTime: 800
+    cooldownTime: 180
     resources:
       - name: Mushroom
         weight: 2
@@ -183,8 +186,8 @@ locations:
     level:
       min: 40
       max: 50
-    gatherTime: 2595
-    cooldownTime: 2595
+    gatherTime: 1100
+    cooldownTime: 250
     resources:
       - name: Mushroom
         weight: 30
@@ -210,8 +213,8 @@ locations:
     level:
       min: 45
       max: 55
-    gatherTime: 3785
-    cooldownTime: 3785
+    gatherTime: 1800
+    cooldownTime: 370
     resources:
       - name: Plant Fiber
         quantity: 5
@@ -228,8 +231,8 @@ locations:
     level:
       min: 50
       max: 60
-    gatherTime: 5390
-    cooldownTime: 5390
+    gatherTime: 2500
+    cooldownTime: 500
     resources:
       - name: Plant Fiber
         quantity: 5
@@ -250,8 +253,8 @@ locations:
     level:
       min: 55
       max: 65
-    gatherTime: 7530
-    cooldownTime: 7530
+    gatherTime: 3500
+    cooldownTime: 750
     resources:
       - name: Rose
         quantity: 5
@@ -268,8 +271,8 @@ locations:
     level:
       min: 60
       max: 70
-    gatherTime: 10340
-    cooldownTime: 10340
+    gatherTime: 4500
+    cooldownTime: 1000
     resources:
       - name: Mushroom
         weight: 90
