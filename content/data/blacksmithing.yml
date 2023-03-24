@@ -295,7 +295,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Construction Tools # 0 to 10
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: -1
+    craftTime: 120
     ingredients:
       Pine Log: 5
       Stone: 5
@@ -306,7 +306,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Table # 0 to 10
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: -1
+    craftTime: 180
     ingredients:
       Pine Log: 10
       Construction Tools: 1
@@ -397,7 +397,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Oven
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: -1
+    craftTime: 240
     ingredients:
       Stone: 10
       Construction Tools: 1
@@ -425,7 +425,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Furnace
     perCraft: { min: 1, max: 1 }
     level: { min: 10 , max: 20 }
-    craftTime: -1
+    craftTime: 300
     ingredients:
       Fire Brick: 12
       Mortar: 6
@@ -440,7 +440,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Blast Furnace
     perCraft: { min: 1, max: 1 }
     level: { min: 15 , max: 25 }
-    craftTime: -1
+    craftTime: 600
     ingredients:
       Fire Brick: 15
       Mortar: 7
@@ -458,7 +458,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Kitchen Utensils
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 5 }
-    craftTime: -1
+    craftTime: 300
     ingredients:
       Stone: 2
       Pine Log: 4
@@ -707,7 +707,7 @@ recipes: #Rebalance for 900~ lines ;-;
   - result: Metal Jewelry Tools
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 25 }
-    craftTime: -1
+    craftTime: 450
     ingredients:
       Copper Ingot: 2
       Quartz: 1

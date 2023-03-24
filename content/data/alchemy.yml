@@ -558,7 +558,7 @@ recipes:
   - result: Oil Of Mortality
     perCraft: { min: 1, max: 1 }
     level: { min: 55, max: 65}
-    craftTime: -1
+    craftTime: 120
     ingredients:
       Glass Bottle: 1
       Antidote: 1
