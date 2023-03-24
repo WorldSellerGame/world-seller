@@ -6,31 +6,31 @@ Knitted Shirt:
   category: Armor
   rarity: Common
   durability: 5
-  value: 10
+  value: 20
   icon: shirt
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Shirt:
   name: Fur Shirt
   description: Shirt made of Fur.
   type: ChestArmor
   category: Armor
-  rarity: Common
+  rarity: Uncommon
   durability: 10
-  value: 10
+  value: 100
   icon: shirt
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Shirt:
   name: Linen Shirt
   description: Shirt made of linen cloth.
   type: ChestArmor
   category: Armor
-  rarity: Common
+  rarity: Rare
   durability: 15
-  value: 10
+  value: 250
   icon: shirt
   stats:
     speed: 2
@@ -40,9 +40,9 @@ Leather Shirt:
   description: Shirt made of Leather.
   type: ChestArmor
   category: Armor
-  rarity: Common
+  rarity: Epic
   durability: 20
-  value: 10
+  value: 500
   icon: shirt
   stats:
-    armor: 5
+    mitigation: 12

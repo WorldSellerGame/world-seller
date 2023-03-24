@@ -32,7 +32,7 @@
         "nonblock-statement-body-position": ["error", "below"],
         "no-multiple-empty-lines": ["error"],
         "brace-style": ["error", "1tbs"],
-        "@angular-eslint/directive-selector":  0,
+        "@angular-eslint/directive-selector": 0,
         "@angular-eslint/component-selector": [
           "error",
           {

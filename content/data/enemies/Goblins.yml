@@ -24,7 +24,7 @@ Goblin1: #weakest real enemy
       chance: 100
 
 Goblin2: #Filler monster with ass stats, as simple as gets
-  name: Goblin
+  name: Goblin (Big)
   icon: goblin-big
   description: A bigger-than-normal goblin. He looks threatening, but only if you squint.
 
@@ -52,7 +52,7 @@ Goblin2: #Filler monster with ass stats, as simple as gets
       max: 3
       chance: 50
 
-GoblinShaman1: 
+GoblinShaman1:
   name: Goblin Shaman
   icon: goblin-big #mmmmmmmmm
   description: A caster goblin. You should probably kill the caster first, right?
@@ -85,7 +85,7 @@ GoblinShaman1:
 
 GoblinLord1: #aoe buffs and like one debuff
   name: Goblin Lord
-  icon: throne-king 
+  icon: throne-king
   description: A real leader type amongst goblins, not saying much but still.
 
   health: 70

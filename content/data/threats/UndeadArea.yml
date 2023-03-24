@@ -25,7 +25,7 @@ SingleSkeleton:
     - Skeleton1
 
 SkeletonandZombie:
-  name: Skeleton
+  name: Skeleton & Zombie
   icon: skeleton
   description: A Skeleton sticking close to a roaming Zombie. These skeletons seem a little too smart.
 
@@ -157,9 +157,9 @@ ZombieDuo: #unused but could replace some of the t3's in the undead dungeon or j
     - Zombie1
 
 MonstrosityDuo:
-  name: Zombrothers
+  name: Monbrothers
   icon: monstrosity
-  description: Uh oh some one is gonna get a thrashing
+  description: Uh oh, someone is gonna get a thrashing~
   maxSkillGainLevel: 20
   level:
     min: -1

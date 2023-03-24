@@ -66,14 +66,14 @@ Pompano:
   name: Pompano
   description: Fairly common and quite tasty.
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   icon: 'ocean-fish'
 
 Pufferfish:
   name: Pufferfish
   description: Best not to be eaten unless you're a master chef. Even then, is it worth the effort?
   category: Foods
-  rarity: Uncommon
+  rarity: Rare
   icon: 'pufferfish'
 
 Octopus:

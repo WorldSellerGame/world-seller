@@ -37,6 +37,21 @@ FishingBasic2:
     combat: 21
   replaces: FishingBasic1
 
+FishingBasic3: # THIS ISNT GIVEN TO PLAYERS YET
+  name: Fisherman's Swiftness III 
+  description: Increase your Speed.
+  icon: arrow-forward
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff3
+  cooldown: 1
+  energyCost: 6
+  requires: {}
+
+
 ForagingBasic1:
   name: Forager's Insight I
   description: Increase your Healing.
@@ -173,7 +188,7 @@ MiningBasic2:
  ########## Uniquegather ability skills (curent setup is going to be uniform and at 20)
 ####
 
-FishingUnique1: #I am taking your energy fucker
+FishingUnique1: #I am taking your energy you goober
   name: Tire Em Out I
   description: Drain an opponents energy.
   icon: enfeeble
@@ -210,24 +225,23 @@ ForagingUnique1:
 
 #Skill level based damage effects may be possible but its likely best to leave this behind
 
-#     |HuntingUnique1: #Should I use power or skill level
-#     |  name: Hunter's Precise Strike
-#     |  description: Deal damage based on hunting level.
-#     |  icon: eye-target
-#     |  target: Single
-#     |  type: Physical
-#     |  stats:
-#     |    - stat: hunting
-#     |      multiplier: 0.5
-#     |      variance: 0.25
-#     |  effects:
-#     |    - effect: SingleTargetAttack
-#     |  cooldown: 2
-#     |  energyCost: 5
-#     |  requires:
-#     |    hunting: 20
-#     |    combat: 11
-#     |
+#    HuntingTest1: #Should I use power or skill level
+#      name: Hunter's Precise Strike
+#      description: Deal damage based on hunting level.
+#      icon: eye-target
+#      target: Single
+#      type: Physical
+#      stats:
+#        - levelStat: hunting
+#          multiplier: 0.5
+#          variance: 0.25
+#      effects:
+#        - effect: SingleTargetAttack
+#      cooldown: 2
+#      energyCost: 5
+#      requires:
+#        hunting: 20
+#        combat: 11
 
 
 

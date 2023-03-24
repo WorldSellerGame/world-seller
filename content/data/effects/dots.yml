@@ -1,12 +1,39 @@
 
-PoisonWeak:
-  name: Poison
+Poison1:
+  name: Poison I
   description: Losing health over time.
   icon: poison
   color: "#b4202a"
-  turnsLeft: 5
+  turnsLeft: 6
   statusEffectType: DamageOverTime
-  damageOverTime: 5
+  damageOverTime: 2
+
+Poison2:
+  name: Poison II
+  description: Losing health over time.
+  icon: poison
+  color: "#b4202a"
+  turnsLeft: 6
+  statusEffectType: DamageOverTime
+  damageOverTime: 4
+
+Poison3:
+  name: Poison III
+  description: Losing health over time.
+  icon: poison
+  color: "#b4202a"
+  turnsLeft: 6
+  statusEffectType: DamageOverTime
+  damageOverTime: 10
+
+Poison4:
+  name: Poison IV
+  description: Losing health over time.
+  icon: poison
+  color: "#b4202a"
+  turnsLeft: 6
+  statusEffectType: DamageOverTime
+  damageOverTime: 20 #hehehe
 
 Bleed1:
   name: Bleed

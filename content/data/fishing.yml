@@ -1,14 +1,17 @@
+
+# High gather time, low cooldown
+
 locations:
   - name: Big Ditch
     description: A very small body of water.
     perGather:
-      min: 0
-      max: 1
+      min: 1
+      max: 2
     level:
       min: 0
       max: 10
     gatherTime: 10
-    cooldownTime: 20
+    cooldownTime: 3
     resources:
       - name: nothing
         weight: 1
@@ -21,13 +24,13 @@ locations:
   - name: Local Pond
     description: A small pond, its close and there's fish - can't really beat that as of now.
     perGather:
-      min: 0
-      max: 2
+      min: 1
+      max: 3
     level:
       min: 5
       max: 10
-    gatherTime: 10
-    cooldownTime: 20
+    gatherTime: 20
+    cooldownTime: 6
     resources:
       - name: Old Boot
         weight: 1
@@ -39,13 +42,13 @@ locations:
   - name: Pine Creek
     description: A little creek in the Pine forest.
     perGather:
-      min: 0
-      max: 2
+      min: 2
+      max: 4
     level:
       min: 10
       max: 20
-    gatherTime: 15
-    cooldownTime: 20
+    gatherTime: 120
+    cooldownTime: 30
     resources:
       - name: Old Boot
         weight: 1
@@ -60,13 +63,13 @@ locations:
   - name: Marsh
     description: A marsh with small streams and ponds amongst it.
     perGather:
-      min: 1
-      max: 4
+      min: 2
+      max: 5
     level:
       min: 15
       max: 25
-    gatherTime: 20
-    cooldownTime: 20
+    gatherTime: 240
+    cooldownTime: 60
     resources:
       - name: Old Boot
         weight: 5
@@ -79,13 +82,13 @@ locations:
   - name: Small Stream
     description: A little stream in Cedrics Woods.
     perGather:
-      min: 0
-      max: 5
+      min: 3
+      max: 6
     level:
       min: 20
       max: 30
-    gatherTime: 20
-    cooldownTime: 30
+    gatherTime: 400
+    cooldownTime: 100
     resources:
       - name: Old Boot
         weight: 1
@@ -102,13 +105,13 @@ locations:
   - name: Cedrics Fishing Hole
     description: Apparently some guy named Cedric fought a bear with a spoon over this stream pool. The fishing is good but the fish are skittish.
     perGather:
-      min: 2
-      max: 8
+      min: 3
+      max: 7
     level:
       min: 25
       max: 35
-    gatherTime: 5
-    cooldownTime: 120
+    gatherTime: 700
+    cooldownTime: 180
     resources:
       - name: Trout
         weight: 1
@@ -117,13 +120,13 @@ locations:
   - name: Misty Lake
     description: The mist covers this small lake in the early morning and late in the evening.
     perGather:
-      min: 0
-      max: 3
+      min: 4
+      max: 8
     level:
       min: 30
       max: 40
-    gatherTime: 30
-    cooldownTime: 40
+    gatherTime: 1120
+    cooldownTime: 270
     resources:
       - name: Old Boot
         weight: 1
@@ -138,13 +141,13 @@ locations:
   - name: Magic Swamp
     description: They said "dont go into The Magic Swamp". Its called "The Magic Swamp" of course your gonna go in there anyways.
     perGather:
-      min: 1
-      max: 6
+      min: 4
+      max: 9
     level:
       min: 35
-      max: 50
-    gatherTime: 30
-    cooldownTime: 60
+      max: 45
+    gatherTime: 2595
+    cooldownTime: 500
     resources:
       - name: Panfish
         weight: 20
@@ -164,12 +167,12 @@ locations:
     description: Hard to catch anything big from shore.
     perGather:
       min: 5
-      max: 5
+      max: 10
     level:
       min: 40
       max: 50
     gatherTime: 45
-    cooldownTime: 45
+    cooldownTime: 5
     resources:
       - name: Sardine
         weight: 1
@@ -179,12 +182,12 @@ locations:
     description: You're able to walk out a a bit further during low tide.
     perGather:
       min: 5
-      max: 5
+      max: 11
     level:
       min: 45
       max: 55
-    gatherTime: 45
-    cooldownTime: 80
+    gatherTime: 3085
+    cooldownTime: 600
     resources:
       - name: Sardine
         weight: 5
@@ -195,13 +198,13 @@ locations:
   - name: Small Reef
     description: A reef inside the Surf Break of a bay.
     perGather:
-      min: 0
-      max: 3
+      min: 6
+      max: 12
     level:
       min: 50
       max: 60
-    gatherTime: 60
-    cooldownTime: 80
+    gatherTime: 4390
+    cooldownTime: 800
     resources:
       - name: Pompano
         weight: 20
@@ -214,13 +217,13 @@ locations:
   - name: Surf Break
     description: Where the waves of the ocean begin to roll into the bay. An ideal place to catch predators.
     perGather:
-      min: 1
-      max: 4
+      min: 6
+      max: 13
     level:
       min: 55
       max: 65
-    gatherTime: 60
-    cooldownTime: 240
+    gatherTime: 5530
+    cooldownTime: 1000
     resources:
       - name: Pompano
         weight: 5

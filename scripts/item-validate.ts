@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const readdir = require('recursive-readdir');
-const { isUndefined, isArray } = require('lodash');
+const { isUndefined, isArray, isNumber } = require('lodash');
 
 const validCategories = ['Tools', 'Armor', 'Foods', 'Jewelry', 'Potions', 'Seeds', 'Miscellaneous', 'Raw Materials', 'Refined Materials', 'Crafting Tables', 'Weapons'];
 
@@ -156,6 +156,11 @@ const loadContent = async () => {
         console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
         hasBad = true;
       }
+
+      if(!isNumber(item.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        hasBad = true;
+      }
     });
   });
 
@@ -177,6 +182,8 @@ const loadContent = async () => {
       console.log(`⚠ Ability ${key} has a duplicate name ${skill.name}.`);
       hasBad = true;
     }
+
+    abilityNames[skill.name] = true;
 
     if(skill.name && skill.name.length > 32) {
       console.log(`⚠ Ability ${key} is too long (>32 characters).`);
@@ -251,6 +258,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    enemyNames[enemy.name] = true;
+
     if(enemy.name && enemy.name.length > 32) {
       console.log(`⚠ Enemy ${key} is too long (>32 characters).`);
       hasBad = true;
@@ -284,6 +293,11 @@ const loadContent = async () => {
     Object.keys(enemy.stats).forEach(stat => {
       if(!validStats.includes(stat)) {
         console.log(`⚠ Enemy ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+
+      if(!isNumber(enemy.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
         hasBad = true;
       }
     });
@@ -326,6 +340,8 @@ const loadContent = async () => {
       console.log(`⚠ Threat ${key} has a duplicate name ${threat.name}.`);
       hasBad = true;
     }
+
+    threatNames[threat.name] = true;
 
     if(threat.name && threat.name.length > 32) {
       console.log(`⚠ Threat ${key} is too long (>32 characters).`);
@@ -384,6 +400,8 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    effectNames[effect.name] = true;
+
     if(effect.name && effect.name.length > 32) {
       console.log(`⚠ Effect ${key} is too long (>32 characters).`);
       hasBad = true;
@@ -440,6 +458,8 @@ const loadContent = async () => {
       console.log(`⚠ Dungeon ${key} has a duplicate name ${dungeon.name}.`);
       hasBad = true;
     }
+
+    dungeonNames[dungeon.name] = true;
 
     if(dungeon.name && dungeon.name.length > 32) {
       console.log(`⚠ Dungeon ${key} is too long (>32 characters).`);
@@ -586,7 +606,12 @@ const loadContent = async () => {
       });
 
       if(isUndefined(recipe.maxWorkers)) {
-        console.log(`⚠ Recipe ${recipe.name} is missing maxWorkers.`);
+        console.log(`⚠ Recipe ${result} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(recipe.craftTime <= 0) {
+        console.log(`⚠ Recipe ${result} has a craftTime of ${recipe.craftTime} (must be > 0).`);
         hasBad = true;
       }
     });
@@ -627,6 +652,16 @@ const loadContent = async () => {
 
       if(isUndefined(location.maxWorkers)) {
         console.log(`⚠ Location ${location.name} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(location.gatherTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a gatherTime of ${location.gatherTime} (must be > 0).`);
+        hasBad = true;
+      }
+
+      if(location.cooldownTime && location.cooldownTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a cooldownTime of ${location.cooldownTime} (must be > 0).`);
         hasBad = true;
       }
     });

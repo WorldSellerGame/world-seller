@@ -6,7 +6,7 @@ recipes:
   - result: Yarn
     perCraft: { min: 5, max: 6 }       #actually its slightly problematic refining resources at the same level range that you craft
     level: { min: 0, max: 10 }            #actually wtf am I saying shops and dungeons make it fine (Probably)
-    craftTime: 30
+    craftTime: 10
     ingredients:
       Plant Fiber: 12
       Whorl: 1
@@ -19,7 +19,7 @@ recipes:
   - result: Fur
     perCraft: { min: 5, max: 6 }
     level: { min: 5, max: 15 }
-    craftTime: 30
+    craftTime: 20
     ingredients:
       Hide: 6
       Stone Knife: 1
@@ -30,7 +30,7 @@ recipes:
   - result: Twine
     perCraft: { min: 2, max: 2 }
     level: { min: 5, max: 15 }
-    craftTime: 30
+    craftTime: 20
     ingredients:
       Plant Fiber: 6
       Spinning Wheel: 1
@@ -43,7 +43,7 @@ recipes:
   - result: Rope # this does nothing but I know I will need this a ton or never touch it
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 30
+    craftTime: 20
     ingredients:
       Twine: 3
       Spinning Wheel: 1
@@ -72,7 +72,7 @@ recipes:
   - result: Leather
     perCraft: { min: 3, max: 4 }
     level: { min: 15, max: 25 }
-    craftTime: 30
+    craftTime: 40
     ingredients:
       Hide: 6
       Tallow: 2
@@ -89,7 +89,7 @@ recipes:
   - result: Oven Mitts #need another set for twine
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 30
+    craftTime: 10 
     ingredients:
       Plant Fiber: 1
       Yarn: 3
@@ -125,7 +125,7 @@ recipes:
   - result: Knitted Boots
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 90
+    craftTime: 10
     ingredients:
       Yarn: 2
     require:
@@ -137,9 +137,9 @@ recipes:
   - result: Knitted Hat
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 60
+    craftTime: 10
     ingredients:
-      Yarn: 1
+      Yarn: 2
     require:
       - Knitting Needles
     preserve:
@@ -149,7 +149,7 @@ recipes:
   - result: Knitted Shirt
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 90
+    craftTime: 10
     ingredients:
       Yarn: 5
     require:
@@ -161,7 +161,7 @@ recipes:
   - result: Knitted Gloves
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 60
+    craftTime: 10
     ingredients:
       Yarn: 2
     require:
@@ -173,9 +173,9 @@ recipes:
   - result: Knitted Pants
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 90
+    craftTime: 10
     ingredients:
-      Yarn: 3
+      Yarn: 5
     require:
       - Knitting Needles
     preserve:
@@ -187,7 +187,7 @@ recipes:
   - result: Fur Boots
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 90
+    craftTime: 20
     ingredients:
       Fur: 2
       Yarn: 1
@@ -200,9 +200,9 @@ recipes:
   - result: Fur Hat
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 60
+    craftTime: 20
     ingredients:
-      Fur: 1
+      Fur: 2
       Yarn: 1
     require:
       - Sewing Kit
@@ -213,7 +213,7 @@ recipes:
   - result: Fur Shirt
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 90
+    craftTime: 20
     ingredients:
       Fur: 5
       Yarn: 1
@@ -226,7 +226,7 @@ recipes:
   - result: Fur Gloves
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 60
+    craftTime: 20
     ingredients:
       Fur: 2
       Yarn: 1
@@ -239,9 +239,9 @@ recipes:
   - result: Fur Pants
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 90
+    craftTime: 20
     ingredients:
-      Fur: 3
+      Fur: 5
       Yarn: 1
     require:
       - Sewing Kit
@@ -254,7 +254,7 @@ recipes:
   - result: Linen Boots
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 90
+    craftTime: 30
     ingredients:
       Linen Cloth: 2
     require:
@@ -266,9 +266,9 @@ recipes:
   - result: Linen Hat
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 60
+    craftTime: 30
     ingredients:
-      Linen Cloth: 1
+      Linen Cloth: 2
     require:
       - Sewing Kit
     preserve:
@@ -278,7 +278,7 @@ recipes:
   - result: Linen Shirt
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 90
+    craftTime: 30
     ingredients:
       Linen Cloth: 5
     require:
@@ -290,7 +290,7 @@ recipes:
   - result: Linen Gloves
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 60
+    craftTime: 30
     ingredients:
       Linen Cloth: 2
     require:
@@ -302,9 +302,9 @@ recipes:
   - result: Linen Pants
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 90
+    craftTime: 30
     ingredients:
-      Linen Cloth: 3
+      Linen Cloth: 5
     require:
       - Sewing Kit
     preserve:
@@ -316,7 +316,7 @@ recipes:
   - result: Leather Boots
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 90
+    craftTime: 40
     ingredients:
       Leather: 2
       Twine: 1
@@ -329,9 +329,9 @@ recipes:
   - result: Leather Hat
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 30}
-    craftTime: 60
+    craftTime: 40
     ingredients:
-      Leather: 1
+      Leather: 2
       Twine: 1
     require:
       - Metal Sewing Kit
@@ -342,7 +342,7 @@ recipes:
   - result: Leather Shirt
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 90
+    craftTime: 40
     ingredients:
       Leather: 5
       Twine: 1
@@ -355,7 +355,7 @@ recipes:
   - result: Leather Gloves
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 60
+    craftTime: 40
     ingredients:
       Leather: 2
       Twine: 1
@@ -368,9 +368,9 @@ recipes:
   - result: Leather Pants
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 90
+    craftTime: 40
     ingredients:
-      Leather: 3
+      Leather: 5
       Twine: 1
     require:
       - Metal Sewing Kit

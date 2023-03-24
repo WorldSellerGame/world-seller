@@ -32,6 +32,119 @@ ApplyEnergyBuff1:
   requires: {}
 
 
+ApplyRegen1: 
+  name: Regen I
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen2: 
+  name: Regen II
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen3: 
+  name: Regen III
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen3
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyRegen4: 
+  name: Regen IV
+  description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
+  icon: healing
+  target: Self
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen4
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+
+ApplyPoison1: 
+  name: Minor Poison
+  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison1
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison2: 
+  name: Poison
+  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison2
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison3: 
+  name: Greater Poison
+  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison3
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
+ApplyPoison4: 
+  name: Da Big Poison
+  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  icon: toxic-bottle
+  target: Single
+  type: Magical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Poison4
+  cooldown: 2
+  energyCost: 5
+  requires: {}
+
 ###Monster specific (Most could be mover later if needed)
 
 #gobbo

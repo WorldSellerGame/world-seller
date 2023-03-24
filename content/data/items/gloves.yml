@@ -9,28 +9,28 @@ Knitted Gloves:
   value: 10
   icon: gloves
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Gloves:
   name: Fur Gloves
   description: Gloves made of fur.
   type: HandArmor
   category: Armor
-  rarity: Common
+  rarity: Uncommon
   durability: 10
-  value: 10
+  value: 50
   icon: gloves
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Gloves:
   name: Linen Gloves
   description: Gloves made of linen cloth.
   type: HandArmor
   category: Armor
-  rarity: Common
+  rarity: Rare
   durability: 15
-  value: 10
+  value: 125
   icon: gloves
   stats:
     speed: 2
@@ -40,12 +40,12 @@ Leather Gloves:
   description: Gloves made of leather.
   type: HandArmor
   category: Armor
-  rarity: Common
+  rarity: Epic
   durability: 20
-  value: 10
+  value: 250
   icon: gloves
   stats:
-    armor: 5
+    mitigation: 12
 
 
 #Enemy 
@@ -55,9 +55,9 @@ Mummy Wraps: #this bih already enchanted
   description: Runic markings lines theses hand wraps. Great power always comes with a cost.
   type: HandArmor
   category: Armor
-  rarity: Rare
+  rarity: Legendary
   durability: 10
-  value: 10
+  value: 500
   icon: hand-wrap
   givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
   stats:

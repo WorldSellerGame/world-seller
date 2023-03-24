@@ -3,12 +3,12 @@ Cut Quartz:
   name: Cut Quartz
   description: A piece of Quartz that has been cut to a specific shape.
   category: Refined Materials
-  rarity: Common
+  rarity: Uncommon
   icon: 'cut-stone'
 
 Cut Tanzanite:
   name: Cut Tanzanite
   description: A piece of Tanzanite that has been cut to a specific shape.
   category: Refined Materials
-  rarity: Common
+  rarity: Rare
   icon: 'cut-stone'

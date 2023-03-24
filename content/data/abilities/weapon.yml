@@ -90,7 +90,7 @@ Risky Swing:
 ### Dropped
 
 GoblinStaffHeal1:
-  name: Goblish Heal I
+  name: Goblish Staff Heal I
   description: Heal yourself.
   icon: skull-staff
   target: Self
