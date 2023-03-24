@@ -41,7 +41,7 @@ Potion of Fire:
   effects:
     - effect: ApplyFire1
 
-Potion of Minor Poison: 
+Potion of Minor Poison:
   name: Potion of Minor Poison
   description: Not Tasty and green like it should be.
   type: Potion
@@ -92,7 +92,7 @@ Potion of Small Speed:
   icon: bottle
   stats: {}
   effects:
-    - effect: FishingBasic1 #Small initiative increase 
+    - effect: FishingBasic1 #Small initiative increase
 
 Potion of Minor Strength:
   name: Potion of Minor Strength
@@ -120,7 +120,7 @@ Potion of Minor Magic Maximize:
   effects:
     - effect: ApplyEnergyBuff1 #small magic increase (maybe lump together with pot o strength?)
 
-Potion of Weakness: 
+Potion of Weakness:
   name: Potion of Weakness
   description: Turn their arms to noodles and their mouths into the round type of noodles.
   type: Potion
@@ -160,11 +160,11 @@ Potion of Acid:
   stats:
     attack: 35
   effects:
-    - effect: ItemSingleDamage 
+    - effect: ItemSingleDamage
 
 Antidote:
   name: Antidote
-  description: Cures basic poisons, sicknesses, and a few other status ailments. Eventually 
+  description: Cures basic poisons, sicknesses, and a few other status ailments. Eventually
   type: Potion
   category: Potions
   rarity: Uncommon
@@ -265,7 +265,7 @@ Potion of Compressed Fire:
 
 Confusion Concoction:
   name: Confusion Concoction
-  description: Uh oh, it's kicking in. Oh wait no... its expired
+  description: Uh oh, it's kicking in. Oh, wait, no... it's expired.
   type: Potion
   category: Potions
   rarity: Epic
