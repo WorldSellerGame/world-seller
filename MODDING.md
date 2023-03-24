@@ -132,7 +132,7 @@ A JSON file can optionally have any of the following properties:
 Resources require:
 
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `rarity` - the rarity of the resource (see Rarities)
 * `category` - the category of the resource (see Item Categories)
 
@@ -145,7 +145,7 @@ Items require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `type` - the type of the item (Pickaxe, Axe, FishingRod, FishingBait, Scythe, HuntingTool, Weapon, LegArmor, ChestArmor, HeadArmor, FootArmor, HandArmor, Jewelry, Food, Potion)
 * `category` - the rarity of the item (see Item Categories)
 * `durability` - how many uses the item can take (`-1` = infinite)
@@ -214,7 +214,7 @@ Abilities require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `target` - the target of the ability (Self, Ally [for enemies], Single [single target, opposite side], All, AllEnemies)
 * `type` - the type of the ability (Physical, Magical)
 * `cooldown` - how long the ability is on cooldown for (in turns)
@@ -243,7 +243,7 @@ Effects require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `color` - a hex color to be shown for the status effect
 * `turnsLeft` - how many turns the status effect should last
 * `statusEffectType` - the type of the status effect (StatModification, DamageOverTime)
@@ -262,7 +262,7 @@ Enemies require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `health` - the max health of the enemy
 * `energy` - the max energy of the enemy
 * `idleChance` - the chance the enemy will idle (do nothing) each turn
@@ -278,7 +278,7 @@ Threats require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `maxSkillGainLevel` - the level at which the threat stops giving skill gain
 * `level` - the range of levels the threat will be valid for the player (`min`, `max`)
 * `enemies` - the enemies the threat will spawn - see threats for how to declare this, and see Enemies for the valid enemies
@@ -291,7 +291,7 @@ Dungeons require:
 
 * `name` - shown in game
 * `description` - shown in game
-* `icon` - the name of the SVG file in `src/assets/icon`
+* `icon` - the name of the SVG file
 * `givesPointAtCombatLevel` - the level at which the dungeon will give a point
 * `floors` - the floors the dungeon has - see dungeons for how to declare this, and see Dungeon Nodes for a listing of valid node names
 * `boss` - the threat name of the boss of the dungeon (when beaten, the player will be given a point and exit the dungeon)
