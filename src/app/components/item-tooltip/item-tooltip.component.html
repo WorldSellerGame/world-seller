@@ -17,6 +17,11 @@
   {{ ability }}
 </div>
 
+<div class="effects" *ngIf="useAbilities">
+  <div><strong>Use Abilities</strong></div>
+  Imparts {{ useAbilities }}
+</div>
+
 <div class="effects" *ngIf="effects">
   <div><strong>Effects</strong></div>
   Applies {{ effects }}

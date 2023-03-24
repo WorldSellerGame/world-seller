@@ -48,7 +48,7 @@ Leather Gloves:
     mitigation: 12
 
 
-#Enemy 
+#Enemy
 
 Mummy Wraps: #this bih already enchanted
   name: Mummy Wraps
@@ -59,7 +59,7 @@ Mummy Wraps: #this bih already enchanted
   durability: 10
   value: 500
   icon: hand-wrap
-  givesAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
+  givesPlayerAbility: Mummy1 #Lol there is no way this is okay if its broken can be swapped to ApplyDoom1
   stats:
     attack: 4
     armor: 2

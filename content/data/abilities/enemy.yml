@@ -3,9 +3,9 @@
 
 
 
-ApplyFire1: 
+ApplyFire1:
   name: Flame
-  description: Uh oh someones clothes are on fire. Oh wow that sucks. 
+  description: Uh oh someones clothes are on fire. Oh wow that sucks.
   icon: on-fire
   target: Single
   type: Magical
@@ -17,7 +17,7 @@ ApplyFire1:
   energyCost: 5
   requires: {}
 
-ApplyEnergyBuff1: 
+ApplyEnergyBuff1:
   name: Charge Up
   description: Charging up, likely for a powerful attack?
   icon: bolt
@@ -32,7 +32,7 @@ ApplyEnergyBuff1:
   requires: {}
 
 
-ApplyRegen1: 
+ApplyRegen1:
   name: Regen I
   description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
   icon: healing
@@ -46,7 +46,7 @@ ApplyRegen1:
   energyCost: 5
   requires: {}
 
-ApplyRegen2: 
+ApplyRegen2:
   name: Regen II
   description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
   icon: healing
@@ -60,7 +60,7 @@ ApplyRegen2:
   energyCost: 5
   requires: {}
 
-ApplyRegen3: 
+ApplyRegen3:
   name: Regen III
   description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
   icon: healing
@@ -74,7 +74,7 @@ ApplyRegen3:
   energyCost: 5
   requires: {}
 
-ApplyRegen4: 
+ApplyRegen4:
   name: Regen IV
   description: Healing go burrrrrrrrr. (Warning excessive regen may cause cancer (and no, more regen will not fix it)).
   icon: healing
@@ -89,7 +89,7 @@ ApplyRegen4:
   requires: {}
 
 
-ApplyPoison1: 
+ApplyPoison1:
   name: Minor Poison
   description: It, uh, poisons. Notably takes longer than fire to do its damage.
   icon: toxic-bottle
@@ -103,7 +103,7 @@ ApplyPoison1:
   energyCost: 5
   requires: {}
 
-ApplyPoison2: 
+ApplyPoison2:
   name: Poison
   description: It, uh, poisons. Notably takes longer than fire to do its damage.
   icon: toxic-bottle
@@ -117,7 +117,7 @@ ApplyPoison2:
   energyCost: 5
   requires: {}
 
-ApplyPoison3: 
+ApplyPoison3:
   name: Greater Poison
   description: It, uh, poisons. Notably takes longer than fire to do its damage.
   icon: toxic-bottle
@@ -131,7 +131,7 @@ ApplyPoison3:
   energyCost: 5
   requires: {}
 
-ApplyPoison4: 
+ApplyPoison4:
   name: Da Big Poison
   description: It, uh, poisons. Notably takes longer than fire to do its damage.
   icon: toxic-bottle
@@ -151,7 +151,7 @@ ApplyPoison4:
 
 GoblinShaman1: # To be moved and re named
   name: Goblish Heal I
-  description: Heal yourself. 
+  description: Heal yourself.
   icon: healing
   target: Self
   type: Magical
@@ -193,7 +193,7 @@ GoblinLord2:
   energyCost: 5
   requires: {}
 
-GoblinLord3: 
+GoblinLord3:
   name: Point Weakness
   description: "Nice armor, well except for that little hole right there."
   icon: point
@@ -233,7 +233,7 @@ UndeadRegen2:
   stats: []
   effects:
     - effect: ApplyEffect
-      effectName: Regen2 
+      effectName: Regen2
     - effect: ApplyEffect
       effectName: EnergyBuff1
   cooldown: 3
@@ -251,10 +251,10 @@ RotAttack1:
     - stat: attack
       multiplier: 0.75
       variance: 0.25
-  effects: 
+  effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
-      effectName: Rot1 
+      effectName: Rot1
     - effect: ApplyEffect
       effectName: HealthDebuff1
     - effect: ApplyEffect
@@ -273,10 +273,10 @@ RotAttack2:
     - stat: attack
       multiplier: 1.5
       variance: 0.5
-  effects: 
+  effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
-      effectName: Rot1 
+      effectName: Rot1
     - effect: ApplyEffect
       effectName: HealthDebuff1
     - effect: ApplyEffect
@@ -295,7 +295,7 @@ RotAttack3:
     - stat: attack
       multiplier: 1.5
       variance: 0.5
-  effects: 
+  effects:
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack
@@ -304,7 +304,7 @@ RotAttack3:
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack
     - effect: ApplyEffect
-      effectName: Rot1 
+      effectName: Rot1
     - effect: ApplyEffect
       effectName: HealthDebuff1
     - effect: ApplyEffect
@@ -320,9 +320,9 @@ ApplyDoom1:
   target: Single
   type: Magical
   stats: []
-  effects: 
+  effects:
     - effect: ApplyEffect
-      effectName: Doom1 
+      effectName: Doom1
   cooldown: 3
   energyCost: 5
   requires: {}
@@ -334,21 +334,21 @@ Mummy1:
   target: Single
   type: Magical
   stats: []
-  effects: 
+  effects:
     - effect: ApplyEffect
-      effectName: Rot1 
-    - effect: ApplyEffect
-      effectName: HealthDebuff1
-    - effect: ApplyEffect
-      effectName: HealingDebuff1
-    - effect: ApplyEffect
-      effectName: Rot1 
+      effectName: Rot1
     - effect: ApplyEffect
       effectName: HealthDebuff1
     - effect: ApplyEffect
       effectName: HealingDebuff1
     - effect: ApplyEffect
-      effectName: Rot1 
+      effectName: Rot1
+    - effect: ApplyEffect
+      effectName: HealthDebuff1
+    - effect: ApplyEffect
+      effectName: HealingDebuff1
+    - effect: ApplyEffect
+      effectName: Rot1
     - effect: ApplyEffect
       effectName: HealthDebuff1
     - effect: ApplyEffect

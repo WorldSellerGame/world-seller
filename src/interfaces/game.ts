@@ -1,4 +1,4 @@
-import { IGameCombatAbilityEffect } from './combat';
+import { IGameCombatActionAbility, IGameCombatActionEffect } from './combat';
 
 export type Tradeskill = GatheringTradeskill | RefiningTradeskill | TransformTradeskill | OtherTradeskill;
 
@@ -153,8 +153,10 @@ export interface IGameItem {
   icon: string;
   canStack?: boolean;
   quantity?: number;
-  givesAbility?: string;
-  effects?: IGameCombatAbilityEffect[];
+  givesPlayerAbility?: string;
+
+  abilities?: IGameCombatActionAbility[];
+  effects?: IGameCombatActionEffect[];
   oocHealth?: number;
   oocEnergy?: number;
   stats: Record<Stat, number>;

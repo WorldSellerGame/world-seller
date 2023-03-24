@@ -18,7 +18,7 @@ import { VisualsService } from '../../app/services/visuals.service';
 import {
   AchievementStat,
   CombatAbilityTarget, DungeonTile, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameCombatAbilityEffect,
+  IGameCombatActionEffect,
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
@@ -741,7 +741,7 @@ export class CombatState {
     self: IGameEncounterCharacter,
     allies: IGameEncounterCharacter[],
     skill: IGameCombatAbility,
-    effect: IGameCombatAbilityEffect
+    effect: IGameCombatActionEffect
   ): IGameEncounterCharacter[] {
 
     switch(skill.target) {

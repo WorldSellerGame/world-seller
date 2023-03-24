@@ -14,6 +14,7 @@ export class ItemTooltipComponent implements OnInit {
 
   public hasStats = false;
   public effects = '';
+  public useAbilities = '';
   public ability = '';
 
   get itemClass() {
@@ -25,12 +26,19 @@ export class ItemTooltipComponent implements OnInit {
   ngOnInit() {
     this.hasStats = Object.keys(this.item.stats || {}).length > 0;
     this.effects = (this.item.effects || [])
-      .map(x => x.effect)
+      .filter(x => x.effect === 'ApplyEffect')
+      .map(x => x.effectName)
+      .filter(Boolean)
+      .map(x => this.contentService.getEffectByName(x as string)?.name || 'Unknown')
+      .join(', ');
+
+    this.useAbilities = (this.item.abilities || [])
+      .map(x => x.abilityName)
       .map(x => this.contentService.getAbilityByName(x)?.name || 'Unknown')
       .join(', ');
 
-    if(this.item.givesAbility) {
-      this.ability = this.contentService.getAbilityByName(this.item.givesAbility)?.name || 'Unknown';
+    if(this.item.givesPlayerAbility) {
+      this.ability = this.contentService.getAbilityByName(this.item.givesPlayerAbility)?.name || 'Unknown';
     }
   }
 

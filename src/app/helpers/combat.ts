@@ -37,7 +37,7 @@ export function calculateAbilityDamageForUser(ability: IGameCombatAbility, stats
 }
 
 export function getSkillsFromItems(items: Record<string, IGameItem>): string[] {
-  return Object.values(items).map(item => item?.givesAbility || '').filter(Boolean);
+  return Object.values(items).map(item => item?.givesPlayerAbility || '').filter(Boolean);
 }
 
 export function dispatchCorrectCombatEndEvent(ctx: StateContext<IGameCombat>, encounter: IGameEncounter) {

@@ -90,11 +90,13 @@ Items require:
 * `category` - the rarity of the item (see Item Categories)
 * `durability` - how many uses the item can take (`-1` = infinite)
 * `value` - how much the item sells for (base; selling via shop sells it for 3x this value to start)
-* `givesAbility` - optional, the ability the item gives (by ability name)
+* `givesPlayerAbility` - optional, the ability the item gives (by ability name)
 * `stats` - the stats the item gives - see items for how to declare this, and see Stats for the valid stats
 * `foodDuration` - optional, if specified, the item can be used as a food for combat and will give its `stats` every combat
 * `oocHealth` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to health
 * `oocEnergy` - optional, if specified, will let the player use this item out of combat (if it's `type='Foods'`) and restore this value to energy
+* `effects`
+* `abilities`
 
 # Adding a New Gathering Location
 

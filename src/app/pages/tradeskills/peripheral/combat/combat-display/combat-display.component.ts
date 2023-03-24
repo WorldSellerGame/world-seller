@@ -31,7 +31,6 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   public readonly selfTargets = [CombatAbilityTarget.All, CombatAbilityTarget.Self];
   public readonly enemyTargets = [CombatAbilityTarget.All, CombatAbilityTarget.AllEnemies, CombatAbilityTarget.Single];
 
-  // TODO: activeAbilityInfo needs to be an array so all effects can happen - items that have multiple effects don't trigger correctly
   public activeItemIndex = -1;
   public activeAbilityIndex = -1;
   public activeAbilityInfo: IGameCombatAbility[] | undefined;
@@ -125,8 +124,8 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     }
 
     this.activeItemIndex = itemIndex;
-    if(item.effects) {
-      this.activeAbilityInfo = item.effects.map(effect => this.getAbility(effect.effect));
+    if(item.abilities) {
+      this.activeAbilityInfo = item.abilities.map(ability => this.getAbility(ability.abilityName));
     }
   }
 

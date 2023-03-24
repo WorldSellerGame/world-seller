@@ -11,8 +11,8 @@ Dandelion Tea:
   icon: hot-cup
   stats:
     healing: 5 #Cure minor ailments
-  effects:
-    - effect: ItemSelfHeal
+  abilities:
+    - abilityName: ItemSelfHeal
 
 Pine Needle Tea:
   name: Pine Needle Tea
@@ -25,8 +25,8 @@ Pine Needle Tea:
   icon: hot-cup
   stats:
     healing: 5
-  effects:
-    - effect: ItemSelfHeal
+  abilities:
+    - abilityName: ItemSelfHeal
 
 Potion of Fire:
   name: Potion of Fire
@@ -38,8 +38,8 @@ Potion of Fire:
   value: 15
   icon: fire-bottle
   stats: {}
-  effects:
-    - effect: ApplyFire1
+  abilities:
+    - abilityName: ApplyFire1
 
 Potion of Minor Poison:
   name: Potion of Minor Poison
@@ -51,8 +51,8 @@ Potion of Minor Poison:
   value: 10
   icon: toxic-bottle
   stats: {}
-  effects:
-    - effect: ApplyPoison1 #small poison effect
+  abilities:
+    - abilityName: ApplyPoison1 #small poison effect
 
 Potion of Simple Blinding:
   name: Potion of Simple Blinding
@@ -64,8 +64,8 @@ Potion of Simple Blinding:
   value: 5
   icon: bottle
   stats: {}
-  effects:
-    - effect: CookingBasic1 #blind that bitch lower their accuracy and take their currency
+  abilities:
+    - abilityName: CookingBasic1 #blind that bitch lower their accuracy and take their currency
 
 Potion of Minor Healing:
   name: Potion of Minor Healing
@@ -78,8 +78,8 @@ Potion of Minor Healing:
   icon: heart-bottle
   stats:
     healing: 15
-  effects:
-    - effect: ItemSelfHeal #Small health gain
+  abilities:
+    - abilityName: ItemSelfHeal #Small health gain
 
 Potion of Small Speed:
   name: Potion of Small Speed
@@ -91,8 +91,8 @@ Potion of Small Speed:
   value: 50
   icon: bottle
   stats: {}
-  effects:
-    - effect: FishingBasic1 #Small initiative increase
+  abilities:
+    - abilityName: FishingBasic1 #Small initiative increase
 
 Potion of Minor Strength:
   name: Potion of Minor Strength
@@ -104,8 +104,8 @@ Potion of Minor Strength:
   value: 50
   icon: bottle
   stats: {}
-  effects:
-    - effect: HuntingBasic2 #small damage increase
+  abilities:
+    - abilityName: HuntingBasic2 #small damage increase
 
 Potion of Minor Magic Maximize:
   name: Potion of Minor Magic Maximize
@@ -117,8 +117,8 @@ Potion of Minor Magic Maximize:
   value: 50
   icon: bottle
   stats: {}
-  effects:
-    - effect: ApplyEnergyBuff1 #small magic increase (maybe lump together with pot o strength?)
+  abilities:
+    - abilityName: ApplyEnergyBuff1 #small magic increase (maybe lump together with pot o strength?)
 
 Potion of Weakness:
   name: Potion of Weakness
@@ -130,8 +130,8 @@ Potion of Weakness:
   value: 50
   icon: bottle
   stats: {}
-  effects:
-    - effect: CookingBasic2 #Lower damage dealt (all types)
+  abilities:
+    - abilityName: CookingBasic2 #Lower damage dealt (all types)
 
 Potion of Minor Mud:
   name: Potion of Mud
@@ -143,8 +143,8 @@ Potion of Minor Mud:
   value: 50
   icon: bottle
   stats: {}
-  effects:
-    - effect: WeavingBasic1 #Slows a little bit
+  abilities:
+    - abilityName: WeavingBasic1 #Slows a little bit
 
 ###
 
@@ -159,8 +159,8 @@ Potion of Acid:
   icon: toxic-bottle
   stats:
     attack: 35
-  effects:
-    - effect: ItemSingleDamage
+  abilities:
+    - abilityName: ItemSingleDamage
 
 Antidote:
   name: Antidote
@@ -173,8 +173,8 @@ Antidote:
   icon: heart-bottle
   stats:
     healing: 30
-  effects:
-    - effect: ItemSelfHeal #self explanatory description
+  abilities:
+    - abilityName: ItemSelfHeal #self explanatory description
 
 Bottled Brambles:
   name: Bottled Brambles
@@ -187,9 +187,9 @@ Bottled Brambles:
   icon: bottle
   stats:
     attack: 20
-  effects:
-    - effect: ItemSingleDamage #instant damage and slow
-    - effect: WeavingBasic2
+  abilities:
+    - abilityName: ItemSingleDamage #instant damage and slow
+    - abilityName: WeavingBasic2
 
 Mages Little Helper:
   name: Mages Little Helper
@@ -201,9 +201,9 @@ Mages Little Helper:
   value: 250
   icon: bottle
   stats: {}
-  effects:
-    - effect: ApplyEnergyBuff1 #Magic up + Speed Up
-    - effect: FishingBasic2
+  abilities:
+    - abilityName: ApplyEnergyBuff1 #Magic up + Speed Up
+    - abilityName: FishingBasic2
 
 Poison of Leaden Limbs: ##
   name: Poison of Leaden Limbs
@@ -215,9 +215,9 @@ Poison of Leaden Limbs: ##
   value: 250
   icon: toxic-bottle
   stats: {}
-  effects:
-    - effect: CookingBasic2 #Poision + Weak
-    - effect: ApplyPoison2
+  abilities:
+    - abilityName: CookingBasic2 #Poision + Weak
+    - abilityName: ApplyPoison2
 
 Warriors Draught:
   name: Warriors Draught
@@ -230,9 +230,9 @@ Warriors Draught:
   icon: heart-bottle
   stats:
     healing: 20
-  effects:
-    - effect: ItemSelfHeal #Heal + Strength up
-    - effect: HuntingBasic2
+  abilities:
+    - abilityName: ItemSelfHeal #Heal + Strength up
+    - abilityName: HuntingBasic2
 
 Dazzler:
   name: Dazzler
@@ -244,8 +244,7 @@ Dazzler:
   value: 250
   icon: spiral-bottle
   stats: {}
-  effects:
-    - effect: UtilityEscape #escape mechanic
+  abilities: [] #escape mechanic
 
 #####
 
@@ -260,8 +259,8 @@ Potion of Compressed Fire:
   icon: fire-bottle
   stats:
     attack: 50
-  effects:
-    - effect: ItemAOEDamage
+  abilities:
+    - abilityName: ItemAOEDamage
 
 Confusion Concoction:
   name: Confusion Concoction
@@ -273,9 +272,9 @@ Confusion Concoction:
   value: 500
   icon: spiral-bottle
   stats: {}
-  effects:
-    - effect: ApplyDoom1 #Random target selection and random ability selection (I wonder if there would be a super niche self use case)
-    - effect: AlchemyBasic2
+  abilities:
+    - abilityName: ApplyDoom1 #Random target selection and random ability selection (I wonder if there would be a super niche self use case)
+    - abilityName: AlchemyBasic2
 
 Minthy's Sleep Medication: ###
   name: Minthy's Sleep Medication
@@ -287,8 +286,8 @@ Minthy's Sleep Medication: ###
   value: 500
   icon: toxic-bottle
   stats: {}
-  effects:
-    - effect: ApplyPoison3 #Poision
+  abilities:
+    - abilityName: ApplyPoison3 #Poision
 
 ###
 
@@ -302,5 +301,5 @@ Oil Of Mortality:
   value: 1000
   icon: toxic-bottle
   stats: {}
-  effects:
-    - effect: ApplyPoison4 #Poison
+  abilities:
+    - abilityName: ApplyPoison4 #Poison

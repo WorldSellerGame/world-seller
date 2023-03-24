@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { IGameCombatAbilityEffect, IGameItem } from '../../../interfaces';
+import { IGameCombatActionEffect, IGameItem } from '../../../interfaces';
 import { getItemRarityClass } from '../../helpers';
 import { ContentService } from '../../services/content.service';
 
@@ -23,8 +23,8 @@ export class CombatFoodDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.effects = (this.item.effects || [])
-      .filter((x: IGameCombatAbilityEffect) => x.effect === 'ApplyEffect' && x.effectName)
-      .map((effect: IGameCombatAbilityEffect) => this.contentService.getEffectByName(effect.effectName as string).name);
+      .filter((x: IGameCombatActionEffect) => x.effect === 'ApplyEffect' && x.effectName)
+      .map((effect: IGameCombatActionEffect) => this.contentService.getEffectByName(effect.effectName as string)?.name ?? 'Unknown');
   }
 
 }
