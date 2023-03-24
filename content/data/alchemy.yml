@@ -43,7 +43,7 @@ recipes:
   - result: Potion of Simple Blinding
     perCraft: { min: 1, max: 1 }
     level: { min: 0, max: 10 }
-    craftTime: 10
+    craftTime: 60
     ingredients:
       Glass Bottle: 1
       Poisonous Mushroom: 1
@@ -62,7 +62,7 @@ recipes:
   - result: Potion of Fire
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 20
+    craftTime: 120
     ingredients:
       Glass Bottle: 1
       Burning Oil: 3
@@ -73,7 +73,7 @@ recipes:
   - result: Potion of Minor Poison
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 20
+    craftTime: 120
     ingredients:
       Glass Bottle: 1
       Poisonous Mushroom: 1
@@ -92,7 +92,7 @@ recipes:
   - result: Saltpeter
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 30
+    craftTime: 180
     ingredients:
       Guano: 4
       Glass Set: 1
@@ -106,7 +106,7 @@ recipes:
   - result: Potion of Minor Healing
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 30
+    craftTime: 180
     ingredients:
       Glass Bottle: 1
       Apple: 2
@@ -127,7 +127,7 @@ recipes:
   - result: Potion of Small Speed
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 30
+    craftTime: 180
     ingredients:
       Glass Bottle: 1
       Feather: 1
@@ -146,10 +146,10 @@ recipes:
       - Mortar and Pestle
     maxWorkers: 1
 
-  - result: Quartz Powder
+  - result: Quartz Powder #gotta move
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 40
+    craftTime: 240
     ingredients:
       Quartz: 2
       Mortar and Pestle: 1
@@ -162,7 +162,7 @@ recipes:
   - result: Potion of Minor Strength
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 40
+    craftTime: 240
     ingredients:
       Glass Bottle: 1
       Worm: 2
@@ -184,7 +184,7 @@ recipes:
   - result: Potion of Minor Magic Maximize
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 40
+    craftTime: 240
     ingredients:
       Glass Bottle: 1
       Mushroom: 2
@@ -206,7 +206,7 @@ recipes:
   - result: Acid
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 50
+    craftTime: 300
     ingredients:
       Saltpeter: 1
       Brimstone: 1
@@ -227,7 +227,7 @@ recipes:
   - result: Potion of Weakness
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 50
+    craftTime: 300
     ingredients:
       Glass Bottle: 1
       Strawberry: 2
@@ -250,7 +250,7 @@ recipes:
   - result: Potion of Minor Mud
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 50
+    craftTime: 300
     ingredients:
       Glass Bottle: 1
       Clay: 1
@@ -277,7 +277,7 @@ recipes:
   - result: Gypsum
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 60
+    craftTime: 360
     ingredients:
       Glass Bottle: 1
       Acid: 1
@@ -299,7 +299,7 @@ recipes:
   - result: Potion of Acid
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 60
+    craftTime: 360
     ingredients:
       Glass Bottle: 1
       Acid: 2
@@ -321,7 +321,7 @@ recipes:
   - result: Antidote
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 60
+    craftTime: 360
     ingredients:
       Glass Bottle: 1
       Pinecone: 1
@@ -345,7 +345,7 @@ recipes:
   - result: Wine
     perCraft: { min: 2, max: 3 }
     level: { min: 30, max: 40 }
-    craftTime: 700
+    craftTime: 420
     ingredients:
       Glass Bottle: 6
       Grape: 36
@@ -367,7 +367,7 @@ recipes:
   - result: Bottled Brambles
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
-    craftTime: 70
+    craftTime: 420
     ingredients:
       Glass Bottle: 1
       Rose: 2
@@ -391,7 +391,7 @@ recipes:
   - result: Mages Little Helper
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
-    craftTime: 70
+    craftTime: 420
     ingredients:
       Glass Bottle: 1
       Saltpeter: 1
@@ -415,7 +415,7 @@ recipes:
   - result: Dazzler
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45}
-    craftTime: 80
+    craftTime: 480
     ingredients:
       Glass Bottle: 1
       Saltpeter: 1
@@ -439,7 +439,7 @@ recipes:
   - result: Poison of Leaden Limbs
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45}
-    craftTime: 80
+    craftTime: 480
     ingredients:
       Glass Bottle: 1
       Brimstone: 1
@@ -463,7 +463,7 @@ recipes:
   - result: Warriors Draught
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45}
-    craftTime: 80
+    craftTime: 480
     ingredients:
       Glass Bottle: 1
       Gypsum: 1
@@ -487,7 +487,7 @@ recipes:
   - result: Potion of Compressed Fire
     perCraft: { min: 1, max: 1 }
     level: { min: 40, max: 50}
-    craftTime: 90
+    craftTime: 540
     ingredients:
       Glass Bottle: 1
       Brimstone: 1
@@ -507,7 +507,7 @@ recipes:
   - result: Confusion Concoction
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 55}
-    craftTime: 100
+    craftTime: 600
     ingredients:
       Glass Bottle: 1
       Fairy Bell: 1
@@ -532,7 +532,7 @@ recipes:
   - result: Minthy's Sleep Medication
     perCraft: { min: 1, max: 1 }
     level: { min: 50, max: 60}
-    craftTime: 110
+    craftTime: 660
     ingredients:
       Glass Bottle: 1
       Sap: 1
@@ -558,7 +558,7 @@ recipes:
   - result: Oil Of Mortality
     perCraft: { min: 1, max: 1 }
     level: { min: 55, max: 65}
-    craftTime: 120
+    craftTime: 720
     ingredients:
       Glass Bottle: 1
       Antidote: 1
