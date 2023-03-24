@@ -19,8 +19,8 @@ locations:
   - name: Pine Forest (Squirrel)
     description: A small forest nearby.
     perGather:
-      min: 2
-      max: 4
+      min: 1
+      max: 3
     level:
       min: 5
       max: 10
@@ -54,7 +54,7 @@ locations:
     description: A marsh with small streams and ponds amongst it.
     perGather:
       min: 2
-      max: 4
+      max: 5
     level:
       min: 15
       max: 25
@@ -68,8 +68,8 @@ locations:
   - name: Marsh (Duck)
     description: A marsh with small streams and ponds amongst it.
     perGather:
-      min: 3
-      max: 6
+      min: 2
+      max: 5
     level:
       min: 15
       max: 25
@@ -85,8 +85,8 @@ locations:
   - name: Orchard (Deer)
     description: It looks to be an abandoned apple farm amongst the wilderness. The deer seem to love the apples.
     perGather:
-      min: 6
-      max: 9
+      min: 3
+      max: 6
     level:
       min: 20
       max: 30
@@ -108,8 +108,8 @@ locations:
   - name: Cedrics Woods (Turkey)
     description: A hard wood forest. Acording to the locals fighting a bear with a spoon gets a forest named after you.
     perGather:
-      min: 6
-      max: 10
+      min: 3
+      max: 7
     level:
       min: 25
       max: 35
@@ -125,8 +125,8 @@ locations:
   - name: Cedrics Hunting Spot (Boar)
     description: Cedric was said to eat an entire boar by himself when hungry enough. This spot is full of them.
     perGather:
-      min: 9
-      max: 12
+      min: 4
+      max: 8
     level:
       min: 30
       max: 40
@@ -148,8 +148,8 @@ locations:
   - name: Coniferous forest (Elk)
     description: Elk here.
     perGather:
-      min: 9
-      max: 12
+      min: 4
+      max: 9
     level:
       min: 35
       max: 45
@@ -171,8 +171,8 @@ locations:
   - name: Magic Swamp (Alligator)
     description: They said "don't chase the magic frogs in the swamp of curses" that means wrestling alligators is probably a-okay.
     perGather:
-      min: 9
-      max: 12
+      min: 5
+      max: 10
     level:
       min: 40
       max: 50
@@ -192,8 +192,8 @@ locations:
   - name: Iron Wood Grove (Moose)
     description: Moose are a rare sight outside of these woods nearly hunted to extinction in their lands by the legendary hunter, Beebo.
     perGather:
-      min: 12
-      max: 18
+      min: 5
+      max: 11
     level:
       min: 45
       max: 55
@@ -215,8 +215,8 @@ locations:
   - name: Small Stream
     description: Bears are relatively common around this stream except around one particular stream pool.
     perGather:
-      min: 12
-      max: 18
+      min: 6
+      max: 12
     level:
       min: 50
       max: 60
@@ -238,8 +238,8 @@ locations:
   - name: Old Elvish Woods (Grouse)
     description: The easiest place to find this elusive bird.
     perGather:
-      min: 3
-      max: 3
+      min: 7
+      max: 14
     level:
       min: 60
       max: 70
