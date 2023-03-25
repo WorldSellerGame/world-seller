@@ -49,7 +49,6 @@ ItemAOEDamage:
   requires: {}
 
 
-### Unique MiningBasic1
 
 ItemSelfHealRandom:
   name: Item Heal Random
@@ -63,6 +62,19 @@ ItemSelfHealRandom:
       variance: 1
   effects:
     - effect: SingleTargetHeal
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
+ItemEscape: #Escape (can be changed to soft escape from fight but stay in dungeon at a later time)
+  name: Ol Razle Dazzle
+  description: Escape from combat.
+  icon: spiral-bottle
+  target: Self
+  type: Physical
+  stats:
+  effects:
+    - effect: BasicUtilityEscape
   cooldown: 0
   energyCost: 0
   requires: {}
