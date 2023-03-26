@@ -215,7 +215,7 @@ const loadContent = async () => {
       hasBad = true;
     }
 
-    skill.stats.forEach((stat: any) => {
+    (skill.stats || []).forEach((stat: any) => {
       if(!stat.stat) {
         console.log(`⚠ Ability ${key} has a stat with no stat set.`);
         hasBad = true;

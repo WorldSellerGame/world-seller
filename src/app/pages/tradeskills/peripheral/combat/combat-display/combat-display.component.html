@@ -187,7 +187,7 @@
                 <ion-card-content>
                   <ion-list>
                     <ion-item *ngFor="let food of foods">
-                      <app-combat-food-display [item]="food"></app-combat-food-display>
+                      <app-combat-food-display [item]="food" *ngIf="food"></app-combat-food-display>
                     </ion-item>
                   </ion-list>
                 </ion-card-content>
