@@ -245,7 +245,7 @@ Dazzler:
   icon: spiral-bottle
   stats: {}
   abilities: 
-    - abilityName: ItemEscape
+    - abilityName: BasicUtilityEscape
 
 #####
 

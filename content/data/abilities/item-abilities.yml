@@ -72,7 +72,7 @@ ItemEscape: #Escape (can be changed to soft escape from fight but stay in dungeo
   icon: spiral-bottle
   target: Self
   type: Physical
-  stats:
+  stats: []
   effects:
     - effect: BasicUtilityEscape
   cooldown: 0
