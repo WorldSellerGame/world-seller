@@ -22,7 +22,6 @@ BasicUtilityEscape:
   target: Self
   stats: []
   type: Utility
-  stat: none
   effects:
     - effect: UtilityEscape
   cooldown: 0
