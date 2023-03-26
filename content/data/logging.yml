@@ -10,8 +10,8 @@ locations:
     level:
       min: 0
       max: 10
-    gatherTime: 5
-    cooldownTime: 10
+    gatherTime: 10
+    cooldownTime: 5
     resources:
       - name: Pine Log
         weight: 5
@@ -28,7 +28,7 @@ locations:
       min: 5
       max: 10
     gatherTime: 10
-    cooldownTime: 20
+    cooldownTime: 5
     resources:
       - name: Pine Log
         weight: 10
@@ -48,8 +48,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 30
-    cooldownTime: 60
+    gatherTime: 80
+    cooldownTime: 40
     resources:
       - name: Pine Log
         weight: 10
@@ -73,8 +73,8 @@ locations:
     level:
       min: 15
       max: 25
-    gatherTime: 60
-    cooldownTime: 120
+    gatherTime: 180
+    cooldownTime: 90
     resources:
       - name: Apple Wood Log
         weight: 5
@@ -92,8 +92,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 100
-    cooldownTime: 200
+    gatherTime: 330
+    cooldownTime: 165
     resources:
       - name: Cedar Log
         weight: 10
@@ -121,7 +121,7 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 200
+    gatherTime: 600
     cooldownTime: 300
     resources:
       - name: Cedar Log
@@ -150,8 +150,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 400
-    cooldownTime: 600
+    gatherTime: 1000
+    cooldownTime: 500
     resources:
       - name: Oak Log
         weight: 5
@@ -175,8 +175,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime: 500
-    cooldownTime: 900
+    gatherTime: 1650
+    cooldownTime: 825
     resources:
       - name: Ash Log
         weight: 10
@@ -202,8 +202,8 @@ locations:
     level:
       min: 40
       max: 50
-    gatherTime: 1000
-    cooldownTime: 1500
+    gatherTime: 2600
+    cooldownTime: 1300
     resources:
       - name: Hophornbeam Log
         weight: 30

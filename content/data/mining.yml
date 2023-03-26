@@ -11,7 +11,7 @@ locations:
       min: 0
       max: 10
     gatherTime: 10
-    cooldownTime: 10
+    cooldownTime: 5
     resources:
       - name: Clay
         weight: 1
@@ -27,8 +27,8 @@ locations:
     level:
       min: 5
       max: 15
-    gatherTime: 25
-    cooldownTime: 25
+    gatherTime: 30
+    cooldownTime: 15
     resources:
       - name: Clay
         weight: 1
@@ -48,8 +48,8 @@ locations:
     level:
       min: 10
       max: 20
-    gatherTime: 50
-    cooldownTime: 50
+    gatherTime: 80
+    cooldownTime: 40
     resources:
       - name: Stone
         weight: 10
@@ -66,9 +66,9 @@ locations:
       max: 10
     level:
       min: 15
-      max: 225
-    gatherTime: 75
-    cooldownTime: 75
+      max: 25
+    gatherTime: 180
+    cooldownTime: 90
     resources:
       - name: Stone
         weight: 3
@@ -90,8 +90,8 @@ locations:
     level:
       min: 20
       max: 30
-    gatherTime: 200
-    cooldownTime: 200
+    gatherTime: 330
+    cooldownTime: 165
     resources:
       - name: Stone
         weight: 30
@@ -115,8 +115,8 @@ locations:
     level:
       min: 25
       max: 35
-    gatherTime: 500
-    cooldownTime: 500
+    gatherTime: 600
+    cooldownTime: 300
     resources:
       - name: Stone
         weight: 10
@@ -142,8 +142,8 @@ locations:
     level:
       min: 30
       max: 40
-    gatherTime: 700
-    cooldownTime: 700
+    gatherTime: 1000
+    cooldownTime: 500
     resources:
       - name: Stone
         weight: 55
@@ -167,8 +167,8 @@ locations:
     level:
       min: 35
       max: 45
-    gatherTime: 1000
-    cooldownTime: 1000
+    gatherTime: 1650
+    cooldownTime: 825
     resources:
       - name: Stone
         weight: 250
@@ -196,8 +196,8 @@ locations:
     level:
       min: 45
       max: 45
-    gatherTime: 300
-    cooldownTime: 300
+    gatherTime: 1650
+    cooldownTime: 825
     resources:
       - name: Guano
         weight: 1
