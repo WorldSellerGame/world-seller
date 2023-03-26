@@ -228,6 +228,17 @@ export function setCombatLock(ctx: StateContext<IGameCombat>, { isLocked }: SetC
 }
 
 /**
+ * Set whether or not combat is currently done (so things can't continue).
+ */
+export function setCombatDone(ctx: StateContext<IGameCombat>) {
+  ctx.setState(patch<IGameCombat>({
+    currentEncounter: patch<IGameEncounter>({
+      isDone: true
+    })
+  }));
+}
+
+/**
  * Set whether or not combat is currently locked for the enemies (e.g. they can no longer attack).
  */
 export function setCombatLockForEnemies(ctx: StateContext<IGameCombat>, { isLockedForEnemies }: SetCombatLockForEnemies) {
@@ -423,8 +434,13 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
     return;
   }
 
+  let shouldProcessMore = true;
+
   const allEffects = currentPlayer.statusEffects;
   allEffects.forEach(effect => {
+    if(!shouldProcessMore) {
+      return;
+    }
     effect.turnsLeft--;
 
     if(effect.damageOverTime) {
@@ -440,6 +456,7 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
 
       if(hasAnyoneWonCombat(ctx)) {
         handleCombatEnd(ctx);
+        shouldProcessMore = false;
         return;
       }
     }
@@ -461,6 +478,19 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
       statusEffects: updatedEffects
     })
   }));
+}
+
+/**
+ * Unapply all player status effects (when they die).
+ */
+export function unapplyAllEffectsForPlayer(ctx: StateContext<IGameCombat>) {
+  const currentPlayer = ctx.getState().currentPlayer;
+  if(!currentPlayer) {
+    return;
+  }
+
+  applyDeltas(ctx, currentPlayer, currentPlayer,
+    currentPlayer.statusEffects.map(effect => ({ target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect })));
 }
 
 /**

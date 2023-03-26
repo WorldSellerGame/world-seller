@@ -18,7 +18,7 @@ import {
   OOCPlayerHeal,
   PlayerCooldownSkill,
   PlayerSpeedReset,
-  ResetCombat, ResetCombatSoft, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
+  ResetCombat, ResetCombatSoft, SetCombatDone, SetCombatLock, SetCombatLockForEnemies, SetFood, SetItem,
   SetSkill, StartCombatEndProcess, TickEnemyEffects, TickPlayerEffects, UnlockCombat, UseItemInSlot
 } from './combat.actions';
 import {
@@ -36,7 +36,7 @@ import {
   oocPlayerEnergy,
   oocPlayerHeal,
   prepareCombatForRestart,
-  resetCombat, resetCombatSoft, resetEnemySpeed, resetPlayerSpeed, setCombatLock,
+  resetCombat, resetCombatSoft, resetEnemySpeed, resetPlayerSpeed, setCombatDone, setCombatLock,
   setCombatLockForEnemies,
   setEnemySkillOnCooldown, setFoodInSlot, setItemInSlot,
   setPlayerSkillOnCooldown, setSkillInSlot, tickEnemyEffects, tickPlayerEffects, unlockCombat, useItemInSlot
@@ -66,6 +66,7 @@ export const attachments: IAttachment[] = [
   { action: UseItemInSlot, handler: useItemInSlot },
   { action: AddCombatLogMessage, handler: addCombatLogMessage },
   { action: SetCombatLock, handler: setCombatLock },
+  { action: SetCombatDone, handler: setCombatDone },
   { action: SetCombatLockForEnemies, handler: setCombatLockForEnemies },
   { action: PlayerCooldownSkill, handler: setPlayerSkillOnCooldown },
   { action: EnemyCooldownSkill, handler: setEnemySkillOnCooldown },

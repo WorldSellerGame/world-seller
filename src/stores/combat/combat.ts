@@ -32,7 +32,8 @@ import {
 import { attachments } from './combat.attachments';
 import {
   acquireItemDrops,
-  defaultCombat
+  defaultCombat,
+  unapplyAllEffectsForPlayer
 } from './combat.functions';
 import { EnterDungeon } from './dungeon.actions';
 
@@ -322,7 +323,7 @@ export class CombatState {
 
       const targets = this.enemyAbilityChooseTargets(ctx, currentPlayer, enemy, currentEncounter.enemies, chosenSkillRef, effectRef);
       targets.forEach(target => {
-        const deltas = abilityFunc(ctx, {
+        const { deltas } = abilityFunc(ctx, {
           ability: chosenSkillRef,
           source: enemy,
           target,
@@ -368,7 +369,13 @@ export class CombatState {
     ctx: StateContext<IGameCombat>,
     { targetIndex, source, ability, abilitySlot, fromItem }: TargetEnemyWithAbility
   ) {
+    let skipRest = false;
+
     ability.effects.forEach((effectRef) => {
+      if(skipRest) {
+        return;
+      }
+
       const abilityFunc = getCombatFunction(effectRef.effect);
       if(!abilityFunc) {
         ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
@@ -391,7 +398,7 @@ export class CombatState {
       }
 
       const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : player.stats;
-      const deltas = abilityFunc(ctx, {
+      const { deltas, skipTurnEnd } = abilityFunc(ctx, {
         ability,
         source,
         target,
@@ -432,6 +439,10 @@ export class CombatState {
         ]);
         acquireItemDrops(ctx, target.drops);
       }
+
+      if(skipTurnEnd) {
+        skipRest = true;
+      }
     });
 
     ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
@@ -441,11 +452,13 @@ export class CombatState {
       return;
     }
 
-    ctx.dispatch([
-      new PlayerSpeedReset(),
-      new TickPlayerEffects(),
-      new SetCombatLock(true)
-    ]);
+    if(!skipRest) {
+      ctx.dispatch([
+        new PlayerSpeedReset(),
+        new TickPlayerEffects(),
+        new SetCombatLock(true)
+      ]);
+    }
   }
 
   @Action(TargetSelfWithAbility)
@@ -456,7 +469,13 @@ export class CombatState {
       return;
     }
 
+    let skipRest = false;
+
     ability.effects.forEach(effectRef => {
+      if(skipRest) {
+        return;
+      }
+
       const abilityFunc = getCombatFunction(effectRef.effect);
       if(!abilityFunc) {
         ctx.dispatch(new AddCombatLogMessage(`Ability ${effectRef.effect} is not implemented yet!`));
@@ -464,7 +483,7 @@ export class CombatState {
       }
 
       const useStats = fromItem ? merge(defaultStatsZero(), fromItem.stats) : currentPlayer.stats;
-      const deltas = abilityFunc(ctx, {
+      const { deltas, skipTurnEnd } = abilityFunc(ctx, {
         ability,
         source: currentPlayer,
         target: currentPlayer,
@@ -497,6 +516,10 @@ export class CombatState {
           ]);
         }
       }
+
+      if(skipTurnEnd) {
+        skipRest = true;
+      }
     });
 
     ctx.dispatch(new PlayerCooldownSkill(abilitySlot, ability.cooldown));
@@ -506,11 +529,13 @@ export class CombatState {
       return;
     }
 
-    ctx.dispatch([
-      new PlayerSpeedReset(),
-      new TickPlayerEffects(),
-      new SetCombatLock(true)
-    ]);
+    if(!skipRest) {
+      ctx.dispatch([
+        new PlayerSpeedReset(),
+        new TickPlayerEffects(),
+        new SetCombatLock(true)
+      ]);
+    }
   }
 
   @Action(ChangeThreats)
@@ -587,6 +612,7 @@ export class CombatState {
 
       // check for combat ending and get out soon
       if(state.currentEncounter.resetInSeconds === 0) {
+        unapplyAllEffectsForPlayer(ctx);
         dispatchCorrectCombatEndEvent(ctx, state.currentEncounter);
         return;
       }

@@ -60,6 +60,11 @@ export class StartCombatEndProcess {
   constructor() {}
 }
 
+export class SetCombatDone {
+  static type = '[Combat] Set Combat Done';
+  constructor() {}
+}
+
 export class InitiateCombat {
   static type = '[Combat] Initiate';
   constructor(public threat: string, public shouldResetPlayer = false, public shouldExitDungeon = false) {}
