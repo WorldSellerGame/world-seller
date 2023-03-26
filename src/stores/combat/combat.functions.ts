@@ -481,6 +481,19 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
 }
 
 /**
+ * Unapply all player status effects (when they die).
+ */
+export function unapplyAllEffectsForPlayer(ctx: StateContext<IGameCombat>) {
+  const currentPlayer = ctx.getState().currentPlayer;
+  if(!currentPlayer) {
+    return;
+  }
+
+  applyDeltas(ctx, currentPlayer, currentPlayer,
+    currentPlayer.statusEffects.map(effect => ({ target: 'source', attribute: '', delta: 0, unapplyStatusEffect: effect })));
+}
+
+/**
  * Tick all of the enemy effects down by 1.
  */
 export function tickEnemyEffects(ctx: StateContext<IGameCombat>, { enemyIndex }: TickEnemyEffects) {

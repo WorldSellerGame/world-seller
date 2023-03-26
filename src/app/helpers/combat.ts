@@ -127,6 +127,7 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     }
 
   } else if(hasEnemyWonCombat(ctx)) {
+
     ctx.dispatch([
       new AddCombatLogMessage('You have lost combat!'),
       new PlaySFX('combat-lose'),

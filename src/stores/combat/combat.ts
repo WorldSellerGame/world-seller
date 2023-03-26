@@ -32,7 +32,8 @@ import {
 import { attachments } from './combat.attachments';
 import {
   acquireItemDrops,
-  defaultCombat
+  defaultCombat,
+  unapplyAllEffectsForPlayer
 } from './combat.functions';
 import { EnterDungeon } from './dungeon.actions';
 
@@ -611,6 +612,7 @@ export class CombatState {
 
       // check for combat ending and get out soon
       if(state.currentEncounter.resetInSeconds === 0) {
+        unapplyAllEffectsForPlayer(ctx);
         dispatchCorrectCombatEndEvent(ctx, state.currentEncounter);
         return;
       }
