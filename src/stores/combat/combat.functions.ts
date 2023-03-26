@@ -56,8 +56,7 @@ export function resetCombat(ctx: StateContext<IGameCombat>) {
 export function prepareCombatForRestart(ctx: StateContext<IGameCombat>) {
   ctx.setState(patch<IGameCombat>({
     currentEncounter: patch<IGameEncounter>({
-      resetInSeconds: 3,
-      isDone: true
+      resetInSeconds: 3
     })
   }));
 }
@@ -224,6 +223,17 @@ export function setCombatLock(ctx: StateContext<IGameCombat>, { isLocked }: SetC
   ctx.setState(patch<IGameCombat>({
     currentEncounter: patch<IGameEncounter>({
       isLocked
+    })
+  }));
+}
+
+/**
+ * Set whether or not combat is currently done (so things can't continue).
+ */
+export function setCombatDone(ctx: StateContext<IGameCombat>) {
+  ctx.setState(patch<IGameCombat>({
+    currentEncounter: patch<IGameEncounter>({
+      isDone: true
     })
   }));
 }
@@ -424,8 +434,13 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
     return;
   }
 
+  let shouldProcessMore = true;
+
   const allEffects = currentPlayer.statusEffects;
   allEffects.forEach(effect => {
+    if(!shouldProcessMore) {
+      return;
+    }
     effect.turnsLeft--;
 
     if(effect.damageOverTime) {
@@ -441,6 +456,7 @@ export function tickPlayerEffects(ctx: StateContext<IGameCombat>) {
 
       if(hasAnyoneWonCombat(ctx)) {
         handleCombatEnd(ctx);
+        shouldProcessMore = false;
         return;
       }
     }

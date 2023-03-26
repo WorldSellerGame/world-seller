@@ -89,6 +89,10 @@ export function handleCombatEnd(ctx: StateContext<IGameCombat>) {
     return;
   }
 
+  if(currentEncounter.isDone) {
+    return;
+  }
+
   if(hasPlayerWonCombat(ctx)) {
     ctx.dispatch([
       new AddCombatLogMessage('You have won combat!'),
