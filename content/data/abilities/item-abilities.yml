@@ -67,7 +67,7 @@ ItemSelfHealRandom:
   requires: {}
 
 ItemEscape: #Escape (can be changed to soft escape from fight but stay in dungeon at a later time)
-  name: Ol Razle Dazzle
+  name: Ol' Razzle Dazzle
   description: Escape from combat.
   icon: spiral-bottle
   target: Self
