@@ -56,7 +56,8 @@ export function resetCombat(ctx: StateContext<IGameCombat>) {
 export function prepareCombatForRestart(ctx: StateContext<IGameCombat>) {
   ctx.setState(patch<IGameCombat>({
     currentEncounter: patch<IGameEncounter>({
-      resetInSeconds: 3
+      resetInSeconds: 3,
+      isDone: true
     })
   }));
 }

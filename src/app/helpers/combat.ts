@@ -17,9 +17,12 @@ import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/d
 import { PlaySFX } from '../../stores/game/game.actions';
 import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStat, getStatTotals } from './stats';
 
-const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
+const allCombatActions: Record<string,
+(ctx: StateContext<IGameCombat>, args: IAttackParams) => { deltas: ICombatDelta[]; skipTurnEnd?: boolean }
+> = CombatActions;
 
-export function getCombatFunction(action: string): (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[] {
+export function getCombatFunction(action: string):
+(ctx: StateContext<IGameCombat>, args: IAttackParams) => { deltas: ICombatDelta[]; skipTurnEnd?: boolean } {
   return allCombatActions[action];
 }
 

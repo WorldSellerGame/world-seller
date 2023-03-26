@@ -65,6 +65,7 @@ export interface IGameEncounter {
   enemies: IGameEncounterCharacter[];
   shouldResetPlayer: boolean;
   shouldGiveSkillPoint: boolean;
+  isDone?: boolean;
   isLocked: boolean;
   isLockedForEnemies: boolean;
   shouldExitDungeon: boolean;
