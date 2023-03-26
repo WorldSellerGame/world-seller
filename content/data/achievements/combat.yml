@@ -1,126 +1,126 @@
 
 CombatThreatsEngage1:
-  name: Threatening I
+  name: Prone to Violence I
+  description: Engage in combat with a threat.
+  icon: combat
+  stat: combatThreatsEngaged
+  requiredValue: 1
+
+CombatThreatsEngage2:
+  name: Prone to Violence II
   description: Engage in combat with 10 threats.
   icon: combat
   stat: combatThreatsEngaged
   requiredValue: 10
 
-CombatThreatsEngage2:
-  name: Threatening II
+CombatThreatsEngage3:
+  name: Prone to Violence III
   description: Engage in combat with 100 threats.
   icon: combat
   stat: combatThreatsEngaged
   requiredValue: 100
 
-CombatThreatsEngage3:
-  name: Threatening III
+CombatThreatsEngage4:
+  name: Prone to Violence IV
   description: Engage in combat with 1000 threats.
   icon: combat
   stat: combatThreatsEngaged
   requiredValue: 1000
 
-CombatThreatsEngage4:
-  name: Threatening IV
+CombatThreatsEngage5:
+  name: Prone to Violence V
   description: Engage in combat with 10000 threats.
   icon: combat
   stat: combatThreatsEngaged
   requiredValue: 10000
 
-CombatThreatsEngage5:
-  name: Threatening V
-  description: Engage in combat with 100000 threats.
-  icon: combat
-  stat: combatThreatsEngaged
-  requiredValue: 100000
-
 CombatThreatsWin1:
-  name: Victorious I
-  description: Win combat with 10 threats.
+  name: GGEZ I
+  description: Defeat 10 threats.
   icon: combat
   stat: combatThreatsWon
   requiredValue: 10
 
 CombatThreatsWin2:
-  name: Victorious II
-  description: Win combat with 100 threats.
+  name: GGEZ II
+  description: Defeat 100 threats.
   icon: combat
   stat: combatThreatsWon
   requiredValue: 100
 
 CombatThreatsWin3:
-  name: Victorious III
-  description: Win combat with 1000 threats.
+  name: GGEZ III
+  description: Defeat 1000 threats.
   icon: combat
   stat: combatThreatsWon
   requiredValue: 1000
 
 CombatThreatsWin4:
-  name: Victorious IV
-  description: Win combat with 10000 threats.
+  name: GGEZ IV
+  description: Defeat 10000 threats.
   icon: combat
   stat: combatThreatsWon
   requiredValue: 10000
 
 CombatThreatsWin5:
-  name: Victorious V
-  description: Win combat with 100000 threats.
+  name: GGEZ V
+  description: Defeat 100000 threats.
   icon: combat
   stat: combatThreatsWon
   requiredValue: 100000
 
 CombatDungeonEnter1:
-  name: Adventurous I
+  name: Adventurer I
   description: Enter 1 dungeon.
   icon: combat
   stat: combatDungeonsEntered
   requiredValue: 1
 
 CombatDungeonEnter2:
-  name: Adventurous II
+  name: Adventurer II
   description: Enter 5 dungeons.
   icon: combat
   stat: combatDungeonsEntered
   requiredValue: 5
 
 CombatDungeonEnter3:
-  name: Adventurous III
+  name: Adventurer III
   description: Enter 25 dungeons.
   icon: combat
   stat: combatDungeonsEntered
   requiredValue: 25
 
 CombatDungeonEnter4:
-  name: Adventurous IV
+  name: Adventurer IV
   description: Enter 100 dungeons.
   icon: combat
   stat: combatDungeonsEntered
   requiredValue: 100
 
 CombatDungeonWin1:
-  name: Dungeon Master I
-  description: Win 1 dungeon.
+  name: Dungeon Grinder I
+  description: Clear 1 dungeon.
   icon: combat
   stat: combatDungeonsWon
   requiredValue: 1
 
 CombatDungeonWin2:
-  name: Dungeon Master II
-  description: Win 5 dungeons.
+  name: Dungeon Grinder II
+  description: Clear 5 dungeons.
   icon: combat
   stat: combatDungeonsWon
   requiredValue: 5
 
 CombatDungeonWin3:
-  name: Dungeon Master III
-  description: Win 25 dungeons.
+  name: Dungeon Grinder III
+  description: Clear 25 dungeons.
   icon: combat
   stat: combatDungeonsWon
   requiredValue: 25
 
 CombatDungeonWin4:
-  name: Dungeon Master IV
-  description: Win 100 dungeons.
+  name: Dungeon Grinder IV
+  description: Clear 100 dungeons.
   icon: combat
   stat: combatDungeonsWon
   requiredValue: 100

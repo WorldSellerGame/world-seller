@@ -1,4 +1,32 @@
-import { IGameCombatAbilityEffect } from './combat';
+import { IGameCombatActionAbility, IGameCombatActionEffect } from './combat';
+
+export type Tradeskill = GatheringTradeskill | RefiningTradeskill | TransformTradeskill | OtherTradeskill;
+
+export enum GatheringTradeskill {
+  Fishing = 'fishing',
+  Foraging = 'foraging',
+  Hunting = 'hunting',
+  Logging = 'logging',
+  Mining = 'mining',
+}
+
+export enum RefiningTradeskill {
+  Alchemy = 'alchemy',
+  Blacksmithing = 'blacksmithing',
+  Cooking = 'cooking',
+  Jewelcrafting = 'jewelcrafting',
+  Weaving = 'weaving',
+}
+
+export enum TransformTradeskill {
+  Farming = 'farming',
+  Prospecting = 'prospecting',
+}
+
+export enum OtherTradeskill {
+  Combat = 'combat',
+  Mercantile = 'mercantile',
+}
 
 export enum Rarity {
   Broken = 'Broken',
@@ -33,6 +61,12 @@ export enum Stat {
   ScythePower = 'scythePower',
   HuntingPower = 'huntingPower',
 
+  PickaxePowerPercent = 'pickaxePowerPercent',
+  AxePowerPercent = 'axePowerPercent',
+  FishingPowerPercent = 'fishingPowerPercent',
+  ScythePowerPercent = 'scythePowerPercent',
+  HuntingPowerPercent = 'huntingPowerPercent',
+
   // speed reduces the cooldown time of a gather node by seconds
   PickaxeSpeed = 'pickaxeSpeed',
   AxeSpeed = 'axeSpeed',
@@ -40,9 +74,17 @@ export enum Stat {
   ScytheSpeed = 'scytheSpeed',
   HuntingSpeed = 'huntingSpeed',
 
+  PickaxeSpeedPercent = 'pickaxeSpeedPercent',
+  AxeSpeedPercent = 'axeSpeedPercent',
+  FishingSpeedPercent = 'fishingSpeedPercent',
+  ScytheSpeedPercent = 'scytheSpeedPercent',
+  HuntingSpeedPercent = 'huntingSpeedPercent',
+
   // generic stats
   Armor = 'armor',
+  Mitigation = 'mitigation',
   Healing = 'healing',
+  EnergyHealing = 'energyHealing',
   Attack = 'attack',
   EnergyBonus = 'energyBonus',
   HealthBonus = 'healthBonus',
@@ -111,8 +153,12 @@ export interface IGameItem {
   icon: string;
   canStack?: boolean;
   quantity?: number;
-  givesAbility?: string;
-  effects?: IGameCombatAbilityEffect[];
+  givesPlayerAbility?: string;
+
+  abilities?: IGameCombatActionAbility[];
+  effects?: IGameCombatActionEffect[];
+  oocHealth?: number;
+  oocEnergy?: number;
   stats: Record<Stat, number>;
 
   foodDuration?: number;

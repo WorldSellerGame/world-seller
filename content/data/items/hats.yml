@@ -9,28 +9,28 @@ Knitted Hat:
   value: 10
   icon: hat
   stats:
-    armor: 1
+    mitigation: 4
 
 Fur Hat:
   name: Fur Hat
   description: Hat made of Fur.
   type: HeadArmor
   category: Armor
-  rarity: Common
+  rarity: Uncommon
   durability: 10
-  value: 10
+  value: 50
   icon: hat
   stats:
-    armor: 3
+    mitigation: 8
 
 Linen Hat:
   name: Linen Hat
   description: Hat made of linen cloth.
   type: HeadArmor
   category: Armor
-  rarity: Common
+  rarity: Rare
   durability: 15
-  value: 10
+  value: 125
   icon: hat
   stats:
     speed: 2
@@ -40,9 +40,27 @@ Leather Hat:
   description: Hat made of Leather.
   type: HeadArmor
   category: Armor
-  rarity: Common
+  rarity: Epic
   durability: 20
-  value: 10
+  value: 250
   icon: hat
   stats:
-    armor: 5
+    mitigation: 12
+
+###
+
+
+Goblin Crown: #this bih already enchanted
+  name: Goblin Crown
+  description: Crown of a goblin lord. Makes you feel important.
+  type: HeadArmor
+  category: Armor
+  rarity: Legendary
+  durability: 10
+  value: 250
+  icon: goblin-crown
+  givesPlayerAbility: GoblinLord1
+  stats:
+    attack: -2
+    armor: -2
+    speed: 3

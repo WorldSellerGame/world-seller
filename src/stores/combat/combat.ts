@@ -10,22 +10,23 @@ import {
   dispatchCorrectCombatEndEvent,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getPlayerCharacterReadyForCombat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, getStat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
+import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import {
   AchievementStat,
   CombatAbilityTarget, DungeonTile, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameCombatAbilityEffect,
-  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, Stat
+  IGameCombatActionEffect,
+  IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
   EnemySpeedReset, EnemyTakeTurn, InitiateCombat,
-  LowerEnemyCooldown, PlayerCooldownSkill,
+  LowerEnemyCooldown, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill,
   PlayerSpeedReset, SetCombatLock, TargetEnemyWithAbility, TargetSelfWithAbility, TickEnemyEffects, TickPlayerEffects
 } from './combat.actions';
 import { attachments } from './combat.attachments';
@@ -42,7 +43,12 @@ import { EnterDungeon } from './dungeon.actions';
 @Injectable()
 export class CombatState {
 
-  constructor(private store: Store, private contentService: ContentService, private visuals: VisualsService) {
+  constructor(
+    private store: Store,
+    private contentService: ContentService,
+    private itemCreator: ItemCreatorService,
+    private visuals: VisualsService
+  ) {
     attachments.forEach(({ action, handler }) => {
       attachAction(CombatState, action, handler);
     });
@@ -88,6 +94,11 @@ export class CombatState {
   }
 
   @Selector()
+  static oocTicks(state: IGameCombat) {
+    return { health: state.oocHealTicks, energy: state.oocEnergyTicks };
+  }
+
+  @Selector()
   static threatInfo(state: IGameCombat) {
     return { threats: state.threats, threatChangeTicks: state.threatChangeTicks };
   }
@@ -115,31 +126,13 @@ export class CombatState {
   async updateAllItems(ctx: StateContext<IGameCombat>) {
     const state = ctx.getState();
 
-    const activeItems = (state.activeItems || []).map(item => {
-      if(!item) {
-        return undefined;
-      }
+    const activeItems = (state.activeItems || [])
+      .map(item => item ? this.itemCreator.migrateItem(item) : undefined)
+      .filter(Boolean);
 
-      const baseItem = this.contentService.getItemByName(item.internalId || '');
-      if(!baseItem) {
-        return undefined;
-      }
-
-      return merge({}, baseItem, item);
-    }).filter(Boolean);
-
-    const activeFoods = state.activeFoods.map(item => {
-      if(!item) {
-        return undefined;
-      }
-
-      const baseItem = this.contentService.getItemByName(item.internalId || '');
-      if(!baseItem) {
-        return undefined;
-      }
-
-      return merge({}, baseItem, item);
-    }).filter(Boolean);
+    const activeFoods = state.activeFoods
+      .map(item => item ? this.itemCreator.migrateItem(item) : undefined)
+      .filter(Boolean);
 
     ctx.setState(patch<IGameCombat>({ activeItems, activeFoods }));
   }
@@ -160,17 +153,19 @@ export class CombatState {
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
     if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
+      currentPlayer = getPlayerCharacterReadyForCombat(
+        store, ctx, activePlayer, this.getBonusStats(ctx), this.getBonusEffects(ctx)
+      );
     }
 
     // do on-combat-start heals
     currentPlayer.currentHealth = Math.min(
-      currentPlayer.currentHealth + currentPlayer.stats[Stat.HealingPerCombat],
+      currentPlayer.currentHealth + getStat(currentPlayer.stats, Stat.HealingPerCombat),
       currentPlayer.maxHealth
     );
 
     currentPlayer.currentEnergy = Math.min(
-      currentPlayer.currentEnergy + currentPlayer.stats[Stat.EnergyPerCombat],
+      currentPlayer.currentEnergy + getStat(currentPlayer.stats, Stat.EnergyPerCombat),
       currentPlayer.maxEnergy
     );
 
@@ -217,13 +212,15 @@ export class CombatState {
 
     // speed adjustments
     const maxSpeed = Math.max(
-      currentPlayer.stats[Stat.Speed],
+      getStat(currentPlayer.stats, Stat.Speed),
       ...threatData.enemies.map(enemyName => this.contentService.getEnemyByName(enemyName).stats[Stat.Speed] ?? 1)
     );
 
     [currentPlayer, ...enemies].forEach(char => {
-      char.stats[Stat.Speed] = Math.max(1, maxSpeed - char.stats[Stat.Speed] + 1);
-      char.currentSpeed = random(Math.floor(char.stats[Stat.Speed] / 2), char.stats[Stat.Speed]);
+      char.stats[Stat.Speed] = Math.max(1, maxSpeed - getStat(char.stats, Stat.Speed) + 1);
+
+      const speed = getStat(char.stats, Stat.Speed);
+      char.currentSpeed = random(Math.floor(speed / 2), speed);
     });
 
     // every 10th level requires a dungeon dive
@@ -271,8 +268,8 @@ export class CombatState {
     }
 
     const preTurnDeltas: ICombatDelta[] = [];
-    const healingPerRound = enemy.stats[Stat.HealingPerRound];
-    const energyPerRound = enemy.stats[Stat.EnergyPerRound];
+    const healingPerRound = getStat(enemy.stats, Stat.HealingPerRound);
+    const energyPerRound = getStat(enemy.stats, Stat.EnergyPerRound);
 
     if(healingPerRound > 0) {
       ctx.dispatch(new AddCombatLogMessage(`${enemy.name} healed ${healingPerRound} HP!`));
@@ -402,7 +399,11 @@ export class CombatState {
         allowBonusStats: !fromItem,
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
-      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      // items do not cost energy
+      if(ability.energyCost > 0 && !fromItem) {
+        deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+      }
 
       const hp = target.currentHealth;
       applyDeltas(ctx, source, target, deltas);
@@ -471,7 +472,11 @@ export class CombatState {
         allowBonusStats: !fromItem,
         statusEffect: this.contentService.getEffectByName(effectRef.effectName || '')
       });
-      deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+
+      // items do not cost energy
+      if(ability.energyCost > 0 && !fromItem) {
+        deltas.push({ target: 'source', attribute: 'currentEnergy', delta: -ability.energyCost });
+      }
 
       const hp = currentPlayer.currentHealth;
       applyDeltas(ctx, currentPlayer, currentPlayer, deltas);
@@ -577,6 +582,7 @@ export class CombatState {
       }));
     }
 
+    // reset combat or change turns
     if(state.currentEncounter && state.currentPlayer) {
 
       // check for combat ending and get out soon
@@ -657,8 +663,8 @@ export class CombatState {
         // unlock combat when the player can do something
         if(newSpeed <= 0) {
           const preTurnDeltas: ICombatDelta[] = [];
-          const healingPerRound = player.stats[Stat.HealingPerRound];
-          const energyPerRound = player.stats[Stat.EnergyPerRound];
+          const healingPerRound = getStat(player.stats, Stat.HealingPerRound);
+          const energyPerRound = getStat(player.stats, Stat.EnergyPerRound);
 
           if(healingPerRound > 0) {
             ctx.dispatch(new AddCombatLogMessage(`${player.name} healed ${healingPerRound} HP!`));
@@ -682,6 +688,27 @@ export class CombatState {
 
         numAttempts--;
       }
+    }
+
+    // ooc healing
+    if(!state.currentEncounter && state.currentPlayer) {
+      let healingTicks = state.oocHealTicks ?? 10;
+      let energyTicks = state.oocEnergyTicks ?? 10;
+
+      if(healingTicks <= 0 && state.currentPlayer.currentHealth < state.currentPlayer.maxHealth) {
+        ctx.dispatch(new OOCPlayerHeal(1));
+        healingTicks = 10;
+      }
+
+      if(energyTicks <= 0 && state.currentPlayer.currentEnergy < state.currentPlayer.maxEnergy) {
+        ctx.dispatch(new OOCPlayerEnergy(1));
+        energyTicks = 10;
+      }
+
+      ctx.setState(patch<IGameCombat>({
+        oocHealTicks: healingTicks - ticks,
+        oocEnergyTicks: energyTicks - ticks
+      }));
     }
   }
 
@@ -714,7 +741,7 @@ export class CombatState {
     self: IGameEncounterCharacter,
     allies: IGameEncounterCharacter[],
     skill: IGameCombatAbility,
-    effect: IGameCombatAbilityEffect
+    effect: IGameCombatActionEffect
   ): IGameEncounterCharacter[] {
 
     switch(skill.target) {
@@ -749,6 +776,32 @@ export class CombatState {
         return [self];
       }
     }
+  }
+
+  private getBonusStats(ctx: StateContext<IGameCombat>) {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => x?.stats || {} as Partial<Record<Stat, number>>)
+      .reduce((prev, cur) => {
+        if(!cur) {
+          return prev;
+        }
+
+        Object.keys(cur).forEach(key => {
+          prev[key as Stat] = (prev[key as Stat] || 0) + (cur[key as Stat] || 0);
+        });
+
+        return prev;
+      }, {});
+  }
+
+  private getBonusEffects(ctx: StateContext<IGameCombat>): IGameStatusEffect[] {
+    return ctx.getState().activeFoods
+      .filter(Boolean)
+      .map(x => (x?.effects || []))
+      .flat()
+      .filter(x => x.effect === 'ApplyEffect' && x.effectName)
+      .map(x => this.contentService.getEffectByName(x.effectName as string));
   }
 
 }

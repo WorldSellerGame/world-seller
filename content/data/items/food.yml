@@ -9,22 +9,29 @@ Pine Nuts:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 5
   icon: meal
+  oocHealth: 1
+  oocEnergy: 1
   stats:
-    healing: 50
+    healingPerCombat: 5
+  foodDuration: 2
+
+
 
 Cooked Cropfish:
-  name: Pine Nuts
+  name: Cooked Cropfish
   description: Once cooked you can eat them whole. Although, I would rather not eat them at all.
   type: Food
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 5
   icon: cooked-fish
+  oocHealth: 3
   stats:
-    healing: 50
+    energyPerCombat: 10
+  foodDuration: 2
 
 #
 
@@ -35,10 +42,13 @@ Barbecued Squirrel:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 10
   icon: hot-meal
+  oocHealth: 1
+  oocEnergy: 1
   stats:
-    healing: 50
+    energyPerRound: 3
+  foodDuration: 2
 
 Vegetable Soup:
   name: Vegetable Soup
@@ -47,10 +57,13 @@ Vegetable Soup:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 10
   icon: hot-meal
+  oocHealth: 5
+  oocEnergy: 1
   stats:
-    healing: 50
+    healingPerRound: 6
+  foodDuration: 2
 
 #
 
@@ -61,22 +74,28 @@ Roast Bunny:
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 15
   icon: hot-meal
+  oocHealth: 1
   stats:
-    healing: 50
+    healingPerRound: 10
+  foodDuration: 3
 
 Pan Fried Panfish:
   name: Pan Fried Panfish
-  description: Panfish get their name for fitting in a pan. 
+  description: Panfish get their name for fitting in a pan.
   type: Food
   category: Foods
   rarity: Common
   durability: 1
-  value: 1
+  value: 15
   icon: cooked-fish
-  stats:
-    healing: 50
+  oocHealth: 2
+  stats: {}
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 2
 
 #
 
@@ -85,36 +104,50 @@ Baked Fallfish:
   description: Baked is healthier then fried. A bit more sad though.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 25
   icon: cooked-fish
+  oocHealth: 5
   stats:
-    healing: 50
+    healingPerCombat: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 2
 
 Bunny Stew:
   name: Bunny Stew
   description: A solid, well rounded, tasty meal.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 25
   icon: hot-meal
+  oocHealth: 2
+  oocEnergy: 2
   stats:
-    healing: 50
+    healing: 10
+    healingPerCombat: 10
+  foodDuration: 3
 
 Candied Apple:
   name: Candied Apple
   description: A tasty treat made by dipping an apple in caramelized sugar.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: apple
+  oocEnergy: 3
   stats:
-    healing: 50
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  foodDuration: 2
 
 #
 
@@ -123,60 +156,85 @@ Duck Roast:
   description: Roast Duck is a treat and quite filling.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: cooked-bird
+  oocHealth: 10
   stats:
-    healing: 50
+    healing: 12
+    healingPerRound: 5
+  foodDuration: 3
 
 Fried Frog Legs:
   name: Fried Frog Legs
   description: Though claimed to be a delicacy, they do taste like water chicken.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: frog-foot
+  oocHealth: 2
   stats:
-    healing: 50
+    healing: 3
+    healingPerCombat: 5
+    healingPerRound: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
+  foodDuration: 2
 
 Cooked Trout:
   name: Cooked Trout
   description: Perhaps best enjoyed now and then lest you want to affect the trout population.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: cooked-fish
+  oocHealth: 5
   stats:
-    healing: 50
+    healing: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 3
+
 
 Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a pseudo potion
   name: Strawberry Jam
   description: Tasty jam thats smooth... maybe a little too smooth.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: jar
-  stats:
-    healing: 50
+  stats: {}
+  oocEnergy: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  foodDuration: 1
+
 
 Raspberry Jam:
   name: Raspberry Jam
   description: Tasty jam thats thick... maybe a little too thick.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: jar
-  stats:
-    healing: 50
+  oocEnergy: 3
+  stats: {}
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  foodDuration: 1
 
 #
 
@@ -185,86 +243,120 @@ Bread:
   description: Warm, flaky bread is hard to beat and easy to make in large quantities.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 50
   icon: bread
+  oocEnergy: 5
   stats:
-    healing: 50
+    healingPerCombat: 10
+  foodDuration: 5
 
 Baked Breaded Bass:
   name: Baked Breaded Bass
   description: Reminds you of times past. A more filling way to prepare fish and inexpensive to boot.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: cooked-fish
+  oocEnergy: 5
   stats:
-    healing: 50
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 3
 
 Roast Turkey:
   name: Roast Turkey
   description: A tad labor intensive, but undeniably a heavenly feast.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Uncommon
   durability: 1
-  value: 1
+  value: 75
   icon: cooked-bird
+  oocEnergy: 10
   stats:
-    healing: 50
+    healingPerCombat: 20
+  foodDuration: 3
 
 #
 
 Venison Steak:
   name: Venison Steak
-  description: Lean meat with a unique taste.  
+  description: Lean meat with a unique taste.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 100
   icon: hot-meal
+  oocEnergy: 10
   stats:
-    healing: 50
+    healingPerCombat: 10
+    healingPerRound: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  foodDuration: 3
 
 Apple Pie:
   name: Apple Pie
   description: A mainstay dessert whose warm smell makes it hard to hold back, with many a mouths burned from pie too hot.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 150
   icon: pie
+  oocHealth: 5
+  oocEnergy: 1
   stats:
-    healing: 50
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  foodDuration: 2
 
 Pumpkin Pie:
   name: Pumpkin Pie
   description: Made of pumpkins, nutmeg, and deliciousness. #I couldn't figure out how to italicize this (you can't)
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 150
   icon: pie
+  oocHealth: 15
   stats:
-    healing: 50
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+  foodDuration: 2
 
 Cookie: #egg required - Im sorry little one you will be be added next time
   name: Cookie
   description: Easy to make in large batches. They can last quite a while but are exceptional when warm.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 100
   icon: cookie
+  oocHealth: 5
+  oocEnergy: 5
   stats:
-    healing: 50
+    healingPerCombat: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  foodDuration: 6
 
 #
 
@@ -273,88 +365,144 @@ Mixed Fruit Juice:
   description: Hits the spot - any time, any where.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 250
   icon: cup
+  oocEnergy: 30
   stats:
-    healing: 50
+    healingPerCombat: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: HealingBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+    - effect: ApplyEffect
+      effectName: HealthBuff1
+    - effect: ApplyEffect
+      effectName: ArmorBuff1
+  foodDuration: 1
 
 Duck Eggs Benedict:
   name: Duck Eggs Benedict
   description: One of the most complicated ways to prepare two eggs.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 500
   icon: hot-meal
+  oocHealth: 10
+  oocEnergy: 2
   stats:
-    healing: 50
-
+    healingPerCombat: 5
+    healingPerRound: 5
+    healing: 10
+  abilities:
+    - abilityName: ItemSelfHealRandom
+  foodDuration: 3
 #
 
-Honey Ham: 
+Honey Ham:
   name: Honey Ham
   description: A feast to be sure. Rich, succulent meat with a diverse flavor.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 300
   icon: hot-meal
+  oocHealth: 15
   stats:
-    healing: 50
+    healing: 25
+  abilities:
+    - abilityName: ItemSelfHeal
+  foodDuration: 4
 
-Spicy Catfish Stew: 
+Spicy Catfish Stew:
   name: Spicy Catfish Stew
   description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Rare
   durability: 1
-  value: 1
+  value: 300
   icon: hot-meal
+  oocHealth: 15
+  oocEnergy: 5
   stats:
-    healing: 50
+    healing: 15
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+  foodDuration: 4
 
 #
 
-Pompano Ceviche: 
+Pompano Ceviche:
   name: Pompano Ceviche
   description: Refreshing and filling, this dish is unique and undeniably a treat.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: meal
+  oocHealth: 15
   stats:
-    healing: 50
+    healing: 7
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff3
+  foodDuration: 2
 
-Banana Bread: 
+Banana Bread:
   name: Banana Bread
-  description: Lush, moist, sweet, and filling. 
+  description: Lush, moist, sweet, and filling.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: bread
+  oocHealth: 30
   stats:
-    healing: 50
+    healing: 10
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  foodDuration: 4
 
 Elk Jerky:
   name: Elk Jerky
   description: Long lasting and easy to store in large amounts. Initially designed by necessity, but still often made for its flavour.
   type: Food
   category: Foods
-  rarity: Common
+  rarity: Epic
   durability: 1
-  value: 1
+  value: 500
   icon: meal
+  oocEnergy: 30
   stats:
-    healing: 50
+    healing: 25
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  foodDuration: 6
 
 
 
@@ -365,7 +513,7 @@ Elk Jerky:
 #pufferfish
 #grouse
 
-#This will be easy enough to continue I think I should stop here though? 
+#This will be easy enough to continue I think I should stop here though?
   #yeah I need combat there will be tons of horse shit to add later
 
 # FUcking Balance fuck that piss

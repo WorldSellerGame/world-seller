@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, CookingState, WorkersState } from '../../../../../stores';
 
-import { CancelCookingJob, StartCookingJob } from '../../../../../stores/cooking/cooking.actions';
+import { CancelCookingJob, ChangeCookingFilterOption, StartCookingJob } from '../../../../../stores/cooking/cooking.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -15,9 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class CookingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.cooking;
-  }
+  public locationData: IGameRecipe[] = [];
 
   public get startAction() {
     return StartCookingJob;
@@ -27,10 +25,15 @@ export class CookingPage implements OnInit {
     return CancelCookingJob;
   }
 
+  public get optionAction() {
+    return ChangeCookingFilterOption;
+  }
+
   @Select(CookingState.level) level$!: Observable<number>;
   @Select(CookingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(CookingState.options) options$!: Observable<IGameRefiningOptions>;
 
-  @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
+  @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];
     canAssignWorker: boolean;
@@ -40,6 +43,8 @@ export class CookingPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.locationData = this.contentService.getCookingRecipes();
+
     this.level$.pipe(first()).subscribe(level => {
       this.currentQueue$.pipe(first()).subscribe(currentQueue => {
         const state = currentQueue.queue.length > 0

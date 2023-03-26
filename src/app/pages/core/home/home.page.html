@@ -110,37 +110,45 @@
                 <ion-card>
                   <ion-row>
                     <ion-col>
-                      <ion-button fill="clear" target="_blank" href="https://worldsellergame.com" color="secondary">
+                      <ion-button fill="clear" target="_blank" href="https://worldsellergame.com" color="secondary" ngxTippy="WorldSellerGame.com">
                         <ion-icon slot="icon-only" name="home"></ion-icon>
                       </ion-button>
                     </ion-col>
 
                     <ion-col>
-                      <ion-button fill="clear" target="_blank" href="https://blog.worldsellergame.com" color="secondary">
+                      <ion-button fill="clear" target="_blank" href="https://blog.worldsellergame.com" color="secondary" ngxTippy="World Seller Dev Blog">
                         <ion-icon slot="icon-only" name="megaphone"></ion-icon>
                       </ion-button>
                     </ion-col>
 
                     <ion-col>
-                      <ion-button fill="clear" target="_blank" href="https://discord.worldsellergame.com" color="secondary">
+                      <ion-button fill="clear" target="_blank" href="https://discord.worldsellergame.com" color="secondary" ngxTippy="Join us on Discord!">
                         <ion-icon slot="icon-only" name="logo-discord"></ion-icon>
                       </ion-button>
                     </ion-col>
 
                     <ion-col>
-                      <ion-button fill="clear" (click)="metaService.showChangelog()" color="secondary">
+                      <ion-button fill="clear" (click)="metaService.showChangelog()" color="secondary" ngxTippy="Version notes">
                         <ion-icon slot="icon-only" name="book"></ion-icon>
                       </ion-button>
                     </ion-col>
 
                     <ion-col></ion-col>
 
-                    <ion-col></ion-col>
+                    <ion-col>
+                      <ion-button fill="clear" (click)="modsService.launchModManager()" color="secondary" ngxTippy="Mod manager (powered by mod.io)">
+                        <ion-icon slot="start" name="cog"></ion-icon> Mods
+                      </ion-button>
+                    </ion-col>
                   </ion-row>
                 </ion-card>
               </ion-col>
             </ion-row>
           </ion-card-content>
+
+          <div class="version-info">
+            Version {{ metaService.version }}
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>

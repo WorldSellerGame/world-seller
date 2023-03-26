@@ -1,19 +1,19 @@
 MercantileWorkers1:
-  name: Workers I
+  name: Employer I
   description: Buy 1 worker.
   icon: mercantile
   stat: mercantileBuyWorkers
   requiredValue: 1
 
 MercantileWorkers2:
-  name: Workers II
+  name: Employer II
   description: Buy 5 workers.
   icon: mercantile
   stat: mercantileBuyWorkers
   requiredValue: 5
 
 MercantileWorkers3:
-  name: Workers III
+  name: Employer III
   description: Buy 25 workers.
   icon: mercantile
   stat: mercantileBuyWorkers
@@ -48,56 +48,56 @@ MercantileSell4:
   requiredValue: 100000
 
 Exchanger1:
-  name: Exchanger I
+  name: Trader I
   description: Exchange 100 times at the exchange.
   icon: mercantile
   stat: mercantileExchangeSwap
   requiredValue: 100
 
 Exchanger2:
-  name: Exchanger II
+  name: Trader II
   description: Exchange 1000 times at the exchange.
   icon: mercantile
   stat: mercantileExchangeSwap
   requiredValue: 1000
 
 Exchanger3:
-  name: Exchanger III
+  name: Trader III
   description: Exchange 10000 times at the exchange.
   icon: mercantile
   stat: mercantileExchangeSwap
   requiredValue: 10000
 
 Exchanger4:
-  name: Exchanger IV
+  name: Trader IV
   description: Exchange 100000 times at the exchange.
   icon: mercantile
   stat: mercantileExchangeSwap
   requiredValue: 100000
 
 PurchasingPower1:
-  name: Purchasing Power I
+  name: Shopper I
   description: Buy 100 goods from the exchange.
   icon: mercantile
   stat: mercantileExchangeBuy
   requiredValue: 100
 
 PurchasingPower2:
-  name: Purchasing Power II
+  name: Shopper II
   description: Buy 1000 goods from the exchange.
   icon: mercantile
   stat: mercantileExchangeBuy
   requiredValue: 1000
 
 PurchasingPower3:
-  name: Purchasing Power III
+  name: Shopper III
   description: Buy 10000 goods from the exchange.
   icon: mercantile
   stat: mercantileExchangeBuy
   requiredValue: 10000
 
 PurchasingPower4:
-  name: Purchasing Power IV
+  name: Shopper IV
   description: Buy 100000 goods from the exchange.
   icon: mercantile
   stat: mercantileExchangeBuy

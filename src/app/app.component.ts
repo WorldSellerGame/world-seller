@@ -2,14 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
-import { IGameRefiningRecipe, IPlayerCharacter } from '../interfaces';
-import { CharSelectState, OptionsState } from '../stores';
-import { DiscoverResourceOrItem, GainItemOrResource, SyncTotalLevel } from '../stores/charselect/charselect.actions';
-import { DebugApplyEffectToPlayer, InitiateCombat } from '../stores/combat/combat.actions';
+import { IGameRefiningRecipe } from '../interfaces';
+import { OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
-import { getMercantileLevel, getTotalLevel } from './helpers';
-import { setMainDiscordStatus } from './helpers/electron';
-import { ContentService } from './services/content.service';
+import { getMercantileLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
 
 interface IMenuItem {
@@ -29,13 +25,9 @@ interface IMenuItem {
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  @Select(CharSelectState.activeCharacter) activeCharacter$!: Observable<IPlayerCharacter>;
-  @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
-  @Select(OptionsState.isDebugMode) debugMode$!: Observable<boolean>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
 
-  public debug!: Subscription;
   public level!: Subscription;
   public totalLevel = 0;
 
@@ -123,7 +115,6 @@ export class AppComponent implements OnInit, OnDestroy {
       level: this.store.select(state => state.weaving.level) }
   ];
 
-
   public peripheralTradeskills: IMenuItem[] = [
 
     { title: 'Combat',    url: 'combat',    icon: 'combat',
@@ -144,7 +135,7 @@ export class AppComponent implements OnInit, OnDestroy {
       timer: of(0),
       level: this.store.select(state => getMercantileLevel(state)) },
 
-    { title: 'Prospecting',    url: 'prospecting',    icon: 'prospecting',
+    { title: 'Transmutation',    url: 'transmutation',    icon: 'prospecting',
       requirements: 'Discover Stone',
       unlocked: this.store.select(state => state.prospecting.unlocked),
       timer: of(0),
@@ -161,61 +152,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private readonly contentService: ContentService,
-    private readonly gameloopService: GameloopService
+    private readonly gameloopService: GameloopService,
   ) { }
 
   ngOnInit() {
     this.gameloopService.init();
 
     this.store.dispatch(new UpdateAllItems());
-
-    this.level = this.store.select(state => getTotalLevel(state)).subscribe(level => {
-      this.totalLevel = level;
-
-      setMainDiscordStatus(`Level ${level.toLocaleString()}`);
-
-      this.store.dispatch(new SyncTotalLevel(level));
-    });
-
-    this.debug = this.debugMode$.subscribe(debugMode => {
-      if(!debugMode) {
-        (window as any).gainItem = () => {};
-        (window as any).discover = () => {};
-        (window as any).fightThreat = () => {};
-        (window as any).applyCombatEffectToPlayer = () => {};
-        return;
-      }
-
-      (window as any).gainItem = (item: string, amount: number) => {
-        this.store.dispatch(new GainItemOrResource(item, amount));
-      };
-
-      (window as any).discover = (item: string) => {
-        this.store.dispatch(new DiscoverResourceOrItem(item));
-      };
-
-      (window as any).fightThreat = (threat: string) => {
-        this.store.dispatch(new InitiateCombat(threat, true));
-      };
-
-      (window as any).applyCombatEffectToPlayer = (effect: string) => {
-        const effectRef = this.contentService.getEffectByName(effect);
-        if(!effectRef) {
-          console.error(`Could not find effect ${effect}!`);
-          return;
-        }
-
-        this.store.dispatch(new DebugApplyEffectToPlayer(effectRef));
-      };
-
-    });
   }
 
   ngOnDestroy() {
     this.gameloopService.stop();
-    this.level?.unsubscribe();
-    this.debug?.unsubscribe();
   }
 
 }

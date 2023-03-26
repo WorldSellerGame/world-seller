@@ -172,11 +172,27 @@
               </ion-card-content>
             </ion-card>
 
-            <ion-card *ngIf="activeFoods$ | async as foods" [class.hidden]="foods.length > 0" color="danger">
-              <ion-card-content>
-                You're not using any food!
-              </ion-card-content>
-            </ion-card>
+            <ng-container *ngIf="activeFoods$ | async as foods">
+              <ion-card *ngIf="foods.length === 0" color="danger">
+                <ion-card-content>
+                  You're not using any food!
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card *ngIf="foods.length > 0">
+                <ion-card-header>
+                  <ion-card-title>Equipped Foods</ion-card-title>
+                </ion-card-header>
+
+                <ion-card-content>
+                  <ion-list>
+                    <ion-item *ngFor="let food of foods">
+                      <app-combat-food-display [item]="food"></app-combat-food-display>
+                    </ion-item>
+                  </ion-list>
+                </ion-card-content>
+              </ion-card>
+            </ng-container>
           </ion-col>
 
           <ion-col class="player-abilities">

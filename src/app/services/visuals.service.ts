@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { Howl } from 'howler';
 import { Subject } from 'rxjs';
 import { GameOption } from '../../interfaces';
+import { ContentService } from './content.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class VisualsService {
     return this.damageSub.asObservable();
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private contentService: ContentService) {}
 
   emitDamageNumber(slot: string, value: number) {
     this.damageSub.next({ slot, value });
@@ -27,8 +28,11 @@ export class VisualsService {
     const masterPercent = (options[GameOption.SoundMaster] || 100) / 100;
     const sfxPercent = (options[GameOption.SoundSFX] || 100) / 100;
 
+    const overrideSound = this.contentService.getOverrideSoundEffect(sound);
+    const soundToPlay = overrideSound || `assets/sfx/${sound}.wav`;
+
     const soundByte = new Howl({
-      src: [`assets/sfx/${sound}.wav`],
+      src: [soundToPlay],
       volume: masterPercent * sfxPercent
     });
 

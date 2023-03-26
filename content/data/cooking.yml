@@ -2,7 +2,7 @@
 # actually making saltpeter just convert to salk via a recipe and then making salt mineable may fix some issues (this is re-balance stuff though)
 #Yeah this will be done its best 
 
-#WE NEED FUCKING NOODLES
+#WE NEED NOODLES
 
 #oh dear god alot of the harvestable should be edible by them selves, that does need to be during the combat rebalance too
 
@@ -13,7 +13,7 @@ recipes:
   - result: Syrup
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 10
+    craftTime: 20
     ingredients:
       Sap: 5
       Oven: 1
@@ -32,7 +32,7 @@ recipes:
   - result: Vegetable Stock
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 10
+    craftTime: 20
     ingredients:
       Vegetable Soup: 1
       Oven: 1
@@ -51,7 +51,7 @@ recipes:
   - result: Sugar #hellish to acquire in current state but wew will see if limited use of same result crafting can fix that
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 30
     ingredients:
       Syrup: 5
       Oven: 1
@@ -70,7 +70,7 @@ recipes:
   - result: Tallow
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 10
+    craftTime: 40
     ingredients:
       Fat: 3
       Oven: 1
@@ -89,7 +89,7 @@ recipes:
   - result: Flour
     perCraft: { min: 5, max: 5 }
     level: { min: 30, max: 40 }
-    craftTime: 10
+    craftTime: 70
     ingredients:
       Wheat: 5
       Millstone: 1
@@ -126,7 +126,7 @@ recipes:
   - result: Barbecued Squirrel
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 10
+    craftTime: 120
     ingredients:
       Squirrel Meat: 3
       Kitchen Utensils: 1
@@ -139,7 +139,7 @@ recipes:
   - result: Vegetable Soup
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
-    craftTime: 10
+    craftTime: 120
     ingredients:
       Carrot: 4
       Mushroom: 1
@@ -161,7 +161,7 @@ recipes:
   - result: Pan Fried Panfish
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 180
     ingredients:
       Panfish: 3
       Oven: 1
@@ -180,7 +180,7 @@ recipes:
   - result: Roast Bunny
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
-    craftTime: 10
+    craftTime: 180
     ingredients:
       Bunny Meat: 4
       Brick Oven: 1
@@ -201,7 +201,7 @@ recipes:
   - result: Bunny Stew
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 10
+    craftTime: 240
     ingredients:
       Bunny Meat: 4
       Vegetable Stock: 1
@@ -221,7 +221,7 @@ recipes:
   - result: Baked Fallfish
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 10
+    craftTime: 240
     ingredients:
       Fallfish: 2
       Brick Oven: 1
@@ -240,7 +240,7 @@ recipes:
   - result: Candied Apple
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
-    craftTime: 10
+    craftTime: 240
     ingredients:
       Apple: 1
       Sugar: 2
@@ -262,7 +262,7 @@ recipes:
   - result: Fried Frog Legs
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 300
     ingredients:
       Tallow: 1
       Frog: 2
@@ -283,7 +283,7 @@ recipes:
   - result: Duck Roast
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 300
     ingredients:
       Duck Meat: 4
       Carrot: 1
@@ -304,7 +304,7 @@ recipes:
   - result: Cooked Trout
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 300
     ingredients:
       Trout: 3
       Garlic: 1
@@ -327,7 +327,7 @@ recipes:
   - result: Strawberry Jam
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 300
     ingredients:
       Strawberry: 6
       Sugar: 2
@@ -347,7 +347,7 @@ recipes:
   - result: Raspberry Jam
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
-    craftTime: 10
+    craftTime: 300
     ingredients:
       Raspberry: 6
       Sugar: 2
@@ -369,7 +369,7 @@ recipes:
   - result: Bread
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 10
+    craftTime: 360
     ingredients:
       Flour: 5
       Brick Oven: 1
@@ -388,7 +388,7 @@ recipes:
   - result: Baked Breaded Bass
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 10
+    craftTime: 360
     ingredients:
       Bass: 3
       Flour: 2
@@ -408,7 +408,7 @@ recipes:
   - result: Roast Turkey
     perCraft: { min: 1, max: 1 }
     level: { min: 25, max: 35 }
-    craftTime: 10
+    craftTime: 360
     ingredients:
       Turkey Meat: 8
       Bread: 1
@@ -434,7 +434,7 @@ recipes:
   - result: Venison Steak
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
-    craftTime: 10
+    craftTime: 420
     ingredients:
       Deer Meat: 4
       Saltpeter: 1
@@ -455,7 +455,7 @@ recipes:
   - result: Apple Pie
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
-    craftTime: 10
+    craftTime: 420
     ingredients:
       Apple: 5
       Sugar: 3
@@ -477,7 +477,7 @@ recipes:
   - result: Pumpkin Pie
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
-    craftTime: 10
+    craftTime: 420
     ingredients:
       Pumpkin: 4
       Sugar: 3
@@ -501,7 +501,7 @@ recipes:
   - result: Duck Eggs Benedict #post lemons this will be changed
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45 }
-    craftTime: 10
+    craftTime: 480
     ingredients:
       Duck Egg: 2
       Boar Meat: 1
@@ -523,7 +523,7 @@ recipes:
   - result: Mixed Fruit Juice 
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45 }
-    craftTime: 10
+    craftTime: 480
     ingredients:
       Apple: 1
       Strawberry: 3
@@ -542,7 +542,7 @@ recipes:
   - result: Honey Ham 
     perCraft: { min: 1, max: 1 }
     level: { min: 40, max: 50 }
-    craftTime: 10
+    craftTime: 540
     ingredients:
       Boar Meat: 10
       Honey: 4
@@ -563,7 +563,7 @@ recipes:
   - result: Spicy Catfish Stew
     perCraft: { min: 1, max: 1 }
     level: { min: 40, max: 50 }
-    craftTime: 10
+    craftTime: 540
     ingredients:
       Catfish: 3
       Garlic: 2
@@ -587,7 +587,7 @@ recipes:
   - result: Pompano Ceviche #lemon update huge for this #avocado update over my dead fucking body #fuck those fuckin uhh moldy pears yeah yeah thats all an avocado is just a no good rotten dried up pear yeah
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 55 }
-    craftTime: 10
+    craftTime: 600
     ingredients:
       Pompano: 3
       Carambola: 2
@@ -606,7 +606,7 @@ recipes:
   - result: Banana Bread #add egg later # add salt now?
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 50 }
-    craftTime: 10
+    craftTime: 600
     ingredients:
       Flour: 5
       Banana: 4
@@ -623,10 +623,11 @@ recipes:
       - Metal Pots and Pans
     maxWorkers: 1
 
+
   - result: Elk Jerky
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 55 }
-    craftTime: 10
+    craftTime: 600
     ingredients:
       Elk Meat: 12
       Garlic: 2
@@ -643,3 +644,4 @@ recipes:
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
+

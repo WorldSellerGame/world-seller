@@ -1,34 +1,34 @@
 
 Fishing1:
-  name: Fisherman I
+  name: Angler I
   description: Fish 10 times.
   icon: fishing
   stat: gatherFishing
   requiredValue: 10
 
 Fishing2:
-  name: Fisherman II
+  name: Angler II
   description: Fish 100 times.
   icon: fishing
   stat: gatherFishing
   requiredValue: 100
 
 Fishing3:
-  name: Fisherman III
+  name: Angler III
   description: Fish 1000 times.
   icon: fishing
   stat: gatherFishing
   requiredValue: 1000
 
 Fishing4:
-  name: Fisherman IV
+  name: Angler IV
   description: Fish 10000 times.
   icon: fishing
   stat: gatherFishing
   requiredValue: 10000
 
 Foraging1:
-  name: Forager I
+  name: Forager I # hmm
   description: Forage 10 times.
   icon: foraging
   stat: gatherForaging
@@ -56,84 +56,84 @@ Foraging4:
   requiredValue: 10000
 
 Hunting1:
-  name: Hunter I
+  name: Huntsman I
   description: Hunt 10 times.
   icon: hunting
   stat: gatherHunting
   requiredValue: 10
 
 Hunting2:
-  name: Hunter II
+  name: Huntsman II
   description: Hunt 100 times.
   icon: hunting
   stat: gatherHunting
   requiredValue: 100
 
 Hunting3:
-  name: Hunter III
+  name: Huntsman III
   description: Hunt 1000 times.
   icon: hunting
   stat: gatherHunting
   requiredValue: 1000
 
 Hunting4:
-  name: Hunter IV
+  name: Huntsman IV
   description: Hunt 10000 times.
   icon: hunting
   stat: gatherHunting
   requiredValue: 10000
 
 Logging1:
-  name: Logger I
-  description: Chop 10 trees.
+  name: Lumberjack I
+  description: Log 10 times.
   icon: logging
   stat: gatherLogging
   requiredValue: 10
 
 Logging2:
-  name: Logger II
-  description: Chop 100 trees.
+  name: Lumberjack II
+  description: Log 100 times.
   icon: logging
   stat: gatherLogging
   requiredValue: 100
 
 Logging3:
-  name: Logger III
-  description: Chop 1000 trees.
+  name: Lumberjack III
+  description: Log 1000 times.
   icon: logging
   stat: gatherLogging
   requiredValue: 1000
 
 Logging4:
-  name: Logger IV
-  description: Chop 10000 trees.
+  name: Lumberjack IV
+  description: Log 10000 times.
   icon: logging
   stat: gatherLogging
   requiredValue: 10000
 
 Mining1:
-  name: Miner I
+  name: Prospector I
   description: Mine 10 times.
   icon: mining
   stat: gatherMining
   requiredValue: 10
 
 Mining2:
-  name: Miner II
+  name: Prospector II
   description: Mine 100 times.
   icon: mining
   stat: gatherMining
   requiredValue: 100
 
 Mining3:
-  name: Miner III
+  name: Prospector III
   description: Mine 1000 times.
   icon: mining
   stat: gatherMining
   requiredValue: 1000
 
 Mining4:
-  name: Miner IV
+  name: Prospector IV
   description: Mine 10000 times.
   icon: mining
   stat: gatherMining

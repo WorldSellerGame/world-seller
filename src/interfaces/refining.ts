@@ -1,3 +1,4 @@
+import { IGameItem } from './game';
 
 export interface IGameRecipe {
   result: string;
@@ -16,12 +17,20 @@ export interface IGameRefiningRecipe {
   totalLeft: number;
   durationPer: number;
   currentDuration: number;
+  refundItems: IGameItem[];
 }
 
-export interface IGameRefining {
+export interface IGameRefiningOptions {
+  hideDiscovered: boolean;
+  hideNew: boolean;
+  hideHasIngredients: boolean;
+  hideHasNoIngredients: boolean;
+}
+
+export type IGameRefining = {
   version: number;
   unlocked: boolean;
   level: number;
   queueSize: number;
   recipeQueue: IGameRefiningRecipe[];
-}
+} & IGameRefiningOptions;

@@ -1,7 +1,7 @@
 
 <div [class.shimmer]="shimmer">
   <svg-icon *ngIf="icon"
-            [src]="'assets/icon/' + icon + '.svg'"
+            [name]="icon"
             [svgStyle]="{
               'width.px': size,
               'fill': color,

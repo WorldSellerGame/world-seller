@@ -5,7 +5,7 @@ import * as CombatActions from '../../app/helpers/abilities';
 import {
   AchievementStat,
   IAttackParams, ICombatDelta, IGameCombat, IGameCombatAbility,
-  IGameEncounter, IGameEncounterCharacter, IGameItem, IPlayerCharacter, ItemType, Stat
+  IGameEncounter, IGameEncounterCharacter, IGameItem, IGameStatusEffect, IPlayerCharacter, ItemType, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { DecreaseDurability } from '../../stores/charselect/charselect.actions';
@@ -15,7 +15,7 @@ import {
 } from '../../stores/combat/combat.actions';
 import { GainPercentageOfDungeonLoot, LeaveDungeon } from '../../stores/combat/dungeon.actions';
 import { PlaySFX } from '../../stores/game/game.actions';
-import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStatTotals } from './stats';
+import { calculateEnergyFromState, calculateHealthFromState, defaultStatsZero, getStat, getStatTotals } from './stats';
 
 const allCombatActions: Record<string, (ctx: StateContext<IGameCombat>, args: IAttackParams) => ICombatDelta[]> = CombatActions;
 
@@ -26,17 +26,18 @@ export function getCombatFunction(action: string): (ctx: StateContext<IGameComba
 export function calculateAbilityDamageForUser(ability: IGameCombatAbility, stats: Record<Stat, number>): number {
   const totalAbilityValue = sum(ability.stats.map(stat => {
     const baseValue = stats[stat.stat] * stat.multiplier;
+    const bonusValue = stat.bonus ?? 0;
     const variance = Math.floor(baseValue * stat.variance);
     const varianceValue = random(-variance, variance);
 
-    return baseValue + varianceValue;
+    return baseValue + varianceValue + bonusValue;
   }));
 
   return Math.max(0, Math.floor(totalAbilityValue));
 }
 
 export function getSkillsFromItems(items: Record<string, IGameItem>): string[] {
-  return Object.values(items).map(item => item?.givesAbility || '').filter(Boolean);
+  return Object.values(items).map(item => item?.givesPlayerAbility || '').filter(Boolean);
 }
 
 export function dispatchCorrectCombatEndEvent(ctx: StateContext<IGameCombat>, encounter: IGameEncounter) {
@@ -178,7 +179,7 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           }
 
           case 'energyBonus': {
-            character.maxEnergy = Math.floor(character.maxHealth + bonusValue);
+            character.maxEnergy = Math.floor(character.maxEnergy + bonusValue);
             character.currentEnergy = Math.floor(character.currentEnergy + bonusValue);
             break;
           }
@@ -186,14 +187,14 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           default: {
             // double check so when applying a buff the stat doesn't go below 1
             // this prevents a bug that would make the base stat larger when the buff unapplies
-            const baseStat = character.stats[key as Stat];
+            const baseStat = getStat(character.stats, key as Stat);
             const appliedValue = baseStat + bonusValue;
 
             if(appliedValue <= 0) {
               applyStatusEffect.statModifications[key as Stat] = bonusValue - appliedValue + 1;
             }
 
-            character.stats[key as Stat] = Math.max(character.stats[key as Stat] + bonusValue, 1);
+            character.stats[key as Stat] = Math.max(getStat(character.stats, key as Stat) + bonusValue, 1);
             break;
           }
         }
@@ -226,7 +227,7 @@ export function applyDelta(character: IGameEncounterCharacter, appliedDelta: ICo
           default: {
             const statsThatStayAt1 = [Stat.Speed];
             character.stats[key as Stat] = Math.max(
-              character.stats[key as Stat] - bonusValue,
+              getStat(character.stats, key as Stat) - bonusValue,
               statsThatStayAt1.includes(key as Stat) ? 1 : 0
             );
             break;
@@ -288,28 +289,19 @@ export function applyDeltas(
 export function getPlayerCharacterReadyForCombat(
   store: any,
   ctx: StateContext<IGameCombat>,
-  activePlayer: IPlayerCharacter
+  activePlayer: IPlayerCharacter,
+  bonusStats: Partial<Record<Stat, number>> = {},
+  bonusEffects: IGameStatusEffect[] = []
 ): IGameEncounterCharacter {
   const state = ctx.getState();
 
   const stats = merge(defaultStatsZero(), getStatTotals(store, activePlayer));
 
-  state.activeFoods.forEach(food => {
-    if(!food) {
-      return;
-    }
-
-    const foodStats = food.stats;
-    if(!foodStats) {
-      return;
-    }
-
-    Object.keys(foodStats).forEach(stat => {
-      stats[stat as Stat] += foodStats[stat as Stat];
-    });
+  Object.keys(bonusStats).forEach(stat => {
+    stats[stat as Stat] += (bonusStats[stat as Stat] || 0);
   });
 
-  return {
+  const character = {
     name: activePlayer.name,
     icon: 'me',
     abilities: [
@@ -329,4 +321,13 @@ export function getPlayerCharacterReadyForCombat(
     currentEnergy: calculateEnergyFromState(store, activePlayer),
     maxEnergy: calculateEnergyFromState(store, activePlayer),
   };
+
+  const appliedEffects: ICombatDelta[] = bonusEffects.map(x => ({ target: 'target', attribute: '', applyStatusEffect: x, delta: 0 }));
+
+  let returnedCharacter: IGameEncounterCharacter = character;
+  appliedEffects.forEach(delta => {
+    returnedCharacter = applyDelta(returnedCharacter, delta);
+  });
+
+  return returnedCharacter;
 }

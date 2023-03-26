@@ -5,6 +5,11 @@ export class UnlockCombat {
   constructor() {}
 }
 
+export class GainCombatLevels {
+  static type = '[Combat] Gain Levels';
+  constructor(public levels = 1) {}
+}
+
 export class SetSkill {
   static type = '[Combat] Set Skill';
   constructor(public skill: string, public slot: number) {}
@@ -144,4 +149,29 @@ export class EnemySpeedReset {
 export class DebugApplyEffectToPlayer {
   static type = '[Combat] Debug Apply Effect To Player';
   constructor(public effect: IGameStatusEffect) {}
+}
+
+export class DebugSetPlayerHealth {
+  static type = '[Combat] Debug Set Player Health';
+  constructor(public value: number) {}
+}
+
+export class DebugSetPlayerEnergy {
+  static type = '[Combat] Debug Set Player Energy';
+  constructor(public value: number) {}
+}
+
+export class OOCPlayerHeal {
+  static type = '[Combat] OOC Player Heal';
+  constructor(public amount: number) {}
+}
+
+export class OOCPlayerEnergy {
+  static type = '[Combat] OOC Player Energy';
+  constructor(public amount: number) {}
+}
+
+export class OOCEatFood {
+  static type = '[Combat] OOC Eat Food';
+  constructor(public item: IGameItem) {}
 }

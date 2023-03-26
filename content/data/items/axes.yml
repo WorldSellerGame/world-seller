@@ -6,34 +6,34 @@ Stone Axe:
   category: Tools
   rarity: Common
   durability: 10
-  value: 10
+  value: 20
   icon: axe
   stats:
-    axePower: 3
-    axeSpeed: 0
+    axePowerPercent: 10
+    axeSpeed: 50
 
 Copper Axe:
   name: Copper Axe
   description: An axe made of Copper.
   type: Axe
   category: Tools
-  rarity: Common
+  rarity: Uncommon
   durability: 15
-  value: 10
+  value: 100
   icon: axe
   stats:
-    axePower: 5
-    axeSpeed: 15
+    axePowerPercent: 20
+    axeSpeed: 410
 
 Iron Axe:
   name: Iron Axe
   description: An axe made of Iron.
   type: Axe
   category: Tools
-  rarity: Common
+  rarity: Rare
   durability: 20
-  value: 10
+  value: 500
   icon: axe
   stats:
-    axePower: 15
-    axeSpeed: -5
+    axePowerPercent: 30
+    axeSpeed: 1730

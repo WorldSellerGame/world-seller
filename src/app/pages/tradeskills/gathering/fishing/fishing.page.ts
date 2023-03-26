@@ -15,7 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 export class FishingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.fishing;
+    return this.contentService.getFishingLocations();
   }
 
   public get setAction() {

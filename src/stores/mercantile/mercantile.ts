@@ -104,12 +104,27 @@ export class MercantileState {
       };
     }).filter(Boolean);
 
+    const exchangeOffers = (state.exchange.items || []).map(item => {
+      if(!this.contentService.getResourceByName(item.costItem)) {
+        return undefined;
+      }
+
+      if(!this.contentService.getResourceByName(item.forItem)) {
+        return undefined;
+      }
+
+      return item;
+    }).filter(Boolean);
+
     ctx.setState(patch<IGameMercantile>({
       shop: patch({
         forSale: shopItems,
       }),
       stockpile: patch({
         items: stockpileItems,
+      }),
+      exchange: patch({
+        items: exchangeOffers
       })
     }));
   }

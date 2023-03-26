@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy, uniq } from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IGameItem, IGameMercantileStockpile } from '../../../../../../interfaces';
 import { CharSelectState, MercantileState } from '../../../../../../stores';
 import {
@@ -15,15 +15,44 @@ import { maxStockpileLevel, maxStockpileSizeUpgradeCost } from '../../../../../.
   templateUrl: './stockpile.page.html',
   styleUrls: ['./stockpile.page.scss'],
 })
-export class StockpilePage implements OnInit {
+export class StockpilePage implements OnInit, OnDestroy {
 
   @Select(MercantileState.stockpile) stockpile$!: Observable<IGameMercantileStockpile>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(MercantileState.stockpileInfo) stockpileInfo$!: Observable<{ current: number; max: number }>;
 
+  public activeCategory = '';
+  public categorySub!: Subscription;
+
   constructor(private store: Store) { }
 
   ngOnInit() {
+    this.categorySub = this.stockpile$.subscribe(x => {
+      const items = x.items;
+
+      if(this.activeCategory && this.itemsInCategory(items, this.activeCategory).length > 0) {
+        return;
+      }
+
+      if (this.hasNoItems(items)) {
+        this.activeCategory = '';
+        return;
+      }
+
+      this.activeCategory = this.itemCategories(items)[0];
+    });
+  }
+
+  ngOnDestroy() {
+    this.categorySub?.unsubscribe();
+  }
+
+  trackBy<IGameItem>(index: number, item: IGameItem): string {
+    return (item as any).id || index.toString();
+  }
+
+  changeCategory(category: string) {
+    this.activeCategory = category;
   }
 
   hasNoItems(items: IGameItem[]): boolean {

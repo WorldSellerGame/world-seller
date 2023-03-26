@@ -1,160 +1,160 @@
 
 Kills1:
-  name: Killer I
+  name: Slayer I
   description: Kill 10 enemies.
   icon: sword
   stat: kills
   requiredValue: 10
 
 Kills2:
-  name: Killer II
+  name: Slayer II
   description: Kill 100 enemies.
   icon: sword
   stat: kills
   requiredValue: 100
 
 Kills3:
-  name: Killer III
+  name: Slayer III
   description: Kill 1000 enemies.
   icon: sword
   stat: kills
   requiredValue: 1000
 
 Kills4:
-  name: Killer IV
+  name: Slayer IV
   description: Kill 10000 enemies.
   icon: sword
   stat: kills
   requiredValue: 10000
 
 Kills5:
-  name: Killer V
+  name: Slayer V
   description: Kill 100000 enemies.
   icon: sword
   stat: kills
   requiredValue: 100000
 
 Deaths1:
-  name: Ungrateful Dead I
-  description: Die 10 times.
+  name: Scrub I
+  description: Die or have an employee die once.
+  icon: dead
+  stat: deaths
+  requiredValue: 1
+
+Deaths2:
+  name: Scrub II
+  description: Die or have an employee die 10 times.
   icon: dead
   stat: deaths
   requiredValue: 10
 
-Deaths2:
-  name: Ungrateful Dead II
-  description: Die 100 times.
+Deaths3:
+  name: Scrub III
+  description: Die or have an employee die 100 times.
   icon: dead
   stat: deaths
   requiredValue: 100
 
-Deaths3:
-  name: Ungrateful Dead III
-  description: Die 1000 times.
-  icon: dead
-  stat: deaths
-  requiredValue: 1000
-
 Damage1:
-  name: Damaging I
+  name: Numbers Numbers Numbers I
   description: Deal 1000 damage.
   icon: bone
   stat: damage
   requiredValue: 1000
 
 Damage2:
-  name: Damaging I
+  name: Numbers Numbers Numbers II
   description: Deal 10000 damage.
   icon: bone
   stat: damage
   requiredValue: 10000
 
 Damage3:
-  name: Damaging I
+  name: Numbers Numbers Numbers III
   description: Deal 100000 damage.
   icon: bone
   stat: damage
   requiredValue: 100000
 
 Healing1:
-  name: Healing I
+  name: Medic I
   description: Heal 100 health.
   icon: apple
   stat: healing
   requiredValue: 100
 
 Healing2:
-  name: Healing II
+  name: Medic II
   description: Heal 1000 health.
   icon: apple
   stat: healing
   requiredValue: 1000
 
 Healing3:
-  name: Healing III
+  name: Medic III
   description: Heal 10000 health.
   icon: apple
   stat: healing
   requiredValue: 10000
 
 Resource1:
-  name: Resourceful I
+  name: Gatherer I
   description: Gain 100 resources.
   icon: clay
   stat: resourcesGained
   requiredValue: 100
 
 Resource2:
-  name: Resourceful II
+  name: Gatherer II
   description: Gain 1000 resources.
   icon: clay
   stat: resourcesGained
   requiredValue: 1000
 
 Resource3:
-  name: Resourceful III
+  name: Gatherer III
   description: Gain 10000 resources.
   icon: clay
   stat: resourcesGained
   requiredValue: 10000
 
 Resource4:
-  name: Resourceful IV
+  name: Gatherer IV
   description: Gain 100000 resources.
   icon: clay
   stat: resourcesGained
   requiredValue: 100000
 
 Resource5:
-  name: Resourceful V
+  name: Gatherer V
   description: Gain 1000000 resources.
   icon: clay
   stat: resourcesGained
   requiredValue: 1000000
 
 Items1:
-  name: Item Collector I
+  name: Collector I
   description: Collect 100 items.
   icon: dungeon-chest
   stat: itemsCollected
   requiredValue: 100
 
 Items2:
-  name: Item Collector II
+  name: Collector II
   description: Collect 1000 items.
   icon: dungeon-chest
   stat: itemsCollected
   requiredValue: 1000
 
 Items3:
-  name: Item Collector III
+  name: Collector III
   description: Collect 10000 items.
   icon: dungeon-chest
   stat: itemsCollected
   requiredValue: 10000
 
 Items4:
-  name: Item Collector IV
+  name: Collector IV
   description: Collect 100000 items.
   icon: dungeon-chest
   stat: itemsCollected

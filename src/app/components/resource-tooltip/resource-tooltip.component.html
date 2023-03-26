@@ -1,0 +1,8 @@
+
+<div>
+  <strong [ngClass]="[(resource.rarity || 'common').toLowerCase()]">{{ resource.name }} &middot; {{ resource.category }}</strong>
+</div>
+
+<div>
+  {{ resource.description }}
+</div>

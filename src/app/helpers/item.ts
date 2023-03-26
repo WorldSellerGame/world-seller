@@ -2,6 +2,10 @@ import { mapValues } from 'lodash';
 import { IGameItem, Rarity, Stat } from '../../interfaces';
 
 export function getItemRarityClass(item: IGameItem): string {
+  if(!item) {
+    return Rarity.Junk.toLowerCase();
+  }
+
   if(item.durability <= 0 && item.durability !== -1) {
     return Rarity.Broken.toLowerCase();
   }

@@ -15,7 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 export class ProspectingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.prospecting;
+    return this.contentService.getProspectingTransforms();
   }
 
   @Select(ProspectingState.level) level$!: Observable<number>;
@@ -38,7 +38,7 @@ export class ProspectingPage implements OnInit {
   }
 
   visibleProspects(skillLevel: number): IGameResourceTransform[] {
-    return this.locationData.transforms.filter((prospect: IGameResourceTransform) => prospect.level.min <= skillLevel);
+    return this.locationData.filter((prospect: IGameResourceTransform) => prospect.level.min <= skillLevel);
   }
 
   prospectItem(prospect: IGameResourceTransform) {

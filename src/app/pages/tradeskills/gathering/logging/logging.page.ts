@@ -15,7 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 export class LoggingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.logging;
+    return this.contentService.getLoggingLocations();
   }
 
   public get setAction() {

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IGameItem } from '../../../interfaces';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { IGameCombatAbility, IGameItem } from '../../../interfaces';
 import { getItemRarityClass } from '../../helpers';
 import { ContentService } from '../../services/content.service';
 
@@ -7,6 +7,7 @@ import { ContentService } from '../../services/content.service';
   selector: 'app-combat-item-display',
   templateUrl: './combat-item-display.component.html',
   styleUrls: ['./combat-item-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CombatItemDisplayComponent implements OnInit {
 
@@ -18,16 +19,16 @@ export class CombatItemDisplayComponent implements OnInit {
     return getItemRarityClass(this.item);
   }
 
-  get effectInfo() {
-    if(!this.item.effects) {
-      return '';
-    }
-
-    return this.contentService.getAbilityByName(this.item.effects[0].effect)?.description || '';
-  }
-
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {}
+
+  getAbility(name: string): IGameCombatAbility {
+    return this.contentService.getAbilityByName(name) || '';
+  }
+
+  trackBy(index: number) {
+    return index;
+  }
 
 }

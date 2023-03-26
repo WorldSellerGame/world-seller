@@ -10,20 +10,20 @@ Stone Knife:
   durability: 10
   value: 10
   icon: knife
-  givesAbility: Shank
+  givesPlayerAbility: Shank
   stats:
     attack: 3
 
-Copper Sword: 
+Copper Sword:
   name: Copper Sword
   description: An arming sword made of Copper.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Uncommon
   durability: 15
-  value: 10
+  value: 100
   icon: sword
-  givesAbility: Cleave
+  givesPlayerAbility: Cleave
   stats:
     attack: 7
 
@@ -32,25 +32,25 @@ Copper Dagger:
   description: A dagger made of Copper.
   type: Weapon
   category: Weapons
-  rarity: Common
+  rarity: Uncommon
   durability: 15
-  value: 10
+  value: 50
   icon: knife
-  givesAbility: Stab
+  givesPlayerAbility: Stab
   stats:
     attack: 4
     speed: 1
 
-Iron Sword: 
+Iron Sword:
   name: Iron Sword
   description: An arming sword made of Iron.
   type: Weapon
   category: Weapons
-  rarity: Common
-  durability: 20
+  rarity: Rare
+  durability: 500
   value: 10
   icon: sword
-  givesAbility: Risky Swing
+  givesPlayerAbility: Risky Swing
   stats:
     attack: 10
 
@@ -59,11 +59,11 @@ Iron Dagger:
   description: A dagger made of Iron.
   type: Weapon
   category: Weapons
-  rarity: Common
-  durability: 20
+  rarity: Rare
+  durability: 250
   value: 10
   icon: knife
-  givesAbility: Hemorrhaging Stab
+  givesPlayerAbility: Hemorrhaging Stab
   stats:
     attack: 6
     speed: 3
@@ -75,12 +75,11 @@ Goblin Staff:
   description: A staff stolen shamelessly from a goblin.
   type: Weapon
   category: Weapons
-  rarity: Uncommon
-  durability: 50
+  rarity: Rare
+  durability: 100
   value: 10
   icon: skull-staff
-  givesAbility: GoblinStaffHeal1
+  givesPlayerAbility: GoblinStaffHeal1
   stats:
     attack: 5
     healing: 10
- 

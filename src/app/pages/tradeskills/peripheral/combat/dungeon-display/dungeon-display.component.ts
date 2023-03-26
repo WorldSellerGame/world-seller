@@ -101,7 +101,7 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
     switch(tile) {
       case DungeonTile.Floor:     return '#fff';
       case DungeonTile.Wall:      return '#fff';
-      case DungeonTile.Fire:      return '#00a';
+      case DungeonTile.Fire:      return '#a0a';
       case DungeonTile.Entrance:  return '#0f0';
       case DungeonTile.Exit:      return '#0f0';
       case DungeonTile.Boss:      return '#f0f';

@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const readdir = require('recursive-readdir');
-const { isUndefined, isArray } = require('lodash');
+const { isUndefined, isArray, isNumber } = require('lodash');
 
 const validCategories = ['Tools', 'Armor', 'Foods', 'Jewelry', 'Potions', 'Seeds', 'Miscellaneous', 'Raw Materials', 'Refined Materials', 'Crafting Tables', 'Weapons'];
 
@@ -12,8 +12,10 @@ const validItemTypes = ['Pickaxe', 'Axe', 'FishingRod', 'FishingBait', 'Scythe',
 
 const validStats = [
   'pickaxePower', 'axePower', 'fishingPower', 'scythePower', 'huntingPower',
+  'pickaxePowerPercent', 'axePowerPercent', 'fishingPowerPercent', 'scythePowerPercent', 'huntingPowerPercent',
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
-  'armor', 'healing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
+  'pickaxeSpeedPercent', 'axeSpeedPercent', 'fishingSpeedPercent', 'scytheSpeedPercent', 'huntingSpeedPercent',
+  'armor', 'mitigation', 'healing', 'energyHealing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
   'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
 ];
 
@@ -39,6 +41,7 @@ const loadContent = async () => {
 
   const farming = await fs.readJson('src/assets/content/farming.json');
 
+  const resourceNames: Record<string, boolean> = {};
   Object.keys(allResources).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Resource ${key} is too long (>32 characters).`);
@@ -50,6 +53,13 @@ const loadContent = async () => {
       console.log(`⚠ Resource ${key} has no name.`);
       hasBad = true;
     }
+
+    if(resource.name && resourceNames[resource.name]) {
+      console.log(`⚠ Resource ${key} has a duplicate name ${resource.name}.`);
+      hasBad = true;
+    }
+
+    resourceNames[resource.name] = true;
 
     if(resource.name && resource.name.length > 32) {
       console.log(`⚠ Resource ${key} has a name that is too long (>32 characters).`);
@@ -90,223 +100,7 @@ const loadContent = async () => {
     }
   });
 
-  Object.keys(allItems).forEach(key => {
-    if(key.length > 32) {
-      console.log(`⚠ Item ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    const item = allItems[key];
-
-    if(!item.name) {
-      console.log(`⚠ Item ${key} has no name.`);
-      hasBad = true;
-    }
-
-    if(item.name && item.name.length > 32) {
-      console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    if(!validCategories.includes(item.category)) {
-      console.log(`⚠ Item ${key} has an invalid category ${item.category}.`);
-      hasBad = true;
-    }
-
-    if(!validRarities.includes(item.rarity)) {
-      console.log(`⚠ Item ${key} has an invalid rarity ${item.rarity}.`);
-      hasBad = true;
-    }
-
-    if(!validItemTypes.includes(item.type)) {
-      console.log(`⚠ Item ${key} has an invalid type ${item.type}.`);
-      hasBad = true;
-    }
-
-    if(isUndefined(item.value)) {
-      console.log(`⚠ Item ${key} is missing value.`);
-      hasBad = true;
-    }
-
-    if(!validateIcon(item.icon)) {
-      console.log(`⚠ Item ${key} has an invalid icon ${item.icon}.`);
-      hasBad = true;
-    }
-
-    Object.keys(item.stats || {}).forEach(stat => {
-      if(!validStats.includes(stat)) {
-        console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
-        hasBad = true;
-      }
-    });
-  });
-
-  Object.keys(allAbilities).forEach(key => {
-    if(key.length > 32) {
-      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    const skill = allAbilities[key];
-
-    if(!skill.name) {
-      console.log(`⚠ Ability ${key} has no name.`);
-      hasBad = true;
-    }
-
-    if(skill.name && skill.name.length > 32) {
-      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    if(!skill.description) {
-      console.log(`⚠ Ability ${key} has no description.`);
-      hasBad = true;
-    }
-
-    if(!skill.icon) {
-      console.log(`⚠ Ability ${key} has no icon.`);
-      hasBad = true;
-    }
-
-    if(!validTargets.includes(skill.target)) {
-      console.log(`⚠ Ability ${key} has an invalid target.`);
-      hasBad = true;
-    }
-
-    if(!skill.type) {
-      console.log(`⚠ Ability ${key} has an invalid type.`);
-      hasBad = true;
-    }
-
-    if(!validateIcon(skill.icon)) {
-      console.log(`⚠ Ability ${key} has an invalid icon ${skill.icon}.`);
-      hasBad = true;
-    }
-
-  });
-
-  Object.keys(allEnemies).forEach(key => {
-    if(key.length > 32) {
-      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    const enemy = allEnemies[key];
-
-    if(!enemy.name) {
-      console.log(`⚠ Enemy ${key} has no name.`);
-      hasBad = true;
-    }
-
-    if(enemy.name && enemy.name.length > 32) {
-      console.log(`⚠ Enemy ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    if(!enemy.description) {
-      console.log(`⚠ Enemy ${key} has no description.`);
-      hasBad = true;
-    }
-
-    if(!enemy.icon) {
-      console.log(`⚠ Enemy ${key} has no icon.`);
-      hasBad = true;
-    }
-
-    if(!enemy.health) {
-      console.log(`⚠ Enemy ${key} has no health.`);
-      hasBad = true;
-    }
-
-    if(!enemy.energy) {
-      console.log(`⚠ Enemy ${key} has no energy.`);
-      hasBad = true;
-    }
-
-    if(!validateIcon(enemy.icon)) {
-      console.log(`⚠ Enemy ${key} has an invalid icon ${enemy.icon}.`);
-      hasBad = true;
-    }
-
-    Object.keys(enemy.stats).forEach(stat => {
-      if(!validStats.includes(stat)) {
-        console.log(`⚠ Enemy ${key} has an invalid stat ${stat}.`);
-        hasBad = true;
-      }
-    });
-
-    enemy.abilities.forEach((ability: string) => {
-      if(!allAbilities[ability]) {
-        console.log(`⚠ Enemy ${key} has an ability for ${ability} which is not a valid ability.`);
-        hasBad = true;
-      }
-    });
-
-    enemy.drops.forEach((drop: any) => {
-      if(drop.item && !allItems[drop.item]) {
-        console.log(`⚠ Enemy ${key} has a drop for ${drop.item} which is not a valid item.`);
-        hasBad = true;
-      }
-
-      if(drop.resource && !allResources[drop.resource]) {
-        console.log(`⚠ Enemy ${key} has a drop for ${drop.resource} which is not a valid resource.`);
-        hasBad = true;
-      }
-    });
-  });
-
-  Object.keys(allThreats).forEach(key => {
-    if(key.length > 32) {
-      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    const threat = allThreats[key];
-
-    if(!threat.name) {
-      console.log(`⚠ Threat ${key} has no name.`);
-      hasBad = true;
-    }
-
-    if(threat.name && threat.name.length > 32) {
-      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
-      hasBad = true;
-    }
-
-    if(!threat.description) {
-      console.log(`⚠ Threat ${key} has no description.`);
-      hasBad = true;
-    }
-
-    if(!threat.icon) {
-      console.log(`⚠ Threat ${key} has no icon.`);
-      hasBad = true;
-    }
-
-    if(!threat.maxSkillGainLevel) {
-      console.log(`⚠ Threat ${key} has no maxSkillGainLevel.`);
-      hasBad = true;
-    }
-
-    if(!threat.level.max) {
-      console.log(`⚠ Threat ${key} has no level range max.`);
-      hasBad = true;
-    }
-
-    if(!validateIcon(threat.icon)) {
-      console.log(`⚠ Threat ${key} has an invalid icon ${threat.icon}.`);
-      hasBad = true;
-    }
-
-    threat.enemies.forEach((enemy: string) => {
-      if(!allEnemies[enemy]) {
-        console.log(`⚠ Threat ${key} has an enemy for ${enemy} which is not a valid enemy.`);
-        hasBad = true;
-      }
-    })
-  });
-
+  const effectNames: Record<string, boolean> = {};
   Object.keys(allEffects).forEach(key => {
     if(key.length > 32) {
       console.log(`⚠ Effect ${key} is too long (>32 characters).`);
@@ -319,6 +113,13 @@ const loadContent = async () => {
       console.log(`⚠ Effect ${key} has no name.`);
       hasBad = true;
     }
+
+    if(effect.name && effectNames[effect.name]) {
+      console.log(`⚠ Effect ${key} has a duplicate name ${effect.name}.`);
+      hasBad = true;
+    }
+
+    effectNames[effect.name] = true;
 
     if(effect.name && effect.name.length > 32) {
       console.log(`⚠ Effect ${key} is too long (>32 characters).`);
@@ -361,8 +162,320 @@ const loadContent = async () => {
         hasBad = true;
       }
     });
-  })
+  });
 
+  const abilityNames: Record<string, boolean> = {};
+  Object.keys(allAbilities).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    const skill = allAbilities[key];
+
+    if(!skill.name) {
+      console.log(`⚠ Ability ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(skill.name && abilityNames[skill.name]) {
+      console.log(`⚠ Ability ${key} has a duplicate name ${skill.name}.`);
+      hasBad = true;
+    }
+
+    abilityNames[skill.name] = true;
+
+    if(skill.name && skill.name.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!skill.description) {
+      console.log(`⚠ Ability ${key} has no description.`);
+      hasBad = true;
+    }
+
+    if(!skill.icon) {
+      console.log(`⚠ Ability ${key} has no icon.`);
+      hasBad = true;
+    }
+
+    if(!validTargets.includes(skill.target)) {
+      console.log(`⚠ Ability ${key} has an invalid target.`);
+      hasBad = true;
+    }
+
+    if(!skill.type) {
+      console.log(`⚠ Ability ${key} has an invalid type.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(skill.icon)) {
+      console.log(`⚠ Ability ${key} has an invalid icon ${skill.icon}.`);
+      hasBad = true;
+    }
+
+    skill.stats.forEach((stat: any) => {
+      if(!stat.stat) {
+        console.log(`⚠ Ability ${key} has a stat with no stat set.`);
+        hasBad = true;
+      }
+
+      if(!stat.multiplier || isNaN(stat.multiplier)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) multiplier.`);
+        hasBad = true;
+      }
+
+      if(!stat.variance && isNaN(stat.variance)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) variance.`);
+        hasBad = true;
+      }
+
+      if(stat.bonus && isNaN(stat.bonus)) {
+        console.log(`⚠ Ability ${key} has a stat with an invalid (non-numeric) bonus.`);
+        hasBad = true;
+      }
+    });
+
+    (skill.effects || []).forEach((effect: any) => {
+      if(!effect.effectName) return;
+
+      if(!allEffects[effect.effectName]) {
+        console.log(`⚠ Ability ${key} has an effect ${effect.effectName} which does not exist.`);
+        hasBad = true;
+      }
+    });
+
+  });
+
+  const itemNames: Record<string, boolean> = {};
+  Object.keys(allItems).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Item ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    const item = allItems[key];
+
+    if(!item.name) {
+      console.log(`⚠ Item ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(item.name && itemNames[item.name]) {
+      console.log(`⚠ Item ${key} has a duplicate name ${item.name}.`);
+      hasBad = true;
+    }
+
+    itemNames[item.name] = true;
+
+    if(item.name && item.name.length > 32) {
+      console.log(`⚠ Item name ${item.name} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!validCategories.includes(item.category)) {
+      console.log(`⚠ Item ${key} has an invalid category ${item.category}.`);
+      hasBad = true;
+    }
+
+    if(!validRarities.includes(item.rarity)) {
+      console.log(`⚠ Item ${key} has an invalid rarity ${item.rarity}.`);
+      hasBad = true;
+    }
+
+    if(!validItemTypes.includes(item.type)) {
+      console.log(`⚠ Item ${key} has an invalid type ${item.type}.`);
+      hasBad = true;
+    }
+
+    if(isUndefined(item.value)) {
+      console.log(`⚠ Item ${key} is missing value.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(item.icon)) {
+      console.log(`⚠ Item ${key} has an invalid icon ${item.icon}.`);
+      hasBad = true;
+    }
+
+    Object.keys(item.stats || {}).forEach(stat => {
+      if(!validStats.includes(stat)) {
+        console.log(`⚠ Item ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+
+      if(!isNumber(item.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        hasBad = true;
+      }
+    });
+
+    if(item.type === 'Food' && !item.oocHealth && !item.oocEnergy) {
+      console.log(`⚠ Item ${key} is a food item with no oocHealth or oocEnergy - it should do something out of combat.`);
+      hasBad = true;
+    }
+
+    (item.abilities || []).forEach((ability: any) => {
+      if(!allAbilities[ability.abilityName]) {
+        console.log(`⚠ Item ${key} has an ability ${ability.abilityName} which does not exist.`);
+        hasBad = true;
+      }
+    });
+
+    (item.effects || []).forEach((effect: any) => {
+      if(effect.effect !== 'ApplyEffect') return;
+
+      if(!allEffects[effect.effectName]) {
+        console.log(`⚠ Item ${key} has an effect ${effect.effectName} which does not exist.`);
+        hasBad = true;
+      }
+    });
+  });
+
+  const enemyNames: Record<string, boolean> = {};
+  Object.keys(allEnemies).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Ability ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    const enemy = allEnemies[key];
+
+    if(!enemy.name) {
+      console.log(`⚠ Enemy ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(enemy.name && enemyNames[enemy.name]) {
+      console.log(`⚠ Enemy ${key} has a duplicate name ${enemy.name}.`);
+      hasBad = true;
+    }
+
+    enemyNames[enemy.name] = true;
+
+    if(enemy.name && enemy.name.length > 32) {
+      console.log(`⚠ Enemy ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!enemy.description) {
+      console.log(`⚠ Enemy ${key} has no description.`);
+      hasBad = true;
+    }
+
+    if(!enemy.icon) {
+      console.log(`⚠ Enemy ${key} has no icon.`);
+      hasBad = true;
+    }
+
+    if(!enemy.health) {
+      console.log(`⚠ Enemy ${key} has no health.`);
+      hasBad = true;
+    }
+
+    if(!enemy.energy) {
+      console.log(`⚠ Enemy ${key} has no energy.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(enemy.icon)) {
+      console.log(`⚠ Enemy ${key} has an invalid icon ${enemy.icon}.`);
+      hasBad = true;
+    }
+
+    Object.keys(enemy.stats).forEach(stat => {
+      if(!validStats.includes(stat)) {
+        console.log(`⚠ Enemy ${key} has an invalid stat ${stat}.`);
+        hasBad = true;
+      }
+
+      if(!isNumber(enemy.stats[stat])) {
+        console.log(`⚠ Item ${key} has a non-number stat ${stat}.`);
+        hasBad = true;
+      }
+    });
+
+    enemy.abilities.forEach((ability: string) => {
+      if(!allAbilities[ability]) {
+        console.log(`⚠ Enemy ${key} has an ability for ${ability} which is not a valid ability.`);
+        hasBad = true;
+      }
+    });
+
+    enemy.drops.forEach((drop: any) => {
+      if(drop.item && !allItems[drop.item]) {
+        console.log(`⚠ Enemy ${key} has a drop for ${drop.item} which is not a valid item.`);
+        hasBad = true;
+      }
+
+      if(drop.resource && !allResources[drop.resource]) {
+        console.log(`⚠ Enemy ${key} has a drop for ${drop.resource} which is not a valid resource.`);
+        hasBad = true;
+      }
+    });
+  });
+
+  const threatNames: Record<string, boolean> = {};
+  Object.keys(allThreats).forEach(key => {
+    if(key.length > 32) {
+      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    const threat = allThreats[key];
+
+    if(!threat.name) {
+      console.log(`⚠ Threat ${key} has no name.`);
+      hasBad = true;
+    }
+
+    if(threat.name && threatNames[threat.name]) {
+      console.log(`⚠ Threat ${key} has a duplicate name ${threat.name}.`);
+      hasBad = true;
+    }
+
+    threatNames[threat.name] = true;
+
+    if(threat.name && threat.name.length > 32) {
+      console.log(`⚠ Threat ${key} is too long (>32 characters).`);
+      hasBad = true;
+    }
+
+    if(!threat.description) {
+      console.log(`⚠ Threat ${key} has no description.`);
+      hasBad = true;
+    }
+
+    if(!threat.icon) {
+      console.log(`⚠ Threat ${key} has no icon.`);
+      hasBad = true;
+    }
+
+    if(!threat.maxSkillGainLevel) {
+      console.log(`⚠ Threat ${key} has no maxSkillGainLevel.`);
+      hasBad = true;
+    }
+
+    if(!threat.level.max) {
+      console.log(`⚠ Threat ${key} has no level range max.`);
+      hasBad = true;
+    }
+
+    if(!validateIcon(threat.icon)) {
+      console.log(`⚠ Threat ${key} has an invalid icon ${threat.icon}.`);
+      hasBad = true;
+    }
+
+    threat.enemies.forEach((enemy: string) => {
+      if(!allEnemies[enemy]) {
+        console.log(`⚠ Threat ${key} has an enemy for ${enemy} which is not a valid enemy.`);
+        hasBad = true;
+      }
+    })
+  });
+
+  const dungeonNames: Record<string, boolean> = {};
   Object.keys(allDungeons).forEach(key => {
     const dungeon = allDungeons[key];
 
@@ -370,6 +483,13 @@ const loadContent = async () => {
       console.log(`⚠ Dungeon ${key} has no name.`);
       hasBad = true;
     }
+
+    if(dungeon.name && dungeonNames[dungeon.name]) {
+      console.log(`⚠ Dungeon ${key} has a duplicate name ${dungeon.name}.`);
+      hasBad = true;
+    }
+
+    dungeonNames[dungeon.name] = true;
 
     if(dungeon.name && dungeon.name.length > 32) {
       console.log(`⚠ Dungeon ${key} is too long (>32 characters).`);
@@ -467,8 +587,12 @@ const loadContent = async () => {
     });
   });
 
+  const isValidResource = (item: string) => {
+    return allResources[item];
+  }
+
   const isValidItem = (item: string) => {
-    return item === 'nothing' || allResources[item] || allItems[item];
+    return item === 'nothing' || isValidResource(item) || allItems[item];
   }
 
   const files = await readdir('src/assets/content', ['items.json', 'resources.json']);
@@ -506,13 +630,18 @@ const loadContent = async () => {
 
       Object.keys(recipe.ingredients).forEach(ingredient => {
         if(!isValidItem(ingredient)) {
-          console.log(`⚠ Recipe ingredient ${ingredient} is not a valid resource or item.`);
+          console.log(`⚠ Recipe ingredient ${ingredient} is not a valid resource.`);
           hasBad = true;
         }
       });
 
       if(isUndefined(recipe.maxWorkers)) {
-        console.log(`⚠ Recipe ${recipe.name} is missing maxWorkers.`);
+        console.log(`⚠ Recipe ${result} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(recipe.craftTime <= 0) {
+        console.log(`⚠ Recipe ${result} has a craftTime of ${recipe.craftTime} (must be > 0).`);
         hasBad = true;
       }
     });
@@ -553,6 +682,16 @@ const loadContent = async () => {
 
       if(isUndefined(location.maxWorkers)) {
         console.log(`⚠ Location ${location.name} is missing maxWorkers.`);
+        hasBad = true;
+      }
+
+      if(location.gatherTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a gatherTime of ${location.gatherTime} (must be > 0).`);
+        hasBad = true;
+      }
+
+      if(location.cooldownTime && location.cooldownTime <= 0) {
+        console.log(`⚠ Location ${location.name} has a cooldownTime of ${location.cooldownTime} (must be > 0).`);
         hasBad = true;
       }
     });

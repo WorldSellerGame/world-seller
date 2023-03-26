@@ -1,7 +1,16 @@
 
 Dungeon10:
   name: Goblin Gobbler
-  description: Conquer the Goblin Hideout dungeon.
+  description: Defeat the Goblin Lord in the Goblin Hideout dungeon.
   icon: combat
   stat: dungeon10
   requiredValue: 1
+  isHidden: true
+
+Dungeon20:
+  name: Mummy Muncher
+  description: Slay the Mummy in the Crypt Dungeon.
+  icon: combat
+  stat: dungeon20
+  requiredValue: 1
+  isHidden: true

@@ -10,3 +10,8 @@
     text-align: right;
   }
 }
+
+.constrain-size {
+  max-height: 400px;
+  overflow-y: auto;
+}

@@ -31,7 +31,7 @@
 
             <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -41,7 +41,7 @@
 
             <ng-container *ngFor="let p of refiningTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -51,7 +51,7 @@
 
             <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral' + p.title">
+                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
                 </ion-item>
               </ng-container>
@@ -63,23 +63,12 @@
 
       <ng-template #expandedSidebar>
         <ion-content>
-          <ion-list class="header" *ngIf="activeCharacter$ | async as character">
-            <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']"
-                        [analyticsClick]="'Navigate:Character:Settings'">
-              <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
-            </ion-button>
+          <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']"
+                      [analyticsClick]="'Navigate:Character:Settings'">
+            <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
+          </ion-button>
 
-            <ion-list-header>{{ character.name }}</ion-list-header>
-            <ion-note class="level">
-              <app-game-icon icon="level" [inlineIconSize]="true"></app-game-icon>
-              Level {{ totalLevel | number }}
-            </ion-note>
-
-            <ion-note class="coins">
-              <app-game-icon icon="coins" [inlineIconSize]="true"></app-game-icon>
-              {{ coins$ | async | number }} Coins
-            </ion-note>
-          </ion-list>
+          <app-hero></app-hero>
 
           <ion-list>
             <ion-menu-toggle [autoHide]="false">
@@ -111,7 +100,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Gathering' + p.title">
+                            [analyticsClick]="'Navigate:Gathering:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -143,7 +132,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Refining' + p.title">
+                            [analyticsClick]="'Navigate:Refining:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
@@ -175,7 +164,7 @@
                             detail="false"
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Peripheral' + p.title">
+                            [analyticsClick]="'Navigate:Peripheral:' + p.title">
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">

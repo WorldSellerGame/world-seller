@@ -1,13 +1,17 @@
+
+# Low gather time, high cooldown
+
 locations:
   - name: Fallen Trees
     description: Gather up what you can from already dead wood.
     perGather:
-      min: 5
-      max: 5
+      min: 2
+      max: 4
     level:
       min: 0
       max: 10
-    gatherTime: 10
+    gatherTime: 5
+    cooldownTime: 10
     resources:
       - name: Pine Log
         weight: 5
@@ -18,12 +22,13 @@ locations:
   - name: Pine Forest
     description: Closest place to gather good firewood.
     perGather:
-      min: 5
-      max: 10
+      min: 3
+      max: 6
     level:
       min: 5
       max: 10
     gatherTime: 10
+    cooldownTime: 20
     resources:
       - name: Pine Log
         weight: 10
@@ -38,12 +43,13 @@ locations:
   - name: Coniferous Forest
     description: A mix of different trees a little farther away.
     perGather:
-      min: 10
-      max: 15
+      min: 4
+      max: 8
     level:
       min: 10
       max: 20
-    gatherTime: 15
+    gatherTime: 30
+    cooldownTime: 60
     resources:
       - name: Pine Log
         weight: 10
@@ -62,12 +68,13 @@ locations:
   - name: Orchard
     description: It looks to be an abandoned apple farm amongst the wilderness.
     perGather:
-      min: 10
-      max: 20
+      min: 5
+      max: 10
     level:
       min: 15
       max: 25
-    gatherTime: 20
+    gatherTime: 60
+    cooldownTime: 120
     resources:
       - name: Apple Wood Log
         weight: 5
@@ -80,12 +87,13 @@ locations:
   - name: Cedrics Woods
     description: A hard wood forest. Acording to the locals fighting a bear with a spoon gets a forest named after you.
     perGather:
-      min: 15
-      max: 25
+      min: 6
+      max: 12
     level:
       min: 20
       max: 30
-    gatherTime: 30
+    gatherTime: 100
+    cooldownTime: 200
     resources:
       - name: Cedar Log
         weight: 10
@@ -108,12 +116,13 @@ locations:
   - name: Cedrics Spot
     description: Cedrics old secret spot for high quality wood.
     perGather:
-      min: 25
-      max: 40
+      min: 7
+      max: 14
     level:
       min: 25
       max: 35
-    gatherTime: 45
+    gatherTime: 200
+    cooldownTime: 300
     resources:
       - name: Cedar Log
         weight: 5
@@ -136,12 +145,13 @@ locations:
   - name: Iron Wood Grove
     description: Place to go for some of the hardest lumber available to most people.
     perGather:
-      min: 35
-      max: 45
+      min: 8
+      max: 16
     level:
       min: 30
       max: 40
-    gatherTime: 80
+    gatherTime: 400
+    cooldownTime: 600
     resources:
       - name: Oak Log
         weight: 5
@@ -160,12 +170,13 @@ locations:
   - name: Dryads Chosen Select
     description: High quality wood in abundance. Best not to upset the owners if you know what's good for you.
     perGather:
-      min: 35
-      max: 45
+      min: 9
+      max: 18
     level:
       min: 35
       max: 45
-    gatherTime: 60
+    gatherTime: 500
+    cooldownTime: 900
     resources:
       - name: Ash Log
         weight: 10
@@ -186,12 +197,13 @@ locations:
   - name: Old Elvish Woods
     description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people.
     perGather:
-      min: 45
-      max: 60
+      min: 10
+      max: 20
     level:
       min: 40
       max: 50
-    gatherTime: 120
+    gatherTime: 1000
+    cooldownTime: 1500
     resources:
       - name: Hophornbeam Log
         weight: 30

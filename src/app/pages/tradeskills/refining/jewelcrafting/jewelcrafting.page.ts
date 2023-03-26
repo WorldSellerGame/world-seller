@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
+import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../../stores';
 
-import { CancelJewelcraftingJob, StartJewelcraftingJob } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
+import {
+  CancelJewelcraftingJob,
+  ChangeJewelcraftingFilterOption, StartJewelcraftingJob
+} from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -15,9 +18,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class JewelcraftingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.jewelcrafting;
-  }
+  public locationData: IGameRecipe[] = [];
 
   public get startAction() {
     return StartJewelcraftingJob;
@@ -27,10 +28,15 @@ export class JewelcraftingPage implements OnInit {
     return CancelJewelcraftingJob;
   }
 
+  public get optionAction() {
+    return ChangeJewelcraftingFilterOption;
+  }
+
   @Select(JewelcraftingState.level) level$!: Observable<number>;
   @Select(JewelcraftingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
+  @Select(JewelcraftingState.options) options$!: Observable<IGameRefiningOptions>;
 
-  @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
+  @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
     workerAllocations: IGameWorkersRefining[];
     canAssignWorker: boolean;
@@ -40,6 +46,8 @@ export class JewelcraftingPage implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.locationData = this.contentService.getJewelcraftingRecipes();
+
     this.level$.pipe(first()).subscribe(level => {
       this.currentQueue$.pipe(first()).subscribe(currentQueue => {
         const state = currentQueue.queue.length > 0

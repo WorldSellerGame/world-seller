@@ -41,7 +41,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.allUsableItems = this.inventory$.subscribe(items => {
       const checkItems = items || [];
-      this.usableItems = checkItems.filter(item => (item.effects?.length ?? 0) > 0);
+      this.usableItems = checkItems.filter(item => (item.abilities?.length ?? 0) > 0);
       this.usableFoods = checkItems.filter(item => (item.foodDuration ?? 0) > 0);
     });
 
@@ -67,7 +67,7 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
           // replace the older skill with the newer one
           if(replaces) {
-            currentlyLearnedSkills = currentlyLearnedSkills.filter(learnedSkill => learnedSkill.name === replaces);
+            currentlyLearnedSkills = currentlyLearnedSkills.filter(learnedSkill => learnedSkill.name !== replaces);
           }
 
           // replace any copies of this skill

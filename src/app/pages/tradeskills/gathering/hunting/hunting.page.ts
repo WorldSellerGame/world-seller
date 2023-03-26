@@ -15,7 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 export class HuntingPage implements OnInit {
 
   public get locationData() {
-    return this.contentService.hunting;
+    return this.contentService.getHuntingLocations();
   }
 
   public get setAction() {

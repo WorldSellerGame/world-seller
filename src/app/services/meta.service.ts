@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { marked } from 'marked';
+import * as credits from '../../assets/content/credits.json';
+import { NotifyInfo } from '../../stores/game/game.actions';
 import * as Migrations from '../../stores/migrations';
 import { defaultOptions } from '../../stores/options/options.functions';
+import { isInElectron } from '../helpers/electron';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ export class MetaService {
   private versionInfo: any = { tag: '', semverString: '', raw: 'v.local', hash: 'v.local', distance: -1 };
   public get version(): string {
     if(this.versionInfo.distance >= 0 && this.versionInfo.tag) {
-      return `${this.versionInfo.tag} (${this.versionInfo.hash})`;
+      return `${this.versionInfo.tag} (${this.versionInfo.raw})`;
     }
 
     return this.versionInfo.tag
@@ -22,8 +25,14 @@ export class MetaService {
         || this.versionInfo.hash;
   }
 
+  private versionMismatch = false;
+
   private changelogCurrent = '';
   private changelogAll = '';
+
+  public get shouldUpdateVersion() {
+    return this.versionMismatch && isInElectron();
+  }
 
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
@@ -51,11 +60,32 @@ export class MetaService {
     } catch {
       console.error('Could not load changelog (current) - probably on local.');
     }
+
+    this.checkVersionAgainstLiveVersion();
+  }
+
+  private async checkVersionAgainstLiveVersion() {
+    if(!isInElectron()) {
+      return;
+    }
+
+    try {
+      const liveVersionFile = await fetch('https://play.worldsellergame.com/assets/version.json');
+      const liveVersionData = await liveVersionFile.json();
+
+      if(this.versionInfo.hash !== liveVersionData.hash) {
+        this.versionMismatch = true;
+        this.store.dispatch(new NotifyInfo(`Version ${liveVersionData.tag} is available! Head to settings to update.`));
+      }
+
+    } catch {
+      console.error('Could not load live version data. Probably not a big deal.');
+    }
   }
 
   exportCharacter(slot: number = 0) {
     this.store.selectOnce(data => data).subscribe(data => {
-      const ignoredKeys: string[] = ['options'];
+      const ignoredKeys: string[] = ['options', 'mods'];
 
       const charData = data.charselect.characters[slot];
       const charName = charData.name;
@@ -98,5 +128,36 @@ export class MetaService {
     });
 
     await alert.present();
+  }
+
+  async showCredits() {
+    const creditsList = (credits as any).default || credits;
+
+    const html = creditsList.map(({ category, members }: any) => {
+      const membersHtml = members.map(({ name, role, contribution }: any) => {
+        const fullName = role ? `${name} (${role})` : name;
+
+        return `
+          <dt>${fullName}</dt>
+          <dd>${contribution || ''}</dd>
+        `;
+      }).join('');
+
+      return `
+        <h3>${category}</h3>
+
+        ${membersHtml}
+      `;
+    }).join('');
+
+    const alert = await this.alertCtrl.create({
+      header: 'Credits',
+      cssClass: 'credits',
+      message: html,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
   }
 }

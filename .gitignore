@@ -75,3 +75,6 @@ out/
 src/assets/content
 version.json
 src/assets/*.md
+
+*-version-*.md
+*.txt

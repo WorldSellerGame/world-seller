@@ -13,13 +13,13 @@
   } as pageData">
     <ion-grid>
       <ion-row>
-      <ion-col>
+        <ion-col>
           <ion-card>
             <ion-card-header>
               <ion-card-title>Combat Skills</ion-card-title>
             </ion-card-header>
 
-            <ion-card-content>
+            <ion-card-content class="constrain-size">
               <ion-list>
                 <ion-list-header>Basic</ion-list-header>
                 <ion-item>
@@ -57,7 +57,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeSkills?.[skillIndex]"
-                              (click)="unslotSkill(skillIndex)"
+                              (click)="$event.stopPropagation(); unslotSkill(skillIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotAbility'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
@@ -82,7 +82,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeItems?.[itemIndex]"
-                              (click)="unslotItem(itemIndex)"
+                              (click)="$event.stopPropagation(); unslotItem(itemIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotItem'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
@@ -107,7 +107,7 @@
                               fill="clear"
                               color="energy"
                               *ngIf="pageData.activeFoods?.[foodIndex]"
-                              (click)="unslotFood(foodIndex)"
+                              (click)="$event.stopPropagation(); unslotFood(foodIndex)"
                               [analyticsClick]="'Peripheral:Combat:Loadout:UnslotFood'">
                     <ion-icon slot="icon-only" name="close"></ion-icon>
                   </ion-button>
@@ -129,7 +129,7 @@
               <ion-card-title>Learned Skills</ion-card-title>
             </ion-card-header>
 
-            <ion-card-content>
+            <ion-card-content class="constrain-size">
               <ion-list>
                 <ion-item *ngIf="learnedSkills.length === 0">You don't know any abilities!</ion-item>
                 <ion-item *ngFor="let skill of learnedSkills; trackBy: trackBy"
@@ -147,7 +147,7 @@
               <ion-card-title>Usable Items</ion-card-title>
             </ion-card-header>
 
-            <ion-card-content>
+            <ion-card-content class="constrain-size">
               <ion-list>
                 <ion-item *ngIf="usableItems.length === 0">You don't have any usable items!</ion-item>
                 <ion-item *ngFor="let item of usableItems; trackBy: trackBy"
@@ -165,7 +165,7 @@
               <ion-card-title>Usable Food</ion-card-title>
             </ion-card-header>
 
-            <ion-card-content>
+            <ion-card-content class="constrain-size">
               <ion-list>
                 <ion-item *ngIf="usableFoods.length === 0">You don't have any usable food items!</ion-item>
                 <ion-item *ngFor="let item of usableFoods; trackBy: trackBy"

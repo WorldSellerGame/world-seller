@@ -9,14 +9,28 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.ScythePower]: 0,
     [Stat.HuntingPower]: 0,
 
+    [Stat.PickaxePowerPercent]: 0,
+    [Stat.AxePowerPercent]: 0,
+    [Stat.FishingPowerPercent]: 0,
+    [Stat.ScythePowerPercent]: 0,
+    [Stat.HuntingPowerPercent]: 0,
+
     [Stat.PickaxeSpeed]: 0,
     [Stat.AxeSpeed]: 0,
     [Stat.FishingSpeed]: 0,
     [Stat.ScytheSpeed]: 0,
     [Stat.HuntingSpeed]: 0,
 
+    [Stat.PickaxeSpeedPercent]: 0,
+    [Stat.AxeSpeedPercent]: 0,
+    [Stat.FishingSpeedPercent]: 0,
+    [Stat.ScytheSpeedPercent]: 0,
+    [Stat.HuntingSpeedPercent]: 0,
+
     [Stat.Armor]: 0,
+    [Stat.Mitigation]: 0,
     [Stat.Healing]: 0,
+    [Stat.EnergyHealing]: 0,
     [Stat.Attack]: 0,
     [Stat.EnergyBonus]: 0,
     [Stat.HealthBonus]: 0,
@@ -29,8 +43,8 @@ export function defaultStatsZero(): Record<Stat, number> {
   };
 }
 
-export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, stat: Stat): number {
-  return sum(Object.values(equipment).map((item) => item?.stats[stat] ?? 0));
+export function getStat(stats: Record<Stat, number> = defaultStatsZero(), stat: Stat): number {
+  return stats?.[stat] ?? 0;
 }
 
 export function calculateStatFromState(state: any, character: IPlayerCharacter, stat: Stat): number {
@@ -49,6 +63,10 @@ export function calculateStatFromState(state: any, character: IPlayerCharacter, 
 
     return total + Math.floor(value / divisor);
   }, 0);
+}
+
+export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, stat: Stat): number {
+  return sum(Object.values(equipment).filter(Boolean).map((item) => getStat(item.stats, stat as Stat)));
 }
 
 export function calculateHealthFromState(state: any, character: IPlayerCharacter): number {
@@ -84,7 +102,7 @@ export function getStatTotals(state: any, character: IPlayerCharacter): Record<S
 
     Object.keys(item.stats).forEach(statStr => {
       const stat = statStr as Stat;
-      totals[stat] = (totals[stat] || 0) + (item.stats[stat] ?? 0);
+      totals[stat] = (totals[stat] || 0) + getStat(item.stats, stat);
     });
   });
 

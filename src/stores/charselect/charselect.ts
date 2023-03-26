@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { append, patch, updateItem } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
+import { ContentService } from '../../app/services/content.service';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
 import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
@@ -36,6 +37,7 @@ export class CharSelectState {
 
   constructor(
     private store: Store,
+    private contentService: ContentService,
     private itemCreatorService: ItemCreatorService
   ) {
     attachments.forEach(({ action, handler }) => {
@@ -55,7 +57,7 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterResources(state: ICharSelect) {
-    return this.activeCharacter(state)?.resources ?? {};
+    return { ...this.activeCharacter(state)?.resources ?? {} };
   }
 
   @Selector()
@@ -70,12 +72,12 @@ export class CharSelectState {
 
   @Selector()
   static activeCharacterEquipment(state: ICharSelect) {
-    return this.activeCharacter(state)?.equipment ?? {};
+    return { ...this.activeCharacter(state)?.equipment ?? {} };
   }
 
   @Selector()
   static activeCharacterDiscoveries(state: ICharSelect) {
-    return this.activeCharacter(state)?.discoveries ?? {};
+    return { ...this.activeCharacter(state)?.discoveries ?? {} };
   }
 
   @Action(UpdateAllItems)
@@ -86,23 +88,19 @@ export class CharSelectState {
         return;
       }
 
-      const inventory = (char.inventory || []).map((oldItem) => {
-
-        // can't migrate an item with no id
-        if(!oldItem.internalId) {
-          return undefined;
+      // delete invalid resources
+      const resources = (char.resources || {});
+      Object.keys(resources).forEach(resource => {
+        if(this.contentService.getResourceByName(resource)) {
+          return;
         }
 
-        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
-        if(!newItem) {
-          return undefined;
-        }
+        delete resources[resource];
+      });
 
-        newItem.durability = oldItem.durability;
-        newItem.stats = oldItem.stats;
-
-        return newItem;
-      }, []).filter(Boolean);
+      const inventory = (char.inventory || [])
+        .map((oldItem) => this.itemCreatorService.migrateItem(oldItem))
+        .filter(Boolean);
 
       const equipment = Object.keys(char.equipment).reduce((acc, key) => {
         const oldItem = char.equipment[key as ItemType];
@@ -110,20 +108,12 @@ export class CharSelectState {
           return { ...acc };
         }
 
-        // can't migrate an item with no id
-        if(!oldItem.internalId) {
+        const migratedItem = this.itemCreatorService.migrateItem(oldItem);
+        if(!migratedItem) {
           return { ...acc };
         }
 
-        const newItem = this.itemCreatorService.createItem(oldItem.internalId, oldItem.quantity);
-        if(!newItem) {
-          return { ...acc };
-        }
-
-        newItem.durability = oldItem.durability;
-        newItem.stats = oldItem.stats;
-
-        return { ...acc, [key]: newItem };
+        return { ...acc, [key]: migratedItem };
       }, {});
 
       return { ...char, inventory, equipment };
@@ -255,7 +245,10 @@ export class CharSelectState {
       ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
     }
 
-    const earnedResources = Object.keys(resources).filter(x => x !== 'nothing').filter(x => resources[x] > 0);
+    const earnedResources = Object.keys(resources)
+      .filter(x => x !== 'nothing')
+      .filter(x => resources[x] > 0)
+      .filter(x => this.contentService.isResource(x));
 
     if(earnedResources.length === 0) {
       return;
@@ -270,6 +263,10 @@ export class CharSelectState {
 
   @Action(GainItemOrResource)
   async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
+
+    if(!this.contentService.isItem(itemName) && !this.contentService.isResource(itemName)) {
+      return;
+    }
 
     const state = ctx.getState();
     const activeCharacter = state.characters[state.currentCharacter];

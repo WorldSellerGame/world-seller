@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IGameItem, Stat } from '../../../interfaces';
+import { getStat } from '../../helpers';
 
 @Component({
   selector: 'app-stat-line',
@@ -16,7 +17,7 @@ export class StatLineComponent implements OnInit {
   ngOnInit() {}
 
   public allStats(): Stat[] {
-    return Object.keys(this.item.stats) as Stat[];
+    return Object.keys(this.item.stats || {}).filter(stat => getStat(this.item.stats, stat as Stat) > 0) as Stat[];
   }
 
 }

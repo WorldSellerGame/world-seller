@@ -4,7 +4,7 @@
 
 Shank:
   name: Shank
-  description: A unrefined but powerful attack.
+  description: A unrefined, but powerful attack.
   icon: knife
   target: Single
   type: Physical
@@ -25,14 +25,15 @@ Stab:
   target: Single
   type: Physical
   stats:
-    - stat: attack #I wonder if speed stating on such an early ability would be okay
+    - stat: attack
       multiplier: 0.85
       variance: 0.15
-  effects: #More realistically I wonder if its possible to make the number of hts dependent on speed #highly unnecessary though
+      bonus: 1
+  effects:
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack
   cooldown: 1
-  energyCost: 4 
+  energyCost: 4
   requires: {}
 
 Cleave:
@@ -42,54 +43,54 @@ Cleave:
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 2.25
       variance: 0.25
-  effects: 
+  effects:
     - effect: SingleTargetAttack
   cooldown: 4
-  energyCost: 5 
+  energyCost: 5
   requires: {}
 
 Hemorrhaging Stab:
-  name: Hemorrhaging Stab
-  description: Strike a vital.
+  name: Hemorrhaging Stab #this design could be changed to be the weaker attack but get more bleed (This is more in line with the speed stacking play style of dagger build)
+  description: A weak attack hitting a weak point to bleed em out.
   icon: blade-dripping
   target: Single
   type: Physical
   stats:
-    - stat: attack 
-      multiplier: 1.0
-      variance: 0.25
-  effects: 
+    - stat: attack
+      multiplier: 0.85
+      variance: 0.15
+  effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
-      effectName: Bleed1
+      effectName: Bleed2
   cooldown: 4
-  energyCost: 6
+  energyCost: 7
   requires: {}
 
 Risky Swing:
   name: Risky Swing
-  description: Not too consistent oh boy. If you catch them just right...
+  description: An attack thats not too consistent, but oh boy. If you catch them just right...
   icon: blade-swing2
   target: Single
   type: Physical
   stats:
-    - stat: attack 
+    - stat: attack
       multiplier: 2.5
       variance: 2.5
-  effects: 
+  effects:
     - effect: SingleTargetAttack
-  cooldown: 2
-  energyCost: 9
+  cooldown: 4
+  energyCost: 7
   requires: {}
 
 
 ### Dropped
 
 GoblinStaffHeal1:
-  name: Goblish Heal I
+  name: Goblish Staff Heal I
   description: Heal yourself.
   icon: skull-staff
   target: Self

@@ -35,4 +35,30 @@ export class ItemCreatorService {
 
     return baseItem;
   }
+
+  public migrateItem(oldItem: IGameItem): IGameItem | undefined {
+    if(!oldItem) {
+      return undefined;
+    }
+
+    const baseItem = this.createItem(oldItem.internalId || '', oldItem.quantity);
+    if(!baseItem) {
+      return undefined;
+    }
+
+    // we only want to migrate stats if it's not food. otherwise we want the correct stats
+    if(!baseItem.foodDuration) {
+      baseItem.stats = oldItem.stats;
+    }
+
+    if(oldItem.durability) {
+      baseItem.durability = oldItem.durability;
+    }
+
+    if(oldItem.foodDuration) {
+      baseItem.foodDuration = oldItem.foodDuration;
+    }
+
+    return baseItem;
+  }
 }

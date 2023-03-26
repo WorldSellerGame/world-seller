@@ -20,13 +20,6 @@ Quartz Powder:
   rarity: Uncommon
   icon: 'powder'
 
-Wine:
-  name: Wine
-  description: For the refined and common alike.
-  category: Foods
-  rarity: Uncommon
-  icon: 'wine'
-
 Acid:
   name: Acid
   description: Dangerous corrosive liquid.
@@ -40,3 +33,13 @@ Gypsum:
   category: Raw Materials
   rarity: Uncommon
   icon: 'gypsum'
+
+Wine:
+  name: Wine
+  description: For the refined and common alike.
+  category: Foods
+  rarity: Rare
+  icon: 'wine'
+
+
+

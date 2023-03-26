@@ -1,11 +1,11 @@
-<div class="item" [ngClass]="[itemClass]">
+<div class="item">
   <ion-row>
     <ion-col class="icon">
       <app-game-icon [icon]="item.icon"></app-game-icon>
     </ion-col>
 
     <ion-col class="text">
-      <div class="name">
+      <div class="name" [ngClass]="[itemClass]">
         {{ item.name }}
       </div>
 
@@ -13,8 +13,12 @@
         <app-stat-line [item]="item"></app-stat-line>
       </div>
 
+      <div class="effects" *ngIf="effects.length > 0">
+        Applies {{ effects.join(', ') }}
+      </div>
+
       <div class="uses">
-        <ion-text color="energy">{{ item.foodDuration }} Combat(s)</ion-text>
+        <ion-text color="energy">{{ item.foodDuration }} Combat(s) Remaining</ion-text>
       </div>
     </ion-col>
   </ion-row>

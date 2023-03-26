@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-game-icon',
   templateUrl: './game-icon.component.html',
   styleUrls: ['./game-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameIconComponent implements OnInit {
 

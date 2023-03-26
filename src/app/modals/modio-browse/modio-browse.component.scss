@@ -1,0 +1,129 @@
+
+.controls {
+  align-items: center;
+
+  .search {
+    ion-input {
+      --padding-top: 5px;
+      --padding-bottom: 5px;
+    }
+  }
+
+  .sort {
+    ion-select {
+      --padding-top: 5px;
+      --padding-bottom: 5px;
+    }
+  }
+
+  .sort, .search {
+    --min-height: 16px;
+    border: 2px solid var(--ion-color-medium);
+    border-radius: 4px;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  .big-row {
+    flex-grow: 1;
+  }
+
+  .middle-card {
+    height: 100%;
+  }
+}
+
+.true-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 2em;
+  text-align: center;
+}
+
+.mod {
+  cursor: pointer;
+
+  .mod-name {
+    display: flex;
+    align-items: center;
+
+    .version {
+      margin-left: 5px;
+    }
+  }
+
+  ion-img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.dedicated-subscribe {
+  padding-left: 13px;
+  padding-right: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-row {
+    width: 100%;
+  }
+
+  ion-button {
+    width: 100%;
+  }
+}
+
+.active-mod {
+
+  .mod-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .version {
+      margin-left: 5px;
+    }
+  }
+
+  .author {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .date {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+  }
+
+  .ratings {
+    text-align: center;
+  }
+
+  .tag {
+    margin-right: 5px;
+  }
+
+}

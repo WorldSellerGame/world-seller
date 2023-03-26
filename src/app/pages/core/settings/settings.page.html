@@ -7,6 +7,14 @@
 <ion-content>
   <ion-grid *ngIf="options$ | async as options">
     <ion-row>
+      <ion-col size="12" *ngIf="metaService.shouldUpdateVersion">
+        <ion-card color="primary">
+          <ion-card-content>
+            You should go update your version! <a href="https://worldsellergame.com" target="_blank">Click here to go to the homepage and find a download.</a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
       <ion-col sizeXs="12" sizeSm="12" sizeMd="6">
         <ion-card>
           <ion-card-header>
@@ -29,6 +37,7 @@
                   <ion-select-option value="light">Light</ion-select-option>
                   <ion-select-option value="dark">Dark</ion-select-option>
                   <ion-select-option value="spoon">Spoon</ion-select-option>
+                  <ion-select-option *ngFor="let theme of themes$ | async" [value]="theme.value">{{ theme.name }}</ion-select-option>
                 </ion-select>
               </ion-item>
 
@@ -91,6 +100,11 @@
                 <ion-label>Blog</ion-label>
               </ion-item>
 
+              <ion-item target="_blank" href="https://seiyria.itch.io/world-seller">
+                <ion-icon name="rocket" slot="start"></ion-icon>
+                <ion-label>Itch.io</ion-label>
+              </ion-item>
+
               <ion-item target="_blank" href="https://discord.worldsellergame.com">
                 <ion-icon name="logo-discord" slot="start"></ion-icon>
                 <ion-label>Discord</ion-label>
@@ -99,6 +113,11 @@
               <ion-item class="cursor-pointer" (click)="metaService.showChangelog()">
                 <ion-icon name="book" slot="start"></ion-icon>
                 <ion-label>Changelog</ion-label>
+              </ion-item>
+
+              <ion-item class="cursor-pointer" (click)="metaService.showCredits()">
+                <ion-icon name="newspaper" slot="start"></ion-icon>
+                <ion-label>Credits</ion-label>
               </ion-item>
             </ion-list>
           </ion-card-content>

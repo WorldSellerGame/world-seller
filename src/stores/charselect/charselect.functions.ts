@@ -64,15 +64,17 @@ export function setActiveCharacter(ctx: StateContext<ICharSelect>, { charSlot }:
   }));
 }
 
-export function gainResources(ctx: StateContext<ICharSelect>, { resources }: GainResources) {
+export function gainResources(ctx: StateContext<ICharSelect>, { resources, countsForAchievements }: GainResources) {
   const state = ctx.getState();
   const currentCharacter = state.characters[state.currentCharacter];
   if(!currentCharacter) {
     return;
   }
 
-  const gainedResources = sum(Object.values(resources));
-  ctx.dispatch(new IncrementStat(AchievementStat.ResourcesGained, gainedResources));
+  const gainedResources = sum(Object.values(resources).filter(x => x > 0));
+  if(countsForAchievements && gainedResources > 0) {
+    ctx.dispatch(new IncrementStat(AchievementStat.ResourcesGained, gainedResources));
+  }
 
   Object.keys(resources).forEach(resource => {
     if(!currentCharacter.resources[resource]) {
