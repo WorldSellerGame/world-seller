@@ -23,8 +23,6 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
 
   if(newTicks <= 0) {
 
-    console.log(job.totalLeft);
-
     // get a new item
     ctx.dispatch([
       new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
