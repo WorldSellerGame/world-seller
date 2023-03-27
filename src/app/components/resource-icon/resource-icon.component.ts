@@ -13,6 +13,7 @@ export class ResourceIconComponent implements OnInit {
   @Input() name = '';
   @Input() quantity = -1;
   @Input() maxQuantity = 0;
+  @Input() maxIsNotImportant = false;
   @Input() showX = false;
   @Input() angryColorWhenQuantityExceedsMax = false;
   @Input() inlineIconSize = false;

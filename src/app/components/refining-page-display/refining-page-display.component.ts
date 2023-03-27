@@ -245,7 +245,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return true;
       });
 
-    return sortBy(validRecipes, 'result');
+    return sortBy(validRecipes, [(recipe) => !this.canCraftRecipe(recipe), (recipe) => recipe.result]);
   }
 
   totalResourceHashForCrafting() {

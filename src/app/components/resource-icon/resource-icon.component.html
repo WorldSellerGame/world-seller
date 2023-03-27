@@ -2,14 +2,15 @@
 <div
   class="resource-icon"
   [ngClass]="[
-  rarity || 'Common',
   emphasizeText ? 'emphasis' : '',
-  angryColorWhenQuantityExceedsMax && maxQuantity > 0 && quantity > maxQuantity ? 'angry' : '',
+  angryColorWhenQuantityExceedsMax && maxQuantity >= 0 && quantity > maxQuantity ? 'angry' : (rarity || 'Common'),
   name === 'nothing' ? 'nothing' : ''
 ]">
   <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
   <span class="name" *ngIf="name" [ngxTippy]="tooltip">{{ name }}</span>
-  <span class="quantity" *ngIf="quantity >= 0">{{ showX ? 'x' : '' }}{{ quantity | number }}{{ maxQuantity ? '/' + (maxQuantity | number) : '' }}</span>
+  <span class="quantity" *ngIf="quantity >= 0">
+    {{ showX ? 'x' : '' }}{{ quantity | number }}<span *ngIf="!maxIsNotImportant">{{ maxQuantity >= 0 ? '/' + (maxQuantity | number) : '' }}</span>
+  </span>
 
   <ng-template #tooltip>
     <app-resource-tooltip *ngIf="resource" [resource]="resource" [showQuantity]="true"></app-resource-tooltip>
