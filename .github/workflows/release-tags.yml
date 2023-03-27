@@ -132,14 +132,14 @@ jobs:
         asset_name: WorldSeller.exe
         asset_content_type: application/vnd.microsoft.portable-executable
 
-    - uses: manleydev/butler-publish-itchio-action@master
+    - uses: KikimoraGames/itch-publish@v0.0.3
       env:
-        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
-        CHANNEL: windows
-        ITCH_GAME: world-seller
-        ITCH_USER: seiyria
-        PACKAGE: ./electron/out/make/squirrel.windows/x64/World Seller.exe
-        VERSION: ${{ steps.loadTagName.outputs.tag }}
+        butlerApiKey: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        buildChannel: windows
+        itchGameId: world-seller
+        itchUsername: seiyria
+        gameData: ./electron/out/make/squirrel.windows/x64/World Seller.exe
+        buildNumber: ${{ steps.loadTagName.outputs.tag }}
 
   publish-linux:
     needs: [build]
@@ -194,73 +194,76 @@ jobs:
         asset_name: WorldSeller-linux.zip
         asset_content_type: application/zip
 
-    - uses: manleydev/butler-publish-itchio-action@master
+    - uses: KikimoraGames/itch-publish@v0.0.3
       env:
-        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
-        CHANNEL: linux
-        ITCH_GAME: world-seller
-        ITCH_USER: seiyria
-        PACKAGE: ./electron/out/make/zip/linux/x64/WorldSeller.zip
-        VERSION: ${{ steps.loadTagName.outputs.tag }}
+        butlerApiKey: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        buildChannel: linux
+        itchGameId: world-seller
+        itchUsername: seiyria
+        gameData: ./electron/out/make/zip/linux/x64/WorldSeller.zip
+        buildNumber: ${{ steps.loadTagName.outputs.tag }}
 
-  publish-macos:
-    needs: [build]
-    name: Create Mac OS Binary
+#  OSX builds are disabled because for some unknown reason, the path is incorrect: it is as specified below on my mac
+#  but github actions puts it somewhere else, and I don't wanna deal with it
 
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest]
-        node-version: [18]
-
-    steps:
-    - name: Load Release URL File from release job
-      uses: actions/download-artifact@v1
-      with:
-        name: release_url
-
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: loadTagName
-
-    - uses: pCYSl5EDgo/cat@master
-      id: loadReleaseUrl
-      with:
-        path: release_url/release_url.txt
-
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - run: npm install
-
-    - run: cd electron && npm install
-
-    - run: npm run load:content
-
-    - run: npm run lint
-
-    - run: npm run build:electron
-
-    - name: Upload Binary
-      id: uploadReleaseAsset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.loadReleaseUrl.outputs.text }}
-        asset_path: ./electron/out/make/zip/darwin/arm64/WorldSeller.zip
-        asset_name: WorldSeller-macos.zip
-        asset_content_type: application/zip
-
-    - uses: manleydev/butler-publish-itchio-action@master
-      env:
-        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
-        CHANNEL: osx
-        ITCH_GAME: world-seller
-        ITCH_USER: seiyria
-        PACKAGE: ./electron/out/make/zip/darwin/arm64/WorldSeller.zip
-        VERSION: ${{ steps.loadTagName.outputs.tag }}
+#  publish-macos:
+#    needs: [build]
+#    name: Create Mac OS Binary
+#
+#    runs-on: ${{ matrix.os }}
+#
+#    strategy:
+#      matrix:
+#        os: [macos-latest]
+#        node-version: [18]
+#
+#    steps:
+#    - name: Load Release URL File from release job
+#      uses: actions/download-artifact@v1
+#      with:
+#        name: release_url
+#
+#    - uses: little-core-labs/get-git-tag@v3.0.1
+#      id: loadTagName
+#
+#    - uses: pCYSl5EDgo/cat@master
+#      id: loadReleaseUrl
+#      with:
+#        path: release_url/release_url.txt
+#
+#    - uses: actions/checkout@v2
+#
+#    - name: Use Node.js ${{ matrix.node-version }}
+#      uses: actions/setup-node@v1
+#      with:
+#        node-version: ${{ matrix.node-version }}
+#
+#    - run: npm install
+#
+#    - run: cd electron && npm install
+#
+#    - run: npm run load:content
+#
+#    - run: npm run lint
+#
+#    - run: npm run build:electron
+#
+#    - name: Upload Binary
+#      id: uploadReleaseAsset
+#      uses: actions/upload-release-asset@v1
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        upload_url: ${{ steps.loadReleaseUrl.outputs.text }}
+#        asset_path: ./electron/out/make/zip/darwin/arm64/WorldSeller.zip
+#        asset_name: WorldSeller-macos.zip
+#        asset_content_type: application/zip
+#
+#    - uses: manleydev/butler-publish-itchio-action@master
+#      env:
+#        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
+#        CHANNEL: osx
+#        ITCH_GAME: world-seller
+#        ITCH_USER: seiyria
+#        PACKAGE: ./electron/out/make/zip/darwin/arm64/WorldSeller.zip
+#        VERSION: ${{ steps.loadTagName.outputs.tag }}
