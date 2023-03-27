@@ -77,6 +77,7 @@ jobs:
         user_email: 'kyle@seiyria.com'
         user_name: 'seiyria'
         commit_message: 'Add version notes'
+        destination_branch: master
 
   publish-windows:
     needs: [build]
