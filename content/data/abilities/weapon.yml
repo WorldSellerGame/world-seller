@@ -4,7 +4,7 @@
 
 Shank:
   name: Shank
-  description: A unrefined, but powerful attack.
+  description: An unrefined, but powerful attack.
   icon: knife
   target: Single
   type: Physical
