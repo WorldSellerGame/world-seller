@@ -96,9 +96,6 @@ jobs:
       with:
         name: release_url
 
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: loadTagName
-
     - uses: pCYSl5EDgo/cat@master
       id: loadReleaseUrl
       with:
@@ -132,15 +129,6 @@ jobs:
         asset_name: WorldSeller.exe
         asset_content_type: application/vnd.microsoft.portable-executable
 
-    - uses: KikimoraGames/itch-publish@v0.0.3
-      env:
-        butlerApiKey: ${{ secrets.ITCH_BUTLER_API_KEY }}
-        buildChannel: windows
-        itchGameId: world-seller
-        itchUsername: seiyria
-        gameData: ./electron/out/make/squirrel.windows/x64/World Seller.exe
-        buildNumber: ${{ steps.loadTagName.outputs.tag }}
-
   publish-linux:
     needs: [build]
     name: Create Linux Binary
@@ -157,9 +145,6 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: release_url
-
-    - uses: little-core-labs/get-git-tag@v3.0.1
-      id: loadTagName
 
     - uses: pCYSl5EDgo/cat@master
       id: loadReleaseUrl
@@ -194,14 +179,49 @@ jobs:
         asset_name: WorldSeller-linux.zip
         asset_content_type: application/zip
 
-    - uses: KikimoraGames/itch-publish@v0.0.3
+  upload-itch:
+    needs: [publish-windows, publish-linux]
+    name: Upload to Itch.io
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [18]
+
+    steps:
+    - uses: little-core-labs/get-git-tag@v3.0.1
+      id: loadTagName
+
+    - name: Load Windows Binary
+      uses: actions/download-artifact@v1
+      with:
+        name: WorldSeller.exe
+
+    - name: Load Linux Binary
+      uses: actions/download-artifact@v1
+      with:
+        name: WorldSeller-linux.zip
+
+    - uses: manleydev/butler-publish-itchio-action@master
       env:
-        butlerApiKey: ${{ secrets.ITCH_BUTLER_API_KEY }}
-        buildChannel: linux
-        itchGameId: world-seller
-        itchUsername: seiyria
-        gameData: ./electron/out/make/zip/linux/x64/WorldSeller.zip
-        buildNumber: ${{ steps.loadTagName.outputs.tag }}
+        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        CHANNEL: windows
+        ITCH_GAME: world-seller
+        ITCH_USER: seiyria
+        PACKAGE: ./WorldSeller.exe
+        VERSION: ${{ steps.loadTagName.outputs.tag }}
+
+    - uses: manleydev/butler-publish-itchio-action@master
+      env:
+        BUTLER_CREDENTIALS: ${{ secrets.ITCH_BUTLER_API_KEY }}
+        CHANNEL: linux
+        ITCH_GAME: world-seller
+        ITCH_USER: seiyria
+        PACKAGE: ./WorldSeller-linux.zip
+        VERSION: ${{ steps.loadTagName.outputs.tag }}
+
 
 #  OSX builds are disabled because for some unknown reason, the path is incorrect: it is as specified below on my mac
 #  but github actions puts it somewhere else, and I don't wanna deal with it
@@ -222,9 +242,6 @@ jobs:
 #      uses: actions/download-artifact@v1
 #      with:
 #        name: release_url
-#
-#    - uses: little-core-labs/get-git-tag@v3.0.1
-#      id: loadTagName
 #
 #    - uses: pCYSl5EDgo/cat@master
 #      id: loadReleaseUrl
