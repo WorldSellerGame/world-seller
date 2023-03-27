@@ -12,13 +12,14 @@ Zombie1: #meat bag with some effect that make long combat dangerous
   stats:
     attack: 7
     armor: 2
+    mitigation: 20
     speed: 2
 
   abilities:
     - RotAttack1
     - UndeadRegen1
 
-  drops: 
+  drops:
     - resource: Coin
       min: 10
       max: 25
@@ -36,10 +37,10 @@ Skeleton1: #Glass cannon
 
   stats:
     attack: 10
-    armor: 6
+    mitigation: 20
     speed: 5
 
-  abilities: 
+  abilities:
     - RotAttack2
     - RotAttack2
     - ApplyDoom1
@@ -63,6 +64,7 @@ Monstrosity1: #tanky low dmg with a absolutely devastating multi hit
   stats:
     attack: 4
     armor: 2
+    mitigation: 30
     speed: 5
 
   abilities:
@@ -80,19 +82,20 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
   icon: mummy
   description: The source of all the undead near the temple, a dangerous opponent of unholy strength and terrifying curses. But how did the Mummy end up here...
 
-  health: 90 
+  health: 90
   energy: 10
 
   idleChance: 2
 
   stats:
     attack: 15 #hmm
-    armor: 8
+    armor: 4
+    mitigation: 30
     speed: 6
     healingPerRound: 10 #
 
   abilities:
-    - UndeadRegen2 
+    - UndeadRegen2
     - Mummy1
     - ApplyDoom1 #or maybe 2 idk man
 

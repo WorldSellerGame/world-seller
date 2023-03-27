@@ -11,7 +11,8 @@ Goblin1: #weakest real enemy
 
   stats:
     attack: 5
-    armor: 4
+    armor: 1
+    mitigation: 10
     speed: 3
 
   abilities:
@@ -35,7 +36,8 @@ Goblin2: #Filler monster with ass stats, as simple as gets
 
   stats:
     attack: 8
-    armor: 5
+    armor: 2
+    mitigation: 15
     speed: 4
 
   abilities:
@@ -65,7 +67,8 @@ GoblinShaman1:
   stats:
     attack: 6
     healing: 10
-    armor: 5
+    armor: 2
+    mitigation: 10
     speed: 4
 
   abilities:
@@ -96,7 +99,8 @@ GoblinLord1: #aoe buffs and like one debuff
   stats:
     attack: 10
     healing: 10
-    armor: 6
+    armor: 4
+    mitigation: 20
     speed: 5
 
   abilities:

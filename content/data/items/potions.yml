@@ -56,7 +56,7 @@ Potion of Minor Poison:
 
 Potion of Simple Blinding:
   name: Potion of Simple Blinding
-  description: A vial of very fine particles ins't really a potion, however it works quite well.
+  description: A vial of fine particles ins't really a potion, however it works quite well.
   type: Potion
   category: Potions
   rarity: Common
@@ -96,7 +96,7 @@ Potion of Small Speed:
 
 Potion of Minor Strength:
   name: Potion of Minor Strength
-  description: Strength to smite your enemies, or, you know, hit them with a big stick.
+  description: Strength to smite your enemies, or, you know, hit them with a stick.
   type: Potion
   category: Potions
   rarity: Uncommon
@@ -107,18 +107,19 @@ Potion of Minor Strength:
   abilities:
     - abilityName: HuntingBasic2 #small damage increase
 
-Potion of Minor Magic Maximize:
-  name: Potion of Minor Magic Maximize
-  description: Increase magic potential.
+Energy Potion:
+  name: Energy Potion
+  description: Restores energy.
   type: Potion
   category: Potions
   rarity: Uncommon
   durability: 1
   value: 50
   icon: bottle
-  stats: {}
+  stats:
+    healing: 10
   abilities:
-    - abilityName: ApplyEnergyBuff1 #small magic increase (maybe lump together with pot o strength?)
+    - abilityName: ItemSingleTargetEnergyHeal
 
 Potion of Weakness:
   name: Potion of Weakness
@@ -164,7 +165,7 @@ Potion of Acid:
 
 Antidote:
   name: Antidote
-  description: Cures basic poisons, sicknesses, and a few other status ailments. Eventually
+  description: Cures basic poisons, sicknesses, and a few other status ailments. Eventually...
   type: Potion
   category: Potions
   rarity: Uncommon
@@ -193,16 +194,17 @@ Bottled Brambles:
 
 Mages Little Helper:
   name: Mages Little Helper
-  description: Helps casters hit hard and fast.
+  description: Helps casters stay fueled and fast.
   type: Potion
   category: Potions
   rarity: Uncommon
   durability: 1
   value: 250
   icon: bottle
-  stats: {}
+  stats:
+    healing: 10
   abilities:
-    - abilityName: ApplyEnergyBuff1 #Magic up + Speed Up
+    - abilityName: ItemSingleTargetEnergyHeal #Magic up + Speed Up
     - abilityName: FishingBasic2
 
 Poison of Leaden Limbs: ##
@@ -244,7 +246,7 @@ Dazzler:
   value: 250
   icon: spiral-bottle
   stats: {}
-  abilities: 
+  abilities:
     - abilityName: BasicUtilityEscape
 
 #####

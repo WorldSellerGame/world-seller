@@ -1,14 +1,4 @@
 
-StrengthenBasic:
-  name: Strengthen
-  description: Gained +5 attack.
-  icon: strong
-  color: "#249fde"
-  turnsLeft: 5
-  statusEffectType: StatModification
-  statModifications:
-    attack: 5
-
 ######## Basic skill ability effects (May be moved) Regardless I will use all of these all the fucking time I think so best to get it right
 
 SpeedBuff1:
@@ -43,16 +33,6 @@ SpeedBuff3: #I want it broken so I shall make it broken
 
 HealingBuff1:
   name: Healing I
-  description: Increases Healing by 3.
-  icon: healing-buff
-  color: "#249fde"
-  turnsLeft: 3
-  statusEffectType: StatModification
-  statModifications:
-    healing: 3
-
-HealingBuff2:
-  name: Healing II
   description: Increases Healing by 5.
   icon: healing-buff
   color: "#249fde"
@@ -60,6 +40,16 @@ HealingBuff2:
   statusEffectType: StatModification
   statModifications:
     healing: 5
+
+HealingBuff2:
+  name: Healing II
+  description: Increases Healing by 8.
+  icon: healing-buff
+  color: "#249fde"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: 8
 
 AttackBuff1:
   name: Attack I

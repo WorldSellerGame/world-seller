@@ -52,8 +52,8 @@ floors:
       - [  .,  .,  1,  .,  .,  .,  1,  1,  1,  1,  .,  .,  .,  .,  .]
       - [  .,  .,  1,  1,  1,  1,  1,  1,  1,  1,  .,  .,  .,  .,  .]
       - [  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .,  .]
- 
- 
+
+
 boss: GoblinDungeonBoss
 
 threats:
@@ -99,9 +99,9 @@ treasureChests:
           amount: 1
 
   c3:
-    - config: Iron
+    - config: Copper Ingot
       drops:
-        - resource: Iron Ingot
+        - resource: Copper Ingot
           amount: 3
 
     - config: Spare Crown
@@ -111,9 +111,9 @@ treasureChests:
 
     - config: Gems
       drops:
-        - resource: Cut Tanzanite
+        - resource: Cut Quartz
           amount: 2
-        
+
     - config: Coins Only
       drops:
         - resource: Coin

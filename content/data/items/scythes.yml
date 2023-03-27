@@ -10,7 +10,7 @@ Stone Sickle:
   icon: scythe
   stats:
     scythePowerPercent: 10
-    scytheSpeed: 50
+    scytheSpeed: 60
 
 Copper Sickle:
   name: Copper Sickle
@@ -22,8 +22,8 @@ Copper Sickle:
   value: 100
   icon: scythe
   stats:
-    scythePowerPercent: 20
-    scytheSpeed: 410
+    scythePowerPercent: 25
+    scytheSpeed: 300
 
 Iron Sickle:
   name: Iron Sickle
@@ -35,5 +35,5 @@ Iron Sickle:
   value: 500
   icon: scythe
   stats:
-    scythePowerPercent: 30
-    scytheSpeed: 1730
+    scythePowerPercent: 40
+    scytheSpeed: 1200

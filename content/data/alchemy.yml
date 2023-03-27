@@ -181,13 +181,13 @@ recipes:
       - Mortar and Pestle
     maxWorkers: 1
 
-  - result: Potion of Minor Magic Maximize
+  - result: Energy Potion #possible recipe change
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
     craftTime: 240
     ingredients:
       Glass Bottle: 1
-      Mushroom: 2
+      Strawberry Seed: 1
       Brimstone: 1
       Acorn: 1
       Oven: 1
