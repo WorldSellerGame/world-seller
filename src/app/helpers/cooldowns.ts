@@ -1,6 +1,7 @@
 import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { IGameGatherLocation, IGameGathering } from '../../interfaces';
+import { NotifyInfo } from '../../stores/game/game.actions';
 
 export function lowerGatheringCooldowns(ctx: StateContext<IGameGathering>, ticks = 1) {
   const state = ctx.getState();
@@ -14,6 +15,7 @@ export function lowerGatheringCooldowns(ctx: StateContext<IGameGathering>, ticks
 
     if(cooldowns[locationKey] <= 0) {
       delete cooldowns[locationKey];
+      ctx.dispatch(new NotifyInfo(`${locationKey} can be gathered from again!`));
     }
   });
 
@@ -43,10 +45,12 @@ export function putLocationOnCooldown(
 
   const locationCooldownReduction = location.cooldownTime * cdrPercent;
 
+  const newCooldownTime = Math.max(0, location.cooldownTime - (locationCooldownReduction || 0) - (cdrValue || 0));
+
   ctx.setState(patch<IGameGathering>({
     cooldowns: {
       ...state.cooldowns,
-      [location.name]: Math.max(0, location.cooldownTime - (locationCooldownReduction || 0) - (cdrValue || 0))
+      [location.name]: newCooldownTime
     }
   }));
 }
