@@ -631,6 +631,7 @@ export class CombatState {
       if(state.currentEncounter.resetInSeconds === 0) {
         unapplyAllEffectsForPlayer(ctx);
         dispatchCorrectCombatEndEvent(ctx, state.currentEncounter);
+        ctx.dispatch(new OOCPlayerHeal(1));
         return;
       }
 
