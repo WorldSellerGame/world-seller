@@ -156,7 +156,6 @@ export class ModsService {
   public getAuthCodeForEmail(code: string) {
     const body = new URLSearchParams();
     body.set('security_code', code);
-    body.set('date_expires', (Math.floor(Date.now() / 1000) + 31436000).toString());
 
     return this.http.post(
       `${environment.modio.url}/oauth/emailexchange?api_key=${environment.modio.apiKey}`,
