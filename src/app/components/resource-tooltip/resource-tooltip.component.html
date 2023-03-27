@@ -1,8 +1,14 @@
 
-<div>
+<div class="header">
   <strong [ngClass]="[(resource.rarity || 'common').toLowerCase()]">{{ resource.name }} &middot; {{ resource.category }}</strong>
 </div>
 
-<div>
+<div class="description">
   {{ resource.description }}
+</div>
+
+<div class="quantity" *ngIf="showQuantity">
+  <ng-container *ngIf="resources$ | async as resources">
+    <em><small>You have {{ resources[resource.name] | number }} of these.</small></em>
+  </ng-container>
 </div>
