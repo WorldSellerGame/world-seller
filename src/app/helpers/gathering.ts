@@ -93,7 +93,7 @@ export function setGatheringLocation(ctx: StateContext<IGameGathering>, location
     ...cancelAllGathering(),
     new PlaySFX('tradeskill-start')
   ]).subscribe(() => {
-    const gatherTime = Math.max(1, location.gatherTime - (gdrValue || 0));
+    const gatherTime = Math.floor(Math.max(1, location.gatherTime - (gdrValue || 0)));
 
     ctx.setState(patch<IGameGathering>({
       currentLocation: location,
