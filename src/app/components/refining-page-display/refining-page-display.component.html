@@ -89,7 +89,7 @@
                 <ion-label>
                   <h2>
                     <strong class="recipe-name">
-                      <span [ngxTippy]="tooltip">{{ recipe.result }}</span>
+                      <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">{{ recipe.result }}</span>
 
                       <ion-icon class="yield-icon" name="help-circle" [ngxTippy]="amountTooltip" *ngIf="recipe.perCraft.max > 1"></ion-icon>
 
