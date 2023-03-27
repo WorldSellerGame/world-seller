@@ -74,7 +74,7 @@
                   <ion-item *ngFor="let seed of plantableSeeds; trackBy: trackBy">
                     <ion-label>
                       <h2>
-                        <app-resource-icon [name]="seed.name" [quantity]="seed.quantity" [showX]="true"></app-resource-icon>
+                        <app-resource-icon [name]="seed.name" [quantity]="seed.quantity" [showX]="true" [maxIsNotImportant]="true"></app-resource-icon>
                       </h2>
                     </ion-label>
                     <ion-button fill="clear"
