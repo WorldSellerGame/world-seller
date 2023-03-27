@@ -295,7 +295,6 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   assignWorker(recipe: IGameRecipe) {
-    console.log(this.tradeskill);
     this.store.dispatch(new AssignRefiningWorker(this.tradeskill, recipe));
   }
 
