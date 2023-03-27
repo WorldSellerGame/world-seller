@@ -595,6 +595,11 @@ export class CombatState {
   decreaseDuration(ctx: StateContext<IGameCombat>, { ticks }: TickTimer) {
     const state = ctx.getState();
 
+    // one time adjustment
+    if(state.level === 0 && state.threats.length === 0) {
+      ctx.dispatch(new ChangeThreats());
+    }
+
     // modify threats if applicable
     // (while you're in a dungeon or encounter, your threats reset immediately afterwards anyway)
     if(!state.currentDungeon && !state.currentEncounter) {
