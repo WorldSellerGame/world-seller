@@ -129,6 +129,12 @@ jobs:
         asset_name: WorldSeller.exe
         asset_content_type: application/vnd.microsoft.portable-executable
 
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: WorldSeller.exe
+        path: ./electron/out/make/squirrel.windows/x64/WorldSeller.exe
+
   publish-linux:
     needs: [build]
     name: Create Linux Binary
@@ -178,6 +184,12 @@ jobs:
         asset_path: ./electron/out/make/zip/linux/x64/WorldSeller.zip
         asset_name: WorldSeller-linux.zip
         asset_content_type: application/zip
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: WorldSeller-linux.zip
+        path: ./electron/out/make/zip/linux/x64/WorldSeller.zip
 
   upload-itch:
     needs: [publish-windows, publish-linux]
