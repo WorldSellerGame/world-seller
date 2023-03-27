@@ -62,11 +62,13 @@
             } as workerData">
               <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
                 <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)"
+                            ngxTippy="Remove Worker"
                             [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">-</ion-button>
 
                 <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
 
                 <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)"
+                            ngxTippy="Add Worker"
                             [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">+</ion-button>
               </div>
             </ng-container>
