@@ -717,7 +717,7 @@ export class CombatState {
     }
 
     // ooc healing
-    if(!state.currentEncounter && state.currentPlayer) {
+    if(!state.currentEncounter && !state.currentDungeon && state.currentPlayer) {
       let healingTicks = state.oocHealTicks ?? 10;
       let energyTicks = state.oocEnergyTicks ?? 10;
 
