@@ -1,14 +1,4 @@
 
-WeakenBasic:
-  name: Weaken
-  description: Lost -5 attack.
-  icon: weaken
-  color: "#ff0000"
-  turnsLeft: 5
-  statusEffectType: StatModification
-  statModifications:
-    attack: -5
-
 ######## Basic skill ability effects (May be moved)
 
 SpeedDebuff1:
@@ -33,16 +23,6 @@ SpeedDebuff2:
 
 HealingDebuff1:
   name: Necrosis I
-  description: Decreases Healing by 3.
-  icon: healing-debuff
-  color: "#793A80"
-  turnsLeft: 3
-  statusEffectType: StatModification
-  statModifications:
-    healing: -3
-
-HealingDebuff2:
-  name: Necrosis II
   description: Decreases Healing by 5.
   icon: healing-debuff
   color: "#793A80"
@@ -51,15 +31,25 @@ HealingDebuff2:
   statModifications:
     healing: -5
 
-HealingDebuff3:
-  name: Necrosis III
-  description: Decreases Healing by 10.
+HealingDebuff2:
+  name: Necrosis II
+  description: Decreases Healing by 8.
   icon: healing-debuff
   color: "#793A80"
   turnsLeft: 3
   statusEffectType: StatModification
   statModifications:
-    healing: -10
+    healing: -8
+
+HealingDebuff3:
+  name: Necrosis III
+  description: Decreases Healing by 12.
+  icon: healing-debuff
+  color: "#793A80"
+  turnsLeft: 3
+  statusEffectType: StatModification
+  statModifications:
+    healing: -12
 
 AttackDebuff1:
   name: Weaken I
@@ -96,7 +86,7 @@ HealthDebuff2:
   description: Decreases Max Health by 15.
   icon: heart-minus
   color: "#793A80"
-  turnsLeft: 7
+  turnsLeft: 5
   statusEffectType: StatModification
   statModifications:
     healthBonus: -15

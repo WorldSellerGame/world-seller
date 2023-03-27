@@ -17,7 +17,17 @@
         </div>
       </ng-container>
 
-      <div class="effect-uses" *ngIf="showEffectInfo && showUses">
+      <ng-container *ngIf="showEatInfo && item.type === 'Food'">
+        <div class="effect" *ngIf="(item.oocHealth || 0) > 0">
+          <strong>Heals</strong>: {{ item.oocHealth }} HP
+        </div>
+
+        <div class="effect" *ngIf="(item.oocEnergy || 0) > 0">
+          <strong>Restores</strong>: {{ item.oocEnergy }} Energy
+        </div>
+      </ng-container>
+
+      <div class="effect-uses" *ngIf="(showEffectInfo || showEatInfo) && showUses">
         <ion-text color="energy">{{ item.durability }} Use(s)</ion-text>
       </div>
     </ion-col>

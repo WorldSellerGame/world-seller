@@ -9,7 +9,7 @@ import {
   AddCombatLogMessage, ConsumeFoodCharges, DebugApplyEffectToPlayer,
   DebugSetPlayerEnergy, DebugSetPlayerHealth, EnemyCooldownSkill, EnemySpeedReset,
   GainCombatLevels,
-  LowerEnemyCooldown, OOCEatFood, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill, SetCombatLock,
+  LowerEnemyCooldown, OOCEatFood, OOCEatFoodInDungeon, OOCPlayerEnergy, OOCPlayerHeal, PlayerCooldownSkill, SetCombatLock,
   SetCombatLockForEnemies,
   SetFood,
   SetItem,
@@ -666,6 +666,50 @@ export function oocEatFood(ctx: StateContext<IGameCombat>, { item }: OOCEatFood)
 
   ctx.dispatch([
     new RemoveItemFromInventory(item),
+    new OOCPlayerHeal(healing),
+    new OOCPlayerEnergy(energy),
+    new NotifyInfo(`You healed ${healing} HP and ${energy} Energy!`)
+  ]);
+}
+
+/**
+ * Eat food out of combat (but in a dungeon), to heal, exclusively.
+ */
+export function oocEatFoodInDungeon(ctx: StateContext<IGameCombat>, { slot }: OOCEatFoodInDungeon) {
+  const state = ctx.getState();
+  if(!state.currentPlayer || state.currentEncounter) {
+    return;
+  }
+
+  const item = state.activeItems[slot];
+  if(!item) {
+    return;
+  }
+
+  const healing = item.oocHealth ?? 0;
+  const energy = item.oocEnergy ?? 0;
+  if(healing <= 0 && energy <= 0) {
+    return;
+  }
+
+  if(item.durability !== -1) {
+    const newDurability = (item.durability ?? 0) - 1;
+    if(newDurability <= 0) {
+      ctx.dispatch([
+        new NotifyInfo(`Your ${item.name} has been fully consumed.`),
+        new SetItem(undefined, slot)
+      ]);
+    } else {
+      ctx.setState(patch<IGameCombat>({
+        activeItems: updateItem<IGameItem | undefined>(slot, patch<IGameItem | undefined>({
+          durability: newDurability,
+          foodDuration: newDurability
+        }))
+      }));
+    }
+  }
+
+  ctx.dispatch([
     new OOCPlayerHeal(healing),
     new OOCPlayerEnergy(energy),
     new NotifyInfo(`You healed ${healing} HP and ${energy} Energy!`)

@@ -11,7 +11,7 @@ locations:
       min: 0
       max: 10
     gatherTime: 10
-    cooldownTime: 5 
+    cooldownTime: 5
     resources:
       - name: Squirrel Meat
         weight: 2

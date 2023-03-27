@@ -17,7 +17,7 @@ BasicAttack:
 
 BasicUtilityEscape:
   name: Escape
-  description: Escape from combat.
+  description: Escape from combat, but lose some of your loot.
   icon: run
   target: Self
   stats: []

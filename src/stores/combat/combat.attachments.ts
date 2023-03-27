@@ -14,6 +14,7 @@ import {
   LowerEnemyCooldown,
   LowerPlayerCooldown,
   OOCEatFood,
+  OOCEatFoodInDungeon,
   OOCPlayerEnergy,
   OOCPlayerHeal,
   PlayerCooldownSkill,
@@ -33,6 +34,7 @@ import {
   lowerEnemyCooldowns,
   lowerPlayerCooldowns,
   oocEatFood,
+  oocEatFoodInDungeon,
   oocPlayerEnergy,
   oocPlayerHeal,
   prepareCombatForRestart,
@@ -90,5 +92,6 @@ export const attachments: IAttachment[] = [
   { action: GainPercentageOfDungeonLoot, handler: gainPercentageOfDungeonLoot },
   { action: OOCPlayerHeal, handler: oocPlayerHeal },
   { action: OOCPlayerEnergy, handler: oocPlayerEnergy },
-  { action: OOCEatFood, handler: oocEatFood }
+  { action: OOCEatFood, handler: oocEatFood },
+  { action: OOCEatFoodInDungeon, handler: oocEatFoodInDungeon }
 ];

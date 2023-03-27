@@ -180,3 +180,8 @@ export class OOCEatFood {
   static type = '[Combat] OOC Eat Food';
   constructor(public item: IGameItem) {}
 }
+
+export class OOCEatFoodInDungeon {
+  static type = '[Combat] OOC Eat Food In Dungeon';
+  constructor(public slot: number) {}
+}

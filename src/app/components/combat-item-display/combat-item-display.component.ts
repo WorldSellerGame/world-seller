@@ -13,6 +13,7 @@ export class CombatItemDisplayComponent implements OnInit {
 
   @Input() item!: IGameItem;
   @Input() showEffectInfo = false;
+  @Input() showEatInfo = false;
   @Input() showUses = true;
 
   get itemClass() {
