@@ -191,7 +191,7 @@ export class MercantileState {
     }
 
     ctx.dispatch([
-      new NotifyInfo(`Gained ${itemName} x${quantity}!`),
+      new NotifyInfo(`Workers made ${itemName} x${quantity} and put it in your stockpile!`),
       new SendToStockpile(createdItem)
     ]);
   }
