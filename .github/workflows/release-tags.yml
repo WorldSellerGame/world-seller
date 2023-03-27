@@ -64,7 +64,7 @@ jobs:
 
     - name: Read blog_post.txt file
       id: getBlogPost
-      run: echo "filename=$(cat blog_post.txt)" >> $GITHUB_OUTPUT
+      run: echo "filename=$(cat blog-post.txt)" >> $GITHUB_OUTPUT
 
     - name: Publish Version Update Blog Post
       uses: dmnemec/copy_file_to_another_repo_action@main
