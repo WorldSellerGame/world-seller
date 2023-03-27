@@ -28,7 +28,7 @@
             <ion-col [sizeMd]="3" *ngFor="let item of itemsInCategory(items, activeCategory); trackBy: trackBy">
 
               <div class="resource-container">
-                <app-item [item]="item" #item (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
+                <app-item [item]="item" #item class="cursor-pointer" (click)="popover.present($event); $event.preventDefault();" (contextmenu)="popover.present($event); $event.preventDefault();"></app-item>
 
                 <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
                   <ng-template>
