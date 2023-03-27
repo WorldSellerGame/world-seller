@@ -27,7 +27,7 @@ ApplyEnergyBuff1:
   effects:
     - effect: ApplyEffect
       effectName: EnergyBuff1
-  cooldown: 3
+  cooldown: 5
   energyCost: 0
   requires: {}
 
@@ -91,7 +91,7 @@ ApplyRegen4:
 
 ApplyPoison1:
   name: Minor Poison
-  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  description: It, uh, poisons. Takes awhile to do its damage.
   icon: toxic-bottle
   target: Single
   type: Magical
@@ -105,7 +105,7 @@ ApplyPoison1:
 
 ApplyPoison2:
   name: Poison
-  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  description: It, uh, poisons. Takes awhile to do its damage.
   icon: toxic-bottle
   target: Single
   type: Magical
@@ -119,7 +119,7 @@ ApplyPoison2:
 
 ApplyPoison3:
   name: Greater Poison
-  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  description: It, uh, poisons. Takes awhile to do its damage.
   icon: toxic-bottle
   target: Single
   type: Magical
@@ -133,7 +133,7 @@ ApplyPoison3:
 
 ApplyPoison4:
   name: Da Big Poison
-  description: It, uh, poisons. Notably takes longer than fire to do its damage.
+  description: It, uh, poisons. Takes awhile to do its damage.
   icon: toxic-bottle
   target: Single
   type: Magical
@@ -151,7 +151,7 @@ ApplyPoison4:
 
 GoblinShaman1: # To be moved and re named
   name: Goblish Heal I
-  description: Heal yourself.
+  description: Heal yourself and only yourself.
   icon: healing
   target: Self
   type: Magical

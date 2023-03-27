@@ -79,7 +79,7 @@ Risky Swing:
   stats:
     - stat: attack
       multiplier: 2.5
-      variance: 2.5
+      variance: 1.0
   effects:
     - effect: SingleTargetAttack
   cooldown: 4
@@ -91,7 +91,7 @@ Risky Swing:
 
 GoblinStaffHeal1:
   name: Goblish Staff Heal I
-  description: Heal yourself.
+  description: Heal yourself and only yourself.
   icon: skull-staff
   target: Self
   type: Magical

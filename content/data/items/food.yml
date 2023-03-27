@@ -8,7 +8,7 @@ Pine Nuts:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 2
   value: 5
   icon: meal
   oocHealth: 1
@@ -25,7 +25,7 @@ Cooked Cropfish:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 2
   value: 5
   icon: cooked-fish
   oocHealth: 3
@@ -41,7 +41,7 @@ Barbecued Squirrel:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 2
   value: 10
   icon: hot-meal
   oocHealth: 1
@@ -56,7 +56,7 @@ Vegetable Soup:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 2
   value: 10
   icon: hot-meal
   oocHealth: 5
@@ -73,7 +73,7 @@ Roast Bunny:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 3
   value: 15
   icon: hot-meal
   oocHealth: 1
@@ -87,7 +87,7 @@ Pan Fried Panfish:
   type: Food
   category: Foods
   rarity: Common
-  durability: 1
+  durability: 2
   value: 15
   icon: cooked-fish
   oocHealth: 2
@@ -105,7 +105,7 @@ Baked Fallfish:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 2
   value: 25
   icon: cooked-fish
   oocHealth: 5
@@ -122,7 +122,7 @@ Bunny Stew:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 3
   value: 25
   icon: hot-meal
   oocHealth: 2
@@ -138,7 +138,7 @@ Candied Apple:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 2
   value: 50
   icon: apple
   oocEnergy: 3
@@ -157,7 +157,7 @@ Duck Roast:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 3
   value: 50
   icon: cooked-bird
   oocHealth: 10
@@ -172,7 +172,7 @@ Fried Frog Legs:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 2
   value: 50
   icon: frog-foot
   oocHealth: 2
@@ -191,7 +191,7 @@ Cooked Trout:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 3
   value: 50
   icon: cooked-fish
   oocHealth: 5
@@ -244,7 +244,7 @@ Bread:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 5
   value: 50
   icon: bread
   oocEnergy: 5
@@ -258,7 +258,7 @@ Baked Breaded Bass:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 3
   value: 75
   icon: cooked-fish
   oocEnergy: 5
@@ -275,7 +275,7 @@ Roast Turkey:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
+  durability: 3
   value: 75
   icon: cooked-bird
   oocEnergy: 10
@@ -291,7 +291,7 @@ Venison Steak:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 3
   value: 100
   icon: hot-meal
   oocEnergy: 10
@@ -309,7 +309,7 @@ Apple Pie:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 2
   value: 150
   icon: pie
   oocHealth: 5
@@ -329,7 +329,7 @@ Pumpkin Pie:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 2
   value: 150
   icon: pie
   oocHealth: 15
@@ -346,7 +346,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 6
   value: 100
   icon: cookie
   oocHealth: 5
@@ -391,7 +391,7 @@ Duck Eggs Benedict:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 3
   value: 500
   icon: hot-meal
   oocHealth: 10
@@ -411,7 +411,7 @@ Honey Ham:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 4
   value: 300
   icon: hot-meal
   oocHealth: 15
@@ -427,7 +427,7 @@ Spicy Catfish Stew:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
+  durability: 4
   value: 300
   icon: hot-meal
   oocHealth: 15
@@ -451,7 +451,7 @@ Pompano Ceviche:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 1
+  durability: 2
   value: 500
   icon: meal
   oocHealth: 15
@@ -491,7 +491,7 @@ Elk Jerky:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 1
+  durability: 6
   value: 500
   icon: meal
   oocEnergy: 30

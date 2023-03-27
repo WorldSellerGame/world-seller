@@ -2,7 +2,7 @@
 #these are place holders test ability's and so on
 
 
-PeripheralFiller1: 
+PeripheralFiller1:
   name: Shoddy Pyromancy
   description: Everyone in the room being lit on fire seems beneficial, until you remember you are also in the room.
   icon: fire-aoe
@@ -17,7 +17,7 @@ PeripheralFiller1:
   requires:
     combat: 12
 
-PeripheralFiller2: 
+PeripheralFiller2:
   name: Wide Strike
   description: Hit every opponent, simple as that.
   icon: sword-swing
@@ -35,9 +35,9 @@ PeripheralFiller2:
     alchemy: 20
     combat: 22
 
-PeripheralFiller3: 
+PeripheralFiller3:
   name: Cauterize
-  description: Hurts then heals.
+  description: Hurts then heals yourself.
   icon: on-fire
   target: Self
   type: Magical
@@ -54,7 +54,7 @@ PeripheralFiller3:
   requires:
     combat: 22
 
-PeripheralFiller4: 
+PeripheralFiller4:
   name: Death By A Cut
   description: More would probably be faster, but uh if it works it works.
   icon: fire-aoe

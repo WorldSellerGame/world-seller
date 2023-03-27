@@ -32,9 +32,25 @@ ItemSingleDamage:
   energyCost: 0
   requires: {}
 
+ItemSingleTargetEnergyHeal:
+  name: Item Energy Restore
+  description: Restore your energy.
+  icon: bolt
+  target: Self
+  type: Magical
+  stats:
+    - stat: healing
+      multiplier: 1
+      variance: 0
+  effects:
+    - effect: SingleTargetEnergyHeal
+  cooldown: 0
+  energyCost: 0
+  requires: {}
+
 ItemAOEDamage:
   name: Item Damage+
-  description: Damage all enemies. 
+  description: Damage all enemies.
   icon: fire-bottle
   target: AllEnemies
   type: Magical

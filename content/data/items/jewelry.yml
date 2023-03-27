@@ -7,15 +7,15 @@ Dandelion Crown:
   type: Jewelry
   category: Jewelry
   rarity: Common
-  durability: 5
+  durability: -1
   value: 5
   icon: 'ring'
   stats:
-    axePowerPercent: 3
-    fishingPowerPercent: 3
-    scythePowerPercent: 3
-    pickaxePowerPercent: 3
-    huntingPowerPercent: 3
+    axePowerPercent: 1
+    fishingPowerPercent: 1
+    scythePowerPercent: 1
+    pickaxePowerPercent: 1
+    huntingPowerPercent: 1
 
 Braided Belt:
   name: Braided Belt
@@ -27,7 +27,7 @@ Braided Belt:
   value: 20
   icon: 'ring'
   stats:
-    armor: 3
+    mitigation: 1
 
 Braided Anklet:
   name: Braided Anklet
@@ -51,8 +51,7 @@ Copper Ring:
   value: 50
   icon: 'ring'
   stats:
-    healthBonus: 5
-    energyBonus: 1
+    attack: 1
 
 Copper Tongue Piercing:
   name: Copper Tongue Piercing
@@ -64,7 +63,8 @@ Copper Tongue Piercing:
   value: 50
   icon: 'tongue-piercing'
   stats:
-    healingPerRound: 3
+    healing: 2
+    energyBonus: 1
 
 #
 
@@ -78,7 +78,7 @@ Bone Belt:
   value: 200
   icon: 'bone-string'
   stats:
-    energyBonus: 5
+     healthBonus: 20
 
 Bone Anklet:
   name: Bone Anklet
@@ -90,8 +90,7 @@ Bone Anklet:
   value: 100
   icon: 'bone-string'
   stats:
-    speed: 1
-    energyPerRound: 1
+    armor: 4
 
 Quartz Copper Ring:
   name: Quartz Copper Ring
@@ -103,7 +102,6 @@ Quartz Copper Ring:
   value: 200
   icon: 'ring-with-stone'
   stats:
-    healthBonus: 20
     attack: 2
 
 Quartz Copper Tongue Piercing:
@@ -116,8 +114,9 @@ Quartz Copper Tongue Piercing:
   value: 200
   icon: 'tongue-piercing'
   stats:
-    energyBonus: 10
-    attack: 2
+    healing: 4
+    energyBonus: 2
+
 
 ###HOLY FUCK
 
@@ -131,8 +130,9 @@ Iron Ring:
   value: 250
   icon: 'ring'
   stats:
-    healthBonus: 25
-    energyBonus: 5
+    mitigation: 2
+    healthBonus: 10
+
 
 Iron Tongue Piercing:
   name: Iron Tongue Piercing
@@ -144,7 +144,9 @@ Iron Tongue Piercing:
   value: 250
   icon: 'tongue-piercing'
   stats:
-    healingPerRound: 5
+    energyBonus: 3
+    energyPerRound: 1
+
 
 Boar Tusk Belt:
   name: Boar Tusk Belt
@@ -156,7 +158,8 @@ Boar Tusk Belt:
   value: 400
   icon: 'bone-string'
   stats:
-    armor: 10
+    healingPerRound: 4 #mabye 5
+    healthBonus: 20
 
 Boar Tusk Anklet:
   name: Boar Tusk Anklet
@@ -168,7 +171,7 @@ Boar Tusk Anklet:
   value: 200
   icon: 'bone-string'
   stats:
-    armor: 5
+    mitigation: 2
     speed: 2
 
 Quartz Iron Ring:
@@ -181,8 +184,8 @@ Quartz Iron Ring:
   value: 300
   icon: 'ring-with-stone'
   stats:
-    armor: 5
-    attack: 4
+    mitigation: 3
+    healthBonus: 15
 
 Quartz Iron Tongue Piercing:
   name: Iron Tongue Piercing (Quartz)
@@ -194,8 +197,8 @@ Quartz Iron Tongue Piercing:
   value: 300
   icon: 'tongue-piercing'
   stats:
-    healingPerRound: 5
-    attack: 4
+    energyBonus: 6
+    energyPerRound: 1
 
 Tanzanite Iron Ring:
   name: Iron Ring (Tanzanite)
@@ -207,8 +210,8 @@ Tanzanite Iron Ring:
   value: 600
   icon: 'ring-with-stone'
   stats:
-    armor: 5
-    energyPerRound: 3
+    mitigation: 4
+    healthBonus: 20
 
 Tanzanite Iron Tongue Piercing:
   name: Iron Tongue Piercing (Tanzanite)
@@ -220,8 +223,8 @@ Tanzanite Iron Tongue Piercing:
   value: 600
   icon: 'tongue-piercing'
   stats:
-    healingPerRound: 5
-    energyPerRound: 3
+    energyBonus: 9
+    energyPerRound: 2
 
 #if the system becomes more modular/needs more things engraving filigree could be easy
 
