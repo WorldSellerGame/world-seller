@@ -22,7 +22,7 @@ export function resetWorkers(ctx: StateContext<IGameWorkers>) {
 }
 
 export function workerTimerMultiplier(workerMultiplierLevel = 1) {
-  return 0.05 * workerMultiplierLevel;
+  return 0.95 * workerMultiplierLevel;
 }
 
 export function upkeepCost(numWorkers: number) {
