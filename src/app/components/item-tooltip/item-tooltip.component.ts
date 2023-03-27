@@ -25,7 +25,7 @@ export class ItemTooltipComponent implements OnInit {
 
   ngOnInit() {
     this.hasStats = Object.keys(this.item.stats || {}).length > 0;
-    this.effects = (this.item.effects || [])
+    this.effects = (this.item?.effects || [])
       .filter(x => x.effect === 'ApplyEffect')
       .map(x => x.effectName)
       .filter(Boolean)
