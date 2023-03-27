@@ -1,9 +1,9 @@
-## [0.1.5](https://github.com/WorldSellerGame/world-seller/compare/v0.1.4...v0.1.5) (2023-03-27)
+## [0.1.6](https://github.com/WorldSellerGame/world-seller/compare/v0.1.5...v0.1.6) (2023-03-27)
 
 
 ### Bug Fixes
 
-* **build:** move itch upload to a separate linux action ([c42c4d9](https://github.com/WorldSellerGame/world-seller/commit/c42c4d9c690b26b90c14fa6ffeccfcaffeb344ad))
+* **build:** hopefully this time it will actually upload to itch ([e5a8f49](https://github.com/WorldSellerGame/world-seller/commit/e5a8f49a3aea3b5b87a560dbe7f2a29acdf2bfa8))
 
 
 
