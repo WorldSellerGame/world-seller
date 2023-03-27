@@ -81,7 +81,7 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources, count
       currentCharacter.resources[resource] = 0;
     }
 
-    currentCharacter.resources[resource] = Math.max(0, currentCharacter.resources[resource] + resources[resource]);
+    currentCharacter.resources[resource] = Math.floor(Math.max(0, currentCharacter.resources[resource] + resources[resource]));
   });
 
   ctx.setState(patch<ICharSelect>({
