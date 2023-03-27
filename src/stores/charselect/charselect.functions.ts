@@ -71,6 +71,9 @@ export function gainResources(ctx: StateContext<ICharSelect>, { resources, count
     return;
   }
 
+  // ya just can't
+  delete resources['nothing'];
+
   const gainedResources = sum(Object.values(resources).filter(x => x > 0));
   if(countsForAchievements && gainedResources > 0) {
     ctx.dispatch(new IncrementStat(AchievementStat.ResourcesGained, gainedResources));
