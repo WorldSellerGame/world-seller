@@ -470,7 +470,7 @@ Banana Bread:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 1
+  durability: 4
   value: 500
   icon: bread
   oocHealth: 30

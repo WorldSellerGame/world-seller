@@ -141,7 +141,8 @@ export function useItemInSlot(ctx: StateContext<IGameCombat>, { slot }: UseItemI
 
   ctx.setState(patch<IGameCombat>({
     activeItems: updateItem<IGameItem | undefined>(slot, patch<IGameItem | undefined>({
-      durability: newDurability
+      durability: newDurability,
+      foodDuration: newDurability
     }))
   }));
 }
@@ -564,7 +565,7 @@ export function consumeFoodCharges(ctx: StateContext<IGameCombat>) {
       return undefined;
     }
 
-    return { ...food, foodDuration: newDuration };
+    return { ...food, foodDuration: newDuration, durability: newDuration };
   });
 
   ctx.setState(patch<IGameCombat>({ activeFoods: foods }));
