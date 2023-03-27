@@ -4,7 +4,7 @@
   [ngClass]="[
   rarity || 'Common',
   emphasizeText ? 'emphasis' : '',
-  angryColorWhenQuantityExceedsMax && quantity > maxQuantity ? 'angry' : '',
+  angryColorWhenQuantityExceedsMax && maxQuantity > 0 && quantity > maxQuantity ? 'angry' : '',
   name === 'nothing' ? 'nothing' : ''
 ]">
   <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
