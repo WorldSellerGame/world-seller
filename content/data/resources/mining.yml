@@ -36,7 +36,7 @@ Limestone:
 
 Copper Ore:
   name: Copper Ore
-  description: Used to do copper things, but later.
+  description: Used to do copper things.
   category: Raw Materials
   rarity: Uncommon
   icon: 'iron-ore'
@@ -50,7 +50,7 @@ Brimstone:
 
 Iron Ore:
   name: Iron Ore
-  description: Used to do iron things, but later.
+  description: Used to do iron things.
   category: Raw Materials
   rarity: Uncommon
   icon: 'iron-ore'

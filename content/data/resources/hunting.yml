@@ -64,7 +64,7 @@ Moose Meat:
 
 Bear Meat:
   name: Bear Meat
-  description: Bear meat is similar to venison, but tastes like their last meal.
+  description: Bear meat is similar to venison, but tastes like what they eat in the area.
   category: Foods
   rarity: Rare
   icon: 'meat'

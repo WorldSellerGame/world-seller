@@ -10,9 +10,9 @@ transforms:
     perGather: { min: 3, max: 10 }
     level: { min: 0, max: 10 }
     gatherTime: 230
-  
 
-  
+
+
   - startingItem: Apple Seed
     becomes:
       - name: Apple
@@ -23,7 +23,7 @@ transforms:
         weight: 2
     perGather: { min: 3, max: 10 }
     level: { min: 5, max: 15 }
-    gatherTime: 460 
+    gatherTime: 460
 
 
 
@@ -186,4 +186,4 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 25, max: 35 }
-    gatherTime: 5190
+    gatherTime: 20000

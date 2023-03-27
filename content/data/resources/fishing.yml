@@ -43,7 +43,7 @@ Bass:
 
 Catfish:
   name: Catfish
-  description: Rare in these parts, but the species present grow huge. The taste isn't for everyone though. #Catfish cheeks are a a delicacy look it up
+  description: Rare in these parts, but the species present grow huge. The taste isn't for everyone though.
   category: Foods
   rarity: Rare
   icon: 'fish'

@@ -27,7 +27,7 @@ Charcoal:
   rarity: Common
   icon: 'charcoal'
 
-Mortar: #High Heat Mortar later
+Mortar:
   name: Mortar
   description: Good for building, not too good for throwing.
   category: Refined Materials
@@ -261,7 +261,7 @@ Metal Sewing Kit:
 
 Jewelry Tools:
   name: Jewelry Tools
-  description: A few tools for puncturing, holding, smashing, and stitching. #HOW DID YOU SPELL IT RIGHT HERE
+  description: A few tools for puncturing, holding, smashing, and stitching.
   category: Crafting Tables
   rarity: Common
   icon: 'toolbox'
