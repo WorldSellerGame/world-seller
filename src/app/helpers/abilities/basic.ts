@@ -17,7 +17,7 @@ function singleTargetMeleeAttack(ctx: StateContext<IGameCombat>, opts: IAttackPa
 
   const unmitigatedDamage = baseDamage - armor;
   const mitigatedDamage = (mitigation / 100) * baseDamage;
-  const damage = Math.max(0, unmitigatedDamage - mitigatedDamage);
+  const damage = Math.floor(Math.max(0, unmitigatedDamage - mitigatedDamage));
 
   return {
     damage,
@@ -34,7 +34,7 @@ function singleTargetHeal(ctx: StateContext<IGameCombat>, opts: IAttackParams): 
   const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
   const healingBonus = opts.allowBonusStats ? getStat(source.stats, Stat.Healing) : 0;
 
-  const damage = Math.max(0, baseHeal + healingBonus);
+  const damage = Math.floor(Math.max(0, baseHeal + healingBonus));
 
   return {
     damage,
@@ -51,7 +51,7 @@ function singleTargetEnergyHeal(ctx: StateContext<IGameCombat>, opts: IAttackPar
   const baseHeal = calculateAbilityDamageForUser(ability, opts.useStats);
   const healingBonus = opts.allowBonusStats ? getStat(source.stats, Stat.EnergyHealing) : 0;
 
-  const damage = Math.max(0, baseHeal + healingBonus);
+  const damage = Math.floor(Math.max(0, baseHeal + healingBonus));
 
   return {
     damage,
