@@ -37,8 +37,12 @@
                   </ng-container>
 
                   <ng-template #loading>
-                    <ion-card-content>
-                      <ion-spinner></ion-spinner> Loading latest announcement...
+                    <ion-card-content class="announcement-loading">
+                      <ion-spinner></ion-spinner>
+                      <div>
+                        <div>Loading latest announcement...</div>
+                        <div>If this is taking too long, <a target="_blank" href="https://blog.worldsellergame.com">you can always check the blog!</a></div>
+                      </div>
                     </ion-card-content>
                   </ng-template>
                 </ion-card>

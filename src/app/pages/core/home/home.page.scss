@@ -27,6 +27,17 @@
 
 .announcement {
   min-height: 150px;
+
+  .announcement-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+
+    ion-spinner {
+      margin-right: 10px;
+    }
+  }
 }
 
 .announcement-row {
