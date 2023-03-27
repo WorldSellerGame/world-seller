@@ -1,7 +1,8 @@
 
 <ng-container *ngIf="{
   currentDungeon: currentDungeon$ | async,
-  currentPlayer: currentPlayer$ | async
+  currentPlayer: currentPlayer$ | async,
+  activeItems: activeItems$ | async
 } as pageData">
 
   <ion-header>
@@ -48,6 +49,21 @@
                 <ion-progress-bar [value]="player.currentEnergy / player.maxEnergy" color="energy"></ion-progress-bar>
               </ion-col>
             </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="pageData.activeItems as items">
+      <ion-col *ngFor="let slot of [0, 1, 2]">
+        <ion-card class="item-card" [class.empty]="!items[slot]">
+          <ion-card-content *ngIf="!items[slot]">Empty</ion-card-content>
+
+          <ion-card-content *ngIf="items[slot] as item">
+            <app-combat-item-display [item]="item" [showEatInfo]="true"></app-combat-item-display>
+            <div class="eat-container">
+              <ion-button class="eat" color="secondary" fill="outline" (click)="useItemForOOCHeal(slot)" *ngIf="item.category === 'Foods' && ((item.oocHealth || 0) > 0 || (item.oocEnergy || 0) > 0)">Eat</ion-button>
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>

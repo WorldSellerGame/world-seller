@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { clamp, cloneDeep } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { DungeonNode, DungeonTile, IDungeon, IGameDungeonState, IGameEncounterCharacter } from '../../../../../../interfaces';
+import { DungeonNode, DungeonTile, IDungeon, IGameDungeonState, IGameEncounterCharacter, IGameItem } from '../../../../../../interfaces';
 import { CombatState } from '../../../../../../stores';
+import { OOCEatFoodInDungeon } from '../../../../../../stores/combat/combat.actions';
 import {
   FullyHeal, GainPercentageOfDungeonLoot,
   LeaveDungeon, MoveInDungeonByDelta
@@ -26,6 +27,7 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
 
   @Select(CombatState.currentPlayer) currentPlayer$!: Observable<IGameEncounterCharacter>;
   @Select(CombatState.currentDungeon) currentDungeon$!: Observable<IGameDungeonState>;
+  @Select(CombatState.activeItems) activeItems$!: Observable<Array<IGameItem | undefined>>;
 
   private dungeonSub!: Subscription;
   public dungeonDisplay: DungeonNode[][] = [];
@@ -136,4 +138,7 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
     return view;
   }
 
+  useItemForOOCHeal(slot: number) {
+    this.store.dispatch(new OOCEatFoodInDungeon(slot));
+  }
 }
