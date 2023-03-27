@@ -153,11 +153,23 @@ export class CombatState {
 
     // use either the current player, or create a new one for combat
     let currentPlayer = ctx.getState().currentPlayer;
-    if(!currentPlayer) {
-      currentPlayer = getPlayerCharacterReadyForCombat(
-        store, ctx, activePlayer, this.getBonusStats(ctx), this.getBonusEffects(ctx)
-      );
+
+    const createdPlayer = getPlayerCharacterReadyForCombat(
+      store, ctx, activePlayer, this.getBonusStats(ctx), this.getBonusEffects(ctx)
+    );
+
+    let currentHealth = createdPlayer.currentHealth;
+    let currentEnergy = createdPlayer.currentEnergy;
+
+    if(currentPlayer) {
+      currentHealth = currentPlayer.currentHealth;
+      currentEnergy = currentPlayer.currentEnergy;
     }
+
+    currentPlayer = createdPlayer;
+
+    currentPlayer.currentHealth = Math.min(currentHealth, currentPlayer.maxHealth);
+    currentPlayer.currentEnergy = Math.min(currentEnergy, currentPlayer.maxEnergy);
 
     // do on-combat-start heals
     currentPlayer.currentHealth = Math.min(
@@ -685,10 +697,9 @@ export class CombatState {
 
         // then the player gets a chance to go
         const newSpeed = player.currentSpeed - 1;
+        const newPlayer = { ...player, currentSpeed: newSpeed };
         ctx.setState(patch<IGameCombat>({
-          currentPlayer: patch<IGameEncounterCharacter>({
-            currentSpeed: newSpeed
-          })
+          currentPlayer: newPlayer
         }));
 
         // unlock combat when the player can do something
@@ -709,7 +720,7 @@ export class CombatState {
           }
 
           if(preTurnDeltas.length > 0) {
-            applyDeltas(ctx, player, player, preTurnDeltas);
+            applyDeltas(ctx, newPlayer, newPlayer, preTurnDeltas);
           }
 
           canSomeoneAct = true;
