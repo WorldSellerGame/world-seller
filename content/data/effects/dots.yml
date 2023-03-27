@@ -75,7 +75,7 @@ Doom1:
   name: Doom
   description: Massive damage when you finish your next turn, use your time well...
   icon: skull-doom
-  color: "##ffffff"
+  color: "#ffffff"
   turnsLeft: 1
   statusEffectType: DamageOverTime
   damageOverTime: 30
