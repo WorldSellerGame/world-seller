@@ -39,3 +39,12 @@
   min-height: calc(100vh - 450px);
   max-height: calc(100vh - 450px);
 }
+
+.recipe-name {
+  display: flex;
+  align-items: center;
+
+  .yield-icon {
+    margin-left: 5px;
+  }
+}

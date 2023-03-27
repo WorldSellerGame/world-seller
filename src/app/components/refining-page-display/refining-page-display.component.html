@@ -88,8 +88,20 @@
 
                 <ion-label>
                   <h2>
-                    <strong [ngxTippy]="tooltip">
-                      {{ recipe.result }}
+                    <strong class="recipe-name">
+                      <span [ngxTippy]="tooltip">{{ recipe.result }}</span>
+
+                      <ion-icon class="yield-icon" name="help-circle" [ngxTippy]="amountTooltip" *ngIf="recipe.perCraft.max > 1"></ion-icon>
+
+                      <ng-template #amountTooltip>
+                        <span *ngIf="recipe.perCraft.min === recipe.perCraft.max">
+                          Yields {{ recipe.perCraft.min }} per craft
+                        </span>
+
+                        <span *ngIf="recipe.perCraft.min !== recipe.perCraft.max">
+                          Yields {{ recipe.perCraft.min }} - {{ recipe.perCraft.max }} per craft
+                        </span>
+                      </ng-template>
                     </strong>
 
                     <div class="resource-notifier" *ngIf="type === 'resources'">
