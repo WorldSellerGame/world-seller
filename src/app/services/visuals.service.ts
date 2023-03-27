@@ -25,8 +25,8 @@ export class VisualsService {
   playSoundEffect(sound: string) {
     const options = this.store.snapshot().options;
 
-    const masterPercent = (options[GameOption.SoundMaster] || 100) / 100;
-    const sfxPercent = (options[GameOption.SoundSFX] || 100) / 100;
+    const masterPercent = (options[GameOption.SoundMaster] ?? 100) / 100;
+    const sfxPercent = (options[GameOption.SoundSFX] ?? 100) / 100;
 
     const overrideSound = this.contentService.getOverrideSoundEffect(sound);
     const soundToPlay = overrideSound || `assets/sfx/${sound}.wav`;
