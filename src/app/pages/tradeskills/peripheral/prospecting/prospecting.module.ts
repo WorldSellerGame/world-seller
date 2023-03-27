@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ProspectingPageRoutingModule } from './prospecting-routing.module';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { SharedModule } from '../../../../shared.module';
 import { ProspectingPage } from './prospecting.page';
 
@@ -15,6 +16,7 @@ import { ProspectingPage } from './prospecting.page';
     FormsModule,
     IonicModule,
     SharedModule,
+    NgxTippyModule,
     ProspectingPageRoutingModule
   ],
   declarations: [ProspectingPage]

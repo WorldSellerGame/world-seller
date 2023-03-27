@@ -80,7 +80,9 @@
                     <ion-button fill="clear"
                                 [class.no-skillups]="!seed.canGiveLevel"
                                 (click)="plant(currentPlantIndex, seed.name)"
-                                [analyticsClick]="'Peripheral:Farming:Plant:' + seed.name">Plant</ion-button>
+                                [analyticsClick]="'Peripheral:Farming:Plant:' + seed.name">
+                                Plant <span *ngIf="seed.canGiveLevel">&nbsp;(+1 Lv)</span>
+                    </ion-button>
                   </ion-item>
                 </ion-list>
 

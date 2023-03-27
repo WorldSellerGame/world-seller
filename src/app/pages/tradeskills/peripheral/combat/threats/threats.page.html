@@ -72,7 +72,7 @@
                           [class.no-skillups]="(pageData.level || 0) > 0 && (pageData.level || 0) % 10 === 0 || (pageData.level || 0) >= threat.maxSkillGainLevel"
                           (click)="fight(threatName)"
                           [analyticsClick]="'Peripheral:Combat:Threat:Fight:' + threatName">
-                Fight!
+                Fight! <span *ngIf="!((pageData.level || 0) > 0 && (pageData.level || 0) % 10 === 0 || (pageData.level || 0) >= threat.maxSkillGainLevel)">&nbsp;(+1 Lv)</span>
               </ion-button>
             </ng-container>
           </ion-card>
