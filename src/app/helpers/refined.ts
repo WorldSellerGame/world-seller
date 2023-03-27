@@ -23,11 +23,12 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
 
   if(newTicks <= 0) {
 
+    console.log(job.totalLeft);
+
     // get a new item
     ctx.dispatch([
       new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
-      new IncrementStat(incrementStat),
-      new PlaySFX('tradeskill-finish')
+      new IncrementStat(incrementStat)
     ]);
 
     // attempt a level up
@@ -39,7 +40,10 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
 
     // if we're on the last one, delete the job
     if(job.totalLeft <= 1) {
-      ctx.dispatch(new cancelProto(0, false));
+      ctx.dispatch([
+        new cancelProto(0, false),
+        new PlaySFX('tradeskill-finish')
+      ]);
       return;
     }
 
