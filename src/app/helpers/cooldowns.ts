@@ -9,7 +9,7 @@ export function lowerGatheringCooldowns(ctx: StateContext<IGameGathering>, ticks
   Object.keys(cooldowns || {}).forEach(locationKey => {
     const location = cooldowns[locationKey];
     if(location > 0) {
-      cooldowns[locationKey] = location - ticks;
+      cooldowns[locationKey] = Math.floor(location - ticks);
     }
 
     if(cooldowns[locationKey] <= 0) {

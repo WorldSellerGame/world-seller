@@ -36,7 +36,7 @@ export function decreaseGatherTimer(
     return;
   }
 
-  const newTicks = state.currentLocationDuration - ticks;
+  const newTicks = Math.floor(state.currentLocationDuration - ticks);
 
   ctx.setState(patch<IGameGathering>({
     currentLocationDuration: newTicks

@@ -32,7 +32,7 @@ export function resetFarming(ctx: StateContext<IGameFarming>) {
 export function decreaseDuration(ctx: StateContext<IGameFarming>, { ticks }: TickTimer) {
   const state = ctx.getState();
 
-  const plots = state.plots.map(plot => ({ ...plot, currentDuration: Math.max(0, plot.currentDuration - ticks) }));
+  const plots = state.plots.map(plot => ({ ...plot, currentDuration: Math.max(0, Math.floor(plot.currentDuration - ticks)) }));
 
   ctx.setState(patch<IGameFarming>({
     plots
