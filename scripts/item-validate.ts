@@ -316,6 +316,11 @@ const loadContent = async () => {
       hasBad = true;
     }
 
+    if(item.type === 'Food' && item.durability !== item.foodDuration) {
+      console.log(`⚠ Item ${key} is a food item with a durability that does not match foodDuration.`);
+      hasBad = true;
+    }
+
     (item.abilities || []).forEach((ability: any) => {
       if(!allAbilities[ability.abilityName]) {
         console.log(`⚠ Item ${key} has an ability ${ability.abilityName} which does not exist.`);

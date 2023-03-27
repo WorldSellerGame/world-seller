@@ -17,6 +17,7 @@ export class InventoryPage implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
   @Select(CombatState.currentEncounter) encounter$!: Observable<any>;
+  @Select(CombatState.currentDungeon) dungeon$!: Observable<any>;
 
   public activeCategory = '';
   public categorySub!: Subscription;
