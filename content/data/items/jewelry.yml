@@ -78,7 +78,7 @@ Bone Belt:
   value: 200
   icon: 'bone-string'
   stats:
-     healthBonus: 20
+    healthBonus: 20
 
 Bone Anklet:
   name: Bone Anklet

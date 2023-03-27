@@ -28,7 +28,7 @@ Poison3:
 
 Poison4:
   name: Poison IV
-  description: Losing a tone of health over a long time.
+  description: Losing a ton of health over a long time.
   icon: poison
   color: "#b4202a"
   turnsLeft: 6
