@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -54,7 +54,7 @@ jobs:
       run: echo "${{ steps.createRelease.outputs.upload_url }}" > release_url.txt
 
     - name: Save Release URL File for Publish
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v1
       with:
         name: release_url
         path: release_url.txt
@@ -92,7 +92,7 @@ jobs:
 
     steps:
     - name: Load Release URL File from release job
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: release_url
 
@@ -104,7 +104,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -148,7 +148,7 @@ jobs:
 
     steps:
     - name: Load Release URL File from release job
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: release_url
 
@@ -160,7 +160,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -203,16 +203,16 @@ jobs:
         node-version: [18]
 
     steps:
-    - uses: little-core-labs/get-git-tag@v3.0.2
+    - uses: little-core-labs/get-git-tag@v3.0.1
       id: loadTagName
 
     - name: Load Windows Binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: WorldSeller.exe
 
     - name: Load Linux Binary
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: WorldSeller-linux.zip
 
