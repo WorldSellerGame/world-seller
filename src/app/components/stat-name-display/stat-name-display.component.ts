@@ -51,10 +51,10 @@ export class StatNameDisplayComponent implements OnInit {
     [Stat.HealthBonus]: 'Health Bonus',
     [Stat.Speed]: 'Speed',
 
-    [Stat.HealingPerRound]: 'Healing Per Round',
-    [Stat.HealingPerCombat]: 'Healing Per Encounter',
-    [Stat.EnergyPerRound]: 'Energy Per Round',
-    [Stat.EnergyPerCombat]: 'Energy Per Encounter'
+    [Stat.HealingPerRound]: 'Health Restored Per Round',
+    [Stat.HealingPerCombat]: 'Health Restored Per Encounter',
+    [Stat.EnergyPerRound]: 'Energy Restored Per Round',
+    [Stat.EnergyPerCombat]: 'Energy Restored Per Encounter'
   } as const;
 
   public readonly tooltips: Record<Stat, string> = {
