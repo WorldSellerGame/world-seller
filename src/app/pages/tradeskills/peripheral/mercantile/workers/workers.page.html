@@ -50,7 +50,13 @@
         <ion-col>
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Worker Allocations</ion-card-title>
+              <ion-card-title>
+                <div class="header-with-button">
+                  Worker Allocations
+
+                  <ion-button class="header-button" size="small" color="warning" fill="clear" (click)="unallocateAll(pageData.workerAllocations || { gathering: [], refining: [], mercantile: [] })">Unallocate All</ion-button>
+                </div>
+              </ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
@@ -72,6 +78,8 @@
                       <span *ngIf="worker.currentTick >= 0">{{ worker.currentTick / worker.location.gatherTime * 100 | number:'1.0-0' }}%</span>
                     </p>
                   </ion-label>
+
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateGatheringWorker(worker)">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
@@ -91,10 +99,16 @@
                       <span *ngIf="worker.currentTick >= 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
                     </p>
                   </ion-label>
+
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
-                  Mercantile Workers
+                  <div class="header-with-button">
+                    Mercantile Workers
+
+                    <ion-button class="header-button" size="small" color="primary" fill="clear" (click)="unallocateMercantileWorker()" *ngIf="(pageData.workerAllocations?.mercantile || []).length > 0">Unallocate One</ion-button>
+                  </div>
                 </ion-list-header>
 
                 <ion-item *ngIf="(pageData.workerAllocations?.mercantile || []).length === 0">

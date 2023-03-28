@@ -100,3 +100,10 @@ ion-modal.modio-browse {
   --min-width: 80%;
   --min-height: 80%;
 }
+
+.header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
