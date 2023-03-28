@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy, uniq } from 'lodash';
+import { LocalStorage } from 'ngx-webstorage';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem, IGameMercantileStockpile } from '../../../../../../interfaces';
 import { CharSelectState, MercantileState } from '../../../../../../stores';
@@ -21,12 +22,14 @@ export class StockpilePage implements OnInit, OnDestroy {
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
   @Select(MercantileState.stockpileInfo) stockpileInfo$!: Observable<{ current: number; max: number }>;
 
-  public activeCategory = '';
+  @LocalStorage('currenttab-stockpile') public activeCategory!: string;
   public categorySub!: Subscription;
 
   constructor(private store: Store) { }
 
   ngOnInit() {
+    this.activeCategory ??= '';
+
     this.categorySub = this.stockpile$.subscribe(x => {
       const items = x.items;
 

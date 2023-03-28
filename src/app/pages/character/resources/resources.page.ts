@@ -4,6 +4,7 @@ import { sortBy, uniq } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { CharSelectState } from '../../../../stores';
 
+import { LocalStorage } from 'ngx-webstorage';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { ContentService } from '../../../services/content.service';
 
@@ -16,22 +17,28 @@ export class ResourcesPage implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
 
-  public activeCategory = '';
+  @LocalStorage('currenttab-resources') public activeCategory!: string;
   public categorySub!: Subscription;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
+    this.activeCategory ??= '';
+
+    setDiscordStatus({
+      state: 'Browsing their stockpile...',
+    });
+
     this.categorySub = this.resources$.subscribe(x => {
+      if(this.activeCategory && this.resourcesInCategory(x, this.activeCategory).length > 0) {
+        return;
+      }
+
       if (this.hasNoResources(x)) {
         this.activeCategory = '';
       }
 
       this.activeCategory = this.resourceCategories(x)[0];
-
-      setDiscordStatus({
-        state: 'Browsing their stockpile...',
-      });
     });
   }
 
