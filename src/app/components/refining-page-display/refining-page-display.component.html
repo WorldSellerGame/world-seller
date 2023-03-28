@@ -36,29 +36,29 @@
           <ion-row>
             <ion-col>
               <ion-item class="filter" lines="none" (click)="changeOption('hideDiscovered', !filterOptions.hideDiscovered)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideDiscovered"></ion-checkbox>
-                <ion-label class="ion-text-wrap">Hide Discovered</ion-label>
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideDiscovered"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Discovered</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item class="filter" lines="none" (click)="changeOption('hideHasIngredients', !filterOptions.hideHasIngredients)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideHasIngredients"></ion-checkbox>
-                <ion-label class="ion-text-wrap">Hide Creatable</ion-label>
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideHasIngredients"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Creatable</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item class="filter" lines="none" (click)="changeOption('hideHasNoIngredients', !filterOptions.hideHasNoIngredients)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideHasNoIngredients"></ion-checkbox>
-                <ion-label class="ion-text-wrap">Hide Uncreatable</ion-label>
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideHasNoIngredients"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Uncreatable</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
               <ion-item class="filter" lines="none" (click)="changeOption('hideDiscoveredTables', !filterOptions.hideDiscoveredTables)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideDiscoveredTables"></ion-checkbox>
-                <ion-label class="ion-text-wrap">Hide Discovered Crafting Tables</ion-label>
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideDiscoveredTables"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Discovered Crafting Tables</ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
