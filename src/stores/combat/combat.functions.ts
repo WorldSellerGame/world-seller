@@ -375,7 +375,10 @@ export function acquireItemDrops(ctx: StateContext<IGameCombat>, drops: IGameEnc
       if(isInDungeon) {
         const currentResourceValue = ctx.getState().currentDungeon?.currentLoot?.resources[resource] ?? 0;
 
-        ctx.dispatch(new NotifyInfo(`You found ${amount}x ${resource}!`));
+        ctx.dispatch([
+          new AddCombatLogMessage(`You got ${amount}x ${resource}!`),
+          new NotifyInfo(`You found ${amount}x ${resource}!`)
+        ]);
 
         ctx.setState(patch<IGameCombat>({
           currentDungeon: patch<IGameDungeonState>({
