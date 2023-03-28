@@ -20,7 +20,7 @@ Copper Sword:
   type: Weapon
   category: Weapons
   rarity: Uncommon
-  durability: 15
+  durability: 20
   value: 100
   icon: sword
   givesPlayerAbility: Cleave
@@ -33,7 +33,7 @@ Copper Dagger:
   type: Weapon
   category: Weapons
   rarity: Uncommon
-  durability: 15
+  durability: 20
   value: 50
   icon: knife
   givesPlayerAbility: Stab
@@ -47,7 +47,7 @@ Iron Sword:
   type: Weapon
   category: Weapons
   rarity: Rare
-  durability: 20
+  durability: 30
   value: 500
   icon: sword
   givesPlayerAbility: Risky Swing
@@ -60,7 +60,7 @@ Iron Dagger:
   type: Weapon
   category: Weapons
   rarity: Rare
-  durability: 20
+  durability: 30
   value: 250
   icon: knife
   givesPlayerAbility: Hemorrhaging Stab

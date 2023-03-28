@@ -10,7 +10,6 @@ Stone Pickaxe:
   icon: pickaxe
   stats:
     pickaxePowerPercent: 10
-    pickaxeSpeed: 60
 
 Copper Pickaxe:
   name: Copper Pickaxe
@@ -18,12 +17,11 @@ Copper Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Uncommon
-  durability: 15
+  durability: 20
   value: 100
   icon: pickaxe
   stats:
     pickaxePowerPercent: 25
-    pickaxeSpeed: 300
 
 Iron Pickaxe:
   name: Iron Pickaxe
@@ -31,9 +29,8 @@ Iron Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Rare
-  durability: 20
+  durability: 30
   value: 500
   icon: pickaxe
   stats:
     pickaxePowerPercent: 40
-    pickaxeSpeed: 1200
