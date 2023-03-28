@@ -71,11 +71,11 @@ export class SettingsPage implements OnInit {
       'Are you sure you want to reset your stats? This cannot be undone.',
       [
         {
-          text: 'No, Keep',
+          text: 'No, Keep Stats',
           role: 'cancel'
         },
         {
-          text: 'Yes, Reset',
+          text: 'Yes, Reset Stats',
           handler: () => {
             this.store.dispatch(new ResetStats());
           }
@@ -90,11 +90,11 @@ export class SettingsPage implements OnInit {
       'Are you sure you want to reset your achievements? This cannot be undone.',
       [
         {
-          text: 'No, Keep',
+          text: 'No, Keep Achievements',
           role: 'cancel'
         },
         {
-          text: 'Yes, Reset',
+          text: 'Yes, Reset Achievements',
           handler: () => {
             this.store.dispatch(new ResetAchievements());
           }

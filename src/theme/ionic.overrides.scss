@@ -12,6 +12,10 @@ ion-button, ion-segment-button {
   text-transform: none;
 }
 
+ion-alert {
+  --max-width: 400px !important;
+}
+
 ion-icon:before {
   content: '';
   position: absolute;

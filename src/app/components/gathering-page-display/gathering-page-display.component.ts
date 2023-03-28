@@ -68,11 +68,11 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
       message: 'You are already gathering somewhere else. Gathering here will cancel that gathering and the time spend will be lost.',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'No, keep gathering',
           role: 'cancel'
         },
         {
-          text: 'Continue',
+          text: 'Yes, start gathering here',
           handler: () => {
             finish();
           }
