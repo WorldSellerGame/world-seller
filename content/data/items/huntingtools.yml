@@ -10,7 +10,6 @@ Stone Spear:
   icon: spear
   stats:
     huntingPowerPercent: 10
-    huntingSpeed: 60
 
 Copper Spear:
   name: Copper Spear
@@ -23,7 +22,6 @@ Copper Spear:
   icon: spear
   stats:
     huntingPowerPercent: 25
-    huntingSpeed: 300
 
 Iron Spear:
   name: Iron Spear
@@ -36,7 +34,6 @@ Iron Spear:
   icon: spear
   stats:
     huntingPowerPercent: 40
-    huntingSpeed: 1200
 
 
 #todo look at methods of bow implementation #it may be possible to force hunting Power to be a sudo ranged option on skills
