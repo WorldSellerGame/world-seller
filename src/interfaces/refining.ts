@@ -22,7 +22,7 @@ export interface IGameRefiningRecipe {
 
 export interface IGameRefiningOptions {
   hideDiscovered: boolean;
-  hideNew: boolean;
+  hideDiscoveredTables: boolean;
   hideHasIngredients: boolean;
   hideHasNoIngredients: boolean;
 }

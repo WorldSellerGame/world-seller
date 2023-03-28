@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import {
   IGameItem, IGameRecipe, IGameRefiningOptions,
-  IGameRefiningRecipe, IGameResource, IGameWorkersRefining
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory
 } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
@@ -36,7 +36,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   @Input() filterOptions: IGameRefiningOptions = {
     hideDiscovered: false,
-    hideNew: false,
+    hideDiscoveredTables: false,
     hideHasIngredients: false,
     hideHasNoIngredients: false,
   };
@@ -234,8 +234,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
           return false;
         }
 
-        if(this.filterOptions.hideNew && !this.discoveries[recipe.result]) {
-          return false;
+        if(this.filterOptions.hideDiscoveredTables && this.discoveries[recipe.result] && type === 'resources') {
+          return this.contentService.getResourceByName(recipe.result).category !== ItemCategory.CraftingTables;
         }
 
         if(this.filterOptions.hideHasIngredients && this.canCraftRecipe(recipe)) {

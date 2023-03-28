@@ -16,7 +16,7 @@ export const defaultJewelcrafting: () => IGameRefining = () => ({
   queueSize: 1,
   recipeQueue: [],
   hideDiscovered: false,
-  hideNew: false,
+  hideDiscoveredTables: false,
   hideHasIngredients: false,
   hideHasNoIngredients: false
 });

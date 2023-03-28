@@ -34,7 +34,7 @@ export class WeavingState {
   static options(state: IGameRefining) {
     return {
       hideDiscovered: state.hideDiscovered,
-      hideNew: state.hideNew,
+      hideDiscoveredTables: state.hideDiscoveredTables,
       hideHasIngredients: state.hideHasIngredients,
       hideHasNoIngredients: state.hideHasNoIngredients
     };

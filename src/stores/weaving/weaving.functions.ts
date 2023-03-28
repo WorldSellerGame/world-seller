@@ -13,7 +13,7 @@ export const defaultWeaving: () => IGameRefining = () => ({
   queueSize: 1,
   recipeQueue: [],
   hideDiscovered: false,
-  hideNew: false,
+  hideDiscoveredTables: false,
   hideHasIngredients: false,
   hideHasNoIngredients: false
 });
