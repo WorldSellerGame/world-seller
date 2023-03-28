@@ -157,6 +157,10 @@ export class WorkersState {
     const gainedResources: Record<string, number> = {};
     gatheringRewards.forEach(rewards => {
       Object.keys(rewards).forEach(key => {
+        if(key === 'nothing') {
+          return;
+        }
+
         gainedResources[key] = gainedResources[key] ?? 0;
         gainedResources[key] += rewards[key];
       });
