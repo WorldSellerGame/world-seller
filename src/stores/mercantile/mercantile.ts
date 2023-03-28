@@ -28,6 +28,11 @@ export class MercantileState {
   }
 
   @Selector()
+  static unlocked(state: IGameMercantile) {
+    return state.unlocked;
+  }
+
+  @Selector()
   static level(state: IGameMercantile) {
     return state.level;
   }

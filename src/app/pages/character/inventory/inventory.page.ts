@@ -4,7 +4,7 @@ import { sortBy, uniq } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
-import { CharSelectState, CombatState } from '../../../../stores';
+import { CharSelectState, CombatState, MercantileState } from '../../../../stores';
 import { OOCEatFood } from '../../../../stores/combat/combat.actions';
 import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
@@ -21,6 +21,7 @@ export class InventoryPage implements OnInit, OnDestroy {
   @Select(CharSelectState.activeCharacterInventory) inventory$!: Observable<IGameItem[]>;
   @Select(CombatState.currentEncounter) encounter$!: Observable<any>;
   @Select(CombatState.currentDungeon) dungeon$!: Observable<any>;
+  @Select(MercantileState.unlocked) mercantileUnlocked$!: Observable<boolean>;
 
   @LocalStorage('currenttab-inventory') public activeCategory!: string;
   public categorySub!: Subscription;

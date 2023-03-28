@@ -49,7 +49,7 @@
                           Quick Sell ({{ (item.value || 1) * (item.quantity || 1) }} coins)
                         </ion-item>
 
-                        <ion-item class="cursor-pointer" (click)="sell(item)">
+                        <ion-item class="cursor-pointer" (click)="sell(item)" *ngIf="mercantileUnlocked$ | async">
                           List For Sale
                         </ion-item>
 
