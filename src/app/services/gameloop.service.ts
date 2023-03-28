@@ -94,6 +94,11 @@ export class GameloopService {
       const minutes = Math.floor((value % 3600) / 60).toString().padStart(2, '0');
       const seconds = Math.floor((value % 3600) % 60).toString().padStart(2, '0');
 
+      if(hours === '00' && minutes === '00' && seconds === '00') {
+        this.title.setTitle('World Seller');
+        return;
+      }
+
       this.title.setTitle(`World Seller [${hours}:${minutes}:${seconds}]`);
     });
   }
