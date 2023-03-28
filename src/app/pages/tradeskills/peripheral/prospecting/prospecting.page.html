@@ -16,7 +16,7 @@
               </ion-card-header>
 
               <ion-card-content>
-                <ion-list>
+                <ion-list class="striped">
                   <ion-item *ngFor="let prospect of visibleProspects(skillLevel.level || 0); trackBy: trackBy">
                     <app-game-icon slot="start" [icon]="iconForRecipe(prospect)"></app-game-icon>
 

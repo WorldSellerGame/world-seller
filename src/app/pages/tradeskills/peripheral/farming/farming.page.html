@@ -70,7 +70,7 @@
                   You don't currently have any seeds.
                 </div>
 
-                <ion-list *ngIf="plantableSeeds.length > 0">
+                <ion-list class="striped" *ngIf="plantableSeeds.length > 0">
                   <ion-item *ngFor="let seed of plantableSeeds; trackBy: trackBy">
                     <ion-label>
                       <h2>

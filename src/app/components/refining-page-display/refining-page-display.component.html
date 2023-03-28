@@ -82,7 +82,7 @@
           </ion-segment>
 
           <cdk-virtual-scroll-viewport class="scrollable-list" itemSize="105" minBufferPx="945" maxBufferPx="1575">
-            <ion-list>
+            <ion-list class="striped">
               <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)" [shimmer]="!discoveries[recipe.result]"></app-game-icon>
 

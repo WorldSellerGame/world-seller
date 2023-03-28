@@ -130,7 +130,7 @@
             </ion-card-header>
 
             <ion-card-content class="constrain-size">
-              <ion-list>
+              <ion-list class="striped">
                 <ion-item *ngIf="learnedSkills.length === 0">You don't know any abilities!</ion-item>
                 <ion-item *ngFor="let skill of learnedSkills; trackBy: trackBy"
                           class="cursor-pointer"
@@ -148,7 +148,7 @@
             </ion-card-header>
 
             <ion-card-content class="constrain-size">
-              <ion-list>
+              <ion-list class="striped">
                 <ion-item *ngIf="usableItems.length === 0">You don't have any usable items!</ion-item>
                 <ion-item *ngFor="let item of usableItems; trackBy: trackBy"
                           class="cursor-pointer"
@@ -166,7 +166,7 @@
             </ion-card-header>
 
             <ion-card-content class="constrain-size">
-              <ion-list>
+              <ion-list class="striped">
                 <ion-item *ngIf="usableFoods.length === 0">You don't have any usable food items!</ion-item>
                 <ion-item *ngFor="let item of usableFoods; trackBy: trackBy"
                           class="cursor-pointer"
