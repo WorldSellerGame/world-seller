@@ -31,6 +31,11 @@ export class ForagingState {
   }
 
   @Selector()
+  static starredNodes(state: IGameGathering) {
+    return state.starred || {};
+  }
+
+  @Selector()
   static currentLocation(state: IGameGathering) {
     if(!state.currentLocation) {
       return undefined;

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
+import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
@@ -11,8 +12,10 @@ import { calculateStat } from '../../helpers';
   selector: 'app-gathering-page-display',
   templateUrl: './gathering-page-display.component.html',
   styleUrls: ['./gathering-page-display.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
+
 
   @Input() tradeskill = '';
   @Input() level$!: Observable<number>;
@@ -27,19 +30,30 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   @Input() locationData: IGameGatherLocation[] = [];
   @Input() setAction: any;
   @Input() cancelAction: any;
+  @Input() favoriteAction: any;
+
+  @Input() starredLocations: Record<string, boolean> | null = {};
 
   @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalLocations: number }>();
 
+  public allStarredLocations: Record<string, boolean> = {};
+  public visibleStars: Record<string, boolean> = {};
+
   public locations: IGameGatherLocation[] = [];
   private locSub!: Subscription;
+  private starSub!: Subscription;
 
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
 
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    console.log('init', this.starredLocations);
+    this.allStarredLocations = this.starredLocations || {};
+
     this.locSub = this.level$.subscribe(level => {
       this.locations = this.visibleLocations(this.locationData, level);
+      this.resortLocations();
 
       this.setMetadata();
     });
@@ -47,10 +61,21 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.locSub?.unsubscribe();
+    this.starSub?.unsubscribe();
   }
 
   trackBy(index: number) {
     return index;
+  }
+
+  resortLocations() {
+    this.locations = sortBy(this.locations, [loc => !this.allStarredLocations[loc.name], loc => loc.level.min]);
+  }
+
+  toggleFavorite(location: IGameGatherLocation, value: boolean) {
+    this.store.dispatch(new this.favoriteAction(location));
+    this.allStarredLocations[location.name] = value;
+    this.resortLocations();
   }
 
   setMetadata() {

@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainMiningLevels } from './mining.actions';
+import { GainMiningLevels, StarMiningLocation } from './mining.actions';
 
 export const defaultMining: () => IGameGathering = () => ({
   version: 0,
@@ -10,7 +10,8 @@ export const defaultMining: () => IGameGathering = () => ({
   level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
-  cooldowns: {}
+  cooldowns: {},
+  starred: {},
 });
 
 export function unlockMining(ctx: StateContext<IGameGathering>) {
@@ -27,4 +28,10 @@ export function resetMining(ctx: StateContext<IGameGathering>) {
 
 export function cancelMining(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
+}
+
+export function starMiningLocation(ctx: StateContext<IGameGathering>, { location }: StarMiningLocation) {
+  const starred = ctx.getState().starred || {};
+  starred[location.name] = !starred[location.name];
+  ctx.patchState({ starred });
 }

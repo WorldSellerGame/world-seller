@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainLoggingLevels } from './logging.actions';
+import { GainLoggingLevels, StarLoggingLocation } from './logging.actions';
 
 export const defaultLogging: () => IGameGathering = () => ({
   version: 0,
@@ -10,7 +10,8 @@ export const defaultLogging: () => IGameGathering = () => ({
   level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
-  cooldowns: {}
+  cooldowns: {},
+  starred: {},
 });
 
 export function unlockLogging(ctx: StateContext<IGameGathering>) {
@@ -27,4 +28,10 @@ export function resetLogging(ctx: StateContext<IGameGathering>) {
 
 export function cancelLogging(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
+}
+
+export function starLoggingLocation(ctx: StateContext<IGameGathering>, { location }: StarLoggingLocation) {
+  const starred = ctx.getState().starred || {};
+  starred[location.name] = !starred[location.name];
+  ctx.patchState({ starred });
 }

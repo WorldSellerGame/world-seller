@@ -18,3 +18,8 @@ export class CancelLogging {
   static type = '[Logging] Cancel Logging';
   constructor() {}
 }
+
+export class StarLoggingLocation {
+  static type = '[Logging] Star Logging Location';
+  constructor(public location: IGameGatherLocation) {}
+}

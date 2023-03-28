@@ -18,3 +18,8 @@ export class CancelMining {
   static type = '[Mining] Cancel Mining';
   constructor() {}
 }
+
+export class StarMiningLocation {
+  static type = '[Mining] Star Mining Location';
+  constructor(public location: IGameGatherLocation) {}
+}

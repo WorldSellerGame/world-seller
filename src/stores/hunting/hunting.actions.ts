@@ -18,3 +18,9 @@ export class CancelHunting {
   static type = '[Hunting] Cancel Hunting';
   constructor() {}
 }
+
+export class StarHuntingLocation {
+  static type = '[Hunting] Star Hunting Location';
+  constructor(public location: IGameGatherLocation) {}
+}
+

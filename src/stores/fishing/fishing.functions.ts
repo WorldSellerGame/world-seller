@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainFishingLevels } from './fishing.actions';
+import { GainFishingLevels, StarFishingLocation } from './fishing.actions';
 
 export const defaultFishing: () => IGameGathering = () => ({
   version: 0,
@@ -10,7 +10,8 @@ export const defaultFishing: () => IGameGathering = () => ({
   level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
-  cooldowns: {}
+  cooldowns: {},
+  starred: {},
 });
 
 export function unlockFishing(ctx: StateContext<IGameGathering>) {
@@ -27,4 +28,10 @@ export function resetFishing(ctx: StateContext<IGameGathering>) {
 
 export function cancelFishing(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
+}
+
+export function starFishingLocation(ctx: StateContext<IGameGathering>, { location }: StarFishingLocation) {
+  const starred = ctx.getState().starred || {};
+  starred[location.name] = !starred[location.name];
+  ctx.patchState({ starred });
 }

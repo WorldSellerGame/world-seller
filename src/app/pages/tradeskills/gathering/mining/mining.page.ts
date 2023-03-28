@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { MiningState, WorkersState } from '../../../../../stores';
-import { CancelMining, SetMiningLocation } from '../../../../../stores/mining/mining.actions';
+import { CancelMining, SetMiningLocation, StarMiningLocation } from '../../../../../stores/mining/mining.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -15,9 +15,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class MiningPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getMiningLocations();
-  }
+  public locationData = this.contentService.getMiningLocations();
 
   public get setAction() {
     return SetMiningLocation;
@@ -27,11 +25,16 @@ export class MiningPage implements OnInit {
     return CancelMining;
   }
 
+  public get favoriteAction() {
+    return StarMiningLocation;
+  }
+
   public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
 
   @Select(MiningState.level) level$!: Observable<number>;
   @Select(MiningState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(MiningState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(MiningState.starredNodes) starredLocations$!: Observable<Record<string, boolean>>;
   @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
     workerAllocations: IGameWorkersGathering[];
     canAssignWorker: boolean;

@@ -28,11 +28,23 @@
 
     <ion-row>
       <ion-col [sizeMd]="4" *ngFor="let location of locations; trackBy: trackBy">
-        <ion-card class="location-card">
+        <ion-card class="location-card" (mouseenter)="visibleStars[location.name] = true" (mouseleave)="visibleStars[location.name] = false">
           <ion-card-header>
             <ion-card-title>{{ location.name }}</ion-card-title>
             <ion-card-subtitle class="location-description">{{ location.description }}</ion-card-subtitle>
             <ion-card-subtitle>Gives after <strong>{{ showRealDurationForLocation(location, pageData.equipment || {}) }}s</strong>:</ion-card-subtitle>
+
+            <ion-button class="favorite"
+                        color="primary"
+                        *ngIf="visibleStars[location.name] || allStarredLocations[location.name]"
+                        (click)="toggleFavorite(location, !allStarredLocations[location.name])"
+                        fill="clear"
+                        size="small"
+                        shape="round">
+
+              <ion-icon slot="icon-only"
+                        [icon]="allStarredLocations[location.name] ? 'star' : 'star-outline'"></ion-icon>
+            </ion-button>
           </ion-card-header>
 
           <ion-card-content>

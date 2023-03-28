@@ -3,7 +3,7 @@ import { Select } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { FishingState, WorkersState } from '../../../../../stores';
-import { CancelFishing, SetFishingLocation } from '../../../../../stores/fishing/fishing.actions';
+import { CancelFishing, SetFishingLocation, StarFishingLocation } from '../../../../../stores/fishing/fishing.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -14,9 +14,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class FishingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getFishingLocations();
-  }
+  public locationData = this.contentService.getFishingLocations();
 
   public get setAction() {
     return SetFishingLocation;
@@ -26,11 +24,16 @@ export class FishingPage implements OnInit {
     return CancelFishing;
   }
 
+  public get favoriteAction() {
+    return StarFishingLocation;
+  }
+
   public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
 
   @Select(FishingState.level) level$!: Observable<number>;
   @Select(FishingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(FishingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(FishingState.starredNodes) starredLocations$!: Observable<Record<string, boolean>>;
   @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
     workerAllocations: IGameWorkersGathering[];
     canAssignWorker: boolean;

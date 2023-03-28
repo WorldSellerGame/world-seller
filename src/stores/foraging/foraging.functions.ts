@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainForagingLevels } from './foraging.actions';
+import { GainForagingLevels, StarForagingLocation } from './foraging.actions';
 
 export const defaultForaging: () => IGameGathering = () => ({
   version: 0,
@@ -10,7 +10,8 @@ export const defaultForaging: () => IGameGathering = () => ({
   level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
-  cooldowns: {}
+  cooldowns: {},
+  starred: {},
 });
 
 export function unlockForaging(ctx: StateContext<IGameGathering>) {
@@ -27,4 +28,10 @@ export function resetForaging(ctx: StateContext<IGameGathering>) {
 
 export function cancelForaging(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
+}
+
+export function starForagingLocation(ctx: StateContext<IGameGathering>, { location }: StarForagingLocation) {
+  const starred = ctx.getState().starred || {};
+  starred[location.name] = !starred[location.name];
+  ctx.patchState({ starred });
 }

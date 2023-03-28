@@ -17,9 +17,11 @@
     [currentLocation$]="currentLocation$"
     [cooldowns$]="cooldowns$"
     [gatheringWorkers$]="gatheringWorkers$"
+    [starredLocations]="starredLocations$ | async"
     [locationData]="locationData"
     [setAction]="setAction"
     [cancelAction]="cancelAction"
+    [favoriteAction]="favoriteAction"
     (totalsMetadata)="pageMetadata = $event"
   ></app-gathering-page-display>
 

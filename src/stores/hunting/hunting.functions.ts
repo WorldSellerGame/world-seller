@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { cancelGathering } from '../../app/helpers';
 import { IGameGathering } from '../../interfaces';
-import { GainHuntingLevels } from './hunting.actions';
+import { GainHuntingLevels, StarHuntingLocation } from './hunting.actions';
 
 export const defaultHunting: () => IGameGathering = () => ({
   version: 0,
@@ -10,7 +10,8 @@ export const defaultHunting: () => IGameGathering = () => ({
   level: 0,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
-  cooldowns: {}
+  cooldowns: {},
+  starred: {},
 });
 
 export function unlockHunting(ctx: StateContext<IGameGathering>) {
@@ -27,4 +28,10 @@ export function resetHunting(ctx: StateContext<IGameGathering>) {
 
 export function cancelHunting(ctx: StateContext<IGameGathering>) {
   cancelGathering(ctx);
+}
+
+export function starHuntingLocation(ctx: StateContext<IGameGathering>, { location }: StarHuntingLocation) {
+  const starred = ctx.getState().starred || {};
+  starred[location.name] = !starred[location.name];
+  ctx.patchState({ starred });
 }

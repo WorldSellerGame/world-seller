@@ -20,4 +20,5 @@ export interface IGameGathering {
   currentLocationDurationInitial: number;
   currentLocationDuration: number;
   cooldowns: Record<string, number>;
+  starred: Record<string, boolean>;
 }
