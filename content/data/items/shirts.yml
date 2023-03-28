@@ -10,7 +10,7 @@ Knitted Shirt:
   icon: shirt
   stats:
     mitigation: 4
-    Armor: 1
+    armor: 1
 
 Fur Shirt:
   name: Fur Shirt
@@ -23,7 +23,7 @@ Fur Shirt:
   icon: shirt
   stats:
     mitigation: 8
-    Armor: 1
+    armor: 1
 
 Linen Shirt:
   name: Linen Shirt
@@ -48,4 +48,4 @@ Leather Shirt:
   icon: shirt
   stats:
     mitigation: 12
-    Armor: 2
+    armor: 2
