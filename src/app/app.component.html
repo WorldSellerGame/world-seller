@@ -19,10 +19,13 @@
               <app-game-icon slot="start" icon="resources" ngxTippy="Resources" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
-            <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected"
-                      [analyticsClick]="'Navigate:Character:Inventory'">
-              <app-game-icon slot="start" icon="inventory" ngxTippy="Inventory" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-            </ion-item>
+
+            <ng-container *ngIf="{ inventoryUnlocked: inventoryUnlocked$ | async } as data">
+              <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected"
+                        [analyticsClick]="'Navigate:Character:Inventory'" [disabled]="!data.inventoryUnlocked">
+                <app-game-icon slot="start" icon="inventory" ngxTippy="Inventory" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+              </ion-item>
+            </ng-container>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'equipment']" lines="none" detail="false" routerLinkActive="selected"
                       [analyticsClick]="'Navigate:Character:Equipment'">
