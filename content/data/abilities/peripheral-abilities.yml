@@ -21,7 +21,7 @@ PeripheralFiller2:
   name: Wide Strike
   description: Hit every opponent, simple as that.
   icon: sword-swing
-  target: Single
+  target: AllEnemies
   type: Physical
   stats:
     - stat: attack
