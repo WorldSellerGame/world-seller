@@ -9,7 +9,8 @@ import {
   QuickSellAllFromStockpile, QuickSellItemFromStockpile,
   SellItem, SendToInventory, UpgradeStockpileSize
 } from '../../../../../../stores/mercantile/mercantile.actions';
-import { maxStockpileLevel, maxStockpileSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
+import { maxShopCounterSize, maxStockpileLevel, maxStockpileSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
+import { NotifyWarning } from '../../../../../../stores/game/game.actions';
 
 @Component({
   selector: 'app-stockpile',
@@ -95,6 +96,13 @@ export class StockpilePage implements OnInit, OnDestroy {
   }
 
   sell(item: IGameItem) {
+    const state = this.store.snapshot().mercantile;
+    const maxSize = maxShopCounterSize(state.shop.saleCounterLevel);
+    if(state.shop.forSale.length >= maxSize) {
+      this.store.dispatch(new NotifyWarning('You cannot sell any more items at this time!'));
+      return;
+    }
+
     this.store.dispatch(new SellItem(item));
   }
 
