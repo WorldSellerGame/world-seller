@@ -5,13 +5,17 @@ import { LocalStorage } from 'ngx-webstorage';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem, IGameMercantileStockpile } from '../../../../../../interfaces';
 import { CharSelectState, MercantileState } from '../../../../../../stores';
+import { NotifyWarning } from '../../../../../../stores/game/game.actions';
 import {
   QuickSellAllFromStockpile, QuickSellItemFromStockpile,
   SellItem, SendToInventory, UpgradeStockpileSize
 } from '../../../../../../stores/mercantile/mercantile.actions';
-import { maxShopCounterSize, maxStockpileLevel,
-  maxStockpileSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
-import { NotifyWarning } from '../../../../../../stores/game/game.actions';
+import {
+  maxShopCounterSize, maxStockpileLevel,
+  maxStockpileSizeUpgradeCost,
+  shopRegisterMultiplier
+} from '../../../../../../stores/mercantile/mercantile.functions';
+import { itemValue } from '../../../../../helpers';
 
 @Component({
   selector: 'app-stockpile',
@@ -70,6 +74,11 @@ export class StockpilePage implements OnInit, OnDestroy {
 
   itemsInCategory(items: IGameItem[] = [], category: string): IGameItem[] {
     return sortBy(items.filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
+  }
+
+  realSellValue(item: IGameItem) {
+    return itemValue(item,
+      shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0))) * (item.quantity ?? 1);
   }
 
   canUpgradeStorage(currentCoins: number, currentLevel: number): boolean {

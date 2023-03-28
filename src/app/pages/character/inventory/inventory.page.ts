@@ -6,10 +6,11 @@ import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
 import { CharSelectState, CombatState, MercantileState } from '../../../../stores';
 import { OOCEatFood } from '../../../../stores/combat/combat.actions';
-import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
-import { setDiscordStatus } from '../../../helpers/electron';
-import { maxShopCounterSize } from '../../../../stores/mercantile/mercantile.functions';
 import { NotifyWarning } from '../../../../stores/game/game.actions';
+import { QuickSellItemFromInventory, SellItem, SendToStockpile } from '../../../../stores/mercantile/mercantile.actions';
+import { maxShopCounterSize, shopRegisterMultiplier } from '../../../../stores/mercantile/mercantile.functions';
+import { itemValue } from '../../../helpers';
+import { setDiscordStatus } from '../../../helpers/electron';
 
 @Component({
   selector: 'app-inventory',
@@ -71,6 +72,11 @@ export class InventoryPage implements OnInit, OnDestroy {
 
   itemsInCategory(items: IGameItem[], category: string): IGameItem[] {
     return sortBy((items || []).filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
+  }
+
+  realSellValue(item: IGameItem) {
+    return itemValue(item,
+      shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0))) * (item.quantity ?? 1);
   }
 
   eat(item: IGameItem) {
