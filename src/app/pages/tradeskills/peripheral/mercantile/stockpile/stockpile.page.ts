@@ -9,7 +9,8 @@ import {
   QuickSellAllFromStockpile, QuickSellItemFromStockpile,
   SellItem, SendToInventory, UpgradeStockpileSize
 } from '../../../../../../stores/mercantile/mercantile.actions';
-import { maxShopCounterSize, maxStockpileLevel, maxStockpileSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
+import { maxShopCounterSize, maxStockpileLevel,
+  maxStockpileSizeUpgradeCost } from '../../../../../../stores/mercantile/mercantile.functions';
 import { NotifyWarning } from '../../../../../../stores/game/game.actions';
 
 @Component({
