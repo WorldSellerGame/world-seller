@@ -128,7 +128,7 @@ export function gainCoins(ctx: StateContext<any>, { amount }: GainCoins) {
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  ctx.dispatch(new GainResources({ Coin: amount }));
+  ctx.dispatch(new GainResources({ Coin: Math.floor(amount) }));
 }
 
 export function spendCoins(ctx: StateContext<any>, { amount }: SpendCoins) {

@@ -60,6 +60,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   public itemIngredients: Record<string, Array<{ name: string; amount: number }>> = {};
   public itemOutputs: Record<string, IGameItem> = {};
   public resourceOutputs: Record<string, IGameResource> = {};
+  public rarityOutputs: Record<string, string> = {};
 
   public summedResources: Record<string, number> = {};
 
@@ -160,13 +161,16 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   setResults() {
     this.itemOutputs = {};
     this.resourceOutputs = {};
+    this.rarityOutputs = {};
 
     this.itemRecipes.forEach((recipe) => {
       this.itemOutputs[recipe.result] = this.contentService.getItemByName(recipe.result) as IGameItem;
+      this.rarityOutputs[recipe.result] = this.itemOutputs[recipe.result].rarity;
     });
 
     this.resourceRecipes.forEach((recipe) => {
       this.resourceOutputs[recipe.result] = this.contentService.getResourceByName(recipe.result) as IGameResource;
+      this.rarityOutputs[recipe.result] = this.resourceOutputs[recipe.result].rarity;
     });
   }
 
@@ -245,7 +249,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return true;
       });
 
-    return sortBy(validRecipes, 'result');
+    return sortBy(validRecipes, [(recipe) => !this.canCraftRecipe(recipe), (recipe) => recipe.result]);
   }
 
   totalResourceHashForCrafting() {

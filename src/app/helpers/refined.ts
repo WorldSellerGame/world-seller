@@ -16,7 +16,7 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
   }
 
   // lower ticks on the current recipe
-  const newTicks = job.currentDuration - ticks;
+  const newTicks = Math.floor(job.currentDuration - ticks);
   ctx.setState(patch<IGameRefining>({
     recipeQueue: updateItem<IGameRefiningRecipe>(0, { ...job, currentDuration: newTicks })
   }));
@@ -26,8 +26,7 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
     // get a new item
     ctx.dispatch([
       new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
-      new IncrementStat(incrementStat),
-      new PlaySFX('tradeskill-finish')
+      new IncrementStat(incrementStat)
     ]);
 
     // attempt a level up
@@ -39,13 +38,16 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
 
     // if we're on the last one, delete the job
     if(job.totalLeft <= 1) {
-      ctx.dispatch(new cancelProto(0, false));
+      ctx.dispatch([
+        new cancelProto(0, false),
+        new PlaySFX('tradeskill-finish')
+      ]);
       return;
     }
 
     // otherwise, just lower the total left and start it again
     const newJob = cloneDeep(job);
-    newJob.currentDuration = newJob.durationPer;
+    newJob.currentDuration = Math.floor(newJob.durationPer);
     newJob.totalLeft -= 1;
 
     if(newJob.refundItems.length > 0) {

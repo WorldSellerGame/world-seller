@@ -2,4 +2,19 @@
 .resources-gained {
   margin-top: 10px;
   display: flex;
+  align-items: center;
+
+  .resource {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+}
+
+.resource-notifier {
+  font-style: italic;
+}
+
+.transmute {
+  min-width: 135px;
 }

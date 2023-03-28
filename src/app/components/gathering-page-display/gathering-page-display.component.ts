@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../interfaces';
@@ -28,7 +29,7 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   public locations: IGameGatherLocation[] = [];
   private locSub!: Subscription;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.locSub = this.level$.subscribe(level => {
@@ -48,8 +49,38 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
     return locations.filter(location => currentLevel >= location.level.min);
   }
 
-  gather(location: IGameGatherLocation) {
-    this.store.dispatch(new this.setAction(location));
+  async gather(location: IGameGatherLocation) {
+    const snapshot = this.store.snapshot();
+    const areAnyActive = ['fishing', 'foraging', 'hunting', 'logging', 'mining']
+      .some(tradeskill => snapshot[tradeskill].currentLocationDuration > 0);
+
+    const finish = () => {
+      this.store.dispatch(new this.setAction(location));
+    };
+
+    if(!areAnyActive) {
+      finish();
+      return;
+    }
+
+    const alert = await this.alertCtrl.create({
+      header: 'Cancel gathering?',
+      message: 'You are already gathering somewhere else. Gathering here will cancel that gathering and the time spend will be lost.',
+      buttons: [
+        {
+          text: 'No, keep gathering',
+          role: 'cancel'
+        },
+        {
+          text: 'Yes, start gathering here',
+          handler: () => {
+            finish();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   cancelGather() {

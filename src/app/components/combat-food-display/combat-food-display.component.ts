@@ -22,7 +22,7 @@ export class CombatFoodDisplayComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit() {
-    this.effects = (this.item.effects || [])
+    this.effects = (this.item?.effects || [])
       .filter((x: IGameCombatActionEffect) => x.effect === 'ApplyEffect' && x.effectName)
       .map((effect: IGameCombatActionEffect) => this.contentService.getEffectByName(effect.effectName as string)?.name ?? 'Unknown');
   }

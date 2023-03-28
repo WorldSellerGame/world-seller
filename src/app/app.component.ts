@@ -35,31 +35,31 @@ export class AppComponent implements OnInit, OnDestroy {
     { title: 'Fishing',   url: 'fishing',   icon: 'fishing',
       requirements: 'Discover Plant Fiber',
       unlocked: this.store.select(state => state.fishing.unlocked),
-      timer: this.store.select(state => state.fishing.currentLocationDuration),
+      timer: this.store.select(state => Math.floor(state.fishing.currentLocationDuration)),
       level: this.store.select(state => state.fishing.level) },
 
     { title: 'Foraging',  url: 'foraging',  icon: 'foraging',
       requirements: 'None',
       unlocked: this.store.select(state => state.foraging.unlocked),
-      timer: this.store.select(state => state.foraging.currentLocationDuration),
+      timer: this.store.select(state => Math.floor(state.foraging.currentLocationDuration)),
       level: this.store.select(state => state.foraging.level) },
 
     { title: 'Hunting',   url: 'hunting',   icon: 'hunting',
       requirements: 'Discover Stone',
       unlocked: this.store.select(state => state.hunting.unlocked),
-      timer: this.store.select(state => state.hunting.currentLocationDuration),
+      timer: this.store.select(state => Math.floor(state.hunting.currentLocationDuration)),
       level: this.store.select(state => state.hunting.level) },
 
     { title: 'Logging',   url: 'logging',   icon: 'logging',
       requirements: 'None',
       unlocked: this.store.select(state => state.logging.unlocked),
-      timer: this.store.select(state => state.logging.currentLocationDuration),
+      timer: this.store.select(state => Math.floor(state.logging.currentLocationDuration)),
       level: this.store.select(state => state.logging.level) },
 
     { title: 'Mining',    url: 'mining',    icon: 'mining',
       requirements: 'Discover Pine Log',
       unlocked: this.store.select(state => state.mining.unlocked),
-      timer: this.store.select(state => state.mining.currentLocationDuration),
+      timer: this.store.select(state => Math.floor(state.mining.currentLocationDuration)),
       level: this.store.select(state => state.mining.level) },
   ];
 
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.alchemy.unlocked),
       timer: this.store.select(state => sum(
         state.alchemy.recipeQueue
-          .map((r: IGameRefiningRecipe) => r.currentDuration
+          .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.alchemy.level) },
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.blacksmithing.unlocked),
       timer: this.store.select(state => sum(
         state.blacksmithing.recipeQueue
-          .map((r: IGameRefiningRecipe) => r.currentDuration
+          .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.blacksmithing.level) },
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.cooking.unlocked),
       timer: this.store.select(state => sum(
         state.cooking.recipeQueue
-          .map((r: IGameRefiningRecipe) => r.currentDuration
+          .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.cooking.level) },
@@ -99,7 +99,7 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.jewelcrafting.unlocked),
       timer: this.store.select(state => sum(
         state.jewelcrafting.recipeQueue
-          .map((r: IGameRefiningRecipe) => r.currentDuration
+          .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                             + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.jewelcrafting.level) },
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.weaving.unlocked),
       timer: this.store.select(state => sum(
         state.weaving.recipeQueue
-          .map((r: IGameRefiningRecipe) => r.currentDuration
+          .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.weaving.level) }

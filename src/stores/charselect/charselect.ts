@@ -264,17 +264,17 @@ export class CharSelectState {
   @Action(GainItemOrResource)
   async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
 
+    if(itemName === 'nothing') {
+      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
+      return;
+    }
+
     if(!this.contentService.isItem(itemName) && !this.contentService.isResource(itemName)) {
       return;
     }
 
     const state = ctx.getState();
     const activeCharacter = state.characters[state.currentCharacter];
-
-    if(itemName === 'nothing') {
-      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
-      return;
-    }
 
     // if it's a resource, gain that
     const isResource = this.itemCreatorService.isResource(itemName);

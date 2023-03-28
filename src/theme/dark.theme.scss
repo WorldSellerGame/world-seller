@@ -137,4 +137,8 @@
 
     --ion-card-background: #1e1e1e;
   }
+
+  ion-list.striped ion-item:nth-child(odd) {
+    --ion-item-background: var(--ion-color-step-100);
+  }
 }

@@ -12,6 +12,17 @@ ion-button, ion-segment-button {
   text-transform: none;
 }
 
+ion-alert {
+  --max-width: 400px !important;
+}
+
+ion-icon:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .alert-message::-webkit-scrollbar, .alert-message::-webkit-scrollbar {
   width: 1em;
   display: block !important;

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy, uniq } from 'lodash';
+import { LocalStorage } from 'ngx-webstorage';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem } from '../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../stores';
@@ -19,12 +20,18 @@ export class InventoryPage implements OnInit, OnDestroy {
   @Select(CombatState.currentEncounter) encounter$!: Observable<any>;
   @Select(CombatState.currentDungeon) dungeon$!: Observable<any>;
 
-  public activeCategory = '';
+  @LocalStorage('currenttab-inventory') public activeCategory!: string;
   public categorySub!: Subscription;
 
   constructor(private store: Store) { }
 
   ngOnInit() {
+    this.activeCategory ??= '';
+
+    setDiscordStatus({
+      state: 'Browsing their inventory...'
+    });
+
     this.categorySub = this.inventory$.subscribe(x => {
       if(this.activeCategory && this.itemsInCategory(x, this.activeCategory).length > 0) {
         return;
@@ -36,10 +43,6 @@ export class InventoryPage implements OnInit, OnDestroy {
       }
 
       this.activeCategory = this.itemCategories(x)[0];
-
-      setDiscordStatus({
-        state: 'Browsing their inventory...'
-      });
     });
   }
 

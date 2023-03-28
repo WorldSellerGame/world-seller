@@ -16,22 +16,39 @@
               </ion-card-header>
 
               <ion-card-content>
-                <ion-list>
+                <ion-list class="striped">
                   <ion-item *ngFor="let prospect of visibleProspects(skillLevel.level || 0); trackBy: trackBy">
+                    <app-game-icon slot="start" [icon]="iconForRecipe(prospect)"></app-game-icon>
+
                     <ion-label>
-                      <h2>{{ prospect.startingItem }} x{{ resources[prospect.startingItem] || 0 }}</h2>
-                      <div class="resources-gained">
-                        <app-resource-icon [name]="resource.name"
-                                           [showX]="true"
-                                           [inlineIconSize]="true"
-                                           [emphasizeText]="false"
-                                           *ngFor="let resource of prospect.becomes"></app-resource-icon>
+                      <strong [ngxTippy]="tooltip">
+                        {{ prospect.startingItem }}
+                      </strong>
+
+                      <div class="resource-notifier">
+                        <small>You have {{ resources[prospect.startingItem] || 0 | number }} of these.</small>
                       </div>
+
+                      <div class="resources-gained">
+                        <ng-container *ngFor="let resource of prospect.becomes; trackBy: trackBy">
+                          <div class="resource" *ngIf="resource.name !== 'nothing'">
+                            <app-resource-icon [name]="resource.name"
+                                               [inlineIconSize]="true"
+                                               [emphasizeText]="false"></app-resource-icon>
+
+                            <span class="percent-chance">({{ prospectTransformChances[prospect.startingItem][resource.name] }}%)</span>
+                          </div>
+                        </ng-container>
+                      </div>
+
+                      <ng-template #tooltip>
+                        <app-resource-tooltip [resource]="prospectResources[prospect.startingItem]"></app-resource-tooltip>
+                      </ng-template>
                     </ion-label>
 
-                    <ion-button fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
+                    <ion-button class="transmute" fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
                       [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem">
-                      Transmute
+                      Transmute <span *ngIf="(skillLevel.level || 0) < prospect.level.max">&nbsp;(+1 Lv)</span>
                     </ion-button>
                   </ion-item>
                 </ion-list>

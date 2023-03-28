@@ -50,7 +50,7 @@ export function getStat(stats: Record<Stat, number> = defaultStatsZero(), stat: 
 export function calculateStatFromState(state: any, character: IPlayerCharacter, stat: Stat): number {
   const statGains: IStatGain[] = state.game.statGains?.[stat] ?? [];
 
-  return statGains.reduce((total, statGain) => {
+  const retVal = statGains.reduce((total, statGain) => {
     const { levelStat, divisor } = statGain;
 
     let value = 0;
@@ -58,11 +58,13 @@ export function calculateStatFromState(state: any, character: IPlayerCharacter, 
     if(levelStat === 'lastTotalLevel') {
       value = character.lastTotalLevel;
     } else {
-      value = get(character, `skills.${levelStat}.level`, 0);
+      value = get(state, `${levelStat}.level`, 0);
     }
 
     return total + Math.floor(value / divisor);
   }, 0);
+
+  return retVal;
 }
 
 export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, stat: Stat): number {
@@ -70,12 +72,14 @@ export function calculateStat(equipment: Partial<Record<ItemType, IGameItem>>, s
 }
 
 export function calculateHealthFromState(state: any, character: IPlayerCharacter): number {
-  return calculateStatFromState(state, character, Stat.HealthBonus)
+  return 10
+       + calculateStatFromState(state, character, Stat.HealthBonus)
        + calculateStat(character.equipment, Stat.HealthBonus);
 }
 
 export function calculateEnergyFromState(state: any, character: IPlayerCharacter): number {
-  return calculateStatFromState(state, character, Stat.EnergyBonus)
+  return 5
+       + calculateStatFromState(state, character, Stat.EnergyBonus)
        + calculateStat(character.equipment, Stat.EnergyBonus);
 }
 

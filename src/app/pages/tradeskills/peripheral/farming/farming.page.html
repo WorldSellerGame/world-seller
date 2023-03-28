@@ -70,17 +70,19 @@
                   You don't currently have any seeds.
                 </div>
 
-                <ion-list *ngIf="plantableSeeds.length > 0">
+                <ion-list class="striped" *ngIf="plantableSeeds.length > 0">
                   <ion-item *ngFor="let seed of plantableSeeds; trackBy: trackBy">
                     <ion-label>
                       <h2>
-                        <app-resource-icon [name]="seed.name" [quantity]="seed.quantity" [showX]="true"></app-resource-icon>
+                        <app-resource-icon [name]="seed.name" [quantity]="seed.quantity" [showX]="true" [maxIsNotImportant]="true"></app-resource-icon>
                       </h2>
                     </ion-label>
                     <ion-button fill="clear"
                                 [class.no-skillups]="!seed.canGiveLevel"
                                 (click)="plant(currentPlantIndex, seed.name)"
-                                [analyticsClick]="'Peripheral:Farming:Plant:' + seed.name">Plant</ion-button>
+                                [analyticsClick]="'Peripheral:Farming:Plant:' + seed.name">
+                                Plant <span *ngIf="seed.canGiveLevel">&nbsp;(+1 Lv)</span>
+                    </ion-button>
                   </ion-item>
                 </ion-list>
 

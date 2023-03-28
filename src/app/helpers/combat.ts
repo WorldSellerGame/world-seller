@@ -266,12 +266,12 @@ export function applyDeltas(
     const trueTarget = target === 'source' ? sourceRef : targetRef;
 
     // if we target ourselves with an effect, we offset turns by 1 so it doesn't get slurped up immediately
-    if(targetRef === sourceRef && deltaToApply.applyStatusEffect) {
+    if(targetRef.name === sourceRef.name && deltaToApply.applyStatusEffect) {
       deltaToApply.applyStatusEffect.turnsLeft += 1;
     }
 
     if(state.currentPlayer === trueTarget) {
-      const newPlayer = applyDelta(state.currentPlayer, deltaToApply);
+      const newPlayer = applyDelta(trueTarget, deltaToApply);
       ctx.setState(patch<IGameCombat>({
         currentPlayer: newPlayer
       }));

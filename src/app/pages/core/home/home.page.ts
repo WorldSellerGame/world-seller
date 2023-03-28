@@ -76,11 +76,11 @@ export class HomePage implements OnInit {
       message: 'Are you sure you want to delete this character?',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'No, keep it',
           role: 'cancel'
         },
         {
-          text: 'Delete',
+          text: 'Yes, delete it',
           role: 'destructive',
           handler: () => {
             this.store.dispatch(new DeleteCharacter(slot));

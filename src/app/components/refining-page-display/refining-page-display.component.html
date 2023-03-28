@@ -82,14 +82,26 @@
           </ion-segment>
 
           <cdk-virtual-scroll-viewport class="scrollable-list" itemSize="105" minBufferPx="945" maxBufferPx="1575">
-            <ion-list>
+            <ion-list class="striped">
               <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)" [shimmer]="!discoveries[recipe.result]"></app-game-icon>
 
                 <ion-label>
                   <h2>
-                    <strong [ngxTippy]="tooltip">
-                      {{ recipe.result }}
+                    <strong class="recipe-name">
+                      <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">{{ recipe.result }}</span>
+
+                      <ion-icon class="yield-icon" name="help-circle" [ngxTippy]="amountTooltip" *ngIf="recipe.perCraft.max > 1"></ion-icon>
+
+                      <ng-template #amountTooltip>
+                        <span *ngIf="recipe.perCraft.min === recipe.perCraft.max">
+                          Yields {{ recipe.perCraft.min }} per craft
+                        </span>
+
+                        <span *ngIf="recipe.perCraft.min !== recipe.perCraft.max">
+                          Yields {{ recipe.perCraft.min }} - {{ recipe.perCraft.max }} per craft
+                        </span>
+                      </ng-template>
                     </strong>
 
                     <div class="resource-notifier" *ngIf="type === 'resources'">
@@ -110,7 +122,8 @@
                     <app-resource-icon *ngFor="let resource of ingredients[recipe.result]"
                                        [name]="resource.name"
                                        [quantity]="recipe.preserve?.includes(resource.name) ? resource.amount : resource.amount * (amounts[recipe.result] || 1)"
-                                       [maxQuantity]="summedResources[resource.name] || 0"
+                                       [maxQuantity]="(summedResources[resource.name] || 0)"
+                                       [maxIsNotImportant]="recipe.preserve?.includes(resource.name)"
                                        [showX]="true"
                                        [inlineIconSize]="true"
                                        [emphasizeText]="false"
@@ -119,7 +132,8 @@
                     <app-item-icon *ngFor="let item of itemIngredients[recipe.result]"
                                    [name]="item.name"
                                    [quantity]="recipe.preserve?.includes(item.name) ? item.amount : item.amount * (amounts[recipe.result] || 1)"
-                                   [maxQuantity]="summedResources[item.name] || 0"
+                                   [maxQuantity]="(summedResources[item.name] || 0)"
+                                   [maxIsNotImportant]="recipe.preserve?.includes(item.name)"
                                    [showX]="true"
                                    [inlineIconSize]="true"
                                    [emphasizeText]="false"
@@ -139,16 +153,20 @@
                                     (click)="craft(recipe, amounts[recipe.result] || 1)"
                                     [disabled]="isQueueFull(currentQueue) || !canCraftRecipes[recipe.result]"
                                     [class.no-skillups]="level >= recipe.level.max"
-                                    [analyticsClick]="'Refining:' + tradeskill + ':Craft:' + recipe.result">Craft</ion-button>
+                                    [analyticsClick]="'Refining:' + tradeskill + ':Craft:' + recipe.result">
+                                    Craft <span *ngIf="level < recipe.level.max">&nbsp;(+1 Lv)</span>
+                        </ion-button>
                       </ion-col>
                     </ion-row>
 
                     <ion-row *ngIf="recipe.maxWorkers > 0 && refiningWorkers.hasWorkers">
                       <ion-col class="worker-buttons">
                         <ion-button color="secondary" fill="outline" (click)="unassignWorker(recipe)" [disabled]="(workersPerRecipe[recipe.result] || 0) <= 0"
+                                    ngxTippy="Remove Worker"
                                     [analyticsClick]="'Refining:' + tradeskill + ':RemoveWorker:' + recipe.result">-</ion-button>
                         <div class="amount">{{ (workersPerRecipe[recipe.result] || 0) | number }}/{{ recipe.maxWorkers }}</div>
                         <ion-button color="secondary" fill="outline" (click)="assignWorker(recipe)" [disabled]="(workersPerRecipe[recipe.result] || 0) >= recipe.maxWorkers || !refiningWorkers.canAssignWorker"
+                                    ngxTippy="Add Worker"
                                     [analyticsClick]="'Refining:' + tradeskill + ':AddWorker:' + recipe.result">+</ion-button>
                       </ion-col>
                     </ion-row>

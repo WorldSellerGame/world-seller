@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
@@ -39,6 +40,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
     HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(),
+    NgxWebstorageModule.forRoot(),
     AppRoutingModule,
     NgxTippyModule,
     SharedModule,
