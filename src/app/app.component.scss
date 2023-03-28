@@ -83,6 +83,17 @@ app-game-icon:not([slot]) {
   margin-inline-end: 16px;
 }
 
+.minimal .info-badge {
+  right: -30px;
+  font-size: 18px;
+  top: -10px;
+}
+
+.info-badge {
+  position: absolute;
+  right: 5px;
+}
+
 .settings {
   position: absolute;
   right: 10px;

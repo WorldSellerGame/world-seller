@@ -33,6 +33,11 @@
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+
+                  <ion-icon class="info-badge"
+                            *ngIf="p.badge | async as badgeData"
+                            [icon]="badgeData.icon"
+                            [color]="badgeData.color"></ion-icon>
                 </ion-item>
               </ng-container>
             </ng-container>
@@ -43,6 +48,11 @@
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+
+                  <ion-icon class="info-badge"
+                            *ngIf="p.badge | async as badgeData"
+                            [icon]="badgeData.icon"
+                            [color]="badgeData.color"></ion-icon>
                 </ion-item>
               </ng-container>
             </ng-container>
@@ -53,6 +63,12 @@
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
                 <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral:' + p.title">
                   <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+
+                  <ion-icon class="info-badge"
+                            slot="start"
+                            *ngIf="p.badge | async as badgeData"
+                            [icon]="badgeData.icon"
+                            [color]="badgeData.color"></ion-icon>
                 </ion-item>
               </ng-container>
             </ng-container>
@@ -101,7 +117,13 @@
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
                             [analyticsClick]="'Navigate:Gathering:' + p.title">
+
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+
+                    <ion-icon class="info-badge"
+                              *ngIf="p.badge | async as badgeData"
+                              [icon]="badgeData.icon"
+                              [color]="badgeData.color"></ion-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
                       <span>{{ p.title }}</span>
@@ -133,7 +155,13 @@
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
                             [analyticsClick]="'Navigate:Refining:' + p.title">
+
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+
+                    <ion-icon class="info-badge"
+                              *ngIf="p.badge | async as badgeData"
+                              [icon]="badgeData.icon"
+                              [color]="badgeData.color"></ion-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
                       <span>{{ p.title }}</span>
@@ -165,7 +193,13 @@
                             routerLinkActive="selected"
                             [disabled]="!tsData.isUnlocked"
                             [analyticsClick]="'Navigate:Peripheral:' + p.title">
+
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+
+                    <ion-icon class="info-badge"
+                              *ngIf="p.badge | async as badgeData"
+                              [icon]="badgeData.icon"
+                              [color]="badgeData.color"></ion-icon>
 
                     <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
                       <span>{{ p.title }}</span>
