@@ -32,6 +32,8 @@ export class JewelcraftingPage implements OnInit {
     return ChangeJewelcraftingFilterOption;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
+
   @Select(JewelcraftingState.level) level$!: Observable<number>;
   @Select(JewelcraftingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(JewelcraftingState.options) options$!: Observable<IGameRefiningOptions>;

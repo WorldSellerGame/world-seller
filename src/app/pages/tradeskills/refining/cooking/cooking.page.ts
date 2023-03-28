@@ -29,6 +29,8 @@ export class CookingPage implements OnInit {
     return ChangeCookingFilterOption;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
+
   @Select(CookingState.level) level$!: Observable<number>;
   @Select(CookingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(CookingState.options) options$!: Observable<IGameRefiningOptions>;

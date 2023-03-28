@@ -29,6 +29,8 @@ export class WeavingPage implements OnInit {
     return ChangeWeavingFilterOption;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
+
   @Select(WeavingState.level) level$!: Observable<number>;
   @Select(WeavingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(WeavingState.options) options$!: Observable<IGameRefiningOptions>;

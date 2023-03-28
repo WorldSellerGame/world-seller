@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Jewelcrafting Lv.{{ level$ | async }}</ion-title>
+    <ion-title>
+      <div class="header-with-button">
+        <span>Jewelcrafting Lv.{{ level$ | async }}</span>
+        <small>{{ pageMetadata.totalDiscovered }} / {{ pageMetadata.totalRecipes }} Discovered</small>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,6 +30,7 @@
       [startAction]="startAction"
       [cancelAction]="cancelAction"
       [changeOptionAction]="optionAction"
+      (totalsMetadata)="pageMetadata = $event"
     ></app-refining-page-display>
 
   </ng-container>

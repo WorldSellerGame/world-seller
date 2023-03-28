@@ -29,7 +29,7 @@ export class AlchemyPage implements OnInit {
     return ChangeAlchemyFilterOption;
   }
 
-  public amounts: Record<string, number> = {};
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
 
   @Select(AlchemyState.level) level$!: Observable<number>;
   @Select(AlchemyState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
@@ -46,6 +46,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   @Input() cancelAction: any;
   @Input() changeOptionAction: any;
 
+  @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalRecipes: number }>();
+
   public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
   public resources: Record<string, number> = {};
@@ -89,6 +91,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
       this.discoveries = discoveries;
 
       this.setVisibleRecipes();
+      this.setMetadata();
     });
   }
 
@@ -109,6 +112,13 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ngOnDestroy() {
     this.resourcesSub?.unsubscribe();
     this.discoveriesSub?.unsubscribe();
+  }
+
+  setMetadata() {
+    const totalDiscovered = this.locationData.filter(x => this.discoveries[x.result]).length;
+    const totalRecipes = this.locationData.length;
+
+    this.totalsMetadata.emit({ totalDiscovered, totalRecipes });
   }
 
   setTotalResources() {
