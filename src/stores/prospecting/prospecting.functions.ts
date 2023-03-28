@@ -42,8 +42,6 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
     new IncrementStat(AchievementStat.ProspectingProspects)
   ]);
 
-  console.log(choice);
-
   if(choice !== 'nothing' && prospect.level.max > state.level) {
     ctx.setState(patch<IGameProspecting>({
       level: state.level + 1
