@@ -27,7 +27,11 @@ export class SettingsPage implements OnInit {
     return !environment.production || window.location.href.includes('deploy-preview');
   }
 
-  constructor(private store: Store, public metaService: MetaService, private notifyService: NotifyService) { }
+  constructor(
+    private store: Store,
+    public metaService: MetaService,
+    private notifyService: NotifyService
+  ) { }
 
   ngOnInit() {
     setDiscordStatus({
