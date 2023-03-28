@@ -181,6 +181,7 @@ recipes: #Rebalance for 900~ lines ;-;
       Yarn: 5
     require:
       - Workbench
+      - Oak Log
     preserve:
       - Workbench
     maxWorkers: 1
@@ -281,6 +282,7 @@ recipes: #Rebalance for 900~ lines ;-;
       Twine: 5
     require:
       - Workbench
+      - Ash Log
     preserve:
       - Workbench
     maxWorkers: 1

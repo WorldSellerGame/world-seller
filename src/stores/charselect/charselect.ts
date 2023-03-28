@@ -71,6 +71,11 @@ export class CharSelectState {
   }
 
   @Selector()
+  static activeCharacterInventoryUnlocked(state: ICharSelect) {
+    return this.activeCharacter(state)?.inventoryUnlocked;
+  }
+
+  @Selector()
   static activeCharacterEquipment(state: ICharSelect) {
     return { ...this.activeCharacter(state)?.equipment ?? {} };
   }
@@ -86,6 +91,10 @@ export class CharSelectState {
     const characters = (state.characters || []).map(char => {
       if(!char) {
         return;
+      }
+
+      if(char.inventory.length > 0) {
+        char.inventoryUnlocked = true;
       }
 
       // delete invalid resources
@@ -132,6 +141,14 @@ export class CharSelectState {
     // attempt to unlock other content
     const checkDiscoveries = { ...discoveries, [itemName]: true };
     const checkSnapshot = this.store.snapshot();
+
+    if(!activeCharacter.inventoryUnlocked && this.contentService.isItem(itemName)) {
+      ctx.setState(patch<ICharSelect>({
+        characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
+          inventoryUnlocked: true
+        }))
+      }));
+    }
 
     if(!checkSnapshot.fishing.unlocked && checkDiscoveries['Plant Fiber']) {
       ctx.dispatch([

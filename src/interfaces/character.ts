@@ -11,6 +11,7 @@ export interface IPlayerCharacter extends ICharacter {
   resources: Record<string, number>;
   inventory: IGameItem[];
   discoveries: Record<string, boolean>;
+  inventoryUnlocked: boolean;
 }
 
 export interface IEnemyDrop {
