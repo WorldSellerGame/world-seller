@@ -1,9 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
-import { IGameGatherLocation, IGameWorkersGathering } from '../../../interfaces';
+import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../../../interfaces';
+import { CharSelectState } from '../../../stores';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
+import { calculateStat } from '../../helpers';
 
 @Component({
   selector: 'app-gathering-page-display',
@@ -29,6 +31,8 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   public locations: IGameGatherLocation[] = [];
   private locSub!: Subscription;
 
+  @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
+
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
   ngOnInit() {
@@ -43,6 +47,34 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   trackBy(index: number) {
     return index;
+  }
+
+  private getStatForTradeskill() {
+    switch(this.tradeskill) {
+      case 'fishing':   return { base: Stat.FishingPower, percent: Stat.FishingPowerPercent };
+      case 'foraging':  return { base: Stat.ScythePower,  percent: Stat.ScythePowerPercent };
+      case 'hunting':   return { base: Stat.HuntingPower, percent: Stat.HuntingPowerPercent };
+      case 'logging':   return { base: Stat.AxePower,     percent: Stat.AxePowerPercent };
+      case 'mining':    return { base: Stat.PickaxePower, percent: Stat.PickaxePowerPercent };
+    }
+
+    return undefined;
+  }
+
+  showRealDurationForLocation(location: IGameGatherLocation, equipment: Record<string, IGameItem>) {
+
+    const stats = this.getStatForTradeskill();
+    if(!stats) {
+      return location.gatherTime;
+    }
+
+    const { base, percent } = stats;
+
+    const gdrValue = calculateStat(equipment, base);
+    const gdrPercent = calculateStat(equipment, percent);
+    const reducedValue = (gdrPercent / 100) * location.gatherTime;
+
+    return Math.max(1, Math.floor(location.gatherTime - reducedValue - gdrValue));
   }
 
   visibleLocations(locations: IGameGatherLocation[], currentLevel = 0) {
