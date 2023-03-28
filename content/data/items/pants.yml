@@ -17,8 +17,8 @@ Fur Pants:
   type: LegArmor
   category: Armor
   rarity: Uncommon
-  durability: 100
-  value: 10
+  durability: 10
+  value: 100
   icon: pants
   stats:
     mitigation: 8

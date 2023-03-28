@@ -5,7 +5,7 @@ Cedar Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Common
-  durability: 20
+  durability: 10
   value: 10
   icon: fishing-pole
   stats:
@@ -18,7 +18,7 @@ Oak Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Uncommon
-  durability: 15
+  durability: 20
   value: 50
   icon: fishing-pole
   stats:
@@ -31,7 +31,7 @@ Ash Fishing Rod:
   type: FishingRod
   category: Tools
   rarity: Rare
-  durability: 20
+  durability: 30
   value: 250
   icon: fishing-pole
   stats:
