@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
@@ -28,6 +28,8 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   @Input() setAction: any;
   @Input() cancelAction: any;
 
+  @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalLocations: number }>();
+
   public locations: IGameGatherLocation[] = [];
   private locSub!: Subscription;
 
@@ -38,6 +40,8 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.locSub = this.level$.subscribe(level => {
       this.locations = this.visibleLocations(this.locationData, level);
+
+      this.setMetadata();
     });
   }
 
@@ -47,6 +51,13 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   trackBy(index: number) {
     return index;
+  }
+
+  setMetadata() {
+    const totalDiscovered = this.locations.length;
+    const totalLocations = this.locationData.length;
+
+    this.totalsMetadata.emit({ totalDiscovered, totalLocations });
   }
 
   private getStatForTradeskill() {

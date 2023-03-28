@@ -27,6 +27,8 @@ export class MiningPage implements OnInit {
     return CancelMining;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(MiningState.level) level$!: Observable<number>;
   @Select(MiningState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(MiningState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;

@@ -26,6 +26,8 @@ export class ForagingPage implements OnInit {
     return CancelForaging;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(ForagingState.level) level$!: Observable<number>;
   @Select(ForagingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(ForagingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;

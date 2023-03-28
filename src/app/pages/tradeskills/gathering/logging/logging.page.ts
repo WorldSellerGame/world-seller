@@ -26,6 +26,8 @@ export class LoggingPage implements OnInit {
     return CancelLogging;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(LoggingState.level) level$!: Observable<number>;
   @Select(LoggingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(LoggingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;

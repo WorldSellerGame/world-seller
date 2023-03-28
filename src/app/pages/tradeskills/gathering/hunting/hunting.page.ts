@@ -26,6 +26,8 @@ export class HuntingPage implements OnInit {
     return CancelHunting;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(HuntingState.level) level$!: Observable<number>;
   @Select(HuntingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(HuntingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;

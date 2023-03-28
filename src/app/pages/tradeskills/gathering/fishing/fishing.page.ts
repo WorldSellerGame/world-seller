@@ -26,6 +26,8 @@ export class FishingPage implements OnInit {
     return CancelFishing;
   }
 
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(FishingState.level) level$!: Observable<number>;
   @Select(FishingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(FishingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
