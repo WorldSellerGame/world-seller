@@ -10,6 +10,7 @@ Knitted Pants:
   icon: pants
   stats:
     mitigation: 4
+    armor: 1
 
 Fur Pants:
   name: Fur Pants
@@ -17,11 +18,12 @@ Fur Pants:
   type: LegArmor
   category: Armor
   rarity: Uncommon
-  durability: 100
-  value: 10
+  durability: 10
+  value: 100
   icon: pants
   stats:
     mitigation: 8
+    armor: 1
 
 Linen Pants:
   name: Linen Pants
@@ -46,3 +48,4 @@ Leather Pants:
   icon: pants
   stats:
     mitigation: 12
+    armor: 2
