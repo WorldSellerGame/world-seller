@@ -26,7 +26,7 @@
 
           <ion-row class="resources" *ngIf="activeCategory">
             <ion-col size="3" *ngFor="let resource of resourcesInCategory(resources, activeCategory); trackBy: trackBy">
-              <app-resource-icon [name]="resource" [quantity]="resources[resource]"></app-resource-icon>
+              <app-resource-icon [name]="resource" [quantity]="resources[resource]" [emphasizeText]="false" [maxIsNotImportant]="true"></app-resource-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
