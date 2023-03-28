@@ -3,7 +3,10 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
-import { BuyWorker, UnassignGatheringWorker, UnassignMercantileWorker, UnassignRefiningWorker } from '../../../../../../stores/workers/workers.actions';
+import {
+  BuyWorker, UnassignGatheringWorker,
+  UnassignMercantileWorker, UnassignRefiningWorker
+} from '../../../../../../stores/workers/workers.actions';
 import { mercantileWorkerTime, nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
 import { ContentService } from '../../../../../services/content.service';
 
