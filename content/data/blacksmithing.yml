@@ -318,7 +318,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Construction Tools
     maxWorkers: 1
 
-  - result: Workbench # 5 to 15 #well 0 - 10 for tools may be fine #tbd this one is really fucking with me
+  - result: Workbench 
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
     craftTime: 120

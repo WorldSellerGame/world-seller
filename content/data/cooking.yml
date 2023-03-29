@@ -584,7 +584,7 @@ recipes:
 
 #45
 
-  - result: Pompano Ceviche #lemon update huge for this #avocado update over my dead fucking body #fuck those fuckin uhh moldy pears yeah yeah thats all an avocado is just a no good rotten dried up pear yeah
+  - result: Pompano Ceviche #lemon update huge for this #avocado update over my dead body those uhh moldy pears yeah yeah thats all an avocado is just a no good rotten dried up pear yeah
     perCraft: { min: 1, max: 1 }
     level: { min: 45, max: 55 }
     craftTime: 600
