@@ -144,7 +144,8 @@ export class CharSelectState {
     const checkDiscoveries = { ...discoveries, [itemName]: true };
     const checkSnapshot = this.store.snapshot();
 
-    if(!activeCharacter.inventoryUnlocked && this.contentService.isItem(itemName)) {
+    if(!activeCharacter.inventoryUnlocked
+    && this.contentService.isItem(itemName)) {
       ctx.setState(patch<ICharSelect>({
         characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
           inventoryUnlocked: true
@@ -152,7 +153,8 @@ export class CharSelectState {
       }));
     }
 
-    if(!checkSnapshot.fishing.unlocked && !this.hasSentNotifications['fishing'] && checkDiscoveries['Plant Fiber']) {
+    if(!checkSnapshot.fishing.unlocked
+    && !this.hasSentNotifications['fishing'] && checkDiscoveries['Plant Fiber']) {
       this.hasSentNotifications['fishing'] = true;
 
       ctx.dispatch([
@@ -161,7 +163,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.hunting.unlocked && !this.hasSentNotifications['hunting'] && checkDiscoveries['Stone']) {
+    if(!checkSnapshot.hunting.unlocked
+    && !this.hasSentNotifications['hunting'] && checkDiscoveries['Stone']) {
       this.hasSentNotifications['hunting'] = true;
 
       ctx.dispatch([
@@ -170,7 +173,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.mining.unlocked && !this.hasSentNotifications['mining'] && checkDiscoveries['Pine Log']) {
+    if(!checkSnapshot.mining.unlocked
+    && !this.hasSentNotifications['mining'] && checkDiscoveries['Pine Log']) {
       this.hasSentNotifications['mining'] = true;
 
       ctx.dispatch([
@@ -179,7 +183,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.alchemy.unlocked && !this.hasSentNotifications['alchemy'] && checkDiscoveries['Pine Needle'] && checkDiscoveries['Oven']) {
+    if(!checkSnapshot.alchemy.unlocked
+    && !this.hasSentNotifications['alchemy'] && checkDiscoveries['Pine Needle'] && checkDiscoveries['Oven']) {
       this.hasSentNotifications['alchemy'] = true;
 
       ctx.dispatch([
@@ -188,7 +193,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.blacksmithing.unlocked && !this.hasSentNotifications['blacksmithing'] && checkDiscoveries['Stone'] && checkDiscoveries['Pine Log']) {
+    if(!checkSnapshot.blacksmithing.unlocked
+    && !this.hasSentNotifications['blacksmithing'] && checkDiscoveries['Stone'] && checkDiscoveries['Pine Log']) {
       this.hasSentNotifications['blacksmithing'] = true;
 
       ctx.dispatch([
@@ -197,7 +203,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.cooking.unlocked && !this.hasSentNotifications['cooking'] && checkDiscoveries['Pinecone']) {
+    if(!checkSnapshot.cooking.unlocked
+    && !this.hasSentNotifications['cooking'] && checkDiscoveries['Pinecone']) {
       this.hasSentNotifications['cooking'] = true;
 
       ctx.dispatch([
@@ -206,7 +213,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.jewelcrafting.unlocked && !this.hasSentNotifications['jewelcrafting'] && checkDiscoveries['Dandelion']) {
+    if(!checkSnapshot.jewelcrafting.unlocked
+    && !this.hasSentNotifications['jewelcrafting'] && checkDiscoveries['Dandelion']) {
       this.hasSentNotifications['jewelcrafting'] = true;
 
       ctx.dispatch([
@@ -215,7 +223,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.weaving.unlocked && !this.hasSentNotifications['weaving'] && checkDiscoveries['Whorl']) {
+    if(!checkSnapshot.weaving.unlocked
+    && !this.hasSentNotifications['weaving'] && checkDiscoveries['Whorl']) {
       this.hasSentNotifications['weaving'] = true;
 
       ctx.dispatch([
@@ -224,7 +233,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.combat.unlocked && !this.hasSentNotifications['combat'] && checkDiscoveries['Stone Knife']) {
+    if(!checkSnapshot.combat.unlocked
+    && !this.hasSentNotifications['combat'] && checkDiscoveries['Stone Knife']) {
       this.hasSentNotifications['combat'] = true;
 
       ctx.dispatch([
@@ -233,7 +243,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.farming.unlocked && !this.hasSentNotifications['farming'] && checkDiscoveries['Carrot Seed']) {
+    if(!checkSnapshot.farming.unlocked
+    && !this.hasSentNotifications['farming'] && checkDiscoveries['Carrot Seed']) {
       this.hasSentNotifications['farming'] = true;
 
       ctx.dispatch([
@@ -242,7 +253,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.mercantile.unlocked && !this.hasSentNotifications['mercantile'] && checkDiscoveries['Coin']) {
+    if(!checkSnapshot.mercantile.unlocked
+    && !this.hasSentNotifications['mercantile'] && checkDiscoveries['Coin']) {
       this.hasSentNotifications['mercantile'] = true;
 
       ctx.dispatch([
@@ -251,7 +263,8 @@ export class CharSelectState {
       ]);
     }
 
-    if(!checkSnapshot.prospecting.unlocked && !this.hasSentNotifications['prospecting'] && checkDiscoveries['Stone']) {
+    if(!checkSnapshot.prospecting.unlocked
+    && !this.hasSentNotifications['prospecting'] && checkDiscoveries['Stone']) {
       this.hasSentNotifications['prospecting'] = true;
 
       ctx.dispatch([
