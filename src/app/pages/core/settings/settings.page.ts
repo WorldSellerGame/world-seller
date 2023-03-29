@@ -10,6 +10,7 @@ import { UnlockLogging } from '../../../../stores/logging/logging.actions';
 import { GainCoins } from '../../../../stores/mercantile/mercantile.actions';
 import { SetOption } from '../../../../stores/options/options.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
+import { AnalyticsService } from '../../../services/analytics.service';
 import { MetaService } from '../../../services/meta.service';
 import { NotifyService } from '../../../services/notify.service';
 
@@ -30,7 +31,8 @@ export class SettingsPage implements OnInit {
   constructor(
     private store: Store,
     public metaService: MetaService,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private analyticsService: AnalyticsService
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class SettingsPage implements OnInit {
 
   setOption(option: string, value: any) {
     setTimeout(() => {
+      this.analyticsService.sendDesignEvent(`SetOption:${option}:${value}`, 1);
       this.store.dispatch(new SetOption(option as GameOption, value));
     }, 0);
   }
