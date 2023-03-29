@@ -64,6 +64,20 @@ export class DebugService {
       this.store.dispatch(new DebugSetPlayerEnergy(value));
     };
 
+    (window as any).gainEveryResource = (amount: number) => {
+      Object.keys(this.contentService.getAllResources()).forEach(key => {
+        this.store.dispatch(new GainItemOrResource(key, amount));
+      });
+    };
+
+    (window as any).gainEveryItem = (amount: number) => {
+      Object.keys(this.contentService.getAllItems()).forEach(key => {
+        for(let i = 0; i < amount; i++) {
+          this.store.dispatch(new GainItemOrResource(key, amount));
+        }
+      });
+    };
+
     (window as any).discoverAll = () => {
       Object.keys(this.contentService.getAllResources()).forEach(key => {
         this.store.dispatch(new DiscoverResourceOrItem(key));
@@ -116,5 +130,7 @@ export class DebugService {
     (window as any).setCombatHealth = () => {};
     (window as any).setCombatEnergy = () => {};
     (window as any).discoverAll = () => {};
+    (window as any).gainEveryResource = () => {};
+    (window as any).gainEveryItem = () => {};
   }
 }
