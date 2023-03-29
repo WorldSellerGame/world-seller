@@ -3,7 +3,11 @@
   <strong [ngClass]="[itemClass]">{{ item.name }} &middot; {{ item.category }}</strong>
 </div>
 
-<div>
+<div class="value">
+  <em><small>Worth {{ realSellValue(item) | number }} coins</small></em>
+</div>
+
+<div class="description">
   {{ item.description }}
 </div>
 

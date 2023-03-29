@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Blacksmithing Lv.{{ level$ | async }}</ion-title>
+    <ion-title>
+      <div class="header-with-button">
+        <span>Blacksmithing Lv.{{ level$ | async }}</span>
+        <small>{{ pageMetadata.totalDiscovered }} / {{ pageMetadata.totalRecipes }} Discovered</small>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,11 +25,15 @@
       [items]="pageData.items || []"
       [currentQueue]="pageData.currentQueue || { queue: [], size: 1 }"
       [refiningWorkers]="pageData.refiningWorkers || { workerAllocations: [], canAssignWorker: false, hasWorkers: false }"
-      [filterOptions]="pageData.options || { hideDiscovered: false, hideNew: false, hideHasIngredients: false, hideHasNoIngredients: false }"
+      [filterOptions]="pageData.options || { hideDiscovered: false, hideDiscoveredTables: false, hideHasIngredients: false, hideHasNoIngredients: false }"
+      [starredRecipes]="(starred$ | async)"
       [locationData]="locationData"
       [startAction]="startAction"
       [cancelAction]="cancelAction"
+      [favoriteAction]="favoriteAction"
+      [upgradeQueueAction]="upgradeQueueAction"
       [changeOptionAction]="optionAction"
+      (totalsMetadata)="pageMetadata = $event"
     ></app-refining-page-display>
 
   </ng-container>

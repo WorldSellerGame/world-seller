@@ -10,6 +10,10 @@ recipes:
     ingredients:
       Metal Jewelry Tools: 1
       Quartz: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
     maxWorkers: 1
 
   - result: Cut Tanzanite
@@ -19,6 +23,10 @@ recipes:
     ingredients:
       Metal Jewelry Tools: 1
       Tanzanite: 1
+    require:
+      - Metal Jewelry Tools
+    preserve:
+      - Metal Jewelry Tools
     maxWorkers: 1
 
 # Non Metal

@@ -50,6 +50,17 @@
                   <ion-select-option value="full">Full</ion-select-option>
                 </ion-select>
               </ion-item>
+
+              <ion-item>
+                <ion-label>Notification Corner</ion-label>
+                <ion-select interface="popover" [(ngModel)]="options.notificationCorner"
+                                                (ionChange)="setOption('notificationCorner', options.notificationCorner)">
+                  <ion-select-option value="left-top">Top Left</ion-select-option>
+                  <ion-select-option value="right-top">Top Right</ion-select-option>
+                  <ion-select-option value="left-bottom">Bottom Left</ion-select-option>
+                  <ion-select-option value="right-bottom">Bottom Right</ion-select-option>
+                </ion-select>
+              </ion-item>
             </ion-list>
           </ion-card-content>
         </ion-card>

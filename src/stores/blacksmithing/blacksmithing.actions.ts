@@ -23,3 +23,12 @@ export class ChangeBlacksmithingFilterOption {
   static type = '[Blacksmithing] Change Filter Option';
   constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }
+
+export class StarBlacksmithingRecipe {
+  static type = '[Blacksmithing] Star Recipe';
+  constructor(public recipe: IGameRecipe) {}
+}
+
+export class UpgradeBlacksmithingQueue {
+  static type = '[Blacksmithing] Upgrade Queue';
+}

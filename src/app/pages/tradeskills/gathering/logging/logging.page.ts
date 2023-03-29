@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { LoggingState, WorkersState } from '../../../../../stores';
-import { CancelLogging, SetLoggingLocation } from '../../../../../stores/logging/logging.actions';
+import { CancelLogging, SetLoggingLocation, StarLoggingLocation } from '../../../../../stores/logging/logging.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -14,9 +14,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class LoggingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getLoggingLocations();
-  }
+  public locationData = this.contentService.getLoggingLocations();
 
   public get setAction() {
     return SetLoggingLocation;
@@ -26,9 +24,16 @@ export class LoggingPage implements OnInit {
     return CancelLogging;
   }
 
+  public get favoriteAction() {
+    return StarLoggingLocation;
+  }
+
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(LoggingState.level) level$!: Observable<number>;
   @Select(LoggingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(LoggingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(LoggingState.starredNodes) starredLocations$!: Observable<Record<string, boolean>>;
   @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
     workerAllocations: IGameWorkersGathering[];
     canAssignWorker: boolean;

@@ -22,7 +22,7 @@ export interface IGameRefiningRecipe {
 
 export interface IGameRefiningOptions {
   hideDiscovered: boolean;
-  hideNew: boolean;
+  hideDiscoveredTables: boolean;
   hideHasIngredients: boolean;
   hideHasNoIngredients: boolean;
 }
@@ -33,4 +33,5 @@ export type IGameRefining = {
   level: number;
   queueSize: number;
   recipeQueue: IGameRefiningRecipe[];
+  starred: Record<string, boolean>;
 } & IGameRefiningOptions;

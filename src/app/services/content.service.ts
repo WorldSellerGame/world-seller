@@ -24,6 +24,7 @@ import * as threats from '../../assets/content/threats.json';
 import * as weaving from '../../assets/content/weaving.json';
 
 import * as characterNames from '../../assets/content/character-names.json';
+import * as queueUpgrades from '../../assets/content/queue-upgrades.json';
 import * as statGains from '../../assets/content/stat-gains.json';
 
 import { Store } from '@ngxs/store';
@@ -145,6 +146,10 @@ export class ContentService {
 
   public get statGains(): IStatGains {
     return (statGains as any).default || statGains;
+  }
+
+  public get queueUpgrades() {
+    return (queueUpgrades as any).default || queueUpgrades;
   }
 
   // aggregates
@@ -475,6 +480,14 @@ export class ContentService {
   public getDungeonByName(name: string): IDungeon {
     const dungeon = this.modCacheRecords['dungeons'][name] || this.dungeons[name];
     return cloneDeep(dungeon);
+  }
+
+  public getAllResources(): Record<string, IGameResource> {
+    return cloneDeep(merge({}, this.resources, this.modCacheRecords['resources']));
+  }
+
+  public getAllItems(): Record<string, IGameItem> {
+    return cloneDeep(merge({}, this.items, this.modCacheRecords['items']));
   }
 
   public getAllThreats(): Record<string, IGameEnemyThreat> {

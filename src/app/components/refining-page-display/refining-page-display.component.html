@@ -5,24 +5,62 @@
     <ion-col>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Crafting Queue</ion-card-title>
+          <ion-card-title>
+            <div class="header-with-button">
+              Crafting Queue ({{ currentQueue.queue.length }} / {{ currentQueue.size }})
+
+              <div [ngxTippy]="tooltip" *ngIf="queueUpgradeRequirements(currentQueue)">
+                <ion-button color="primary" fill="outline" [disabled]="!canUpgradeQueue(currentQueue)" (click)="upgradeQueue(currentQueue)">Upgrade</ion-button>
+              </div>
+
+              <ng-template #tooltip>
+                <div *ngIf="queueUpgradeRequirements(currentQueue) as upgradeRequirements">
+                  <div><strong>Upgrade Cost</strong></div>
+                  <br>
+                  <div><strong>Coins</strong>: {{ upgradeRequirements.coins | number }}</div>
+                  <div *ngFor="let resource of upgradeRequirements.resources | keyvalue">
+                    <strong>{{ resource.key }}</strong>: {{ resource.value | number }}
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
           <ng-container>
             <div *ngIf="currentQueue.queue.length === 0">No items currently being crafted.</div>
 
-            <ion-list>
-              <ion-item *ngFor="let craftItem of currentQueue.queue || []; let i = index; trackBy:trackBy">
-                <app-game-icon slot="start" [icon]="iconForRecipe(craftItem.recipe)"></app-game-icon>
+            <div class="crafting-queue">
+              <div class="crafting-queue-item"
+                   [class.hovered]="visibleCancels[i]"
+                   *ngFor="let craftItem of currentQueue.queue || []; let i = index; trackBy: trackBy"
+                   [ngxTippy]="tooltip"
+                   (mouseenter)="visibleCancels[i] = true"
+                   (mouseleave)="visibleCancels[i] = false">
 
-                <ion-label>
-                  <h2>{{ craftItem.recipe.result }} x{{ craftItem.totalLeft }} &middot; <app-countdown [duration]="craftItem.currentDuration"></app-countdown></h2>
-                </ion-label>
+                <app-game-icon class="icon" [icon]="iconForRecipe(craftItem.recipe)"></app-game-icon>
+                <ion-badge class="remaining" color="primary">{{ craftItem.totalLeft }}</ion-badge>
+                <app-countdown class="timer" [duration]="craftItem.currentDuration + ((craftItem.totalLeft - 1) * craftItem.durationPer)"></app-countdown>
 
-                <ion-button color="danger" slot="end" fill="clear" (click)="cancel(i)" [analyticsClick]="'Refining:' + tradeskill + ':Cancel:' + craftItem.recipe.result">Cancel</ion-button>
-              </ion-item>
-            </ion-list>
+                <div class="cancel-container" *ngIf="visibleCancels[i]">
+                  <ion-button class="cancel-warning"
+                              color="warning"
+                              fill="clear"
+                              shape="round"
+                              [analyticsClick]="'Refining:' + tradeskill + ':Cancel:' + craftItem.recipe.result"
+                              (click)="cancel(i)">
+                    <ion-icon name="close" slot="icon-only"></ion-icon>
+                  </ion-button>
+                </div>
+
+                <ng-template #tooltip>
+                  <app-item-tooltip *ngIf="itemOutputs[craftItem.recipe.result]" [item]="itemOutputs[craftItem.recipe.result]"></app-item-tooltip>
+                  <app-resource-tooltip *ngIf="resourceOutputs[craftItem.recipe.result]" [resource]="resourceOutputs[craftItem.recipe.result]"></app-resource-tooltip>
+                </ng-template>
+
+              </div>
+            </div>
           </ng-container>
         </ion-card-content>
       </ion-card>
@@ -35,30 +73,30 @@
         <ion-card-content>
           <ion-row>
             <ion-col>
-              <ion-item (click)="changeOption('hideDiscovered', !filterOptions.hideDiscovered)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideDiscovered"></ion-checkbox>
-                <ion-label>Hide Discovered</ion-label>
+              <ion-item class="filter" lines="none" (click)="changeOption('hideDiscovered', !filterOptions.hideDiscovered)">
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideDiscovered"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Discovered</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
-              <ion-item (click)="changeOption('hideNew', !filterOptions.hideNew)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideNew"></ion-checkbox>
-                <ion-label>Hide Undiscovered</ion-label>
+              <ion-item class="filter" lines="none" (click)="changeOption('hideHasIngredients', !filterOptions.hideHasIngredients)">
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideHasIngredients"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Creatable</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
-              <ion-item (click)="changeOption('hideHasIngredients', !filterOptions.hideHasIngredients)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideHasIngredients"></ion-checkbox>
-                <ion-label>Hide Creatable</ion-label>
+              <ion-item class="filter" lines="none" (click)="changeOption('hideHasNoIngredients', !filterOptions.hideHasNoIngredients)">
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideHasNoIngredients"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Uncreatable</ion-label>
               </ion-item>
             </ion-col>
 
             <ion-col>
-              <ion-item (click)="changeOption('hideHasNoIngredients', !filterOptions.hideHasNoIngredients)">
-                <ion-checkbox slot="start" [checked]="filterOptions.hideHasNoIngredients"></ion-checkbox>
-                <ion-label>Hide Uncreatable</ion-label>
+              <ion-item class="filter" lines="none" (click)="changeOption('hideDiscoveredTables', !filterOptions.hideDiscoveredTables)">
+                <ion-checkbox slot="start" [checked]="!filterOptions.hideDiscoveredTables"></ion-checkbox>
+                <ion-label class="ion-text-wrap">Discovered Crafting Tables</ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -83,10 +121,11 @@
 
           <cdk-virtual-scroll-viewport class="scrollable-list" itemSize="105" minBufferPx="945" maxBufferPx="1575">
             <ion-list class="striped">
-              <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy">
+              <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy"
+                        (mouseenter)="visibleStars[recipe.result] = true" (mouseleave)="visibleStars[recipe.result] = false">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)" [shimmer]="!discoveries[recipe.result]"></app-game-icon>
 
-                <ion-label>
+                <ion-label class="label">
                   <h2>
                     <strong class="recipe-name">
                       <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">{{ recipe.result }}</span>
@@ -139,6 +178,19 @@
                                    [emphasizeText]="false"
                                    [angryColorWhenQuantityExceedsMax]="true"></app-item-icon>
                   </div>
+
+
+                  <ion-button class="favorite"
+                              color="primary"
+                              *ngIf="visibleStars[recipe.result] || allStarredRecipes[recipe.result]"
+                              (click)="toggleFavorite(recipe, !allStarredRecipes[recipe.result])"
+                              fill="clear"
+                              size="small"
+                              shape="round">
+
+                    <ion-icon slot="icon-only"
+                              [icon]="allStarredRecipes[recipe.result] ? 'star' : 'star-outline'"></ion-icon>
+                  </ion-button>
                 </ion-label>
 
                 <div slot="end">

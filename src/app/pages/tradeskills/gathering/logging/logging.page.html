@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Logging Lv.{{ level$ | async }}</ion-title>
+    <ion-title>
+      <div class="header-with-button">
+        <span>Logging Lv.{{ level$ | async }}</span>
+        <small>{{ pageMetadata.totalDiscovered }} / {{ pageMetadata.totalLocations }} Discovered</small>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,9 +17,12 @@
     [currentLocation$]="currentLocation$"
     [cooldowns$]="cooldowns$"
     [gatheringWorkers$]="gatheringWorkers$"
+    [starredLocations]="starredLocations$ | async"
     [locationData]="locationData"
     [setAction]="setAction"
     [cancelAction]="cancelAction"
+    [favoriteAction]="favoriteAction"
+    (totalsMetadata)="pageMetadata = $event"
   ></app-gathering-page-display>
 
 </ion-content>

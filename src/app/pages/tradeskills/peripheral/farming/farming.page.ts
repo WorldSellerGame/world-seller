@@ -16,9 +16,7 @@ import { NotifyService } from '../../../../services/notify.service';
 })
 export class FarmingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getFarmingTransforms();
-  }
+  public readonly locationData = this.contentService.getFarmingTransforms();
 
   public currentPlantIndex = -1;
   public plantableSeeds: Array<{ name: string; quantity: number; canGiveLevel: boolean }> = [];
@@ -59,9 +57,10 @@ export class FarmingPage implements OnInit {
     this.currentPlantIndex = plotIndex;
 
     const resources = this.store.selectSnapshot(CharSelectState.activeCharacterResources);
+    const locationValidItems = this.locationData.map(x => x.startingItem);
 
     this.plantableSeeds = Object.keys(resources)
-      .filter(res => this.itemCreatorService.resourceMatchesType(res, 'Seeds'))
+      .filter(res => locationValidItems.includes(res))
       .filter(res => resources[res] > 0)
       .map(res => ({
         name: res,

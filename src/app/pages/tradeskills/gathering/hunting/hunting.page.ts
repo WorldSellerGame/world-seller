@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IGameGatherLocation, IGameWorkersGathering } from '../../../../../interfaces';
 import { HuntingState, WorkersState } from '../../../../../stores';
-import { CancelHunting, SetHuntingLocation } from '../../../../../stores/hunting/hunting.actions';
+import { CancelHunting, SetHuntingLocation, StarHuntingLocation } from '../../../../../stores/hunting/hunting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -14,9 +14,7 @@ import { ContentService } from '../../../../services/content.service';
 })
 export class HuntingPage implements OnInit {
 
-  public get locationData() {
-    return this.contentService.getHuntingLocations();
-  }
+  public locationData = this.contentService.getHuntingLocations();
 
   public get setAction() {
     return SetHuntingLocation;
@@ -26,9 +24,16 @@ export class HuntingPage implements OnInit {
     return CancelHunting;
   }
 
+  public get favoriteAction() {
+    return StarHuntingLocation;
+  }
+
+  public pageMetadata = { totalDiscovered: 0, totalLocations: 0 };
+
   @Select(HuntingState.level) level$!: Observable<number>;
   @Select(HuntingState.cooldowns) cooldowns$!: Observable<Record<string, number>>;
   @Select(HuntingState.currentLocation) currentLocation$!: Observable<{ location: IGameGatherLocation; duration: number } | undefined>;
+  @Select(HuntingState.starredNodes) starredLocations$!: Observable<Record<string, boolean>>;
   @Select(WorkersState.gatheringWorkers) gatheringWorkers$!: Observable<{
     workerAllocations: IGameWorkersGathering[];
     canAssignWorker: boolean;

@@ -26,6 +26,11 @@ export class WeavingState {
   }
 
   @Selector()
+  static starred(state: IGameRefining) {
+    return state.starred;
+  }
+
+  @Selector()
   static currentQueue(state: IGameRefining) {
     return { queue: state.recipeQueue, size: state.queueSize };
   }
@@ -34,7 +39,7 @@ export class WeavingState {
   static options(state: IGameRefining) {
     return {
       hideDiscovered: state.hideDiscovered,
-      hideNew: state.hideNew,
+      hideDiscoveredTables: state.hideDiscoveredTables,
       hideHasIngredients: state.hideHasIngredients,
       hideHasNoIngredients: state.hideHasNoIngredients
     };

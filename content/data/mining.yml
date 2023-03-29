@@ -2,8 +2,8 @@
 # Mid gather time, mid cooldown
 
 locations:
-  - name: Nearby Quarry
-    description: A small quarry nearby.
+  - name: Stony Field 
+    description: A small field to rocky for farming.
     perGather:
       min: 2
       max: 4
@@ -13,14 +13,12 @@ locations:
     gatherTime: 10
     cooldownTime: 5
     resources:
-      - name: Clay
-        weight: 1
       - name: Stone
         weight: 1
     maxWorkers: 2
 
-  - name: Dried Out River Basin
-    description: A place where a river used to flow.
+  - name: Nearby Quarry
+    description: An old quarry that has been abandoned.
     perGather:
       min: 3
       max: 6
@@ -30,11 +28,11 @@ locations:
     gatherTime: 30
     cooldownTime: 15
     resources:
+      - name: Stone
+        weight: 5
       - name: Clay
         weight: 1
       - name: Sand
-        weight: 1
-      - name: Gravel
         weight: 1
       - name: Limestone
         weight: 1
@@ -59,8 +57,8 @@ locations:
         weight: 2
     maxWorkers: 1
 
-  - name: Bat Infested Iron Mine
-    description: Despite being rich in ore, this cave hasn't had the touch of mankind.
+  - name: Dried Out River Basin
+    description: A place where a river used to flow.
     perGather:
       min: 5
       max: 10
@@ -69,6 +67,27 @@ locations:
       max: 25
     gatherTime: 180
     cooldownTime: 90
+    resources:
+      - name: Clay
+        weight: 1
+      - name: Sand
+        weight: 1
+      - name: Gravel
+        weight: 1
+      - name: Limestone
+        weight: 1
+    maxWorkers: 1
+
+  - name: Bat Infested Iron Mine
+    description: Despite being rich in ore, this cave hasn't had the touch of mankind.
+    perGather:
+      min: 6
+      max: 12
+    level:
+      min: 20
+      max: 30
+    gatherTime: 330
+    cooldownTime: 165
     resources:
       - name: Stone
         weight: 3
@@ -85,31 +104,6 @@ locations:
   - name: Grotto
     description: A naturally formed cave with pools of water.
     perGather:
-      min: 6
-      max: 12
-    level:
-      min: 20
-      max: 30
-    gatherTime: 330
-    cooldownTime: 165
-    resources:
-      - name: Stone
-        weight: 30
-      - name: Limestone
-        weight: 10
-      - name: White Clay
-        weight: 20
-      - name: Sand
-        weight: 5
-      - name: Quartz
-        weight: 10
-      - name: Tanzanite
-        weight: 1
-    maxWorkers: 1
-
-  - name: Archaeological Site
-    description: Ancient loacation that doubles as a resting place for the dead.
-    perGather:
       min: 7
       max: 14
     level:
@@ -119,18 +113,16 @@ locations:
     cooldownTime: 300
     resources:
       - name: Stone
+        weight: 25
+      - name: Limestone
         weight: 10
-      - name: Gravel
+      - name: White Clay
         weight: 20
-      - name: Brimstone
-        weight: 10
-      - name: Bone
+      - name: Sand
         weight: 5
-      - name: Tanzanite
+      - name: Quartz
         weight: 10
-      - name: Sap
-        weight: 1
-      - name: Curse
+      - name: Tanzanite
         weight: 1
     maxWorkers: 1
 
@@ -159,8 +151,8 @@ locations:
         weight: 1
     maxWorkers: 1
 
-  - name: Achient Dwarven Mine
-    description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
+  - name: Archaeological Site
+    description: Ancient loacation that doubles as a resting place for the dead.
     perGather:
       min: 9
       max: 18
@@ -169,6 +161,33 @@ locations:
       max: 45
     gatherTime: 1650
     cooldownTime: 825
+    resources:
+      - name: Stone
+        weight: 5
+      - name: Gravel
+        weight: 10
+      - name: Brimstone
+        weight: 10
+      - name: Bone
+        weight: 5
+      - name: Tanzanite
+        weight: 10
+      - name: Sap
+        weight: 1
+      - name: Curse
+        weight: 1
+    maxWorkers: 1
+
+  - name: Achient Dwarven Mine
+    description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
+    perGather:
+      min: 10
+      max: 20
+    level:
+      min: 40
+      max: 50
+    gatherTime: 2600
+    cooldownTime: 1300
     resources:
       - name: Stone
         weight: 250
@@ -191,13 +210,13 @@ locations:
   - name: Pile of Cursed Feces
     description: Probably best not to mine here.
     perGather:
-      min: 11
-      max: 22
+      min: 10
+      max: 20
     level:
-      min: 45
-      max: 45
-    gatherTime: 1650
-    cooldownTime: 825
+      min: 50
+      max: 50
+    gatherTime: 2600
+    cooldownTime: 1300
     resources:
       - name: Guano
         weight: 1

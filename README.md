@@ -25,6 +25,7 @@ You must have debug mode enabled for any of these to work.
 * `window.gainLevel(tradeskill, levels)` - gain a number of levels for a tradeskill (levels can be negative).
 * `window.setCombatHealth(value)` - set the player's health in combat to the specified value.
 * `window.setCombatEnergy(value)` - set the player's energy in combat to the specified value.
+* `window.discoverAll()` - discover all items. Not reversible. Lags a lot.
 
 ### Reloading Game Content
 

@@ -78,7 +78,7 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Workbench : 1
       Cedar Log: 3
-      Twine: 5
+      Plant Fiber: 1
     require:
       - Workbench
     preserve:
@@ -178,9 +178,10 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Workbench : 1
       Oak Log: 3
-      Twine: 5
+      Yarn: 5
     require:
       - Workbench
+      - Oak Log
     preserve:
       - Workbench
     maxWorkers: 1
@@ -281,6 +282,7 @@ recipes: #Rebalance for 900~ lines ;-;
       Twine: 5
     require:
       - Workbench
+      - Ash Log
     preserve:
       - Workbench
     maxWorkers: 1

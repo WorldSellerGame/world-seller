@@ -6,7 +6,7 @@ import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../.
 
 import {
   CancelJewelcraftingJob,
-  ChangeJewelcraftingFilterOption, StartJewelcraftingJob
+  ChangeJewelcraftingFilterOption, StarJewelcraftingRecipe, StartJewelcraftingJob, UpgradeJewelcraftingQueue
 } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -32,9 +32,20 @@ export class JewelcraftingPage implements OnInit {
     return ChangeJewelcraftingFilterOption;
   }
 
+  public get favoriteAction() {
+    return StarJewelcraftingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeJewelcraftingQueue;
+  }
+
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
+
   @Select(JewelcraftingState.level) level$!: Observable<number>;
   @Select(JewelcraftingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(JewelcraftingState.options) options$!: Observable<IGameRefiningOptions>;
+  @Select(JewelcraftingState.starred) starred$!: Observable<Record<string, boolean>>;
 
   @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{

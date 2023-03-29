@@ -28,9 +28,9 @@ locations:
       max: 3
     level:
       min: 5
-      max: 10
-    gatherTime: 10
-    cooldownTime: 5
+      max: 15
+    gatherTime: 30
+    cooldownTime: 15
     resources:
       - name: Old Boot
         weight: 1

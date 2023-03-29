@@ -1,66 +1,57 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Store } from '@ngxs/store';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { GameOption } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotifyService {
 
-  constructor(private alertCtrl: AlertController) { }
+  constructor(private store: Store, private alertCtrl: AlertController) { }
+
+  private notificationPosition() {
+    return this.store.selectSnapshot(state => state.options?.[GameOption.NotificationCorner]) ?? 'left-top';
+  }
+
+  private notiflixDefaults = () => ({
+    fontSize: '15px',
+    width: '400px',
+    messageMaxLength: 300,
+    timeout: 5000,
+    useIcon: false,
+    clickToClose: true,
+    position: this.notificationPosition()
+  });
 
   public notify(message: string) {
     Notify.info(message, {
-      useIcon: false,
-      clickToClose: true,
-      fontSize: '15px',
-      width: '400px',
-      messageMaxLength: 300,
-      timeout: 5000
+      ...this.notiflixDefaults()
     });
   }
 
   public error(message: string) {
     Notify.failure(message, {
-      useIcon: false,
-      clickToClose: true,
-      fontSize: '15px',
-      width: '400px',
-      messageMaxLength: 300,
-      timeout: 5000
+      ...this.notiflixDefaults()
     });
   }
 
   public warn(message: string) {
     Notify.warning(message, {
-      useIcon: false,
-      clickToClose: true,
-      fontSize: '15px',
-      width: '400px',
-      messageMaxLength: 300,
-      timeout: 5000
+      ...this.notiflixDefaults()
     });
   }
 
   public success(message: string) {
     Notify.success(message, {
-      useIcon: false,
-      clickToClose: true,
-      fontSize: '15px',
-      width: '400px',
-      messageMaxLength: 300,
-      timeout: 5000
+      ...this.notiflixDefaults()
     });
   }
 
   public achievement(message: string) {
     Notify.success(message, {
-      useIcon: false,
-      clickToClose: true,
-      fontSize: '15px',
-      timeout: 5000,
-      width: '400px',
-      messageMaxLength: 300,
+      ...this.notiflixDefaults(),
       className: 'notiflix-notify-achievement'
     });
   }

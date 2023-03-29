@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, Subscription, of } from 'rxjs';
 import { IGameFarmingPlot, IGameRefiningRecipe } from '../interfaces';
-import { OptionsState } from '../stores';
+import { CharSelectState, OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
+  @Select(CharSelectState.activeCharacterInventoryUnlocked) inventoryUnlocked$!: Observable<boolean>;
 
   public level!: Subscription;
   public totalLevel = 0;

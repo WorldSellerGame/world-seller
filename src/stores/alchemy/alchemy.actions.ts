@@ -23,3 +23,12 @@ export class ChangeAlchemyFilterOption {
   static type = '[Alchemy] Change Filter Option';
   constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }
+
+export class StarAlchemyRecipe {
+  static type = '[Alchemy] Star Recipe';
+  constructor(public recipe: IGameRecipe) {}
+}
+
+export class UpgradeAlchemyQueue {
+  static type = '[Alchemy] Upgrade Queue';
+}

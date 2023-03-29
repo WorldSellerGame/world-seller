@@ -26,11 +26,11 @@ export function workerTimerMultiplier(workerMultiplierLevel = 1) {
 }
 
 export function upkeepCost(numWorkers: number) {
-  if(numWorkers <= 5) {
+  if(numWorkers <= 3) {
     return 0;
   }
 
-  return Math.floor(100 * Math.pow(numWorkers + 1, 1.3));
+  return Math.floor(100 * Math.pow(numWorkers - 3, 1.3));
 }
 
 export function upkeepTicks() {

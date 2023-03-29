@@ -64,6 +64,16 @@ export class DebugService {
       this.store.dispatch(new DebugSetPlayerEnergy(value));
     };
 
+    (window as any).discoverAll = () => {
+      Object.keys(this.contentService.getAllResources()).forEach(key => {
+        this.store.dispatch(new DiscoverResourceOrItem(key));
+      });
+
+      Object.keys(this.contentService.getAllItems()).forEach(key => {
+        this.store.dispatch(new DiscoverResourceOrItem(key));
+      });
+    };
+
     (window as any).applyCombatEffectToPlayer = (effect: string) => {
       const effectRef = this.contentService.getEffectByName(effect);
       if(!effectRef) {
@@ -105,5 +115,6 @@ export class DebugService {
     (window as any).gainLevel = () => {};
     (window as any).setCombatHealth = () => {};
     (window as any).setCombatEnergy = () => {};
+    (window as any).discoverAll = () => {};
   }
 }

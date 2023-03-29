@@ -18,3 +18,8 @@ export class CancelForaging {
   static type = '[Foraging] Cancel Foraging';
   constructor() {}
 }
+
+export class StarForagingLocation {
+  static type = '[Foraging] Star Foraging Location';
+  constructor(public location: IGameGatherLocation) {}
+}

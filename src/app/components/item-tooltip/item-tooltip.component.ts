@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import { IGameItem } from '../../../interfaces';
-import { getItemRarityClass } from '../../helpers';
+import { shopRegisterMultiplier } from '../../../stores/mercantile/mercantile.functions';
+import { getItemRarityClass, itemValue } from '../../helpers';
 import { ContentService } from '../../services/content.service';
 
 @Component({
@@ -21,7 +23,7 @@ export class ItemTooltipComponent implements OnInit {
     return getItemRarityClass(this.item);
   }
 
-  constructor(private contentService: ContentService) { }
+  constructor(private store: Store, private contentService: ContentService) { }
 
   ngOnInit() {
     this.hasStats = Object.keys(this.item.stats || {}).length > 0;
@@ -40,6 +42,11 @@ export class ItemTooltipComponent implements OnInit {
     if(this.item.givesPlayerAbility) {
       this.ability = this.contentService.getAbilityByName(this.item.givesPlayerAbility)?.name || 'Unknown';
     }
+  }
+
+  realSellValue(item: IGameItem) {
+    return itemValue(item,
+      2 + shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0))) * (item.quantity ?? 1);
   }
 
 }

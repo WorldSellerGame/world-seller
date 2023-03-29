@@ -23,3 +23,12 @@ export class ChangeWeavingFilterOption {
   static type = '[Weaving] Change Filter Option';
   constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }
+
+export class StarWeavingRecipe {
+  static type = '[Weaving] Star Recipe';
+  constructor(public recipe: IGameRecipe) {}
+}
+
+export class UpgradeWeavingQueue {
+  static type = '[Weaving] Upgrade Queue';
+}

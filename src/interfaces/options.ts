@@ -8,6 +8,7 @@ export enum GameOption {
   SoundSFX = 'soundSFX',
   TelemetryErrors = 'telemetryErrors',
   TelemetrySavefiles = 'telemetrySavefiles',
+  NotificationCorner = 'notificationCorner',
 }
 
 export interface IOptions {
@@ -20,4 +21,5 @@ export interface IOptions {
   [GameOption.SoundSFX]: number;
   [GameOption.TelemetryErrors]: boolean;
   [GameOption.TelemetrySavefiles]: boolean;
+  [GameOption.NotificationCorner]: 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom';
 }

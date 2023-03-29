@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import {
   IGameItem, IGameRecipe, IGameRefiningOptions,
-  IGameRefiningRecipe, IGameResource, IGameWorkersRefining
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory
 } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
+import { GainResources } from '../../../stores/charselect/charselect.actions';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ContentService } from '../../services/content.service';
@@ -36,15 +37,20 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   @Input() filterOptions: IGameRefiningOptions = {
     hideDiscovered: false,
-    hideNew: false,
+    hideDiscoveredTables: false,
     hideHasIngredients: false,
     hideHasNoIngredients: false,
   };
 
+  @Input() starredRecipes: Record<string, boolean> | null = {};
   @Input() locationData: IGameRecipe[] = [];
   @Input() startAction: any;
   @Input() cancelAction: any;
+  @Input() favoriteAction: any;
+  @Input() upgradeQueueAction: any;
   @Input() changeOptionAction: any;
+
+  @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalRecipes: number }>();
 
   public type!: 'resources'|'items';
   public amounts: Record<string, number> = {};
@@ -64,6 +70,10 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   public summedResources: Record<string, number> = {};
 
+  public visibleCancels: Record<number, boolean> = {};
+  public visibleStars: Record<string, boolean> = {};
+  public allStarredRecipes: Record<string, boolean> = {};
+
   private resourcesSub!: Subscription;
   private discoveriesSub!: Subscription;
 
@@ -74,6 +84,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ) {}
 
   ngOnInit() {
+    this.allStarredRecipes = this.starredRecipes || {};
+
     this.setVisibleRecipes();
     this.setRefiningWorkerHash();
     this.setTotalResources();
@@ -89,6 +101,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
       this.discoveries = discoveries;
 
       this.setVisibleRecipes();
+      this.setMetadata();
     });
   }
 
@@ -109,6 +122,19 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ngOnDestroy() {
     this.resourcesSub?.unsubscribe();
     this.discoveriesSub?.unsubscribe();
+  }
+
+  toggleFavorite(recipe: IGameRecipe, value: boolean) {
+    this.store.dispatch(new this.favoriteAction(recipe));
+    this.allStarredRecipes[recipe.result] = value;
+    this.setVisibleRecipes();
+  }
+
+  setMetadata() {
+    const totalDiscovered = this.locationData.filter(x => this.discoveries[x.result]).length;
+    const totalRecipes = this.locationData.length;
+
+    this.totalsMetadata.emit({ totalDiscovered, totalRecipes });
   }
 
   setTotalResources() {
@@ -198,6 +224,60 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     return queue.length >= size;
   }
 
+  public queueUpgradeRequirements(
+    queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null
+  ): { coins: number; resources: Record<string, number> } | undefined {
+    const upgradeInfo = this.contentService.queueUpgrades[this.tradeskill];
+    if(!upgradeInfo || !queueInfo) {
+      return undefined;
+    }
+
+    const upgradeRequirements = upgradeInfo[queueInfo.size - 1];
+    if(!upgradeRequirements) {
+      return undefined;
+    }
+
+    return upgradeRequirements;
+  }
+
+  canUpgradeQueue(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
+    const upgradeInfo = this.contentService.queueUpgrades[this.tradeskill];
+    if(!upgradeInfo || !queueInfo) {
+      return false;
+    }
+
+    const upgradeRequirements = this.queueUpgradeRequirements(queueInfo);
+    if(!upgradeRequirements) {
+      return false;
+    }
+
+    const { coins, resources } = upgradeRequirements;
+    if(coins > this.resources['Coin']) {
+      return false;
+    }
+
+    return Object.keys(resources || {}).every(resourceName => this.resources[resourceName] >= resources[resourceName]);
+  }
+
+  upgradeQueue(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null) {
+    const upgradeCost = this.queueUpgradeRequirements(queueInfo);
+    if(!upgradeCost) {
+      return;
+    }
+
+    const costInversion: Record<string, number> = {};
+    costInversion['Coin'] = -upgradeCost.coins;
+
+    Object.keys(upgradeCost.resources || {}).forEach(resourceName => {
+      costInversion[resourceName] = -upgradeCost.resources[resourceName];
+    });
+
+    this.store.dispatch([
+      new GainResources(costInversion),
+      new this.upgradeQueueAction()
+    ]);
+  }
+
   trackBy(index: number) {
     return index;
   }
@@ -230,12 +310,16 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return required.every((req) => this.discoveries[req]);
       })
       .filter((recipe: IGameRecipe) => {
+        if(this.allStarredRecipes[recipe.result]) {
+          return true;
+        }
+
         if(this.filterOptions.hideDiscovered && this.discoveries[recipe.result]) {
           return false;
         }
 
-        if(this.filterOptions.hideNew && !this.discoveries[recipe.result]) {
-          return false;
+        if(this.filterOptions.hideDiscoveredTables && this.discoveries[recipe.result] && type === 'resources') {
+          return this.contentService.getResourceByName(recipe.result).category !== ItemCategory.CraftingTables;
         }
 
         if(this.filterOptions.hideHasIngredients && this.canCraftRecipe(recipe)) {
@@ -249,7 +333,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return true;
       });
 
-    return sortBy(validRecipes, [(recipe) => !this.canCraftRecipe(recipe), (recipe) => recipe.result]);
+    return sortBy(validRecipes, [
+      (recipe) => !this.allStarredRecipes[recipe.result],
+      (recipe) => !this.canCraftRecipe(recipe),
+      (recipe) => recipe.result]
+    );
   }
 
   totalResourceHashForCrafting() {
@@ -296,6 +384,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   cancel(jobIndex: number) {
     this.store.dispatch(new this.cancelAction(jobIndex));
+    this.visibleCancels[jobIndex] = false;
   }
 
   assignWorker(recipe: IGameRecipe) {

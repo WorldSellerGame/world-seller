@@ -4,7 +4,10 @@ import { Observable, first } from 'rxjs';
 import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, CookingState, WorkersState } from '../../../../../stores';
 
-import { CancelCookingJob, ChangeCookingFilterOption, StartCookingJob } from '../../../../../stores/cooking/cooking.actions';
+import {
+  CancelCookingJob, ChangeCookingFilterOption,
+  StarCookingRecipe, StartCookingJob, UpgradeCookingQueue
+} from '../../../../../stores/cooking/cooking.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -29,9 +32,20 @@ export class CookingPage implements OnInit {
     return ChangeCookingFilterOption;
   }
 
+  public get favoriteAction() {
+    return StarCookingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeCookingQueue;
+  }
+
+  public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
+
   @Select(CookingState.level) level$!: Observable<number>;
   @Select(CookingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(CookingState.options) options$!: Observable<IGameRefiningOptions>;
+  @Select(CookingState.starred) starred$!: Observable<Record<string, boolean>>;
 
   @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{
