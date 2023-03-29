@@ -1,7 +1,10 @@
 import { StateContext } from '@ngxs/store';
 
 import { append, insertItem, patch, removeItem } from '@ngxs/store/operators';
-import { AchievementStat, IGameWorkers, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining, Rarity } from '../../interfaces';
+import {
+  AchievementStat, IGameWorkers, IGameWorkersGathering,
+  IGameWorkersMercantle, IGameWorkersRefining, Rarity
+} from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { spendCoins } from '../mercantile/mercantile.functions';
 import { AssignGatheringWorker, AssignRefiningWorker, UnassignGatheringWorker, UnassignRefiningWorker } from './workers.actions';
