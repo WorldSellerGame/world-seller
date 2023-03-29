@@ -146,19 +146,6 @@ recipes:
       - Mortar and Pestle
     maxWorkers: 1
 
-  - result: Quartz Powder #gotta move
-    perCraft: { min: 1, max: 1 }
-    level: { min: 15, max: 25 }
-    craftTime: 240
-    ingredients:
-      Quartz: 2
-      Mortar and Pestle: 1
-    require:
-      - Mortar and Pestle
-    preserve:
-      - Mortar and Pestle
-    maxWorkers: 1
-
   - result: Potion of Minor Strength
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
