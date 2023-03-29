@@ -37,6 +37,7 @@ export class ModsService {
     if(!hasPermission) {
       const alert = await this.alertCtrl.create({
         header: 'Storage Permission',
+        cssClass: 'yesno',
         message: 'mod.io integration requires persistent storage permission. Hit OK to allow this and proceed, or cancel to back out.',
         buttons: [
           {
@@ -50,6 +51,7 @@ export class ModsService {
               if(!gotPermission) {
                 const warning = await this.alertCtrl.create({
                   header: 'Storage Permission Failed',
+                  cssClass: 'yesno',
                   message: 'Permission was denied; you cannot use mods until you allow this permission.',
                   buttons: ['OK']
                 });

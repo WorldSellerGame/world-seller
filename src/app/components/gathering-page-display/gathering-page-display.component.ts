@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
@@ -7,6 +6,7 @@ import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../
 import { CharSelectState } from '../../../stores';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
 import { calculateStat } from '../../helpers';
+import { NotifyService } from '../../services/notify.service';
 
 @Component({
   selector: 'app-gathering-page-display',
@@ -45,7 +45,10 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
 
-  constructor(private store: Store, private alertCtrl: AlertController) { }
+  constructor(
+    private store: Store,
+    private notifyService: NotifyService
+  ) { }
 
   ngOnInit() {
     this.allStarredLocations = this.starredLocations || {};
@@ -130,10 +133,10 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const alert = await this.alertCtrl.create({
-      header: 'Cancel gathering?',
-      message: 'You are already gathering somewhere else. Gathering here will cancel that gathering and the time spend will be lost.',
-      buttons: [
+    this.notifyService.confirm(
+      'Cancel gathering?',
+      'You are already gathering somewhere else. Gathering here will cancel that gathering and the time spend will be lost.',
+      [
         {
           text: 'No, keep gathering',
           role: 'cancel'
@@ -145,9 +148,7 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
           }
         }
       ]
-    });
-
-    await alert.present();
+    );
   }
 
   cancelGather() {
