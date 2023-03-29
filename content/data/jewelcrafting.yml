@@ -3,6 +3,8 @@ recipes:
 
 # Resources
 
+
+
   - result: Cut Quartz
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
@@ -14,6 +16,19 @@ recipes:
       - Metal Jewelry Tools
     preserve:
       - Metal Jewelry Tools
+    maxWorkers: 1
+
+  - result: Quartz Powder #gotta move
+    perCraft: { min: 1, max: 1 }
+    level: { min: 15, max: 25 }
+    craftTime: 240
+    ingredients:
+      Quartz: 2
+      Mortar and Pestle: 1
+    require:
+      - Mortar and Pestle
+    preserve:
+      - Mortar and Pestle
     maxWorkers: 1
 
   - result: Cut Tanzanite
@@ -113,7 +128,7 @@ recipes:
       - Jewelry Tools
     maxWorkers: 1
 
-# Metal #god fucking damnit god fucking fuck you fucking fuckers  I DONT WANT TO SUB DIVED INGOTS ONTO SMALLER FUCKING PORTIONS FRUCK SHIT ASS FUCK SHIT GODDAMN... Ahem mabye its not so bad... if it is bad though I am going to blow up the moon I bet there in a mcraft mod for doing that
+
 
   - result: Copper Ring
     perCraft: { min: 1, max: 1 }
@@ -169,7 +184,7 @@ recipes:
       - Metal Jewelry Tools
     maxWorkers: 1
 
-##iron because fuck
+##iron 
 
   - result: Iron Ring
     perCraft: { min: 1, max: 1 }
