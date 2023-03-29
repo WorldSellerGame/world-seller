@@ -35,6 +35,8 @@ import { defaultCharSelect } from './charselect.functions';
 @Injectable()
 export class CharSelectState {
 
+  private hasSentNotifications: Record<string, boolean> = {};
+
   constructor(
     private store: Store,
     private contentService: ContentService,
@@ -150,87 +152,111 @@ export class CharSelectState {
       }));
     }
 
-    if(!checkSnapshot.fishing.unlocked && checkDiscoveries['Plant Fiber']) {
+    if(!checkSnapshot.fishing.unlocked && !this.hasSentNotifications['fishing'] && checkDiscoveries['Plant Fiber']) {
+      this.hasSentNotifications['fishing'] = true;
+
       ctx.dispatch([
         new UnlockFishing(),
         new NotifySuccess('You can now go fishing!')
       ]);
     }
 
-    if(!checkSnapshot.hunting.unlocked && checkDiscoveries['Stone']) {
+    if(!checkSnapshot.hunting.unlocked && !this.hasSentNotifications['hunting'] && checkDiscoveries['Stone']) {
+      this.hasSentNotifications['hunting'] = true;
+
       ctx.dispatch([
         new UnlockHunting(),
         new NotifySuccess('You can now go hunting!')
       ]);
     }
 
-    if(!checkSnapshot.mining.unlocked && checkDiscoveries['Pine Log']) {
+    if(!checkSnapshot.mining.unlocked && !this.hasSentNotifications['mining'] && checkDiscoveries['Pine Log']) {
+      this.hasSentNotifications['mining'] = true;
+
       ctx.dispatch([
         new UnlockMining(),
         new NotifySuccess('You can now go mining!')
       ]);
     }
 
-    if(!checkSnapshot.alchemy.unlocked && checkDiscoveries['Pine Needle'] && checkDiscoveries['Oven']) {
+    if(!checkSnapshot.alchemy.unlocked && !this.hasSentNotifications['alchemy'] && checkDiscoveries['Pine Needle'] && checkDiscoveries['Oven']) {
+      this.hasSentNotifications['alchemy'] = true;
+
       ctx.dispatch([
         new UnlockAlchemy(),
         new NotifySuccess('You can now do alchemy!')
       ]);
     }
 
-    if(!checkSnapshot.blacksmithing.unlocked && checkDiscoveries['Stone'] && checkDiscoveries['Pine Log']) {
+    if(!checkSnapshot.blacksmithing.unlocked && !this.hasSentNotifications['blacksmithing'] && checkDiscoveries['Stone'] && checkDiscoveries['Pine Log']) {
+      this.hasSentNotifications['blacksmithing'] = true;
+
       ctx.dispatch([
         new UnlockBlacksmithing(),
         new NotifySuccess('You can now do blacksmithing!')
       ]);
     }
 
-    if(!checkSnapshot.cooking.unlocked && checkDiscoveries['Pinecone']) {
+    if(!checkSnapshot.cooking.unlocked && !this.hasSentNotifications['cooking'] && checkDiscoveries['Pinecone']) {
+      this.hasSentNotifications['cooking'] = true;
+
       ctx.dispatch([
         new UnlockCooking(),
         new NotifySuccess('You can now cook!')
       ]);
     }
 
-    if(!checkSnapshot.jewelcrafting.unlocked && checkDiscoveries['Dandelion']) {
+    if(!checkSnapshot.jewelcrafting.unlocked && !this.hasSentNotifications['jewelcrafting'] && checkDiscoveries['Dandelion']) {
+      this.hasSentNotifications['jewelcrafting'] = true;
+
       ctx.dispatch([
         new UnlockJewelcrafting(),
         new NotifySuccess('You can now craft jewelry!')
       ]);
     }
 
-    if(!checkSnapshot.weaving.unlocked && checkDiscoveries['Whorl']) {
+    if(!checkSnapshot.weaving.unlocked && !this.hasSentNotifications['weaving'] && checkDiscoveries['Whorl']) {
+      this.hasSentNotifications['weaving'] = true;
+
       ctx.dispatch([
         new UnlockWeaving(),
         new NotifySuccess('You can now do weaving!')
       ]);
     }
 
-    if(!checkSnapshot.combat.unlocked && checkDiscoveries['Stone Knife']) {
+    if(!checkSnapshot.combat.unlocked && !this.hasSentNotifications['combat'] && checkDiscoveries['Stone Knife']) {
+      this.hasSentNotifications['combat'] = true;
+
       ctx.dispatch([
         new UnlockCombat(),
         new NotifySuccess('You can now engage in combat!')
       ]);
     }
 
-    if(!checkSnapshot.farming.unlocked && checkDiscoveries['Carrot Seed']) {
+    if(!checkSnapshot.farming.unlocked && !this.hasSentNotifications['farming'] && checkDiscoveries['Carrot Seed']) {
+      this.hasSentNotifications['farming'] = true;
+
       ctx.dispatch([
         new UnlockFarming(),
         new NotifySuccess('You can now go farming!')
       ]);
     }
 
-    if(!checkSnapshot.mercantile.unlocked && checkDiscoveries['Coin']) {
+    if(!checkSnapshot.mercantile.unlocked && !this.hasSentNotifications['mercantile'] && checkDiscoveries['Coin']) {
+      this.hasSentNotifications['mercantile'] = true;
+
       ctx.dispatch([
         new UnlockMercantile(),
         new NotifySuccess('You can now engage in mercantile acts!')
       ]);
     }
 
-    if(!checkSnapshot.prospecting.unlocked && checkDiscoveries['Stone']) {
+    if(!checkSnapshot.prospecting.unlocked && !this.hasSentNotifications['prospecting'] && checkDiscoveries['Stone']) {
+      this.hasSentNotifications['prospecting'] = true;
+
       ctx.dispatch([
         new UnlockProspecting(),
-        new NotifySuccess('You can now prospect stones for gems!')
+        new NotifySuccess('You can now transmute!')
       ]);
     }
 
