@@ -34,7 +34,7 @@ export function resetBlacksmithing(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelBlacksmithingJob, AchievementStat.RefineBlacksmithing);
+  decreaseRefineTimer(ctx, 'blacksmithing', ticks, CancelBlacksmithingJob, AchievementStat.RefineBlacksmithing);
 }
 
 export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelBlacksmithingJob) {
@@ -42,7 +42,7 @@ export function cancelBlacksmithingJob(ctx: StateContext<IGameRefining>, { jobIn
 }
 
 export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartBlacksmithingJob) {
-  startRefineJob(ctx, job, quantity, items);
+  startRefineJob(ctx, job, quantity, 'blacksmithing', items);
 };
 
 export function changeBlacksmithingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeBlacksmithingFilterOption) {

@@ -31,7 +31,7 @@ export function resetAlchemy(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelAlchemyJob, AchievementStat.RefineAlchemy);
+  decreaseRefineTimer(ctx, 'alchemy', ticks, CancelAlchemyJob, AchievementStat.RefineAlchemy);
 }
 
 export function cancelAlchemyJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelAlchemyJob) {
@@ -39,7 +39,7 @@ export function cancelAlchemyJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startAlchemyJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartAlchemyJob) {
-  startRefineJob(ctx, job, quantity, items);
+  startRefineJob(ctx, job, quantity, 'alchemy', items);
 };
 
 export function changeAlchemyOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeAlchemyFilterOption) {

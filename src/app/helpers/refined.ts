@@ -6,7 +6,13 @@ import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { AddItemToInventory, GainItemOrResource, GainResources, RemoveItemFromInventory } from '../../stores/charselect/charselect.actions';
 import { PlaySFX } from '../../stores/game/game.actions';
 
-export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: number, cancelProto: any, incrementStat: AchievementStat) {
+export function decreaseRefineTimer(
+  ctx: StateContext<IGameRefining>,
+  tradeskill: string,
+  ticks: number,
+  cancelProto: any,
+  incrementStat: AchievementStat
+) {
 
   const state = ctx.getState();
 
@@ -40,7 +46,7 @@ export function decreaseRefineTimer(ctx: StateContext<IGameRefining>, ticks: num
     if(job.totalLeft <= 1) {
       ctx.dispatch([
         new cancelProto(0, false),
-        new PlaySFX('tradeskill-finish')
+        new PlaySFX(`tradeskill-finish-${tradeskill}`)
       ]);
       return;
     }
@@ -83,7 +89,13 @@ export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Recor
   return zipObject(recipeIngredients, recipeCosts);
 }
 
-export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecipe, quantity: number, refundItems: IGameItem[] = []) {
+export function startRefineJob(
+  ctx: StateContext<IGameRefining>,
+  job: IGameRecipe,
+  quantity: number,
+  tradeskill: string,
+  refundItems: IGameItem[] = []
+) {
 
   const recipeCosts = getRecipeIngredientCosts(job, quantity);
   const doesRecipeCostAnything = Object.keys(recipeCosts).length > 0;
@@ -94,7 +106,7 @@ export function startRefineJob(ctx: StateContext<IGameRefining>, job: IGameRecip
 
   ctx.dispatch([
     ...refundItems.map(item => new RemoveItemFromInventory(item)),
-    new PlaySFX('tradeskill-start')
+    new PlaySFX(`tradeskill-start-${tradeskill}`)
   ]);
 
   ctx.setState(patch<IGameRefining>({

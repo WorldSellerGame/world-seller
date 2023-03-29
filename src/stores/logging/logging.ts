@@ -51,7 +51,7 @@ export class LoggingState {
     const cdrPercent = calculateStat(equipment, Stat.AxeSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelLogging, AchievementStat.GatherLogging);
+    decreaseGatherTimer(ctx, 'logging', ticks, cdrValue, reducedValue, CancelLogging, AchievementStat.GatherLogging);
   }
 
   @Action(SetLoggingLocation)
@@ -61,7 +61,7 @@ export class LoggingState {
     const gdrPercent = calculateStat(equipment, Stat.AxePowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue);
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'logging');
     ctx.dispatch(new DecreaseDurability(ItemType.Axe));
   };
 

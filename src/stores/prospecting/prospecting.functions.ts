@@ -6,7 +6,7 @@ import { pickNameWithWeights } from '../../app/helpers';
 import { AchievementStat, IGameProspecting } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
-import { TickTimer } from '../game/game.actions';
+import { PlaySFX, TickTimer } from '../game/game.actions';
 import { GainProspectingLevels, ProspectRock } from './prospecting.actions';
 
 export const defaultProspecting: () => IGameProspecting = () => ({
@@ -43,6 +43,7 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
   ]);
 
   if(choice !== 'nothing' && prospect.level.max > state.level) {
+    ctx.dispatch(new PlaySFX('tradeskill-start-prospecting'));
     ctx.setState(patch<IGameProspecting>({
       level: state.level + 1
     }));

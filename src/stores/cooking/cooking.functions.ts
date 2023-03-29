@@ -31,7 +31,7 @@ export function resetCooking(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelCookingJob, AchievementStat.RefineCooking);
+  decreaseRefineTimer(ctx, 'cooking', ticks, CancelCookingJob, AchievementStat.RefineCooking);
 }
 
 export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelCookingJob) {
@@ -39,7 +39,7 @@ export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startCookingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartCookingJob) {
-  startRefineJob(ctx, job, quantity, items);
+  startRefineJob(ctx, job, quantity, 'cooking', items);
 };
 
 export function changeCookingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeCookingFilterOption) {

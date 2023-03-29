@@ -51,7 +51,7 @@ export class ForagingState {
     const cdrPercent = calculateStat(equipment, Stat.ScytheSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelForaging, AchievementStat.GatherForaging);
+    decreaseGatherTimer(ctx, 'foraging', ticks, cdrValue, reducedValue, CancelForaging, AchievementStat.GatherForaging);
   }
 
   @Action(SetForagingLocation)
@@ -61,7 +61,7 @@ export class ForagingState {
     const gdrPercent = calculateStat(equipment, Stat.ScythePowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue);
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'foraging');
     ctx.dispatch(new DecreaseDurability(ItemType.Scythe));
   };
 

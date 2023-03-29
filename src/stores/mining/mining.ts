@@ -51,7 +51,7 @@ export class MiningState {
     const cdrPercent = calculateStat(equipment, Stat.PickaxeSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelMining, AchievementStat.GatherMining);
+    decreaseGatherTimer(ctx, 'mining', ticks, cdrValue, reducedValue, CancelMining, AchievementStat.GatherMining);
   }
 
   @Action(SetMiningLocation)
@@ -61,7 +61,7 @@ export class MiningState {
     const gdrPercent = calculateStat(equipment, Stat.PickaxePowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue);
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'mining');
     ctx.dispatch(new DecreaseDurability(ItemType.Pickaxe));
   };
 

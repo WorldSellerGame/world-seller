@@ -31,7 +31,7 @@ export function resetWeaving(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
+  decreaseRefineTimer(ctx, 'weaving', ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
 }
 
 export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelWeavingJob) {
@@ -39,7 +39,7 @@ export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartWeavingJob) {
-  startRefineJob(ctx, job, quantity, items);
+  startRefineJob(ctx, job, quantity, 'weaving', items);
 };
 
 export function changeWeavingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeWeavingFilterOption) {

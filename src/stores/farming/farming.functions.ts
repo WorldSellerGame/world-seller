@@ -6,7 +6,7 @@ import { pickNameWithWeights } from '../../app/helpers';
 import { AchievementStat, IGameFarming, IGameFarmingPlot } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
-import { TickTimer } from '../game/game.actions';
+import { PlaySFX, TickTimer } from '../game/game.actions';
 import { GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
 export const defaultFarming: () => IGameFarming = () => ({
@@ -48,7 +48,10 @@ export function plantSeedInFarm(ctx: StateContext<IGameFarming>, { plotIndex, jo
     })
   }));
 
-  ctx.dispatch(new GainResources({ [job.startingItem]: -1 }));
+  ctx.dispatch([
+    new PlaySFX('tradeskill-start-farming'),
+    new GainResources({ [job.startingItem]: -1 })
+  ]);
 };
 
 export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: HarvestPlantFromFarm) {
@@ -67,6 +70,7 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: Harv
 
   const choice = pickNameWithWeights(result.becomes);
   ctx.dispatch([
+    new PlaySFX('tradeskill-finish-farming'),
     new GainItemOrResource(choice, random(result.perGather.min, result.perGather.max)),
     new IncrementStat(AchievementStat.FarmingHarvest)
   ]);

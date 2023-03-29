@@ -301,8 +301,32 @@ Sound effects must be named the same as the what they are in the game. They can'
 - `combat-lose.wav`
 - `combat-win.wav`
 - `dungeon-win.wav`
-- `tradeskill-finish.wav`
-- `tradeskill-start.wav`
+- `tradeskill-finish-alchemy.wav`
+- `tradeskill-finish-blacksmithing.wav`
+- `tradeskill-finish-cooking.wav`
+- `tradeskill-finish-farming.wav`
+- `tradeskill-finish-fishing.wav`
+- `tradeskill-finish-foraging.wav`
+- `tradeskill-finish-hunting.wav`
+- `tradeskill-finish-jewelcrafting.wav`
+- `tradeskill-finish-logging.wav`
+- `tradeskill-finish-mining.wav`
+- `tradeskill-finish-prospecting.wav` (unused)
+- `tradeskill-finish-weaving.wav`
+- `tradeskill-finish.wav` (unused)
+- `tradeskill-start-alchemy.wav`
+- `tradeskill-start-blacksmithing.wav`
+- `tradeskill-start-cooking.wav`
+- `tradeskill-start-farming.wav`
+- `tradeskill-start-fishing.wav`
+- `tradeskill-start-foraging.wav`
+- `tradeskill-start-hunting.wav`
+- `tradeskill-start-jewelcrafting.wav`
+- `tradeskill-start-logging.wav`
+- `tradeskill-start-mining.wav`
+- `tradeskill-start-prospecting.wav`
+- `tradeskill-start-weaving.wav`
+- `tradeskill-start.wav` (unused)
 
 ### Zip File
 

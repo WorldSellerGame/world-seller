@@ -22,6 +22,7 @@ export function getResourceRewardsForLocation(location: IGameGatherLocation) {
 
 export function decreaseGatherTimer(
   ctx: StateContext<IGameGathering>,
+  tradeskill: string,
   ticks: number,
   cdrValue: number,
   cdrPercent: number,
@@ -59,7 +60,7 @@ export function decreaseGatherTimer(
       ctx.dispatch([
         new GainResources(gainedResources),
         new IncrementStat(incrementStatOnFinish, 1),
-        new PlaySFX('tradeskill-finish')
+        new PlaySFX(`tradeskill-finish-${tradeskill}`)
       ]);
     });
   }
@@ -83,7 +84,12 @@ export function cancelAllGathering() {
   ];
 }
 
-export function setGatheringLocation(ctx: StateContext<IGameGathering>, location: IGameGatherLocation, gdrValue: number) {
+export function setGatheringLocation(
+  ctx: StateContext<IGameGathering>,
+  location: IGameGatherLocation,
+  gdrValue: number,
+  tradeskill: string
+) {
 
   if(isLocationOnCooldown(ctx, location)) {
     return;
@@ -91,7 +97,7 @@ export function setGatheringLocation(ctx: StateContext<IGameGathering>, location
 
   ctx.dispatch([
     ...cancelAllGathering(),
-    new PlaySFX('tradeskill-start')
+    new PlaySFX(`tradeskill-start-${tradeskill}`)
   ]).subscribe(() => {
     const gatherTime = Math.floor(Math.max(1, location.gatherTime - (gdrValue || 0)));
 

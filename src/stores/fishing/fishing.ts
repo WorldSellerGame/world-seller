@@ -51,7 +51,7 @@ export class FishingState {
     const cdrPercent = calculateStat(equipment, Stat.FishingSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelFishing, AchievementStat.GatherFishing);
+    decreaseGatherTimer(ctx, 'fishing', ticks, cdrValue, reducedValue, CancelFishing, AchievementStat.GatherFishing);
   }
 
   @Action(SetFishingLocation)
@@ -61,8 +61,7 @@ export class FishingState {
     const gdrPercent = calculateStat(equipment, Stat.FishingPowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue);
-
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'fishing');
     ctx.dispatch([
       new DecreaseDurability(ItemType.FishingRod),
       new DecreaseDurability(ItemType.FishingBait)

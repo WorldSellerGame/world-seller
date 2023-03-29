@@ -51,7 +51,7 @@ export class HuntingState {
     const cdrPercent = calculateStat(equipment, Stat.HuntingSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, ticks, cdrValue, reducedValue, CancelHunting, AchievementStat.GatherHunting);
+    decreaseGatherTimer(ctx, 'hunting', ticks, cdrValue, reducedValue, CancelHunting, AchievementStat.GatherHunting);
   }
 
   @Action(SetHuntingLocation)
@@ -61,7 +61,7 @@ export class HuntingState {
     const gdrPercent = calculateStat(equipment, Stat.HuntingPowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue);
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'hunting');
     ctx.dispatch(new DecreaseDurability(ItemType.HuntingTool));
   };
 

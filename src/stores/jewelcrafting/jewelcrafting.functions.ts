@@ -34,7 +34,7 @@ export function resetJewelcrafting(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, ticks, CancelJewelcraftingJob, AchievementStat.RefineJewelcrafting);
+  decreaseRefineTimer(ctx, 'jewelcrafting', ticks, CancelJewelcraftingJob, AchievementStat.RefineJewelcrafting);
 }
 
 export function cancelJewelcraftingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelJewelcraftingJob) {
@@ -42,7 +42,7 @@ export function cancelJewelcraftingJob(ctx: StateContext<IGameRefining>, { jobIn
 }
 
 export function startJewelcraftingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartJewelcraftingJob) {
-  startRefineJob(ctx, job, quantity, items);
+  startRefineJob(ctx, job, quantity, 'jewelcrafting', items);
 };
 
 export function changeJewelcraftingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeJewelcraftingFilterOption) {
