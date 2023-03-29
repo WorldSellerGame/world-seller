@@ -37,6 +37,12 @@
         margin-top: 10px;
         text-align: center;
         min-height: 30px;
+
+        .effect-container {
+          &:not(:first-child) {
+            margin-left: 10px;
+          }
+        }
       }
 
       .health {
@@ -162,5 +168,19 @@
       transform: translateY(-100%) rotateZ(15deg);
       opacity: 0;
     }
+  }
+}
+
+.effect-container {
+  position: relative;
+  max-width: 32px;
+  max-height: 32px;
+
+  .effect-turns {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
 }

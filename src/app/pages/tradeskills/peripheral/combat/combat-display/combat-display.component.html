@@ -40,13 +40,15 @@
 
               <div class="effects">
                 <ng-container *ngIf="monster.currentHealth > 0">
-                  <app-game-icon class="effect"
-                                 [color]="effect.color"
-                                 [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
-                                 [tippyProps]="{ placement: 'bottom' }"
-                                 *ngFor="let effect of monster.statusEffects"
-                                 [inlineIconSize]="true"
-                                 [icon]="effect.icon"></app-game-icon>
+                  <div class="effect-container" *ngFor="let effect of monster.statusEffects">
+                    <app-game-icon class="effect"
+                                   [color]="effect.color"
+                                   [ngxTippy]="effect.name + ': ' + effect.description"
+                                   [tippyProps]="{ placement: 'bottom' }"
+                                   [inlineIconSize]="true"
+                                   [icon]="effect.icon"></app-game-icon>
+                    <div class="effect-turns">{{ effect.turnsLeft }}</div>
+                  </div>
                 </ng-container>
               </div>
             </div>
@@ -131,12 +133,14 @@
                       </ion-col>
 
                       <ion-col class="effects-bar" size="10">
-                        <app-game-icon class="effect"
-                                       [color]="effect.color"
-                                       [ngxTippy]="effect.name + ': ' + effect.description + ' (' + effect.turnsLeft + ' turns)'"
-                                       [tippyProps]="{ placement: 'bottom' }"
-                                       *ngFor="let effect of encounterData.player.statusEffects"
-                                       [icon]="effect.icon"></app-game-icon>
+                        <div class="effect-container" *ngFor="let effect of encounterData.player.statusEffects">
+                          <app-game-icon class="effect"
+                                         [color]="effect.color"
+                                         [ngxTippy]="effect.name + ': ' + effect.description"
+                                         [tippyProps]="{ placement: 'bottom' }"
+                                         [icon]="effect.icon"></app-game-icon>
+                          <div class="effect-turns">{{ effect.turnsLeft }}</div>
+                        </div>
                       </ion-col>
                     </ion-row>
                   </ion-item>
