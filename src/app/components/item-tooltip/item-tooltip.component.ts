@@ -45,8 +45,8 @@ export class ItemTooltipComponent implements OnInit {
   }
 
   realSellValue(item: IGameItem) {
-    return itemValue(item,
-      2 + shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0))) * (item.quantity ?? 1);
+    const baseMultiplier = shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0), 3);
+    return itemValue(item, baseMultiplier) * (item.quantity ?? 1);
   }
 
 }

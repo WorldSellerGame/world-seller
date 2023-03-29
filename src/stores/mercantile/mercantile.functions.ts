@@ -54,8 +54,8 @@ export function maxShopRegisterUpgradeCost(currentLevel: number): number {
   return 10000 * (currentLevel + 1);
 }
 
-export function shopRegisterMultiplier(currentLevel: number): number {
-  return 1 + (currentLevel * 0.1);
+export function shopRegisterMultiplier(currentLevel: number, addition = 1): number {
+  return addition + (addition * (currentLevel * 0.1));
 }
 
 // decoration functions
@@ -154,7 +154,7 @@ export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: 
     ctx.dispatch(new IncrementStat(AchievementStat.MercantileSellItems, soldItems.length));
   }
 
-  const soldValue = sum(soldItems.map(item => itemValue(item, 2 + shopRegisterMultiplier(state.shop.saleBonusLevel))));
+  const soldValue = sum(soldItems.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel, 3))));
   gainCoins(ctx, { amount: soldValue });
 
   const newItems = items.filter(item => !soldItems.includes(item));
