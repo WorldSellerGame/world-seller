@@ -7,6 +7,7 @@ import { CharSelectState, OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
+import { NotifyService } from './services/notify.service';
 
 interface IMenuItem {
   title: string;
@@ -176,6 +177,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     private readonly gameloopService: GameloopService,
+    public notifyService: NotifyService
   ) { }
 
   ngOnInit() {

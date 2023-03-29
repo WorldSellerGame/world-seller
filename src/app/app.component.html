@@ -12,6 +12,10 @@
               <app-game-icon slot="start" icon="settings" ngxTippy="Settings" [tippyProps]="{ placement: 'right' }"></app-game-icon>
             </ion-item>
 
+            <ion-item [analyticsClick]="'Navigate:Character:MessageLog'">
+              <app-game-icon slot="start" icon="messages" [ngxTippy]="messageHistory" [tippyProps]="{ placement: 'right', maxWidth: 500 }"></app-game-icon>
+            </ion-item>
+
             <div class="sublist-divider"></div>
 
             <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'resources']" lines="none" detail="false" routerLinkActive="selected"
@@ -87,6 +91,12 @@
           <ion-button class="settings" fill="clear" [routerLink]="['/game', characterSlot, 'settings']"
                       [analyticsClick]="'Navigate:Character:Settings'">
             <app-game-icon slot="icon-only" icon="settings" [inlineIconSize]="true"></app-game-icon>
+          </ion-button>
+
+          <ion-button class="messages" fill="clear"
+                      [ngxTippy]="messageHistory" [tippyProps]="{ placement: 'right', maxWidth: 500 }"
+                      [analyticsClick]="'Navigate:Character:MessageLog'">
+            <app-game-icon slot="icon-only" icon="messages" [inlineIconSize]="true"></app-game-icon>
           </ion-button>
 
           <app-hero></app-hero>
@@ -241,4 +251,21 @@
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
+
 </ion-app>
+
+<ng-template #messageHistory>
+  <div>
+    <strong>Message History</strong>
+  </div>
+
+  <br>
+
+  <div *ngIf="notifyService.allMessages.length === 0">
+    <em>No messages.</em>
+  </div>
+
+  <div *ngFor="let message of notifyService.allMessages">
+    {{ message }}
+  </div>
+</ng-template>

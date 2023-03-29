@@ -101,6 +101,13 @@ app-game-icon:not([slot]) {
   z-index: 100;
 }
 
+.messages {
+  position: absolute;
+  right: 10px;
+  top: 100px;
+  z-index: 100;
+}
+
 .sublist-divider {
   height: 1px;
   width: 48px;

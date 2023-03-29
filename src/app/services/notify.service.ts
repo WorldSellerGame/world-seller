@@ -9,6 +9,12 @@ import { GameOption } from '../../interfaces';
 })
 export class NotifyService {
 
+  private messageHistory: string[] = [];
+
+  public get allMessages() {
+    return this.messageHistory;
+  }
+
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
   private notificationPosition() {
@@ -25,31 +31,44 @@ export class NotifyService {
     position: this.notificationPosition()
   });
 
+  private logMessage(message: string) {
+    this.messageHistory.push(message);
+
+    while(this.messageHistory.length > 15) {
+      this.messageHistory.shift();
+    }
+  }
+
   public notify(message: string) {
+    this.logMessage(message);
     Notify.info(message, {
       ...this.notiflixDefaults()
     });
   }
 
   public error(message: string) {
+    this.logMessage(message);
     Notify.failure(message, {
       ...this.notiflixDefaults()
     });
   }
 
   public warn(message: string) {
+    this.logMessage(message);
     Notify.warning(message, {
       ...this.notiflixDefaults()
     });
   }
 
   public success(message: string) {
+    this.logMessage(message);
     Notify.success(message, {
       ...this.notiflixDefaults()
     });
   }
 
   public achievement(message: string) {
+    this.logMessage(message);
     Notify.success(message, {
       ...this.notiflixDefaults(),
       className: 'notiflix-notify-achievement'

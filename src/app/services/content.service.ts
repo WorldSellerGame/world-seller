@@ -200,7 +200,7 @@ export class ContentService {
     const icons: Set<string> = new Set();
 
     [
-      'settings', 'level', 'resources', 'inventory', 'equipment', 'time',
+      'settings', 'level', 'resources', 'inventory', 'equipment', 'time', 'messages',
       'dungeon-tile', 'dungeon-wall', 'dungeon-heal', 'dungeon-stairs', 'dungeon-chest', 'me',
       'fishing', 'foraging', 'hunting', 'logging', 'mining',
       'alchemy', 'blacksmithing', 'cooking', 'jewelcrafting', 'weaving',
