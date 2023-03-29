@@ -6,6 +6,7 @@ import { CharSelectState } from '../../../../stores';
 import { EquipItem, UnequipItem } from '../../../../stores/charselect/charselect.actions';
 import { getItemRarityClass, getStatTotals } from '../../../helpers';
 import { setDiscordStatus } from '../../../helpers/electron';
+import { AnalyticsService } from '../../../services/analytics.service';
 
 @Component({
   selector: 'app-equipment',
@@ -38,7 +39,7 @@ export class EquipmentPage implements OnInit {
     { name: 'Feet',         icon: 'boots',        type: ItemType.FootArmor }
   ];
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private analyticsService: AnalyticsService) { }
 
   ngOnInit() {
     setDiscordStatus({
@@ -60,7 +61,7 @@ export class EquipmentPage implements OnInit {
 
   equip(item: IGameItem) {
     this.unloadEquipment();
-
+    this.analyticsService.sendDesignEvent(`EquipItem:${item.name}`, 1);
     this.store.dispatch(new EquipItem(item));
   }
 
