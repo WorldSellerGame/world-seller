@@ -6,7 +6,7 @@ import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import {
   CancelBlacksmithingJob, ChangeBlacksmithingFilterOption,
-  GainBlacksmithingLevels, StartBlacksmithingJob
+  GainBlacksmithingLevels, StarBlacksmithingRecipe, StartBlacksmithingJob
 } from './blacksmithing.actions';
 
 export const defaultBlacksmithing: () => IGameRefining = () => ({
@@ -15,6 +15,7 @@ export const defaultBlacksmithing: () => IGameRefining = () => ({
   level: 0,
   queueSize: 1,
   recipeQueue: [],
+  starred: {},
   hideDiscovered: false,
   hideDiscoveredTables: false,
   hideHasIngredients: false,
@@ -47,4 +48,10 @@ export function startBlacksmithingJob(ctx: StateContext<IGameRefining>, { job, q
 
 export function changeBlacksmithingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeBlacksmithingFilterOption) {
   ctx.setState(patch<IGameRefining>({ [option]: value }));
+}
+
+export function starBlacksmithingRecipe(ctx: StateContext<IGameRefining>, { recipe }: StarBlacksmithingRecipe) {
+  const starred = ctx.getState().starred || {};
+  starred[recipe.result] = !starred[recipe.result];
+  ctx.patchState({ starred });
 }

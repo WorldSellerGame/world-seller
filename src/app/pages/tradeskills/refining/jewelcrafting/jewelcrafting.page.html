@@ -26,9 +26,11 @@
       [currentQueue]="pageData.currentQueue || { queue: [], size: 1 }"
       [refiningWorkers]="pageData.refiningWorkers || { workerAllocations: [], canAssignWorker: false, hasWorkers: false }"
       [filterOptions]="pageData.options || { hideDiscovered: false, hideDiscoveredTables: false, hideHasIngredients: false, hideHasNoIngredients: false }"
+      [starredRecipes]="(starred$ | async)"
       [locationData]="locationData"
       [startAction]="startAction"
       [cancelAction]="cancelAction"
+      [favoriteAction]="favoriteAction"
       [changeOptionAction]="optionAction"
       (totalsMetadata)="pageMetadata = $event"
     ></app-refining-page-display>

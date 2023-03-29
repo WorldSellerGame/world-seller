@@ -9,5 +9,5 @@ export const attachments: IAttachment[] = [
   { action: GainFishingLevels, handler: gainFishingLevels },
   { action: DeleteCharacter, handler: resetFishing },
   { action: CancelFishing, handler: cancelFishing },
-  { action: StarFishingLocation, handler: starFishingLocation }
+  { action: StarFishingLocation, handler: starFishingLocation },
 ];

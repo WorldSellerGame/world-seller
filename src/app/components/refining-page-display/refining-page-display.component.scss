@@ -52,3 +52,13 @@
 .filter {
   --min-height: 68px;
 }
+
+.label {
+  position: relative;
+
+  .favorite {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

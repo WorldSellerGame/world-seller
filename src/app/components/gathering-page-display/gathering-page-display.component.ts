@@ -48,7 +48,6 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   constructor(private store: Store, private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    console.log('init', this.starredLocations);
     this.allStarredLocations = this.starredLocations || {};
 
     this.locSub = this.level$.subscribe(level => {

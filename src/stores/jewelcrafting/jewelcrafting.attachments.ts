@@ -4,12 +4,13 @@ import { TickTimer } from '../game/game.actions';
 import {
   CancelJewelcraftingJob, ChangeJewelcraftingFilterOption,
   GainJewelcraftingLevels,
+  StarJewelcraftingRecipe,
   StartJewelcraftingJob, UnlockJewelcrafting
 } from './jewelcrafting.actions';
 import {
   cancelJewelcraftingJob, changeJewelcraftingOption, decreaseDuration,
   gainJewelcraftingLevels,
-  resetJewelcrafting, startJewelcraftingJob, unlockJewelcrafting
+  resetJewelcrafting, starJewelcraftingRecipe, startJewelcraftingJob, unlockJewelcrafting
 } from './jewelcrafting.functions';
 
 
@@ -20,5 +21,6 @@ export const attachments: IAttachment[] = [
   { action: DeleteCharacter, handler: resetJewelcrafting },
   { action: StartJewelcraftingJob, handler: startJewelcraftingJob },
   { action: CancelJewelcraftingJob, handler: cancelJewelcraftingJob },
-  { action: ChangeJewelcraftingFilterOption, handler: changeJewelcraftingOption }
+  { action: ChangeJewelcraftingFilterOption, handler: changeJewelcraftingOption },
+  { action: StarJewelcraftingRecipe, handler: starJewelcraftingRecipe }
 ];

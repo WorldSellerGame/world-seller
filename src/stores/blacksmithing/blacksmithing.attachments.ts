@@ -4,12 +4,13 @@ import { TickTimer } from '../game/game.actions';
 import {
   CancelBlacksmithingJob, ChangeBlacksmithingFilterOption,
   GainBlacksmithingLevels,
+  StarBlacksmithingRecipe,
   StartBlacksmithingJob, UnlockBlacksmithing
 } from './blacksmithing.actions';
 import {
   cancelBlacksmithingJob, changeBlacksmithingOption, decreaseDuration,
   gainBlacksmithingLevels,
-  resetBlacksmithing, startBlacksmithingJob, unlockBlacksmithing
+  resetBlacksmithing, starBlacksmithingRecipe, startBlacksmithingJob, unlockBlacksmithing
 } from './blacksmithing.functions';
 
 
@@ -20,5 +21,6 @@ export const attachments: IAttachment[] = [
   { action: DeleteCharacter, handler: resetBlacksmithing },
   { action: StartBlacksmithingJob, handler: startBlacksmithingJob },
   { action: CancelBlacksmithingJob, handler: cancelBlacksmithingJob },
-  { action: ChangeBlacksmithingFilterOption, handler: changeBlacksmithingOption }
+  { action: ChangeBlacksmithingFilterOption, handler: changeBlacksmithingOption },
+  { action: StarBlacksmithingRecipe, handler: starBlacksmithingRecipe }
 ];

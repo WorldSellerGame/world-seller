@@ -4,7 +4,10 @@ import { Observable, first } from 'rxjs';
 import { IGameItem, IGameRecipe, IGameRefiningOptions, IGameRefiningRecipe, IGameWorkersRefining } from '../../../../../interfaces';
 import { CharSelectState, WeavingState, WorkersState } from '../../../../../stores';
 
-import { CancelWeavingJob, ChangeWeavingFilterOption, StartWeavingJob } from '../../../../../stores/weaving/weaving.actions';
+import {
+  CancelWeavingJob, ChangeWeavingFilterOption,
+  StarWeavingRecipe, StartWeavingJob
+} from '../../../../../stores/weaving/weaving.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 
@@ -29,11 +32,16 @@ export class WeavingPage implements OnInit {
     return ChangeWeavingFilterOption;
   }
 
+  public get favoriteAction() {
+    return StarWeavingRecipe;
+  }
+
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
 
   @Select(WeavingState.level) level$!: Observable<number>;
   @Select(WeavingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(WeavingState.options) options$!: Observable<IGameRefiningOptions>;
+  @Select(WeavingState.starred) starred$!: Observable<Record<string, boolean>>;
 
   @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{

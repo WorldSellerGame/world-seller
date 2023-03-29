@@ -6,7 +6,7 @@ import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import {
   CancelJewelcraftingJob, ChangeJewelcraftingFilterOption,
-  GainJewelcraftingLevels, StartJewelcraftingJob
+  GainJewelcraftingLevels, StarJewelcraftingRecipe, StartJewelcraftingJob
 } from './jewelcrafting.actions';
 
 export const defaultJewelcrafting: () => IGameRefining = () => ({
@@ -15,6 +15,7 @@ export const defaultJewelcrafting: () => IGameRefining = () => ({
   level: 0,
   queueSize: 1,
   recipeQueue: [],
+  starred: {},
   hideDiscovered: false,
   hideDiscoveredTables: false,
   hideHasIngredients: false,
@@ -47,4 +48,10 @@ export function startJewelcraftingJob(ctx: StateContext<IGameRefining>, { job, q
 
 export function changeJewelcraftingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeJewelcraftingFilterOption) {
   ctx.setState(patch<IGameRefining>({ [option]: value }));
+}
+
+export function starJewelcraftingRecipe(ctx: StateContext<IGameRefining>, { recipe }: StarJewelcraftingRecipe) {
+  const starred = ctx.getState().starred || {};
+  starred[recipe.result] = !starred[recipe.result];
+  ctx.patchState({ starred });
 }

@@ -6,7 +6,7 @@ import { BlacksmithingState, CharSelectState, WorkersState } from '../../../../.
 
 import {
   CancelBlacksmithingJob,
-  ChangeBlacksmithingFilterOption, StartBlacksmithingJob
+  ChangeBlacksmithingFilterOption, StarBlacksmithingRecipe, StartBlacksmithingJob
 } from '../../../../../stores/blacksmithing/blacksmithing.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -32,11 +32,16 @@ export class BlacksmithPage implements OnInit {
     return ChangeBlacksmithingFilterOption;
   }
 
+  public get favoriteAction() {
+    return StarBlacksmithingRecipe;
+  }
+
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };
 
   @Select(BlacksmithingState.level) level$!: Observable<number>;
   @Select(BlacksmithingState.currentQueue) currentQueue$!: Observable<{ queue: IGameRefiningRecipe[]; size: number }>;
   @Select(BlacksmithingState.options) options$!: Observable<IGameRefiningOptions>;
+  @Select(BlacksmithingState.starred) starred$!: Observable<Record<string, boolean>>;
 
   @Select(CharSelectState.activeCharacterInventory) items$!: Observable<IGameItem[]>;
   @Select(WorkersState.refiningWorkers) refiningWorkers$!: Observable<{

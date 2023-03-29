@@ -33,4 +33,5 @@ export type IGameRefining = {
   level: number;
   queueSize: number;
   recipeQueue: IGameRefiningRecipe[];
+  starred: Record<string, boolean>;
 } & IGameRefiningOptions;

@@ -83,10 +83,11 @@
 
           <cdk-virtual-scroll-viewport class="scrollable-list" itemSize="105" minBufferPx="945" maxBufferPx="1575">
             <ion-list class="striped">
-              <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy">
+              <ion-item *cdkVirtualFor="let recipe of type === 'resources' ? resourceRecipes : itemRecipes; trackBy: trackBy"
+                        (mouseenter)="visibleStars[recipe.result] = true" (mouseleave)="visibleStars[recipe.result] = false">
                 <app-game-icon slot="start" [icon]="iconForRecipe(recipe)" [shimmer]="!discoveries[recipe.result]"></app-game-icon>
 
-                <ion-label>
+                <ion-label class="label">
                   <h2>
                     <strong class="recipe-name">
                       <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">{{ recipe.result }}</span>
@@ -139,6 +140,19 @@
                                    [emphasizeText]="false"
                                    [angryColorWhenQuantityExceedsMax]="true"></app-item-icon>
                   </div>
+
+
+                  <ion-button class="favorite"
+                              color="primary"
+                              *ngIf="visibleStars[recipe.result] || allStarredRecipes[recipe.result]"
+                              (click)="toggleFavorite(recipe, !allStarredRecipes[recipe.result])"
+                              fill="clear"
+                              size="small"
+                              shape="round">
+
+                    <ion-icon slot="icon-only"
+                              [icon]="allStarredRecipes[recipe.result] ? 'star' : 'star-outline'"></ion-icon>
+                  </ion-button>
                 </ion-label>
 
                 <div slot="end">

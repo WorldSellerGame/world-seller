@@ -24,3 +24,7 @@ export class ChangeCookingFilterOption {
   constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }
 
+export class StarCookingRecipe {
+  static type = '[Cooking] Star Recipe';
+  constructor(public recipe: IGameRecipe) {}
+}

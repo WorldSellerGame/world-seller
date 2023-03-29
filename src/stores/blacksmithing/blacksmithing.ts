@@ -26,6 +26,11 @@ export class BlacksmithingState {
   }
 
   @Selector()
+  static starred(state: IGameRefining) {
+    return state.starred;
+  }
+
+  @Selector()
   static currentQueue(state: IGameRefining) {
     return { queue: state.recipeQueue, size: state.queueSize };
   }

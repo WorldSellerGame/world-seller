@@ -23,3 +23,8 @@ export class ChangeJewelcraftingFilterOption {
   static type = '[Jewelcrafting] Change Filter Option';
   constructor(public option: keyof IGameRefiningOptions, public value: boolean) {}
 }
+
+export class StarJewelcraftingRecipe {
+  static type = '[Jewelcrafting] Star Recipe';
+  constructor(public recipe: IGameRecipe) {}
+}

@@ -41,9 +41,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     hideHasNoIngredients: false,
   };
 
+  @Input() starredRecipes: Record<string, boolean> | null = {};
   @Input() locationData: IGameRecipe[] = [];
   @Input() startAction: any;
   @Input() cancelAction: any;
+  @Input() favoriteAction: any;
   @Input() changeOptionAction: any;
 
   @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalRecipes: number }>();
@@ -66,6 +68,9 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   public summedResources: Record<string, number> = {};
 
+  public visibleStars: Record<string, boolean> = {};
+  public allStarredRecipes: Record<string, boolean> = {};
+
   private resourcesSub!: Subscription;
   private discoveriesSub!: Subscription;
 
@@ -76,6 +81,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ) {}
 
   ngOnInit() {
+    this.allStarredRecipes = this.starredRecipes || {};
+
     this.setVisibleRecipes();
     this.setRefiningWorkerHash();
     this.setTotalResources();
@@ -112,6 +119,12 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ngOnDestroy() {
     this.resourcesSub?.unsubscribe();
     this.discoveriesSub?.unsubscribe();
+  }
+
+  toggleFavorite(recipe: IGameRecipe, value: boolean) {
+    this.store.dispatch(new this.favoriteAction(recipe));
+    this.allStarredRecipes[recipe.result] = value;
+    this.setVisibleRecipes();
   }
 
   setMetadata() {
@@ -240,6 +253,10 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return required.every((req) => this.discoveries[req]);
       })
       .filter((recipe: IGameRecipe) => {
+        if(this.allStarredRecipes[recipe.result]) {
+          return true;
+        }
+
         if(this.filterOptions.hideDiscovered && this.discoveries[recipe.result]) {
           return false;
         }
@@ -259,7 +276,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
         return true;
       });
 
-    return sortBy(validRecipes, [(recipe) => !this.canCraftRecipe(recipe), (recipe) => recipe.result]);
+    return sortBy(validRecipes, [
+      (recipe) => !this.allStarredRecipes[recipe.result],
+      (recipe) => !this.canCraftRecipe(recipe),
+      (recipe) => recipe.result]
+    );
   }
 
   totalResourceHashForCrafting() {

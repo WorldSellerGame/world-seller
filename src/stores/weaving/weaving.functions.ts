@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelWeavingJob, ChangeWeavingFilterOption, GainWeavingLevels, StartWeavingJob } from './weaving.actions';
+import { CancelWeavingJob, ChangeWeavingFilterOption, GainWeavingLevels, StarWeavingRecipe, StartWeavingJob } from './weaving.actions';
 
 export const defaultWeaving: () => IGameRefining = () => ({
   version: 0,
@@ -12,6 +12,7 @@ export const defaultWeaving: () => IGameRefining = () => ({
   level: 0,
   queueSize: 1,
   recipeQueue: [],
+  starred: {},
   hideDiscovered: false,
   hideDiscoveredTables: false,
   hideHasIngredients: false,
@@ -44,4 +45,10 @@ export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantit
 
 export function changeWeavingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeWeavingFilterOption) {
   ctx.setState(patch<IGameRefining>({ [option]: value }));
+}
+
+export function starWeavingRecipe(ctx: StateContext<IGameRefining>, { recipe }: StarWeavingRecipe) {
+  const starred = ctx.getState().starred || {};
+  starred[recipe.result] = !starred[recipe.result];
+  ctx.patchState({ starred });
 }

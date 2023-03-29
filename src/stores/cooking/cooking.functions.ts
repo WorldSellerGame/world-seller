@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
 import { AchievementStat, IGameRefining } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
-import { CancelCookingJob, ChangeCookingFilterOption, GainCookingLevels, StartCookingJob } from './cooking.actions';
+import { CancelCookingJob, ChangeCookingFilterOption, GainCookingLevels, StarCookingRecipe, StartCookingJob } from './cooking.actions';
 
 export const defaultCooking: () => IGameRefining = () => ({
   version: 0,
@@ -12,6 +12,7 @@ export const defaultCooking: () => IGameRefining = () => ({
   level: 0,
   queueSize: 1,
   recipeQueue: [],
+  starred: {},
   hideDiscovered: false,
   hideDiscoveredTables: false,
   hideHasIngredients: false,
@@ -44,4 +45,10 @@ export function startCookingJob(ctx: StateContext<IGameRefining>, { job, quantit
 
 export function changeCookingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeCookingFilterOption) {
   ctx.setState(patch<IGameRefining>({ [option]: value }));
+}
+
+export function starCookingRecipe(ctx: StateContext<IGameRefining>, { recipe }: StarCookingRecipe) {
+  const starred = ctx.getState().starred || {};
+  starred[recipe.result] = !starred[recipe.result];
+  ctx.patchState({ starred });
 }
