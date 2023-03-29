@@ -77,6 +77,7 @@ export class NotifyService {
 
   public async confirm(header: string, message: string, buttons: any[] = []) {
     const alert = await this.alertCtrl.create({
+      cssClass: 'yesno',
       header,
       message,
       buttons

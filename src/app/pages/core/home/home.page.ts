@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MetaService } from 'src/app/services/meta.service';
@@ -10,6 +9,7 @@ import { DeleteCharacter } from '../../../../stores/charselect/charselect.action
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnnouncementService } from '../../../services/announcements.service';
 import { ModsService } from '../../../services/mods.service';
+import { NotifyService } from '../../../services/notify.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
   constructor(
     private store: Store,
     private router: Router,
-    private alertCtrl: AlertController,
+    private notifyService: NotifyService,
     public metaService: MetaService,
     public modsService: ModsService,
     public announcementService: AnnouncementService
@@ -71,25 +71,19 @@ export class HomePage implements OnInit {
   }
 
   async deleteCharacter(slot: number) {
-    const alert = await this.alertCtrl.create({
-      header: 'Delete Character',
-      message: 'Are you sure you want to delete this character?',
-      buttons: [
-        {
-          text: 'No, keep it',
-          role: 'cancel'
-        },
-        {
-          text: 'Yes, delete it',
-          role: 'destructive',
-          handler: () => {
-            this.store.dispatch(new DeleteCharacter(slot));
-          }
+    this.notifyService.confirm('Delete Character', 'Are you sure you want to delete this character?', [
+      {
+        text: 'No, keep it',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes, delete it',
+        role: 'destructive',
+        handler: () => {
+          this.store.dispatch(new DeleteCharacter(slot));
         }
-      ]
-    });
-
-    await alert.present();
+      }
+    ]);
   }
 
 }
