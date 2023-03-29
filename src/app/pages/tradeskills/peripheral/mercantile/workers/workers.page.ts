@@ -7,7 +7,7 @@ import {
   BuyWorker, UnassignGatheringWorker,
   UnassignMercantileWorker, UnassignRefiningWorker
 } from '../../../../../../stores/workers/workers.actions';
-import { mercantileWorkerTime, nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
+import { nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
 import { ContentService } from '../../../../../services/content.service';
 
 @Component({
@@ -50,10 +50,6 @@ export class WorkersPage implements OnInit {
 
   workerName(id: number) {
     return this.contentService.getCharacterNameFromSeed(id);
-  }
-
-  mercantileWorkerTime() {
-    return mercantileWorkerTime();
   }
 
   unallocateAll(allocations: {
