@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { get, uniqBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { IGameCombatAbility, IGameItem } from '../../../../../../interfaces';
+import { IGameItem } from '../../../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../../../stores';
 import { SetFood, SetItem, SetSkill } from '../../../../../../stores/combat/combat.actions';
 import { getSkillsFromItems } from '../../../../../helpers';
-import { ContentService } from '../../../../../services/content.service';
+import { CharacterInfoService } from '../../../../../services/character-info.service';
 
 @Component({
   selector: 'app-loadout',
@@ -30,57 +29,22 @@ export class LoadoutPage implements OnInit, OnDestroy {
 
   public usableFoods: IGameItem[] = [];
   public usableItems: IGameItem[] = [];
-  public learnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
+
+  public get learnedSkills() {
+    return this.charInfo.skills;
+  }
 
   public selectedItemLoadoutIndex = -1;
   public selectedAbilityLoadoutIndex = -1;
   public selectedFoodLoadoutIndex = -1;
 
-  constructor(private store: Store, private contentService: ContentService) { }
+  constructor(private store: Store, private charInfo: CharacterInfoService) { }
 
   ngOnInit() {
     this.allUsableItems = this.inventory$.subscribe(items => {
       const checkItems = items || [];
       this.usableItems = checkItems.filter(item => (item.abilities?.length ?? 0) > 0);
       this.usableFoods = checkItems.filter(item => (item.foodDuration ?? 0) > 0);
-    });
-
-    this.level = this.store.subscribe(state => {
-      let currentlyLearnedSkills: Array<{ name: string; skill: IGameCombatAbility }> = [];
-
-      const allSkills = this.contentService.getAllAbilities();
-
-      // check all the skills and see what we know!
-      Object.keys(allSkills).forEach(skillName => {
-        const skill = allSkills[skillName];
-
-        const { requires, replaces } = skill;
-
-        let canLearn = false;
-
-        // check requirements - there must be one to learn it
-        if(Object.keys(requires || {}).length > 0) {
-          canLearn = Object.keys(requires).every(req => get(state, [req, 'level'], 0) >= requires[req]);
-        }
-
-        if(canLearn) {
-
-          // replace the older skill with the newer one
-          if(replaces) {
-            currentlyLearnedSkills = currentlyLearnedSkills.filter(learnedSkill => learnedSkill.name !== replaces);
-          }
-
-          // replace any copies of this skill
-          currentlyLearnedSkills = uniqBy(currentlyLearnedSkills, 'name');
-
-          currentlyLearnedSkills.push({
-            name: skillName,
-            skill
-          });
-        }
-      });
-
-      this.learnedSkills = currentlyLearnedSkills;
     });
   }
 

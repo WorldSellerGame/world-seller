@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IGameFarmingPlot, IGameRefiningRecipe } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
@@ -29,9 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
   @Select(CharSelectState.activeCharacterInventoryUnlocked) inventoryUnlocked$!: Observable<boolean>;
-
-  public level!: Subscription;
-  public totalLevel = 0;
 
   public gatheringTradeskills: IMenuItem[] = [
     { title: 'Fishing',   url: 'fishing',   icon: 'fishing',
