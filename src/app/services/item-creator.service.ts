@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { isNumber } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 
 import { IGameItem } from '../../interfaces';
@@ -47,15 +48,15 @@ export class ItemCreatorService {
     }
 
     // we only want to migrate stats if it's not food. otherwise we want the correct stats
-    if(!baseItem.foodDuration) {
+    if(!isNumber(baseItem.foodDuration)) {
       baseItem.stats = oldItem.stats;
     }
 
-    if(oldItem.durability) {
+    if(isNumber(oldItem.durability)) {
       baseItem.durability = oldItem.durability;
     }
 
-    if(oldItem.foodDuration) {
+    if(isNumber(oldItem.foodDuration)) {
       baseItem.foodDuration = oldItem.foodDuration;
     }
 
