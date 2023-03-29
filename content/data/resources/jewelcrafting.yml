@@ -6,6 +6,13 @@ Cut Quartz:
   rarity: Uncommon
   icon: 'cut-stone'
 
+Quartz Powder:
+  name: Quartz Powder
+  description: Once again - do not eat it. Useful when making specialty glass and in certain alchemical recipes.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'powder'
+
 Cut Tanzanite:
   name: Cut Tanzanite
   description: A piece of Tanzanite that has been cut to a specific shape.

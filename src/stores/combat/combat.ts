@@ -135,7 +135,11 @@ export class CombatState {
       .map(item => item ? this.itemCreator.migrateItem(item) : undefined)
       .filter(Boolean);
 
-    ctx.setState(patch<IGameCombat>({ activeItems, activeFoods }));
+    const activeSkills = state.activeSkills
+      .map(skill => this.contentService.getAbilityByName(skill) ? skill : undefined)
+      .filter(Boolean) as string[];
+
+    ctx.setState(patch<IGameCombat>({ activeItems, activeFoods, activeSkills }));
   }
 
   @Action(InitiateCombat)

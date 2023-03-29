@@ -2,7 +2,7 @@
 Poison1:
   name: Poison I
   description: Losing a little health over a long time.
-  icon: poison
+  icon: skull
   color: "#b4202a"
   turnsLeft: 6
   statusEffectType: DamageOverTime
@@ -11,7 +11,7 @@ Poison1:
 Poison2:
   name: Poison II
   description: Losing health over a long time.
-  icon: poison
+  icon: skull
   color: "#b4202a"
   turnsLeft: 6
   statusEffectType: DamageOverTime
@@ -20,7 +20,7 @@ Poison2:
 Poison3:
   name: Poison III
   description: Losing alot of health over a long time.
-  icon: poison
+  icon: skull
   color: "#b4202a"
   turnsLeft: 6
   statusEffectType: DamageOverTime
@@ -29,7 +29,7 @@ Poison3:
 Poison4:
   name: Poison IV
   description: Losing a ton of health over a long time.
-  icon: poison
+  icon: skull
   color: "#b4202a"
   turnsLeft: 6
   statusEffectType: DamageOverTime

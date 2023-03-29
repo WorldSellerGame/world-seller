@@ -1,5 +1,5 @@
 
-### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken as fuck
+### Basic (simple singe stat modifiers, to be out classed efficiency wise but be solid simple options) p.s. yes they are broken
     # I think I want skill ability's spaced every 11? or maybe thats silly
     # for now I think basic at 10 and 30 will be fine and uniques in between at 20 but likely will space them out more
 
@@ -244,7 +244,7 @@ HuntingUnique1:
     combat: 11
 
 
-LoggingUnique1: #Perhaps the most bread and butter shit imaginable like fuck thats so good for free
+LoggingUnique1: #Perhaps the most bread and butter imaginable like thats so good for free
   name: Split
   description: Simple strong attack.
   icon: axe-swing
