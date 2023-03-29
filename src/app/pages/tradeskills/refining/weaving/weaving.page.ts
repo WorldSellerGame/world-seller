@@ -6,7 +6,7 @@ import { CharSelectState, WeavingState, WorkersState } from '../../../../../stor
 
 import {
   CancelWeavingJob, ChangeWeavingFilterOption,
-  StarWeavingRecipe, StartWeavingJob
+  StarWeavingRecipe, StartWeavingJob, UpgradeWeavingQueue
 } from '../../../../../stores/weaving/weaving.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -34,6 +34,10 @@ export class WeavingPage implements OnInit {
 
   public get favoriteAction() {
     return StarWeavingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeWeavingQueue;
   }
 
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };

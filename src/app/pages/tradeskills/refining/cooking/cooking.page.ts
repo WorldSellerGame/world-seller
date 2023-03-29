@@ -6,7 +6,7 @@ import { CharSelectState, CookingState, WorkersState } from '../../../../../stor
 
 import {
   CancelCookingJob, ChangeCookingFilterOption,
-  StarCookingRecipe, StartCookingJob
+  StarCookingRecipe, StartCookingJob, UpgradeCookingQueue
 } from '../../../../../stores/cooking/cooking.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -34,6 +34,10 @@ export class CookingPage implements OnInit {
 
   public get favoriteAction() {
     return StarCookingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeCookingQueue;
   }
 
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };

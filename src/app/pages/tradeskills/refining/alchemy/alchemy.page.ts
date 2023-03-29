@@ -6,7 +6,7 @@ import { AlchemyState, CharSelectState, WorkersState } from '../../../../../stor
 
 import {
   CancelAlchemyJob, ChangeAlchemyFilterOption,
-  StarAlchemyRecipe, StartAlchemyJob
+  StarAlchemyRecipe, StartAlchemyJob, UpgradeAlchemyQueue
 } from '../../../../../stores/alchemy/alchemy.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -34,6 +34,10 @@ export class AlchemyPage implements OnInit {
 
   public get favoriteAction() {
     return StarAlchemyRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeAlchemyQueue;
   }
 
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };

@@ -6,7 +6,7 @@ import { BlacksmithingState, CharSelectState, WorkersState } from '../../../../.
 
 import {
   CancelBlacksmithingJob,
-  ChangeBlacksmithingFilterOption, StarBlacksmithingRecipe, StartBlacksmithingJob
+  ChangeBlacksmithingFilterOption, StarBlacksmithingRecipe, StartBlacksmithingJob, UpgradeBlacksmithingQueue
 } from '../../../../../stores/blacksmithing/blacksmithing.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -34,6 +34,10 @@ export class BlacksmithPage implements OnInit {
 
   public get favoriteAction() {
     return StarBlacksmithingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeBlacksmithingQueue;
   }
 
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };

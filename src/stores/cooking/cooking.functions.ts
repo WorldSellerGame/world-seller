@@ -52,3 +52,7 @@ export function starCookingRecipe(ctx: StateContext<IGameRefining>, { recipe }: 
   starred[recipe.result] = !starred[recipe.result];
   ctx.patchState({ starred });
 }
+
+export function upgradeCookingQueue(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ queueSize: ctx.getState().queueSize + 1 });
+}

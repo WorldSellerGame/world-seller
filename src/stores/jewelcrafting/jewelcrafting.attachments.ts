@@ -5,12 +5,12 @@ import {
   CancelJewelcraftingJob, ChangeJewelcraftingFilterOption,
   GainJewelcraftingLevels,
   StarJewelcraftingRecipe,
-  StartJewelcraftingJob, UnlockJewelcrafting
+  StartJewelcraftingJob, UnlockJewelcrafting, UpgradeJewelcraftingQueue
 } from './jewelcrafting.actions';
 import {
   cancelJewelcraftingJob, changeJewelcraftingOption, decreaseDuration,
   gainJewelcraftingLevels,
-  resetJewelcrafting, starJewelcraftingRecipe, startJewelcraftingJob, unlockJewelcrafting
+  resetJewelcrafting, starJewelcraftingRecipe, startJewelcraftingJob, unlockJewelcrafting, upgradeJewelcraftingQueue
 } from './jewelcrafting.functions';
 
 
@@ -22,5 +22,6 @@ export const attachments: IAttachment[] = [
   { action: StartJewelcraftingJob, handler: startJewelcraftingJob },
   { action: CancelJewelcraftingJob, handler: cancelJewelcraftingJob },
   { action: ChangeJewelcraftingFilterOption, handler: changeJewelcraftingOption },
-  { action: StarJewelcraftingRecipe, handler: starJewelcraftingRecipe }
+  { action: StarJewelcraftingRecipe, handler: starJewelcraftingRecipe },
+  { action: UpgradeJewelcraftingQueue, handler: upgradeJewelcraftingQueue }
 ];

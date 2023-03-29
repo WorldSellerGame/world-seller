@@ -28,3 +28,7 @@ export class StarBlacksmithingRecipe {
   static type = '[Blacksmithing] Star Recipe';
   constructor(public recipe: IGameRecipe) {}
 }
+
+export class UpgradeBlacksmithingQueue {
+  static type = '[Blacksmithing] Upgrade Queue';
+}

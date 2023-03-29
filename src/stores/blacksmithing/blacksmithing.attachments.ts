@@ -5,12 +5,12 @@ import {
   CancelBlacksmithingJob, ChangeBlacksmithingFilterOption,
   GainBlacksmithingLevels,
   StarBlacksmithingRecipe,
-  StartBlacksmithingJob, UnlockBlacksmithing
+  StartBlacksmithingJob, UnlockBlacksmithing, UpgradeBlacksmithingQueue
 } from './blacksmithing.actions';
 import {
   cancelBlacksmithingJob, changeBlacksmithingOption, decreaseDuration,
   gainBlacksmithingLevels,
-  resetBlacksmithing, starBlacksmithingRecipe, startBlacksmithingJob, unlockBlacksmithing
+  resetBlacksmithing, starBlacksmithingRecipe, startBlacksmithingJob, unlockBlacksmithing, upgradeBlacksmithingQueue
 } from './blacksmithing.functions';
 
 
@@ -22,5 +22,6 @@ export const attachments: IAttachment[] = [
   { action: StartBlacksmithingJob, handler: startBlacksmithingJob },
   { action: CancelBlacksmithingJob, handler: cancelBlacksmithingJob },
   { action: ChangeBlacksmithingFilterOption, handler: changeBlacksmithingOption },
-  { action: StarBlacksmithingRecipe, handler: starBlacksmithingRecipe }
+  { action: StarBlacksmithingRecipe, handler: starBlacksmithingRecipe },
+  { action: UpgradeBlacksmithingQueue, handler: upgradeBlacksmithingQueue }
 ];

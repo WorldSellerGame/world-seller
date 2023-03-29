@@ -55,3 +55,8 @@ export function starJewelcraftingRecipe(ctx: StateContext<IGameRefining>, { reci
   starred[recipe.result] = !starred[recipe.result];
   ctx.patchState({ starred });
 }
+
+export function upgradeJewelcraftingQueue(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ queueSize: ctx.getState().queueSize + 1 });
+
+}

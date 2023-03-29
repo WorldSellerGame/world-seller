@@ -6,7 +6,7 @@ import { CharSelectState, JewelcraftingState, WorkersState } from '../../../../.
 
 import {
   CancelJewelcraftingJob,
-  ChangeJewelcraftingFilterOption, StarJewelcraftingRecipe, StartJewelcraftingJob
+  ChangeJewelcraftingFilterOption, StarJewelcraftingRecipe, StartJewelcraftingJob, UpgradeJewelcraftingQueue
 } from '../../../../../stores/jewelcrafting/jewelcrafting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
@@ -34,6 +34,10 @@ export class JewelcraftingPage implements OnInit {
 
   public get favoriteAction() {
     return StarJewelcraftingRecipe;
+  }
+
+  public get upgradeQueueAction() {
+    return UpgradeJewelcraftingQueue;
   }
 
   public pageMetadata = { totalDiscovered: 0, totalRecipes: 0 };

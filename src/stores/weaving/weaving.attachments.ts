@@ -3,11 +3,11 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
   CancelWeavingJob, ChangeWeavingFilterOption, GainWeavingLevels,
-  StarWeavingRecipe, StartWeavingJob, UnlockWeaving
+  StarWeavingRecipe, StartWeavingJob, UnlockWeaving, UpgradeWeavingQueue
 } from './weaving.actions';
 import {
   cancelWeavingJob, changeWeavingOption, decreaseDuration,
-  gainWeavingLevels, resetWeaving, starWeavingRecipe, startWeavingJob, unlockWeaving
+  gainWeavingLevels, resetWeaving, starWeavingRecipe, startWeavingJob, unlockWeaving, upgradeWeavingQueue
 } from './weaving.functions';
 
 
@@ -19,5 +19,6 @@ export const attachments: IAttachment[] = [
   { action: StartWeavingJob, handler: startWeavingJob },
   { action: CancelWeavingJob, handler: cancelWeavingJob },
   { action: ChangeWeavingFilterOption, handler: changeWeavingOption },
-  { action: StarWeavingRecipe, handler: starWeavingRecipe }
+  { action: StarWeavingRecipe, handler: starWeavingRecipe },
+  { action: UpgradeWeavingQueue, handler: upgradeWeavingQueue }
 ];

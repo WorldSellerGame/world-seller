@@ -3,11 +3,11 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
   CancelCookingJob, ChangeCookingFilterOption, GainCookingLevels,
-  StarCookingRecipe, StartCookingJob, UnlockCooking
+  StarCookingRecipe, StartCookingJob, UnlockCooking, UpgradeCookingQueue
 } from './cooking.actions';
 import {
   cancelCookingJob, changeCookingOption, decreaseDuration,
-  gainCookingLevels, resetCooking, starCookingRecipe, startCookingJob, unlockCooking
+  gainCookingLevels, resetCooking, starCookingRecipe, startCookingJob, unlockCooking, upgradeCookingQueue
 } from './cooking.functions';
 
 
@@ -19,5 +19,6 @@ export const attachments: IAttachment[] = [
   { action: StartCookingJob, handler: startCookingJob },
   { action: CancelCookingJob, handler: cancelCookingJob },
   { action: ChangeCookingFilterOption, handler: changeCookingOption },
-  { action: StarCookingRecipe, handler: starCookingRecipe }
+  { action: StarCookingRecipe, handler: starCookingRecipe },
+  { action: UpgradeCookingQueue, handler: upgradeCookingQueue }
 ];

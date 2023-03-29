@@ -55,3 +55,7 @@ export function starBlacksmithingRecipe(ctx: StateContext<IGameRefining>, { reci
   starred[recipe.result] = !starred[recipe.result];
   ctx.patchState({ starred });
 }
+
+export function upgradeBlacksmithingQueue(ctx: StateContext<IGameRefining>) {
+  ctx.patchState({ queueSize: ctx.getState().queueSize + 1 });
+}

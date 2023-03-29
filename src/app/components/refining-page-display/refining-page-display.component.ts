@@ -7,6 +7,7 @@ import {
   IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory
 } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
+import { GainResources } from '../../../stores/charselect/charselect.actions';
 import { AssignRefiningWorker, UnassignRefiningWorker } from '../../../stores/workers/workers.actions';
 import { canCraftRecipe } from '../../helpers';
 import { ContentService } from '../../services/content.service';
@@ -46,6 +47,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   @Input() startAction: any;
   @Input() cancelAction: any;
   @Input() favoriteAction: any;
+  @Input() upgradeQueueAction: any;
   @Input() changeOptionAction: any;
 
   @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalRecipes: number }>();
@@ -68,6 +70,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   public summedResources: Record<string, number> = {};
 
+  public visibleCancels: Record<number, boolean> = {};
   public visibleStars: Record<string, boolean> = {};
   public allStarredRecipes: Record<string, boolean> = {};
 
@@ -221,6 +224,60 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     return queue.length >= size;
   }
 
+  public queueUpgradeRequirements(
+    queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null
+  ): { coins: number; resources: Record<string, number> } | undefined {
+    const upgradeInfo = this.contentService.queueUpgrades[this.tradeskill];
+    if(!upgradeInfo || !queueInfo) {
+      return undefined;
+    }
+
+    const upgradeRequirements = upgradeInfo[queueInfo.size - 1];
+    if(!upgradeRequirements) {
+      return undefined;
+    }
+
+    return upgradeRequirements;
+  }
+
+  canUpgradeQueue(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null): boolean {
+    const upgradeInfo = this.contentService.queueUpgrades[this.tradeskill];
+    if(!upgradeInfo || !queueInfo) {
+      return false;
+    }
+
+    const upgradeRequirements = this.queueUpgradeRequirements(queueInfo);
+    if(!upgradeRequirements) {
+      return false;
+    }
+
+    const { coins, resources } = upgradeRequirements;
+    if(coins > this.resources['Coin']) {
+      return false;
+    }
+
+    return Object.keys(resources || {}).every(resourceName => this.resources[resourceName] >= resources[resourceName]);
+  }
+
+  upgradeQueue(queueInfo: { queue: IGameRefiningRecipe[]; size: number } | null) {
+    const upgradeCost = this.queueUpgradeRequirements(queueInfo);
+    if(!upgradeCost) {
+      return;
+    }
+
+    const costInversion: Record<string, number> = {};
+    costInversion['Coin'] = -upgradeCost.coins;
+
+    Object.keys(upgradeCost.resources || {}).forEach(resourceName => {
+      costInversion[resourceName] = -upgradeCost.resources[resourceName];
+    });
+
+    this.store.dispatch([
+      new GainResources(costInversion),
+      new this.upgradeQueueAction()
+    ]);
+  }
+
   trackBy(index: number) {
     return index;
   }
@@ -327,6 +384,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
   cancel(jobIndex: number) {
     this.store.dispatch(new this.cancelAction(jobIndex));
+    this.visibleCancels[jobIndex] = false;
   }
 
   assignWorker(recipe: IGameRecipe) {

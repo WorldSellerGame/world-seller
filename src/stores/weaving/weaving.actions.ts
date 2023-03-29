@@ -28,3 +28,7 @@ export class StarWeavingRecipe {
   static type = '[Weaving] Star Recipe';
   constructor(public recipe: IGameRecipe) {}
 }
+
+export class UpgradeWeavingQueue {
+  static type = '[Weaving] Upgrade Queue';
+}

@@ -1,0 +1,78 @@
+
+alchemy:
+  - coins: 200
+    resources:
+      Burning Oil: 10
+
+  - coins: 400
+    resources:
+      Saltpeter: 10
+
+  - coins: 600
+    resources:
+      Acid: 10
+
+  - coins: 800
+    resources:
+      Wine: 10
+
+blacksmithing:
+  - coins: 200
+    resources:
+      Brick: 10
+      Lime: 10
+
+  - coins: 400
+    resources:
+      Fire Brick: 10
+
+  - coins: 600
+    resources:
+      Copper Ingot: 10
+
+  - coins: 800
+    resources:
+      Iron Ingot: 10
+
+cooking:
+  - coins: 200
+    resources:
+      Syrup: 10
+
+  - coins: 400
+    resources:
+      Sugar: 10
+
+  - coins: 600
+    resources:
+      Tallow: 10
+
+  - coins: 800
+    resources:
+      Flour: 10
+
+jewelcrafting:
+  - coins: 200
+    resources:
+      Cut Quartz: 10
+
+  - coins: 400
+    resources:
+      Cut Tanzanite: 10
+
+weaving:
+  - coins: 200
+    resources:
+      Yarn: 10
+
+  - coins: 400
+    resources:
+      Rope: 10
+
+  - coins: 600
+    resources:
+      Linen Cloth: 10
+
+  - coins: 800
+    resources:
+      Leather: 10

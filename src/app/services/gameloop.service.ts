@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
+import { sum } from 'lodash';
 import { Observable, Subscription, combineLatest, filter, interval, map } from 'rxjs';
 import { IGameFarmingPlot, IGameRefiningRecipe, IPlayerCharacter } from '../../interfaces';
 import { CharSelectState } from '../../stores';
@@ -78,7 +79,8 @@ export class GameloopService {
         .map(skill => state[skill].currentLocationDuration);
 
       const refining = ['alchemy', 'blacksmithing', 'cooking', 'jewelcrafting', 'weaving']
-        .map(skill => state[skill].recipeQueue.map((x: IGameRefiningRecipe) => x.currentDuration))
+        .map(skill => sum(state[skill].recipeQueue
+          .map((x: IGameRefiningRecipe) => x.currentDuration + ((x.totalLeft - 1) * x.durationPer))))
         .flat();
 
       const farming = state.farming.plots.map((plot: IGameFarmingPlot) => plot.currentDuration);
