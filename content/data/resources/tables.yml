@@ -300,3 +300,10 @@ Iron Jewelry Tools:
   category: Crafting Tables
   rarity: Rare
   icon: 'flat-hammer'
+
+Adamantite Jewelry Tools:
+  name: Adamantite Jewelry Tools
+  description: A set of tools appropriate for incredibly hard metals and stones.
+  category: Crafting Tables
+  rarity: Epic
+  icon: 'flat-hammer'

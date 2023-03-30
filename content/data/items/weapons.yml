@@ -68,7 +68,7 @@ Iron Dagger:
     attack: 6
     speed: 3
 
-Adamanite Shield:
+Adamantite Shield:
   name: Adamantite Shield
   description: A shield made of Adamantite.
   type: Weapon

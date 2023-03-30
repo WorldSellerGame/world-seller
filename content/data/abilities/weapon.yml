@@ -90,7 +90,7 @@ Cleave:
   name: Cleave
   description: A powerful attack that cripples defenses 
   icon: axe-swing
-  target: Multiple
+  target: Single
   type: Physical
   stats:
     - stat: attack

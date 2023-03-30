@@ -35,8 +35,8 @@ Ash Fishing Rod:
   stats:
     fishingPowerPercent: 40
 
-Elvish Silver Wood Fishing Rod:
-  name: Elvish Silver Wood Fishing Rod
+Elvish Silverwood Fishing Rod:
+  name: Elvish Silverwood Fishing Rod
   description: A beautiful fishing rod.
   type: FishingRod
   category: Tools
