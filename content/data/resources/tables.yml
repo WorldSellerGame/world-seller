@@ -36,7 +36,7 @@ Mortar:
 
 Copper Ingot:
   name: Copper Ingot
-  description: Refined copper ore ready to be shaped.
+  description: Refined copper ore, ready to be shaped.
   category: Refined Materials
   rarity: Uncommon
   icon: 'ingot'
@@ -50,9 +50,16 @@ Fire Brick:
 
 Iron Ingot:
   name: Iron Ingot
-  description: Refined iron ore ready to be shaped.
+  description: Refined iron ore, ready to be shaped.
   category: Refined Materials
   rarity: Rare
+  icon: 'ingot'
+
+Adamantite Ingot:
+  name: Adamantite Ingot
+  description: Refined adamantite ore, ready to be shaped.
+  category: Refined Materials
+  rarity: Epic
   icon: 'ingot'
 
 Burning Oil: #likely will have more ins for making burning oil
@@ -114,6 +121,20 @@ Iron Construction Tools:
   description: A set of tools for making structures and otherwise, but Iron.
   category: Crafting Tables
   rarity: Rare
+  icon: 'hammer-nails'
+
+Adamantite Tool Bench:
+  name: Adamantite Tool Bench
+  description: A table with dedicated tools and special features, but Adamantite.
+  category: Crafting Tables
+  rarity: Epic
+  icon: 'toolbox'
+
+Adamantite Construction Tools: 
+  name: Adamantite Construction Tools
+  description: A set of tools for making structures and otherwise, but Adamantite.
+  category: Crafting Tables
+  rarity: Epic
   icon: 'hammer-nails'
 
 #refining
@@ -278,4 +299,11 @@ Iron Jewelry Tools:
   description: A set of tools appropriate for most normal metals and stones.
   category: Crafting Tables
   rarity: Rare
+  icon: 'flat-hammer'
+
+Adamantite Jewelry Tools:
+  name: Adamantite Jewelry Tools
+  description: A set of tools appropriate for incredibly hard metals and stones.
+  category: Crafting Tables
+  rarity: Epic
   icon: 'flat-hammer'

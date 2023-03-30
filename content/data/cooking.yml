@@ -184,6 +184,7 @@ recipes:
     ingredients:
       Bunny Meat: 4
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -192,6 +193,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -225,6 +227,7 @@ recipes:
     ingredients:
       Fallfish: 2
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -233,6 +236,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -268,6 +272,7 @@ recipes:
       Frog: 2
       Vegetable Stock: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -276,6 +281,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -289,6 +295,7 @@ recipes:
       Carrot: 1
       Mushroom: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -297,6 +304,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -312,6 +320,7 @@ recipes:
       Tallow: 1
       Love: 0 # I hope this doesn't break something #however you gotta love the process and I love to goof
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -320,6 +329,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -332,6 +342,7 @@ recipes:
       Strawberry: 6
       Sugar: 2
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -340,6 +351,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -352,6 +364,7 @@ recipes:
       Raspberry: 6
       Sugar: 2
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -360,6 +373,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -373,6 +387,7 @@ recipes:
     ingredients:
       Flour: 5
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -381,6 +396,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -393,6 +409,7 @@ recipes:
       Bass: 3
       Flour: 2
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -401,6 +418,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -417,6 +435,7 @@ recipes:
       Saltpeter: 1
       Tallow: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Kitchen Utensils: 1
       Pots and Pans: 1
     require:
@@ -425,6 +444,7 @@ recipes:
       - Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Kitchen Utensils
       - Pots and Pans
     maxWorkers: 1
@@ -440,6 +460,7 @@ recipes:
       Saltpeter: 1
       Tallow: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -448,6 +469,7 @@ recipes:
       - Metal Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
@@ -462,6 +484,7 @@ recipes:
       Flour: 3
       Tallow: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -470,6 +493,7 @@ recipes:
       - Metal Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
@@ -484,6 +508,7 @@ recipes:
       Flour: 3
       Tallow: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -508,6 +533,7 @@ recipes:
       Bread: 1
       Tallow: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -516,6 +542,7 @@ recipes:
       - Metal Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
@@ -548,6 +575,7 @@ recipes:
       Honey: 4
       Tallow: 2
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -570,6 +598,7 @@ recipes:
       Spicy Pepper: 2
       Saltpeter: 1
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -633,6 +662,7 @@ recipes:
       Garlic: 2
       Saltpeter: 4
       Brick Oven: 1
+      Oven Mitts: 1
       Metal Kitchen Utensils: 1
       Metal Pots and Pans: 1
     require:
@@ -641,6 +671,7 @@ recipes:
       - Metal Pots and Pans
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1

@@ -17,11 +17,11 @@ Copper Spear:
   type: HuntingTool
   category: Tools
   rarity: Uncommon
-  durability: 15
+  durability: 20
   value: 50
   icon: spear
   stats:
-    huntingPowerPercent: 25
+    huntingPowerPercent: 20
 
 Iron Spear:
   name: Iron Spear
@@ -29,11 +29,23 @@ Iron Spear:
   type: HuntingTool
   category: Tools
   rarity: Rare
-  durability: 20
+  durability: 30
   value: 250
   icon: spear
   stats:
-    huntingPowerPercent: 40
+    huntingPowerPercent: 25
+
+Adamantite Spear:
+  name: Adamantite Spear
+  description: A hunting spear made of Adamantite.
+  type: HuntingTool
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 1000
+  icon: spear
+  stats:
+    huntingPowerPercent: 30
 
 
 #todo look at methods of bow implementation #it may be possible to force hunting Power to be a sudo ranged option on skills
