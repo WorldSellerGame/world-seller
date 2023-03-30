@@ -43,6 +43,11 @@
       margin-right: 10px;
       min-width: 50px;
       text-align: center;
+
+      &.has-workers {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+      }
     }
   }
 }

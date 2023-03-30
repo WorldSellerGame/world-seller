@@ -76,15 +76,25 @@
               allocated: workersAllocatedToLocation((gatheringWorkers$ | async)?.workerAllocations ?? [], location)
             } as workerData">
               <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)"
+                <ion-button [color]="workerData.allocated > 0 ? 'primary' : 'secondary'"
+                            fill="clear"
+                            [disabled]="workerData.allocated <= 0"
+                            (click)="unallocateWorker(location)"
                             ngxTippy="Remove Worker"
-                            [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">-</ion-button>
+                            [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">
+                  <ion-icon slot="icon-only" icon="remove"></ion-icon>
+                </ion-button>
 
-                <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
+                <div class="allocated" [class.has-workers]="workerData.allocated > 0">{{ workerData.allocated | number }} / {{ location.maxWorkers }}</div>
 
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)"
+                <ion-button [color]="workerData.allocated > 0 ? 'primary' : 'secondary'"
+                            fill="clear"
+                            [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker"
+                            (click)="allocateWorker(location)"
                             ngxTippy="Add Worker"
-                            [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">+</ion-button>
+                            [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">
+                  <ion-icon slot="icon-only" icon="add"></ion-icon>
+                </ion-button>
               </div>
             </ng-container>
           </div>
