@@ -6,7 +6,7 @@ import { patch } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeIngredientCosts, getResourceRewardsForLocation } from '../../app/helpers';
-import { IGameRecipe, IGameWorkers } from '../../interfaces';
+import { IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import { SellItem, SpendCoins } from '../mercantile/mercantile.actions';
@@ -209,12 +209,17 @@ export class WorkersState {
         const chosenItem = sample(allShopItems);
         if(chosenItem) {
           ctx.dispatch(new SellItem(chosenItem));
+
+          alloc.lastSoldItemRarity = chosenItem.rarity;
+          alloc.lastSoldItemValue = chosenItem.value;
+          alloc.backToWorkTicks = mercantileWorkerTime(alloc.lastSoldItemRarity ?? Rarity.Common, alloc.lastSoldItemValue ?? 1);
         }
       }
 
       alloc.currentTick += ticks;
-      if(alloc.currentTick > mercantileWorkerTime()) {
+      if(alloc.currentTick > alloc.backToWorkTicks ?? 1) {
         alloc.currentTick = 0;
+        alloc.backToWorkTicks = 0;
       }
 
       return alloc;

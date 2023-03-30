@@ -119,7 +119,7 @@
                   <ion-label>
                     <h2>{{ workerName(worker.nameId) }}</h2>
                     <p>
-                      Will restock store counter in {{ mercantileWorkerTime() - worker.currentTick }}s...
+                      Will restock store counter in {{ worker.backToWorkTicks - worker.currentTick }}s...
                     </p>
                   </ion-label>
                 </ion-item>
