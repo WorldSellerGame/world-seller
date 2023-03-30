@@ -141,3 +141,35 @@ EnergyBuff2:
   statModifications:
     energyBonus: 10
 
+#####
+
+Block1:
+  name: Block I
+  description: Increases Armor by 10.
+  icon: shield
+  color: "#249fde"
+  turnsLeft: 1
+  statusEffectType: StatModification
+  statModifications:
+    armor: 10
+
+Block2:
+  name: Block II
+  description: Increases Armor by 25.
+  icon: shield
+  color: "#249fde"
+  turnsLeft: 1
+  statusEffectType: StatModification
+  statModifications:
+    armor: 25
+
+Block3:
+  name: Block III
+  description: Increases Armor by 50.
+  icon: shield
+  color: "#249fde"
+  turnsLeft: 1
+  statusEffectType: StatModification
+  statModifications:
+    armor: 50
+

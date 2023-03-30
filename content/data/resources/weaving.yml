@@ -35,8 +35,8 @@ Twine:
   rarity: Uncommon
   icon: 'spool'
 
-Twine Oven Mitts:
-  name: Twine Oven Mitts
+High Heat Oven Mitts:
+  name: High Heat Oven Mitts
   description: High heat resistant Oven Mitts.
   category: Crafting Tables
   rarity: Uncommon
@@ -56,4 +56,10 @@ Leather:
   rarity: Rare
   icon: 'fabric'
 
+Coated Thread:
+  name: Coated Twine
+  description: Tightly spun plant fiber cured and coated to increase its strength.
+  category: Refined Materials
+  rarity: Rare
+  icon: 'spool'
 #blankets

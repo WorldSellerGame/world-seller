@@ -21,7 +21,7 @@ Copper Axe:
   value: 100
   icon: axe
   stats:
-    axePowerPercent: 25
+    axePowerPercent: 20
 
 Iron Axe:
   name: Iron Axe
@@ -33,4 +33,16 @@ Iron Axe:
   value: 500
   icon: axe
   stats:
-    axePowerPercent: 40
+    axePowerPercent: 25
+
+Adamantite Axe:
+  name: Adamantite Axe
+  description: An axe made of Adamantite.
+  type: Axe
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: axe
+  stats:
+    axePowerPercent: 30
