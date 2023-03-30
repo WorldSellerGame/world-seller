@@ -9,7 +9,7 @@
         <ion-card>
           <ion-card-content class="thin-status-card" *ngIf="currentLocation$ | async as currentLocation; else noGathering">
             <div>
-              Gathering from {{ currentLocation.location.name }} for another <strong>{{ currentLocation.duration }}s</strong>.
+              Gathering from {{ currentLocation.location.name }} for another <strong><app-countdown [duration]="currentLocation.duration"></app-countdown></strong>.
             </div>
 
             <ion-button color="danger" fill="clear" (click)="cancelGather()" [analyticsClick]="'Gathering:Cancel:' + tradeskill">Cancel</ion-button>
@@ -47,9 +47,9 @@
             </ion-button>
           </ion-card-header>
 
-          <ion-card-content>
-            <div class="resources">
-              <app-resource-icon *ngFor="let resource of location.resources" [name]="resource.name"></app-resource-icon>
+          <ion-card-content class="resources">
+            <div class="resource" *ngFor="let resource of location.resources">
+              <app-resource-icon [name]="resource.name"></app-resource-icon>
             </div>
           </ion-card-content>
 
@@ -57,7 +57,6 @@
 
             <ion-button class="user-action" fill="clear" color="warning" *ngIf="(cooldowns$ | async)?.[location.name] as cooldown" disabled="true">
               <ion-spinner color="warning"></ion-spinner>
-              <span class="ion-margin-start ion-margin-end">Cooldown</span>
               <app-countdown [duration]="cooldown"></app-countdown>
             </ion-button>
 
@@ -76,15 +75,29 @@
               allocated: workersAllocatedToLocation((gatheringWorkers$ | async)?.workerAllocations ?? [], location)
             } as workerData">
               <div class="workers" *ngIf="location.maxWorkers > 0 && workerData.gatheringWorkers?.hasWorkers">
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker(location)"
+                <ion-button [color]="workerData.allocated.length > 0 ? 'primary' : 'secondary'"
+                            fill="clear"
+                            [disabled]="workerData.allocated.length <= 0"
+                            (click)="unallocateWorker(location)"
                             ngxTippy="Remove Worker"
-                            [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">-</ion-button>
+                            [analyticsClick]="'Gathering:' + tradeskill + ':RemoveWorker:' + location.name">
+                  <ion-icon slot="icon-only" icon="remove"></ion-icon>
+                </ion-button>
 
-                <div class="allocated">{{ workerData.allocated | number }}/{{ location.maxWorkers }}</div>
+                <div class="allocated" [class.has-workers]="workerData.allocated.length > 0">{{ workerData.allocated.length | number }} / {{ location.maxWorkers }}</div>
 
-                <ion-button color="secondary" fill="clear" [disabled]="workerData.allocated >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker" (click)="allocateWorker(location)"
+                <ion-button [color]="workerData.allocated.length > 0 ? 'primary' : 'secondary'"
+                            fill="clear"
+                            [disabled]="workerData.allocated.length >= location.maxWorkers || !workerData.gatheringWorkers?.canAssignWorker"
+                            (click)="allocateWorker(location)"
                             ngxTippy="Add Worker"
-                            [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">+</ion-button>
+                            [analyticsClick]="'Gathering:' + tradeskill + ':AddWorker:' + location.name">
+                  <ion-icon slot="icon-only" icon="add"></ion-icon>
+                </ion-button>
+
+                <div class="progress" *ngIf="workerData.allocated.length > 0" color="primary">
+                  <ion-progress-bar [value]="getHighestWorkerProgress(workerData.allocated)"></ion-progress-bar>
+                </div>
               </div>
             </ng-container>
           </div>
