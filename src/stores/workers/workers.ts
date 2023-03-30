@@ -7,9 +7,9 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
 import { IGameItem, IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
-import { GainResources, RemoveItemFromInventory, WorkerCreateItem } from '../charselect/charselect.actions';
+import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { SellItem, SpendCoins } from '../mercantile/mercantile.actions';
+import { RemoveFromStockpile, SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
 import {
   canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers,
@@ -106,7 +106,7 @@ export class WorkersState {
     }
 
     const allResources = currentCharacter.resources;
-    const itemList = currentCharacter.inventory;
+    const itemList = store.mercantile.stockpile.items;
 
     const allItems: Record<string, number> = {};
     itemList.forEach((item: IGameItem) => {
@@ -207,7 +207,7 @@ export class WorkersState {
           return validItems.slice(0, takeItemQuantities[itemKey]);
         }).flat();
 
-        const allActions = allItemRefsTaken.map(itemRef => [new RemoveItemFromInventory(itemRef)]).flat();
+        const allActions = allItemRefsTaken.map(itemRef => [new RemoveFromStockpile(itemRef)]).flat();
 
         ctx.dispatch(allActions);
       }

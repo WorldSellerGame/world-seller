@@ -34,6 +34,11 @@ export class SendToStockpile {
   constructor(public item: IGameItem) {}
 }
 
+export class RemoveFromStockpile {
+  static type = '[Mercantile] Remove From Stockpile';
+  constructor(public item: IGameItem) {}
+}
+
 export class SendToInventory {
   static type = '[Mercantile] Send To Inventory';
   constructor(public item: IGameItem) {}

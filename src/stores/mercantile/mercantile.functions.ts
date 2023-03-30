@@ -12,6 +12,7 @@ import { GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellItemFromInventory, QuickSellItemFromStockpile,
+  RemoveFromStockpile,
   SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
 } from './mercantile.actions';
 
@@ -182,7 +183,7 @@ export function sendToStockpile(ctx: StateContext<IGameMercantile>, { item }: Se
   }));
 }
 
-export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }: SendToInventory) {
+export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }: SendToInventory | RemoveFromStockpile) {
   const state = ctx.getState();
 
   ctx.setState(patch<IGameMercantile>({

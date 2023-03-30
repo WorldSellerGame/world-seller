@@ -3,6 +3,7 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellAllFromStockpile, QuickSellItemFromInventory, QuickSellItemFromStockpile,
+  RemoveFromStockpile,
   RotateExchangeGoods,
   SellItem, SendToInventory, SendToStockpile, SpendCoins, UnlockMercantile,
   UnsellItem, UpgradeExchange, UpgradeShopCounter, UpgradeShopDecorations,
@@ -30,6 +31,7 @@ export const attachments: IAttachment[] = [
   { action: SellItem, handler: sellItem },
   { action: UnsellItem, handler: unsellItem },
   { action: SendToStockpile, handler: sendToStockpile },
+  { action: RemoveFromStockpile, handler: removeFromStockpile },
   { action: SendToInventory, handler: removeFromStockpile },
   { action: QuickSellItemFromInventory, handler: quickSellFromInventory },
   { action: QuickSellItemFromStockpile, handler: quickSellItemFromStockpile },
