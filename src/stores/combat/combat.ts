@@ -581,6 +581,7 @@ export class CombatState {
   @Action(EnterDungeon)
   enterDungeon(ctx: StateContext<IGameCombat>, { dungeon }: EnterDungeon) {
     const store = this.store.snapshot();
+    const state = ctx.getState();
 
     // we need the active player to exist. it always will. probably?
     const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
@@ -588,7 +589,13 @@ export class CombatState {
       return;
     }
 
+    const currentCharacter = state.currentPlayer;
     const dungeonCharacter = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
+
+    if(currentCharacter) {
+      dungeonCharacter.currentHealth = Math.min(currentCharacter.currentHealth, dungeonCharacter.maxHealth);
+      dungeonCharacter.currentEnergy = Math.min(currentCharacter.currentEnergy, dungeonCharacter.maxEnergy);
+    }
 
     const startPos = findUniqueTileInDungeonFloor(dungeon, 0, DungeonTile.Entrance);
     if(!startPos) {
@@ -599,6 +606,8 @@ export class CombatState {
 
     ctx.setState(patch<IGameCombat>({
       currentPlayer: dungeonCharacter,
+      oocEnergyTicks: 0,
+      oocHealTicks: 0,
       currentDungeon: {
         currentLoot: {
           items: [],
