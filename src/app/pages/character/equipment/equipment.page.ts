@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IGameItem, IPlayerCharacter, ItemType } from '../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../stores';
 import { EquipItem, UnequipItem } from '../../../../stores/charselect/charselect.actions';
+import { AnalyticsTrack } from '../../../../stores/game/game.actions';
 import { getItemRarityClass, getStatTotals } from '../../../helpers';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnalyticsService } from '../../../services/analytics.service';
@@ -62,7 +63,7 @@ export class EquipmentPage implements OnInit {
 
   equip(item: IGameItem) {
     this.unloadEquipment();
-    this.analyticsService.sendDesignEvent(`EquipItem:${item.name}`, 1);
+    this.store.dispatch(new AnalyticsTrack(`EquipItem:${item.name}`, 1));
     this.store.dispatch(new EquipItem(item));
   }
 
