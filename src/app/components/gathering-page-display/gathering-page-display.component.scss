@@ -1,5 +1,6 @@
 
 .resources {
+  min-height: 150px;
   max-height: 150px;
   overflow-y: auto;
 
@@ -20,7 +21,7 @@
   }
 
   .location-description {
-    min-height: 50px;
+    min-height: 80px;
   }
 }
 
