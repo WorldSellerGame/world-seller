@@ -79,7 +79,7 @@
                     </p>
                   </ion-label>
 
-                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateGatheringWorker(worker)">Unallocate</ion-button>
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateGatheringWorker(worker)" [analyticsClick]="'Gathering:' + worker.tradeskill + ':RemoveWorker:' + worker.location.name">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
@@ -101,7 +101,7 @@
                     </p>
                   </ion-label>
 
-                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)">Unallocate</ion-button>
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)" [analyticsClick]="'Refining:' + worker.tradeskill + ':RemoveWorker:' + worker.recipe.result">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
