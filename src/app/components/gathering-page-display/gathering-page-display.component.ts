@@ -155,8 +155,8 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
     this.store.dispatch(new this.cancelAction());
   }
 
-  workersAllocatedToLocation(allWorkers: IGameWorkersGathering[], location: IGameGatherLocation): number {
-    return allWorkers.filter(w => w.location.name === location.name && w.tradeskill === this.tradeskill).length;
+  workersAllocatedToLocation(allWorkers: IGameWorkersGathering[], location: IGameGatherLocation): IGameWorkersGathering[] {
+    return allWorkers.filter(w => w.location.name === location.name && w.tradeskill === this.tradeskill);
   }
 
   allocateWorker(location: IGameGatherLocation) {
@@ -165,6 +165,10 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
   unallocateWorker(location: IGameGatherLocation) {
     this.store.dispatch(new UnassignGatheringWorker(this.tradeskill, location));
+  }
+
+  getHighestWorkerProgress(data: IGameWorkersGathering[]): number {
+    return Math.max(...data.map(worker => worker.currentTick / worker.location.gatherTime));
   }
 
 }
