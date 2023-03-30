@@ -36,15 +36,15 @@ Stab:
   energyCost: 4
   requires: {}
 
-Cleave:
-  name: Cleave
+Cut:
+  name: Cut
   description: Strike with great force.
   icon: blade-swing
   target: Single
   type: Physical
   stats:
     - stat: attack
-      multiplier: 2.25
+      multiplier: 2.00
       variance: 0.25
   effects:
     - effect: SingleTargetAttack
@@ -85,6 +85,39 @@ Risky Swing:
   cooldown: 4
   energyCost: 7
   requires: {}
+
+Cleave:
+  name: Cleave
+  description: A powerful attack that cripples defenses 
+  icon: axe-swing
+  target: Multiple
+  type: Physical
+  stats:
+    - stat: attack
+      multiplier: 2.0
+      variance: 0.5
+  effects:
+    - effect: SingleTargetAttack
+    - effect: ApplyEffect
+      effectName: Crush1
+  cooldown: 5
+  energyCost: 10
+  requires: {}
+
+Block:
+  name: Block
+  description: Greatly reduce damage taken, but only for a turn.
+  icon: shield
+  target: Self
+  type: Physical
+  stats: []
+  effects:
+    - effect: ApplyEffect
+      effectName: Block3
+  cooldown: 0
+  energyCost: 4
+  requires: {}
+
 
 
 ### Dropped

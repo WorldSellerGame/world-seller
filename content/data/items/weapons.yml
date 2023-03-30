@@ -23,7 +23,7 @@ Copper Sword:
   durability: 20
   value: 100
   icon: sword
-  givesPlayerAbility: Cleave
+  givesPlayerAbility: Cut
   stats:
     attack: 7
 
@@ -67,6 +67,33 @@ Iron Dagger:
   stats:
     attack: 6
     speed: 3
+
+Adamanite Shield:
+  name: Adamantite Shield
+  description: A shield made of Adamantite.
+  type: Weapon
+  category: Weapons
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: shield
+  givesPlayerAbility: Block
+  stats:
+    mitigation: 5
+    armor: 5
+
+Adamantite Battleaxe:
+  name: Adamantite Battleaxe
+  description: A battleaxe made of Adamantite.
+  type: Weapon
+  category: Weapons
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: battle-axe
+  givesPlayerAbility: Devastating Swing
+  stats:
+    attack: 15
 
 ### Dropped
 

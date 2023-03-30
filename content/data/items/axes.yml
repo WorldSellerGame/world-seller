@@ -34,3 +34,15 @@ Iron Axe:
   icon: axe
   stats:
     axePowerPercent: 40
+
+Adamantite Axe:
+  name: Adamantite Axe
+  description: An axe made of Adamantite.
+  type: Axe
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: axe
+  stats:
+    axePowerPercent: 55

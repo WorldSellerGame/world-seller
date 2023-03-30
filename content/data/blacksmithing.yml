@@ -289,13 +289,13 @@ recipes: #Rebalance for 900~ lines ;-;
 
 ################## Adamantite
 
-  - result: Adamantite Dagger
+  - result: Adamantite Shield
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
     craftTime: 420
     ingredients:
       Adamantite Tool Bench : 1
-      Adamantite Ingot: 1
+      Adamantite Ingot: 6
       Hophornbeam Log: 1
     require:
       - Adamantite Tool Bench
@@ -303,14 +303,14 @@ recipes: #Rebalance for 900~ lines ;-;
       - Adamantite Tool Bench
     maxWorkers: 1
 
-  - result: Adamantite Sword
+  - result: Adamantite Battle Axe
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
     craftTime: 420
     ingredients:
       Adamantite Tool Bench : 1
       Adamantite Ingot: 4
-      Hophornbeam Log: 1
+      Hophornbeam Log: 3
     require:
       - Adamantite Tool Bench
     preserve:
@@ -877,6 +877,21 @@ recipes: #Rebalance for 900~ lines ;-;
       - Iron Tool Bench
     preserve:
       - Iron Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Jewelry Tools
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Ingot: 2
+      Quartz: 1
+      Hophornbeam Log: 2
+      Adamantite Tool Bench: 1
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
     maxWorkers: 1
 
   ###Resources (necessary for crafting tables)

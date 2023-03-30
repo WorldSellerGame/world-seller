@@ -34,3 +34,15 @@ Iron Pickaxe:
   icon: pickaxe
   stats:
     pickaxePowerPercent: 40
+
+Adamantite Pickaxe:
+  name: Adamantite Pickaxe
+  description: A pickaxe made of Adamantite.
+  type: Pickaxe
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: pickaxe
+  stats:
+    pickaxePowerPercent: 55

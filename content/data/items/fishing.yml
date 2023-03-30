@@ -35,4 +35,16 @@ Ash Fishing Rod:
   stats:
     fishingPowerPercent: 40
 
+Elvish Silver Wood Fishing Rod:
+  name: Elvish Silver Wood Fishing Rod
+  description: A beautiful fishing rod.
+  type: FishingRod
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 1000
+  icon: fishing-pole
+  stats:
+    fishingPowerPercent: 55
+
 #bait will be re added during balance #It will be mostly items that work right away as bait or convert via skills

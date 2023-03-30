@@ -123,6 +123,20 @@ Iron Construction Tools:
   rarity: Rare
   icon: 'hammer-nails'
 
+Adamantite Tool Bench:
+  name: Adamantite Tool Bench
+  description: A table with dedicated tools and special features, but Adamantite.
+  category: Crafting Tables
+  rarity: Epic
+  icon: 'toolbox'
+
+Adamantite Construction Tools: 
+  name: Adamantite Construction Tools
+  description: A set of tools for making structures and otherwise, but Adamantite.
+  category: Crafting Tables
+  rarity: Epic
+  icon: 'hammer-nails'
+
 #refining
 
 Oven: # Also used in Cooking and Alchemy
