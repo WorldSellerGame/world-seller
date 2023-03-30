@@ -198,7 +198,6 @@ export function sellItem(ctx: StateContext<IGameMercantile>, { item }: SellItem)
 
   const maxSize = maxShopCounterSize(state.shop.saleCounterLevel);
   if(state.shop.forSale.length >= maxSize) {
-    gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
     return;
   }
 
