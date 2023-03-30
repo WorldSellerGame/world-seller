@@ -47,9 +47,9 @@
             </ion-button>
           </ion-card-header>
 
-          <ion-card-content>
-            <div class="resources">
-              <app-resource-icon *ngFor="let resource of location.resources" [name]="resource.name"></app-resource-icon>
+          <ion-card-content class="resources">
+            <div class="resource" *ngFor="let resource of location.resources">
+              <app-resource-icon [name]="resource.name"></app-resource-icon>
             </div>
           </ion-card-content>
 
