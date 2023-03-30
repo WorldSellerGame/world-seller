@@ -10,7 +10,7 @@ import {
   dispatchCorrectCombatEndEvent,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getPlayerCharacterReadyForCombat, getStat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, getStat, getStatTotals, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
@@ -22,6 +22,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
+import { UpdateStatsFromEquipment } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
@@ -773,6 +774,36 @@ export class CombatState {
         oocEnergyTicks: energyTicks - ticks
       }));
     }
+  }
+
+  @Action(UpdateStatsFromEquipment)
+  updateStatsFromEquipAction(ctx: StateContext<IGameCombat>) {
+    const store = this.store.snapshot();
+    const state = ctx.getState();
+    const player = state.currentPlayer;
+
+    if(!player) {
+      return;
+    }
+
+    const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
+    if(!activePlayer) {
+      return;
+    }
+
+    const newStats = merge(defaultStatsZero(), getStatTotals(store, activePlayer));
+    const maxHealth = (newStats as any).health;
+    const maxEnergy = (newStats as any).energy;
+
+    ctx.setState(patch<IGameCombat>({
+      currentPlayer: patch<IGameEncounterCharacter>({
+        maxHealth,
+        maxEnergy,
+        currentHealth: Math.min(player.currentHealth, maxHealth),
+        currentEnergy: Math.min(player.currentEnergy, maxEnergy),
+      })
+    }));
+
   }
 
   private enemyChooseValidAbilities(enemy: IGameEncounterCharacter, allies: IGameEncounterCharacter[]): string[] {

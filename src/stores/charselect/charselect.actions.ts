@@ -65,6 +65,11 @@ export class UnequipItem {
   constructor(public slot: ItemType) {}
 }
 
+export class UpdateStatsFromEquipment {
+  static type = '[CharSelect] Update Stats From Equipment';
+  constructor() {}
+}
+
 export class BreakItem {
   static type = '[CharSelect] Break Item';
   constructor(public slot: ItemType) {}

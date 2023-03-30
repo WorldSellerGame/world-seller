@@ -47,8 +47,8 @@ export class StatNameDisplayComponent implements OnInit {
     [Stat.Healing]: 'Healing',
     [Stat.EnergyHealing]: 'Energy Healing',
     [Stat.Attack]: 'Attack',
-    [Stat.EnergyBonus]: 'Energy Bonus',
-    [Stat.HealthBonus]: 'Health Bonus',
+    [Stat.EnergyBonus]: 'Energy',
+    [Stat.HealthBonus]: 'Health',
     [Stat.Speed]: 'Speed',
 
     [Stat.HealingPerRound]: 'Health Restored Per Round',

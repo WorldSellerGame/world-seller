@@ -7,7 +7,7 @@ import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } f
 import { IncrementStat } from '../achievements/achievements.actions';
 import {
   AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem, UpdateStatsFromEquipment
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
@@ -167,6 +167,7 @@ export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipIte
 
   ctx.dispatch([
     new AddItemToInventory(currentItem),
+    new UpdateStatsFromEquipment(),
     new SaveActiveCharacter()
   ]);
 }
@@ -193,6 +194,7 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
 
   ctx.dispatch([
     new RemoveItemFromInventory(item),
+    new UpdateStatsFromEquipment(),
     new SaveActiveCharacter()
   ]);
 }
