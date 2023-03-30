@@ -287,6 +287,108 @@ recipes: #Rebalance for 900~ lines ;-;
       - Workbench
     maxWorkers: 1
 
+################## Adamantite
+
+  - result: Adamantite Dagger
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 1
+      Hophornbeam Log: 1
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Sword
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 4
+      Hophornbeam Log: 1
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Axe
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 4
+      Hophornbeam Log: 2
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Pickaxe 
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 4
+      Hophornbeam Log: 3
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Sickle
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 4
+      Hophornbeam Log: 2
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Adamantite Spear
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Adamantite Tool Bench : 1
+      Adamantite Ingot: 1
+      Hophornbeam Log: 4
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+  - result: Elvish Silver Wood Fishing Rod
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 420
+    ingredients:
+      Workbench : 1
+      Elvish Silver Wood Log: 3
+      Coated Thread: 5
+    require:
+      - Adamantite Tool Bench
+      - Elvish Silver Wood Log
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+
 ##################
   #this is where the suffering starts (Tomorrow hopefully)
   #also refining skills may need to be named to crafting and then rename blacksmithing to refining and the add fabricating
@@ -379,7 +481,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Metal Construction Tools
     maxWorkers: 1
 
-  - result: Iron Construction Tools # 20 to 30
+  - result: Iron Construction Tools 
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
     craftTime: 240
@@ -392,6 +494,38 @@ recipes: #Rebalance for 900~ lines ;-;
     preserve:
       - Iron Tool Bench
     maxWorkers: 1
+
+  - result: Adamantite Tool Bench # 30 to 40
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 300
+    ingredients:
+      Stone: 4
+      Hophornbeam Log: 10
+      Adamantite Ingot: 4
+      Iron Construction Tools: 1
+    require:
+      - Iron Construction Tools
+      - Adamantite Ingot
+    preserve:
+      - Iron Construction Tools
+    maxWorkers: 1
+
+  - result: Adamantite Construction Tools 
+    perCraft: { min: 1, max: 1 }
+    level: { min: 20, max: 30 }
+    craftTime: 300
+    ingredients:
+      Hophornbeam Log: 8
+      Adamantite Ingot: 6
+      Adamantite Tool Bench: 1
+    require:
+      - Adamantite Tool Bench
+    preserve:
+      - Adamantite Tool Bench
+    maxWorkers: 1
+
+
 
 
   #Refine
@@ -431,6 +565,7 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Fire Brick: 12
       Mortar: 6
+      Copper Ingot: 2
       Construction Tools: 1
     require:
       - Construction Tools
@@ -511,12 +646,14 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 4
       Metal Tool Bench: 1
       Furnace: 1
+      Oven Mitts: 1
     require:
       - Metal Tool Bench
       - Furnace
     preserve:
       - Metal Tool Bench
       - Furnace
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Metal Pots and Pans
@@ -527,12 +664,14 @@ recipes: #Rebalance for 900~ lines ;-;
       Copper Ingot: 6
       Metal Tool Bench: 1
       Furnace: 1
+      Oven Mitts: 1
     require:
       - Metal Tool Bench
       - Furnace
     preserve:
       - Metal Tool Bench
       - Furnace
+      - Oven Mitts
     maxWorkers: 1
 
   #alchemy
@@ -557,6 +696,7 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Sand: 8
       Brick Oven: 1
+      Oven Mitts: 1
       Workbench: 1
     require:
       - Workbench
@@ -564,6 +704,7 @@ recipes: #Rebalance for 900~ lines ;-;
     preserve:
       - Workbench
       - Brick Oven
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Fine Glass Set
@@ -574,6 +715,7 @@ recipes: #Rebalance for 900~ lines ;-;
       Sand: 10
       Quartz Powder: 5
       Furnace: 1
+      Oven Mitts: 1
       Metal Tool Bench: 1
     require:
       - Metal Tool Bench
@@ -581,6 +723,7 @@ recipes: #Rebalance for 900~ lines ;-;
     preserve:
       - Metal Tool Bench
       - Furnace
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Burner
@@ -785,23 +928,27 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       White Clay: 3
       Brick Oven: 1
+      Oven Mitts: 1
     require:
       - Brick Oven
     preserve:
       - Brick Oven
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Copper Ingot
     perCraft: { min: 1, max: 1 }
-    level: { min: 15, max: 25 }
-    craftTime: 40
+    level: { min: 10, max: 20 }
+    craftTime: 30
     ingredients:
       Copper Ore: 1
       Brick Oven: 1
+      Oven Mitts: 1
     require:
       - Brick Oven
     preserve:
       - Brick Oven
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Iron Ingot
@@ -811,10 +958,26 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Iron Ore: 3
       Furnace: 1
+      Oven Mitts: 1
     require:
       - Furnace
     preserve:
       - Furnace
+      - Oven Mitts
+    maxWorkers: 1
+
+  - result: Adamantite Ingot
+    perCraft: { min: 1, max: 1 }
+    level: { min: 30, max: 40 }
+    craftTime: 70
+    ingredients:
+      Adamantite Ore: 5
+      Furnace: 1
+    require:
+      - Blasting Furnace
+    preserve:
+      - Blasting Furnace
+      - High Heat Oven Mitts
     maxWorkers: 1
 
   - result: Glass Bottle
@@ -824,10 +987,12 @@ recipes: #Rebalance for 900~ lines ;-;
     ingredients:
       Sand: 3
       Brick Oven: 1
+      Oven Mitts: 1
     require:
       - Brick Oven
     preserve:
       - Brick Oven
+      - Oven Mitts
     maxWorkers: 2
 
   - result: Burning Oil

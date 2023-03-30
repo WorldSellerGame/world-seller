@@ -36,7 +36,7 @@ Mortar:
 
 Copper Ingot:
   name: Copper Ingot
-  description: Refined copper ore ready to be shaped.
+  description: Refined copper ore, ready to be shaped.
   category: Refined Materials
   rarity: Uncommon
   icon: 'ingot'
@@ -50,9 +50,16 @@ Fire Brick:
 
 Iron Ingot:
   name: Iron Ingot
-  description: Refined iron ore ready to be shaped.
+  description: Refined iron ore, ready to be shaped.
   category: Refined Materials
   rarity: Rare
+  icon: 'ingot'
+
+Adamantite Ingot:
+  name: Adamantite Ingot
+  description: Refined adamantite ore, ready to be shaped.
+  category: Refined Materials
+  rarity: Epic
   icon: 'ingot'
 
 Burning Oil: #likely will have more ins for making burning oil

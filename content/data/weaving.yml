@@ -84,6 +84,22 @@ recipes:
       - Stone Knife
     maxWorkers: 2
 
+  - result: Coated Thread
+    perCraft: { min: 2, max: 2 }
+    level: { min: 15, max: 25 }
+    craftTime: 40
+    ingredients:
+      Plant Fiber: 6
+      Tallow: 1
+      Sap: 1
+      Stone Knife: 1
+    require:
+      - Tallow
+      - Spinning Wheel
+    preserve:
+      - Spinning Wheel
+    maxWorkers: 2
+
 #tables (aka gates) 
 
   - result: Oven Mitts #need another set for twine
@@ -102,7 +118,7 @@ recipes:
       - Knitting Needles
     maxWorkers: 1
 
-  - result: Twine Oven Mitts 
+  - result: High Heat Oven Mitts 
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
     craftTime: 180
