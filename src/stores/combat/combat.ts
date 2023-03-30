@@ -488,7 +488,7 @@ export class CombatState {
     let skipRest = false;
 
     ability.effects.forEach(effectRef => {
-      if(skipRest) {
+      if(skipRest || isDead(currentPlayer)) {
         return;
       }
 
@@ -531,6 +531,13 @@ export class CombatState {
             new PlaySFX('combat-effect')
           ]);
         }
+      }
+
+      if(isDead(currentPlayer)) {
+        ctx.dispatch([
+          new AddCombatLogMessage(`${currentPlayer.name} has perished!`),
+          new IncrementStat(AchievementStat.Kills)
+        ]);
       }
 
       if(skipTurnEnd) {
