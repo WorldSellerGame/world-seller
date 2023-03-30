@@ -180,9 +180,13 @@ export class WorkersState {
     }
 
     // handle refining / rewards
+    const requiredItemsToNotSellForOtherWorkers: Record<string, boolean> = {};
     const refiningRewards: IGameRecipe[] = [];
 
     const refiningWorkerUpdates = state.refiningWorkerAllocations.map(alloc => {
+
+      // cache needed materials so we don't accidentally sell them
+      Object.keys(alloc.recipe.ingredients).forEach(itemKey => requiredItemsToNotSellForOtherWorkers[itemKey] = true);
 
       // if we don't have the resources, we do not craft
       if(alloc.currentTick === 0) {
@@ -229,10 +233,11 @@ export class WorkersState {
 
     // handle mercantile changes
     const allShopItems = store.mercantile.stockpile.items;
+    const sellableItems = allShopItems.filter((item: IGameItem) => !requiredItemsToNotSellForOtherWorkers[item.name]);
 
     const mercantileWorkerUpdates = state.mercantileWorkerAllocations.map(alloc => {
       if(alloc.currentTick === 0) {
-        const chosenItem = sample(allShopItems);
+        const chosenItem = sample(sellableItems);
         if(chosenItem) {
           ctx.dispatch(new SellItem(chosenItem));
 
