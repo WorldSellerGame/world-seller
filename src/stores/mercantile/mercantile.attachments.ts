@@ -36,7 +36,6 @@ export const attachments: IAttachment[] = [
   { action: QuickSellItemFromInventory, handler: quickSellFromInventory },
   { action: QuickSellItemFromStockpile, handler: quickSellItemFromStockpile },
   { action: QuickSellAllFromStockpile, handler: quickSellAllFromStockpile },
-  { action: UpgradeStockpileSize, handler: upgradeStockpileSize },
   { action: UpgradeShopRegister, handler: upgradeShopRegister },
   { action: UpgradeShopCounter, handler: upgradeShopCounter },
   { action: UpgradeShopDecorations, handler: upgradeShopDecorations },
