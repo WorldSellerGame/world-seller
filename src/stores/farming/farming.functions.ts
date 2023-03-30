@@ -7,6 +7,7 @@ import { AchievementStat, IGameFarming, IGameFarmingPlot } from '../../interface
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
+import { SpendCoins } from '../mercantile/mercantile.actions';
 import { GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
 export const defaultFarming: () => IGameFarming = () => ({
@@ -16,6 +17,14 @@ export const defaultFarming: () => IGameFarming = () => ({
   maxPlots: 2,
   plots: []
 });
+
+export function maxPlots() {
+  return 8;
+}
+
+export function nextPlotCost(currentPlots: number) {
+  return currentPlots * 1000;
+}
 
 export function unlockFarming(ctx: StateContext<IGameFarming>) {
   ctx.patchState({ unlocked: true });
@@ -80,4 +89,14 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: Harv
       level: state.level + 1
     }));
   }
+}
+
+export function addPlot(ctx: StateContext<IGameFarming>) {
+  const state = ctx.getState();
+
+  ctx.dispatch(new SpendCoins(nextPlotCost(state.maxPlots - 1)));
+
+  ctx.setState(patch<IGameFarming>({
+    maxPlots: Math.min(maxPlots(), state.maxPlots + 1)
+  }));
 }

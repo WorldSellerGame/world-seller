@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { FarmingPageRoutingModule } from './farming-routing.module';
 
+import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { SharedModule } from '../../../../shared.module';
 import { FarmingPage } from './farming.page';
 
@@ -15,6 +16,7 @@ import { FarmingPage } from './farming.page';
     FormsModule,
     IonicModule,
     SharedModule,
+    NgxTippyModule,
     FarmingPageRoutingModule
   ],
   declarations: [FarmingPage]

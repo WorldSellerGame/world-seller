@@ -3,7 +3,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IGameFarmingPlot, IGameResourceTransform } from '../../../../../interfaces';
 import { CharSelectState, FarmingState } from '../../../../../stores';
-import { HarvestPlantFromFarm, PlantSeedInFarm } from '../../../../../stores/farming/farming.actions';
+import { BuyNewPlot, HarvestPlantFromFarm, PlantSeedInFarm } from '../../../../../stores/farming/farming.actions';
+import { maxPlots, nextPlotCost } from '../../../../../stores/farming/farming.functions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
 import { ItemCreatorService } from '../../../../services/item-creator.service';
@@ -23,6 +24,7 @@ export class FarmingPage implements OnInit {
 
   @Select(FarmingState.level) level$!: Observable<number>;
   @Select(FarmingState.plotInfo) plotInfo$!: Observable<{ plots: IGameFarmingPlot[]; maxPlots: number }>;
+  @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
 
   constructor(
     private store: Store,
@@ -45,8 +47,8 @@ export class FarmingPage implements OnInit {
     return index;
   }
 
-  public plotList(maxPlots: number, allPlots: IGameFarmingPlot[]) {
-    return Array(maxPlots).fill(null).map((x, i) => allPlots[i] || { seed: undefined });
+  public plotList(maxPlotCount: number, allPlots: IGameFarmingPlot[]) {
+    return Array(maxPlotCount).fill(null).map((x, i) => allPlots[i] || { seed: undefined });
   }
 
   public maxLevelForSeed(seedName: string): number {
@@ -87,6 +89,26 @@ export class FarmingPage implements OnInit {
 
   public unplant() {
     this.currentPlantIndex = -1;
+  }
+
+  maxPlots() {
+    return maxPlots();
+  }
+
+  nextPlotCost(currentPlots: number) {
+    return nextPlotCost(currentPlots);
+  }
+
+  public buyNewPlot() {
+    this.store.dispatch(new BuyNewPlot());
+  }
+
+  public getResource(seed: string) {
+    return this.contentService.getResourceByName(seed);
+  }
+
+  public getIcon(seed: string) {
+    return this.getResource(seed).icon;
   }
 
   private getSeedTransform(seed: string): IGameResourceTransform | undefined {
