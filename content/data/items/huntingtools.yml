@@ -21,7 +21,7 @@ Copper Spear:
   value: 50
   icon: spear
   stats:
-    huntingPowerPercent: 25
+    huntingPowerPercent: 20
 
 Iron Spear:
   name: Iron Spear
@@ -33,7 +33,7 @@ Iron Spear:
   value: 250
   icon: spear
   stats:
-    huntingPowerPercent: 40
+    huntingPowerPercent: 25
 
 Adamantite Spear:
   name: Adamantite Spear
@@ -45,7 +45,7 @@ Adamantite Spear:
   value: 1000
   icon: spear
   stats:
-    huntingPowerPercent: 55
+    huntingPowerPercent: 30
 
 
 #todo look at methods of bow implementation #it may be possible to force hunting Power to be a sudo ranged option on skills

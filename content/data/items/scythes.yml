@@ -21,7 +21,7 @@ Copper Sickle:
   value: 100
   icon: scythe
   stats:
-    scythePowerPercent: 25
+    scythePowerPercent: 20
 
 Iron Sickle:
   name: Iron Sickle
@@ -33,7 +33,7 @@ Iron Sickle:
   value: 500
   icon: scythe
   stats:
-    scythePowerPercent: 40
+    scythePowerPercent: 25
 
 Adamantite Sickle:
   name: Adamantite Sickle
@@ -45,4 +45,4 @@ Adamantite Sickle:
   value: 2000
   icon: scythe
   stats:
-    scythePowerPercent: 55
+    scythePowerPercent: 30

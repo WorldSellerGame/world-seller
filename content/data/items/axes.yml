@@ -21,7 +21,7 @@ Copper Axe:
   value: 100
   icon: axe
   stats:
-    axePowerPercent: 25
+    axePowerPercent: 20
 
 Iron Axe:
   name: Iron Axe
@@ -33,7 +33,7 @@ Iron Axe:
   value: 500
   icon: axe
   stats:
-    axePowerPercent: 40
+    axePowerPercent: 25
 
 Adamantite Axe:
   name: Adamantite Axe
@@ -45,4 +45,4 @@ Adamantite Axe:
   value: 2000
   icon: axe
   stats:
-    axePowerPercent: 55
+    axePowerPercent: 30

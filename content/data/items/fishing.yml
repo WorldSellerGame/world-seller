@@ -21,7 +21,7 @@ Oak Fishing Rod:
   value: 50
   icon: fishing-pole
   stats:
-    fishingPowerPercent: 25
+    fishingPowerPercent: 20
 
 Ash Fishing Rod:
   name: Ash Fishing Rod
@@ -33,7 +33,7 @@ Ash Fishing Rod:
   value: 250
   icon: fishing-pole
   stats:
-    fishingPowerPercent: 40
+    fishingPowerPercent: 25
 
 Elvish Silverwood Fishing Rod:
   name: Elvish Silverwood Fishing Rod
@@ -45,6 +45,6 @@ Elvish Silverwood Fishing Rod:
   value: 1000
   icon: fishing-pole
   stats:
-    fishingPowerPercent: 55
+    fishingPowerPercent: 30
 
 #bait will be re added during balance #It will be mostly items that work right away as bait or convert via skills

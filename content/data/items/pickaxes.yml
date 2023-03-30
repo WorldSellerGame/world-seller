@@ -21,7 +21,7 @@ Copper Pickaxe:
   value: 100
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 25
+    pickaxePowerPercent: 20
 
 Iron Pickaxe:
   name: Iron Pickaxe
@@ -33,7 +33,7 @@ Iron Pickaxe:
   value: 500
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 40
+    pickaxePowerPercent: 25
 
 Adamantite Pickaxe:
   name: Adamantite Pickaxe
@@ -45,4 +45,4 @@ Adamantite Pickaxe:
   value: 2000
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 55
+    pickaxePowerPercent: 30
