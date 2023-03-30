@@ -32,7 +32,7 @@
           <ion-card-header>
             <ion-card-title>{{ location.name }}</ion-card-title>
             <ion-card-subtitle class="location-description">{{ location.description }}</ion-card-subtitle>
-            <ion-card-subtitle>Gives after <strong>{{ showRealDurationForLocation(location, pageData.equipment || {}) }}s</strong>:</ion-card-subtitle>
+            <ion-card-subtitle>Gives after <strong><app-countdown [duration]="showRealDurationForLocation(location, pageData.equipment || {})"></app-countdown></strong>:</ion-card-subtitle>
 
             <ion-button class="favorite"
                         color="primary"
