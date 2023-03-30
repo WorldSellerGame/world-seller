@@ -8,7 +8,7 @@ import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
 import { IGameItem, IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
-import { TickTimer } from '../game/game.actions';
+import { AnalyticsTrack, TickTimer } from '../game/game.actions';
 import { RemoveFromStockpile, SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
 import {
@@ -154,6 +154,8 @@ export class WorkersState {
       alloc.currentTick += ticks * workerTimerMultiplier(1);
 
       if(alloc.currentTick > alloc.location.gatherTime) {
+        ctx.dispatch(new AnalyticsTrack(`Worker:Gather:${alloc.location.name}`));
+
         const cooldown = alloc.location.cooldownTime ?? 0;
         alloc.currentTick = -cooldown;
 
@@ -194,6 +196,8 @@ export class WorkersState {
           return alloc;
         }
 
+        ctx.dispatch(new AnalyticsTrack(`Worker:Refine:${alloc.recipe.result}`));
+
         // if we do have the resources, we take them
         const resourcesRequired = getRecipeResourceCosts(alloc.recipe, 1);
         ctx.dispatch(new GainResources(resourcesRequired));
@@ -228,7 +232,9 @@ export class WorkersState {
     });
 
     refiningRewards.forEach(reward => {
-      ctx.dispatch(new WorkerCreateItem(reward.result, random(reward.perCraft.min, reward.perCraft.max)));
+      ctx.dispatch([
+        new WorkerCreateItem(reward.result, random(reward.perCraft.min, reward.perCraft.max))
+      ]);
     });
 
     // handle mercantile changes
@@ -239,7 +245,10 @@ export class WorkersState {
       if(alloc.currentTick === 0) {
         const chosenItem = sample(sellableItems);
         if(chosenItem) {
-          ctx.dispatch(new SellItem(chosenItem));
+          ctx.dispatch([
+            new SellItem(chosenItem),
+            new AnalyticsTrack(`Worker:Sell:${chosenItem.name}`)
+          ]);
 
           alloc.lastSoldItemRarity = chosenItem.rarity;
           alloc.lastSoldItemValue = chosenItem.value;
