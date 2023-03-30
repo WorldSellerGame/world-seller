@@ -54,7 +54,7 @@ Cut:
 
 Hemorrhaging Stab:
   name: Hemorrhaging Stab #this design could be changed to be the weaker attack but get more bleed (This is more in line with the speed stacking play style of dagger build)
-  description: A weak attack hitting a weak point to bleed em out.
+  description: A weak attack hitting a weak point to bleed 'em out.
   icon: blade-dripping
   target: Single
   type: Physical
@@ -72,7 +72,7 @@ Hemorrhaging Stab:
 
 Risky Swing:
   name: Risky Swing
-  description: An attack thats not too consistent, but oh boy. If you catch them just right...
+  description: An attack that's not too consistent, but oh boy. If you catch them just right...
   icon: blade-swing2
   target: Single
   type: Physical
@@ -88,7 +88,7 @@ Risky Swing:
 
 Cleave:
   name: Cleave
-  description: A powerful attack that cripples defenses 
+  description: A powerful attack that cripples defenses.
   icon: axe-swing
   target: Single
   type: Physical
