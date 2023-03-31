@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { IonPopover } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
-import { sortBy, uniq } from 'lodash';
+import { sortBy, sum, uniq } from 'lodash';
 import { LocalStorage } from 'ngx-webstorage';
 import { Observable, Subscription } from 'rxjs';
 import { IGameItem, IGameMercantileStockpile } from '../../../../../../interfaces';
@@ -8,7 +9,8 @@ import { CharSelectState, MercantileState } from '../../../../../../stores';
 import { NotifyWarning } from '../../../../../../stores/game/game.actions';
 import {
   QuickSellAllFromStockpile, QuickSellItemFromStockpile,
-  SellItem, SendToInventory, UpgradeStockpileSize, UpgradeWorkerSellRate
+  QuickSellManyItemsFromStockpile,
+  SellItem, SendManyItemsToInventory, SendToInventory, UpgradeStockpileSize, UpgradeWorkerSellRate
 } from '../../../../../../stores/mercantile/mercantile.actions';
 import {
   maxShopCounterSize, maxStockpileLevel,
@@ -33,6 +35,16 @@ export class StockpilePage implements OnInit, OnDestroy {
   @LocalStorage('currenttab-stockpile') public activeCategory!: string;
   public categorySub!: Subscription;
 
+  public inventorySub!: Subscription;
+  public itemCategories: string[] = [];
+  public itemsByCategory: Record<string, IGameItem[]> = {};
+
+  public isMultiSelect = false;
+  public lastSelectedCategory = '';
+  public lastSelectedIndex = -1;
+  public itemsSelectedById: Record<string, boolean> = {};
+  public itemsSelected: IGameItem[] = [];
+
   constructor(private store: Store) { }
 
   ngOnInit() {
@@ -41,7 +53,7 @@ export class StockpilePage implements OnInit, OnDestroy {
     this.categorySub = this.stockpile$.subscribe(x => {
       const items = x.items;
 
-      if(this.activeCategory && this.itemsInCategory(items, this.activeCategory).length > 0) {
+      if(this.activeCategory && this.getItemsInCategory(items, this.activeCategory).length > 0) {
         return;
       }
 
@@ -50,7 +62,18 @@ export class StockpilePage implements OnInit, OnDestroy {
         return;
       }
 
-      this.activeCategory = this.itemCategories(items)[0];
+      this.activeCategory = this.getItemCategories(items)[0];
+    });
+
+    this.inventorySub = this.stockpile$.subscribe(x => {
+      const items = x.items;
+
+      this.itemCategories = this.getItemCategories(items);
+      this.itemsByCategory = {};
+
+      this.itemCategories.forEach(cat => {
+        this.itemsByCategory[cat] = this.getItemsInCategory(items, cat);
+      });
     });
   }
 
@@ -70,11 +93,11 @@ export class StockpilePage implements OnInit, OnDestroy {
     return items.length === 0;
   }
 
-  itemCategories(items: IGameItem[] = []): string[] {
+  getItemCategories(items: IGameItem[] = []): string[] {
     return sortBy(uniq(items.filter(x => (x?.quantity ?? 0) > 0).map(x => x.category)));
   }
 
-  itemsInCategory(items: IGameItem[] = [], category: string): IGameItem[] {
+  getItemsInCategory(items: IGameItem[] = [], category: string): IGameItem[] {
     return sortBy(items.filter(x => (x?.quantity ?? 0) > 0).filter(item => item.category === category), 'name');
   }
 
@@ -144,6 +167,110 @@ export class StockpilePage implements OnInit, OnDestroy {
 
   upgradeWorkerSellRate() {
     this.store.dispatch(new UpgradeWorkerSellRate());
+  }
+
+  openMenu(item: IGameItem, index: number, popover: IonPopover, $event: any) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    if(this.isMultiSelect) {
+      if(item.category === this.lastSelectedCategory && $event.shiftKey) {
+        this.shiftSelection(index);
+        return;
+      }
+
+      this.toggleSelected(item, index);
+      return;
+    }
+
+    if($event.ctrlKey && !this.isMultiSelect) {
+      this.select(item, index);
+      return;
+    }
+
+    popover.present($event);
+  }
+
+  select(item: IGameItem, index: number) {
+    if(this.itemsSelectedById[item.id ?? '']) {
+      return;
+    }
+
+    this.itemsSelected.push(item);
+    this.itemsSelectedById[item.id ?? ''] = true;
+    this.isMultiSelect = true;
+    this.lastSelectedCategory = item.category;
+    this.lastSelectedIndex = index;
+  }
+
+  unselect(item: IGameItem, index: number) {
+    if(!this.itemsSelectedById[item.id ?? '']) {
+      return;
+    }
+
+    this.itemsSelected = this.itemsSelected.filter(x => x !== item);
+    this.itemsSelectedById[item.id ?? ''] = false;
+    this.isMultiSelect = this.itemsSelected.length > 0;
+    this.lastSelectedCategory = item.category;
+    this.lastSelectedIndex = index;
+  }
+
+  toggleSelected(item: IGameItem, index: number) {
+    if(this.itemsSelectedById[item.id ?? '']) {
+      this.unselect(item, index);
+      return;
+    }
+
+    this.select(item, index);
+  }
+
+  shiftSelection(newIndex: number) {
+    const isSelected = !this.itemsSelectedById[this.itemsByCategory[this.lastSelectedCategory][this.lastSelectedIndex].id ?? ''];
+
+    const handleItem = (index: number) => {
+      if(isSelected) {
+        this.unselect(this.itemsByCategory[this.lastSelectedCategory][index], index);
+        return;
+      }
+
+      this.select(this.itemsByCategory[this.lastSelectedCategory][index], index);
+    };
+
+    console.log({ isSelected }, this.lastSelectedCategory, this.lastSelectedIndex, newIndex);
+
+    if(this.lastSelectedIndex < newIndex) {
+      for(let i = this.lastSelectedIndex; i <= newIndex; i++) {
+        handleItem(i);
+      }
+    }
+
+    if(this.lastSelectedIndex > newIndex) {
+      for(let i = this.lastSelectedIndex; i >= newIndex; i--) {
+        handleItem(i);
+      }
+    }
+  }
+
+  quickSellValue() {
+    return sum(this.itemsSelected.map(item => this.realSellValue(item)));
+  }
+
+  quickSellSelected() {
+    this.store.dispatch(new QuickSellManyItemsFromStockpile(this.itemsSelected));
+    this.clearSelected();
+  }
+
+  sendSelectedToInventory() {
+    this.store.dispatch(new SendManyItemsToInventory(this.itemsSelected));
+    this.clearSelected();
+  }
+
+  clearSelected() {
+    this.isMultiSelect = false;
+    this.itemsSelected = [];
+    this.itemsSelectedById = {};
+    this.lastSelectedCategory = '';
+    this.lastSelectedIndex = -1;
   }
 
 }

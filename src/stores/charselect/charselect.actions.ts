@@ -50,6 +50,11 @@ export class AddItemToInventory {
   constructor(public item: IGameItem) {}
 }
 
+export class AddItemsToInventory {
+  static type = '[CharSelect] Add Items To Inventory';
+  constructor(public items: IGameItem[]) {}
+}
+
 export class RemoveItemFromInventory {
   static type = '[CharSelect] Remove Item From Inventory';
   constructor(public item: IGameItem) {}

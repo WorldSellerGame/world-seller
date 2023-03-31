@@ -2,10 +2,15 @@
 .item {
   display: flex;
   align-items: center;
+  user-select: none;
 
   .icon {
     display: flex;
     margin-right: 10px;
+
+    &.no-icon {
+      visibility: hidden;
+    }
   }
 
   .name {

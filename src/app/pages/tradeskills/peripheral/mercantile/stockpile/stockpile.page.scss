@@ -6,6 +6,13 @@
 
 .resource-container {
   margin-bottom: 5px;
+  position: relative;
+
+  .resource-checkbox {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+  }
 }
 
 .resources {

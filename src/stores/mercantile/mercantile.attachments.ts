@@ -3,18 +3,24 @@ import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellAllFromStockpile, QuickSellItemFromInventory, QuickSellItemFromStockpile,
+  QuickSellManyItemsFromInventory,
+  QuickSellManyItemsFromStockpile,
   RemoveFromStockpile,
   RotateExchangeGoods,
-  SellItem, SendToInventory, SendToStockpile, SpendCoins, UnlockMercantile,
+  SellItem, SendManyItemsToInventory, SendManyItemsToStockpile, SendToInventory, SendToStockpile, SpendCoins, UnlockMercantile,
   UnsellItem, UpgradeExchange, UpgradeShopCounter, UpgradeShopDecorations,
   UpgradeShopRegister, UpgradeStockpileSize, UpgradeWorkerSellRate
 } from './mercantile.actions';
 import {
   decreaseDuration, gainCoins, gainMercantileLevels, quickSellAllFromStockpile, quickSellFromInventory, quickSellItemFromStockpile,
+  quickSellManyItemsFromInventory,
+  quickSellManyItemsFromStockpile,
   removeFromStockpile,
+  removeManyFromStockpile,
   resetMercantile,
   rotateExchange,
   sellItem,
+  sendManyItemsToStockpile,
   sendToStockpile, spendCoins, unlockMercantile, unsellItem,
   upgradeExchange,
   upgradeShopCounter, upgradeShopDecorations, upgradeShopRegister, upgradeStockpileSize, upgradeWorkerSellRate
@@ -31,10 +37,14 @@ export const attachments: IAttachment[] = [
   { action: SellItem, handler: sellItem },
   { action: UnsellItem, handler: unsellItem },
   { action: SendToStockpile, handler: sendToStockpile },
+  { action: SendManyItemsToStockpile, handler: sendManyItemsToStockpile },
   { action: RemoveFromStockpile, handler: removeFromStockpile },
   { action: SendToInventory, handler: removeFromStockpile },
+  { action: SendManyItemsToInventory, handler: removeManyFromStockpile },
   { action: QuickSellItemFromInventory, handler: quickSellFromInventory },
+  { action: QuickSellManyItemsFromInventory, handler: quickSellManyItemsFromInventory },
   { action: QuickSellItemFromStockpile, handler: quickSellItemFromStockpile },
+  { action: QuickSellManyItemsFromStockpile, handler: quickSellManyItemsFromStockpile },
   { action: QuickSellAllFromStockpile, handler: quickSellAllFromStockpile },
   { action: UpgradeShopRegister, handler: upgradeShopRegister },
   { action: UpgradeShopCounter, handler: upgradeShopCounter },

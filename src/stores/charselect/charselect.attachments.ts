@@ -1,13 +1,17 @@
 import { IAttachment } from '../../interfaces/store';
-import { QuickSellItemFromInventory, SellItem, SendToInventory, SendToStockpile } from '../mercantile/mercantile.actions';
+import {
+  QuickSellItemFromInventory, QuickSellManyItemsFromInventory,
+  SellItem, SendManyItemsToInventory, SendManyItemsToStockpile, SendToInventory, SendToStockpile
+} from '../mercantile/mercantile.actions';
 
 import {
   AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter,
   EquipItem, GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
 } from './charselect.actions';
 import {
-  addItemToInventory, breakItem, createCharacter, deleteCharacter,
-  equipItem, gainResources, removeItemFromInventory, saveCurrentCharacter, setActiveCharacter, syncTotalLevel, unequipItem
+  addItemToInventory, addItemsToInventory, breakItem, createCharacter, deleteCharacter,
+  equipItem, gainResources, removeItemFromInventory,
+  removeItemsFromInventory, saveCurrentCharacter, setActiveCharacter, syncTotalLevel, unequipItem
 } from './charselect.functions';
 
 export const attachments: IAttachment[] = [
@@ -18,11 +22,14 @@ export const attachments: IAttachment[] = [
   { action: GainResources, handler: gainResources },
 
   { action: AddItemToInventory, handler: addItemToInventory },
+  { action: SendManyItemsToInventory, handler: addItemsToInventory },
   { action: SendToInventory, handler: addItemToInventory },
 
   { action: RemoveItemFromInventory, handler: removeItemFromInventory },
   { action: SendToStockpile, handler: removeItemFromInventory },
+  { action: SendManyItemsToStockpile, handler: removeItemsFromInventory },
   { action: QuickSellItemFromInventory, handler: removeItemFromInventory },
+  { action: QuickSellManyItemsFromInventory, handler: removeItemsFromInventory },
   { action: SellItem, handler: removeItemFromInventory },
   { action: BreakItem, handler: breakItem },
 

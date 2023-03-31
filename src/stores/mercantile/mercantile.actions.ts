@@ -34,6 +34,11 @@ export class SendToStockpile {
   constructor(public item: IGameItem) {}
 }
 
+export class SendManyItemsToStockpile {
+  static type = '[Mercantile] Send Many Items To Stockpile';
+  constructor(public items: IGameItem[]) {}
+}
+
 export class RemoveFromStockpile {
   static type = '[Mercantile] Remove From Stockpile';
   constructor(public item: IGameItem) {}
@@ -44,14 +49,29 @@ export class SendToInventory {
   constructor(public item: IGameItem) {}
 }
 
+export class SendManyItemsToInventory {
+  static type = '[Mercantile] Send Many Items To Inventory';
+  constructor(public items: IGameItem[]) {}
+}
+
 export class QuickSellItemFromInventory {
   static type = '[Mercantile] Quick Sell Item From Inventory';
   constructor(public item: IGameItem) {}
 }
 
+export class QuickSellManyItemsFromInventory {
+  static type = '[Mercantile] Quick Sell Many Items From Inventory';
+  constructor(public items: IGameItem[]) {}
+}
+
 export class QuickSellItemFromStockpile {
   static type = '[Mercantile] Quick Sell Item From Stockpile';
   constructor(public item: IGameItem) {}
+}
+
+export class QuickSellManyItemsFromStockpile {
+  static type = '[Mercantile] Quick Sell Many Items From Stockpile';
+  constructor(public items: IGameItem[]) {}
 }
 
 export class QuickSellAllFromStockpile {

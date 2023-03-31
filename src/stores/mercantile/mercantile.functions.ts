@@ -12,8 +12,10 @@ import { GainResources } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellItemFromInventory, QuickSellItemFromStockpile,
+  QuickSellManyItemsFromInventory,
+  QuickSellManyItemsFromStockpile,
   RemoveFromStockpile,
-  SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
+  SellItem, SendManyItemsToInventory, SendManyItemsToStockpile, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
 } from './mercantile.actions';
 
 export const defaultMercantile: () => IGameMercantile = () => ({
@@ -193,12 +195,40 @@ export function sendToStockpile(ctx: StateContext<IGameMercantile>, { item }: Se
   }));
 }
 
+export function sendManyItemsToStockpile(ctx: StateContext<IGameMercantile>, { items }: SendManyItemsToStockpile) {
+  const state = ctx.getState();
+
+  const maxSize = maxStockpileSize(state.stockpile.limitLevel);
+  if(state.stockpile.items.length + items.length >= maxSize) {
+    return;
+  }
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      items: append<IGameItem>(items)
+    })
+  }));
+}
+
 export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }: SendToInventory | RemoveFromStockpile) {
   const state = ctx.getState();
 
   ctx.setState(patch<IGameMercantile>({
     stockpile: patch<IGameMercantileStockpile>({
       items: removeItem<IGameItem>(state.stockpile.items.indexOf(item))
+    })
+  }));
+
+}
+
+export function removeManyFromStockpile(ctx: StateContext<IGameMercantile>, { items }: SendManyItemsToInventory) {
+  const state = ctx.getState();
+
+  const newItems = state.stockpile.items.filter(item => !items.includes(item));
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      items: newItems
     })
   }));
 
@@ -239,10 +269,25 @@ export function quickSellFromInventory(ctx: StateContext<IGameMercantile>, { ite
   ctx.dispatch(new PlaySFX('action-sell'));
 }
 
+export function quickSellManyItemsFromInventory(ctx: StateContext<IGameMercantile>, { items }: QuickSellManyItemsFromInventory) {
+  const state = ctx.getState();
+  const totalValue = sum(items.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel))));
+  gainCoins(ctx, { amount: totalValue });
+  ctx.dispatch(new PlaySFX('action-sell'));
+}
+
 export function quickSellItemFromStockpile(ctx: StateContext<IGameMercantile>, { item }: QuickSellItemFromStockpile) {
   const state = ctx.getState();
   gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
   removeFromStockpile(ctx, { item });
+  ctx.dispatch(new PlaySFX('action-sell'));
+}
+
+export function quickSellManyItemsFromStockpile(ctx: StateContext<IGameMercantile>, { items }: QuickSellManyItemsFromStockpile) {
+  const state = ctx.getState();
+  const totalValue = sum(items.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel))));
+  gainCoins(ctx, { amount: totalValue });
+  removeManyFromStockpile(ctx, { items });
   ctx.dispatch(new PlaySFX('action-sell'));
 }
 
