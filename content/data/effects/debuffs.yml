@@ -133,3 +133,12 @@ EnergyDebuff2:
 
 #Compound/enemy
 
+Crush1:
+  name: Crush I
+  description: Decreases Mitigation by 5.
+  icon: shield-down
+  color: "#793A80"
+  turnsLeft: -1
+  statusEffectType: StatModification
+  statModifications:
+    mitigation: -5

@@ -1,3 +1,4 @@
+import { Rarity } from './game';
 import { IGameGatherLocation } from './gathering';
 import { IGameRecipe } from './refining';
 
@@ -18,6 +19,9 @@ export interface IGameWorkersRefining {
 export interface IGameWorkersMercantle {
   nameId: number;
   currentTick: number;
+  backToWorkTicks: number;
+  lastSoldItemRarity?: Rarity;
+  lastSoldItemValue?: number;
 }
 
 export interface IGameWorkers {

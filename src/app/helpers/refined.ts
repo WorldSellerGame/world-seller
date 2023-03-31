@@ -82,7 +82,7 @@ export function canCraftRecipe(resources: Record<string, number>, recipe: IGameR
     );
 }
 
-export function getRecipeIngredientCosts(recipe: IGameRecipe, amount = 1): Record<string, number> {
+export function getRecipeResourceCosts(recipe: IGameRecipe, amount = 1): Record<string, number> {
   const recipeIngredients = Object.keys(recipe.ingredients).filter(ingredient => !(recipe.preserve || []).includes(ingredient));
   const recipeCosts = recipeIngredients.map(ingredient => -recipe.ingredients[ingredient] * amount);
 
@@ -97,7 +97,7 @@ export function startRefineJob(
   refundItems: IGameItem[] = []
 ) {
 
-  const recipeCosts = getRecipeIngredientCosts(job, quantity);
+  const recipeCosts = getRecipeResourceCosts(job, quantity);
   const doesRecipeCostAnything = Object.keys(recipeCosts).length > 0;
 
   if(doesRecipeCostAnything) {

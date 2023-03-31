@@ -3,11 +3,12 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
+import { AnalyticsTrack } from '../../../../../../stores/game/game.actions';
 import {
   BuyWorker, UnassignGatheringWorker,
   UnassignMercantileWorker, UnassignRefiningWorker
 } from '../../../../../../stores/workers/workers.actions';
-import { mercantileWorkerTime, nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
+import { nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
 import { ContentService } from '../../../../../services/content.service';
 
 @Component({
@@ -52,10 +53,6 @@ export class WorkersPage implements OnInit {
     return this.contentService.getCharacterNameFromSeed(id);
   }
 
-  mercantileWorkerTime() {
-    return mercantileWorkerTime();
-  }
-
   unallocateAll(allocations: {
     gathering: IGameWorkersGathering[];
     refining: IGameWorkersRefining[];
@@ -67,11 +64,17 @@ export class WorkersPage implements OnInit {
   }
 
   unallocateGatheringWorker(worker: IGameWorkersGathering) {
-    this.store.dispatch(new UnassignGatheringWorker(worker.tradeskill, worker.location));
+    this.store.dispatch([
+      new AnalyticsTrack(`Gathering:${worker.tradeskill}:RemoveWorker:${worker.location.name}`, 1),
+      new UnassignGatheringWorker(worker.tradeskill, worker.location)
+    ]);
   }
 
   unallocateRefiningWorker(worker: IGameWorkersRefining) {
-    this.store.dispatch(new UnassignRefiningWorker(worker.tradeskill, worker.recipe));
+    this.store.dispatch([
+      new AnalyticsTrack(`Refining:${worker.tradeskill}:RemoveWorker:${worker.recipe.result}`, 1),
+      new UnassignRefiningWorker(worker.tradeskill, worker.recipe)
+    ]);
   }
 
   unallocateMercantileWorker() {

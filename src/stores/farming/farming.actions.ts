@@ -18,3 +18,7 @@ export class HarvestPlantFromFarm {
   static type = '[Farming] Harvest Plant';
   constructor(public plotIndex: number) {}
 }
+
+export class BuyNewPlot {
+  static type = '[Farming] Buy New Plot';
+}

@@ -9,10 +9,13 @@ import {
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
-import { PlaySFX, TickTimer } from '../game/game.actions';
+import { AnalyticsTrack, PlaySFX, TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellItemFromInventory, QuickSellItemFromStockpile,
-  SellItem, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
+  QuickSellManyItemsFromInventory,
+  QuickSellManyItemsFromStockpile,
+  RemoveFromStockpile,
+  SellItem, SendManyItemsToInventory, SendManyItemsToStockpile, SendToInventory, SendToStockpile, SpendCoins, UnsellItem
 } from './mercantile.actions';
 
 export const defaultMercantile: () => IGameMercantile = () => ({
@@ -27,7 +30,8 @@ export const defaultMercantile: () => IGameMercantile = () => ({
   },
   stockpile: {
     items: [],
-    limitLevel: 0
+    limitLevel: 0,
+    workerLevel: 0
   },
   exchange: {
     items: [],
@@ -50,11 +54,11 @@ export function maxShopRegisterLevel() {
   return 10;
 }
 
-export function maxShopRegisterUpgradeCost(currentLevel: number): number {
+export function maxShopRegisterUpgradeCost(currentLevel = 0): number {
   return 10000 * (currentLevel + 1);
 }
 
-export function shopRegisterMultiplier(currentLevel: number, addition = 1): number {
+export function shopRegisterMultiplier(currentLevel = 0, addition = 1): number {
   return addition + (addition * (currentLevel * 0.1));
 }
 
@@ -63,11 +67,11 @@ export function maxShopDecorationLevel() {
   return 3;
 }
 
-export function maxShopDecorationUpgradeCost(currentLevel: number): number {
+export function maxShopDecorationUpgradeCost(currentLevel = 0): number {
   return 100000 * (currentLevel + 1);
 }
 
-export function shopSaleDecorationReduction(currentLevel: number): number {
+export function shopSaleDecorationReduction(currentLevel = 0): number {
   return currentLevel * 0.05;
 }
 
@@ -76,11 +80,11 @@ export function maxShopCounterLevel() {
   return 7;
 }
 
-export function maxShopCounterUpgradeCost(currentLevel: number): number {
+export function maxShopCounterUpgradeCost(currentLevel = 0): number {
   return 5000 * (currentLevel + 1);
 }
 
-export function maxShopCounterSize(saleCounterLevel: number): number {
+export function maxShopCounterSize(saleCounterLevel = 0): number {
   return 3 + (saleCounterLevel);
 }
 
@@ -89,12 +93,21 @@ export function maxStockpileLevel() {
   return 90;
 }
 
-export function maxStockpileSizeUpgradeCost(currentLevel: number): number {
+export function maxStockpileSizeUpgradeCost(currentLevel = 0): number {
   return 1000 * (currentLevel + 1);
 }
 
-export function maxStockpileSize(limitLevel: number): number {
+export function maxStockpileSize(limitLevel = 0): number {
   return 100 + (limitLevel * 10);
+}
+
+// worker sell speed functions
+export function maxWorkerSellLevel() {
+  return 5;
+}
+
+export function maxWorkerSellUpgradeCost(currentLevel= 0): number {
+  return 1000 * (currentLevel + 1);
 }
 
 export function shouldSellItem(item: IGameItem, reductionMultiplier = 0): boolean {
@@ -122,17 +135,22 @@ export function resetMercantile(ctx: StateContext<IGameMercantile>) {
   ctx.setState(defaultMercantile());
 }
 
-export function gainCoins(ctx: StateContext<any>, { amount }: GainCoins) {
+export function gainCoins(ctx: StateContext<any>, { amount, reason }: GainCoins) {
   if(amount === 0) {
     return;
+  }
+
+  if(amount > 0) {
+    ctx.dispatch(new AnalyticsTrack(`Coins:Gain:${reason}`));
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
   ctx.dispatch(new GainResources({ Coin: Math.floor(amount) }));
 }
 
-export function spendCoins(ctx: StateContext<any>, { amount }: SpendCoins) {
-  gainCoins(ctx, { amount: -amount });
+export function spendCoins(ctx: StateContext<any>, { amount, reason }: SpendCoins) {
+  ctx.dispatch(new AnalyticsTrack(`Coins:Spend:${reason}`));
+  gainCoins(ctx, { amount: -amount, reason });
 }
 
 export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: TickTimer) {
@@ -155,7 +173,7 @@ export function decreaseDuration(ctx: StateContext<IGameMercantile>, { ticks }: 
   }
 
   const soldValue = sum(soldItems.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel, 3))));
-  gainCoins(ctx, { amount: soldValue });
+  gainCoins(ctx, { amount: soldValue, reason: 'WorkerSell' });
 
   const newItems = items.filter(item => !soldItems.includes(item));
 
@@ -171,7 +189,7 @@ export function sendToStockpile(ctx: StateContext<IGameMercantile>, { item }: Se
 
   const maxSize = maxStockpileSize(state.stockpile.limitLevel);
   if(state.stockpile.items.length >= maxSize) {
-    gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
+    gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)), reason: 'StockpileFull' });
     return;
   }
 
@@ -182,7 +200,22 @@ export function sendToStockpile(ctx: StateContext<IGameMercantile>, { item }: Se
   }));
 }
 
-export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }: SendToInventory) {
+export function sendManyItemsToStockpile(ctx: StateContext<IGameMercantile>, { items }: SendManyItemsToStockpile) {
+  const state = ctx.getState();
+
+  const maxSize = maxStockpileSize(state.stockpile.limitLevel);
+  if(state.stockpile.items.length + items.length >= maxSize) {
+    return;
+  }
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      items: append<IGameItem>(items)
+    })
+  }));
+}
+
+export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }: SendToInventory | RemoveFromStockpile) {
   const state = ctx.getState();
 
   ctx.setState(patch<IGameMercantile>({
@@ -193,12 +226,24 @@ export function removeFromStockpile(ctx: StateContext<IGameMercantile>, { item }
 
 }
 
+export function removeManyFromStockpile(ctx: StateContext<IGameMercantile>, { items }: SendManyItemsToInventory) {
+  const state = ctx.getState();
+
+  const newItems = state.stockpile.items.filter(item => !items.includes(item));
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      items: newItems
+    })
+  }));
+
+}
+
 export function sellItem(ctx: StateContext<IGameMercantile>, { item }: SellItem) {
   const state = ctx.getState();
 
   const maxSize = maxShopCounterSize(state.shop.saleCounterLevel);
   if(state.shop.forSale.length >= maxSize) {
-    gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
     return;
   }
 
@@ -225,14 +270,29 @@ export function unsellItem(ctx: StateContext<IGameMercantile>, { item }: UnsellI
 
 export function quickSellFromInventory(ctx: StateContext<IGameMercantile>, { item }: QuickSellItemFromInventory) {
   const state = ctx.getState();
-  gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
+  gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)), reason: 'QuickSellInventory' });
+  ctx.dispatch(new PlaySFX('action-sell'));
+}
+
+export function quickSellManyItemsFromInventory(ctx: StateContext<IGameMercantile>, { items }: QuickSellManyItemsFromInventory) {
+  const state = ctx.getState();
+  const totalValue = sum(items.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel))));
+  gainCoins(ctx, { amount: totalValue, reason: 'QuickSellManyInventory' });
   ctx.dispatch(new PlaySFX('action-sell'));
 }
 
 export function quickSellItemFromStockpile(ctx: StateContext<IGameMercantile>, { item }: QuickSellItemFromStockpile) {
   const state = ctx.getState();
-  gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)) });
+  gainCoins(ctx, { amount: itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel)), reason: 'QuickSellStockpile' });
   removeFromStockpile(ctx, { item });
+  ctx.dispatch(new PlaySFX('action-sell'));
+}
+
+export function quickSellManyItemsFromStockpile(ctx: StateContext<IGameMercantile>, { items }: QuickSellManyItemsFromStockpile) {
+  const state = ctx.getState();
+  const totalValue = sum(items.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel))));
+  gainCoins(ctx, { amount: totalValue, reason: 'QuickSellManyStockpile' });
+  removeManyFromStockpile(ctx, { items });
   ctx.dispatch(new PlaySFX('action-sell'));
 }
 
@@ -241,7 +301,7 @@ export function quickSellAllFromStockpile(ctx: StateContext<IGameMercantile>) {
 
   const value = sum(state.stockpile.items.map(item => itemValue(item, shopRegisterMultiplier(state.shop.saleBonusLevel))));
 
-  gainCoins(ctx, { amount: value });
+  gainCoins(ctx, { amount: value, reason: 'QuickSellAllStockpile' });
 
   ctx.setState(patch<IGameMercantile>({
     stockpile: patch<IGameMercantileStockpile>({
@@ -258,11 +318,28 @@ export function upgradeStockpileSize(ctx: StateContext<IGameMercantile>) {
   }
 
   const cost = maxStockpileSizeUpgradeCost(state.stockpile.limitLevel);
-  spendCoins(ctx, { amount: cost });
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:StockpileSize' });
 
   ctx.setState(patch<IGameMercantile>({
     stockpile: patch<IGameMercantileStockpile>({
       limitLevel: state.stockpile.limitLevel + 1
+    })
+  }));
+}
+
+export function upgradeWorkerSellRate(ctx: StateContext<IGameMercantile>) {
+  const state = ctx.getState();
+
+  if(state.stockpile.workerLevel >= maxWorkerSellLevel()) {
+    return;
+  }
+
+  const cost = maxWorkerSellUpgradeCost(state.stockpile.workerLevel);
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:SellRate' });
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      workerLevel: (state.stockpile.workerLevel || 0) + 1
     })
   }));
 }
@@ -275,7 +352,7 @@ export function upgradeShopRegister(ctx: StateContext<IGameMercantile>) {
   }
 
   const cost = maxShopRegisterUpgradeCost(state.shop.saleBonusLevel);
-  spendCoins(ctx, { amount: cost });
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:Register' });
 
   ctx.setState(patch<IGameMercantile>({
     shop: patch<IGameMercantileShop>({
@@ -292,7 +369,7 @@ export function upgradeShopDecorations(ctx: StateContext<IGameMercantile>) {
   }
 
   const cost = maxShopDecorationUpgradeCost(state.shop.decorationsLevel);
-  spendCoins(ctx, { amount: cost });
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:Decorations' });
 
   ctx.setState(patch<IGameMercantile>({
     shop: patch<IGameMercantileShop>({
@@ -309,7 +386,7 @@ export function upgradeShopCounter(ctx: StateContext<IGameMercantile>) {
   }
 
   const cost = maxShopCounterUpgradeCost(state.shop.saleCounterLevel);
-  spendCoins(ctx, { amount: cost });
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:ShopCounter' });
 
   ctx.setState(patch<IGameMercantile>({
     shop: patch<IGameMercantileShop>({
@@ -413,7 +490,7 @@ export function rotateExchange(ctx: StateContext<IGameMercantile>) {
   const state = ctx.getState();
 
   const rotateCost = exchangeRotateCost(state.exchange.lastPaidForRotate + 1);
-  spendCoins(ctx, { amount: rotateCost });
+  spendCoins(ctx, { amount: rotateCost, reason: 'Upgrade:RotateExchange' });
 
   ctx.setState(patch<IGameMercantile>({
     exchange: patch<IGameMercantileExchange>({
@@ -431,7 +508,7 @@ export function upgradeExchange(ctx: StateContext<IGameMercantile>) {
   }
 
   const cost = maxExchangeSizeUpgradeCost(state.exchange.exchangeLevel);
-  spendCoins(ctx, { amount: cost });
+  spendCoins(ctx, { amount: cost, reason: 'Upgrade:Exchange' });
 
   ctx.setState(patch<IGameMercantile>({
     exchange: patch<IGameMercantileExchange>({

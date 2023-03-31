@@ -3,10 +3,11 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
+import { AnalyticsService } from '../../app/services/analytics.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import { IGame } from '../../interfaces';
-import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, PlaySFX } from './game.actions';
+import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, PlaySFX } from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 
@@ -17,7 +18,7 @@ import { defaultGame } from './game.functions';
 @Injectable()
 export class GameState {
 
-  constructor(private notify: NotifyService, private visuals: VisualsService) {
+  constructor(private notify: NotifyService, private analytics: AnalyticsService, private visuals: VisualsService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(GameState, action, handler);
     });
@@ -41,6 +42,11 @@ export class GameState {
   @Action(NotifySuccess)
   notifySuccess(ctx: StateContext<IGame>, { message }: NotifySuccess) {
     this.notify.success(message);
+  }
+
+  @Action(AnalyticsTrack)
+  analyticsTrack(ctx: StateContext<IGame>, { event, value }: AnalyticsTrack) {
+    this.analytics.sendDesignEvent(event, value);
   }
 
   @Action(PlaySFX)

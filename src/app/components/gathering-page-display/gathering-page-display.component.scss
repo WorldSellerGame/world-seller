@@ -1,12 +1,18 @@
 
 .resources {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
+  min-height: 150px;
+  max-height: 150px;
+  overflow-y: auto;
+
+  .resource {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .location-card {
-  min-height: 400px;
+  min-height: 350px;
 
   .favorite {
     position: absolute;
@@ -15,7 +21,7 @@
   }
 
   .location-description {
-    min-height: 50px;
+    min-height: 80px;
   }
 }
 
@@ -27,9 +33,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   .user-action {
     flex: 1;
+
+    ion-spinner {
+      margin-right: 10px;
+    }
+
+    &.cooldown {
+      position: absolute;
+      bottom: 34px;
+      width: 100%;
+    }
   }
 
   .workers {
@@ -37,12 +54,26 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    position: relative;
 
     .allocated {
       margin-left: 10px;
       margin-right: 10px;
       min-width: 50px;
       text-align: center;
+
+      &.has-workers {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+      }
+    }
+
+    .progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
     }
   }
 }

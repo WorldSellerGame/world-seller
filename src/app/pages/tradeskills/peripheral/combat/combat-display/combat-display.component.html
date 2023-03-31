@@ -47,7 +47,7 @@
                                    [tippyProps]="{ placement: 'bottom' }"
                                    [inlineIconSize]="true"
                                    [icon]="effect.icon"></app-game-icon>
-                    <div class="effect-turns">{{ effect.turnsLeft }}</div>
+                    <div class="effect-turns">{{ effect.turnsLeft === -1 ? '∞' : effect.turnsLeft }}</div>
                   </div>
                 </ng-container>
               </div>
@@ -61,7 +61,7 @@
       <ion-col>
         <ion-card class="log-container">
           <ion-card-content>
-            <div class="message" *ngFor="let message of encounterData.encounter.log">
+            <div class="message" *ngFor="let message of encounterData.encounter?.log ?? []">
               {{ message }}
             </div>
           </ion-card-content>
@@ -139,7 +139,7 @@
                                          [ngxTippy]="effect.name + ': ' + effect.description"
                                          [tippyProps]="{ placement: 'bottom' }"
                                          [icon]="effect.icon"></app-game-icon>
-                          <div class="effect-turns">{{ effect.turnsLeft }}</div>
+                          <div class="effect-turns">{{ effect.turnsLeft === -1 ? '∞' : effect.turnsLeft }}</div>
                         </div>
                       </ion-col>
                     </ion-row>

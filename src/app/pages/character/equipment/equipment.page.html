@@ -104,25 +104,37 @@
             </ion-card-header>
 
             <ion-card-content>
-              <div *ngIf="equippableItems.length === 0">
-                You don't have any items of this type in your inventory.
-              </div>
+              <ng-container *ngIf="dungeon$ | async as dungeon; else canEquip">
+                <div>
+                  You can't change your equipment while in a dungeon.
+                </div>
+              </ng-container>
 
-              <ion-list *ngIf="equippableItems.length > 0" class="constrain-size striped">
-                <ion-item *ngFor="let item of equippableItems">
-                  <app-game-icon slot="start" [icon]="item.icon"></app-game-icon>
-                  <ion-label class="ion-text-wrap">
-                    <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
-                    <p><app-stat-line [item]="item" [withRespectTo]="character.equipment[currentEquipSlot]"></app-stat-line></p>
-                  </ion-label>
-                  <ion-button slot="end" fill="clear" (click)="equip(item)">Equip</ion-button>
-                </ion-item>
-              </ion-list>
+              <ng-template #canEquip>
+                <div *ngIf="equippableItems.length === 0">
+                  You don't have any items of this type in your inventory.
+                </div>
+
+                <ion-list *ngIf="equippableItems.length > 0" class="constrain-size striped">
+                  <ion-item *ngFor="let item of equippableItems">
+                    <app-game-icon slot="start" [icon]="item.icon"></app-game-icon>
+                    <ion-label class="ion-text-wrap">
+                      <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
+                      <p><app-stat-line [item]="item" [withRespectTo]="character.equipment[currentEquipSlot]"></app-stat-line></p>
+                    </ion-label>
+                    <ion-button slot="end" fill="clear" (click)="equip(item)">Equip</ion-button>
+                  </ion-item>
+                </ion-list>
+              </ng-template>
             </ion-card-content>
 
-            <ion-button class="user-action" fill="clear" color="warning" (click)="unequip(currentEquipSlot)" *ngIf="character.equipment[currentEquipSlot]">
-              Unequip
-            </ion-button>
+            <ng-container *ngIf="dungeon$ | async as dungeon; else canUnequip"></ng-container>
+
+            <ng-template #canUnequip>
+              <ion-button class="user-action" fill="clear" color="warning" (click)="unequip(currentEquipSlot)" *ngIf="character.equipment[currentEquipSlot]">
+                Unequip
+              </ion-button>
+            </ng-template>
 
             <ion-button class="user-action" fill="clear" color="primary" (click)="unloadEquipment()">
               Close

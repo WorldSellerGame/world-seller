@@ -20,6 +20,7 @@ export class AnalyticsService {
   }
 
   sendDesignEvent(eventId: string, value: number = 0) {
-    this.analytics.addDesignEvent(eventId, value);
+    const eventIdOnlyText = eventId.replace(/[^a-zA-Z0-9:]/g, '');
+    this.analytics.addDesignEvent(eventIdOnlyText, value);
   }
 }

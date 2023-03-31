@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import { isInElectron } from './helpers/electron';
 import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
+import { ContentService } from './services/content.service';
 import { DebugService } from './services/debug.service';
 import { MetaService } from './services/meta.service';
 import { ModsService } from './services/mods.service';
@@ -73,6 +74,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         MetaService,
         AnalyticsService,
         RollbarService,
+        ContentService,
         AchievementsService,
         DebugService,
         ModsService
@@ -81,6 +83,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         metaService: MetaService,
         analyticsService: AnalyticsService,
         rollbarService: RollbarService,
+        contentService: ContentService,
         achievementsService: AchievementsService,
         debugService: DebugService,
         modsService: ModsService
@@ -88,6 +91,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         await metaService.init();
         analyticsService.init();
         rollbarService.init();
+        contentService.init();
         achievementsService.init();
         debugService.init();
         await modsService.init();

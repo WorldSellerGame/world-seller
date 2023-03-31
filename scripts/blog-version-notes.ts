@@ -23,6 +23,8 @@ const changelog = fs.readFileSync('./CHANGELOG-current.md', 'utf8');
 const content = `${header}
 
 ${changelog}
+
+[Download the latest update on itch.io](https://seiyria.itch.io/world-seller) or [play online](https://play.worldsellergame.com).
 `;
 
 const filename = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}-version-update.md`;

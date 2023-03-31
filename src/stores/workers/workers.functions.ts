@@ -1,7 +1,10 @@
 import { StateContext } from '@ngxs/store';
 
 import { append, insertItem, patch, removeItem } from '@ngxs/store/operators';
-import { AchievementStat, IGameWorkers, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../interfaces';
+import {
+  AchievementStat, IGameWorkers, IGameWorkersGathering,
+  IGameWorkersMercantle, IGameWorkersRefining, Rarity
+} from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { spendCoins } from '../mercantile/mercantile.functions';
 import { AssignGatheringWorker, AssignRefiningWorker, UnassignGatheringWorker, UnassignRefiningWorker } from './workers.actions';
@@ -63,14 +66,28 @@ export function maxMercantileWorkers() {
   return 5;
 }
 
-export function mercantileWorkerTime() {
-  return 60;
+export function mercantileWorkerTime(rarity: Rarity, value: number, timeMultiplier = 0) {
+
+  const rarityMultiplier: Record<Rarity, number> = {
+    [Rarity.Broken]: 1,
+    [Rarity.Junk]: 1,
+    [Rarity.Common]: 1,
+    [Rarity.Uncommon]: 1.1,
+    [Rarity.Rare]: 1.3,
+    [Rarity.Epic]: 1.5,
+    [Rarity.Legendary]: 2
+  };
+
+  const multiplier = rarityMultiplier[rarity];
+  const reducedValue = Math.max(5, Math.floor(value * 0.15 * multiplier * (1 - timeMultiplier)));
+
+  return reducedValue;
 }
 
 export function buyWorker(ctx: StateContext<IGameWorkers>) {
   const curWorkers = ctx.getState().maxWorkers;
 
-  spendCoins(ctx, { amount: nextWorkerCost(curWorkers) });
+  spendCoins(ctx, { amount: nextWorkerCost(curWorkers), reason: 'Upgrade:BuyWorker' });
 
   ctx.dispatch(new IncrementStat(AchievementStat.MercantileBuyWorkers));
 
@@ -162,7 +179,8 @@ export function assignMercantileWorker(ctx: StateContext<IGameWorkers>) {
 
   const newWorker: IGameWorkersMercantle = {
     nameId: nextWorkerNameId(ctx.getState()),
-    currentTick: 0
+    currentTick: 0,
+    backToWorkTicks: 0
   };
 
   ctx.setState(patch<IGameWorkers>({

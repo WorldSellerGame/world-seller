@@ -50,6 +50,11 @@ export class AddItemToInventory {
   constructor(public item: IGameItem) {}
 }
 
+export class AddItemsToInventory {
+  static type = '[CharSelect] Add Items To Inventory';
+  constructor(public items: IGameItem[]) {}
+}
+
 export class RemoveItemFromInventory {
   static type = '[CharSelect] Remove Item From Inventory';
   constructor(public item: IGameItem) {}
@@ -63,6 +68,11 @@ export class EquipItem {
 export class UnequipItem {
   static type = '[CharSelect] Unequip Item';
   constructor(public slot: ItemType) {}
+}
+
+export class UpdateStatsFromEquipment {
+  static type = '[CharSelect] Update Stats From Equipment';
+  constructor() {}
 }
 
 export class BreakItem {

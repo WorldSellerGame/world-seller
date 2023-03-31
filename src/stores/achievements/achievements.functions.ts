@@ -1,6 +1,7 @@
 import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { IGameAchievements } from '../../interfaces';
+import { AnalyticsTrack } from '../game/game.actions';
 import { IncrementStat } from './achievements.actions';
 
 export const defaultAchievements: () => IGameAchievements = () => ({
@@ -27,6 +28,8 @@ export function resetAchievementList(ctx: StateContext<IGameAchievements>) {
 
 export function incrementStat(ctx: StateContext<IGameAchievements>, { stat, value }: IncrementStat) {
   const currentState = ctx.getState();
+
+  ctx.dispatch(new AnalyticsTrack(`Achievement:${stat}`, value));
 
   ctx.setState(patch<IGameAchievements>({
     stats: patch<Record<string, number>>({

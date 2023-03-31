@@ -1,8 +1,11 @@
 import { IAttachment } from '../../interfaces/store';
 import { DeleteCharacter } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
-import { GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm, UnlockFarming } from './farming.actions';
-import { decreaseDuration, gainFarmingLevels, harvestPlot, plantSeedInFarm, resetFarming, unlockFarming } from './farming.functions';
+import { BuyNewPlot, GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm, UnlockFarming } from './farming.actions';
+import {
+  addPlot, decreaseDuration, gainFarmingLevels,
+  harvestPlot, plantSeedInFarm, resetFarming, unlockFarming
+} from './farming.functions';
 
 
 export const attachments: IAttachment[] = [
@@ -11,5 +14,6 @@ export const attachments: IAttachment[] = [
   { action: TickTimer, handler: decreaseDuration },
   { action: DeleteCharacter, handler: resetFarming },
   { action: PlantSeedInFarm, handler: plantSeedInFarm },
-  { action: HarvestPlantFromFarm, handler: harvestPlot }
+  { action: HarvestPlantFromFarm, handler: harvestPlot },
+  { action: BuyNewPlot, handler: addPlot }
 ];

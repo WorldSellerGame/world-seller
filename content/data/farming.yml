@@ -9,7 +9,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 0, max: 10 }
-    gatherTime: 230
+    gatherTime: 200
 
 
 
@@ -23,7 +23,7 @@ transforms:
         weight: 2
     perGather: { min: 3, max: 10 }
     level: { min: 5, max: 15 }
-    gatherTime: 460
+    gatherTime: 450
 
 
 
@@ -33,7 +33,7 @@ transforms:
         weight: 10
     perGather: { min: 3, max: 10 }
     level: { min: 5, max: 15 }
-    gatherTime: 460
+    gatherTime: 450
 
 
 
@@ -69,7 +69,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 15, max: 25 }
-    gatherTime: 2240
+    gatherTime: 2500
 
 
 
@@ -81,7 +81,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 15, max: 25 }
-    gatherTime: 2240
+    gatherTime: 2500
 
 
 
@@ -93,7 +93,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 20, max: 30 }
-    gatherTime: 3460
+    gatherTime: 4120
 
 
 
@@ -103,7 +103,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 20, max: 30 }
-    gatherTime: 3460
+    gatherTime: 4120
 
 
 ###
@@ -116,7 +116,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 0, max: 10 }
-    gatherTime: 230
+    gatherTime: 200
 
 
 
@@ -128,7 +128,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 0, max: 10 }
-    gatherTime: 230
+    gatherTime: 200
 
 
 
@@ -164,7 +164,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 15, max: 25 }
-    gatherTime: 2240
+    gatherTime: 2500
 
 
 
@@ -176,7 +176,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 20, max: 30 }
-    gatherTime: 3460
+    gatherTime: 4120
 
 
 

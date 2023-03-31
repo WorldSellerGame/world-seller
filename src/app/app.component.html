@@ -109,6 +109,8 @@
                 <ion-label>Resources</ion-label>
               </ion-item>
 
+              <ion-list-header>You</ion-list-header>
+
               <ng-container *ngIf="{ inventoryUnlocked: inventoryUnlocked$ | async } as data">
                 <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, 'inventory']" lines="none" detail="false" routerLinkActive="selected"
                           [disabled]="!data.inventoryUnlocked"

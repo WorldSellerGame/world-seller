@@ -21,6 +21,18 @@
     margin-left: 10px;
     min-width: 40px;
     text-align: center;
+
+    .editor {
+      max-width: 40px;
+      max-height: 25px;
+      text-align: center;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+    }
   }
 
   .craft {

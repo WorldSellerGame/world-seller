@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
-import { random, sample } from 'lodash';
-import { canCraftRecipe, getRecipeIngredientCosts, getResourceRewardsForLocation } from '../../app/helpers';
-import { IGameRecipe, IGameWorkers } from '../../interfaces';
+import { merge, random, sample } from 'lodash';
+import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
+import { IGameItem, IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
-import { TickTimer } from '../game/game.actions';
-import { SellItem, SpendCoins } from '../mercantile/mercantile.actions';
+import { AnalyticsTrack, TickTimer } from '../game/game.actions';
+import { RemoveFromStockpile, SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
 import {
   canAssignWorker, defaultWorkers, mercantileWorkerTime, totalAllocatedWorkers,
@@ -106,6 +106,15 @@ export class WorkersState {
     }
 
     const allResources = currentCharacter.resources;
+    const itemList = store.mercantile.stockpile.items;
+
+    const allItems: Record<string, number> = {};
+    itemList.forEach((item: IGameItem) => {
+      allItems[item.name] = allItems[item.name] ?? 0;
+      allItems[item.name]++;
+    });
+
+    const allResourcesAndItems = merge({}, allResources, allItems);
 
     // handle upkeep
     const workerUpkeepCost = upkeepCost(totalWorkers);
@@ -145,6 +154,8 @@ export class WorkersState {
       alloc.currentTick += ticks * workerTimerMultiplier(1);
 
       if(alloc.currentTick > alloc.location.gatherTime) {
+        ctx.dispatch(new AnalyticsTrack(`Worker:Gather:${alloc.location.name}`));
+
         const cooldown = alloc.location.cooldownTime ?? 0;
         alloc.currentTick = -cooldown;
 
@@ -171,19 +182,42 @@ export class WorkersState {
     }
 
     // handle refining / rewards
+    const requiredItemsToNotSellForOtherWorkers: Record<string, boolean> = {};
     const refiningRewards: IGameRecipe[] = [];
 
     const refiningWorkerUpdates = state.refiningWorkerAllocations.map(alloc => {
 
+      // cache needed materials so we don't accidentally sell them
+      Object.keys(alloc.recipe.ingredients).forEach(itemKey => requiredItemsToNotSellForOtherWorkers[itemKey] = true);
+
       // if we don't have the resources, we do not craft
       if(alloc.currentTick === 0) {
-        if(!canCraftRecipe(allResources, alloc.recipe, 1)) {
+        if(!canCraftRecipe(allResourcesAndItems, alloc.recipe, 1)) {
           return alloc;
         }
 
+        ctx.dispatch(new AnalyticsTrack(`Worker:Refine:${alloc.recipe.result}`));
+
         // if we do have the resources, we take them
-        const resourcesRequired = getRecipeIngredientCosts(alloc.recipe, 1);
+        const resourcesRequired = getRecipeResourceCosts(alloc.recipe, 1);
         ctx.dispatch(new GainResources(resourcesRequired));
+
+        const takeItemQuantities: Record<string, number> = {};
+
+        Object.keys(alloc.recipe.ingredients)
+          .filter(key => allItems[key])
+          .forEach(itemKey => {
+            takeItemQuantities[itemKey] = alloc.recipe.ingredients[itemKey];
+          });
+
+        const allItemRefsTaken = Object.keys(takeItemQuantities).map(itemKey => {
+          const validItems = itemList.filter((item: IGameItem) => item.name === itemKey);
+          return validItems.slice(0, takeItemQuantities[itemKey]);
+        }).flat();
+
+        const allActions = allItemRefsTaken.map(itemRef => [new RemoveFromStockpile(itemRef)]).flat();
+
+        ctx.dispatch(allActions);
       }
 
       alloc.currentTick += ticks * workerTimerMultiplier(1);
@@ -198,23 +232,39 @@ export class WorkersState {
     });
 
     refiningRewards.forEach(reward => {
-      ctx.dispatch(new WorkerCreateItem(reward.result, random(reward.perCraft.min, reward.perCraft.max)));
+      ctx.dispatch([
+        new WorkerCreateItem(reward.result, random(reward.perCraft.min, reward.perCraft.max))
+      ]);
     });
 
     // handle mercantile changes
     const allShopItems = store.mercantile.stockpile.items;
+    const sellableItems = allShopItems.filter((item: IGameItem) => !requiredItemsToNotSellForOtherWorkers[item.name]);
+    const mercantileWorkerLevel = store.mercantile.stockpile.workerLevel;
 
     const mercantileWorkerUpdates = state.mercantileWorkerAllocations.map(alloc => {
       if(alloc.currentTick === 0) {
-        const chosenItem = sample(allShopItems);
+        const chosenItem = sample(sellableItems);
         if(chosenItem) {
-          ctx.dispatch(new SellItem(chosenItem));
+          ctx.dispatch([
+            new SellItem(chosenItem),
+            new AnalyticsTrack(`Worker:Sell:${chosenItem.name}`)
+          ]);
+
+          alloc.lastSoldItemRarity = chosenItem.rarity;
+          alloc.lastSoldItemValue = chosenItem.value;
+          alloc.backToWorkTicks = mercantileWorkerTime(
+            alloc.lastSoldItemRarity ?? Rarity.Common,
+            alloc.lastSoldItemValue ?? 1,
+            0.05 * (mercantileWorkerLevel ?? 0)
+          );
         }
       }
 
       alloc.currentTick += ticks;
-      if(alloc.currentTick > mercantileWorkerTime()) {
+      if(alloc.currentTick > alloc.backToWorkTicks ?? 1) {
         alloc.currentTick = 0;
+        alloc.backToWorkTicks = 0;
       }
 
       return alloc;

@@ -79,7 +79,7 @@
                     </p>
                   </ion-label>
 
-                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateGatheringWorker(worker)">Unallocate</ion-button>
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateGatheringWorker(worker)" [analyticsClick]="'Gathering:' + worker.tradeskill + ':RemoveWorker:' + worker.location.name">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
@@ -96,11 +96,12 @@
                     <p>
                       Currently doing {{ worker.tradeskill }} and making {{ worker.recipe.result }}...
                       <span *ngIf="worker.currentTick < 0">cooling down...</span>
-                      <span *ngIf="worker.currentTick >= 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
+                      <span *ngIf="worker.currentTick === 0">100%</span>
+                      <span *ngIf="worker.currentTick > 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
                     </p>
                   </ion-label>
 
-                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)">Unallocate</ion-button>
+                  <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)" [analyticsClick]="'Refining:' + worker.tradeskill + ':RemoveWorker:' + worker.recipe.result">Unallocate</ion-button>
                 </ion-item>
 
                 <ion-list-header>
@@ -119,7 +120,7 @@
                   <ion-label>
                     <h2>{{ workerName(worker.nameId) }}</h2>
                     <p>
-                      Will restock store counter in {{ mercantileWorkerTime() - worker.currentTick }}s...
+                      Will restock store counter in {{ worker.backToWorkTicks - worker.currentTick }}s...
                     </p>
                   </ion-label>
                 </ion-item>

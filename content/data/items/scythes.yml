@@ -21,7 +21,7 @@ Copper Sickle:
   value: 100
   icon: scythe
   stats:
-    scythePowerPercent: 25
+    scythePowerPercent: 20
 
 Iron Sickle:
   name: Iron Sickle
@@ -33,4 +33,16 @@ Iron Sickle:
   value: 500
   icon: scythe
   stats:
-    scythePowerPercent: 40
+    scythePowerPercent: 25
+
+Adamantite Sickle:
+  name: Adamantite Sickle
+  description: A scythe made of Adamantite.
+  type: Scythe
+  category: Tools
+  rarity: Epic
+  durability: 40
+  value: 2000
+  icon: scythe
+  stats:
+    scythePowerPercent: 30

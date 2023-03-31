@@ -185,7 +185,7 @@ Effects require:
 * `description` - shown in game
 * `icon` - the name of the SVG file in `src/assets/icon`
 * `color` - a hex color to be shown for the status effect
-* `turnsLeft` - how many turns the status effect should last
+* `turnsLeft` - how many turns the status effect should last - set to -1 to make it last forever
 * `statusEffectType` - the type of the status effect (StatModification, DamageOverTime)
 * `statModifications` - if `statusEffectType` is StatModification, this can be specified to boost the stats of the target by the specified amounts
 * `damageOverTime` - if `statusEffectType` is DamageOverTime, this can be specified to deal the specified amount of damage to the target each turn (negative values = healing)

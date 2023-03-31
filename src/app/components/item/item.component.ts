@@ -11,6 +11,7 @@ import { getItemRarityClass } from '../../helpers';
 export class ItemComponent implements OnInit {
 
   @Input() item!: IGameItem;
+  @Input() hideIcon = false;
 
   get itemClass() {
     return getItemRarityClass(this.item);

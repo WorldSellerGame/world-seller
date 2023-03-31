@@ -35,6 +35,10 @@ export class DungeonDisplayComponent implements OnInit, OnDestroy {
   constructor(private store: Store, private contentService: ContentService) { }
 
   private arrowKeys = (event: KeyboardEvent) => {
+    if(!event) {
+      return;
+    }
+
     switch(event.key) {
       case 'ArrowUp':     this.store.dispatch(new MoveInDungeonByDelta(0,  -1)); break;
       case 'ArrowDown':   this.store.dispatch(new MoveInDungeonByDelta(0,   1)); break;

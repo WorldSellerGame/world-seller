@@ -1,5 +1,45 @@
 
 
-.plot-card {
-  min-height: 300px;
+.location-row {
+  flex-wrap: wrap;
+
+  .location-container {
+    flex: 1;
+    min-width: 25%;
+    max-width: 25%;
+
+    .plot-card {
+      min-height: 100px;
+
+      .plot-content {
+        min-height: 150px;
+        min-width: 250px;
+
+        .empty-plot {
+          font-size: 2em;
+          width: 100%;
+          height: 150px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .result-container {
+          width: 100%;
+          height: 150px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .result-icon {
+          }
+        }
+      }
+    }
+  }
+}
+
+.constrain-size {
+  max-height: 400px;
+  overflow-y: auto;
 }
