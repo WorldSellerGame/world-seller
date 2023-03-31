@@ -87,7 +87,7 @@ export function mercantileWorkerTime(rarity: Rarity, value: number, timeMultipli
 export function buyWorker(ctx: StateContext<IGameWorkers>) {
   const curWorkers = ctx.getState().maxWorkers;
 
-  spendCoins(ctx, { amount: nextWorkerCost(curWorkers) });
+  spendCoins(ctx, { amount: nextWorkerCost(curWorkers), reason: 'Upgrade:BuyWorker' });
 
   ctx.dispatch(new IncrementStat(AchievementStat.MercantileBuyWorkers));
 

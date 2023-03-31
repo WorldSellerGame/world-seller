@@ -11,12 +11,12 @@ export class GainMercantileLevels {
 
 export class GainCoins {
   static type = '[Mercantile] Gain Coins';
-  constructor(public amount: number) {}
+  constructor(public amount: number, public reason = 'Unknown') {}
 }
 
 export class SpendCoins {
   static type = '[Mercantile] Spend Coins';
-  constructor(public amount: number) {}
+  constructor(public amount: number, public reason = 'Unknown') {}
 }
 
 export class SellItem {
