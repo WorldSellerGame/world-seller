@@ -37,7 +37,17 @@
             </ion-col>
 
             <ion-col>
-
+              <div class="upgrade-label">Shopkeep Recovery Speed +{{ pageData.stockpile?.workerLevel || 0 }}</div>
+              <ion-button expand="block"
+                          (click)="upgradeWorkerSellRate()"
+                          [disabled]="!canUpgradeWorkerSellRate(pageData.coins || 0, pageData.stockpile?.workerLevel || 0)"
+                          [analyticsClick]="'Peripheral:Mercantile:Upgrade:Workers'"
+                          fill="outline">
+                <span *ngIf="isWorkerRateMaxLevel(pageData.stockpile?.workerLevel || 0)">Workers are max level</span>
+                <span *ngIf="!isWorkerRateMaxLevel(pageData.stockpile?.workerLevel || 0)">
+                  -10% Recovery Time ({{ workerRateUpgradeCost(pageData.stockpile?.workerLevel || 0) | number }} coins)
+                </span>
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

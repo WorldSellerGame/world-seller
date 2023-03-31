@@ -28,7 +28,8 @@ export const defaultMercantile: () => IGameMercantile = () => ({
   },
   stockpile: {
     items: [],
-    limitLevel: 0
+    limitLevel: 0,
+    workerLevel: 0
   },
   exchange: {
     items: [],
@@ -51,11 +52,11 @@ export function maxShopRegisterLevel() {
   return 10;
 }
 
-export function maxShopRegisterUpgradeCost(currentLevel: number): number {
+export function maxShopRegisterUpgradeCost(currentLevel = 0): number {
   return 10000 * (currentLevel + 1);
 }
 
-export function shopRegisterMultiplier(currentLevel: number, addition = 1): number {
+export function shopRegisterMultiplier(currentLevel = 0, addition = 1): number {
   return addition + (addition * (currentLevel * 0.1));
 }
 
@@ -64,11 +65,11 @@ export function maxShopDecorationLevel() {
   return 3;
 }
 
-export function maxShopDecorationUpgradeCost(currentLevel: number): number {
+export function maxShopDecorationUpgradeCost(currentLevel = 0): number {
   return 100000 * (currentLevel + 1);
 }
 
-export function shopSaleDecorationReduction(currentLevel: number): number {
+export function shopSaleDecorationReduction(currentLevel = 0): number {
   return currentLevel * 0.05;
 }
 
@@ -77,11 +78,11 @@ export function maxShopCounterLevel() {
   return 7;
 }
 
-export function maxShopCounterUpgradeCost(currentLevel: number): number {
+export function maxShopCounterUpgradeCost(currentLevel = 0): number {
   return 5000 * (currentLevel + 1);
 }
 
-export function maxShopCounterSize(saleCounterLevel: number): number {
+export function maxShopCounterSize(saleCounterLevel = 0): number {
   return 3 + (saleCounterLevel);
 }
 
@@ -90,12 +91,21 @@ export function maxStockpileLevel() {
   return 90;
 }
 
-export function maxStockpileSizeUpgradeCost(currentLevel: number): number {
+export function maxStockpileSizeUpgradeCost(currentLevel = 0): number {
   return 1000 * (currentLevel + 1);
 }
 
-export function maxStockpileSize(limitLevel: number): number {
+export function maxStockpileSize(limitLevel = 0): number {
   return 100 + (limitLevel * 10);
+}
+
+// worker sell speed functions
+export function maxWorkerSellLevel() {
+  return 5;
+}
+
+export function maxWorkerSellUpgradeCost(currentLevel= 0): number {
+  return 1000 * (currentLevel + 1);
 }
 
 export function shouldSellItem(item: IGameItem, reductionMultiplier = 0): boolean {
@@ -263,6 +273,23 @@ export function upgradeStockpileSize(ctx: StateContext<IGameMercantile>) {
   ctx.setState(patch<IGameMercantile>({
     stockpile: patch<IGameMercantileStockpile>({
       limitLevel: state.stockpile.limitLevel + 1
+    })
+  }));
+}
+
+export function upgradeWorkerSellRate(ctx: StateContext<IGameMercantile>) {
+  const state = ctx.getState();
+
+  if(state.stockpile.workerLevel >= maxWorkerSellLevel()) {
+    return;
+  }
+
+  const cost = maxWorkerSellUpgradeCost(state.stockpile.workerLevel);
+  spendCoins(ctx, { amount: cost });
+
+  ctx.setState(patch<IGameMercantile>({
+    stockpile: patch<IGameMercantileStockpile>({
+      workerLevel: (state.stockpile.workerLevel || 0) + 1
     })
   }));
 }

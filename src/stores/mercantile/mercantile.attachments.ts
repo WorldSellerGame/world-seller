@@ -7,7 +7,7 @@ import {
   RotateExchangeGoods,
   SellItem, SendToInventory, SendToStockpile, SpendCoins, UnlockMercantile,
   UnsellItem, UpgradeExchange, UpgradeShopCounter, UpgradeShopDecorations,
-  UpgradeShopRegister, UpgradeStockpileSize
+  UpgradeShopRegister, UpgradeStockpileSize, UpgradeWorkerSellRate
 } from './mercantile.actions';
 import {
   decreaseDuration, gainCoins, gainMercantileLevels, quickSellAllFromStockpile, quickSellFromInventory, quickSellItemFromStockpile,
@@ -17,7 +17,7 @@ import {
   sellItem,
   sendToStockpile, spendCoins, unlockMercantile, unsellItem,
   upgradeExchange,
-  upgradeShopCounter, upgradeShopDecorations, upgradeShopRegister, upgradeStockpileSize
+  upgradeShopCounter, upgradeShopDecorations, upgradeShopRegister, upgradeStockpileSize, upgradeWorkerSellRate
 } from './mercantile.functions';
 
 
@@ -40,6 +40,7 @@ export const attachments: IAttachment[] = [
   { action: UpgradeShopCounter, handler: upgradeShopCounter },
   { action: UpgradeShopDecorations, handler: upgradeShopDecorations },
   { action: UpgradeStockpileSize, handler: upgradeStockpileSize },
+  { action: UpgradeWorkerSellRate, handler: upgradeWorkerSellRate },
   { action: RotateExchangeGoods, handler: rotateExchange },
   { action: UpgradeExchange, handler: upgradeExchange }
 ];

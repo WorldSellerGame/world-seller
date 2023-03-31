@@ -8,11 +8,13 @@ import { CharSelectState, MercantileState } from '../../../../../../stores';
 import { NotifyWarning } from '../../../../../../stores/game/game.actions';
 import {
   QuickSellAllFromStockpile, QuickSellItemFromStockpile,
-  SellItem, SendToInventory, UpgradeStockpileSize
+  SellItem, SendToInventory, UpgradeStockpileSize, UpgradeWorkerSellRate
 } from '../../../../../../stores/mercantile/mercantile.actions';
 import {
   maxShopCounterSize, maxStockpileLevel,
   maxStockpileSizeUpgradeCost,
+  maxWorkerSellLevel,
+  maxWorkerSellUpgradeCost,
   shopRegisterMultiplier
 } from '../../../../../../stores/mercantile/mercantile.functions';
 import { itemValue } from '../../../../../helpers';
@@ -97,6 +99,22 @@ export class StockpilePage implements OnInit, OnDestroy {
     return maxStockpileSizeUpgradeCost(currentLevel);
   }
 
+  canUpgradeWorkerSellRate(currentCoins: number, currentLevel: number): boolean {
+    if(this.isWorkerRateMaxLevel(currentLevel)) {
+      return false;
+    }
+
+    return currentCoins >= this.workerRateUpgradeCost(currentLevel);
+  }
+
+  isWorkerRateMaxLevel(currentLevel: number): boolean {
+    return currentLevel >= maxWorkerSellLevel();
+  }
+
+  workerRateUpgradeCost(currentLevel: number) {
+    return maxWorkerSellUpgradeCost(currentLevel);
+  }
+
   quickSell(item: IGameItem) {
     this.store.dispatch(new QuickSellItemFromStockpile(item));
   }
@@ -122,6 +140,10 @@ export class StockpilePage implements OnInit, OnDestroy {
 
   upgradeStorage() {
     this.store.dispatch(new UpgradeStockpileSize());
+  }
+
+  upgradeWorkerSellRate() {
+    this.store.dispatch(new UpgradeWorkerSellRate());
   }
 
 }

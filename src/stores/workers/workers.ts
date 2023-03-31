@@ -240,6 +240,7 @@ export class WorkersState {
     // handle mercantile changes
     const allShopItems = store.mercantile.stockpile.items;
     const sellableItems = allShopItems.filter((item: IGameItem) => !requiredItemsToNotSellForOtherWorkers[item.name]);
+    const mercantileWorkerLevel = store.mercantile.stockpile.workerLevel;
 
     const mercantileWorkerUpdates = state.mercantileWorkerAllocations.map(alloc => {
       if(alloc.currentTick === 0) {
@@ -252,7 +253,11 @@ export class WorkersState {
 
           alloc.lastSoldItemRarity = chosenItem.rarity;
           alloc.lastSoldItemValue = chosenItem.value;
-          alloc.backToWorkTicks = mercantileWorkerTime(alloc.lastSoldItemRarity ?? Rarity.Common, alloc.lastSoldItemValue ?? 1);
+          alloc.backToWorkTicks = mercantileWorkerTime(
+            alloc.lastSoldItemRarity ?? Rarity.Common,
+            alloc.lastSoldItemValue ?? 1,
+            0.05 * (mercantileWorkerLevel ?? 0)
+          );
         }
       }
 

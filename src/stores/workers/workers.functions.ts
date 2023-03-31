@@ -66,7 +66,7 @@ export function maxMercantileWorkers() {
   return 5;
 }
 
-export function mercantileWorkerTime(rarity: Rarity, value: number) {
+export function mercantileWorkerTime(rarity: Rarity, value: number, timeMultiplier = 0) {
 
   const rarityMultiplier: Record<Rarity, number> = {
     [Rarity.Broken]: 1,
@@ -79,7 +79,7 @@ export function mercantileWorkerTime(rarity: Rarity, value: number) {
   };
 
   const multiplier = rarityMultiplier[rarity];
-  const reducedValue = Math.max(5, Math.floor(value * 0.05 * multiplier));
+  const reducedValue = Math.max(5, Math.floor(value * 0.15 * multiplier * (1 - timeMultiplier)));
 
   return reducedValue;
 }

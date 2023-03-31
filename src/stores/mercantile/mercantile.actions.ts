@@ -79,6 +79,11 @@ export class UpgradeStockpileSize {
   constructor() {}
 }
 
+export class UpgradeWorkerSellRate {
+  static type = '[Mercantile] Upgrade Worker Sell Rate';
+  constructor() {}
+}
+
 export class RotateExchangeGoods {
   static type = '[Mercantile] Rotate Exchange Goods';
   constructor() {}
