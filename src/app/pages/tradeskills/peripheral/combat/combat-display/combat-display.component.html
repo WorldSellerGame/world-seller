@@ -61,7 +61,7 @@
       <ion-col>
         <ion-card class="log-container">
           <ion-card-content>
-            <div class="message" *ngFor="let message of encounterData.encounter.log">
+            <div class="message" *ngFor="let message of encounterData.encounter?.log ?? []">
               {{ message }}
             </div>
           </ion-card-content>
