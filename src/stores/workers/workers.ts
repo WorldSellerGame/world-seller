@@ -205,7 +205,7 @@ export class WorkersState {
         const takeItemQuantities: Record<string, number> = {};
 
         Object.keys(alloc.recipe.ingredients)
-          .filter(key => allItems[key])
+          .filter(key => allItems[key] && !alloc.recipe.preserve?.includes(key))
           .forEach(itemKey => {
             takeItemQuantities[itemKey] = alloc.recipe.ingredients[itemKey];
           });
