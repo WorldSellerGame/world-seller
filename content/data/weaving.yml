@@ -98,6 +98,7 @@ recipes:
       - Spinning Wheel
     preserve:
       - Spinning Wheel
+      - Stone Knife
     maxWorkers: 2
 
 #tables (aka gates)

@@ -249,8 +249,8 @@ RotAttack1:
   type: Magical
   stats:
     - stat: attack
-      multiplier: 0.75
-      variance: 0.25
+      multiplier: 0.70
+      variance: 0.50
   effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
@@ -272,7 +272,7 @@ RotAttack2:
   stats:
     - stat: attack
       multiplier: 1.5
-      variance: 0.5
+      variance: 0.25
   effects:
     - effect: SingleTargetAttack
     - effect: ApplyEffect
@@ -294,7 +294,7 @@ RotAttack3:
   stats:
     - stat: attack
       multiplier: 1.5
-      variance: 0.5
+      variance: 0.25
   effects:
     - effect: SingleTargetAttack
     - effect: SingleTargetAttack

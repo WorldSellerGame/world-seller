@@ -213,7 +213,7 @@ ForagingUnique1:
   stats:
     - stat: healing
       multiplier: 1.5  #hmm
-      variance: 0.5
+      variance: 0.25
   effects:
     - effect: SingleTargetHeal
   cooldown: 4
