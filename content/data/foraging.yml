@@ -86,6 +86,25 @@ locations:
         weight: 2
     maxWorkers: 1
 
+  - name: Cave Entrance
+    description: Entrance to a cave system near the orchard. Fruit bats congregate here eating off the orchards bounty.
+    perGather:
+      min: 5
+      max: 10
+    level:
+      min: 15
+      max: 25
+    gatherTime: 180
+    cooldownTime: 90
+    resources:
+      - name: Apple
+        weight: 8
+      - name: Apple Seed
+        weight: 1
+      - name: Worm
+        weight: 2
+    maxWorkers: 1
+
   - name: Forest Glade
     description: A small clearing in the Coniferous Forest.
     perGather:

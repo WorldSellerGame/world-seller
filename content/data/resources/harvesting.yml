@@ -21,6 +21,13 @@ Dandelion:
   rarity: Common
   icon: 'dandelion'
 
+Moss:
+  name: Moss
+  description: Green stuff that grows on other stuff and is used in stuff and stuff.
+  category: Raw Materials
+  rarity: Common
+  icon: 'moss'
+
 Worm:
   name: Worm
   description: Wiggly fellow. Not for you to eat but makes excellent bait.
