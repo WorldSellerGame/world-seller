@@ -86,6 +86,27 @@ locations:
         weight: 2
     maxWorkers: 1
 
+  - name: Cave Entrance
+    description: Entrance to a cave system near the orchard. Fruit bats congregate here eating off the orchards bounty.
+    perGather:
+      min: 5
+      max: 10
+    level:
+      min: 15
+      max: 25
+    gatherTime: 180
+    cooldownTime: 90
+    resources:
+      - name: Mushroom
+        weight: 2
+      - name: Moss
+        weight: 2
+      - name: Guano
+        weight: 2
+      - name: Plant Fiber
+        weight: 1
+    maxWorkers: 1
+
   - name: Forest Glade
     description: A small clearing in the Coniferous Forest.
     perGather:
@@ -109,7 +130,7 @@ locations:
         weight: 1
     maxWorkers: 1
 
-  - name: Wheat Meadow
+  - name: Wheat Meadow # no plantables at time
     description: A field of wheat, pretty cool right?
     perGather:
       min: 7
