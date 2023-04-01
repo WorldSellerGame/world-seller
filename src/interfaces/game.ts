@@ -93,7 +93,7 @@ export enum Stat {
   HealingPerRound = 'healingPerRound',
   HealingPerCombat = 'healingPerCombat',
   EnergyPerRound = 'energyPerRound',
-  EnergyPerCombat = 'energyPerCombat',
+  EnergyPerCombat = 'energyPerCombat'
 }
 
 export enum ItemType {

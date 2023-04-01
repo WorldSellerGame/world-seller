@@ -16,7 +16,9 @@ const validStats = [
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
   'pickaxeSpeedPercent', 'axeSpeedPercent', 'fishingSpeedPercent', 'scytheSpeedPercent', 'huntingSpeedPercent',
   'armor', 'mitigation', 'healing', 'energyHealing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
-  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
+  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat',
+
+  'itemStat1', 'itemStat2', 'itemStat3'
 ];
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
