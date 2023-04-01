@@ -76,19 +76,34 @@ Ash Seed:
   rarity: Uncommon
   icon: 'seed'
 
-#Hophornbeam Log:
-#  name: Hophornbeam Log
-#  description: Iron wood tree, some of the hardest natural wood avalible.
+#Hickory Log:
+#  name: Hickory Log
+#  description: Ideal material for standard tool handles.
 #  category: Raw Materials
-#  rarity: Epic
+#  rarity: Rare
 #  icon: 'log'
 #
-#Hophornbeam Seed:
-#  name: Hophornbeam Seed
-#  description: Used to plant hophornbeam trees in the farm.
+#Hickory Nut:
+#  name: Hickory Nut
+#  description: Used to plant hickory trees in the farm.
 #  category: Seeds
-#  rarity: Epic
-#  icon: 'seed'
+#  rarity: Rare
+#  icon: 'hickory-nut'
+
+
+Hophornbeam Log:
+  name: Hophornbeam Log
+  description: Iron wood tree, some of the hardest natural wood avalible.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'log'
+
+Hophornbeam Seed:
+  name: Hophornbeam Seed
+  description: Used to plant hophornbeam trees in the farm.
+  category: Seeds
+  rarity: Rare
+  icon: 'seed'
 
 Elvish Silverwood Log:
   name: Elvish Silverwood Log
