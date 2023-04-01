@@ -15,7 +15,7 @@ recipes:
     preserve:
       - Whorl
     maxWorkers: 1
-  
+
   - result: Fur
     perCraft: { min: 5, max: 6 }
     level: { min: 5, max: 15 }
@@ -100,7 +100,7 @@ recipes:
       - Spinning Wheel
     maxWorkers: 2
 
-#tables (aka gates) 
+#tables (aka gates)
 
   - result: Oven Mitts #need another set for twine
     perCraft: { min: 1, max: 1 }
@@ -118,7 +118,7 @@ recipes:
       - Knitting Needles
     maxWorkers: 1
 
-  - result: High Heat Oven Mitts 
+  - result: High Heat Oven Mitts
     perCraft: { min: 1, max: 1 }
     level: { min: 10, max: 20 }
     craftTime: 180
@@ -344,7 +344,7 @@ recipes:
 
   - result: Leather Hat
     perCraft: { min: 1, max: 1 }
-    level: { min: 15, max: 30}
+    level: { min: 15, max: 25 }
     craftTime: 240
     ingredients:
       Leather: 2
