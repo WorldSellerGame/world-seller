@@ -171,11 +171,9 @@ export class ContentService {
 
   private soundEffectOverrides: Record<string, string> = {};
 
-  constructor(private store: Store, private svgRegistry: SvgIconRegistryService) {
-    this.init();
-  }
+  constructor(private store: Store, private svgRegistry: SvgIconRegistryService) {}
 
-  private init() {
+  public init() {
     this.locationHashes.fishing = this.toHash(this.fishing.locations, 'name');
     this.locationHashes.foraging = this.toHash(this.foraging.locations, 'name');
     this.locationHashes.hunting = this.toHash(this.hunting.locations, 'name');

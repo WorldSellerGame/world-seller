@@ -10,7 +10,7 @@ import {
   dispatchCorrectCombatEndEvent,
   findUniqueTileInDungeonFloor,
   getCombatFunction,
-  getPlayerCharacterReadyForCombat, getStat, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
+  getPlayerCharacterReadyForCombat, getStat, getStatTotals, handleCombatEnd, hasAnyoneWonCombat, isDead, isHealEffect
 } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
 import { ItemCreatorService } from '../../app/services/item-creator.service';
@@ -22,6 +22,7 @@ import {
   IGameEncounter, IGameEncounterCharacter, IGameEncounterDrop, IGameStatusEffect, Stat
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
+import { UpdateStatsFromEquipment } from '../charselect/charselect.actions';
 import { PlaySFX, TickTimer, UpdateAllItems } from '../game/game.actions';
 import {
   AddCombatLogMessage, ChangeThreats, EnemyCooldownSkill,
@@ -488,7 +489,7 @@ export class CombatState {
     let skipRest = false;
 
     ability.effects.forEach(effectRef => {
-      if(skipRest) {
+      if(skipRest || isDead(currentPlayer)) {
         return;
       }
 
@@ -533,6 +534,13 @@ export class CombatState {
         }
       }
 
+      if(isDead(currentPlayer)) {
+        ctx.dispatch([
+          new AddCombatLogMessage(`${currentPlayer.name} has perished!`),
+          new IncrementStat(AchievementStat.Kills)
+        ]);
+      }
+
       if(skipTurnEnd) {
         skipRest = true;
       }
@@ -574,6 +582,7 @@ export class CombatState {
   @Action(EnterDungeon)
   enterDungeon(ctx: StateContext<IGameCombat>, { dungeon }: EnterDungeon) {
     const store = this.store.snapshot();
+    const state = ctx.getState();
 
     // we need the active player to exist. it always will. probably?
     const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
@@ -581,7 +590,13 @@ export class CombatState {
       return;
     }
 
+    const currentCharacter = state.currentPlayer;
     const dungeonCharacter = getPlayerCharacterReadyForCombat(store, ctx, activePlayer);
+
+    if(currentCharacter) {
+      dungeonCharacter.currentHealth = Math.min(currentCharacter.currentHealth, dungeonCharacter.maxHealth);
+      dungeonCharacter.currentEnergy = Math.min(currentCharacter.currentEnergy, dungeonCharacter.maxEnergy);
+    }
 
     const startPos = findUniqueTileInDungeonFloor(dungeon, 0, DungeonTile.Entrance);
     if(!startPos) {
@@ -592,6 +607,8 @@ export class CombatState {
 
     ctx.setState(patch<IGameCombat>({
       currentPlayer: dungeonCharacter,
+      oocEnergyTicks: 0,
+      oocHealTicks: 0,
       currentDungeon: {
         currentLoot: {
           items: [],
@@ -757,6 +774,36 @@ export class CombatState {
         oocEnergyTicks: energyTicks - ticks
       }));
     }
+  }
+
+  @Action(UpdateStatsFromEquipment)
+  updateStatsFromEquipAction(ctx: StateContext<IGameCombat>) {
+    const store = this.store.snapshot();
+    const state = ctx.getState();
+    const player = state.currentPlayer;
+
+    if(!player) {
+      return;
+    }
+
+    const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
+    if(!activePlayer) {
+      return;
+    }
+
+    const newStats = merge(defaultStatsZero(), getStatTotals(store, activePlayer));
+    const maxHealth = (newStats as any).health;
+    const maxEnergy = (newStats as any).energy;
+
+    ctx.setState(patch<IGameCombat>({
+      currentPlayer: patch<IGameEncounterCharacter>({
+        maxHealth,
+        maxEnergy,
+        currentHealth: Math.min(player.currentHealth, maxHealth),
+        currentEnergy: Math.min(player.currentEnergy, maxEnergy),
+      })
+    }));
+
   }
 
   private enemyChooseValidAbilities(enemy: IGameEncounterCharacter, allies: IGameEncounterCharacter[]): string[] {

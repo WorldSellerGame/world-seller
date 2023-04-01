@@ -266,7 +266,7 @@ export function applyDeltas(
     const trueTarget = target === 'source' ? sourceRef : targetRef;
 
     // if we target ourselves with an effect, we offset turns by 1 so it doesn't get slurped up immediately
-    if(targetRef.name === sourceRef.name && deltaToApply.applyStatusEffect) {
+    if(targetRef.name === sourceRef.name && deltaToApply.applyStatusEffect && deltaToApply.applyStatusEffect.turnsLeft !== -1) {
       deltaToApply.applyStatusEffect.turnsLeft += 1;
     }
 

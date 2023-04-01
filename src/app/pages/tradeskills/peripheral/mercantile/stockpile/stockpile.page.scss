@@ -6,6 +6,13 @@
 
 .resource-container {
   margin-bottom: 5px;
+  position: relative;
+
+  .resource-checkbox {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+  }
 }
 
 .resources {
@@ -13,7 +20,7 @@
   padding-left: 10px;
 
   overflow-y: auto;
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 400px);
 }
 
 .upgrade-label {

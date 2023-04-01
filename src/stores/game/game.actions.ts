@@ -39,3 +39,8 @@ export class NotifySuccess {
   static type = '[Game] Notify Success';
   constructor(public message: string) {}
 }
+
+export class AnalyticsTrack {
+  static type = '[Game] Analytics Track';
+  constructor(public event: string, public value = 1) {}
+}

@@ -198,7 +198,9 @@
                     <ion-row>
                       <ion-col class="craft-buttons">
                         <ion-button color="primary" fill="outline" (click)="modifyAmount(recipe, -1)" [disabled]="!amounts[recipe.result] || amounts[recipe.result] <= 1">-</ion-button>
-                        <div class="amount">{{ amounts[recipe.result] || 1 }}</div>
+                        <div class="amount">
+                          <input class="editor" [(ngModel)]="amounts[recipe.result]" (change)="validateAmount(recipe.result, $event)" type="number" />
+                        </div>
                         <ion-button color="primary" fill="outline" (click)="modifyAmount(recipe, 1)">+</ion-button>
                         <ion-button class="craft"
                                     fill="clear"

@@ -22,6 +22,7 @@ export interface IGameMercantileShop {
 export interface IGameMercantileStockpile {
   items: IGameItem[];
   limitLevel: number;
+  workerLevel: number;
 }
 
 export interface IGameMercantile {

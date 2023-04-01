@@ -6,6 +6,7 @@ import { GameOption, IOptions } from '../../../../interfaces';
 import { ModsState, OptionsState } from '../../../../stores';
 import { ResetAchievements, ResetStats } from '../../../../stores/achievements/achievements.actions';
 import { UnlockForaging } from '../../../../stores/foraging/foraging.actions';
+import { AnalyticsTrack } from '../../../../stores/game/game.actions';
 import { UnlockLogging } from '../../../../stores/logging/logging.actions';
 import { GainCoins } from '../../../../stores/mercantile/mercantile.actions';
 import { SetOption } from '../../../../stores/options/options.actions';
@@ -43,8 +44,10 @@ export class SettingsPage implements OnInit {
 
   setOption(option: string, value: any) {
     setTimeout(() => {
-      this.analyticsService.sendDesignEvent(`SetOption:${option}:${value}`, 1);
-      this.store.dispatch(new SetOption(option as GameOption, value));
+      this.store.dispatch([
+        new AnalyticsTrack(`SetOption:${option}:${value}`, 1),
+        new SetOption(option as GameOption, value)
+      ]);
     }, 0);
   }
 
@@ -65,7 +68,7 @@ export class SettingsPage implements OnInit {
   }
 
   addManyCoins() {
-    this.store.dispatch(new GainCoins(1000));
+    this.store.dispatch(new GainCoins(1000, 'ModCheat'));
   }
 
   unlockBasics() {

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IGameItem, IPlayerCharacter, ItemType } from '../../../../interfaces';
-import { CharSelectState } from '../../../../stores';
+import { CharSelectState, CombatState } from '../../../../stores';
 import { EquipItem, UnequipItem } from '../../../../stores/charselect/charselect.actions';
+import { AnalyticsTrack } from '../../../../stores/game/game.actions';
 import { getItemRarityClass, getStatTotals } from '../../../helpers';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnalyticsService } from '../../../services/analytics.service';
@@ -16,6 +17,7 @@ import { AnalyticsService } from '../../../services/analytics.service';
 export class EquipmentPage implements OnInit {
 
   @Select(CharSelectState.activeCharacter) character$!: Observable<IPlayerCharacter>;
+  @Select(CombatState.currentDungeon) dungeon$!: Observable<any>;
 
   public currentEquipSlot: ItemType | undefined;
   public equippableItems: IGameItem[] = [];
@@ -61,7 +63,7 @@ export class EquipmentPage implements OnInit {
 
   equip(item: IGameItem) {
     this.unloadEquipment();
-    this.analyticsService.sendDesignEvent(`EquipItem:${item.name}`, 1);
+    this.store.dispatch(new AnalyticsTrack(`EquipItem:${item.name}`, 1));
     this.store.dispatch(new EquipItem(item));
   }
 
@@ -72,7 +74,8 @@ export class EquipmentPage implements OnInit {
   }
 
   statTotals(character: IPlayerCharacter): Record<string, number> {
-    return getStatTotals(this.store.snapshot(), character);
+    const stats = getStatTotals(this.store.snapshot(), character);
+    return { ...stats, healthBonus: 0, energyBonus: 0 };
   }
 
   getItemRarity(item: IGameItem): string {

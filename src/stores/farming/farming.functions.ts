@@ -94,7 +94,7 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex }: Harv
 export function addPlot(ctx: StateContext<IGameFarming>) {
   const state = ctx.getState();
 
-  ctx.dispatch(new SpendCoins(nextPlotCost(state.maxPlots - 1)));
+  ctx.dispatch(new SpendCoins(nextPlotCost(state.maxPlots - 1), 'Upgrade:FarmPlot'));
 
   ctx.setState(patch<IGameFarming>({
     maxPlots: Math.min(maxPlots(), state.maxPlots + 1)

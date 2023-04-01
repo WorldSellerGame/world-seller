@@ -39,8 +39,22 @@ const loadContent = async () => {
   const allEffects = await fs.readJson('src/assets/content/effects.json');
   const allDungeons = await fs.readJson('src/assets/content/dungeons.json');
 
-  const farming = await fs.readJson('src/assets/content/farming.json');
+  const fishingLocations = (await fs.readJson('src/assets/content/fishing.json')).locations;
+  const foragingLocations = (await fs.readJson('src/assets/content/foraging.json')).locations;
+  const huntingLocations = (await fs.readJson('src/assets/content/hunting.json')).locations;
+  const loggingLocations = (await fs.readJson('src/assets/content/logging.json')).locations;
+  const miningLocations = (await fs.readJson('src/assets/content/mining.json')).locations;
 
+  const alchemyRecipes = (await fs.readJson('src/assets/content/alchemy.json')).recipes;
+  const blacksmithingRecipes = (await fs.readJson('src/assets/content/blacksmithing.json')).recipes;
+  const cookingRecipes = (await fs.readJson('src/assets/content/cooking.json')).recipes;
+  const jewelcraftingRecipes = (await fs.readJson('src/assets/content/jewelcrafting.json')).recipes;
+  const weavingRecipes = (await fs.readJson('src/assets/content/weaving.json')).recipes;
+
+  const farming = (await fs.readJson('src/assets/content/farming.json')).transforms;
+  const prospecting = (await fs.readJson('src/assets/content/prospecting.json')).transforms;
+
+  // validate resources
   const resourceNames: Record<string, boolean> = {};
   Object.keys(allResources).forEach(key => {
     if(key.length > 32) {
@@ -82,7 +96,7 @@ const loadContent = async () => {
     }
 
     if(resource.category === 'Seeds') {
-      const transform = farming.transforms.find((x: any) => x.startingItem === key);
+      const transform = farming.find((x: any) => x.startingItem === key);
 
       if(!transform) {
         console.log(`⚠ Seed ${key} is not used in any farming transforms.`);
@@ -100,6 +114,7 @@ const loadContent = async () => {
     }
   });
 
+  // validate effects
   const effectNames: Record<string, boolean> = {};
   Object.keys(allEffects).forEach(key => {
     if(key.length > 32) {
@@ -164,6 +179,7 @@ const loadContent = async () => {
     });
   });
 
+  // validate abilities
   const abilityNames: Record<string, boolean> = {};
   Object.keys(allAbilities).forEach(key => {
     if(key.length > 32) {
@@ -248,6 +264,7 @@ const loadContent = async () => {
 
   });
 
+  // validate items
   const itemNames: Record<string, boolean> = {};
   Object.keys(allItems).forEach(key => {
     if(key.length > 32) {
@@ -338,6 +355,7 @@ const loadContent = async () => {
     });
   });
 
+  // validate enemies
   const enemyNames: Record<string, boolean> = {};
   Object.keys(allEnemies).forEach(key => {
     if(key.length > 32) {
@@ -421,6 +439,7 @@ const loadContent = async () => {
     });
   });
 
+  // validate threats
   const threatNames: Record<string, boolean> = {};
   Object.keys(allThreats).forEach(key => {
     if(key.length > 32) {
@@ -480,6 +499,7 @@ const loadContent = async () => {
     })
   });
 
+  // validate dungeons
   const dungeonNames: Record<string, boolean> = {};
   Object.keys(allDungeons).forEach(key => {
     const dungeon = allDungeons[key];
@@ -599,6 +619,73 @@ const loadContent = async () => {
   const isValidItem = (item: string) => {
     return item === 'nothing' || isValidResource(item) || allItems[item];
   }
+
+  // ensure all items can be crafted
+  const allGatherableThings: Record<string, boolean> = {};
+  const reevaluateRecipes = [
+    ...alchemyRecipes,
+    ...blacksmithingRecipes,
+    ...cookingRecipes,
+    ...jewelcraftingRecipes,
+    ...weavingRecipes,
+  ];
+
+  const reevaluateTransforms = [
+    ...farming,
+    ...prospecting
+  ];
+
+  [fishingLocations, foragingLocations, huntingLocations, loggingLocations, miningLocations].forEach((locations: any[]) => {
+    locations.forEach(location => {
+      location.resources.forEach((resource: any) => {
+        allGatherableThings[resource.name] = true;
+      })
+    });
+  });
+
+  let lastEvaluatedRecipesLength = reevaluateRecipes.length;
+  let lastEvaluatedTransformsLength = reevaluateTransforms.length;
+  do {
+    reevaluateRecipes.forEach(recipe => {
+      if(Object.keys(recipe.ingredients).some(ing => !allGatherableThings[ing])) return;
+
+      const index = reevaluateRecipes.indexOf(recipe);
+      reevaluateRecipes.splice(index, 1);
+
+      allGatherableThings[recipe.result] = true;
+    });
+
+    reevaluateTransforms.forEach(transform => {
+      if(!allGatherableThings[transform.startingItem]) return;
+
+      const index = reevaluateTransforms.indexOf(transform);
+      reevaluateTransforms.splice(index, 1);
+
+      transform.becomes.forEach((becomes: any) => {
+        allGatherableThings[becomes.name] = true;
+      });
+    });
+
+    if(reevaluateRecipes.length === lastEvaluatedRecipesLength
+    && reevaluateTransforms.length === lastEvaluatedTransformsLength) {
+      hasBad = true;
+
+      reevaluateRecipes.forEach(recipe => {
+        console.log(`⚠ Recipe ${recipe.result} is uncreatable.`);
+      });
+
+      reevaluateTransforms.forEach(transform => {
+        console.log(`⚠ Transform ${transform.startingItem} is uncreatable.`);
+      });
+      break;
+    }
+
+    lastEvaluatedRecipesLength = reevaluateRecipes.length;
+    lastEvaluatedTransformsLength = reevaluateTransforms.length;
+  } while(
+     reevaluateRecipes.length === lastEvaluatedRecipesLength
+  && reevaluateTransforms.length === lastEvaluatedTransformsLength
+  );
 
   const files = await readdir('src/assets/content', ['items.json', 'resources.json']);
   files.forEach(async (file: string) => {

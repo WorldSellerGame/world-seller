@@ -130,6 +130,12 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     this.setVisibleRecipes();
   }
 
+  validateAmount(recipeResult: string, $event: any) {
+    if(isNaN($event.target.value) || !$event.target.value) {
+      this.amounts[recipeResult] = 1;
+    }
+  }
+
   setMetadata() {
     const totalDiscovered = this.locationData.filter(x => this.discoveries[x.result]).length;
     const totalRecipes = this.locationData.length;
@@ -181,6 +187,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
 
     [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
       this.canCraftRecipes[recipe.result] = this.canCraftRecipe(recipe, this.amounts[recipe.result] || 1);
+      this.amounts[recipe.result] = this.amounts[recipe.result] || 1;
     });
   }
 
@@ -354,6 +361,10 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   craft(recipe: IGameRecipe, amount = 1) {
+    if(isNaN(amount)) {
+      amount = 1;
+    }
+
     this.amounts[recipe.result] = 1;
 
     this.setCanCrafts();

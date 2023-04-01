@@ -5,9 +5,10 @@ import { sum } from 'lodash';
 import { calculateBrokenItemStats } from '../../app/helpers';
 import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
+import { QuickSellManyItemsFromInventory, SendManyItemsToInventory } from '../mercantile/mercantile.actions';
 import {
-  AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
+  AddItemToInventory, AddItemsToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem, UpdateStatsFromEquipment
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
@@ -129,6 +130,22 @@ export function addItemToInventory(ctx: StateContext<ICharSelect>, { item }: Add
   ctx.dispatch(new SaveActiveCharacter());
 }
 
+export function addItemsToInventory(ctx: StateContext<ICharSelect>, { items }: AddItemsToInventory | SendManyItemsToInventory) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters[state.currentCharacter];
+  if(!currentCharacter) {
+    return;
+  }
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
+      inventory: append<IGameItem>(items)
+    }))
+  }));
+
+  ctx.dispatch(new SaveActiveCharacter());
+}
+
 export function removeItemFromInventory(ctx: StateContext<ICharSelect>, { item }: RemoveItemFromInventory) {
   const state = ctx.getState();
   const currentCharacter = state.characters[state.currentCharacter];
@@ -139,6 +156,24 @@ export function removeItemFromInventory(ctx: StateContext<ICharSelect>, { item }
   ctx.setState(patch<ICharSelect>({
     characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       inventory: removeItem<IGameItem>(currentCharacter.inventory.indexOf(item))
+    }))
+  }));
+
+  ctx.dispatch(new SaveActiveCharacter());
+}
+
+export function removeItemsFromInventory(ctx: StateContext<ICharSelect>, { items }: QuickSellManyItemsFromInventory) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters[state.currentCharacter];
+  if(!currentCharacter) {
+    return;
+  }
+
+  const newItems = currentCharacter.inventory.filter(item => !items.includes(item));
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
+      inventory: newItems
     }))
   }));
 
@@ -167,6 +202,7 @@ export function unequipItem(ctx: StateContext<ICharSelect>, { slot }: UnequipIte
 
   ctx.dispatch([
     new AddItemToInventory(currentItem),
+    new UpdateStatsFromEquipment(),
     new SaveActiveCharacter()
   ]);
 }
@@ -193,6 +229,7 @@ export function equipItem(ctx: StateContext<ICharSelect>, { item }: EquipItem) {
 
   ctx.dispatch([
     new RemoveItemFromInventory(item),
+    new UpdateStatsFromEquipment(),
     new SaveActiveCharacter()
   ]);
 }
