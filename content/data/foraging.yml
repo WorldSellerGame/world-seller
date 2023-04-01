@@ -97,12 +97,14 @@ locations:
     gatherTime: 180
     cooldownTime: 90
     resources:
-      - name: Apple
-        weight: 8
-      - name: Apple Seed
-        weight: 1
-      - name: Worm
+      - name: Mushroom
         weight: 2
+      - name: Moss
+        weight: 2
+      - name: Guano
+        weight: 2
+      - name: Plant Fiber
+        weight: 1
     maxWorkers: 1
 
   - name: Forest Glade

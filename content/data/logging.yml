@@ -66,7 +66,7 @@ locations:
     maxWorkers: 1
 
   - name: Orchard
-    description: It looks to be an abandoned apple farm amongst the wilderness.
+    description: It looks to be a long abandoned apple farm amongst the wilderness. The animals still seem to enjoy it.
     perGather:
       min: 5
       max: 10
@@ -77,10 +77,12 @@ locations:
     cooldownTime: 90
     resources:
       - name: Apple Wood Log
-        weight: 5
+        weight: 15
       - name: Apple
-        weight: 1
+        weight: 3
       - name: Plant Fiber
+        weight: 3
+      - name: Guano
         weight: 1
     maxWorkers: 1
 
