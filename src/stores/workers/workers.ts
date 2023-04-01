@@ -131,7 +131,7 @@ export class WorkersState {
       // if we have coins, pay it
       if(hasCoins) {
 
-        ctx.dispatch(new SpendCoins(workerUpkeepCost));
+        ctx.dispatch(new SpendCoins(workerUpkeepCost, 'WorkerUpkeep'));
         ctx.patchState({ upkeepPaid: true, upkeepTicks: upkeepTicks() });
         return;
 
