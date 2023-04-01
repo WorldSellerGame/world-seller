@@ -110,3 +110,16 @@ Goblin Staff:
   stats:
     attack: 5
     healing: 10
+
+Skeleton Scimitar:
+  name: Skeleton Scimitar
+  description: A scimitar taken from a pile of dead bones that was once alive, then dead, then alive, and then dead again.
+  type: Weapon
+  category: Weapons
+  rarity: Rare
+  durability: 20
+  value: 100
+  icon: sword-fragmented
+  givesPlayerAbility: RotAttack2
+  stats:
+    attack: 7

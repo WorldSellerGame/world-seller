@@ -21,8 +21,8 @@ Zombie1: #meat bag with some effect that make long combat dangerous
 
   drops:
     - resource: Coin
-      min: 10
-      max: 25
+      min: 20
+      max: 50
       chance: 100
 
 Skeleton1: #Glass cannon
@@ -45,11 +45,18 @@ Skeleton1: #Glass cannon
     - RotAttack2
     - ApplyDoom1
 
-  drops: #cursed sword
+  drops:
     - resource: Coin
-      min: 10
-      max: 25
+      min: 20
+      max: 50
       chance: 100
+
+    - item: Skeleton Scimitar
+      min: 1
+      max: 1
+      chance: 10
+
+
 
 Monstrosity1: #tanky low dmg with a absolutely devastating multi hit
   name: Monstrosity
@@ -71,11 +78,12 @@ Monstrosity1: #tanky low dmg with a absolutely devastating multi hit
     - UndeadRegen2
     - RotAttack3
 
-  drops: #l8r
+  drops: #transmutation tab item
     - resource: Coin
-      min: 10
-      max: 25
+      min: 20
+      max: 50
       chance: 100
+
 
 Mummy1: #solo boss with self sustain (using the new stat) normal damaging attacks and a devastating multi curse
   name: Mummy
@@ -99,7 +107,7 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
     - Mummy1
     - ApplyDoom1 #or maybe 2 idk man
 
-  drops: #l8r
+  drops:
     - resource: Coin
       min: 25
       max: 45
@@ -108,5 +116,5 @@ Mummy1: #solo boss with self sustain (using the new stat) normal damaging attack
     - item: Mummy Wraps
       min: 1
       max: 1
-      chance: 100
+      chance: 10
 
