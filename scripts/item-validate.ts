@@ -668,7 +668,10 @@ const loadContent = async () => {
 
     if(reevaluateRecipes.length === lastEvaluatedRecipesLength
     && reevaluateTransforms.length === lastEvaluatedTransformsLength) {
-      hasBad = true;
+
+      if(reevaluateRecipes.length > 0 || reevaluateTransforms.length > 0) {
+        hasBad = true;
+      }
 
       reevaluateRecipes.forEach(recipe => {
         console.log(`⚠ Recipe ${recipe.result} is uncreatable.`);
