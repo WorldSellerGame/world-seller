@@ -72,7 +72,7 @@ Strawberry:
 
 Strawberry Seed:
   name: Strawberry Seed
-  description: Used to plant strawberry in the farm.
+  description: Used to plant strawberries in the farm.
   category: Seeds
   rarity: Common
   icon: 'seed'

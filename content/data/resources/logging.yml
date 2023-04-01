@@ -15,7 +15,7 @@ Pine Log:
 
 Pinecone:
   name: Pinecone
-  description: Used to do plant pine trees in the farm.
+  description: Used to plant pine trees in the farm.
   category: Raw Materials
   rarity: Common
   icon: 'seed'
