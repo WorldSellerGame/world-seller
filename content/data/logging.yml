@@ -115,7 +115,7 @@ locations:
         weight: 1
     maxWorkers: 1
 
-  - name: Cedrics Spot
+  - name: Cedrics Spot #no new plantables at time
     description: Cedrics old secret spot for high quality wood.
     perGather:
       min: 7

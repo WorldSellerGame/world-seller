@@ -156,15 +156,15 @@ transforms:
 
 
 
-  - startingItem: Hickory Nut
-    becomes:
-      - name: Hickory Log
-        weight: 10
-      - name: Hickory Nut
-        weight: 1
-    perGather: { min: 3, max: 10 }
-    level: { min: 15, max: 25 }
-    gatherTime: 2500
+#  - startingItem: Hickory Nut
+#    becomes:
+#      - name: Hickory Log
+#        weight: 10
+#      - name: Hickory Nut
+#        weight: 1
+#    perGather: { min: 3, max: 10 }
+#    level: { min: 15, max: 25 }
+#    gatherTime: 2500
 
 
 
@@ -176,7 +176,7 @@ transforms:
         weight: 1
     perGather: { min: 3, max: 10 }
     level: { min: 20, max: 30 }
-    gatherTime: 4120
+    gatherTime: 2500
 
 
 

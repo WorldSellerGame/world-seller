@@ -130,7 +130,7 @@ locations:
         weight: 1
     maxWorkers: 1
 
-  - name: Wheat Meadow
+  - name: Wheat Meadow # no plantables at time
     description: A field of wheat, pretty cool right?
     perGather:
       min: 7
