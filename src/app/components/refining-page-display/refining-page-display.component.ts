@@ -53,6 +53,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   @Output() totalsMetadata = new EventEmitter<{ totalDiscovered: number; totalRecipes: number }>();
 
   public type!: 'resources'|'items';
+  public activeRecipes: IGameRecipe[] = [];
   public amounts: Record<string, number> = {};
   public resources: Record<string, number> = {};
   public discoveries: Record<string, boolean> = {};
@@ -136,6 +137,10 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     }
   }
 
+  setType(type: 'items'|'resources') {
+    this.type = type;
+  }
+
   setMetadata() {
     const totalDiscovered = this.locationData.filter(x => this.discoveries[x.result]).length;
     const totalRecipes = this.locationData.length;
@@ -152,15 +157,15 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     this.itemRecipes = this.visibleRecipes(this.locationData, 'items');
 
     if(!this.type) {
-      this.type = this.resourceRecipes.length > 0 ? 'resources' : 'items';
+      this.setType(this.resourceRecipes.length > 0 ? 'resources' : 'items');
     }
 
     if(this.type === 'resources' && this.resourceRecipes.length === 0) {
-      this.type = 'items';
+      this.setType('items');
     }
 
     if(this.type === 'items' && this.itemRecipes.length === 0) {
-      this.type = 'resources';
+      this.setType('resources');
     }
 
     this.setIngredients();
@@ -285,7 +290,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     ]);
   }
 
-  trackBy(index: number) {
+  trackBy<IGameRecipe>(index: number, recipe: IGameRecipe) {
     return index;
   }
 

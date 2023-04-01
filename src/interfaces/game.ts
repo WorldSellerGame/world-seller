@@ -179,6 +179,9 @@ export interface IGameResource {
   icon: string;
   rarity: Rarity;
   category: ItemCategory;
+
+  // used to identify the item based on its internal name/id
+  internalId?: string;
 }
 
 export interface IWeighted {

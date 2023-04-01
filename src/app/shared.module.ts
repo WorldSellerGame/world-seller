@@ -18,6 +18,7 @@ import { HeroComponent } from './components/hero/hero.component';
 import { ItemIconComponent } from './components/item-icon/item-icon.component';
 import { ItemTooltipComponent } from './components/item-tooltip/item-tooltip.component';
 import { ItemComponent } from './components/item/item.component';
+import { RealNameComponent } from './components/real-name/real-name.component';
 import { RefiningPageDisplayComponent } from './components/refining-page-display/refining-page-display.component';
 import { ResourceIconComponent } from './components/resource-icon/resource-icon.component';
 import { ResourceTooltipComponent } from './components/resource-tooltip/resource-tooltip.component';
@@ -33,7 +34,7 @@ const sharedComponents = [ResourceIconComponent, ItemIconComponent, TimeResource
   GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
   CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
   AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
-  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent];
+  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent, RealNameComponent];
 
 @NgModule({
   declarations: sharedComponents,
