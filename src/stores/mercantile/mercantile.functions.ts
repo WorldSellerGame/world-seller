@@ -141,7 +141,7 @@ export function gainCoins(ctx: StateContext<any>, { amount, reason }: GainCoins)
   }
 
   if(amount > 0) {
-    ctx.dispatch(new AnalyticsTrack(`Coins:Gain:${reason}`));
+    ctx.dispatch(new AnalyticsTrack(`Coins:Gain:${reason}`, amount));
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -149,7 +149,7 @@ export function gainCoins(ctx: StateContext<any>, { amount, reason }: GainCoins)
 }
 
 export function spendCoins(ctx: StateContext<any>, { amount, reason }: SpendCoins) {
-  ctx.dispatch(new AnalyticsTrack(`Coins:Spend:${reason}`));
+  ctx.dispatch(new AnalyticsTrack(`Coins:Spend:${reason}`, amount));
   gainCoins(ctx, { amount: -amount, reason });
 }
 
