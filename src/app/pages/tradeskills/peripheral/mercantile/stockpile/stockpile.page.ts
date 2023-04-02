@@ -236,8 +236,6 @@ export class StockpilePage implements OnInit, OnDestroy {
       this.select(this.itemsByCategory[this.lastSelectedCategory][index], index);
     };
 
-    console.log({ isSelected }, this.lastSelectedCategory, this.lastSelectedIndex, newIndex);
-
     if(this.lastSelectedIndex < newIndex) {
       for(let i = this.lastSelectedIndex; i <= newIndex; i++) {
         handleItem(i);

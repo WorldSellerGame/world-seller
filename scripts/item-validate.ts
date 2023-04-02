@@ -16,7 +16,9 @@ const validStats = [
   'pickaxeSpeed', 'axeSpeed', 'fishingSpeed', 'scytheSpeed', 'huntingSpeed',
   'pickaxeSpeedPercent', 'axeSpeedPercent', 'fishingSpeedPercent', 'scytheSpeedPercent', 'huntingSpeedPercent',
   'armor', 'mitigation', 'healing', 'energyHealing', 'attack', 'energyBonus', 'healthBonus', 'health', 'speed',
-  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat'
+  'healingPerRound', 'healingPerCombat', 'energyPerRound', 'energyPerCombat',
+
+  'itemStat1', 'itemStat2', 'itemStat3'
 ];
 
 const validTargets = ['Single', 'Self', 'AllEnemies', 'Ally', 'All'];
@@ -668,7 +670,10 @@ const loadContent = async () => {
 
     if(reevaluateRecipes.length === lastEvaluatedRecipesLength
     && reevaluateTransforms.length === lastEvaluatedTransformsLength) {
-      hasBad = true;
+
+      if(reevaluateRecipes.length > 0 || reevaluateTransforms.length > 0) {
+        hasBad = true;
+      }
 
       reevaluateRecipes.forEach(recipe => {
         console.log(`⚠ Recipe ${recipe.result} is uncreatable.`);

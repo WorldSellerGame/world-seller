@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, first } from 'rxjs';
-import { IGameResource, IGameResourceTransform } from '../../../../../interfaces';
+import { IGameItem, IGameResource, IGameResourceTransform, Rarity } from '../../../../../interfaces';
 import { CharSelectState, ProspectingState } from '../../../../../stores';
 import { ProspectRock } from '../../../../../stores/prospecting/prospecting.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
@@ -19,6 +19,10 @@ export class ProspectingPage implements OnInit {
   public get locationData() {
     return this.contentService.getProspectingTransforms();
   }
+
+  public allProspects: IGameResourceTransform[] = [];
+  public createdOutputs: Record<string, IGameItem | IGameResource> = {};
+  public rarityOutputs: Record<string, Rarity> = {};
 
   @Select(ProspectingState.level) level$!: Observable<number>;
   @Select(CharSelectState.activeCharacterResources) resources$!: Observable<Record<string, number>>;
@@ -47,10 +51,28 @@ export class ProspectingPage implements OnInit {
         this.prospectTransformChances[prospect.startingItem][item.name] = (item.weight / totalChance * 100).toFixed(2);
       });
     });
+
+    this.setResults();
   }
 
   trackBy(index: number) {
     return index;
+  }
+
+  setResults() {
+    this.rarityOutputs = {};
+
+    this.locationData.forEach((transform) => {
+      if(this.contentService.isItem(transform.startingItem)) {
+        this.createdOutputs[transform.startingItem] = this.contentService.getItemByName(transform.startingItem);
+      }
+
+      if(this.contentService.isResource(transform.startingItem)) {
+        this.createdOutputs[transform.startingItem] = this.contentService.getResourceByName(transform.startingItem);
+      }
+
+      this.rarityOutputs[transform.startingItem] = this.createdOutputs[transform.startingItem].rarity;
+    });
   }
 
   iconForRecipe(transform: IGameResourceTransform) {

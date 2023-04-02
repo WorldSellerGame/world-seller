@@ -110,11 +110,11 @@
       <ion-card>
         <ion-card-content>
           <ion-segment class="mb-1" [(ngModel)]="type">
-            <ion-segment-button value="resources" [disabled]="resourceRecipes.length === 0">
+            <ion-segment-button value="resources" [disabled]="resourceRecipes.length === 0" (click)="setType('resources')">
               Craftable Resources ({{ resourceRecipes.length }})
             </ion-segment-button>
 
-            <ion-segment-button value="items" [disabled]="itemRecipes.length === 0">
+            <ion-segment-button value="items" [disabled]="itemRecipes.length === 0"  (click)="setType('items')">
               Craftable Items ({{ itemRecipes.length }})
             </ion-segment-button>
           </ion-segment>
@@ -128,7 +128,9 @@
                 <ion-label class="label">
                   <h2>
                     <strong class="recipe-name">
-                      <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">{{ recipe.result }}</span>
+                      <span [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[recipe.result] || 'Common').toLowerCase()]">
+                        <app-real-name [name]="recipe.result"></app-real-name>
+                      </span>
 
                       <ion-icon class="yield-icon" name="help-circle" [ngxTippy]="amountTooltip" *ngIf="recipe.perCraft.max > 1"></ion-icon>
 
@@ -151,7 +153,7 @@
                       <app-item-tooltip *ngIf="type === 'items' && itemOutputs[recipe.result]" [item]="itemOutputs[recipe.result]"></app-item-tooltip>
                       <app-resource-tooltip *ngIf="type === 'resources' && resourceOutputs[recipe.result]" [resource]="resourceOutputs[recipe.result]"></app-resource-tooltip>
                     </ng-template>
-                  </h2>
+                </h2>
 
                   <div class="resources">
                     <app-time-resource-icon [time]="recipe.craftTime * (amounts[recipe.result] || 1)"

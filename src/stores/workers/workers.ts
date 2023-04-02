@@ -131,7 +131,7 @@ export class WorkersState {
       // if we have coins, pay it
       if(hasCoins) {
 
-        ctx.dispatch(new SpendCoins(workerUpkeepCost));
+        ctx.dispatch(new SpendCoins(workerUpkeepCost, 'WorkerUpkeep'));
         ctx.patchState({ upkeepPaid: true, upkeepTicks: upkeepTicks() });
         return;
 
@@ -205,7 +205,7 @@ export class WorkersState {
         const takeItemQuantities: Record<string, number> = {};
 
         Object.keys(alloc.recipe.ingredients)
-          .filter(key => allItems[key])
+          .filter(key => allItems[key] && !alloc.recipe.preserve?.includes(key))
           .forEach(itemKey => {
             takeItemQuantities[itemKey] = alloc.recipe.ingredients[itemKey];
           });

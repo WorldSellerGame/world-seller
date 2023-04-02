@@ -90,7 +90,7 @@ export class ExchangePage implements OnInit {
     const costForOne = this.costForResource(costItem);
 
     this.store.dispatch([
-      new SpendCoins(costForOne * multiplier),
+      new SpendCoins(costForOne * multiplier, 'BuyResources'),
       new IncrementStat(AchievementStat.MercantileExchangeBuy, multiplier),
       new GainResources({ [costItem]: multiplier })
     ]);

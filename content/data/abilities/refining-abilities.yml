@@ -251,7 +251,7 @@ BlacksmithingUnique1:
   stats:
     - stat: attack
       multiplier: 1
-      variance: 0.5
+      variance: 0.25
     - stat: armor
       multiplier: 1
       variance: 0.0

@@ -7,7 +7,11 @@
   name === 'nothing' ? 'nothing' : ''
 ]">
   <app-game-icon class="icon" [icon]="icon" [inlineIconSize]="inlineIconSize"></app-game-icon>
-  <span class="name" *ngIf="name" [ngxTippy]="tooltip">{{ name }}</span>
+
+  <span class="name" *ngIf="resource && resource.internalId" [ngxTippy]="tooltip">
+    <app-real-name [name]="resource.internalId"></app-real-name>
+  </span>
+
   <span class="quantity" *ngIf="quantity >= 0">
     {{ showX ? 'x' : '' }}{{ quantity | number }}<span *ngIf="!maxIsNotImportant">{{ maxQuantity >= 0 ? '/' + (maxQuantity | number) : '' }}</span>
   </span>

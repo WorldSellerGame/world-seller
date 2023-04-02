@@ -447,7 +447,12 @@ export class ContentService {
   // misc
   public getResourceByName(name: string): IGameResource {
     const resource = this.modCacheRecords['resources'][name] || this.resources[name];
-    return cloneDeep(resource);
+    const retResource = cloneDeep(resource);
+    if(resource) {
+      retResource.internalId = name;
+    }
+
+    return retResource;
   }
 
   public getItemByName(name: string): IGameItem {

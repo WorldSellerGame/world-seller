@@ -68,7 +68,7 @@ export class SettingsPage implements OnInit {
   }
 
   addManyCoins() {
-    this.store.dispatch(new GainCoins(1000));
+    this.store.dispatch(new GainCoins(1000, 'ModCheat'));
   }
 
   unlockBasics() {

@@ -39,7 +39,7 @@ export function defaultStatsZero(): Record<Stat, number> {
     [Stat.HealingPerRound]: 0,
     [Stat.HealingPerCombat]: 0,
     [Stat.EnergyPerRound]: 0,
-    [Stat.EnergyPerCombat]: 0
+    [Stat.EnergyPerCombat]: 0,
   };
 }
 

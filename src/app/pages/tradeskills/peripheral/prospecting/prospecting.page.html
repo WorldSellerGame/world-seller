@@ -21,8 +21,8 @@
                     <app-game-icon slot="start" [icon]="iconForRecipe(prospect)"></app-game-icon>
 
                     <ion-label>
-                      <strong [ngxTippy]="tooltip">
-                        {{ prospect.startingItem }}
+                      <strong [ngxTippy]="tooltip" [ngClass]="[(rarityOutputs[prospect.startingItem] || 'Common').toLowerCase()]">
+                        <app-real-name [name]="prospect.startingItem"></app-real-name>
                       </strong>
 
                       <div class="resource-notifier">
