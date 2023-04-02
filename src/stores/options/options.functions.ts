@@ -15,6 +15,7 @@ export const defaultOptions: () => IOptions = () => ({
   [GameOption.TelemetryErrors]: true,
   [GameOption.TelemetrySavefiles]: true,
   [GameOption.NotificationCorner]: 'left-top',
+  [GameOption.ShowNotifications]: true,
 });
 
 export function setOption(ctx: StateContext<IOptions>, { option, value }: SetOption) {

@@ -52,6 +52,12 @@
               </ion-item>
 
               <ion-item>
+                <ion-label>Show Notifications</ion-label>
+                <ion-toggle slot="end" [checked]="options.showNotifications"
+                                       (click)="setOption('showNotifications', !options.showNotifications)"></ion-toggle>
+              </ion-item>
+
+              <ion-item>
                 <ion-label>Notification Corner</ion-label>
                 <ion-select interface="popover" [(ngModel)]="options.notificationCorner"
                                                 (ionChange)="setOption('notificationCorner', options.notificationCorner)">

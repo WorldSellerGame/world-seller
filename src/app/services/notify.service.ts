@@ -21,6 +21,10 @@ export class NotifyService {
     return this.store.selectSnapshot(state => state.options?.[GameOption.NotificationCorner]) ?? 'left-top';
   }
 
+  private showNotifications() {
+    return this.store.selectSnapshot(state => state.options?.[GameOption.ShowNotifications]) ?? true;
+  }
+
   private notiflixDefaults = () => ({
     fontSize: '15px',
     width: '400px',
@@ -41,6 +45,11 @@ export class NotifyService {
 
   public notify(message: string) {
     this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
     Notify.info(message, {
       ...this.notiflixDefaults()
     });
@@ -48,6 +57,11 @@ export class NotifyService {
 
   public error(message: string) {
     this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
     Notify.failure(message, {
       ...this.notiflixDefaults()
     });
@@ -55,6 +69,11 @@ export class NotifyService {
 
   public warn(message: string) {
     this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
     Notify.warning(message, {
       ...this.notiflixDefaults()
     });
@@ -62,6 +81,11 @@ export class NotifyService {
 
   public success(message: string) {
     this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
     Notify.success(message, {
       ...this.notiflixDefaults()
     });
@@ -69,6 +93,11 @@ export class NotifyService {
 
   public achievement(message: string) {
     this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
     Notify.success(message, {
       ...this.notiflixDefaults(),
       className: 'notiflix-notify-achievement'

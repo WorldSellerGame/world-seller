@@ -9,6 +9,7 @@ export enum GameOption {
   TelemetryErrors = 'telemetryErrors',
   TelemetrySavefiles = 'telemetrySavefiles',
   NotificationCorner = 'notificationCorner',
+  ShowNotifications = 'showNotifications',
 }
 
 export interface IOptions {
@@ -22,4 +23,5 @@ export interface IOptions {
   [GameOption.TelemetryErrors]: boolean;
   [GameOption.TelemetrySavefiles]: boolean;
   [GameOption.NotificationCorner]: 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom';
+  [GameOption.ShowNotifications]: boolean;
 }
