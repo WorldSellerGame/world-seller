@@ -33,6 +33,10 @@ export class WorkersPage implements OnInit {
   ngOnInit() {
   }
 
+  trackBy(index: number) {
+    return index;
+  }
+
   nextWorkerCost(currentWorkers: number) {
     return nextWorkerCost(currentWorkers);
   }

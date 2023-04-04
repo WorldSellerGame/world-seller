@@ -90,13 +90,21 @@
                   None
                 </ion-item>
 
-                <ion-item *ngFor="let worker of pageData.workerAllocations?.refining">
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.refining; trackBy: trackBy">
                   <ion-label>
                     <h2>{{ workerName(worker.nameId) }}</h2>
                     <p>
                       Currently doing {{ worker.tradeskill }} and making {{ worker.recipe.result }}...
                       <span *ngIf="worker.currentTick < 0">cooling down...</span>
-                      <span *ngIf="worker.currentTick === 0">100%</span>
+                      <span *ngIf="worker.currentTick === 0">
+                        <span *ngIf="(worker.missingIngredients ?? []).length > 0; else done">
+                          missing {{ worker.missingIngredients?.join(', ') }}.
+                        </span>
+
+                        <ng-template #done>
+                          100%
+                        </ng-template>
+                      </span>
                       <span *ngIf="worker.currentTick > 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
                     </p>
                   </ion-label>

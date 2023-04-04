@@ -14,6 +14,7 @@ export interface IGameWorkersRefining {
   currentTick: number;
   tradeskill: string;
   recipe: IGameRecipe;
+  missingIngredients?: string[];
 }
 
 export interface IGameWorkersMercantle {

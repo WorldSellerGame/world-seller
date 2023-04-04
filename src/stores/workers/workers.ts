@@ -108,6 +108,7 @@ export class WorkersState {
     const allResources = currentCharacter.resources;
     const itemList = store.mercantile.stockpile.items;
 
+    // I mean, this could be optimized.
     const allItems: Record<string, number> = {};
     itemList.forEach((item: IGameItem) => {
       allItems[item.name] = allItems[item.name] ?? 0;
@@ -185,7 +186,7 @@ export class WorkersState {
     const requiredItemsToNotSellForOtherWorkers: Record<string, boolean> = {};
     const refiningRewards: IGameRecipe[] = [];
 
-    const refiningWorkerUpdates = state.refiningWorkerAllocations.map(alloc => {
+    const refiningWorkerUpdates = state.refiningWorkerAllocations.map((alloc, i) => {
 
       // cache needed materials so we don't accidentally sell them
       Object.keys(alloc.recipe.ingredients).forEach(itemKey => requiredItemsToNotSellForOtherWorkers[itemKey] = true);
@@ -193,7 +194,17 @@ export class WorkersState {
       // if we don't have the resources, we do not craft
       if(alloc.currentTick === 0) {
         if(!canCraftRecipe(allResourcesAndItems, alloc.recipe, 1)) {
-          return alloc;
+          const missing: string[] = [];
+
+          Object.keys(alloc.recipe.ingredients).forEach(itemKey => {
+            if(alloc.recipe.ingredients[itemKey] < allResourcesAndItems[itemKey]) {
+              return;
+            }
+
+            missing.push(itemKey);
+          });
+
+          return { ...alloc, missingIngredients: missing };
         }
 
         ctx.dispatch(new AnalyticsTrack(`Worker:Refine:${alloc.recipe.result}`));
@@ -226,6 +237,7 @@ export class WorkersState {
         refiningRewards.push(alloc.recipe);
 
         alloc.currentTick = 0;
+        alloc.missingIngredients = [];
       }
 
       return alloc;
