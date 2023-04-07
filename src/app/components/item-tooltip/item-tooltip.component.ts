@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IGameItem } from '../../../interfaces';
-import { shopRegisterMultiplier } from '../../../stores/mercantile/mercantile.functions';
 import { getItemRarityClass, itemValue } from '../../helpers';
 import { ContentService } from '../../services/content.service';
 
@@ -45,8 +44,7 @@ export class ItemTooltipComponent implements OnInit {
   }
 
   realSellValue(item: IGameItem) {
-    const baseMultiplier = shopRegisterMultiplier(this.store.selectSnapshot(state => state.mercantile.shop.saleBonusLevel ?? 0), 3);
-    return itemValue(item, baseMultiplier) * (item.quantity ?? 1);
+    return itemValue(item, 1) * (item.quantity ?? 1);
   }
 
 }
