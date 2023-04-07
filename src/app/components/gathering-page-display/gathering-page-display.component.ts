@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
@@ -11,8 +11,7 @@ import { NotifyService } from '../../services/notify.service';
 @Component({
   selector: 'app-gathering-page-display',
   templateUrl: './gathering-page-display.component.html',
-  styleUrls: ['./gathering-page-display.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./gathering-page-display.component.scss']
 })
 export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
