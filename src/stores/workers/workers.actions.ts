@@ -35,3 +35,14 @@ export class UnassignMercantileWorker {
   constructor() {}
 }
 
+export class AssignFarmingWorker {
+  static type = '[Workers] Assign Farming';
+  constructor() {}
+}
+
+export class UnassignFarmingWorker {
+  static type = '[Workers] Unassign Farming';
+  constructor() {}
+}
+
+

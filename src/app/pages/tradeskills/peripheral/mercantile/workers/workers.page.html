@@ -54,7 +54,8 @@
                 <div class="header-with-button">
                   Worker Allocations
 
-                  <ion-button class="header-button" size="small" color="warning" fill="clear" (click)="unallocateAll(pageData.workerAllocations || { gathering: [], refining: [], mercantile: [] })">Unallocate All</ion-button>
+                  <ion-button class="header-button" size="small" color="warning" fill="clear"
+                              (click)="unallocateAll(pageData.workerAllocations || { gathering: [], refining: [], farming: [], mercantile: [] })">Unallocate All</ion-button>
                 </div>
               </ion-card-title>
             </ion-card-header>
@@ -90,18 +91,48 @@
                   None
                 </ion-item>
 
-                <ion-item *ngFor="let worker of pageData.workerAllocations?.refining">
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.refining; trackBy: trackBy">
                   <ion-label>
                     <h2>{{ workerName(worker.nameId) }}</h2>
                     <p>
                       Currently doing {{ worker.tradeskill }} and making {{ worker.recipe.result }}...
                       <span *ngIf="worker.currentTick < 0">cooling down...</span>
-                      <span *ngIf="worker.currentTick === 0">100%</span>
+                      <span *ngIf="worker.currentTick === 0">
+                        <span *ngIf="(worker.missingIngredients ?? []).length > 0; else done">
+                          missing {{ worker.missingIngredients?.join(', ') }}.
+                        </span>
+
+                        <ng-template #done>
+                          100%
+                        </ng-template>
+                      </span>
                       <span *ngIf="worker.currentTick > 0">{{ worker.currentTick / worker.recipe.craftTime * 100 | number:'1.0-0' }}%</span>
                     </p>
                   </ion-label>
 
                   <ion-button slot="end" color="primary" fill="clear" (click)="unallocateRefiningWorker(worker)" [analyticsClick]="'Refining:' + worker.tradeskill + ':RemoveWorker:' + worker.recipe.result">Unallocate</ion-button>
+                </ion-item>
+
+                <ion-list-header>
+                  <div class="header-with-button">
+                    Farming Workers
+
+                    <ion-button class="header-button" size="small" color="primary" fill="clear" (click)="unallocateFarmingWorker()" *ngIf="(pageData.workerAllocations?.farming || []).length > 0">Unallocate One</ion-button>
+                  </div>
+                </ion-list-header>
+
+                <ion-item *ngIf="(pageData.workerAllocations?.farming || []).length === 0">
+                  None
+                </ion-item>
+
+                <ion-item *ngFor="let worker of pageData.workerAllocations?.farming">
+                  <ion-label>
+                    <h2>{{ workerName(worker.nameId) }}</h2>
+                    <p>
+                      <span *ngIf="worker.currentTick === 0">Waiting for a plot to work on...</span>
+                      <span *ngIf="worker.currentTick > 0">Plotting some work in <app-countdown [duration]="worker.currentTick"></app-countdown>...</span>
+                    </p>
+                  </ion-label>
                 </ion-item>
 
                 <ion-list-header>

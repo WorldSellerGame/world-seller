@@ -126,10 +126,14 @@
                     allocated: ((mercantileWorkers$ | async)?.workerAllocations || []).length
                   } as workerData">
                     <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker()"
-                                [analyticsClick]="'Peripheral:Mercantile:AddWorker'">-</ion-button>
+                                [analyticsClick]="'Peripheral:Mercantile:AddWorker'">
+                      <ion-icon slot="icon-only" icon="remove"></ion-icon>
+                    </ion-button>
                     <div>{{ workerData.allocated | number }}/{{ maxWorkers() }}</div>
                     <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated >= maxWorkers() || !workerData.mercantileWorkers?.canAssignWorker" (click)="allocateWorker()"
-                                [analyticsClick]="'Peripheral:Mercantile:RemoveWorker'">+</ion-button>
+                                [analyticsClick]="'Peripheral:Mercantile:RemoveWorker'">
+                      <ion-icon slot="icon-only" icon="add"></ion-icon>
+                    </ion-button>
                   </ng-container>
                 </ion-col>
               </ion-row>

@@ -11,14 +11,18 @@ export class GainFarmingLevels {
 
 export class PlantSeedInFarm {
   static type = '[Farming] Plant Seed';
-  constructor(public plotIndex: number, public job: IGameResourceTransform) {}
+  constructor(public plotIndex: number, public job: IGameResourceTransform, public playSfx = true) {}
 }
 
 export class HarvestPlantFromFarm {
   static type = '[Farming] Harvest Plant';
-  constructor(public plotIndex: number) {}
+  constructor(public plotIndex: number, public playSfx = true) {}
 }
 
 export class BuyNewPlot {
   static type = '[Farming] Buy New Plot';
+}
+
+export class UpgradeWorkerSpeed {
+  static type = '[Farming] Upgrade Worker Speed';
 }

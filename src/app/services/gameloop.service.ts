@@ -83,7 +83,7 @@ export class GameloopService {
           .map((x: IGameRefiningRecipe) => x.currentDuration + ((x.totalLeft - 1) * x.durationPer))))
         .flat();
 
-      const farming = state.farming.plots.map((plot: IGameFarmingPlot) => plot.currentDuration);
+      const farming = state.farming.plots.filter(Boolean).map((plot: IGameFarmingPlot) => plot.currentDuration ?? 0);
 
       return Math.max(...gathering, ...refining, ...farming);
     }).subscribe(value => {

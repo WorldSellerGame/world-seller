@@ -30,4 +30,9 @@ export class FarmingState {
     return { maxPlots: state.maxPlots, plots: state.plots };
   }
 
+  @Selector()
+  static upgrades(state: IGameFarming) {
+    return { workerUpgradeLevel: state.workerUpgradeLevel || 0 };
+  }
+
 }

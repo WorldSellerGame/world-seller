@@ -8,9 +8,79 @@
   <ng-container *ngIf="{
     level: level$ | async,
     plotInfo: plotInfo$ | async,
-    coins: coins$ | async
+    coins: coins$ | async,
+    upgrades: upgrades$ | async,
+    farmingWorkers: farmingWorkers$ | async
   } as pageData">
     <ion-grid>
+      <ion-row>
+        <ion-col>
+
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div class="upgrade-label">Plots +{{ (pageData.plotInfo?.maxPlots || 0) - 2 }}</div>
+                    <ion-button expand="block"
+                                (click)="buyNewPlot()"
+                                [disabled]="(pageData.coins || 0) < nextPlotCost((pageData.plotInfo?.maxPlots || 2) - 1) || (pageData.plotInfo?.maxPlots || 0) >= maxPlots()"
+                                [analyticsClick]="'Peripheral:Farming:Upgrade:Plots'"
+                                fill="outline">
+                      <span *ngIf="(pageData.plotInfo?.maxPlots || 0) >= maxPlots()">Plots are max level</span>
+                      <span *ngIf="(pageData.plotInfo?.maxPlots || 0) < maxPlots()">
+                        Expand Plots ({{ nextPlotCost((pageData.plotInfo?.maxPlots || 2) - 1) | number }} Coins)
+                      </span>
+                    </ion-button>
+                  </ion-col>
+
+                  <ng-container *ngIf="pageData.farmingWorkers?.hasWorkers; else blankColumns">
+                    <ion-col>
+                      <div class="upgrade-label">Worker Speed +{{ pageData.upgrades?.workerUpgradeLevel || 0 }}</div>
+                      <ion-button expand="block"
+                                  (click)="upgradeWorkerSpeed()"
+                                  [disabled]="!canUpgradeWorkerSpeed(pageData.coins || 0, pageData.upgrades?.workerUpgradeLevel || 0)"
+                                  [analyticsClick]="'Peripheral:Farming:Upgrade:WorkerSpeed'"
+                                  fill="outline">
+                        <span *ngIf="isWorkerSpeedMaxLevel(pageData.upgrades?.workerUpgradeLevel || 0)">Speed is max level</span>
+                        <span *ngIf="!isWorkerSpeedMaxLevel(pageData.upgrades?.workerUpgradeLevel || 0)">
+                          +10% Worker Speed ({{ workerSpeedUpgradeCost(pageData.upgrades?.workerUpgradeLevel || 0) | number }} coins)
+                        </span>
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col>
+                      <div class="upgrade-label">Farm Workers</div>
+                      <div class="button-row" *ngIf="{
+                        farmingWorkers: farmingWorkers$ | async,
+                        allocated: ((farmingWorkers$ | async)?.workerAllocations || []).length
+                      } as workerData">
+                        <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated <= 0" (click)="unallocateWorker()"
+                                    [analyticsClick]="'Peripheral:Farming:AddWorker'">
+                                    <ion-icon slot="icon-only" icon="remove"></ion-icon>
+                        </ion-button>
+
+                        <div>{{ workerData.allocated | number }}/{{ maxWorkers() }}</div>
+
+                        <ion-button fill="clear" color="secondary" [disabled]="workerData.allocated >= maxWorkers() || !workerData.farmingWorkers?.canAssignWorker" (click)="allocateWorker()"
+                                    [analyticsClick]="'Peripheral:Farming:RemoveWorker'">
+                          <ion-icon slot="icon-only" icon="add"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </ion-col>
+                  </ng-container>
+
+                  <ng-template #blankColumns>
+                    <ion-col></ion-col>
+                    <ion-col></ion-col>
+                  </ng-template>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col>
           <ion-card>

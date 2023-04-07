@@ -40,6 +40,17 @@
 }
 
 .constrain-size {
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
+}
+
+.upgrade-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
