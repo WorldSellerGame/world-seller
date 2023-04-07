@@ -1,13 +1,16 @@
 import { IAttachment } from '../../interfaces/store';
 import { DeleteCharacter } from '../charselect/charselect.actions';
 import {
+  AssignFarmingWorker,
   AssignGatheringWorker, AssignMercantileWorker, AssignRefiningWorker,
   BuyWorker,
+  UnassignFarmingWorker,
   UnassignGatheringWorker, UnassignMercantileWorker, UnassignRefiningWorker
 } from './workers.actions';
 import {
+  assignFarmingWorker,
   assignGatheringWorker, assignMercantileWorker, assignRefiningWorker,
-  buyWorker, resetWorkers, unassignGatheringWorker, unassignMercantileWorker, unassignRefiningWorker
+  buyWorker, resetWorkers, unassignFarmingWorker, unassignGatheringWorker, unassignMercantileWorker, unassignRefiningWorker
 } from './workers.functions';
 
 
@@ -19,5 +22,7 @@ export const attachments: IAttachment[] = [
   { action: AssignRefiningWorker, handler: assignRefiningWorker },
   { action: UnassignRefiningWorker, handler: unassignRefiningWorker },
   { action: AssignMercantileWorker, handler: assignMercantileWorker },
-  { action: UnassignMercantileWorker, handler: unassignMercantileWorker }
+  { action: UnassignMercantileWorker, handler: unassignMercantileWorker },
+  { action: AssignFarmingWorker, handler: assignFarmingWorker },
+  { action: UnassignFarmingWorker, handler: unassignFarmingWorker }
 ];

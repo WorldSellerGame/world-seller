@@ -6,8 +6,11 @@ import { patch } from '@ngxs/store/operators';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
+import { ContentService } from '../../app/services/content.service';
 import { IGameItem, IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
+import { HarvestPlantFromFarm, PlantSeedInFarm } from '../farming/farming.actions';
+import { workerSpeed, workerSpeedReduction } from '../farming/farming.functions';
 import { AnalyticsTrack, TickTimer } from '../game/game.actions';
 import { RemoveFromStockpile, SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
@@ -23,7 +26,7 @@ import {
 @Injectable()
 export class WorkersState {
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private contentService: ContentService) {
     attachments.forEach(({ action, handler }) => {
       attachAction(WorkersState, action, handler);
     });
@@ -48,6 +51,15 @@ export class WorkersState {
   }
 
   @Selector()
+  static farmingWorkers(state: IGameWorkers) {
+    return {
+      workerAllocations: state.farmingWorkerAllocations,
+      hasWorkers: state.maxWorkers > 0,
+      canAssignWorker: canAssignWorker(state)
+    };
+  }
+
+  @Selector()
   static mercantileWorkers(state: IGameWorkers) {
     return {
       workerAllocations: state.mercantileWorkerAllocations,
@@ -61,7 +73,8 @@ export class WorkersState {
     return {
       gathering: state.gatheringWorkerAllocations,
       refining: state.refiningWorkerAllocations,
-      mercantile: state.mercantileWorkerAllocations
+      mercantile: state.mercantileWorkerAllocations,
+      farming: state.farmingWorkerAllocations
     };
   }
 
@@ -249,6 +262,67 @@ export class WorkersState {
       ]);
     });
 
+    // handle farming changes
+    const farmingLevel = store.farming.level ?? 0;
+    const activePlayer = store.charselect.characters[store.charselect.currentCharacter];
+    const validSeeds = this.contentService.getFarmingTransforms()
+      .filter(x => farmingLevel >= x.level.min)
+      .map(i => i.startingItem)
+      .filter(s => activePlayer.resources[s] > 0);
+
+    const farmerCooldown = Math.floor(workerSpeed() - (workerSpeed() * workerSpeedReduction(store.farming.workerUpgradeLevel ?? 0)));
+    const farmingWorkerUpdates = state.farmingWorkerAllocations.map(alloc => {
+
+      if(alloc.currentTick === -1) {
+        alloc.currentTick = farmerCooldown;
+      }
+
+      if(alloc.currentTick > 0) {
+        alloc.currentTick = Math.max(alloc.currentTick - ticks, 0);
+
+        // time to do something
+        if(alloc.currentTick === 0) {
+
+          const farmState = Array(8)
+            .fill(null)
+            .map((x, i) => !store.farming.plots[i] || store.farming.plots[i].currentDuration === 0 ? i : -1)
+            .filter(x => x >= 0);
+
+          // if there's nothing to do, wait until there is
+          if(farmState.length === 0) {
+            return alloc;
+          }
+
+          alloc.currentTick = farmerCooldown;
+
+          const chosenPlot = sample(farmState) as number;
+          const plot = store.farming.plots[chosenPlot];
+
+          // plant something
+          if(!plot) {
+            const seed = sample(validSeeds);
+            if(!seed) {
+              return alloc;
+            }
+
+            const transform = this.contentService.getFarmingTransforms().find(x => x.startingItem === seed);
+            if(!transform) {
+              return alloc;
+            }
+
+            ctx.dispatch(new PlantSeedInFarm(chosenPlot, transform, false));
+            return alloc;
+          }
+
+          // harvest something
+          ctx.dispatch(new HarvestPlantFromFarm(chosenPlot, false));
+        }
+
+      }
+
+      return alloc;
+    });
+
     // handle mercantile changes
     const allShopItems = store.mercantile.stockpile.items;
     const sellableItems = allShopItems.filter((item: IGameItem) => !requiredItemsToNotSellForOtherWorkers[item.name]);
@@ -285,6 +359,7 @@ export class WorkersState {
     ctx.setState(patch<IGameWorkers>({
       gatheringWorkerAllocations: gatheringWorkerUpdates,
       refiningWorkerAllocations: refiningWorkerUpdates,
+      farmingWorkerAllocations: farmingWorkerUpdates,
       mercantileWorkerAllocations: mercantileWorkerUpdates,
       upkeepTicks: (state.upkeepTicks ?? upkeepTicks()) - ticks
     }));

@@ -12,4 +12,5 @@ export interface IGameFarming {
   level: number;
   plots: IGameFarmingPlot[];
   maxPlots: number;
+  workerUpgradeLevel: number;
 }

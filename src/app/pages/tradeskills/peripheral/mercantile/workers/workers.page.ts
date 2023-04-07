@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
+import { IGameWorkerFarming, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
 import { AnalyticsTrack } from '../../../../../../stores/game/game.actions';
 import {
-  BuyWorker, UnassignGatheringWorker,
+  BuyWorker, UnassignFarmingWorker, UnassignGatheringWorker,
   UnassignMercantileWorker, UnassignRefiningWorker
 } from '../../../../../../stores/workers/workers.actions';
 import { nextWorkerCost, upkeepCost } from '../../../../../../stores/workers/workers.functions';
@@ -26,6 +26,7 @@ export class WorkersPage implements OnInit {
     gathering: IGameWorkersGathering[];
     refining: IGameWorkersRefining[];
     mercantile: IGameWorkersMercantle[];
+    farming: IGameWorkerFarming[];
   }>;
 
   constructor(private store: Store, private contentService: ContentService) { }
@@ -61,9 +62,11 @@ export class WorkersPage implements OnInit {
     gathering: IGameWorkersGathering[];
     refining: IGameWorkersRefining[];
     mercantile: IGameWorkersMercantle[];
+    farming: IGameWorkerFarming[];
   }) {
     allocations.gathering.forEach(worker => this.unallocateGatheringWorker(worker));
     allocations.refining.forEach(worker => this.unallocateRefiningWorker(worker));
+    allocations.farming.forEach(() => this.unallocateFarmingWorker());
     allocations.mercantile.forEach(() => this.unallocateMercantileWorker());
   }
 
@@ -79,6 +82,10 @@ export class WorkersPage implements OnInit {
       new AnalyticsTrack(`Refining:${worker.tradeskill}:RemoveWorker:${worker.recipe.result}`, 1),
       new UnassignRefiningWorker(worker.tradeskill, worker.recipe)
     ]);
+  }
+
+  unallocateFarmingWorker() {
+    this.store.dispatch(new UnassignFarmingWorker());
   }
 
   unallocateMercantileWorker() {

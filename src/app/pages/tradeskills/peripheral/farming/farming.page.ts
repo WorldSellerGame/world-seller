@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
-import { IGameFarmingPlot, IGameResourceTransform } from '../../../../../interfaces';
-import { CharSelectState, FarmingState } from '../../../../../stores';
-import { BuyNewPlot, HarvestPlantFromFarm, PlantSeedInFarm } from '../../../../../stores/farming/farming.actions';
-import { maxPlots, nextPlotCost } from '../../../../../stores/farming/farming.functions';
+import { IGameFarmingPlot, IGameResourceTransform, IGameWorkerFarming } from '../../../../../interfaces';
+import { CharSelectState, FarmingState, WorkersState } from '../../../../../stores';
+import { BuyNewPlot, HarvestPlantFromFarm, PlantSeedInFarm, UpgradeWorkerSpeed } from '../../../../../stores/farming/farming.actions';
+import {
+  maxFarmingWorkers, maxPlots, maxWorkerSpeedLevel,
+  nextPlotCost, workerSpeedUpgradeCost
+} from '../../../../../stores/farming/farming.functions';
+import { AssignFarmingWorker, UnassignFarmingWorker } from '../../../../../stores/workers/workers.actions';
 import { setDiscordStatus } from '../../../../helpers/electron';
 import { ContentService } from '../../../../services/content.service';
-import { ItemCreatorService } from '../../../../services/item-creator.service';
 import { NotifyService } from '../../../../services/notify.service';
 
 @Component({
@@ -24,11 +27,16 @@ export class FarmingPage implements OnInit {
 
   @Select(FarmingState.level) level$!: Observable<number>;
   @Select(FarmingState.plotInfo) plotInfo$!: Observable<{ plots: IGameFarmingPlot[]; maxPlots: number }>;
+  @Select(FarmingState.upgrades) upgrades$!: Observable<{ workerUpgradeLevel: number }>;
   @Select(CharSelectState.activeCharacterCoins) coins$!: Observable<number>;
+  @Select(WorkersState.farmingWorkers) farmingWorkers$!: Observable<{
+    workerAllocations: IGameWorkerFarming[];
+    canAssignWorker: boolean;
+    hasWorkers: boolean;
+  }>;
 
   constructor(
     private store: Store,
-    private itemCreatorService: ItemCreatorService,
     private notifyService: NotifyService,
     private contentService: ContentService
   ) { }
@@ -51,6 +59,10 @@ export class FarmingPage implements OnInit {
     return Array(maxPlotCount).fill(null).map((x, i) => allPlots[i] || { seed: undefined });
   }
 
+  public minLevelForSeed(seedName: string): number {
+    return this.locationData.find((x: IGameResourceTransform) => x.startingItem === seedName)?.level.min ?? 0;
+  }
+
   public maxLevelForSeed(seedName: string): number {
     return this.locationData.find((x: IGameResourceTransform) => x.startingItem === seedName)?.level.max ?? 0;
   }
@@ -64,6 +76,7 @@ export class FarmingPage implements OnInit {
     this.plantableSeeds = Object.keys(resources)
       .filter(res => locationValidItems.includes(res))
       .filter(res => resources[res] > 0)
+      .filter(res => this.minLevelForSeed(res) <= currentLevel)
       .map(res => ({
         name: res,
         quantity: resources[res],
@@ -113,6 +126,39 @@ export class FarmingPage implements OnInit {
 
   private getSeedTransform(seed: string): IGameResourceTransform | undefined {
     return this.locationData.find((t: IGameResourceTransform) => t.startingItem === seed);
+  }
+
+  maxWorkers() {
+    return maxFarmingWorkers();
+  }
+
+  allocateWorker() {
+    this.store.dispatch(new AssignFarmingWorker());
+  }
+
+  unallocateWorker() {
+    this.store.dispatch(new UnassignFarmingWorker());
+  }
+
+  // worker speed functions
+  canUpgradeWorkerSpeed(currentCoins: number, currentLevel: number): boolean {
+    if(this.isWorkerSpeedMaxLevel(currentLevel)) {
+      return false;
+    }
+
+    return currentCoins >= this.workerSpeedUpgradeCost(currentLevel);
+  }
+
+  isWorkerSpeedMaxLevel(currentLevel: number): boolean {
+    return currentLevel >= maxWorkerSpeedLevel();
+  }
+
+  workerSpeedUpgradeCost(currentLevel: number) {
+    return workerSpeedUpgradeCost(currentLevel);
+  }
+
+  upgradeWorkerSpeed() {
+    this.store.dispatch(new UpgradeWorkerSpeed());
   }
 
 }

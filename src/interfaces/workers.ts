@@ -25,6 +25,11 @@ export interface IGameWorkersMercantle {
   lastSoldItemValue?: number;
 }
 
+export interface IGameWorkerFarming {
+  nameId: number;
+  currentTick: number;
+}
+
 export interface IGameWorkers {
   version: number;
   maxWorkers: number;
@@ -32,6 +37,7 @@ export interface IGameWorkers {
   gatheringWorkerAllocations: IGameWorkersGathering[];
   refiningWorkerAllocations: IGameWorkersRefining[];
   mercantileWorkerAllocations: IGameWorkersMercantle[];
+  farmingWorkerAllocations: IGameWorkerFarming[];
   upkeepTicks: number;
   upkeepPaid: boolean;
 }

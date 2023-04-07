@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { append, insertItem, patch, removeItem } from '@ngxs/store/operators';
 import {
-  AchievementStat, IGameWorkers, IGameWorkersGathering,
+  AchievementStat, IGameWorkerFarming, IGameWorkers, IGameWorkersGathering,
   IGameWorkersMercantle, IGameWorkersRefining, Rarity
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
@@ -16,6 +16,7 @@ export const defaultWorkers: () => IGameWorkers = () => ({
   gatheringWorkerAllocations: [],
   refiningWorkerAllocations: [],
   mercantileWorkerAllocations: [],
+  farmingWorkerAllocations: [],
   upkeepPaid: true,
   upkeepTicks: 3600
 });
@@ -43,7 +44,8 @@ export function upkeepTicks() {
 export function totalAllocatedWorkers(state: IGameWorkers): number {
   return state.gatheringWorkerAllocations.length
        + state.refiningWorkerAllocations.length
-       + state.mercantileWorkerAllocations.length;
+       + state.mercantileWorkerAllocations.length
+       + state.farmingWorkerAllocations.length;
 }
 
 export function canAssignWorker(state: IGameWorkers) {
@@ -202,5 +204,38 @@ export function unassignMercantileWorker(ctx: StateContext<IGameWorkers>) {
   ctx.setState(patch<IGameWorkers>({
     nextWorkerNameIds: insertItem<number>(mostRecentWorker.nameId, 0),
     mercantileWorkerAllocations: removeItem<IGameWorkersMercantle>(mostRecentIndex)
+  }));
+}
+
+export function assignFarmingWorker(ctx: StateContext<IGameWorkers>) {
+
+  if(!canAssignWorker(ctx.getState())) {
+    return;
+  }
+
+  const newWorker: IGameWorkerFarming = {
+    nameId: nextWorkerNameId(ctx.getState()),
+    currentTick: -1
+  };
+
+  ctx.setState(patch<IGameWorkers>({
+    nextWorkerNameIds: removeItem<number>(0),
+    farmingWorkerAllocations: append<IGameWorkerFarming>([newWorker])
+  }));
+}
+
+export function unassignFarmingWorker(ctx: StateContext<IGameWorkers>) {
+  const workers = ctx.getState().farmingWorkerAllocations;
+  const mostRecentWorker = workers.reverse()[0];
+
+  if(!mostRecentWorker) {
+    return;
+  }
+
+  const mostRecentIndex = workers.indexOf(mostRecentWorker);
+
+  ctx.setState(patch<IGameWorkers>({
+    nextWorkerNameIds: insertItem<number>(mostRecentWorker.nameId, 0),
+    farmingWorkerAllocations: removeItem<IGameWorkerFarming>(mostRecentIndex)
   }));
 }
