@@ -115,16 +115,28 @@
                   You don't have any items of this type in your inventory.
                 </div>
 
-                <ion-list *ngIf="equippableItems.length > 0" class="constrain-size striped">
-                  <ion-item *ngFor="let item of equippableItems">
-                    <app-game-icon slot="start" [icon]="item.icon"></app-game-icon>
-                    <ion-label class="ion-text-wrap">
-                      <h2 [ngClass]="[getItemRarity(item)]">{{ item.name }}</h2>
-                      <p><app-stat-line [item]="item" [withRespectTo]="character.equipment[currentEquipSlot]"></app-stat-line></p>
-                    </ion-label>
-                    <ion-button slot="end" fill="clear" (click)="equip(item)">Equip</ion-button>
-                  </ion-item>
-                </ion-list>
+                <div *ngIf="equippableItems.length > 0" class="constrain-size striped">
+                  <ion-row>
+                    <ion-col [sizeMd]="4" *ngFor="let item of equippableItems">
+                      <ion-card class="equip-card card-on-same-bg-color">
+                        <ion-card-header>
+                          <ion-card-title>
+                            <h2 [ngClass]="[getItemRarity(item)]">
+                              <app-game-icon [icon]="item.icon" [inlineIconSize]="true"></app-game-icon>
+                              <span class="name">{{ item.name }}</span>
+                            </h2>
+                          </ion-card-title>
+                        </ion-card-header>
+
+                        <ion-card-content>
+                          <p><app-stat-line [item]="item" [withRespectTo]="character.equipment[currentEquipSlot]"></app-stat-line></p>
+                        </ion-card-content>
+
+                        <ion-button fill="clear" (click)="equip(item)">Equip</ion-button>
+                      </ion-card>
+                    </ion-col>
+                  </ion-row>
+                </div>
               </ng-template>
             </ion-card-content>
 

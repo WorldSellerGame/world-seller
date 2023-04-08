@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
+import { sortBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { IGameItem, IPlayerCharacter, ItemType } from '../../../../interfaces';
 import { CharSelectState, CombatState } from '../../../../stores';
@@ -53,7 +54,7 @@ export class EquipmentPage implements OnInit {
     this.currentEquipSlot = slot;
 
     const items = this.store.selectSnapshot(CharSelectState.activeCharacterInventory) || [];
-    this.equippableItems = items.filter(item => item.type === slot);
+    this.equippableItems = sortBy(items.filter(item => item.type === slot), 'name');
   }
 
   unloadEquipment() {
