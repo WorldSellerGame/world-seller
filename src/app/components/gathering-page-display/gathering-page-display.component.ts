@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../../../interfaces';
-import { CharSelectState } from '../../../stores';
+import { CharSelectState, FishingState, ForagingState, HuntingState, LoggingState, MiningState } from '../../../stores';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
 import { calculateStat } from '../../helpers';
 import { NotifyService } from '../../services/notify.service';
@@ -43,6 +43,12 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   private starSub!: Subscription;
 
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
+
+  @Select(FishingState.currentLocation) currentFishingLocation$!: Observable<any>;
+  @Select(ForagingState.currentLocation) currentForagingLocation$!: Observable<any>;
+  @Select(HuntingState.currentLocation) currentHuntingLocation$!: Observable<any>;
+  @Select(LoggingState.currentLocation) currentLoggingLocation$!: Observable<any>;
+  @Select(MiningState.currentLocation) currentMiningLocation$!: Observable<any>;
 
   constructor(
     private store: Store,

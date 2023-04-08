@@ -17,9 +17,41 @@
 
           <ng-template #noGathering>
             <ion-card-content class="thin-status-card">
-              <div>
-                You're not currently doing anything.
-              </div>
+              <ng-container *ngIf="{
+                currentFishingLocation: currentFishingLocation$ | async,
+                currentForagingLocation: currentForagingLocation$ | async,
+                currentHuntingLocation: currentHuntingLocation$ | async,
+                currentLoggingLocation: currentLoggingLocation$ | async,
+                currentMiningLocation: currentMiningLocation$ | async
+              } as gatheringLocations">
+                <div *ngIf="gatheringLocations.currentFishingLocation">
+                  Fishing at {{ gatheringLocations.currentFishingLocation.location.name }} for another <strong><app-countdown [duration]="gatheringLocations.currentFishingLocation.duration"></app-countdown></strong>.
+                </div>
+
+                <div *ngIf="gatheringLocations.currentForagingLocation">
+                  Foraging at {{ gatheringLocations.currentForagingLocation.location.name }} for another <strong><app-countdown [duration]="gatheringLocations.currentForagingLocation.duration"></app-countdown></strong>.
+                </div>
+
+                <div *ngIf="gatheringLocations.currentHuntingLocation">
+                  Hunting at {{ gatheringLocations.currentHuntingLocation.location.name }} for another <strong><app-countdown [duration]="gatheringLocations.currentHuntingLocation.duration"></app-countdown></strong>.
+                </div>
+
+                <div *ngIf="gatheringLocations.currentLoggingLocation">
+                  Logging at {{ gatheringLocations.currentLoggingLocation.location.name }} for another <strong><app-countdown [duration]="gatheringLocations.currentLoggingLocation.duration"></app-countdown></strong>.
+                </div>
+
+                <div *ngIf="gatheringLocations.currentMiningLocation">
+                  Mining at {{ gatheringLocations.currentMiningLocation.location.name }} for another <strong><app-countdown [duration]="gatheringLocations.currentMiningLocation.duration"></app-countdown></strong>.
+                </div>
+
+                <div *ngIf="!gatheringLocations.currentFishingLocation
+                         && !gatheringLocations.currentForagingLocation
+                         && !gatheringLocations.currentHuntingLocation
+                         && !gatheringLocations.currentLoggingLocation
+                         && !gatheringLocations.currentMiningLocation">
+                  You're not currently doing anything.
+                </div>
+              </ng-container>
             </ion-card-content>
           </ng-template>
         </ion-card>
