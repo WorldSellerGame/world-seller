@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameWorkerFarming, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining, Tradeskill } from '../../../../../../interfaces';
+import {
+  IGameWorkerFarming, IGameWorkersGathering,
+  IGameWorkersMercantle, IGameWorkersRefining, Tradeskill
+} from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
 import { AnalyticsTrack } from '../../../../../../stores/game/game.actions';
 import {
