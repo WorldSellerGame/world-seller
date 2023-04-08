@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
+import { AchievementStat, GatheringTradeskill, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
 import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -56,7 +56,7 @@ export class LoggingState {
     const cdrPercent = calculateStat(equipment, Stat.AxeSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, 'logging', ticks, cdrValue, reducedValue, CancelLogging, AchievementStat.GatherLogging);
+    decreaseGatherTimer(ctx, GatheringTradeskill.Logging, ticks, cdrValue, reducedValue, CancelLogging, AchievementStat.GatherLogging);
   }
 
   @Action(SetLoggingLocation)
@@ -66,7 +66,7 @@ export class LoggingState {
     const gdrPercent = calculateStat(equipment, Stat.AxePowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'logging');
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, GatheringTradeskill.Logging);
     ctx.dispatch(new DecreaseDurability(ItemType.Axe));
   };
 

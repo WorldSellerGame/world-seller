@@ -176,7 +176,7 @@ export class MercantileState {
   }
 
   @Action(WorkerCreateItem)
-  async gainItemFromWorker(ctx: StateContext<IGameMercantile>, { itemName, quantity }: WorkerCreateItem) {
+  async gainItemFromWorker(ctx: StateContext<IGameMercantile>, { itemName, quantity, shouldNotify }: WorkerCreateItem) {
 
     if(itemName === 'nothing') {
       return;
@@ -185,7 +185,7 @@ export class MercantileState {
     // if it's a resource, gain that
     const isResource = this.itemCreatorService.isResource(itemName);
     if(isResource) {
-      ctx.dispatch(new GainResources({ [itemName]: quantity }));
+      ctx.dispatch(new GainResources({ [itemName]: quantity }, shouldNotify));
       return;
     }
 
@@ -196,9 +196,9 @@ export class MercantileState {
     }
 
     ctx.dispatch([
-      new NotifyInfo(`Workers made ${itemName} x${quantity} and put it in your stockpile!`),
+      shouldNotify ? new NotifyInfo(`Workers made ${itemName} x${quantity} and put it in your stockpile!`) : undefined,
       new SendToStockpile(createdItem)
-    ]);
+    ].filter(Boolean));
   }
 
 }

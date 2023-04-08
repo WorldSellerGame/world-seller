@@ -75,6 +75,12 @@
   }
 }
 
+.crafting-queue-container {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+}
+
 .crafting-queue {
   display: flex;
   flex-direction: row;

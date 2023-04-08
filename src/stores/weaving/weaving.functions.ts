@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { AchievementStat, IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining, RefiningTradeskill } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelWeavingJob, ChangeWeavingFilterOption, GainWeavingLevels, StarWeavingRecipe, StartWeavingJob } from './weaving.actions';
 
@@ -32,7 +32,7 @@ export function resetWeaving(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, 'weaving', ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
+  decreaseRefineTimer(ctx, RefiningTradeskill.Weaving, ticks, CancelWeavingJob, AchievementStat.RefineWeaving);
 }
 
 export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelWeavingJob) {
@@ -40,7 +40,7 @@ export function cancelWeavingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startWeavingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartWeavingJob) {
-  startRefineJob(ctx, job, quantity, 'weaving', items);
+  startRefineJob(ctx, job, quantity, RefiningTradeskill.Weaving, items);
 };
 
 export function changeWeavingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeWeavingFilterOption) {

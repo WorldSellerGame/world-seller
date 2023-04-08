@@ -3,10 +3,10 @@ import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { pickNameWithWeights } from '../../app/helpers';
-import { AchievementStat, IGameProspecting } from '../../interfaces';
+import { AchievementStat, IGameProspecting, TransformTradeskill } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
-import { PlaySFX, TickTimer } from '../game/game.actions';
+import { NotifyTradeskill, PlaySFX, TickTimer } from '../game/game.actions';
 import { GainProspectingLevels, ProspectRock } from './prospecting.actions';
 
 export const defaultProspecting: () => IGameProspecting = () => ({
@@ -37,13 +37,17 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
   ctx.dispatch(new GainResources({ [prospect.startingItem]: -quantity }));
 
   const choice = pickNameWithWeights(prospect.becomes);
+  const gainedAmt = random(prospect.perGather.min, prospect.perGather.max);
+
   ctx.dispatch([
-    new GainItemOrResource(choice, random(prospect.perGather.min, prospect.perGather.max)),
+    new NotifyTradeskill(TransformTradeskill.Prospecting, choice === 'nothing' ? 'Failed!' : `+${gainedAmt}x ${choice}`),
+    new GainItemOrResource(choice, gainedAmt, false),
     new IncrementStat(AchievementStat.ProspectingProspects)
   ]);
 
   if(choice !== 'nothing' && prospect.level.max > state.level) {
     ctx.dispatch(new PlaySFX('tradeskill-start-prospecting'));
+
     ctx.setState(patch<IGameProspecting>({
       level: state.level + 1
     }));

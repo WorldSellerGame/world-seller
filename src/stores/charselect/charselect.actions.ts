@@ -32,12 +32,12 @@ export class GainResources {
 
 export class GainItemOrResource {
   static type = '[CharSelect] Gain Item Or Resource';
-  constructor(public itemName: string, public quantity = 1) {}
+  constructor(public itemName: string, public quantity = 1, public shouldNotify = true) {}
 }
 
 export class WorkerCreateItem {
   static type = '[CharSelect] Worker Create Item';
-  constructor(public itemName: string, public quantity = 1) {}
+  constructor(public itemName: string, public quantity = 1, public shouldNotify = true) {}
 }
 
 export class SyncTotalLevel {

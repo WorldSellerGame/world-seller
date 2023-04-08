@@ -7,7 +7,7 @@ import { AnalyticsService } from '../../app/services/analytics.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import { IGame } from '../../interfaces';
-import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, PlaySFX } from './game.actions';
+import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyTradeskill, NotifyWarning, PlaySFX } from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 
@@ -42,6 +42,11 @@ export class GameState {
   @Action(NotifySuccess)
   notifySuccess(ctx: StateContext<IGame>, { message }: NotifySuccess) {
     this.notify.success(message);
+  }
+
+  @Action(NotifyTradeskill)
+  notifyTradeskill(ctx: StateContext<IGame>, { tradeskill, message }: NotifyTradeskill) {
+    this.notify.tradeskill(tradeskill, message);
   }
 
   @Action(AnalyticsTrack)

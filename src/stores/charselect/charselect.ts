@@ -318,10 +318,10 @@ export class CharSelectState {
   }
 
   @Action(GainItemOrResource)
-  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
+  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity, shouldNotify }: GainItemOrResource) {
 
     if(itemName === 'nothing') {
-      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
+      // ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
@@ -335,23 +335,23 @@ export class CharSelectState {
     // if it's a resource, gain that
     const isResource = this.itemCreatorService.isResource(itemName);
     if(isResource) {
-      ctx.dispatch(new GainResources({ [itemName]: quantity }));
+      ctx.dispatch(new GainResources({ [itemName]: quantity }, shouldNotify));
       return;
     }
 
     // otherwise, try to gain an item
     const createdItem = this.itemCreatorService.createItem(itemName, quantity);
     if(!createdItem) {
-      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
+      // ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
     // discover the thing if it's an item (resources are handled elsewhere)
     ctx.dispatch([
-      new NotifyInfo(`Gained ${itemName} x${quantity}!`),
+      shouldNotify ? new NotifyInfo(`Gained ${itemName} x${quantity}!`) : undefined,
       new DiscoverResourceOrItem(itemName),
       new IncrementStat(AchievementStat.ItemsGained, quantity)
-    ]);
+    ].filter(Boolean));
 
     const existingItem = activeCharacter.inventory.find(item => item.name === itemName);
 

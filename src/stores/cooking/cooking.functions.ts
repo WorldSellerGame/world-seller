@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { AchievementStat, IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining, RefiningTradeskill } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelCookingJob, ChangeCookingFilterOption, GainCookingLevels, StarCookingRecipe, StartCookingJob } from './cooking.actions';
 
@@ -32,7 +32,7 @@ export function resetCooking(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, 'cooking', ticks, CancelCookingJob, AchievementStat.RefineCooking);
+  decreaseRefineTimer(ctx, RefiningTradeskill.Cooking, ticks, CancelCookingJob, AchievementStat.RefineCooking);
 }
 
 export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelCookingJob) {
@@ -40,7 +40,7 @@ export function cancelCookingJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startCookingJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartCookingJob) {
-  startRefineJob(ctx, job, quantity, 'cooking', items);
+  startRefineJob(ctx, job, quantity, RefiningTradeskill.Cooking, items);
 };
 
 export function changeCookingOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeCookingFilterOption) {

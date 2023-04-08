@@ -162,9 +162,18 @@
 
                     <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <p>
-                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-                      </p>
+                      <div class="notify-area" *ngIf="{
+                        timer: p.timer | async,
+                        notify: p.notify | async
+                      } as displayData">
+                        <p *ngIf="displayData.notify?.message">
+                          <span>{{ displayData.notify?.message }}</span>
+                        </p>
+
+                        <p *ngIf="!displayData.notify?.message && p.timer">
+                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
+                        </p>
+                      </div>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>
@@ -200,9 +209,18 @@
 
                     <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <p>
-                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-                      </p>
+                      <div class="notify-area" *ngIf="{
+                        timer: p.timer | async,
+                        notify: p.notify | async
+                      } as displayData">
+                        <p *ngIf="displayData.notify?.message">
+                          <span>{{ displayData.notify?.message }}</span>
+                        </p>
+
+                        <p *ngIf="!displayData.notify?.message && p.timer">
+                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
+                        </p>
+                      </div>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>
@@ -238,9 +256,18 @@
 
                     <ion-label *ngIf="tsData.isUnlocked">
                       <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <p>
-                        <app-countdown *ngIf="p.timer" [duration]="(p.timer | async) || 0"></app-countdown>
-                      </p>
+                      <div class="notify-area" *ngIf="{
+                        timer: p.timer | async,
+                        notify: p.notify | async
+                      } as displayData">
+                        <p *ngIf="displayData.notify?.message">
+                          <span>{{ displayData.notify?.message }}</span>
+                        </p>
+
+                        <p *ngIf="!displayData.notify?.message && p.timer">
+                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
+                        </p>
+                      </div>
                     </ion-label>
                   </ion-item>
                 </ion-menu-toggle>

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
+import { AchievementStat, GatheringTradeskill, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
 import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -56,7 +56,7 @@ export class HuntingState {
     const cdrPercent = calculateStat(equipment, Stat.HuntingSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, 'hunting', ticks, cdrValue, reducedValue, CancelHunting, AchievementStat.GatherHunting);
+    decreaseGatherTimer(ctx, GatheringTradeskill.Hunting, ticks, cdrValue, reducedValue, CancelHunting, AchievementStat.GatherHunting);
   }
 
   @Action(SetHuntingLocation)
@@ -66,7 +66,7 @@ export class HuntingState {
     const gdrPercent = calculateStat(equipment, Stat.HuntingPowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'hunting');
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, GatheringTradeskill.Hunting);
     ctx.dispatch(new DecreaseDurability(ItemType.HuntingTool));
   };
 

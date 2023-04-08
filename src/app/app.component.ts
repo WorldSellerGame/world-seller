@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
-import { Observable, of } from 'rxjs';
+import { Observable, filter, of } from 'rxjs';
 import { IGameFarmingPlot, IGameRefiningRecipe } from '../interfaces';
 import { CharSelectState, OptionsState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
@@ -18,6 +18,7 @@ interface IMenuItem {
   unlocked: Observable<boolean>;
   timer: Observable<number>;
   level: Observable<number>;
+  notify: Observable<{ tradeskill: string; message: string } | undefined>;
 }
 
 @Component({
@@ -37,35 +38,40 @@ export class AppComponent implements OnInit, OnDestroy {
       badge: of(undefined),
       unlocked: this.store.select(state => state.fishing.unlocked),
       timer: this.store.select(state => Math.floor(state.fishing.currentLocationDuration)),
-      level: this.store.select(state => state.fishing.level) },
+      level: this.store.select(state => state.fishing.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'fishing')) },
 
     { title: 'Foraging',  url: 'foraging',  icon: 'foraging',
       requirements: 'None',
       badge: of(undefined),
       unlocked: this.store.select(state => state.foraging.unlocked),
       timer: this.store.select(state => Math.floor(state.foraging.currentLocationDuration)),
-      level: this.store.select(state => state.foraging.level) },
+      level: this.store.select(state => state.foraging.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'foraging')) },
 
     { title: 'Hunting',   url: 'hunting',   icon: 'hunting',
       requirements: 'Discover Stone',
       badge: of(undefined),
       unlocked: this.store.select(state => state.hunting.unlocked),
       timer: this.store.select(state => Math.floor(state.hunting.currentLocationDuration)),
-      level: this.store.select(state => state.hunting.level) },
+      level: this.store.select(state => state.hunting.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'hunting')) },
 
     { title: 'Logging',   url: 'logging',   icon: 'logging',
       requirements: 'None',
       badge: of(undefined),
       unlocked: this.store.select(state => state.logging.unlocked),
       timer: this.store.select(state => Math.floor(state.logging.currentLocationDuration)),
-      level: this.store.select(state => state.logging.level) },
+      level: this.store.select(state => state.logging.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'logging')) },
 
     { title: 'Mining',    url: 'mining',    icon: 'mining',
       requirements: 'Discover Pine Log',
       badge: of(undefined),
       unlocked: this.store.select(state => state.mining.unlocked),
       timer: this.store.select(state => Math.floor(state.mining.currentLocationDuration)),
-      level: this.store.select(state => state.mining.level) },
+      level: this.store.select(state => state.mining.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'mining')) },
   ];
 
   public refiningTradeskills: IMenuItem[] = [
@@ -78,7 +84,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.alchemy.level) },
+      level: this.store.select(state => state.alchemy.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'alchemy')) },
 
     { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
       requirements: 'Discover Stone & Pine Log',
@@ -89,7 +96,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.blacksmithing.level) },
+      level: this.store.select(state => state.blacksmithing.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'blacksmithing')) },
 
     { title: 'Cooking',    url: 'cooking',    icon: 'cooking',
       requirements: 'Discover Pinecone',
@@ -100,7 +108,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.cooking.level) },
+      level: this.store.select(state => state.cooking.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'cooking')) },
 
     { title: 'Jewelcrafting',    url: 'jewelcrafting',    icon: 'jewelcrafting',
       requirements: 'Discover Dandelion',
@@ -111,7 +120,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                             + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.jewelcrafting.level) },
+      level: this.store.select(state => state.jewelcrafting.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'jewelcrafting')) },
 
     { title: 'Weaving',    url: 'weaving',    icon: 'weaving',
       requirements: 'Discover Whorl',
@@ -122,7 +132,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .map((r: IGameRefiningRecipe) => Math.floor(r.currentDuration)
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
-      level: this.store.select(state => state.weaving.level) }
+      level: this.store.select(state => state.weaving.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'weaving')) }
   ];
 
   public peripheralTradeskills: IMenuItem[] = [
@@ -132,7 +143,8 @@ export class AppComponent implements OnInit, OnDestroy {
       badge: of(undefined),
       unlocked: this.store.select(state => state.combat.unlocked),
       timer: of(0),
-      level: this.store.select(state => state.combat.level) },
+      level: this.store.select(state => state.combat.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'combat')) },
 
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       requirements: 'Discover Carrot Seed',
@@ -149,21 +161,24 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
       unlocked: this.store.select(state => state.farming.unlocked),
       timer: this.store.select(state => Math.max(...state.farming.plots.map((p: IGameFarmingPlot) => p.currentDuration))),
-      level: this.store.select(state => state.farming.level) },
+      level: this.store.select(state => state.farming.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'farming')) },
 
     { title: 'Mercantile',    url: 'mercantile',    icon: 'mercantile',
       requirements: 'Discover Coin (quick sell an item)',
       badge: of(undefined),
       unlocked: this.store.select(state => state.mercantile.unlocked),
       timer: of(0),
-      level: this.store.select(state => getMercantileLevel(state)) },
+      level: this.store.select(state => getMercantileLevel(state)),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'mercantile')) },
 
     { title: 'Transmutation',    url: 'transmutation',    icon: 'prospecting',
       requirements: 'Discover Stone',
       badge: of(undefined),
       unlocked: this.store.select(state => state.prospecting.unlocked),
       timer: of(0),
-      level: this.store.select(state => state.prospecting.level) }
+      level: this.store.select(state => state.prospecting.level),
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'prospecting')) }
   ];
 
   public get showMenu(): boolean {
@@ -189,5 +204,4 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.gameloopService.stop();
   }
-
 }

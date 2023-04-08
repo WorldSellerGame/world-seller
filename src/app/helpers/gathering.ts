@@ -1,12 +1,12 @@
 import { StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { random } from 'lodash';
-import { AchievementStat, IGameGatherLocation, IGameGathering } from '../../interfaces';
+import { AchievementStat, IGameGatherLocation, IGameGathering, Tradeskill } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { GainResources } from '../../stores/charselect/charselect.actions';
 import { CancelFishing } from '../../stores/fishing/fishing.actions';
 import { CancelForaging } from '../../stores/foraging/foraging.actions';
-import { PlaySFX } from '../../stores/game/game.actions';
+import { NotifyTradeskill, PlaySFX } from '../../stores/game/game.actions';
 import { CancelHunting } from '../../stores/hunting/hunting.actions';
 import { CancelLogging } from '../../stores/logging/logging.actions';
 import { CancelMining } from '../../stores/mining/mining.actions';
@@ -22,7 +22,7 @@ export function getResourceRewardsForLocation(location: IGameGatherLocation) {
 
 export function decreaseGatherTimer(
   ctx: StateContext<IGameGathering>,
-  tradeskill: string,
+  tradeskill: Tradeskill,
   ticks: number,
   cdrValue: number,
   cdrPercent: number,
@@ -56,9 +56,14 @@ export function decreaseGatherTimer(
       }));
     }
 
+    const resourceNotifications = Object.keys(gainedResources)
+      .map(resource => ({ tradeskill, message: `+${gainedResources[resource]}x ${resource}!` }))
+      .map(res => new NotifyTradeskill(res.tradeskill, res.message));
+
     ctx.dispatch(new cancelProto()).subscribe(() => {
       ctx.dispatch([
-        new GainResources(gainedResources),
+        ...resourceNotifications,
+        new GainResources(gainedResources, false),
         new IncrementStat(incrementStatOnFinish, 1),
         new PlaySFX(`tradeskill-finish-${tradeskill}`)
       ]);
@@ -88,7 +93,7 @@ export function setGatheringLocation(
   ctx: StateContext<IGameGathering>,
   location: IGameGatherLocation,
   gdrValue: number,
-  tradeskill: string
+  tradeskill: Tradeskill
 ) {
 
   if(isLocationOnCooldown(ctx, location)) {

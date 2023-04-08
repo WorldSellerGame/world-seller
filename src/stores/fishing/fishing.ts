@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
+import { AchievementStat, GatheringTradeskill, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
 import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -56,7 +56,7 @@ export class FishingState {
     const cdrPercent = calculateStat(equipment, Stat.FishingSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, 'fishing', ticks, cdrValue, reducedValue, CancelFishing, AchievementStat.GatherFishing);
+    decreaseGatherTimer(ctx, GatheringTradeskill.Fishing, ticks, cdrValue, reducedValue, CancelFishing, AchievementStat.GatherFishing);
   }
 
   @Action(SetFishingLocation)
@@ -66,7 +66,7 @@ export class FishingState {
     const gdrPercent = calculateStat(equipment, Stat.FishingPowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'fishing');
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, GatheringTradeskill.Fishing);
     ctx.dispatch([
       new DecreaseDurability(ItemType.FishingRod),
       new DecreaseDurability(ItemType.FishingBait)

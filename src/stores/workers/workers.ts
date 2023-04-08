@@ -7,11 +7,11 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
-import { IGameItem, IGameRecipe, IGameWorkers, Rarity } from '../../interfaces';
+import { IGameItem, IGameRecipe, IGameWorkers, Rarity, Tradeskill } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../farming/farming.actions';
 import { workerSpeed, workerSpeedReduction } from '../farming/farming.functions';
-import { AnalyticsTrack, TickTimer } from '../game/game.actions';
+import { AnalyticsTrack, NotifyTradeskill, TickTimer } from '../game/game.actions';
 import { RemoveFromStockpile, SellItem, SpendCoins } from '../mercantile/mercantile.actions';
 import { attachments } from './workers.attachments';
 import {
@@ -163,6 +163,7 @@ export class WorkersState {
 
     // handle gathering / rewards
     const gatheringRewards: Array<Record<string, number>> = [];
+    const gatheringNotifications: NotifyTradeskill[] = [];
 
     const gatheringWorkerUpdates = state.gatheringWorkerAllocations.map(alloc => {
       alloc.currentTick += ticks * workerTimerMultiplier(1);
@@ -173,7 +174,16 @@ export class WorkersState {
         const cooldown = alloc.location.cooldownTime ?? 0;
         alloc.currentTick = -cooldown;
 
-        gatheringRewards.push(getResourceRewardsForLocation(alloc.location));
+        const workerResources = getResourceRewardsForLocation(alloc.location);
+        gatheringRewards.push(workerResources);
+
+        Object.keys(workerResources).forEach(key => {
+          if(key === 'nothing') {
+            return;
+          }
+
+          gatheringNotifications.push(new NotifyTradeskill(alloc.tradeskill, `+${workerResources[key]} ${key}`));
+        });
       }
 
       return alloc;
@@ -192,12 +202,15 @@ export class WorkersState {
     });
 
     if(Object.keys(gainedResources).length > 0) {
-      ctx.dispatch(new GainResources(gainedResources));
+      ctx.dispatch([
+        ...gatheringNotifications,
+        new GainResources(gainedResources, false)
+      ]);
     }
 
     // handle refining / rewards
     const requiredItemsToNotSellForOtherWorkers: Record<string, boolean> = {};
-    const refiningRewards: IGameRecipe[] = [];
+    const refiningRewards: Array<{ reward: IGameRecipe; tradeskill: Tradeskill }> = [];
 
     const refiningWorkerUpdates = state.refiningWorkerAllocations.map((alloc, i) => {
 
@@ -247,7 +260,7 @@ export class WorkersState {
       alloc.currentTick += ticks * workerTimerMultiplier(1);
 
       if(alloc.currentTick > alloc.recipe.craftTime) {
-        refiningRewards.push(alloc.recipe);
+        refiningRewards.push({ reward: alloc.recipe, tradeskill: alloc.tradeskill });
 
         alloc.currentTick = 0;
         alloc.missingIngredients = [];
@@ -256,9 +269,12 @@ export class WorkersState {
       return alloc;
     });
 
-    refiningRewards.forEach(reward => {
+    refiningRewards.forEach(({ reward, tradeskill }) => {
+      const gainedAmt = random(reward.perCraft.min, reward.perCraft.max);
+
       ctx.dispatch([
-        new WorkerCreateItem(reward.result, random(reward.perCraft.min, reward.perCraft.max))
+        new NotifyTradeskill(tradeskill, `+${gainedAmt}x ${reward.result}`),
+        new WorkerCreateItem(reward.result, gainedAmt, false)
       ]);
     });
 

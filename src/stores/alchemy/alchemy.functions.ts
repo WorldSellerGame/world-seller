@@ -2,7 +2,7 @@ import { StateContext } from '@ngxs/store';
 
 import { patch } from '@ngxs/store/operators';
 import { cancelRefineJob, decreaseRefineTimer, startRefineJob } from '../../app/helpers';
-import { AchievementStat, IGameRefining } from '../../interfaces';
+import { AchievementStat, IGameRefining, RefiningTradeskill } from '../../interfaces';
 import { TickTimer } from '../game/game.actions';
 import { CancelAlchemyJob, ChangeAlchemyFilterOption, GainAlchemyLevels, StarAlchemyRecipe, StartAlchemyJob } from './alchemy.actions';
 
@@ -32,7 +32,7 @@ export function resetAlchemy(ctx: StateContext<IGameRefining>) {
 }
 
 export function decreaseDuration(ctx: StateContext<IGameRefining>, { ticks }: TickTimer) {
-  decreaseRefineTimer(ctx, 'alchemy', ticks, CancelAlchemyJob, AchievementStat.RefineAlchemy);
+  decreaseRefineTimer(ctx, RefiningTradeskill.Alchemy, ticks, CancelAlchemyJob, AchievementStat.RefineAlchemy);
 }
 
 export function cancelAlchemyJob(ctx: StateContext<IGameRefining>, { jobIndex, shouldRefundResources }: CancelAlchemyJob) {
@@ -40,7 +40,7 @@ export function cancelAlchemyJob(ctx: StateContext<IGameRefining>, { jobIndex, s
 }
 
 export function startAlchemyJob(ctx: StateContext<IGameRefining>, { job, quantity, items }: StartAlchemyJob) {
-  startRefineJob(ctx, job, quantity, 'alchemy', items);
+  startRefineJob(ctx, job, quantity, RefiningTradeskill.Alchemy, items);
 };
 
 export function changeAlchemyOption(ctx: StateContext<IGameRefining>, { option, value }: ChangeAlchemyFilterOption) {

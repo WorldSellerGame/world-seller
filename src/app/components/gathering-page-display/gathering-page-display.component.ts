@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../../../interfaces';
+import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat, Tradeskill } from '../../../interfaces';
 import { CharSelectState, FishingState, ForagingState, HuntingState, LoggingState, MiningState } from '../../../stores';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
 import { calculateStat } from '../../helpers';
@@ -165,11 +165,11 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   }
 
   allocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new AssignGatheringWorker(this.tradeskill, location));
+    this.store.dispatch(new AssignGatheringWorker(this.tradeskill as Tradeskill, location));
   }
 
   unallocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new UnassignGatheringWorker(this.tradeskill, location));
+    this.store.dispatch(new UnassignGatheringWorker(this.tradeskill as Tradeskill, location));
   }
 
   getHighestWorkerProgress(data: IGameWorkersGathering[]): number {

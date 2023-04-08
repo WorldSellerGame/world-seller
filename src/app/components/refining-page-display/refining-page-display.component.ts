@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import {
   IGameItem, IGameRecipe, IGameRefiningOptions,
-  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory, Tradeskill
 } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { GainResources } from '../../../stores/charselect/charselect.actions';
@@ -404,11 +404,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   assignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new AssignRefiningWorker(this.tradeskill, recipe));
+    this.store.dispatch(new AssignRefiningWorker(this.tradeskill as Tradeskill, recipe));
   }
 
   unassignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new UnassignRefiningWorker(this.tradeskill, recipe));
+    this.store.dispatch(new UnassignRefiningWorker(this.tradeskill as Tradeskill, recipe));
   }
 
   changeOption(option: keyof IGameRefiningOptions, value: boolean) {
