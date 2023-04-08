@@ -32,6 +32,7 @@ export class RollbarService {
       accessToken: environment.rollbar.apiKey,
       captureUncaught: true,
       captureUnhandledRejections: true,
+      hostBlockList: ['netlify.app'],
       payload: {
         environment: environment.rollbar.environment,
         code_version: this.metaService.version
@@ -55,10 +56,6 @@ export class RollbarErrorHandler implements ErrorHandler {
 
   handleError(err: any): void {
     console.error(err);
-
-    if(window.location.toString().includes('.netlify.app')) {
-      return;
-    }
 
     const savefile = this.store.snapshot();
     delete savefile.mods;
