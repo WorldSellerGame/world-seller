@@ -175,7 +175,7 @@ recipes:
     level: { min: 10, max: 20 }
     craftTime: 180
     ingredients:
-      Iron Tongue Piercing: 1
+      Copper Tongue Piercing: 1
       Cut Quartz: 1
       Metal Jewelry Tools: 1
     require:
@@ -184,7 +184,7 @@ recipes:
       - Metal Jewelry Tools
     maxWorkers: 1
 
-##iron 
+##iron
 
   - result: Iron Ring
     perCraft: { min: 1, max: 1 }
