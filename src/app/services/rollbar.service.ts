@@ -33,6 +33,7 @@ export class RollbarService {
       captureUncaught: true,
       captureUnhandledRejections: true,
       hostBlockList: ['netlify.app'],
+      hostSafelist: ['worldsellergame.com'],
       payload: {
         environment: environment.rollbar.environment,
         code_version: this.metaService.version
