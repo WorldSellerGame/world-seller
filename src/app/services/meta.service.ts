@@ -83,25 +83,30 @@ export class MetaService {
     }
   }
 
+  characterSavefile(slot: number = 0) {
+    const data = this.store.snapshot();
+    const ignoredKeys: string[] = ['options', 'mods'];
+
+    const charData = data.charselect.characters[slot];
+    const charName = charData.name;
+
+    const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
+      acc[key] = data[key];
+      return acc;
+    }, {} as any);
+
+    return { charName, saveData };
+  }
+
   exportCharacter(slot: number = 0) {
-    this.store.selectOnce(data => data).subscribe(data => {
-      const ignoredKeys: string[] = ['options', 'mods'];
+    const { charName, saveData } = this.characterSavefile(slot);
 
-      const charData = data.charselect.characters[slot];
-      const charName = charData.name;
-
-      const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
-        acc[key] = data[key];
-        return acc;
-      }, {} as any);
-
-      const fileName = `${charName}.ws`;
-      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
-      const downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute('href',     dataStr);
-      downloadAnchorNode.setAttribute('download', fileName);
-      downloadAnchorNode.click();
-    });
+    const fileName = `${charName}.ws`;
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute('href',     dataStr);
+    downloadAnchorNode.setAttribute('download', fileName);
+    downloadAnchorNode.click();
   }
 
   importCharacter(data: any) {
