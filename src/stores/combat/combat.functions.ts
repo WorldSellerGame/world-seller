@@ -202,7 +202,12 @@ export function setFoodInSlot(ctx: StateContext<IGameCombat>, { item, slot }: Se
  */
 export function addCombatLogMessage(ctx: StateContext<IGameCombat>, { message }: AddCombatLogMessage) {
 
-  const messages = ctx.getState().currentEncounter?.log ?? [];
+  const encounter = ctx.getState().currentEncounter;
+  if(!encounter) {
+    return;
+  }
+
+  const messages = encounter.log ?? [];
 
   messages.push(message);
 
