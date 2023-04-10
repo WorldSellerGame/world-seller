@@ -290,14 +290,10 @@ export class CharSelectState {
   @Action(GainResources)
   async gainResources(ctx: StateContext<ICharSelect>, { resources, shouldNotify }: GainResources) {
 
-    if(!shouldNotify) {
-      return;
-    }
-
     const resourceNames = Object.keys(resources);
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);
 
-    if(earnedNothing) {
+    if(earnedNothing && shouldNotify) {
       ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
     }
 
@@ -313,8 +309,10 @@ export class CharSelectState {
     // discover all of the resources
     ctx.dispatch(earnedResources.map(r => new DiscoverResourceOrItem(r)));
 
-    const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
-    ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
+    if(shouldNotify) {
+      const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
+      ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
+    }
   }
 
   @Action(GainItemOrResource)
