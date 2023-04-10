@@ -1,5 +1,5 @@
 
 <div class="resource-icon" [ngClass]="emphasizeText ? 'emphasis' : ''">
   <app-game-icon class="icon" [icon]="'time'" [inlineIconSize]="inlineIconSize"></app-game-icon>
-  <div class="quantity" ngxTippy="Time required to execute this action.">{{ time }}s</div>
+  <div class="quantity" ngxTippy="Time required to execute this action.">{{ time | number }}s</div>
 </div>
