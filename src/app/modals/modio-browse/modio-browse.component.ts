@@ -95,7 +95,7 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.modSub = this.mods$.subscribe(mods => {
-      this.storedModData = mods;
+      this.storedModData = mods ?? {};
     });
 
     this.modsService.getBaseGameInfo().subscribe((data: any) => {
@@ -117,7 +117,7 @@ export class ModioBrowseComponent implements OnInit, OnDestroy {
   }
 
   versionMatches(mod: IModReturnedData) {
-    return mod.modfile.version === this.storedModData[mod.id]?.version;
+    return mod.modfile.version === this.storedModData?.[mod?.id]?.version;
   }
 
   showModInfo(mod: IModReturnedData) {
