@@ -8,6 +8,7 @@ import { CharSelectState } from '../../../../stores';
 import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnnouncementService } from '../../../services/announcements.service';
+import { CloudSaveService } from '../../../services/cloudsave.service';
 import { ModsService } from '../../../services/mods.service';
 import { NotifyService } from '../../../services/notify.service';
 
@@ -24,6 +25,7 @@ export class HomePage implements OnInit {
     private store: Store,
     private router: Router,
     private notifyService: NotifyService,
+    public cloudSaveService: CloudSaveService,
     public metaService: MetaService,
     public modsService: ModsService,
     public announcementService: AnnouncementService

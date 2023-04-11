@@ -1,7 +1,7 @@
 
 
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { AnalyticsService } from '../../app/services/analytics.service';
 import { NotifyService } from '../../app/services/notify.service';
@@ -22,6 +22,11 @@ export class GameState {
     attachments.forEach(({ action, handler }) => {
       attachAction(GameState, action, handler);
     });
+  }
+
+  @Selector()
+  static firebaseUID(state: IGame) {
+    return state.firebaseUID;
   }
 
   @Action(NotifyError)

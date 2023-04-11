@@ -134,6 +134,7 @@ export type IStatGains = Partial<Record<Stat, IStatGain[]>>;
 export interface IGame {
   version: number;
   statGains: IStatGains;
+  firebaseUID: string;
 }
 
 export interface IGameItem {

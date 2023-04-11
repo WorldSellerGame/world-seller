@@ -105,6 +105,12 @@ export class NotifyService {
   }
 
   public error(message: string) {
+
+    // these pop up and they shouldn't. they're annoying.
+    if(message.includes('Firebase')) {
+      return;
+    }
+
     this.logMessage(message);
 
     if(!this.showNotifications()) {

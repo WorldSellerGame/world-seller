@@ -54,7 +54,11 @@
 
                 <ion-card *ngIf="character">
                   <ion-card-header>
-                    <ion-card-title>{{ character.name }}</ion-card-title>
+                    <ion-card-title class="vertical-center">
+                      <ion-icon name="cloud" ngxTippy="This character is synced with the cloud." *ngIf="character.isCloud"></ion-icon>
+                      {{ character.name }}
+                    </ion-card-title>
+
                     <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
                     <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
 
@@ -137,7 +141,11 @@
                       </ion-button>
                     </ion-col>
 
-                    <ion-col></ion-col>
+                    <ion-col>
+                      <ion-button fill="clear" (click)="cloudSaveService.openLogin()" color="secondary" ngxTippy="Cloud save management">
+                        <ion-icon slot="start" name="cloud"></ion-icon> Cloud
+                      </ion-button>
+                    </ion-col>
 
                     <ion-col>
                       <ion-button fill="clear" (click)="modsService.launchModManager()" color="secondary" ngxTippy="Mod manager (powered by mod.io)">

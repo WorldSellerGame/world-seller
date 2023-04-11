@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable, first } from 'rxjs';
 import { IPlayerCharacter } from '../../../../interfaces';
-import { CharSelectState } from '../../../../stores';
+import { CharSelectState, GameState } from '../../../../stores';
 import { CreateCharacter } from '../../../../stores/charselect/charselect.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
 
@@ -15,8 +15,9 @@ import { setDiscordStatus } from '../../../helpers/electron';
 export class NewPage implements OnInit {
 
   @Select(CharSelectState.characters) characters$!: Observable<IPlayerCharacter[]>;
+  @Select(GameState.firebaseUID) firebaseUID$!: Observable<string>;
 
-  public character = { name: '' };
+  public character = { name: '', isCloud: false };
 
   constructor(private router: Router, private store: Store) { }
 
@@ -39,7 +40,7 @@ export class NewPage implements OnInit {
       return;
     }
 
-    this.store.dispatch(new CreateCharacter(this.character.name)).subscribe(() => {
+    this.store.dispatch(new CreateCharacter(this.character.name, this.character.isCloud)).subscribe(() => {
       this.characters$.pipe(first()).subscribe(characters => {
         this.router.navigate([`/game/${characters.length - 1}`]);
       });

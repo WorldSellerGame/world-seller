@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CollectionReference, Firestore, collection } from '@angular/fire/firestore';
+import { ModalController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
+import { CloudLoginComponent } from '../modals/cloud-login/cloud-login.component';
+import { CloudManageComponent } from '../modals/cloud-manage/cloud-manage.component';
 import { MetaService } from './meta.service';
 
 @Injectable({
@@ -13,6 +16,7 @@ export class CloudSaveService {
 
   constructor(
     private store: Store,
+    private modalCtrl: ModalController,
     private auth: AngularFireAuth,
     private firestore: Firestore,
     private metaService: MetaService
@@ -22,19 +26,38 @@ export class CloudSaveService {
     this.savefileRef = collection(this.firestore, '/savefiles');
 
     this.loadSavefile();
-    console.log(this.firestore, this.auth);
+  }
+
+  public async openLogin(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: CloudLoginComponent,
+      cssClass: 'cloud-login',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+  }
+
+  public async openManage(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: CloudManageComponent,
+      cssClass: 'cloud-manage',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+  }
+
+  async register(email: string, password: string) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
   async login(email: string, password: string) {
-    const res = await this.auth.signInWithEmailAndPassword(email, password);
-
-    console.log(res);
-    // firebase add credentials
-    // on success, saveSavefile()
+    return this.auth.signInWithEmailAndPassword(email, password);
   }
 
   async logout() {
-    // kill firebase credentials
+    return this.auth.signOut();
   }
 
   async loadSavefile() {

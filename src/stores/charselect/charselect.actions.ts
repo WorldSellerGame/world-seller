@@ -2,7 +2,7 @@ import { IGameItem, ItemType } from '../../interfaces';
 
 export class CreateCharacter {
   static type = '[CharSelect] Create Character';
-  constructor(public name: string) {}
+  constructor(public name: string, public isCloud = false) {}
 }
 
 export class DeleteCharacter {

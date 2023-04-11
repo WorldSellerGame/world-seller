@@ -1,5 +1,6 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
+import { v4 as uuidv4 } from 'uuid';
 
 import { sum } from 'lodash';
 import { calculateBrokenItemStats } from '../../app/helpers';
@@ -17,8 +18,10 @@ export const defaultCharSelect: () => ICharSelect = () => ({
   characters: []
 });
 
-export const defaultCharacter: (name: string) => IPlayerCharacter = (name: string) => ({
+export const defaultCharacter: (name: string, isCloud: boolean) => IPlayerCharacter = (name: string, isCloud: boolean) => ({
   name,
+  isCloud,
+  id: uuidv4(),
   lastSavedAt: Date.now(),
   lastTotalLevel: 0,
   tradeskillLevels: {},
@@ -44,13 +47,13 @@ export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
   }));
 }
 
-export function createCharacter(ctx: StateContext<ICharSelect>, { name }: CreateCharacter) {
+export function createCharacter(ctx: StateContext<ICharSelect>, { name, isCloud }: CreateCharacter) {
   if(ctx.getState().characters.length >= 1) {
     return;
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: append<IPlayerCharacter>([defaultCharacter(name)])
+    characters: append<IPlayerCharacter>([defaultCharacter(name, isCloud)])
   }));
 }
 

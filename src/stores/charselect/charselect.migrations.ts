@@ -1,3 +1,6 @@
+
+import { v4 as uuidv4 } from 'uuid';
+
 import { ICharSelect } from '../../interfaces';
 
 export const charselectStoreMigrations = [
@@ -19,6 +22,17 @@ export const charselectStoreMigrations = [
         }
 
         char.discoveries = {};
+        return char;
+      })
+    })
+  },
+  {
+    version: 2,
+    migrate: (state: ICharSelect) => ({
+      ...state,
+      version: 3,
+      characters: state.characters.map(char => {
+        char.id = uuidv4();
         return char;
       })
     })
