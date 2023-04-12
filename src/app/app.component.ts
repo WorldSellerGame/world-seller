@@ -2,7 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
 import { Observable, filter, map, of } from 'rxjs';
-import { GatheringTradeskill, IGameFarmingPlot, IGameRefiningRecipe, OtherTradeskill, RefiningTradeskill, Tradeskill, TransformTradeskill } from '../interfaces';
+import {
+  GatheringTradeskill, IGameFarmingPlot, IGameRefiningRecipe,
+  OtherTradeskill, RefiningTradeskill, Tradeskill, TransformTradeskill
+} from '../interfaces';
 import { CharSelectState, OptionsState, WorkersState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel } from './helpers';

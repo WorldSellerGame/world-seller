@@ -7,7 +7,10 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
-import { GatheringTradeskill, IGameItem, IGameRecipe, IGameWorkers, OtherTradeskill, Rarity, RefiningTradeskill, Tradeskill, TransformTradeskill } from '../../interfaces';
+import {
+  GatheringTradeskill, IGameItem, IGameRecipe,
+  IGameWorkers, OtherTradeskill, Rarity, RefiningTradeskill, Tradeskill, TransformTradeskill
+} from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../farming/farming.actions';
 import { workerSpeed, workerSpeedReduction } from '../farming/farming.functions';
