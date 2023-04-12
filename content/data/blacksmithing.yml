@@ -987,7 +987,8 @@ recipes: #Rebalance for 900~ lines ;-;
     craftTime: 70
     ingredients:
       Adamantite Ore: 5
-      Furnace: 1
+      Blast Furnace: 1
+      High Heat Oven Mitts: 1
     require:
       - Blast Furnace
     preserve:
