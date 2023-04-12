@@ -5,11 +5,11 @@ import { random, sum } from 'lodash';
 import { itemValue } from '../../app/helpers';
 import {
   AchievementStat, IGameItem, IGameMercantile,
-  IGameMercantileExchange, IGameMercantileShop, IGameMercantileStockpile, Rarity
+  IGameMercantileExchange, IGameMercantileShop, IGameMercantileStockpile, OtherTradeskill, Rarity
 } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainResources } from '../charselect/charselect.actions';
-import { AnalyticsTrack, PlaySFX, TickTimer } from '../game/game.actions';
+import { AnalyticsTrack, NotifyTradeskill, PlaySFX, TickTimer } from '../game/game.actions';
 import {
   GainCoins, GainMercantileLevels, QuickSellItemFromInventory, QuickSellItemFromStockpile,
   QuickSellManyItemsFromInventory,
@@ -141,11 +141,14 @@ export function gainCoins(ctx: StateContext<any>, { amount, reason }: GainCoins)
   }
 
   if(amount > 0) {
-    ctx.dispatch(new AnalyticsTrack(`Coins:Gain:${reason}`, amount));
+    ctx.dispatch([
+      new NotifyTradeskill(OtherTradeskill.Mercantile, `+${amount} Coins`),
+      new AnalyticsTrack(`Coins:Gain:${reason}`, amount)
+    ]);
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  ctx.dispatch(new GainResources({ Coin: Math.floor(amount) }));
+  ctx.dispatch(new GainResources({ Coin: Math.floor(amount) }, false));
 }
 
 export function spendCoins(ctx: StateContext<any>, { amount, reason }: SpendCoins) {
