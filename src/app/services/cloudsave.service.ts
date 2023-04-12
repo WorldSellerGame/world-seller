@@ -96,19 +96,18 @@ export class CloudSaveService {
       }
 
       const savefileData = save.data();
-      console.log(savefileData);
       if(!savefileData) {
         this.store.dispatch(new ToggleCharacterCloud(saveData.charselect.currentCharacter, false));
         return;
       }
 
-      const savefileLevel = savefileData.charselect.characters[savefileData.charselect.currentCharacter]?.lastTotalLevel ?? 0;
-      const myCurrentLevel = myCurrentCharacter?.lastTotalLevel ?? 0;
-      if(!savefileLevel) {
+      const savefileSaved = savefileData.charselect.characters[savefileData.charselect.currentCharacter]?.lastSavedAt ?? 0;
+      const myCurrentSaved = myCurrentCharacter?.lastSavedAt ?? 0;
+      if(!savefileSaved) {
         return;
       }
 
-      if(savefileLevel <= myCurrentLevel) {
+      if(savefileSaved <= myCurrentSaved) {
         return;
       }
 
