@@ -1,7 +1,7 @@
 
 <div>
   <strong [ngClass]="[itemClass]" class="name">
-    <app-real-name [name]="item.internalId ?? ''"></app-real-name> &middot; {{ item.category }}
+    <app-real-name [name]="item.internalId || item.name || ''"></app-real-name> &middot; {{ item.category }}
   </strong>
 </div>
 
