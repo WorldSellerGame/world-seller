@@ -331,7 +331,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Adamantite Tool Bench
     maxWorkers: 1
 
-  - result: Adamantite Pickaxe 
+  - result: Adamantite Pickaxe
     perCraft: { min: 1, max: 1 }
     level: { min: 30, max: 40 }
     craftTime: 420
@@ -420,7 +420,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Construction Tools
     maxWorkers: 1
 
-  - result: Workbench 
+  - result: Workbench
     perCraft: { min: 1, max: 1 }
     level: { min: 5, max: 15 }
     craftTime: 120
@@ -481,7 +481,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Metal Construction Tools
     maxWorkers: 1
 
-  - result: Iron Construction Tools 
+  - result: Iron Construction Tools
     perCraft: { min: 1, max: 1 }
     level: { min: 15, max: 25 }
     craftTime: 240
@@ -511,7 +511,7 @@ recipes: #Rebalance for 900~ lines ;-;
       - Iron Construction Tools
     maxWorkers: 1
 
-  - result: Adamantite Construction Tools 
+  - result: Adamantite Construction Tools
     perCraft: { min: 1, max: 1 }
     level: { min: 20, max: 30 }
     craftTime: 300
@@ -989,9 +989,9 @@ recipes: #Rebalance for 900~ lines ;-;
       Adamantite Ore: 5
       Furnace: 1
     require:
-      - Blasting Furnace
+      - Blast Furnace
     preserve:
-      - Blasting Furnace
+      - Blast Furnace
       - High Heat Oven Mitts
     maxWorkers: 1
 
