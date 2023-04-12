@@ -5,7 +5,6 @@ import { marked } from 'marked';
 import * as credits from '../../assets/content/credits.json';
 import { NotifyInfo } from '../../stores/game/game.actions';
 import * as Migrations from '../../stores/migrations';
-import { defaultOptions } from '../../stores/options/options.functions';
 import { isInElectron } from '../helpers/electron';
 
 @Injectable({
@@ -115,8 +114,15 @@ export class MetaService {
   }
 
   importCharacter(data: any) {
+    const currentOptions = this.store.snapshot().options;
+    const currentMods = this.store.snapshot().mods;
+
     if(!data.options) {
-      data.options = defaultOptions();
+      data.options = currentOptions;
+    }
+
+    if(!data.mods) {
+      data.mods = currentMods;
     }
 
     // gotta migrate potentially aged savefiles
