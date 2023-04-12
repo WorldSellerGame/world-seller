@@ -220,4 +220,16 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.gameloopService.stop();
   }
+
+  badge(item: IMenuItem) {
+    return item.badge;
+  }
+
+  timer(item: IMenuItem) {
+    return item.timer;
+  }
+
+  notify(item: IMenuItem) {
+    return item.notify;
+  }
 }

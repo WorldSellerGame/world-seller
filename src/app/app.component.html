@@ -40,14 +40,7 @@
 
             <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Gathering:' + p.title">
-                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-
-                  <ion-icon class="info-badge"
-                            *ngIf="p.badge | async as badgeData"
-                            [icon]="badgeData.icon"
-                            [color]="badgeData.color"></ion-icon>
-                </ion-item>
+                <ng-container [ngTemplateOutlet]="smallTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
 
@@ -55,14 +48,7 @@
 
             <ng-container *ngFor="let p of refiningTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Refining:' + p.title">
-                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-
-                  <ion-icon class="info-badge"
-                            *ngIf="p.badge | async as badgeData"
-                            [icon]="badgeData.icon"
-                            [color]="badgeData.color"></ion-icon>
-                </ion-item>
+                <ng-container [ngTemplateOutlet]="smallTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
 
@@ -70,15 +56,7 @@
 
             <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral:' + p.title">
-                  <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
-
-                  <ion-icon class="info-badge"
-                            slot="start"
-                            *ngIf="p.badge | async as badgeData"
-                            [icon]="badgeData.icon"
-                            [color]="badgeData.color"></ion-icon>
-                </ion-item>
+                <ng-container [ngTemplateOutlet]="smallTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
 
@@ -139,52 +117,7 @@
 
             <ng-container *ngFor="let p of gatheringTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root"
-                            [routerLink]="['/game', characterSlot, p.url]"
-                            lines="none"
-                            detail="false"
-                            routerLinkActive="selected"
-                            [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Gathering:' + p.title">
-
-                    <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-
-                    <ion-badge class="worker-badge"
-                               slot="start"
-                               *ngIf="p.workerCount | async as workerCount"
-                               color="secondary">
-                      <ion-icon name="people"></ion-icon>
-                      {{ workerCount }}
-                    </ion-badge>
-
-                    <ion-icon class="info-badge"
-                              *ngIf="p.badge | async as badgeData"
-                              [icon]="badgeData.icon"
-                              [color]="badgeData.color"></ion-icon>
-
-                    <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
-                      <span>{{ p.title }}</span>
-                      <div>{{ p.requirements }}</div>
-                    </ion-label>
-
-                    <ion-label *ngIf="tsData.isUnlocked">
-                      <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <div class="notify-area" *ngIf="{
-                        timer: p.timer | async,
-                        notify: p.notify | async
-                      } as displayData">
-                        <p *ngIf="displayData.notify?.message">
-                          <span>{{ displayData.notify?.message }}</span>
-                        </p>
-
-                        <p *ngIf="!displayData.notify?.message && p.timer">
-                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
-                        </p>
-                      </div>
-                    </ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
+                <ng-container [ngTemplateOutlet]="bigTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
           </ion-list>
@@ -194,52 +127,7 @@
 
             <ng-container *ngFor="let p of refiningTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root"
-                            [routerLink]="['/game', characterSlot, p.url]"
-                            lines="none"
-                            detail="false"
-                            routerLinkActive="selected"
-                            [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Refining:' + p.title">
-
-                    <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-
-                    <ion-badge class="worker-badge"
-                               slot="start"
-                               *ngIf="p.workerCount | async as workerCount"
-                               color="secondary">
-                      <ion-icon name="people"></ion-icon>
-                      {{ workerCount }}
-                    </ion-badge>
-
-                    <ion-icon class="info-badge"
-                              *ngIf="p.badge | async as badgeData"
-                              [icon]="badgeData.icon"
-                              [color]="badgeData.color"></ion-icon>
-
-                    <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
-                      <span>{{ p.title }}</span>
-                      <div>{{ p.requirements }}</div>
-                    </ion-label>
-
-                    <ion-label *ngIf="tsData.isUnlocked">
-                      <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <div class="notify-area" *ngIf="{
-                        timer: p.timer | async,
-                        notify: p.notify | async
-                      } as displayData">
-                        <p *ngIf="displayData.notify?.message">
-                          <span>{{ displayData.notify?.message }}</span>
-                        </p>
-
-                        <p *ngIf="!displayData.notify?.message && p.timer">
-                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
-                        </p>
-                      </div>
-                    </ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
+                <ng-container [ngTemplateOutlet]="bigTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
           </ion-list>
@@ -249,52 +137,7 @@
 
             <ng-container *ngFor="let p of peripheralTradeskills; let i = index">
               <ng-container *ngIf="{ isUnlocked: p.unlocked | async } as tsData">
-                <ion-menu-toggle [autoHide]="false">
-                  <ion-item routerDirection="root"
-                            [routerLink]="['/game', characterSlot, p.url]"
-                            lines="none"
-                            detail="false"
-                            routerLinkActive="selected"
-                            [disabled]="!tsData.isUnlocked"
-                            [analyticsClick]="'Navigate:Peripheral:' + p.title">
-
-                    <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
-
-                    <ion-badge class="worker-badge"
-                               slot="start"
-                               *ngIf="p.workerCount | async as workerCount"
-                               color="secondary">
-                      <ion-icon name="people"></ion-icon>
-                      {{ workerCount }}
-                    </ion-badge>
-
-                    <ion-icon class="info-badge"
-                              *ngIf="p.badge | async as badgeData"
-                              [icon]="badgeData.icon"
-                              [color]="badgeData.color"></ion-icon>
-
-                    <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
-                      <span>{{ p.title }}</span>
-                      <div>{{ p.requirements }}</div>
-                    </ion-label>
-
-                    <ion-label *ngIf="tsData.isUnlocked">
-                      <span>{{ p.title }} Lv.{{ p.level | async }}</span>
-                      <div class="notify-area" *ngIf="{
-                        timer: p.timer | async,
-                        notify: p.notify | async
-                      } as displayData">
-                        <p *ngIf="displayData.notify?.message">
-                          <span>{{ displayData.notify?.message }}</span>
-                        </p>
-
-                        <p *ngIf="!displayData.notify?.message && p.timer">
-                          <app-countdown [duration]="displayData.timer || 0"></app-countdown>
-                        </p>
-                      </div>
-                    </ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
+                <ng-container [ngTemplateOutlet]="bigTradeskillItem" [ngTemplateOutletContext]="{ p: p, tsData: tsData }"></ng-container>
               </ng-container>
             </ng-container>
           </ion-list>
@@ -306,6 +149,67 @@
   </ion-split-pane>
 
 </ion-app>
+
+<ng-template #smallTradeskillItem let-p="p" let-tsData="tsData">
+  <ion-item routerDirection="root" [routerLink]="['/game', characterSlot, p.url]" lines="none" detail="false" routerLinkActive="selected" [disabled]="!tsData.isUnlocked" [analyticsClick]="'Navigate:Peripheral:' + p.title">
+    <app-game-icon slot="start" [icon]="p.icon" [ngxTippy]="p.title" [tippyProps]="{ placement: 'right' }"></app-game-icon>
+
+    <ion-icon class="info-badge"
+              slot="start"
+              *ngIf="badge(p) | async as badgeData"
+              [icon]="badgeData.icon"
+              [color]="badgeData.color"></ion-icon>
+  </ion-item>
+</ng-template>
+
+<ng-template #bigTradeskillItem let-p="p" let-tsData="tsData">
+  <ion-menu-toggle [autoHide]="false">
+    <ion-item routerDirection="root"
+              [routerLink]="['/game', characterSlot, p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="selected"
+              [disabled]="!tsData.isUnlocked"
+              [analyticsClick]="'Navigate:Peripheral:' + p.title">
+
+      <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+
+      <ion-badge class="worker-badge"
+                 slot="start"
+                 *ngIf="p.workerCount | async as workerCount"
+                 color="secondary">
+        <ion-icon name="people"></ion-icon>
+        {{ workerCount }}
+      </ion-badge>
+
+      <ion-icon class="info-badge"
+                *ngIf="badge(p) | async as badgeData"
+                [icon]="badgeData.icon"
+                [color]="badgeData.color"></ion-icon>
+
+      <ion-label *ngIf="!tsData.isUnlocked" class="ion-text-wrap">
+        <span>{{ p.title }}</span>
+        <div>{{ p.requirements }}</div>
+      </ion-label>
+
+      <ion-label *ngIf="tsData.isUnlocked">
+        <span>{{ p.title }} Lv.{{ p.level | async }}</span>
+        <div class="notify-area" *ngIf="{
+          timer: timer(p) | async,
+          notify: notify(p) | async
+        } as displayData">
+          <p *ngIf="displayData.notify?.message">
+            <span>{{ displayData.notify?.message }}</span>
+          </p>
+
+          <p *ngIf="!displayData.notify?.message && p.timer">
+            <app-countdown [duration]="displayData.timer || 0"></app-countdown>
+          </p>
+        </div>
+      </ion-label>
+    </ion-item>
+  </ion-menu-toggle>
+</ng-template>
 
 <ng-template #messageHistory>
   <div>
