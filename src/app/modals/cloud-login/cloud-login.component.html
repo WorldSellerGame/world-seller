@@ -1,0 +1,104 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cloud Save Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="modal.dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-segment class="mb-1" [(ngModel)]="type">
+            <ion-segment-button value="login" (click)="changeType('login')">
+              Login
+            </ion-segment-button>
+
+            <ion-segment-button value="register" (click)="changeType('register')">
+              Register
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+
+      <ng-container *ngIf="type === 'login'">
+        <form>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" placeholder="Email to sign in" [(ngModel)]="email" autocomplete="email" id="current-email" name="current-email"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" placeholder="Password to sign in" [(ngModel)]="password" autocomplete="current-password" id="current-password" name="current-password"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-text color="danger">{{ error }}</ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="actions">
+            <ion-col>
+              <ion-button (click)="login()" [disabled]="!canDoAnything">Login</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ng-container>
+
+      <ng-container *ngIf="type === 'register'">
+        <form>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" placeholder="Email to sign up" [(ngModel)]="email" autocomplete="email" id="new-email" name="new-email"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" placeholder="Password to sign up" [(ngModel)]="password" autocomplete="new-password" id="new-password" name="new-password"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-text color="danger">{{ error }}</ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="actions">
+            <ion-col>
+              <ion-button (click)="signup()" [disabled]="!canDoAnything">Sign up</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

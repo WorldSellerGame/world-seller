@@ -27,6 +27,8 @@ import { StatLineComponent } from './components/stat-line/stat-line.component';
 import { StatNameDisplayComponent } from './components/stat-name-display/stat-name-display.component';
 import { TimeResourceIconComponent } from './components/time-resource-icon/time-resource-icon.component';
 import { AnalyticsClickDirective } from './directives/analytics-click.directive';
+import { CloudLoginComponent } from './modals/cloud-login/cloud-login.component';
+import { CloudManageComponent } from './modals/cloud-manage/cloud-manage.component';
 import { ModioBrowseComponent } from './modals/modio-browse/modio-browse.component';
 import { ModioPermissionComponent } from './modals/modio-permission/modio-permission.component';
 
@@ -34,7 +36,7 @@ const sharedComponents = [ResourceIconComponent, ItemIconComponent, TimeResource
   GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
   CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
   AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
-  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent, RealNameComponent];
+  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent, RealNameComponent, CloudLoginComponent, CloudManageComponent];
 
 @NgModule({
   declarations: sharedComponents,

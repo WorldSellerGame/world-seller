@@ -1,14 +1,17 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
+import { v4 as uuidv4 } from 'uuid';
 
 import { sum } from 'lodash';
 import { calculateBrokenItemStats } from '../../app/helpers';
 import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
+import { UpdateFirebaseSavefile } from '../game/game.actions';
 import { QuickSellManyItemsFromInventory, SendManyItemsToInventory } from '../mercantile/mercantile.actions';
 import {
   AddItemToInventory, AddItemsToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem, UpdateStatsFromEquipment
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter,
+  SyncTotalLevel, ToggleCharacterCloud, UnequipItem, UnlinkCharacterCloud, UpdateStatsFromEquipment
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
@@ -17,8 +20,10 @@ export const defaultCharSelect: () => ICharSelect = () => ({
   characters: []
 });
 
-export const defaultCharacter: (name: string) => IPlayerCharacter = (name: string) => ({
+export const defaultCharacter: (name: string, isCloud: boolean) => IPlayerCharacter = (name: string, isCloud: boolean) => ({
   name,
+  isCloud,
+  id: uuidv4(),
   lastSavedAt: Date.now(),
   lastTotalLevel: 0,
   tradeskillLevels: {},
@@ -42,15 +47,45 @@ export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
       lastSavedAt: Date.now()
     }))
   }));
+
+  ctx.dispatch(new UpdateFirebaseSavefile());
 }
 
-export function createCharacter(ctx: StateContext<ICharSelect>, { name }: CreateCharacter) {
+export function toggleCharacterCloud(ctx: StateContext<ICharSelect>, { slot, isCloud }: ToggleCharacterCloud) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters[slot];
+  if(!currentCharacter) {
+    return;
+  }
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(slot, patch<IPlayerCharacter>({
+      isCloud
+    }))
+  }));
+}
+
+export function unlinkCharacterCloud(ctx: StateContext<ICharSelect>, { charId }: UnlinkCharacterCloud) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters.find(x => x.id === charId);
+  if(!currentCharacter) {
+    return;
+  }
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(state.characters.indexOf(currentCharacter), patch<IPlayerCharacter>({
+      isCloud: false
+    }))
+  }));
+}
+
+export function createCharacter(ctx: StateContext<ICharSelect>, { name, isCloud }: CreateCharacter) {
   if(ctx.getState().characters.length >= 1) {
     return;
   }
 
   ctx.setState(patch<ICharSelect>({
-    characters: append<IPlayerCharacter>([defaultCharacter(name)])
+    characters: append<IPlayerCharacter>([defaultCharacter(name, isCloud)])
   }));
 }
 

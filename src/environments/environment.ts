@@ -5,6 +5,14 @@
 export const environment = {
   production: false,
   platform: 'web',
+  firebase: {
+    projectId: 'worldseller-game',
+    appId: '1:81870725196:web:06643266ef102cab2854e9',
+    storageBucket: 'worldseller-game.appspot.com',
+    apiKey: 'AIzaSyDIzNcOeEU5KNFJkdNJaIkcp4mCpkP3nQg',
+    authDomain: 'worldseller-game.firebaseapp.com',
+    messagingSenderId: '81870725196',
+  },
   gameanalytics: {
     game: '54e16e53be300ab8adb7a3a9fd032ac0',
     key: '87f86587d3f4c13572a434d641c4be98e1607937'

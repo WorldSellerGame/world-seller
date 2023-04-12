@@ -1,13 +1,17 @@
 
 
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { AnalyticsService } from '../../app/services/analytics.service';
+import { CloudSaveService } from '../../app/services/cloudsave.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import { IGame } from '../../interfaces';
-import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyTradeskill, NotifyWarning, PlaySFX } from './game.actions';
+import {
+  AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess,
+  NotifyTradeskill, NotifyWarning, PlaySFX, UpdateFirebaseSavefile
+} from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 
@@ -18,10 +22,20 @@ import { defaultGame } from './game.functions';
 @Injectable()
 export class GameState {
 
-  constructor(private notify: NotifyService, private analytics: AnalyticsService, private visuals: VisualsService) {
+  constructor(
+    private notify: NotifyService,
+    private analytics: AnalyticsService,
+    private cloudSaveService: CloudSaveService,
+    private visuals: VisualsService
+  ) {
     attachments.forEach(({ action, handler }) => {
       attachAction(GameState, action, handler);
     });
+  }
+
+  @Selector()
+  static firebaseUID(state: IGame) {
+    return state.firebaseUID;
   }
 
   @Action(NotifyError)
@@ -57,6 +71,11 @@ export class GameState {
   @Action(PlaySFX)
   playSFX(ctx: StateContext<IGame>, { sfx }: PlaySFX) {
     this.visuals.playSoundEffect(sfx);
+  }
+
+  @Action(UpdateFirebaseSavefile)
+  updateFirebaseSavefile() {
+    this.cloudSaveService.saveSavefile();
   }
 
 }

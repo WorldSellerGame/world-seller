@@ -87,6 +87,11 @@ export class CharSelectState {
     return { ...this.activeCharacter(state)?.discoveries ?? {} };
   }
 
+  @Selector()
+  static activeCharacterIsCloud(state: ICharSelect) {
+    return this.activeCharacter(state)?.isCloud;
+  }
+
   @Action(UpdateAllItems)
   async updateAllItems(ctx: StateContext<ICharSelect>) {
     const state = ctx.getState();

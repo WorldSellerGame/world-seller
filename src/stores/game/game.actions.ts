@@ -49,3 +49,13 @@ export class AnalyticsTrack {
   static type = '[Game] Analytics Track';
   constructor(public event: string, public value = 1) {}
 }
+
+export class UpdateFirebaseUID {
+  static type = '[Game] Update Firebase UID';
+  constructor(public uid: string) {}
+}
+
+export class UpdateFirebaseSavefile {
+  static type = '[Game] Update Firebase Savefile';
+  constructor() {}
+}

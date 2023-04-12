@@ -78,3 +78,8 @@ src/assets/*.md
 
 *-version-*.md
 *.txt
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

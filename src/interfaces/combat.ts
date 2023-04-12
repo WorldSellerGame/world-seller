@@ -127,9 +127,9 @@ export interface IGameCombat {
   unlocked: boolean;
   level: number;
 
-  currentPlayer?: IGameEncounterCharacter;
-  currentEncounter?: IGameEncounter;
-  currentDungeon?: IGameDungeonState;
+  currentPlayer?: IGameEncounterCharacter | null;
+  currentEncounter?: IGameEncounter | null;
+  currentDungeon?: IGameDungeonState | null;
   activeSkills: string[];
   activeItems: Array<IGameItem | undefined>;
   activeFoods: Array<IGameItem | undefined>;

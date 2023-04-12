@@ -15,13 +15,19 @@ import { NgxsModule } from '@ngxs/store';
 import * as Stores from '../stores';
 import * as Migrations from '../stores/migrations';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { NgxTippyModule } from 'ngx-tippy-wrapper';
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { isInElectron } from './helpers/electron';
 import { AchievementsService } from './services/achievements.service';
 import { AnalyticsService } from './services/analytics.service';
+import { CloudSaveService } from './services/cloudsave.service';
 import { ContentService } from './services/content.service';
 import { DebugService } from './services/debug.service';
 import { MetaService } from './services/meta.service';
@@ -62,15 +68,20 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
       migrations: Object.values(Migrations).flat(),
       storage: StorageOption.LocalStorage
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
 
   providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: APP_INITIALIZER,
       multi: true,
       deps: [
+        CloudSaveService,
         MetaService,
         AnalyticsService,
         RollbarService,
@@ -80,6 +91,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         ModsService
       ],
       useFactory: (
+        cloudSaveService: CloudSaveService,
         metaService: MetaService,
         analyticsService: AnalyticsService,
         rollbarService: RollbarService,
@@ -88,6 +100,7 @@ const allStores = Object.keys(Stores).filter(x => x.includes('State')).map(x => 
         debugService: DebugService,
         modsService: ModsService
       ) => async () => {
+        await cloudSaveService.init();
         await metaService.init();
         analyticsService.init();
         rollbarService.init();
