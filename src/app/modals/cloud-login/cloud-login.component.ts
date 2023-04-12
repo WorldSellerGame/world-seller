@@ -56,6 +56,8 @@ export class CloudLoginComponent implements OnInit {
       const res = await this.cloudSaveService.login(this.email, this.password);
       this.store.dispatch(new UpdateFirebaseUID(res.user?.uid ?? ''));
       this.modal.dismiss();
+
+      this.cloudSaveService.openManage();
     } catch(e) {
       const err = e as Error;
       this.determineError(err.message);

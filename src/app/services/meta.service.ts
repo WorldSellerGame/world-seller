@@ -88,14 +88,19 @@ export class MetaService {
     const ignoredKeys: string[] = ['options', 'mods'];
 
     const charData = data.charselect.characters[slot];
+    if(!charData) {
+      return { charName: '', charId: '', saveData: {} };
+    }
+
     const charName = charData.name;
+    const charId = charData.id;
 
     const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
       acc[key] = data[key];
       return acc;
     }, {} as any);
 
-    return { charName, saveData };
+    return { charName, charId, saveData };
   }
 
   exportCharacter(slot: number = 0) {

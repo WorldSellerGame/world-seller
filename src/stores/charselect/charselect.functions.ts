@@ -6,10 +6,11 @@ import { sum } from 'lodash';
 import { calculateBrokenItemStats } from '../../app/helpers';
 import { AchievementStat, ICharSelect, IGameItem, IPlayerCharacter, ItemType } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
+import { UpdateFirebaseSavefile } from '../game/game.actions';
 import { QuickSellManyItemsFromInventory, SendManyItemsToInventory } from '../mercantile/mercantile.actions';
 import {
   AddItemToInventory, AddItemsToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem, UpdateStatsFromEquipment
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, ToggleCharacterCloud, UnequipItem, UnlinkCharacterCloud, UpdateStatsFromEquipment
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({
@@ -43,6 +44,36 @@ export function saveCurrentCharacter(ctx: StateContext<ICharSelect>) {
   ctx.setState(patch<ICharSelect>({
     characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
       lastSavedAt: Date.now()
+    }))
+  }));
+
+  ctx.dispatch(new UpdateFirebaseSavefile());
+}
+
+export function toggleCharacterCloud(ctx: StateContext<ICharSelect>, { slot, isCloud }: ToggleCharacterCloud) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters[slot];
+  if(!currentCharacter) {
+    return;
+  }
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(slot, patch<IPlayerCharacter>({
+      isCloud
+    }))
+  }));
+}
+
+export function unlinkCharacterCloud(ctx: StateContext<ICharSelect>, { charId }: UnlinkCharacterCloud) {
+  const state = ctx.getState();
+  const currentCharacter = state.characters.find(x => x.id === charId);
+  if(!currentCharacter) {
+    return;
+  }
+
+  ctx.setState(patch<ICharSelect>({
+    characters: updateItem<IPlayerCharacter>(state.characters.indexOf(currentCharacter), patch<IPlayerCharacter>({
+      isCloud: false
     }))
   }));
 }

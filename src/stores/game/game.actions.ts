@@ -54,3 +54,8 @@ export class UpdateFirebaseUID {
   static type = '[Game] Update Firebase UID';
   constructor(public uid: string) {}
 }
+
+export class UpdateFirebaseSavefile {
+  static type = '[Game] Update Firebase Savefile';
+  constructor() {}
+}

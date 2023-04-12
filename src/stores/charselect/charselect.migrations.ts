@@ -32,7 +32,10 @@ export const charselectStoreMigrations = [
       ...state,
       version: 3,
       characters: state.characters.map(char => {
-        char.id = uuidv4();
+        if(!char.id) {
+          char.id = uuidv4();
+        }
+
         return char;
       })
     })

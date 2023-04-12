@@ -5,6 +5,16 @@ export class CreateCharacter {
   constructor(public name: string, public isCloud = false) {}
 }
 
+export class ToggleCharacterCloud {
+  static type = '[CharSelect] Toggle Character Cloud';
+  constructor(public slot = 0, public isCloud = false) {}
+}
+
+export class UnlinkCharacterCloud {
+  static type = '[CharSelect] Toggle Character Cloud';
+  constructor(public charId: string) {}
+}
+
 export class DeleteCharacter {
   static type = '[CharSelect] Delete Character';
   constructor(public slot: number) {}

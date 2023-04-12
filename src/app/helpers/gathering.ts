@@ -75,7 +75,7 @@ export function cancelGathering(ctx: StateContext<IGameGathering>) {
   ctx.setState(patch<IGameGathering>({
     currentLocationDurationInitial: -1,
     currentLocationDuration: -1,
-    currentLocation: undefined
+    currentLocation: null
   }));
 }
 

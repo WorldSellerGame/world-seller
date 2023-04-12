@@ -4,8 +4,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { MetaService } from 'src/app/services/meta.service';
 import { IPlayerCharacter } from '../../../../interfaces';
-import { CharSelectState } from '../../../../stores';
-import { DeleteCharacter } from '../../../../stores/charselect/charselect.actions';
+import { CharSelectState, GameState } from '../../../../stores';
+import { DeleteCharacter, ToggleCharacterCloud } from '../../../../stores/charselect/charselect.actions';
 import { setDiscordStatus } from '../../../helpers/electron';
 import { AnnouncementService } from '../../../services/announcements.service';
 import { CloudSaveService } from '../../../services/cloudsave.service';
@@ -20,6 +20,7 @@ import { NotifyService } from '../../../services/notify.service';
 export class HomePage implements OnInit {
 
   @Select(CharSelectState.characters) characters$!: Observable<IPlayerCharacter[]>;
+  @Select(GameState.firebaseUID) firebaseUID$!: Observable<string>;
 
   constructor(
     private store: Store,
@@ -86,6 +87,18 @@ export class HomePage implements OnInit {
         }
       }
     ]);
+  }
+
+  moveToCloud(slot: number) {
+    this.store.dispatch(new ToggleCharacterCloud(slot, true)).subscribe(() => {
+      this.cloudSaveService.saveSavefile(slot, true);
+    });
+  }
+
+  removeFromCloud(slot: number) {
+    this.store.dispatch(new ToggleCharacterCloud(slot, false)).subscribe(() => {
+      this.cloudSaveService.deleteLocalSavefileFromCloud(slot);
+    });
   }
 
 }
