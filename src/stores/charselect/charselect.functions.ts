@@ -10,7 +10,8 @@ import { UpdateFirebaseSavefile } from '../game/game.actions';
 import { QuickSellManyItemsFromInventory, SendManyItemsToInventory } from '../mercantile/mercantile.actions';
 import {
   AddItemToInventory, AddItemsToInventory, BreakItem, CreateCharacter, DeleteCharacter, EquipItem,
-  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, ToggleCharacterCloud, UnequipItem, UnlinkCharacterCloud, UpdateStatsFromEquipment
+  GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter,
+  SyncTotalLevel, ToggleCharacterCloud, UnequipItem, UnlinkCharacterCloud, UpdateStatsFromEquipment
 } from './charselect.actions';
 
 export const defaultCharSelect: () => ICharSelect = () => ({

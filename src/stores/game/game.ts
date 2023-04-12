@@ -8,7 +8,10 @@ import { CloudSaveService } from '../../app/services/cloudsave.service';
 import { NotifyService } from '../../app/services/notify.service';
 import { VisualsService } from '../../app/services/visuals.service';
 import { IGame } from '../../interfaces';
-import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyTradeskill, NotifyWarning, PlaySFX, UpdateFirebaseSavefile } from './game.actions';
+import {
+  AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess,
+  NotifyTradeskill, NotifyWarning, PlaySFX, UpdateFirebaseSavefile
+} from './game.actions';
 import { attachments } from './game.attachments';
 import { defaultGame } from './game.functions';
 

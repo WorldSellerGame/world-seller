@@ -116,7 +116,6 @@ export class CloudSaveService {
     });
   }
 
-  // TODO: make sure when loading the app, if a character iscloud = true, but the character does not exist in the cloud, remove iscloud = true
   async getSavefile(charId: string): Promise<Observable<any>> {
     const userId = this.getUserId();
     if (!userId) {
