@@ -1,6 +1,6 @@
 
 # actually making saltpeter just convert to salk via a recipe and then making salt mineable may fix some issues (this is re-balance stuff though)
-#Yeah this will be done its best 
+#Yeah this will be done its best
 
 #WE NEED NOODLES
 
@@ -448,7 +448,7 @@ recipes:
       - Pots and Pans
     maxWorkers: 1
 
-#30 Use metal pots and pans from here on 
+#30 Use metal pots and pans from here on
 
   - result: Venison Steak
     perCraft: { min: 1, max: 1 }
@@ -514,8 +514,10 @@ recipes:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     preserve:
       - Brick Oven
+      - Oven Mitts
       - Metal Kitchen Utensils
       - Metal Pots and Pans
     maxWorkers: 1
@@ -546,7 +548,7 @@ recipes:
       - Metal Pots and Pans
     maxWorkers: 1
 
-  - result: Mixed Fruit Juice 
+  - result: Mixed Fruit Juice
     perCraft: { min: 1, max: 1 }
     level: { min: 35, max: 45 }
     craftTime: 480
@@ -565,7 +567,7 @@ recipes:
 
 #40
 
-  - result: Honey Ham 
+  - result: Honey Ham
     perCraft: { min: 1, max: 1 }
     level: { min: 40, max: 50 }
     craftTime: 540
@@ -581,10 +583,12 @@ recipes:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     preserve:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     maxWorkers: 1
 
   - result: Spicy Catfish Stew
@@ -604,10 +608,12 @@ recipes:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     preserve:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     maxWorkers: 1
 
 #45
@@ -668,6 +674,7 @@ recipes:
       - Brick Oven
       - Metal Kitchen Utensils
       - Metal Pots and Pans
+      - Oven Mitts
     preserve:
       - Brick Oven
       - Oven Mitts
