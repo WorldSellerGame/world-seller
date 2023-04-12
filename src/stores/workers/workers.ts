@@ -7,7 +7,7 @@ import { attachAction } from '@seiyria/ngxs-attach-action';
 import { merge, random, sample } from 'lodash';
 import { canCraftRecipe, getRecipeResourceCosts, getResourceRewardsForLocation } from '../../app/helpers';
 import { ContentService } from '../../app/services/content.service';
-import { IGameItem, IGameRecipe, IGameWorkers, Rarity, Tradeskill } from '../../interfaces';
+import { GatheringTradeskill, IGameItem, IGameRecipe, IGameWorkers, OtherTradeskill, Rarity, RefiningTradeskill, Tradeskill, TransformTradeskill } from '../../interfaces';
 import { GainResources, WorkerCreateItem } from '../charselect/charselect.actions';
 import { HarvestPlantFromFarm, PlantSeedInFarm } from '../farming/farming.actions';
 import { workerSpeed, workerSpeedReduction } from '../farming/farming.functions';
@@ -75,6 +75,39 @@ export class WorkersState {
       refining: state.refiningWorkerAllocations,
       mercantile: state.mercantileWorkerAllocations,
       farming: state.farmingWorkerAllocations
+    };
+  }
+
+  @Selector()
+  static workerAllocationsPerTradeskill(state: IGameWorkers): Record<Tradeskill, number> {
+    return {
+      [GatheringTradeskill.Fishing]: state.gatheringWorkerAllocations
+        .filter(alloc => alloc.tradeskill === GatheringTradeskill.Fishing).length,
+      [GatheringTradeskill.Foraging]: state.gatheringWorkerAllocations
+        .filter(alloc => alloc.tradeskill === GatheringTradeskill.Foraging).length,
+      [GatheringTradeskill.Hunting]: state.gatheringWorkerAllocations
+        .filter(alloc => alloc.tradeskill === GatheringTradeskill.Hunting).length,
+      [GatheringTradeskill.Logging]: state.gatheringWorkerAllocations
+        .filter(alloc => alloc.tradeskill === GatheringTradeskill.Logging).length,
+      [GatheringTradeskill.Mining]: state.gatheringWorkerAllocations
+        .filter(alloc => alloc.tradeskill === GatheringTradeskill.Mining).length,
+
+      [RefiningTradeskill.Alchemy]: state.refiningWorkerAllocations
+        .filter(alloc => alloc.tradeskill === RefiningTradeskill.Alchemy).length,
+      [RefiningTradeskill.Blacksmithing]: state.refiningWorkerAllocations
+        .filter(alloc => alloc.tradeskill === RefiningTradeskill.Blacksmithing).length,
+      [RefiningTradeskill.Cooking]: state.refiningWorkerAllocations
+        .filter(alloc => alloc.tradeskill === RefiningTradeskill.Cooking).length,
+      [RefiningTradeskill.Jewelcrafting]: state.refiningWorkerAllocations
+        .filter(alloc => alloc.tradeskill === RefiningTradeskill.Jewelcrafting).length,
+      [RefiningTradeskill.Weaving]: state.refiningWorkerAllocations
+        .filter(alloc => alloc.tradeskill === RefiningTradeskill.Weaving).length,
+
+      [OtherTradeskill.Combat]: 0,
+      [OtherTradeskill.Mercantile]: state.mercantileWorkerAllocations.length,
+
+      [TransformTradeskill.Farming]: state.farmingWorkerAllocations.length,
+      [TransformTradeskill.Prospecting]: 0
     };
   }
 

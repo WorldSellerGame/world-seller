@@ -128,3 +128,16 @@ ion-item.item.selected {
   min-height: 20px;
   color: var(--ion-color-step-600, #666666);
 }
+
+.worker-badge {
+  position: absolute;
+  left: 35px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 0.7rem;
+
+  ion-icon {
+    margin-right: 5px;
+  }
+}

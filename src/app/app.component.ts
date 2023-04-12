@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sum } from 'lodash';
-import { Observable, filter, of } from 'rxjs';
-import { IGameFarmingPlot, IGameRefiningRecipe } from '../interfaces';
-import { CharSelectState, OptionsState } from '../stores';
+import { Observable, filter, map, of } from 'rxjs';
+import { GatheringTradeskill, IGameFarmingPlot, IGameRefiningRecipe, OtherTradeskill, RefiningTradeskill, Tradeskill, TransformTradeskill } from '../interfaces';
+import { CharSelectState, OptionsState, WorkersState } from '../stores';
 import { UpdateAllItems } from '../stores/game/game.actions';
 import { getMercantileLevel } from './helpers';
 import { GameloopService } from './services/gameloop.service';
@@ -19,6 +19,7 @@ interface IMenuItem {
   timer: Observable<number>;
   level: Observable<number>;
   notify: Observable<{ tradeskill: string; message: string } | undefined>;
+  workerCount: Observable<number>;
 }
 
 @Component({
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @Select(OptionsState.getColorTheme) colorTheme$!: Observable<string>;
   @Select(OptionsState.getSidebarDisplay) sidebarDisplay$!: Observable<string>;
   @Select(CharSelectState.activeCharacterInventoryUnlocked) inventoryUnlocked$!: Observable<boolean>;
+  @Select(WorkersState.workerAllocationsPerTradeskill) workerAllocationsPerTradeskill$!: Observable<Record<Tradeskill, number>>;
 
   public gatheringTradeskills: IMenuItem[] = [
     { title: 'Fishing',   url: 'fishing',   icon: 'fishing',
@@ -39,7 +41,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.fishing.unlocked),
       timer: this.store.select(state => Math.floor(state.fishing.currentLocationDuration)),
       level: this.store.select(state => state.fishing.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'fishing')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === GatheringTradeskill.Fishing)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[GatheringTradeskill.Fishing])) },
 
     { title: 'Foraging',  url: 'foraging',  icon: 'foraging',
       requirements: 'None',
@@ -47,7 +50,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.foraging.unlocked),
       timer: this.store.select(state => Math.floor(state.foraging.currentLocationDuration)),
       level: this.store.select(state => state.foraging.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'foraging')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === GatheringTradeskill.Foraging)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[GatheringTradeskill.Foraging])) },
 
     { title: 'Hunting',   url: 'hunting',   icon: 'hunting',
       requirements: 'Discover Stone',
@@ -55,7 +59,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.hunting.unlocked),
       timer: this.store.select(state => Math.floor(state.hunting.currentLocationDuration)),
       level: this.store.select(state => state.hunting.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'hunting')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === GatheringTradeskill.Hunting)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[GatheringTradeskill.Hunting])) },
 
     { title: 'Logging',   url: 'logging',   icon: 'logging',
       requirements: 'None',
@@ -63,7 +68,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.logging.unlocked),
       timer: this.store.select(state => Math.floor(state.logging.currentLocationDuration)),
       level: this.store.select(state => state.logging.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'logging')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === GatheringTradeskill.Logging)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[GatheringTradeskill.Logging])) },
 
     { title: 'Mining',    url: 'mining',    icon: 'mining',
       requirements: 'Discover Pine Log',
@@ -71,7 +77,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.mining.unlocked),
       timer: this.store.select(state => Math.floor(state.mining.currentLocationDuration)),
       level: this.store.select(state => state.mining.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'mining')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === GatheringTradeskill.Mining)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[GatheringTradeskill.Mining])) },
   ];
 
   public refiningTradeskills: IMenuItem[] = [
@@ -85,7 +92,8 @@ export class AppComponent implements OnInit, OnDestroy {
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.alchemy.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'alchemy')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === RefiningTradeskill.Alchemy)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[RefiningTradeskill.Alchemy])) },
 
     { title: 'Blacksmithing',    url: 'blacksmithing',    icon: 'blacksmithing',
       requirements: 'Discover Stone & Pine Log',
@@ -97,7 +105,8 @@ export class AppComponent implements OnInit, OnDestroy {
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.blacksmithing.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'blacksmithing')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === RefiningTradeskill.Blacksmithing)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[RefiningTradeskill.Blacksmithing])) },
 
     { title: 'Cooking',    url: 'cooking',    icon: 'cooking',
       requirements: 'Discover Pinecone',
@@ -109,7 +118,8 @@ export class AppComponent implements OnInit, OnDestroy {
                                           + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.cooking.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'cooking')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === RefiningTradeskill.Cooking)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[RefiningTradeskill.Cooking])) },
 
     { title: 'Jewelcrafting',    url: 'jewelcrafting',    icon: 'jewelcrafting',
       requirements: 'Discover Dandelion',
@@ -121,7 +131,8 @@ export class AppComponent implements OnInit, OnDestroy {
                                             + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.jewelcrafting.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'jewelcrafting')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === RefiningTradeskill.Jewelcrafting)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[RefiningTradeskill.Jewelcrafting])) },
 
     { title: 'Weaving',    url: 'weaving',    icon: 'weaving',
       requirements: 'Discover Whorl',
@@ -133,7 +144,8 @@ export class AppComponent implements OnInit, OnDestroy {
                                         + (r.durationPer * (r.totalLeft - 1)))
       )),
       level: this.store.select(state => state.weaving.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'weaving')) }
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === RefiningTradeskill.Weaving)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[RefiningTradeskill.Weaving])) }
   ];
 
   public peripheralTradeskills: IMenuItem[] = [
@@ -144,7 +156,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.combat.unlocked),
       timer: of(0),
       level: this.store.select(state => state.combat.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'combat')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === OtherTradeskill.Combat)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[OtherTradeskill.Combat])) },
 
     { title: 'Farming',    url: 'farming',    icon: 'farming',
       requirements: 'Discover Carrot Seed',
@@ -162,7 +175,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.farming.unlocked),
       timer: this.store.select(state => Math.max(...state.farming.plots.map((p: IGameFarmingPlot) => p.currentDuration))),
       level: this.store.select(state => state.farming.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'farming')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === TransformTradeskill.Farming)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[TransformTradeskill.Farming])) },
 
     { title: 'Mercantile',    url: 'mercantile',    icon: 'mercantile',
       requirements: 'Discover Coin (quick sell an item)',
@@ -170,7 +184,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.mercantile.unlocked),
       timer: of(0),
       level: this.store.select(state => getMercantileLevel(state)),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'mercantile')) },
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === OtherTradeskill.Mercantile)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[OtherTradeskill.Mercantile])) },
 
     { title: 'Transmutation',    url: 'transmutation',    icon: 'prospecting',
       requirements: 'Discover Stone',
@@ -178,7 +193,8 @@ export class AppComponent implements OnInit, OnDestroy {
       unlocked: this.store.select(state => state.prospecting.unlocked),
       timer: of(0),
       level: this.store.select(state => state.prospecting.level),
-      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === 'prospecting')) }
+      notify: this.notifyService.tradeskill$.pipe(filter(t => t.tradeskill === TransformTradeskill.Prospecting)),
+      workerCount: this.workerAllocationsPerTradeskill$.pipe(map(s => s[TransformTradeskill.Prospecting])) }
   ];
 
   public get showMenu(): boolean {

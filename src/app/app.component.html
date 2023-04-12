@@ -150,6 +150,14 @@
 
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
+                    <ion-badge class="worker-badge"
+                               slot="start"
+                               *ngIf="p.workerCount | async as workerCount"
+                               color="secondary">
+                      <ion-icon name="people"></ion-icon>
+                      {{ workerCount }}
+                    </ion-badge>
+
                     <ion-icon class="info-badge"
                               *ngIf="p.badge | async as badgeData"
                               [icon]="badgeData.icon"
@@ -197,6 +205,14 @@
 
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
 
+                    <ion-badge class="worker-badge"
+                               slot="start"
+                               *ngIf="p.workerCount | async as workerCount"
+                               color="secondary">
+                      <ion-icon name="people"></ion-icon>
+                      {{ workerCount }}
+                    </ion-badge>
+
                     <ion-icon class="info-badge"
                               *ngIf="p.badge | async as badgeData"
                               [icon]="badgeData.icon"
@@ -243,6 +259,14 @@
                             [analyticsClick]="'Navigate:Peripheral:' + p.title">
 
                     <app-game-icon slot="start" [icon]="p.icon"></app-game-icon>
+
+                    <ion-badge class="worker-badge"
+                               slot="start"
+                               *ngIf="p.workerCount | async as workerCount"
+                               color="secondary">
+                      <ion-icon name="people"></ion-icon>
+                      {{ workerCount }}
+                    </ion-badge>
 
                     <ion-icon class="info-badge"
                               *ngIf="p.badge | async as badgeData"
