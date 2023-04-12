@@ -84,7 +84,7 @@ export class MetaService {
 
   characterSavefile(slot: number = 0) {
     const data = this.store.snapshot();
-    const ignoredKeys: string[] = ['options', 'mods'];
+    const ignoredKeys: string[] = ['game', 'options', 'mods'];
 
     const charData = data.charselect.characters[slot];
     if(!charData) {
@@ -116,6 +116,7 @@ export class MetaService {
   importCharacter(data: any) {
     const currentOptions = this.store.snapshot().options;
     const currentMods = this.store.snapshot().mods;
+    const currentGame = this.store.snapshot().game;
 
     if(!data.options) {
       data.options = currentOptions;
@@ -123,6 +124,10 @@ export class MetaService {
 
     if(!data.mods) {
       data.mods = currentMods;
+    }
+
+    if(!data.game) {
+      data.game = currentGame;
     }
 
     // gotta migrate potentially aged savefiles
