@@ -70,6 +70,10 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
 
   canDoAbility(player: IGameEncounterCharacter, ability: string, abilityIndex: number): boolean {
     const abilityRef = this.getAbility(ability);
+    if(!abilityRef) {
+      return false;
+    }
+
     return !(player.cooldowns[abilityIndex] > 0) && player.currentEnergy >= abilityRef.energyCost;
   }
 
