@@ -3,15 +3,19 @@
     <ion-title>Inventory</ion-title>
 
     <ion-buttons slot="end" *ngIf="isMultiSelect">
-      <ion-button color="secondary" (click)="quickSellSelected()">
+      <ion-button color="primary" (click)="quickSellSelected()">
         Quick Sell for {{ quickSellValue() | number }} Coins
       </ion-button>
 
       <ng-container *ngIf="stockpileInfo$ | async as stockpileInfo">
-        <ion-button color="secondary" (click)="sendSelectedToStockpile()" [disabled]="stockpileInfo.current + itemsSelected.length > stockpileInfo.max">
+        <ion-button color="primary" (click)="sendSelectedToStockpile()" [disabled]="stockpileInfo.current + itemsSelected.length > stockpileInfo.max">
           Send {{ itemsSelected.length }} to Stockpile
         </ion-button>
       </ng-container>
+
+      <ion-button color="secondary" (click)="selectAll()">
+        Select All
+      </ion-button>
 
       <ion-button color="warning" (click)="clearSelected()">
         Clear Selection

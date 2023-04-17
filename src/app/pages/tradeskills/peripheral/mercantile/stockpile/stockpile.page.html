@@ -5,12 +5,16 @@
     </ng-container>
 
     <ion-buttons slot="end" *ngIf="isMultiSelect">
-      <ion-button color="secondary" (click)="quickSellSelected()">
+      <ion-button color="primary" (click)="quickSellSelected()">
         Quick Sell for {{ quickSellValue() | number }} Coins
       </ion-button>
 
-      <ion-button color="secondary" (click)="sendSelectedToInventory()">
+      <ion-button color="primary" (click)="sendSelectedToInventory()">
         Send {{ itemsSelected.length }} to Inventory
+      </ion-button>
+
+      <ion-button color="secondary" (click)="selectAll()">
+        Select All
       </ion-button>
 
       <ion-button color="warning" (click)="clearSelected()">
