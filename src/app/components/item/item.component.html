@@ -6,6 +6,6 @@
   <span class="quantity" *ngIf="(item.quantity || 1) > 1">x{{ item.quantity | number }}</span>
 
   <ng-template #tooltip>
-    <app-item-tooltip [item]="item"></app-item-tooltip>
+    <app-item-tooltip [item]="item" [showCanClick]="canClick"></app-item-tooltip>
   </ng-template>
 </div>

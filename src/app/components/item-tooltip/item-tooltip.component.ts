@@ -12,6 +12,7 @@ import { ContentService } from '../../services/content.service';
 export class ItemTooltipComponent implements OnInit {
 
   @Input() item!: IGameItem;
+  @Input() showCanClick = false;
 
   public hasStats = false;
   public effects = '';

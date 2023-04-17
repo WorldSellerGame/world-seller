@@ -50,7 +50,7 @@
               <div class="resource-container" (click)="openMenu(item, i, popover, $event)" (contextmenu)="openMenu(item, i, popover, $event)">
                 <ion-checkbox *ngIf="isMultiSelect" class="resource-checkbox" [checked]="itemsSelectedById[item.id ?? '']"></ion-checkbox>
 
-                <app-item [item]="item" #item class="cursor-pointer" [hideIcon]="isMultiSelect"></app-item>
+                <app-item [item]="item" #item class="cursor-pointer" [hideIcon]="isMultiSelect" [canClick]="true"></app-item>
 
                 <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
                   <ng-template>
