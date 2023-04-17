@@ -1,0 +1,28 @@
+
+.action-container {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--ion-color-medium, #989aa2);
+  border-radius: 5px;
+
+  &.active {
+    border-color: var(--ion-color-primary, #3880ff);
+  }
+}
+
+.action-desc, .action-cost {
+  margin-top: 5px;
+}
+
+.action-name {
+  display: flex;
+  align-items: center;
+
+  app-game-icon {
+    margin-right: 10px;
+  }
+}

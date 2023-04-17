@@ -86,7 +86,7 @@
       flex-wrap: wrap;
       flex-direction: row;
 
-      .effect {
+      .effect-container {
         &:not(:first-child) {
           margin-left: 10px;
         }
@@ -182,5 +182,34 @@
     right: 0;
     color: #fff;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+}
+
+.action-item-container {
+  display: flex;
+  flex-direction: row;
+
+  .action-item {
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+
+    .indicator {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: disabled;
+      pointer-events: none;
+    }
+
+    &.ability.last {
+      padding-right: 10px;
+      border-right: 5px solid var(--ion-color-primary, #3880ff);
+    }
   }
 }

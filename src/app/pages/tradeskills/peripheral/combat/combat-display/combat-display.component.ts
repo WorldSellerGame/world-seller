@@ -35,6 +35,9 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   public activeAbilityIndex = -1;
   public activeAbilityInfo: IGameCombatAbility[] | undefined;
 
+  public abilityArray = Array(8);
+  public itemArray = Array(3);
+
   public get firstAbilityForTargetting(): IGameCombatAbility | undefined {
     return this.activeAbilityInfo?.[0];
   }
