@@ -95,10 +95,6 @@
   }
 }
 
-.active-skill {
-  border-left: 5px solid var(--ion-color-primary, #3880ff);
-}
-
 .highlight {
 
   cursor: pointer;
@@ -191,15 +187,9 @@
 
   .action-item {
     margin-right: 10px;
+    min-height: 80px;
     cursor: pointer;
     position: relative;
-
-    .indicator {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 20px;
-    }
 
     &.disabled {
       opacity: 0.5;
@@ -210,6 +200,26 @@
     &.ability.last {
       padding-right: 10px;
       border-right: 5px solid var(--ion-color-primary, #3880ff);
+    }
+
+    .action-key {
+      position: absolute;
+      bottom: -5px;
+      left: auto;
+      right: auto;
+      width: 64px;
+      text-align: center;
+
+      ion-badge {
+        min-width: 32px;
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
     }
   }
 }
