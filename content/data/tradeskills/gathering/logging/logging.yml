@@ -1,0 +1,223 @@
+
+# Low gather time, high cooldown
+
+- name: Fallen Trees
+  description: Gather up what you can from already dead wood.
+  perGather:
+    min: 2
+    max: 4
+  level:
+    min: 0
+    max: 10
+  gatherTime: 10
+  cooldownTime: 5
+  resources:
+    - name: Pine Log
+      weight: 5
+    - name: Plant Fiber
+      weight: 2
+  maxWorkers: 1
+
+- name: Pine Forest
+  description: Closest place to gather good firewood.
+  perGather:
+    min: 3
+    max: 6
+  level:
+    min: 5
+    max: 15
+  gatherTime: 30
+  cooldownTime: 15
+  resources:
+    - name: Pine Log
+      weight: 10
+    - name: Pinecone
+      weight: 2
+    - name: Plant Fiber
+      weight: 4
+    - name: Sap
+      weight: 1
+  maxWorkers: 1
+
+- name: Coniferous Forest
+  description: A mix of different trees a little farther away.
+  perGather:
+    min: 4
+    max: 8
+  level:
+    min: 10
+    max: 20
+  gatherTime: 80
+  cooldownTime: 40
+  resources:
+    - name: Pine Log
+      weight: 10
+    - name: Pinecone
+      weight: 1
+    - name: Cedar Log
+      weight: 15
+    - name: Cedar Seed
+      weight: 3
+    - name: Plant Fiber
+      weight: 2
+    - name: Sap
+      weight: 1
+  maxWorkers: 1
+
+- name: Orchard
+  description: It looks to be a long abandoned apple farm amongst the wilderness. The animals still seem to enjoy it.
+  perGather:
+    min: 5
+    max: 10
+  level:
+    min: 15
+    max: 25
+  gatherTime: 180
+  cooldownTime: 90
+  resources:
+    - name: Apple Wood Log
+      weight: 15
+    - name: Apple
+      weight: 3
+    - name: Plant Fiber
+      weight: 3
+    - name: Guano
+      weight: 1
+  maxWorkers: 1
+
+- name: Cedrics Woods
+  description: A hard wood forest. Acording to the locals fighting a bear with a spoon gets a forest named after you.
+  perGather:
+    min: 6
+    max: 12
+  level:
+    min: 20
+    max: 30
+  gatherTime: 330
+  cooldownTime: 165
+  resources:
+    - name: Cedar Log
+      weight: 10
+    - name: Cedar Seed
+      weight: 2
+    - name: Oak Log
+      weight: 15
+    - name: Acorn
+      weight: 3
+    - name: Ash Log
+      weight: 10
+    - name: Ash Seed
+      weight: 2
+    - name: Plant Fiber
+      weight: 1
+    - name: Sap
+      weight: 1
+  maxWorkers: 1
+
+- name: Cedrics Spot #no new plantables at time
+  description: Cedrics old secret spot for high quality wood.
+  perGather:
+    min: 7
+    max: 14
+  level:
+    min: 25
+    max: 35
+  gatherTime: 600
+  cooldownTime: 300
+  resources:
+    - name: Cedar Log
+      weight: 5
+    - name: Cedar Seed
+      weight: 1
+    - name: Oak Log
+      weight: 15
+    - name: Acorn
+      weight: 3
+    - name: Ash Log
+      weight: 20
+    - name: Ash Seed
+      weight: 4
+    - name: Plant Fiber
+      weight: 2
+    - name: Sap
+      weight: 1
+  maxWorkers: 1
+
+- name: Iron Wood Grove
+  description: Place to go for some of the hardest lumber available to most people.
+  perGather:
+    min: 8
+    max: 16
+  level:
+    min: 30
+    max: 40
+  gatherTime: 1000
+  cooldownTime: 500
+  resources:
+    - name: Oak Log
+      weight: 5
+    - name: Acorn
+      weight: 1
+    - name: Ash Log
+      weight: 10
+    - name: Ash Seed
+      weight: 2
+    - name: Hophornbeam Log
+      weight: 20
+    - name: Hophornbeam Seed
+      weight: 2
+  maxWorkers: 1
+
+- name: Dryads Chosen Select
+  description: High quality wood in abundance. Best not to upset the owners if you know what's good for you.
+  perGather:
+    min: 9
+    max: 18
+  level:
+    min: 35
+    max: 45
+  gatherTime: 1650
+  cooldownTime: 825
+  resources:
+    - name: Ash Log
+      weight: 10
+    - name: Ash Seed
+      weight: 2
+    - name: Hophornbeam Log
+      weight: 20
+    - name: Hophornbeam Seed
+      weight: 2
+    - name: Elvish Silverwood Log
+      weight: 40
+    - name: Elvish Silverwood Seed
+      weight: 2
+    - name: Curse
+      weight: 1
+  maxWorkers: 1
+
+- name: Old Elvish Woods
+  description: Long gone are the elves of this place and yet the trees remain. Too hard to be practical for most people, but you are no longer most people.
+  perGather:
+    min: 10
+    max: 20
+  level:
+    min: 40
+    max: 50
+  gatherTime: 2600
+  cooldownTime: 1300
+  resources:
+    - name: Hophornbeam Log
+      weight: 30
+    - name: Hophornbeam Seed
+      weight: 3
+    - name: Elvish Silverwood Log
+      weight: 80
+    - name: Elvish Silverwood Seed
+      weight: 4
+  maxWorkers: 1
+
+#Brandon
+#numbers to be adjusted at later date
+#there are paterns and Im getting a better idea of how I want this to play out for most skills up to 50
+#past that gotta make up fantasy garbage and set the timers turbo high
+#Yeah even timmers this long are anoying but it will be nessisary to make them higher
