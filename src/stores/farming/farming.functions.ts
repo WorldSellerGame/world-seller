@@ -41,7 +41,7 @@ export function workerSpeedUpgradeCost(currentLevel = 0): number {
 }
 
 export function workerSpeed() {
-  return 3600;
+  return 1800;
 }
 
 export function workerSpeedReduction(currentLevel = 0): number {
