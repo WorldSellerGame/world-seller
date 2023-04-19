@@ -1,0 +1,288 @@
+
+
+Cooked Cropfish:
+  name: Cooked Cropfish
+  description: Once cooked you can eat them whole. Although, I would rather not eat them at all.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 2
+  value: 5
+  icon: cooked-fish
+  oocHealth: 3
+  stats:
+    energyPerCombat: 10
+  foodDuration: 6
+
+Barbecued Squirrel:
+  name: Barbecued Squirrel
+  description: Squirrel on a stick. Tastes like chicken.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 2
+  value: 10
+  icon: hot-meal
+  oocHealth: 1
+  oocEnergy: 1
+  stats:
+    energyPerRound: 1
+  foodDuration: 5
+
+Bunny Stew:
+  name: Bunny Stew
+  description: A solid, well rounded, tasty meal.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 3
+  value: 25
+  icon: hot-meal
+  oocHealth: 2
+  oocEnergy: 2
+  stats:
+    healing: 10
+    healingPerCombat: 10
+  foodDuration: 8
+
+Roast Bunny:
+  name: Roasted Bunny
+  description: Simple hearty food.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 3
+  value: 15
+  icon: hot-meal
+  oocHealth: 1
+  stats:
+    healingPerRound: 10
+  foodDuration: 8
+
+Pan Fried Panfish:
+  name: Pan Fried Panfish
+  description: Panfish get their name for fitting in a pan.
+  type: Food
+  category: Foods
+  rarity: Common
+  durability: 2
+  value: 15
+  icon: cooked-fish
+  oocHealth: 2
+  stats: {}
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 7
+
+Baked Fallfish:
+  name: Baked Fallfish
+  description: Baked is healthier then fried. A bit more sad though.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 2
+  value: 25
+  icon: cooked-fish
+  oocHealth: 5
+  stats:
+    healingPerCombat: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 7
+
+Duck Roast:
+  name: Duck Roast
+  description: Roast Duck is a treat and quite filling.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 3
+  value: 50
+  icon: cooked-bird
+  oocHealth: 10
+  stats:
+    healing: 12
+    healingPerRound: 5
+  foodDuration: 8
+
+Fried Frog Legs:
+  name: Fried Frog Legs
+  description: Though claimed to be a delicacy, they do taste like water chicken.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 2
+  value: 50
+  icon: frog-foot
+  oocHealth: 2
+  stats:
+    healing: 3
+    healingPerCombat: 5
+    healingPerRound: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: EnergyBuff1
+  foodDuration: 7
+
+Cooked Trout:
+  name: Cooked Trout
+  description: Perhaps best enjoyed now and then lest you want to affect the trout population.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 3
+  value: 50
+  icon: cooked-fish
+  oocHealth: 5
+  stats:
+    healing: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 8
+
+Roast Turkey:
+  name: Roast Turkey
+  description: A tad labor intensive, but undeniably a heavenly feast.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 3
+  value: 75
+  icon: cooked-bird
+  oocEnergy: 10
+  stats:
+    healingPerCombat: 20
+  foodDuration: 8
+
+Baked Breaded Bass:
+  name: Baked Breaded Bass
+  description: Reminds you of times past. A more filling way to prepare fish and inexpensive to boot.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  durability: 3
+  value: 75
+  icon: cooked-fish
+  oocEnergy: 5
+  stats:
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+  foodDuration: 8
+
+Venison Steak:
+  name: Venison Steak
+  description: Lean meat with a unique taste.
+  type: Food
+  category: Foods
+  rarity: Rare
+  durability: 3
+  value: 100
+  icon: hot-meal
+  oocEnergy: 10
+  stats:
+    healingPerCombat: 10
+    healingPerRound: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  foodDuration: 8
+
+Honey Ham:
+  name: Honey Ham
+  description: A feast to be sure. Rich, succulent meat with a diverse flavor.
+  type: Food
+  category: Foods
+  rarity: Rare
+  durability: 4
+  value: 300
+  icon: hot-meal
+  oocHealth: 15
+  stats:
+    healing: 25
+  abilities:
+    - abilityName: ItemSelfHeal
+  foodDuration: 9
+
+Spicy Catfish Stew:
+  name: Spicy Catfish Stew
+  description: Fairly simple to cook, but time and good recipe are the secret to this comfort food.
+  type: Food
+  category: Foods
+  rarity: Rare
+  durability: 4
+  value: 300
+  icon: hot-meal
+  oocHealth: 15
+  oocEnergy: 5
+  stats:
+    healing: 15
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+  foodDuration: 9
+
+Duck Eggs Benedict:
+  name: Duck Eggs Benedict
+  description: One of the most complicated ways to prepare two eggs.
+  type: Food
+  category: Foods
+  rarity: Rare
+  durability: 3
+  value: 500
+  icon: hot-meal
+  oocHealth: 10
+  oocEnergy: 2
+  stats:
+    healingPerCombat: 5
+    healingPerRound: 5
+    healing: 10
+  abilities:
+    - abilityName: ItemSelfHealRandom
+  foodDuration: 8
+
+Elk Jerky:
+  name: Elk Jerky
+  description: Long lasting and easy to store in large amounts. Initially designed by necessity, but still often made for its flavour.
+  type: Food
+  category: Foods
+  rarity: Epic
+  durability: 6
+  value: 500
+  icon: meal
+  oocEnergy: 30
+  stats:
+    healing: 25
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: AttackBuff2
+  foodDuration: 11
+
+Pompano Ceviche:
+  name: Pompano Ceviche
+  description: Refreshing and filling, this dish is unique and undeniably a treat.
+  type: Food
+  category: Foods
+  rarity: Epic
+  durability: 2
+  value: 500
+  icon: meal
+  oocHealth: 15
+  stats:
+    healing: 7
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff3
+  foodDuration: 7
