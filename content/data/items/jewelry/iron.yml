@@ -1,0 +1,91 @@
+
+
+Iron Ring:
+  name: Iron Ring
+  description: A plain Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 250
+  icon: 'ring'
+  stats:
+    axeSpeedPercent: 5
+    fishingSpeedPercent: 5
+    scytheSpeedPercent: 5
+    pickaxeSpeedPercent: 5
+    huntingSpeedPercent: 5
+
+Iron Tongue Piercing:
+  name: Iron Tongue Piercing
+  description: A plain Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 250
+  icon: 'tongue-piercing'
+  stats:
+    healing: 2
+    attack: 1
+    energyBonus: 2
+
+Quartz Iron Ring:
+  name: Iron Ring (Quartz)
+  description: Cut Quartz set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 300
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeedPercent: 10
+    fishingSpeedPercent: 10
+    scytheSpeedPercent: 10
+    pickaxeSpeedPercent: 10
+    huntingSpeedPercent: 10
+
+Quartz Iron Tongue Piercing:
+  name: Iron Tongue Piercing (Quartz)
+  description: Cut Quartz set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 300
+  icon: 'tongue-piercing'
+  stats:
+    healing: 4
+    attack: 2
+    energyBonus: 4
+
+Tanzanite Iron Ring:
+  name: Iron Ring (Tanzanite)
+  description: Cut Tanzanite set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeedPercent: 15
+    fishingSpeedPercent: 15
+    scytheSpeedPercent: 15
+    pickaxeSpeedPercent: 15
+    huntingSpeedPercent: 15
+
+Tanzanite Iron Tongue Piercing:
+  name: Iron Tongue Piercing (Tanzanite)
+  description: Cut Tanzanite set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'tongue-piercing'
+  stats:
+    healing: 6
+    attack: 3
+    energyBonus: 6

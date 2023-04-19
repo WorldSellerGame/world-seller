@@ -1,0 +1,83 @@
+
+
+- result: Adamantite Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 600
+  ingredients:
+    Adamantite Ingot: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Adamantite Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 600
+  ingredients:
+    Adamantite Ingot: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Adamantite Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 600
+  ingredients:
+    Adamantite Ring: 1
+    Cut Quartz: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Adamantite Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 600
+  ingredients:
+    Adamantite Tongue Piercing: 1
+    Cut Quartz: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Adamantite Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 35, max: 45 }
+  craftTime: 720
+  ingredients:
+    Adamantite Ring: 1
+    Cut Tanzanite: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Adamantite Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 35, max: 45 }
+  craftTime: 720
+  ingredients:
+    Adamantite Tongue Piercing: 1
+    Cut Tanzanite: 1
+    Adamantite Jewelry Tools: 1
+  require:
+    - Adamantite Jewelry Tools
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1

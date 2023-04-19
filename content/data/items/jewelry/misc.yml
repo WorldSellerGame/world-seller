@@ -1,0 +1,16 @@
+
+Dandelion Crown:
+  name: Dandelion Crown
+  description: Dandelions braided together.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 5
+  icon: 'ring'
+  stats:
+    axePowerPercent: 1
+    fishingPowerPercent: 1
+    scythePowerPercent: 1
+    pickaxePowerPercent: 1
+    huntingPowerPercent: 1

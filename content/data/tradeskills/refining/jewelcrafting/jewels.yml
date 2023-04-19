@@ -1,0 +1,40 @@
+
+
+- result: Cut Quartz
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 30
+  ingredients:
+    Metal Jewelry Tools: 1
+    Quartz: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Powder #gotta move
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 240
+  ingredients:
+    Quartz: 2
+    Mortar and Pestle: 1
+  require:
+    - Mortar and Pestle
+  preserve:
+    - Mortar and Pestle
+  maxWorkers: 1
+
+- result: Cut Tanzanite
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 40
+  ingredients:
+    Metal Jewelry Tools: 1
+    Tanzanite: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1

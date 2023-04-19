@@ -1,0 +1,93 @@
+
+Adamantite Ring:
+  name: Adamantite Ring
+  description: A plain Adamantite Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 300
+  icon: 'ring'
+  stats:
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
+
+Adamantite Tongue Piercing:
+  name: Adamantite Tongue Piercing
+  description: A plain Adamantite Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 300
+  icon: 'tongue-piercing'
+  stats:
+    healing: 5
+    attack: 3
+    energyBonus: 10
+    healthBonus: 10
+
+Quartz Adamantite Ring:
+  name: Adamantite Ring (Quartz)
+  description: Cut Quartz set into an Adamantite Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 350
+  icon: 'ring-with-stone'
+  stats:
+    axePower: 120
+    fishingPower: 120
+    scythePower: 120
+    pickaxePower: 120
+    huntingPower: 120
+
+Quartz Adamantite Tongue Piercing:
+  name: Adamantite Tongue Piercing (Quartz)
+  description: Cut Quartz set into an Adamantite Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 350
+  icon: 'tongue-piercing'
+  stats:
+    healing: 9
+    attack: 4
+    energyBonus: 10
+    healthBonus: 20
+
+Tanzanite Adamantite Ring:
+  name: Adamantite Ring (Tanzanite)
+  description: Cut Tanzanite set into an Adamantite Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ring-with-stone'
+  stats:
+    axePowerPercent: 5
+    fishingPowerPercent: 5
+    scythePowerPercent: 5
+    pickaxePowerPercent: 5
+    huntingPowerPercent: 5
+
+Tanzanite Adamantite Tongue Piercing:
+  name: Adamantite Tongue Piercing (Tanzanite)
+  description: Cut Tanzanite set into an Adamantite Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'tongue-piercing'
+  stats:
+    healing: 4
+    attack: 11
+    energyBonus: 20
+    healthBonus: 10

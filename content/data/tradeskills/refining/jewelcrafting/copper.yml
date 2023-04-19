@@ -1,0 +1,54 @@
+
+- result: Copper Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ingot: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Copper Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ingot: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Copper Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ring: 1
+    Cut Quartz: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Copper Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Tongue Piercing: 1
+    Cut Quartz: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1

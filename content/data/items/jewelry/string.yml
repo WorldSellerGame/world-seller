@@ -1,0 +1,25 @@
+
+
+Braided Belt:
+  name: Braided Belt
+  description: A simple braided belt.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 20
+  icon: 'ring'
+  stats:
+    mitigation: 1
+
+Braided Anklet:
+  name: Braided Anklet
+  description: A simple braided anklet.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 10
+  icon: 'ring'
+  stats:
+    energyBonus: 2
