@@ -7,12 +7,13 @@ import { AnalyticsService } from '../services/analytics.service';
 export class AnalyticsClickDirective {
 
   @Input() analyticsClick!: string;
+  @Input() analyticsClickValue = 1;
 
   constructor(private analyticsService: AnalyticsService) { }
 
   @HostListener('click', ['$event'])
   click($event: any) {
-    this.analyticsService.sendDesignEvent(this.analyticsClick, 1);
+    this.analyticsService.sendDesignEvent(this.analyticsClick, this.analyticsClickValue);
   }
 
 }

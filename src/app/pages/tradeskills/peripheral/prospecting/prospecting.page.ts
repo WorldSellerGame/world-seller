@@ -83,8 +83,8 @@ export class ProspectingPage implements OnInit {
     return this.locationData.filter((prospect: IGameResourceTransform) => prospect.level.min <= skillLevel);
   }
 
-  prospectItem(prospect: IGameResourceTransform) {
-    this.store.dispatch(new ProspectRock(prospect, 1));
+  prospectItem(prospect: IGameResourceTransform, count = 1) {
+    this.store.dispatch(new ProspectRock(prospect, count));
   }
 
 }

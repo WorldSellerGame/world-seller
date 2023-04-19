@@ -46,9 +46,27 @@
                       </ng-template>
                     </ion-label>
 
-                    <ion-button class="transmute" fill="clear" slot="end" (click)="prospectItem(prospect)" [disabled]="!resources[prospect.startingItem]" [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
+                    <ion-button class="transmute" fill="clear" slot="end" (click)="prospectItem(prospect)"
+                      [disabled]="!resources[prospect.startingItem]"
+                      [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
                       [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem">
                       Transmute <span *ngIf="(skillLevel.level || 0) < prospect.level.max">&nbsp;(+1 Lv)</span>
+                    </ion-button>
+
+                    <ion-button class="transmute small" fill="clear" slot="end" (click)="prospectItem(prospect, 5)"
+                      [disabled]="resources[prospect.startingItem] < 5"
+                      [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
+                      [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem"
+                      [analyticsClickValue]="5">
+                      x5
+                    </ion-button>
+
+                    <ion-button class="transmute small" fill="clear" slot="end" (click)="prospectItem(prospect, 25)"
+                      [disabled]="resources[prospect.startingItem] < 25"
+                      [class.no-skillups]="(skillLevel.level || 0) >= prospect.level.max"
+                      [analyticsClick]="'Peripheral:Prospecting:Prospect:' + prospect.startingItem"
+                      [analyticsClickValue]="25">
+                      x25
                     </ion-button>
                   </ion-item>
                 </ion-list>

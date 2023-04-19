@@ -36,20 +36,47 @@ export function prospectRock(ctx: StateContext<IGameProspecting>, { prospect, qu
 
   ctx.dispatch(new GainResources({ [prospect.startingItem]: -quantity }));
 
-  const choice = pickNameWithWeights(prospect.becomes);
-  const gainedAmt = random(prospect.perGather.min, prospect.perGather.max);
+  const resourcesGained: Record<string, number> = {};
+  let successes = 0;
+
+  for(let i = 0; i < quantity; i++) {
+
+    const choice = pickNameWithWeights(prospect.becomes);
+    const gainedAmt = random(prospect.perGather.min, prospect.perGather.max);
+
+    if(choice === 'nothing') {
+      continue;
+    }
+
+    successes++;
+
+    if(!resourcesGained[choice]) {
+      resourcesGained[choice] = 0;
+    }
+
+    resourcesGained[choice] += gainedAmt;
+  }
+
+  const allResourceGains = Object.keys(resourcesGained)
+    .map(key => new GainItemOrResource(key, resourcesGained[key], false));
+  const allResourceNotifications = Object.keys(resourcesGained)
+    .map(key => new NotifyTradeskill(TransformTradeskill.Prospecting, `+${resourcesGained[key]}x ${key}`));
 
   ctx.dispatch([
-    new NotifyTradeskill(TransformTradeskill.Prospecting, choice === 'nothing' ? 'Failed!' : `+${gainedAmt}x ${choice}`),
-    new GainItemOrResource(choice, gainedAmt, false),
-    new IncrementStat(AchievementStat.ProspectingProspects)
+    ...allResourceNotifications,
+    ...allResourceGains,
+    new IncrementStat(AchievementStat.ProspectingProspects, quantity)
   ]);
 
-  if(choice !== 'nothing' && prospect.level.max > state.level) {
+  if(successes === 0) {
+    ctx.dispatch(new PlaySFX('tradeskill-finish-prospecting'));
+  } else {
     ctx.dispatch(new PlaySFX('tradeskill-start-prospecting'));
+  }
 
+  if(successes > 0 && prospect.level.max > state.level) {
     ctx.setState(patch<IGameProspecting>({
-      level: state.level + 1
+      level: Math.min(prospect.level.max, state.level + successes)
     }));
   }
 };

@@ -311,7 +311,7 @@ Sound effects must be named the same as the what they are in the game. They can'
 - `tradeskill-finish-jewelcrafting.wav`
 - `tradeskill-finish-logging.wav`
 - `tradeskill-finish-mining.wav`
-- `tradeskill-finish-prospecting.wav` (unused)
+- `tradeskill-finish-prospecting.wav` (used when failing)
 - `tradeskill-finish-weaving.wav`
 - `tradeskill-finish.wav` (unused)
 - `tradeskill-start-alchemy.wav`

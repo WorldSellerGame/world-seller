@@ -17,4 +17,8 @@
 
 .transmute {
   min-width: 135px;
+
+  &.small {
+    min-width: 50px;
+  }
 }
