@@ -1,7 +1,7 @@
 
-Adamantite Ring:
-  name: Adamantite Ring
-  description: A plain Adamantite Ring.
+Adamant Ring:
+  name: Adamant Ring
+  description: A plain Adamant Ring.
   type: Jewelry
   category: Jewelry
   rarity: Common
@@ -15,24 +15,24 @@ Adamantite Ring:
     pickaxePower: 60
     huntingPower: 60
 
-Adamantite Tongue Piercing:
-  name: Adamantite Tongue Piercing
-  description: A plain Adamantite Piercing.
+Adamant Ear Piercing:
+  name: Adamant Ear Piercing
+  description: A plain Adamant Piercing.
   type: Jewelry
   category: Jewelry
   rarity: Common
   durability: -1
   value: 300
-  icon: 'tongue-piercing'
+  icon: 'ear-piercing'
   stats:
     healing: 5
     attack: 3
     energyBonus: 10
     healthBonus: 10
 
-Quartz Adamantite Ring:
-  name: Adamantite Ring (Quartz)
-  description: Cut Quartz set into an Adamantite Ring.
+Quartz Adamant Ring:
+  name: Adamant Ring (Quartz)
+  description: Cut Quartz set into an Adamant Ring.
   type: Jewelry
   category: Jewelry
   rarity: Uncommon
@@ -46,24 +46,24 @@ Quartz Adamantite Ring:
     pickaxePower: 120
     huntingPower: 120
 
-Quartz Adamantite Tongue Piercing:
-  name: Adamantite Tongue Piercing (Quartz)
-  description: Cut Quartz set into an Adamantite Piercing.
+Quartz Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Quartz)
+  description: Cut Quartz set into an Adamant Piercing.
   type: Jewelry
   category: Jewelry
   rarity: Uncommon
   durability: -1
   value: 350
-  icon: 'tongue-piercing'
+  icon: 'ear-piercing'
   stats:
     healing: 9
     attack: 4
     energyBonus: 10
     healthBonus: 20
 
-Tanzanite Adamantite Ring:
-  name: Adamantite Ring (Tanzanite)
-  description: Cut Tanzanite set into an Adamantite Ring.
+Tanzanite Adamant Ring:
+  name: Adamant Ring (Tanzanite)
+  description: Cut Tanzanite set into an Adamant Ring.
   type: Jewelry
   category: Jewelry
   rarity: Rare
@@ -77,15 +77,15 @@ Tanzanite Adamantite Ring:
     pickaxePowerPercent: 5
     huntingPowerPercent: 5
 
-Tanzanite Adamantite Tongue Piercing:
-  name: Adamantite Tongue Piercing (Tanzanite)
-  description: Cut Tanzanite set into an Adamantite Piercing.
+Tanzanite Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Tanzanite)
+  description: Cut Tanzanite set into an Adamant Piercing.
   type: Jewelry
   category: Jewelry
   rarity: Rare
   durability: -1
   value: 700
-  icon: 'tongue-piercing'
+  icon: 'ear-piercing'
   stats:
     healing: 4
     attack: 11
