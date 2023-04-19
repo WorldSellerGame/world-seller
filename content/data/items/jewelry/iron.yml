@@ -26,9 +26,8 @@ Iron Tongue Piercing:
   value: 250
   icon: 'tongue-piercing'
   stats:
-    healing: 2
-    attack: 1
-    energyBonus: 2
+    healing: 5
+    attack: 2
 
 Quartz Iron Ring:
   name: Iron Ring (Quartz)
@@ -56,9 +55,10 @@ Quartz Iron Tongue Piercing:
   value: 300
   icon: 'tongue-piercing'
   stats:
-    healing: 4
+    healing: 5
     attack: 2
-    energyBonus: 4
+    energyBonus: 10
+    healthBonus: 10
 
 Tanzanite Iron Ring:
   name: Iron Ring (Tanzanite)
@@ -70,11 +70,16 @@ Tanzanite Iron Ring:
   value: 600
   icon: 'ring-with-stone'
   stats:
-    axeSpeedPercent: 15
-    fishingSpeedPercent: 15
-    scytheSpeedPercent: 15
-    pickaxeSpeedPercent: 15
-    huntingSpeedPercent: 15
+    axeSpeedPercent: 5
+    fishingSpeedPercent: 5
+    scytheSpeedPercent: 5
+    pickaxeSpeedPercent: 5
+    huntingSpeedPercent: 5
+    axePowerPercent: 5
+    fishingPowerPercent: 5
+    scythePowerPercent: 5
+    pickaxePowerPercent: 5
+    huntingPowerPercent: 5
 
 Tanzanite Iron Tongue Piercing:
   name: Iron Tongue Piercing (Tanzanite)
@@ -86,26 +91,8 @@ Tanzanite Iron Tongue Piercing:
   value: 600
   icon: 'tongue-piercing'
   stats:
-    healing: 6
-    attack: 3
-    energyBonus: 6
-
-Peridot Iron Ring:
-  name: Iron Ring (Peridot)
-  description: Cut Peridot set into an Iron Ring.
-  type: Jewelry
-  category: Jewelry
-  rarity: Uncommon
-  durability: -1
-  value: 600
-  icon: 'ring-with-stone'
-  stats:
-    axeSpeedPercent: 15
-    fishingSpeedPercent: 15
-    scytheSpeedPercent: 15
-    pickaxeSpeedPercent: 15
-    huntingSpeedPercent: 15
-    energyPerRound: 2
+    healing: 5
+    attack: 7
 
 Peridot Iron Tongue Piercing:
   name: Iron Tongue Piercing (Peridot)
@@ -117,27 +104,9 @@ Peridot Iron Tongue Piercing:
   value: 600
   icon: 'tongue-piercing'
   stats:
-    healing: 6
-    attack: 3
-    energyBonus: 6
+    healing: 5
+    attack: 2
     energyPerRound: 2
-
-Citrine Iron Ring:
-  name: Iron Ring (Citrine)
-  description: Cut Citrine set into an Iron Ring.
-  type: Jewelry
-  category: Jewelry
-  rarity: Uncommon
-  durability: -1
-  value: 600
-  icon: 'ring-with-stone'
-  stats:
-    axeSpeedPercent: 15
-    fishingSpeedPercent: 15
-    scytheSpeedPercent: 15
-    pickaxeSpeedPercent: 15
-    huntingSpeedPercent: 15
-    attack: 5
 
 Citrine Iron Tongue Piercing:
   name: Iron Tongue Piercing (Citrine)
@@ -149,6 +118,6 @@ Citrine Iron Tongue Piercing:
   value: 600
   icon: 'tongue-piercing'
   stats:
-    healing: 6
-    attack: 8
-    energyBonus: 6
+    healing: 5
+    attack: 2
+    armor: 5

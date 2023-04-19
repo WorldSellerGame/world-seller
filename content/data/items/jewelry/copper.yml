@@ -26,7 +26,7 @@ Copper Nose Piercing:
   value: 50
   icon: 'tongue-piercing'
   stats:
-    healing: 1
+    armor: 1
     attack: 1
 
 Tanzanite Copper Ring:
@@ -55,13 +55,11 @@ Chrysocolla Copper Ring:
   value: 200
   icon: 'ring-with-stone'
   stats:
-    axeSpeed: 60
-    fishingSpeed: 60
-    scytheSpeed: 60
-    pickaxeSpeed: 60
-    huntingSpeed: 60
-    attack: 5
-    armor: 5
+    axeSpeed: 180
+    fishingSpeed: 180
+    scytheSpeed: 180
+    pickaxeSpeed: 180
+    huntingSpeed: 180
 
 Tanzanite Copper Nose Piercing:
   name: Copper Nose Piercing (Tanzanite)
@@ -73,5 +71,5 @@ Tanzanite Copper Nose Piercing:
   value: 200
   icon: 'tongue-piercing'
   stats:
-    healing: 4
-    attack: 2
+    armor: 1
+    attack: 6

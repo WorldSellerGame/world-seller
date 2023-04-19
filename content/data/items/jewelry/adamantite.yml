@@ -40,11 +40,16 @@ Quartz Adamant Ring:
   value: 350
   icon: 'ring-with-stone'
   stats:
-    axePower: 120
-    fishingPower: 120
-    scythePower: 120
-    pickaxePower: 120
-    huntingPower: 120
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
+    axeSpeed: 60
+    fishingSpeed: 60
+    scytheSpeed: 60
+    pickaxeSpeed: 60
+    huntingSpeed: 60
 
 Quartz Adamant Ear Piercing:
   name: Adamant Ear Piercing (Quartz)
@@ -56,9 +61,9 @@ Quartz Adamant Ear Piercing:
   value: 350
   icon: 'ear-piercing'
   stats:
-    healing: 9
-    attack: 4
-    energyBonus: 10
+    healing: 5
+    attack: 3
+    energyBonus: 20
     healthBonus: 20
 
 Tanzanite Adamant Ring:
@@ -71,6 +76,11 @@ Tanzanite Adamant Ring:
   value: 700
   icon: 'ring-with-stone'
   stats:
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
     axePowerPercent: 5
     fishingPowerPercent: 5
     scythePowerPercent: 5
@@ -87,27 +97,10 @@ Tanzanite Adamant Ear Piercing:
   value: 700
   icon: 'ear-piercing'
   stats:
-    healing: 4
-    attack: 11
-    energyBonus: 20
+    healing: 5
+    attack: 8
+    energyBonus: 10
     healthBonus: 10
-
-Nekruth Adamant Ring:
-  name: Adamant Ring (Nekruth)
-  description: Cut Nekruth set into an Adamant Ring.
-  type: Jewelry
-  category: Jewelry
-  rarity: Rare
-  durability: -1
-  value: 700
-  icon: 'ring-with-stone'
-  stats:
-    axePowerPercent: 5
-    fishingPowerPercent: 5
-    scythePowerPercent: 5
-    pickaxePowerPercent: 5
-    huntingPowerPercent: 5
-    armor: 10
 
 Nekruth Adamant Ear Piercing:
   name: Adamant Ear Piercing (Nekruth)
@@ -119,28 +112,11 @@ Nekruth Adamant Ear Piercing:
   value: 700
   icon: 'ear-piercing'
   stats:
-    healing: 4
-    attack: 11
-    energyBonus: 20
+    healing: 5
+    attack: 3
+    energyBonus: 10
     healthBonus: 10
     armor: 10
-
-Akerymite Adamant Ring:
-  name: Adamant Ring (Akerymite)
-  description: Cut Akerymite set into an Adamant Ring.
-  type: Jewelry
-  category: Jewelry
-  rarity: Rare
-  durability: -1
-  value: 700
-  icon: 'ring-with-stone'
-  stats:
-    axePowerPercent: 5
-    fishingPowerPercent: 5
-    scythePowerPercent: 5
-    pickaxePowerPercent: 5
-    huntingPowerPercent: 5
-    mitigation: 5
 
 Akerymite Adamant Ear Piercing:
   name: Adamant Ear Piercing (Akerymite)
@@ -152,8 +128,8 @@ Akerymite Adamant Ear Piercing:
   value: 700
   icon: 'ear-piercing'
   stats:
-    healing: 4
-    attack: 11
-    energyBonus: 20
+    healing: 5
+    attack: 3
+    energyBonus: 10
     healthBonus: 10
     mitigation: 5

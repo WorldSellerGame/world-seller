@@ -1,5 +1,8 @@
 
-# Stone
+### Stone
+
+# OOC: +all gathering speeds
+# IC: +10 energy, +10 health
 Quartz:
   name: Quartz
   description: Used to do Quartz things.
@@ -7,7 +10,10 @@ Quartz:
   rarity: Uncommon
   icon: 'crystal-growth'
 
-# Copper
+### Copper
+
+# OOC: +all gathering powers
+# IC: +5 attack
 Tanzanite:
   name: Tanzanite
   description: Used to do Tanzanite things.
@@ -15,6 +21,8 @@ Tanzanite:
   rarity: Uncommon
   icon: 'crystal-bars'
 
+# OOC: triples all stats
+# IC: -
 Chrysocolla:
   name: Chrysocolla
   description: Used to do Chrysocolla things.
@@ -22,7 +30,10 @@ Chrysocolla:
   rarity: Rare
   icon: 'crystal-chunks'
 
-# Iron
+### Iron
+
+# OOC: -
+# IC: +2 energyPerRound
 Peridot:
   name: Peridot
   description: Used to do Peridot things.
@@ -30,6 +41,8 @@ Peridot:
   rarity: Uncommon
   icon: 'crystal-teardrop'
 
+# OOC: -
+# IC: +5 attack, +5 armor
 Citrine:
   name: Citrine
   description: Used to do Citrine things.
@@ -37,6 +50,8 @@ Citrine:
   rarity: Uncommon
   icon: 'crystal-teardrop'
 
+# OOC: -
+# IC: +4 speed
 Phosphophyllite:
   name: Phosphophyllite
   description: Used to do Phosphophyllite things.
@@ -44,7 +59,10 @@ Phosphophyllite:
   rarity: Rare
   icon: 'crystal-floating'
 
-# Adamantite
+### Adamantite
+
+# OOC: -
+# IC: +10 armor
 Nekruth:
   name: Nekruth
   description: Used to do Nekruth things.
@@ -52,6 +70,8 @@ Nekruth:
   rarity: Uncommon
   icon: 'crystal-cluster'
 
+# OOC: -
+# IC: +5 mitigation
 Akerymite:
   name: Akerymite
   description: Used to do Akerymite things.
