@@ -1,0 +1,60 @@
+
+# Stone
+Quartz:
+  name: Quartz
+  description: Used to do Quartz things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystal-growth'
+
+# Copper
+Tanzanite:
+  name: Tanzanite
+  description: Used to do Tanzanite things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystal-bars'
+
+Chrysocolla:
+  name: Chrysocolla
+  description: Used to do Chrysocolla things.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'crystal-chunks'
+
+# Iron
+Peridot:
+  name: Peridot
+  description: Used to do Peridot things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystal-teardrop'
+
+Citrine:
+  name: Citrine
+  description: Used to do Citrine things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystal-teardrop'
+
+Phosphophyllite:
+  name: Phosphophyllite
+  description: Used to do Phosphophyllite things.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'crystal-floating'
+
+# Adamantite
+Nekruth:
+  name: Nekruth
+  description: Used to do Nekruth things.
+  category: Raw Materials
+  rarity: Uncommon
+  icon: 'crystal-cluster'
+
+Akerymite:
+  name: Akerymite
+  description: Used to do Akerymite things.
+  category: Raw Materials
+  rarity: Rare
+  icon: 'crystal-fire'
