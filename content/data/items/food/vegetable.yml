@@ -5,11 +5,11 @@ Vegetable Soup:
   type: Food
   category: Foods
   rarity: Common
-  durability: 2
   value: 10
   icon: hot-meal
   oocHealth: 5
   oocEnergy: 1
   stats:
     healingPerRound: 6
+  durability: 6
   foodDuration: 6

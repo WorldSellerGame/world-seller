@@ -5,7 +5,6 @@ Candied Apple:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 2
   value: 50
   icon: apple
   oocEnergy: 3
@@ -14,6 +13,7 @@ Candied Apple:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff1
+  durability: 7
   foodDuration: 7
 
 Strawberry Jam:
@@ -22,7 +22,6 @@ Strawberry Jam:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
   value: 75
   icon: jar
   stats: {}
@@ -30,6 +29,7 @@ Strawberry Jam:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
+  durability: 6
   foodDuration: 6
 
 Raspberry Jam:
@@ -38,7 +38,6 @@ Raspberry Jam:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 1
   value: 75
   icon: jar
   oocEnergy: 3
@@ -46,6 +45,7 @@ Raspberry Jam:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
+  durability: 6
   foodDuration: 6
 
 Apple Pie:
@@ -54,7 +54,6 @@ Apple Pie:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 2
   value: 150
   icon: pie
   oocHealth: 5
@@ -66,6 +65,7 @@ Apple Pie:
       effectName: Regen1
     - effect: ApplyEffect
       effectName: HealingBuff2
+  durability: 7
   foodDuration: 7
 
 Pumpkin Pie:
@@ -74,7 +74,6 @@ Pumpkin Pie:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 2
   value: 150
   icon: pie
   oocHealth: 15
@@ -83,6 +82,7 @@ Pumpkin Pie:
   effects:
     - effect: ApplyEffect
       effectName: Regen2
+  durability: 7
   foodDuration: 7
 
 Mixed Fruit Juice:
@@ -91,7 +91,6 @@ Mixed Fruit Juice:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 1
   value: 250
   icon: cup
   oocEnergy: 30
@@ -108,6 +107,7 @@ Mixed Fruit Juice:
       effectName: HealthBuff1
     - effect: ApplyEffect
       effectName: ArmorBuff1
+  durability: 5
   foodDuration: 5
 
 Banana Bread:
@@ -116,7 +116,6 @@ Banana Bread:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 4
   value: 500
   icon: bread
   oocHealth: 30
@@ -129,4 +128,5 @@ Banana Bread:
       effectName: Regen2
     - effect: ApplyEffect
       effectName: HealingBuff2
+  durability: 9
   foodDuration: 9

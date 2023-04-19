@@ -5,7 +5,6 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   type: Food
   category: Foods
   rarity: Rare
-  durability: 6
   value: 100
   icon: cookie
   oocHealth: 5
@@ -15,4 +14,5 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
+  durability: 6
   foodDuration: 6

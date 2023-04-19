@@ -6,12 +6,12 @@ Cooked Cropfish:
   type: Food
   category: Foods
   rarity: Common
-  durability: 2
   value: 5
   icon: cooked-fish
   oocHealth: 3
   stats:
     energyPerCombat: 10
+  durability: 6
   foodDuration: 6
 
 Barbecued Squirrel:
@@ -20,13 +20,13 @@ Barbecued Squirrel:
   type: Food
   category: Foods
   rarity: Common
-  durability: 2
   value: 10
   icon: hot-meal
   oocHealth: 1
   oocEnergy: 1
   stats:
     energyPerRound: 1
+  durability: 5
   foodDuration: 5
 
 Bunny Stew:
@@ -35,7 +35,6 @@ Bunny Stew:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 3
   value: 25
   icon: hot-meal
   oocHealth: 2
@@ -43,6 +42,7 @@ Bunny Stew:
   stats:
     healing: 10
     healingPerCombat: 10
+  durability: 8
   foodDuration: 8
 
 Roast Bunny:
@@ -51,12 +51,12 @@ Roast Bunny:
   type: Food
   category: Foods
   rarity: Common
-  durability: 3
   value: 15
   icon: hot-meal
   oocHealth: 1
   stats:
     healingPerRound: 10
+  durability: 8
   foodDuration: 8
 
 Pan Fried Panfish:
@@ -65,7 +65,6 @@ Pan Fried Panfish:
   type: Food
   category: Foods
   rarity: Common
-  durability: 2
   value: 15
   icon: cooked-fish
   oocHealth: 2
@@ -73,6 +72,7 @@ Pan Fried Panfish:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
+  durability: 7
   foodDuration: 7
 
 Baked Fallfish:
@@ -81,7 +81,6 @@ Baked Fallfish:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 2
   value: 25
   icon: cooked-fish
   oocHealth: 5
@@ -90,6 +89,7 @@ Baked Fallfish:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
+  durability: 7
   foodDuration: 7
 
 Duck Roast:
@@ -98,13 +98,13 @@ Duck Roast:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 3
   value: 50
   icon: cooked-bird
   oocHealth: 10
   stats:
     healing: 12
     healingPerRound: 5
+  durability: 8
   foodDuration: 8
 
 Fried Frog Legs:
@@ -113,7 +113,6 @@ Fried Frog Legs:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 2
   value: 50
   icon: frog-foot
   oocHealth: 2
@@ -124,6 +123,7 @@ Fried Frog Legs:
   effects:
     - effect: ApplyEffect
       effectName: EnergyBuff1
+  durability: 7
   foodDuration: 7
 
 Cooked Trout:
@@ -132,7 +132,6 @@ Cooked Trout:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 3
   value: 50
   icon: cooked-fish
   oocHealth: 5
@@ -141,6 +140,7 @@ Cooked Trout:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
+  durability: 8
   foodDuration: 8
 
 Roast Turkey:
@@ -149,12 +149,12 @@ Roast Turkey:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 3
   value: 75
   icon: cooked-bird
   oocEnergy: 10
   stats:
     healingPerCombat: 20
+  durability: 8
   foodDuration: 8
 
 Baked Breaded Bass:
@@ -163,7 +163,6 @@ Baked Breaded Bass:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 3
   value: 75
   icon: cooked-fish
   oocEnergy: 5
@@ -172,6 +171,7 @@ Baked Breaded Bass:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
+  durability: 8
   foodDuration: 8
 
 Venison Steak:
@@ -180,7 +180,6 @@ Venison Steak:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 3
   value: 100
   icon: hot-meal
   oocEnergy: 10
@@ -190,6 +189,7 @@ Venison Steak:
   effects:
     - effect: ApplyEffect
       effectName: AttackBuff2
+  durability: 8
   foodDuration: 8
 
 Honey Ham:
@@ -198,7 +198,6 @@ Honey Ham:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 4
   value: 300
   icon: hot-meal
   oocHealth: 15
@@ -206,6 +205,7 @@ Honey Ham:
     healing: 25
   abilities:
     - abilityName: ItemSelfHeal
+  durability: 9
   foodDuration: 9
 
 Spicy Catfish Stew:
@@ -214,7 +214,6 @@ Spicy Catfish Stew:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 4
   value: 300
   icon: hot-meal
   oocHealth: 15
@@ -228,6 +227,7 @@ Spicy Catfish Stew:
       effectName: SpeedBuff1
     - effect: ApplyEffect
       effectName: AttackBuff1
+  durability: 9
   foodDuration: 9
 
 Duck Eggs Benedict:
@@ -236,7 +236,6 @@ Duck Eggs Benedict:
   type: Food
   category: Foods
   rarity: Rare
-  durability: 3
   value: 500
   icon: hot-meal
   oocHealth: 10
@@ -247,6 +246,7 @@ Duck Eggs Benedict:
     healing: 10
   abilities:
     - abilityName: ItemSelfHealRandom
+  durability: 8
   foodDuration: 8
 
 Elk Jerky:
@@ -255,7 +255,6 @@ Elk Jerky:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 6
   value: 500
   icon: meal
   oocEnergy: 30
@@ -266,6 +265,7 @@ Elk Jerky:
   effects:
     - effect: ApplyEffect
       effectName: AttackBuff2
+  durability: 11
   foodDuration: 11
 
 Pompano Ceviche:
@@ -274,7 +274,6 @@ Pompano Ceviche:
   type: Food
   category: Foods
   rarity: Epic
-  durability: 2
   value: 500
   icon: meal
   oocHealth: 15
@@ -285,4 +284,5 @@ Pompano Ceviche:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff3
+  durability: 7
   foodDuration: 7

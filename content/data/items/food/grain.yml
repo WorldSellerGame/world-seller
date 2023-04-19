@@ -5,10 +5,10 @@ Bread:
   type: Food
   category: Foods
   rarity: Uncommon
-  durability: 5
   value: 50
   icon: bread
   oocEnergy: 15
   stats:
     energyPerCombat: 4
+  durability: 15
   foodDuration: 15
