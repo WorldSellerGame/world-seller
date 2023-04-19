@@ -57,13 +57,24 @@ export class ContentService {
     dungeons: {}
   };
 
+  private allItems: Record<string, IGameItem> = {};
+  private allResources: Record<string, IGameResource> = {};
+
   // core things
-  private get resources(): Record<string, IGameResource> {
+  private get baseResources(): Record<string, IGameResource> {
     return (resources as any).default || resources;
   }
 
-  private get items(): Record<string, IGameItem> {
+  private get baseItems(): Record<string, IGameItem> {
     return (items as any).default || items;
+  }
+
+  private get resources(): Record<string, IGameResource> {
+    return this.allResources;
+  }
+
+  private get items(): Record<string, IGameItem> {
+    return this.allItems;
   }
 
   private get abilities(): Record<string, IGameCombatAbility> {
@@ -174,6 +185,9 @@ export class ContentService {
   constructor(private store: Store, private svgRegistry: SvgIconRegistryService) {}
 
   public init() {
+
+    this.loadItemsAndResources();
+
     this.locationHashes.fishing = this.toHash(this.fishing.locations, 'name');
     this.locationHashes.foraging = this.toHash(this.foraging.locations, 'name');
     this.locationHashes.hunting = this.toHash(this.hunting.locations, 'name');
@@ -192,6 +206,18 @@ export class ContentService {
     setTimeout(() => {
       this.store.dispatch(new SetStatGains(this.statGains));
     }, 0);
+  }
+
+  private loadItemsAndResources() {
+    Object.keys(this.baseItems).forEach(key => {
+      this.allItems[key] = this.baseItems[key];
+      this.allItems[this.baseItems[key].name] = this.baseItems[key];
+    });
+
+    Object.keys(this.baseResources).forEach(key => {
+      this.allResources[key] = this.baseResources[key];
+      this.allResources[this.baseResources[key].name] = this.baseResources[key];
+    });
   }
 
   private loadIcons() {
