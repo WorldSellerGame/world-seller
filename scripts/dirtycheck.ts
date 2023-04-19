@@ -4,8 +4,13 @@ const { execSync } = require('child_process');
 try {
   const status = execSync('git status --porcelain');
 
-  console.log(status.toString())
+  if(status) {
+    console.error('Dirty git HEAD; aborting process.');
+    process.exit(1);
+  }
+
+  console.log('Clean git HEAD; continuing process.');
 
 } catch(e) {
-  console.error('No git HEAD; default gitRev set.');
+  console.error(e);
 }
