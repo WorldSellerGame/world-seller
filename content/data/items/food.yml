@@ -15,7 +15,7 @@ Pine Nuts:
   oocEnergy: 1
   stats:
     healingPerCombat: 5
-  foodDuration: 2
+  foodDuration: 5
 
 Cooked Cropfish:
   name: Cooked Cropfish
@@ -29,7 +29,7 @@ Cooked Cropfish:
   oocHealth: 3
   stats:
     energyPerCombat: 10
-  foodDuration: 2
+  foodDuration: 6
 
 #
 
@@ -46,7 +46,7 @@ Barbecued Squirrel:
   oocEnergy: 1
   stats:
     energyPerRound: 3
-  foodDuration: 2
+  foodDuration: 5
 
 Vegetable Soup:
   name: Vegetable Soup
@@ -61,13 +61,13 @@ Vegetable Soup:
   oocEnergy: 1
   stats:
     healingPerRound: 6
-  foodDuration: 2
+  foodDuration: 6
 
 #
 
 Roast Bunny:
   name: Roasted Bunny
-  description: Simple hardy food.
+  description: Simple hearty food.
   type: Food
   category: Foods
   rarity: Common
@@ -77,7 +77,7 @@ Roast Bunny:
   oocHealth: 1
   stats:
     healingPerRound: 10
-  foodDuration: 3
+  foodDuration: 8
 
 Pan Fried Panfish:
   name: Pan Fried Panfish
@@ -93,7 +93,7 @@ Pan Fried Panfish:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
-  foodDuration: 2
+  foodDuration: 7
 
 #
 
@@ -112,7 +112,7 @@ Baked Fallfish:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
-  foodDuration: 2
+  foodDuration: 7
 
 Bunny Stew:
   name: Bunny Stew
@@ -128,7 +128,7 @@ Bunny Stew:
   stats:
     healing: 10
     healingPerCombat: 10
-  foodDuration: 3
+  foodDuration: 8
 
 Candied Apple:
   name: Candied Apple
@@ -145,7 +145,7 @@ Candied Apple:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff1
-  foodDuration: 2
+  foodDuration: 7
 
 #
 
@@ -162,7 +162,7 @@ Duck Roast:
   stats:
     healing: 12
     healingPerRound: 5
-  foodDuration: 3
+  foodDuration: 8
 
 Fried Frog Legs:
   name: Fried Frog Legs
@@ -181,7 +181,7 @@ Fried Frog Legs:
   effects:
     - effect: ApplyEffect
       effectName: EnergyBuff1
-  foodDuration: 2
+  foodDuration: 7
 
 Cooked Trout:
   name: Cooked Trout
@@ -198,7 +198,7 @@ Cooked Trout:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
-  foodDuration: 3
+  foodDuration: 8
 
 
 Strawberry Jam: #jams may be re-categorized to give them the utility of being in items slots as a pseudo potion
@@ -215,7 +215,7 @@ Strawberry Jam: #jams may be re-categorized to give them the utility of being in
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
-  foodDuration: 1
+  foodDuration: 6
 
 
 Raspberry Jam:
@@ -232,7 +232,7 @@ Raspberry Jam:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
-  foodDuration: 1
+  foodDuration: 6
 
 #
 
@@ -248,7 +248,7 @@ Bread:
   oocEnergy: 5
   stats:
     healingPerCombat: 10
-  foodDuration: 5
+  foodDuration: 10
 
 Baked Breaded Bass:
   name: Baked Breaded Bass
@@ -265,7 +265,7 @@ Baked Breaded Bass:
   effects:
     - effect: ApplyEffect
       effectName: Regen1
-  foodDuration: 3
+  foodDuration: 8
 
 Roast Turkey:
   name: Roast Turkey
@@ -279,7 +279,7 @@ Roast Turkey:
   oocEnergy: 10
   stats:
     healingPerCombat: 20
-  foodDuration: 3
+  foodDuration: 8
 
 #
 
@@ -299,7 +299,7 @@ Venison Steak:
   effects:
     - effect: ApplyEffect
       effectName: AttackBuff2
-  foodDuration: 3
+  foodDuration: 8
 
 Apple Pie:
   name: Apple Pie
@@ -319,7 +319,7 @@ Apple Pie:
       effectName: Regen1
     - effect: ApplyEffect
       effectName: HealingBuff2
-  foodDuration: 2
+  foodDuration: 7
 
 Pumpkin Pie:
   name: Pumpkin Pie
@@ -336,7 +336,7 @@ Pumpkin Pie:
   effects:
     - effect: ApplyEffect
       effectName: Regen2
-  foodDuration: 2
+  foodDuration: 7
 
 Cookie: #egg required - Im sorry little one you will be be added next time
   name: Cookie
@@ -354,7 +354,7 @@ Cookie: #egg required - Im sorry little one you will be be added next time
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff2
-  foodDuration: 6
+  foodDuration: 11
 
 #
 
@@ -381,7 +381,7 @@ Mixed Fruit Juice:
       effectName: HealthBuff1
     - effect: ApplyEffect
       effectName: ArmorBuff1
-  foodDuration: 1
+  foodDuration: 5
 
 Duck Eggs Benedict:
   name: Duck Eggs Benedict
@@ -400,7 +400,7 @@ Duck Eggs Benedict:
     healing: 10
   abilities:
     - abilityName: ItemSelfHealRandom
-  foodDuration: 3
+  foodDuration: 8
 #
 
 Honey Ham:
@@ -417,7 +417,7 @@ Honey Ham:
     healing: 25
   abilities:
     - abilityName: ItemSelfHeal
-  foodDuration: 4
+  foodDuration: 9
 
 Spicy Catfish Stew:
   name: Spicy Catfish Stew
@@ -439,7 +439,7 @@ Spicy Catfish Stew:
       effectName: SpeedBuff1
     - effect: ApplyEffect
       effectName: AttackBuff1
-  foodDuration: 4
+  foodDuration: 9
 
 #
 
@@ -460,7 +460,7 @@ Pompano Ceviche:
   effects:
     - effect: ApplyEffect
       effectName: SpeedBuff3
-  foodDuration: 2
+  foodDuration: 7
 
 Banana Bread:
   name: Banana Bread
@@ -481,7 +481,7 @@ Banana Bread:
       effectName: Regen2
     - effect: ApplyEffect
       effectName: HealingBuff2
-  foodDuration: 4
+  foodDuration: 9
 
 Elk Jerky:
   name: Elk Jerky
@@ -500,7 +500,7 @@ Elk Jerky:
   effects:
     - effect: ApplyEffect
       effectName: AttackBuff2
-  foodDuration: 6
+  foodDuration: 11
 
 
 
