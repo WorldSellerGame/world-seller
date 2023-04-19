@@ -20,7 +20,7 @@ Barbecued Squirrel:
   type: Food
   category: Foods
   rarity: Common
-  value: 10
+  value: 5
   icon: hot-meal
   oocHealth: 1
   oocEnergy: 1

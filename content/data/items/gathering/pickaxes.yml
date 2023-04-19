@@ -5,11 +5,11 @@ Stone Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Common
-  durability: 10
+  durability: 15
   value: 20
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 10
+    pickaxePowerPercent: 5
 
 Copper Pickaxe:
   name: Copper Pickaxe
@@ -17,11 +17,12 @@ Copper Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Uncommon
-  durability: 20
+  durability: 25
   value: 100
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 20
+    pickaxePowerPercent: 10
+    pickaxeSpeed: 10
 
 Iron Pickaxe:
   name: Iron Pickaxe
@@ -29,11 +30,11 @@ Iron Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Rare
-  durability: 30
+  durability: 35
   value: 500
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 25
+    pickaxePowerPercent: 15
 
 Adamantite Pickaxe:
   name: Adamantite Pickaxe
@@ -41,8 +42,9 @@ Adamantite Pickaxe:
   type: Pickaxe
   category: Tools
   rarity: Epic
-  durability: 40
+  durability: 50
   value: 2000
   icon: pickaxe
   stats:
-    pickaxePowerPercent: 30
+    pickaxePowerPercent: 20
+    pickaxeSpeed: 45

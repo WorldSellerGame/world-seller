@@ -38,6 +38,15 @@
     - Oven
   maxWorkers: 1
 
+- result: Squirrel-on-a-String
+  perCraft: { min: 1, max: 3 }
+  level: { min: 0, max: 10 }
+  craftTime: 10
+  ingredients:
+    Squirrel Meat: 5
+    Plant Fiber: 2
+  maxWorkers: 1
+
 - result: Potion of Simple Blinding
   perCraft: { min: 1, max: 1 }
   level: { min: 0, max: 10 }
@@ -99,6 +108,15 @@
     - Guano
   preserve:
     - Glass Set
+  maxWorkers: 1
+
+- result: Bunny Bits
+  perCraft: { min: 1, max: 3 }
+  level: { min: 10, max: 20 }
+  craftTime: 60
+  ingredients:
+    Bunny Meat: 5
+    Plant Fiber: 5
   maxWorkers: 1
 
 - result: Potion of Minor Healing
@@ -188,6 +206,15 @@
     - Mortar and Pestle
   maxWorkers: 1
 
+- result: Frog Leg
+  perCraft: { min: 4, max: 4 }
+  level: { min: 15, max: 25 }
+  craftTime: 360
+  ingredients:
+    Frog: 1
+    Plant Fiber: 4
+  maxWorkers: 1
+
 - result: Acid
   perCraft: { min: 1, max: 1 }
   level: { min: 20, max: 30 }
@@ -230,6 +257,15 @@
     - Glass Set
     - Burner
     - Mortar and Pestle
+  maxWorkers: 1
+
+- result: Duck Leg
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 360
+  ingredients:
+    Duck Meat: 1
+    Twine: 3
   maxWorkers: 1
 
 - result: Potion of Minor Mud
@@ -325,6 +361,15 @@
     - Glass Set
     - Burner
     - Mortar and Pestle
+  maxWorkers: 1
+
+- result: Steak Bite
+  perCraft: { min: 2, max: 4 }
+  level: { min: 30, max: 40 }
+  craftTime: 480
+  ingredients:
+    Deer Meat: 4
+    Twine: 5
   maxWorkers: 1
 
 - result: Wine

@@ -5,11 +5,11 @@ Stone Spear:
   type: HuntingTool
   category: Tools
   rarity: Common
-  durability: 10
+  durability: 15
   value: 20
   icon: spear
   stats:
-    huntingPowerPercent: 10
+    huntingPowerPercent: 5
 
 Copper Spear:
   name: Copper Spear
@@ -17,11 +17,12 @@ Copper Spear:
   type: HuntingTool
   category: Tools
   rarity: Uncommon
-  durability: 20
+  durability: 25
   value: 50
   icon: spear
   stats:
-    huntingPowerPercent: 20
+    huntingPowerPercent: 10
+    huntingSpeed: 10
 
 Iron Spear:
   name: Iron Spear
@@ -29,11 +30,11 @@ Iron Spear:
   type: HuntingTool
   category: Tools
   rarity: Rare
-  durability: 30
+  durability: 35
   value: 250
   icon: spear
   stats:
-    huntingPowerPercent: 25
+    huntingPowerPercent: 15
 
 Adamantite Spear:
   name: Adamantite Spear
@@ -41,11 +42,12 @@ Adamantite Spear:
   type: HuntingTool
   category: Tools
   rarity: Epic
-  durability: 40
+  durability: 50
   value: 1000
   icon: spear
   stats:
-    huntingPowerPercent: 30
+    huntingPowerPercent: 20
+    huntingSpeed: 45
 
 
 #todo look at methods of bow implementation #it may be possible to force hunting Power to be a sudo ranged option on skills
