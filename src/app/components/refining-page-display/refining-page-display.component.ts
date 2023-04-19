@@ -153,6 +153,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   setVisibleRecipes() {
+
     this.resourceRecipes = this.visibleRecipes(this.locationData, 'resources');
     this.itemRecipes = this.visibleRecipes(this.locationData, 'items');
 
@@ -348,8 +349,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     return sortBy(validRecipes, [
       (recipe) => !this.allStarredRecipes[recipe.result],
       (recipe) => !this.canCraftRecipe(recipe),
-      (recipe) => recipe.result]
-    );
+      (recipe) => recipe.result
+    ]);
   }
 
   totalResourceHashForCrafting() {

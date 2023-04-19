@@ -68,17 +68,3 @@ Adamantite Ore:
   category: Raw Materials
   rarity: Rare
   icon: 'adamantite-ore'
-
-Quartz:
-  name: Quartz
-  description: Used to do crystal things.
-  category: Raw Materials
-  rarity: Uncommon
-  icon: 'quartz'
-
-Tanzanite:
-  name: Tanzanite
-  description: Used to do tanzanite things.
-  category: Raw Materials
-  rarity: Rare
-  icon: 'tanzanite'

@@ -16,8 +16,8 @@ Copper Ring:
     pickaxeSpeed: 30
     huntingSpeed: 30
 
-Copper Tongue Piercing:
-  name: Copper Tongue Piercing
+Copper Nose Piercing:
+  name: Copper Nose Piercing
   description: A plain Copper Piercing.
   type: Jewelry
   category: Jewelry
@@ -29,9 +29,9 @@ Copper Tongue Piercing:
     healing: 1
     attack: 1
 
-Quartz Copper Ring:
-  name: Quartz Copper Ring
-  description: Cut Quartz in a Copper Ring.
+Tanzanite Copper Ring:
+  name: Copper Ring (Tanzanite)
+  description: Cut Tanzanite in a Copper Ring.
   type: Jewelry
   category: Jewelry
   rarity: Uncommon
@@ -45,9 +45,27 @@ Quartz Copper Ring:
     pickaxeSpeed: 60
     huntingSpeed: 60
 
-Quartz Copper Tongue Piercing:
-  name: Quartz Copper Tongue Piercing
-  description: Cut Quartz in a Copper Piercing.
+Chrysocolla Copper Ring:
+  name: Copper Ring (Chrysocolla)
+  description: Cut Chrysocolla in a Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeed: 60
+    fishingSpeed: 60
+    scytheSpeed: 60
+    pickaxeSpeed: 60
+    huntingSpeed: 60
+    attack: 5
+    armor: 5
+
+Tanzanite Copper Nose Piercing:
+  name: Copper Nose Piercing (Tanzanite)
+  description: Cut Tanzanite in a Copper Piercing.
   type: Jewelry
   category: Jewelry
   rarity: Uncommon

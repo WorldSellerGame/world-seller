@@ -91,3 +91,69 @@ Tanzanite Adamant Ear Piercing:
     attack: 11
     energyBonus: 20
     healthBonus: 10
+
+Nekruth Adamant Ring:
+  name: Adamant Ring (Nekruth)
+  description: Cut Nekruth set into an Adamant Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ring-with-stone'
+  stats:
+    axePowerPercent: 5
+    fishingPowerPercent: 5
+    scythePowerPercent: 5
+    pickaxePowerPercent: 5
+    huntingPowerPercent: 5
+    armor: 10
+
+Nekruth Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Nekruth)
+  description: Cut Nekruth set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ear-piercing'
+  stats:
+    healing: 4
+    attack: 11
+    energyBonus: 20
+    healthBonus: 10
+    armor: 10
+
+Akerymite Adamant Ring:
+  name: Adamant Ring (Akerymite)
+  description: Cut Akerymite set into an Adamant Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ring-with-stone'
+  stats:
+    axePowerPercent: 5
+    fishingPowerPercent: 5
+    scythePowerPercent: 5
+    pickaxePowerPercent: 5
+    huntingPowerPercent: 5
+    mitigation: 5
+
+Akerymite Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Akerymite)
+  description: Cut Akerymite set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ear-piercing'
+  stats:
+    healing: 4
+    attack: 11
+    energyBonus: 20
+    healthBonus: 10
+    mitigation: 5

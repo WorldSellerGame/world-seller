@@ -89,3 +89,66 @@ Tanzanite Iron Tongue Piercing:
     healing: 6
     attack: 3
     energyBonus: 6
+
+Peridot Iron Ring:
+  name: Iron Ring (Peridot)
+  description: Cut Peridot set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeedPercent: 15
+    fishingSpeedPercent: 15
+    scytheSpeedPercent: 15
+    pickaxeSpeedPercent: 15
+    huntingSpeedPercent: 15
+    energyPerRound: 2
+
+Peridot Iron Tongue Piercing:
+  name: Iron Tongue Piercing (Peridot)
+  description: Cut Peridot set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'tongue-piercing'
+  stats:
+    healing: 6
+    attack: 3
+    energyBonus: 6
+    energyPerRound: 2
+
+Citrine Iron Ring:
+  name: Iron Ring (Citrine)
+  description: Cut Citrine set into an Iron Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeedPercent: 15
+    fishingSpeedPercent: 15
+    scytheSpeedPercent: 15
+    pickaxeSpeedPercent: 15
+    huntingSpeedPercent: 15
+    attack: 5
+
+Citrine Iron Tongue Piercing:
+  name: Iron Tongue Piercing (Citrine)
+  description: Cut Citrine set into an Iron Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 600
+  icon: 'tongue-piercing'
+  stats:
+    healing: 6
+    attack: 8
+    energyBonus: 6

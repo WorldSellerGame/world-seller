@@ -3,12 +3,13 @@
 - result: Cut Quartz
   perCraft: { min: 1, max: 1 }
   level: { min: 10, max: 20 }
-  craftTime: 30
+  craftTime: 60
   ingredients:
     Metal Jewelry Tools: 1
     Quartz: 1
   require:
     - Metal Jewelry Tools
+    - Quartz
   preserve:
     - Metal Jewelry Tools
   maxWorkers: 1
@@ -29,12 +30,97 @@
 - result: Cut Tanzanite
   perCraft: { min: 1, max: 1 }
   level: { min: 15, max: 25 }
-  craftTime: 40
+  craftTime: 90
   ingredients:
     Metal Jewelry Tools: 1
     Tanzanite: 1
   require:
     - Metal Jewelry Tools
+    - Tanzanite
   preserve:
     - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Chrysocolla
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 180
+  ingredients:
+    Metal Jewelry Tools: 1
+    Chrysocolla: 1
+  require:
+    - Metal Jewelry Tools
+    - Chrysocolla
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Peridot
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 120
+  ingredients:
+    Iron Jewelry Tools: 1
+    Peridot: 1
+  require:
+    - Iron Jewelry Tools
+    - Peridot
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Citrine
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 120
+  ingredients:
+    Iron Jewelry Tools: 1
+    Citrine: 1
+  require:
+    - Iron Jewelry Tools
+    - Citrine
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Phosphophyllite
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 240
+  ingredients:
+    Iron Jewelry Tools: 1
+    Phosphophyllite: 1
+  require:
+    - Iron Jewelry Tools
+    - Phosphophyllite
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Nekruth
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 180
+  ingredients:
+    Adamantite Jewelry Tools: 1
+    Nekruth: 1
+  require:
+    - Adamantite Jewelry Tools
+    - Nekruth
+  preserve:
+    - Adamantite Jewelry Tools
+  maxWorkers: 1
+
+- result: Cut Akerymite
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Adamantite Jewelry Tools: 1
+    Akerymite: 1
+  require:
+    - Adamantite Jewelry Tools
+    - Akerymite
+  preserve:
+    - Adamantite Jewelry Tools
   maxWorkers: 1
