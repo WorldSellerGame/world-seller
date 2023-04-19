@@ -4,7 +4,9 @@ const { execSync } = require('child_process');
 try {
   const status = execSync('git status --porcelain');
 
-  if(status) {
+  const state = status.toString();
+
+  if(state) {
     console.error('Dirty git HEAD; aborting process.');
     process.exit(1);
   }
