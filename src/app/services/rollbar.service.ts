@@ -55,8 +55,20 @@ export class RollbarErrorHandler implements ErrorHandler {
     window.onerror = (err) => this.handleError(err);
   }
 
+  private isValidError(err: any): boolean {
+    if(err.message.includes('Firebase') && err.message.includes('auth/')) {
+      return false;
+    }
+
+    return true;
+  }
+
   handleError(err: any): void {
     console.error(err);
+
+    if(!this.isValidError(err)) {
+      return;
+    }
 
     const savefile = this.store.snapshot();
     delete savefile.mods;
