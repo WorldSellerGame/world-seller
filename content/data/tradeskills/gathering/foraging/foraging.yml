@@ -7,12 +7,14 @@
     min: 2
     max: 4
   level:
-    min: 0
+    min: 5
     max: 10
   gatherTime: 10
   cooldownTime: 5
   resources:
     - name: Dandelion
+      weight: 1
+    - name: Plant Fiber
       weight: 1
   maxWorkers: 1
 
@@ -22,7 +24,7 @@
     min: 3
     max: 5
   level:
-    min: 5
+    min: 10
     max: 15
   gatherTime: 30
   cooldownTime: 15

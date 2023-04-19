@@ -7,7 +7,7 @@
     min: 2
     max: 4
   level:
-    min: 0
+    min: 5
     max: 10
   gatherTime: 10
   cooldownTime: 5
@@ -22,7 +22,7 @@
     min: 3
     max: 6
   level:
-    min: 5
+    min: 10
     max: 15
   gatherTime: 30
   cooldownTime: 15

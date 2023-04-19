@@ -1,0 +1,15 @@
+
+- name: Rock Garden
+  description: There are a few spare rocks, no one will notice them missing.
+  perGather:
+    min: 1
+    max: 1
+  level:
+    min: 0
+    max: 5
+  gatherTime: 5
+  cooldownTime: 0
+  resources:
+    - name: Stone
+      weight: 1
+  maxWorkers: 0
