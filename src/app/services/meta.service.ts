@@ -5,7 +5,6 @@ import { marked } from 'marked';
 import * as credits from '../../assets/content/credits.json';
 import { NotifyInfo } from '../../stores/game/game.actions';
 import * as Migrations from '../../stores/migrations';
-import { defaultOptions } from '../../stores/options/options.functions';
 import { isInElectron } from '../helpers/electron';
 
 @Injectable({
@@ -83,30 +82,52 @@ export class MetaService {
     }
   }
 
+  characterSavefile(slot: number = 0) {
+    const data = this.store.snapshot();
+    const ignoredKeys: string[] = ['game', 'options', 'mods'];
+
+    const charData = data.charselect.characters[slot];
+    if(!charData) {
+      return { charName: '', charId: '', saveData: {} };
+    }
+
+    const charName = charData.name;
+    const charId = charData.id;
+
+    const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
+      acc[key] = data[key];
+      return acc;
+    }, {} as any);
+
+    return { charName, charId, saveData };
+  }
+
   exportCharacter(slot: number = 0) {
-    this.store.selectOnce(data => data).subscribe(data => {
-      const ignoredKeys: string[] = ['options', 'mods'];
+    const { charName, saveData } = this.characterSavefile(slot);
 
-      const charData = data.charselect.characters[slot];
-      const charName = charData.name;
-
-      const saveData = Object.keys(data).filter(key => !ignoredKeys.includes(key)).reduce((acc, key) => {
-        acc[key] = data[key];
-        return acc;
-      }, {} as any);
-
-      const fileName = `${charName}.ws`;
-      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
-      const downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute('href',     dataStr);
-      downloadAnchorNode.setAttribute('download', fileName);
-      downloadAnchorNode.click();
-    });
+    const fileName = `${charName}.ws`;
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(saveData));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute('href',     dataStr);
+    downloadAnchorNode.setAttribute('download', fileName);
+    downloadAnchorNode.click();
   }
 
   importCharacter(data: any) {
+    const currentOptions = this.store.snapshot().options;
+    const currentMods = this.store.snapshot().mods;
+    const currentGame = this.store.snapshot().game;
+
     if(!data.options) {
-      data.options = defaultOptions();
+      data.options = currentOptions;
+    }
+
+    if(!data.mods) {
+      data.mods = currentMods;
+    }
+
+    if(!data.game) {
+      data.game = currentGame;
     }
 
     // gotta migrate potentially aged savefiles

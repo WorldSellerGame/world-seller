@@ -14,8 +14,12 @@
           </ion-card-header>
           <ion-card-content>
             <ion-item>
-              <ion-label position="floating">Name</ion-label>
-              <ion-input [(ngModel)]="character.name" (keyup.enter)="create()"></ion-input>
+              <ion-label position="stacked">Name</ion-label>
+              <ion-input [(ngModel)]="character.name" (keyup.enter)="create()" placeholder="Character name..."></ion-input>
+            </ion-item>
+            <ion-item *ngIf="firebaseUID$ | async">
+              <ion-label>Cloud Save</ion-label>
+              <ion-checkbox [(ngModel)]="character.isCloud"></ion-checkbox>
             </ion-item>
           </ion-card-content>
           <ion-button expand="block" (click)="create()" [disabled]="!canCreate()">Create</ion-button>

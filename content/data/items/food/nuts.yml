@@ -1,0 +1,16 @@
+
+
+Pine Nuts:
+  name: Pine Nuts
+  description: Mmmmmmmm, seeds.
+  type: Food
+  category: Foods
+  rarity: Common
+  value: 5
+  icon: meal
+  oocHealth: 3
+  oocEnergy: 3
+  stats:
+    healingPerCombat: 5
+  durability: 5
+  foodDuration: 5

@@ -1,0 +1,28 @@
+
+<div class="action-container" [class.active]="active">
+  <ng-container *ngIf="item">
+    <app-game-icon [icon]="item.icon" [specialtySize]="48" [ngxTippy]="tooltip"></app-game-icon>
+  </ng-container>
+
+  <ng-template #tooltip>
+    <div class="item-name">
+      <app-game-icon [icon]="item.icon" [inlineIconSize]="true"></app-game-icon>
+
+      <strong>{{ item.name }}</strong>
+    </div>
+
+    <div class="item-effect" *ngFor="let ability of item.abilities; trackBy: trackBy">
+      <ng-container *ngIf="getAbility(ability.abilityName || '') as abilityRef" [class.hidden]="!abilityRef">
+        <strong>{{ abilityRef.name }}</strong>: {{ abilityRef.description }}
+      </ng-container>
+    </div>
+
+    <div class="item-uses" *ngIf="item.durability > 0">
+      <ion-text color="energy">
+        <em>
+          {{ item.durability }} use(s)
+        </em>
+      </ion-text>
+    </div>
+  </ng-template>
+</div>

@@ -741,6 +741,20 @@ const loadContent = async () => {
         console.log(`⚠ Recipe ${result} has a craftTime of ${recipe.craftTime} (must be > 0).`);
         hasBad = true;
       }
+
+      recipe.require?.forEach((recipe: any) => {
+        if(!isValidItem(recipe)) {
+          console.log(`⚠ Recipe ${result} require ingredient ${recipe} is not a valid resource.`);
+          hasBad = true;
+        }
+      });
+
+      recipe.preserve?.forEach((recipe: any) => {
+        if(!isValidItem(recipe)) {
+          console.log(`⚠ Recipe ${result} preserve ingredient ${recipe} is not a valid resource.`);
+          hasBad = true;
+        }
+      });
     });
 
     (transforms || []).forEach((transform: any) => {

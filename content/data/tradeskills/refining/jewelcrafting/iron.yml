@@ -1,0 +1,83 @@
+
+
+- result: Iron Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Iron Ingot: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Iron Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Iron Ingot: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Iron Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Iron Ring: 1
+    Cut Quartz: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Quartz Iron Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Iron Tongue Piercing: 1
+    Cut Quartz: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Iron Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Iron Ring: 1
+    Cut Tanzanite: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Iron Tongue Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Iron Tongue Piercing: 1
+    Cut Tanzanite: 1
+    Iron Jewelry Tools: 1
+  require:
+    - Iron Jewelry Tools
+  preserve:
+    - Iron Jewelry Tools
+  maxWorkers: 1

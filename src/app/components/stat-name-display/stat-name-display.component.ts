@@ -61,11 +61,11 @@ export class StatNameDisplayComponent implements OnInit {
     ['health' as Stat]: 'Your total health',
     ['energy' as Stat]: 'Your total energy',
 
-    [Stat.PickaxePower]: 'Mining nodes will take less time (in seconds) to complete',
-    [Stat.AxePower]: 'Logging nodes will take less time (in seconds) to complete',
-    [Stat.FishingPower]: 'Fishing nodes will take less time (in seconds) to complete',
-    [Stat.ScythePower]: 'Harvesting nodes will take less time (in seconds) to complete',
-    [Stat.HuntingPower]: 'Hunting nodes will take less time (in seconds) to complete',
+    [Stat.PickaxePower]: 'Mining nodes will take less time (in seconds or by this percent) to complete',
+    [Stat.AxePower]: 'Logging nodes will take less time (in seconds or by this percent) to complete',
+    [Stat.FishingPower]: 'Fishing nodes will take less time (in seconds or by this percent) to complete',
+    [Stat.ScythePower]: 'Harvesting nodes will take less time (in seconds or by this percent) to complete',
+    [Stat.HuntingPower]: 'Hunting nodes will take less time (in seconds or by this percent) to complete',
 
     [Stat.PickaxePowerPercent]: 'Mining nodes will take less time (by this percent) to complete',
     [Stat.AxePowerPercent]: 'Logging nodes will take less time (by this percent) to complete',

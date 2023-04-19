@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { IGameWorkerFarming, IGameWorkersGathering, IGameWorkersMercantle, IGameWorkersRefining } from '../../../../../../interfaces';
+import {
+  IGameWorkerFarming, IGameWorkersGathering,
+  IGameWorkersMercantle, IGameWorkersRefining, Tradeskill
+} from '../../../../../../interfaces';
 import { CharSelectState, WorkersState } from '../../../../../../stores';
 import { AnalyticsTrack } from '../../../../../../stores/game/game.actions';
 import {
@@ -80,7 +83,7 @@ export class WorkersPage implements OnInit {
   unallocateRefiningWorker(worker: IGameWorkersRefining) {
     this.store.dispatch([
       new AnalyticsTrack(`Refining:${worker.tradeskill}:RemoveWorker:${worker.recipe.result}`, 1),
-      new UnassignRefiningWorker(worker.tradeskill, worker.recipe)
+      new UnassignRefiningWorker(worker.tradeskill as Tradeskill, worker.recipe)
     ]);
   }
 

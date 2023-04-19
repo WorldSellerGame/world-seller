@@ -1,0 +1,50 @@
+
+Stone Sickle:
+  name: Stone Sickle
+  description: A scythe made of stone.
+  type: Scythe
+  category: Tools
+  rarity: Common
+  durability: 15
+  value: 20
+  icon: scythe
+  stats:
+    scythePowerPercent: 5
+
+Copper Sickle:
+  name: Copper Sickle
+  description: A scythe made of Copper.
+  type: Scythe
+  category: Tools
+  rarity: Uncommon
+  durability: 25
+  value: 100
+  icon: scythe
+  stats:
+    scythePowerPercent: 10
+    scytheSpeed: 10
+
+Iron Sickle:
+  name: Iron Sickle
+  description: A scythe made of Iron.
+  type: Scythe
+  category: Tools
+  rarity: Rare
+  durability: 35
+  value: 500
+  icon: scythe
+  stats:
+    scythePowerPercent: 15
+
+Adamantite Sickle:
+  name: Adamantite Sickle
+  description: A scythe made of Adamantite.
+  type: Scythe
+  category: Tools
+  rarity: Epic
+  durability: 50
+  value: 2000
+  icon: scythe
+  stats:
+    scythePowerPercent: 20
+    scytheSpeed: 45

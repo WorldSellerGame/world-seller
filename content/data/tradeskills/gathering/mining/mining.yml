@@ -1,0 +1,224 @@
+
+# Mid gather time, mid cooldown
+
+- name: Stony Field
+  description: A small field to rocky for farming.
+  perGather:
+    min: 2
+    max: 4
+  level:
+    min: 5
+    max: 10
+  gatherTime: 10
+  cooldownTime: 5
+  resources:
+    - name: Stone
+      weight: 1
+  maxWorkers: 2
+
+- name: Nearby Quarry
+  description: An old quarry that has been abandoned.
+  perGather:
+    min: 3
+    max: 6
+  level:
+    min: 10
+    max: 15
+  gatherTime: 30
+  cooldownTime: 15
+  resources:
+    - name: Stone
+      weight: 5
+    - name: Clay
+      weight: 1
+    - name: Sand
+      weight: 1
+    - name: Limestone
+      weight: 1
+  maxWorkers: 1
+
+- name: Abandoned Copper Mine
+  description: Mostly mined-out mining operation, but you can still somewhat mine at this mine.
+  perGather:
+    min: 4
+    max: 8
+  level:
+    min: 10
+    max: 20
+  gatherTime: 80
+  cooldownTime: 40
+  resources:
+    - name: Stone
+      weight: 10
+    - name: Brimstone
+      weight: 1
+    - name: Copper Ore
+      weight: 2
+  maxWorkers: 1
+
+- name: Dried Out River Basin
+  description: A place where a river used to flow.
+  perGather:
+    min: 5
+    max: 10
+  level:
+    min: 15
+    max: 25
+  gatherTime: 180
+  cooldownTime: 90
+  resources:
+    - name: Clay
+      weight: 1
+    - name: Sand
+      weight: 1
+    - name: Gravel
+      weight: 1
+    - name: Limestone
+      weight: 1
+  maxWorkers: 1
+
+- name: Bat Infested Iron Mine
+  description: Despite being rich in ore, this cave hasn't had the touch of mankind.
+  perGather:
+    min: 6
+    max: 12
+  level:
+    min: 20
+    max: 30
+  gatherTime: 330
+  cooldownTime: 165
+  resources:
+    - name: Stone
+      weight: 3
+    - name: Limestone
+      weight: 2
+    - name: Brimstone
+      weight: 1
+    - name: Iron Ore
+      weight: 2
+    - name: Guano
+      weight: 3
+  maxWorkers: 1
+
+- name: Grotto
+  description: A naturally formed cave with pools of water.
+  perGather:
+    min: 7
+    max: 14
+  level:
+    min: 25
+    max: 35
+  gatherTime: 600
+  cooldownTime: 300
+  resources:
+    - name: Stone
+      weight: 25
+    - name: Limestone
+      weight: 10
+    - name: White Clay
+      weight: 20
+    - name: Sand
+      weight: 5
+    - name: Quartz
+      weight: 10
+    - name: Tanzanite
+      weight: 1
+  maxWorkers: 1
+
+- name: Deep Depth Mine
+  description: Place too deep for most companies to turn a profit.
+  perGather:
+    min: 8
+    max: 16
+  level:
+    min: 30
+    max: 40
+  gatherTime: 1000
+  cooldownTime: 500
+  resources:
+    - name: Stone
+      weight: 55
+    - name: Limestone
+      weight: 15
+    - name: Iron Ore
+      weight: 20
+    - name: Quartz
+      weight: 14
+    - name: Tanzanite
+      weight: 5
+    - name: Adamantite Ore
+      weight: 1
+  maxWorkers: 1
+
+- name: Archaeological Site
+  description: Ancient loacation that doubles as a resting place for the dead.
+  perGather:
+    min: 9
+    max: 18
+  level:
+    min: 35
+    max: 45
+  gatherTime: 1650
+  cooldownTime: 825
+  resources:
+    - name: Stone
+      weight: 5
+    - name: Gravel
+      weight: 10
+    - name: Brimstone
+      weight: 10
+    - name: Bone
+      weight: 5
+    - name: Tanzanite
+      weight: 10
+    - name: Sap
+      weight: 1
+    - name: Curse
+      weight: 1
+  maxWorkers: 1
+
+- name: Achient Dwarven Mine
+  description: Lost to time the reasons why this place was abandoned, but the bounty of the earth is rich.
+  perGather:
+    min: 10
+    max: 20
+  level:
+    min: 40
+    max: 50
+  gatherTime: 2600
+  cooldownTime: 1300
+  resources:
+    - name: Stone
+      weight: 250
+    - name: Limestone
+      weight: 50
+    - name: Brimstone
+      weight: 10
+    - name: Iron Ore
+      weight: 100
+    - name: Quartz
+      weight: 10
+    - name: Tanzanite
+      weight: 20
+    - name: Adamantite Ore
+      weight: 20
+    - name: Curse
+      weight: 1
+  maxWorkers: 1
+
+- name: Pile of Cursed Feces
+  description: Probably best not to mine here.
+  perGather:
+    min: 10
+    max: 20
+  level:
+    min: 50
+    max: 50
+  gatherTime: 2600
+  cooldownTime: 1300
+  resources:
+    - name: Guano
+      weight: 1
+    - name: Curse
+      weight: 1
+  maxWorkers: 1

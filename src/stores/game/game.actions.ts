@@ -1,4 +1,4 @@
-import { IStatGains } from '../../interfaces';
+import { IStatGains, Tradeskill } from '../../interfaces';
 
 export class TickTimer {
   static type = '[Game] Tick Timer';
@@ -40,7 +40,22 @@ export class NotifySuccess {
   constructor(public message: string) {}
 }
 
+export class NotifyTradeskill {
+  static type = '[Game] Notify Tradeskill';
+  constructor(public tradeskill: Tradeskill, public message: string) {}
+}
+
 export class AnalyticsTrack {
   static type = '[Game] Analytics Track';
   constructor(public event: string, public value = 1) {}
+}
+
+export class UpdateFirebaseUID {
+  static type = '[Game] Update Firebase UID';
+  constructor(public uid: string) {}
+}
+
+export class UpdateFirebaseSavefile {
+  static type = '[Game] Update Firebase Savefile';
+  constructor() {}
 }

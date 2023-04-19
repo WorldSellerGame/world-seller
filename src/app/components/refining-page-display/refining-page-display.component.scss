@@ -26,6 +26,7 @@
       max-width: 40px;
       max-height: 25px;
       text-align: center;
+      color: var(--ion-color-dark);
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
@@ -73,6 +74,12 @@
     top: -5px;
     right: 0;
   }
+}
+
+.crafting-queue-container {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
 }
 
 .crafting-queue {

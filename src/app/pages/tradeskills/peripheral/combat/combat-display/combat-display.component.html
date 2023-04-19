@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="currentEncounter$ | async as encounterData">
+<ng-container *ngIf="encounterData">
 
   <ion-header>
     <ion-toolbar>
@@ -31,7 +31,11 @@
               </div>
 
               <div class="name">
-                {{ monster.name }} <app-debug-text>(Speed {{ monster.currentSpeed }}/{{ monster.stats.speed }})</app-debug-text>
+                {{ monster.name }}
+              </div>
+
+              <div class="speed">
+                <app-debug-text>(Speed {{ monster.currentSpeed }}/{{ monster.stats.speed }})</app-debug-text>
               </div>
 
               <div class="health">
@@ -92,47 +96,34 @@
                      [class.positive]="delta.value > 0"
                      *ngFor="let delta of hpDeltas['player']; let deltaIdx = index">{{ delta.value > 0 ? '+' : '' }}{{ delta.value | number  }}</div>
 
-                <ion-list>
-                  <ion-item>
+                <ion-row>
+                  <ion-col>
                     <ion-row class="stat-row">
-                      <ion-col size="2">
-                        Health
-                      </ion-col>
-
                       <ion-col class="progress-bar" size="7">
                         <ion-progress-bar [value]="encounterData.player.currentHealth / encounterData.player.maxHealth" color="health"></ion-progress-bar>
                       </ion-col>
 
                       <ion-col>
-                        {{ encounterData.player.currentHealth }}/{{ encounterData.player.maxHealth }}
+                        {{ encounterData.player.currentHealth }}/{{ encounterData.player.maxHealth }} Health
                       </ion-col>
                     </ion-row>
+                  </ion-col>
 
-                  </ion-item>
-
-                  <ion-item>
+                  <ion-col>
                     <ion-row class="stat-row">
-                      <ion-col size="2">
-                        Energy
-                      </ion-col>
-
                       <ion-col class="progress-bar" size="7">
                         <ion-progress-bar [value]="encounterData.player.currentEnergy / encounterData.player.maxEnergy" color="energy"></ion-progress-bar>
                       </ion-col>
 
                       <ion-col>
-                        {{ encounterData.player.currentEnergy }}/{{ encounterData.player.maxEnergy }}
+                        {{ encounterData.player.currentEnergy }}/{{ encounterData.player.maxEnergy }} Energy
                       </ion-col>
                     </ion-row>
-                  </ion-item>
+                  </ion-col>
 
-                  <ion-item *ngIf="encounterData.player.statusEffects.length > 0">
+                  <ion-col>
                     <ion-row class="effects-row">
-                      <ion-col size="2">
-                        Effects
-                      </ion-col>
-
-                      <ion-col class="effects-bar" size="10">
+                      <ion-col class="effects-bar" size="12">
                         <div class="effect-container" *ngFor="let effect of encounterData.player.statusEffects">
                           <app-game-icon class="effect"
                                          [color]="effect.color"
@@ -143,82 +134,8 @@
                         </div>
                       </ion-col>
                     </ion-row>
-                  </ion-item>
-                </ion-list>
-              </ion-card-content>
-            </ion-card>
-
-            <ion-card *ngIf="activeItems$ | async as items">
-              <ion-card-header>
-                <ion-card-title>Items</ion-card-title>
-              </ion-card-header>
-
-              <ion-card-content>
-                <ion-list>
-                  <ion-item *ngIf="displayItems(items).length === 0">
-                    You don't have any combat items.
-                  </ion-item>
-
-                  <ng-container *ngFor="let item of items; let i = index">
-                    <ion-item *ngIf="item"
-                              class="cursor-pointer"
-                              [class.active-skill]="i === activeItemIndex"
-                              (click)="selectItem(item, i)"
-                              [disabled]="encounterData.encounter.isLocked">
-                      <app-combat-item-display [item]="item" [showEffectInfo]="true" [showUses]="false"></app-combat-item-display>
-
-                      <ion-text color="energy" slot="end" *ngIf="item.durability > 0">
-                        {{ item.durability }} use(s)
-                      </ion-text>
-                    </ion-item>
-                  </ng-container>
-                </ion-list>
-              </ion-card-content>
-            </ion-card>
-
-            <ng-container *ngIf="activeFoods$ | async as foods">
-              <ion-card *ngIf="foods.length === 0" color="danger">
-                <ion-card-content>
-                  You're not using any food!
-                </ion-card-content>
-              </ion-card>
-
-              <ion-card *ngIf="foods.length > 0">
-                <ion-card-header>
-                  <ion-card-title>Equipped Foods</ion-card-title>
-                </ion-card-header>
-
-                <ion-card-content>
-                  <ion-list>
-                    <ion-item *ngFor="let food of foods">
-                      <app-combat-food-display [item]="food" *ngIf="food"></app-combat-food-display>
-                    </ion-item>
-                  </ion-list>
-                </ion-card-content>
-              </ion-card>
-            </ng-container>
-          </ion-col>
-
-          <ion-col class="player-abilities">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>Actions</ion-card-title>
-              </ion-card-header>
-
-              <ion-card-content>
-                <ion-list>
-                  <ion-item *ngFor="let ability of encounterData.player.abilities; let i = index"
-                            class="cursor-pointer"
-                            [class.active-skill]="i === activeAbilityIndex"
-                            (click)="selectAbility(ability, i)"
-                            [disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, ability, i)">
-                    <app-skill-display [skill]="ability"></app-skill-display>
-
-                    <ion-text color="energy" slot="end" *ngIf="encounterData.player.cooldowns[i] > 0">
-                      {{ encounterData.player.cooldowns[i] }} turn(s)
-                    </ion-text>
-                  </ion-item>
-                </ion-list>
+                  </ion-col>
+                </ion-row>
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -226,6 +143,47 @@
 
       </ion-col>
 
+    </ion-row>
+
+    <ion-row class="actions">
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <div class="action-item-container">
+              <div class="action-item ability"
+                  *ngFor="let _ of abilityArray; let i = index; let last = last"
+                  [class.last]="last"
+                  [class.active]="i === activeAbilityIndex"
+                  [class.disabled]="encounterData.encounter.isLocked || !canDoAbility(encounterData.player, encounterData.player.abilities[i], i)"
+                  (click)="selectAbility(encounterData.player.abilities[i], i)">
+                <app-combat-ability-bar-action-display [action]="encounterData.player.abilities[i]" [active]="i === activeAbilityIndex"></app-combat-ability-bar-action-display>
+
+                <div class="action-key">
+                  <ion-badge color="secondary">
+                    {{ keysArray[i] }}
+                  </ion-badge>
+                </div>
+              </div>
+
+              <div class="action-item item"
+                    *ngFor="let _ of itemArray; let i = index"
+                    [class.active]="i === activeItemIndex"
+                    [class.disabled]="encounterData.encounter.isLocked || !activeItems[i]"
+                    (click)="selectItem(activeItems[i], i)">
+                <app-combat-ability-bar-item-display [item]="activeItems[i]" [active]="i === activeItemIndex"></app-combat-ability-bar-item-display>
+
+                <ion-badge class="indicator" color="energy" *ngIf="activeItems[i]">{{ activeItems[i].durability }}</ion-badge>
+
+                <div class="action-key">
+                  <ion-badge color="secondary">
+                    {{ keysArray[i + 8] }}
+                  </ion-badge>
+                </div>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
     </ion-row>
 
   </ion-grid>

@@ -1,0 +1,75 @@
+
+
+Copper Ring:
+  name: Copper Ring
+  description: A plain Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 50
+  icon: 'ring'
+  stats:
+    axeSpeed: 30
+    fishingSpeed: 30
+    scytheSpeed: 30
+    pickaxeSpeed: 30
+    huntingSpeed: 30
+
+Copper Nose Piercing:
+  name: Copper Nose Piercing
+  description: A plain Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 50
+  icon: 'tongue-piercing'
+  stats:
+    armor: 1
+    attack: 1
+
+Tanzanite Copper Ring:
+  name: Copper Ring (Tanzanite)
+  description: Cut Tanzanite in a Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeed: 60
+    fishingSpeed: 60
+    scytheSpeed: 60
+    pickaxeSpeed: 60
+    huntingSpeed: 60
+
+Chrysocolla Copper Ring:
+  name: Copper Ring (Chrysocolla)
+  description: Cut Chrysocolla in a Copper Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'ring-with-stone'
+  stats:
+    axeSpeed: 180
+    fishingSpeed: 180
+    scytheSpeed: 180
+    pickaxeSpeed: 180
+    huntingSpeed: 180
+
+Tanzanite Copper Nose Piercing:
+  name: Copper Nose Piercing (Tanzanite)
+  description: Cut Tanzanite in a Copper Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'tongue-piercing'
+  stats:
+    armor: 1
+    attack: 6

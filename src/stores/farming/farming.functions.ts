@@ -3,10 +3,10 @@ import { StateContext } from '@ngxs/store';
 import { patch, updateItem } from '@ngxs/store/operators';
 import { random } from 'lodash';
 import { pickNameWithWeights } from '../../app/helpers';
-import { AchievementStat, IGameFarming, IGameFarmingPlot } from '../../interfaces';
+import { AchievementStat, IGameFarming, IGameFarmingPlot, TransformTradeskill } from '../../interfaces';
 import { IncrementStat } from '../achievements/achievements.actions';
 import { GainItemOrResource, GainResources } from '../charselect/charselect.actions';
-import { PlaySFX, TickTimer } from '../game/game.actions';
+import { NotifyTradeskill, PlaySFX, TickTimer } from '../game/game.actions';
 import { SpendCoins } from '../mercantile/mercantile.actions';
 import { GainFarmingLevels, HarvestPlantFromFarm, PlantSeedInFarm } from './farming.actions';
 
@@ -41,7 +41,7 @@ export function workerSpeedUpgradeCost(currentLevel = 0): number {
 }
 
 export function workerSpeed() {
-  return 3600;
+  return 1800;
 }
 
 export function workerSpeedReduction(currentLevel = 0): number {
@@ -101,9 +101,12 @@ export function harvestPlot(ctx: StateContext<IGameFarming>, { plotIndex, playSf
   }));
 
   const choice = pickNameWithWeights(result.becomes);
+  const gainedAmt = random(result.perGather.min, result.perGather.max);
+
   ctx.dispatch([
     playSfx ? new PlaySFX('tradeskill-finish-farming') : undefined,
-    new GainItemOrResource(choice, random(result.perGather.min, result.perGather.max)),
+    new NotifyTradeskill(TransformTradeskill.Farming, `+${gainedAmt}x ${choice}`),
+    new GainItemOrResource(choice, gainedAmt, false),
     new IncrementStat(AchievementStat.FarmingHarvest)
   ].filter(Boolean));
 

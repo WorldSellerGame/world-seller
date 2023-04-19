@@ -6,16 +6,20 @@ import {
 
 import {
   AddItemToInventory, BreakItem, CreateCharacter, DeleteCharacter,
-  EquipItem, GainResources, RemoveItemFromInventory, SaveActiveCharacter, SetActiveCharacter, SyncTotalLevel, UnequipItem
+  EquipItem, GainResources, RemoveItemFromInventory, SaveActiveCharacter,
+  SetActiveCharacter, SyncTotalLevel, ToggleCharacterCloud, UnequipItem, UnlinkCharacterCloud
 } from './charselect.actions';
 import {
   addItemToInventory, addItemsToInventory, breakItem, createCharacter, deleteCharacter,
   equipItem, gainResources, removeItemFromInventory,
-  removeItemsFromInventory, saveCurrentCharacter, setActiveCharacter, syncTotalLevel, unequipItem
+  removeItemsFromInventory, saveCurrentCharacter, setActiveCharacter,
+  syncTotalLevel, toggleCharacterCloud, unequipItem, unlinkCharacterCloud
 } from './charselect.functions';
 
 export const attachments: IAttachment[] = [
   { action: CreateCharacter, handler: createCharacter },
+  { action: ToggleCharacterCloud, handler: toggleCharacterCloud },
+  { action: UnlinkCharacterCloud, handler: unlinkCharacterCloud },
   { action: DeleteCharacter, handler: deleteCharacter },
   { action: SetActiveCharacter, handler: setActiveCharacter },
   { action: SaveActiveCharacter, handler: saveCurrentCharacter },

@@ -65,27 +65,34 @@ export class DebugService {
     };
 
     (window as any).gainEveryResource = (amount: number) => {
-      Object.keys(this.contentService.getAllResources()).forEach(key => {
-        this.store.dispatch(new GainItemOrResource(key, amount));
-      });
+      const allActions: any[] = Object.keys(this.contentService.getAllResources()).map(key => new GainItemOrResource(key, amount, false));
+      this.store.dispatch(allActions);
     };
 
     (window as any).gainEveryItem = (amount: number) => {
+      const allActions: any[] = [];
+
       Object.keys(this.contentService.getAllItems()).forEach(key => {
         for(let i = 0; i < amount; i++) {
-          this.store.dispatch(new GainItemOrResource(key, amount));
+          allActions.push(new GainItemOrResource(key, amount, false));
         }
       });
+
+      this.store.dispatch(allActions);
     };
 
     (window as any).discoverAll = () => {
+      const allActions: any[] = [];
+
       Object.keys(this.contentService.getAllResources()).forEach(key => {
-        this.store.dispatch(new DiscoverResourceOrItem(key));
+        allActions.push(new DiscoverResourceOrItem(key));
       });
 
       Object.keys(this.contentService.getAllItems()).forEach(key => {
-        this.store.dispatch(new DiscoverResourceOrItem(key));
+        allActions.push(new DiscoverResourceOrItem(key));
       });
+
+      this.store.dispatch(allActions);
     };
 
     (window as any).applyCombatEffectToPlayer = (effect: string) => {

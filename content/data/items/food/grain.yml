@@ -1,0 +1,14 @@
+
+Bread:
+  name: Bread
+  description: Warm, flaky bread is hard to beat and easy to make in large quantities.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  value: 50
+  icon: bread
+  oocEnergy: 15
+  stats:
+    energyPerCombat: 4
+  durability: 15
+  foodDuration: 15

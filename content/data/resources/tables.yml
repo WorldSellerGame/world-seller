@@ -130,7 +130,7 @@ Adamantite Tool Bench:
   rarity: Epic
   icon: 'toolbox'
 
-Adamantite Construction Tools: 
+Adamantite Construction Tools:
   name: Adamantite Construction Tools
   description: A set of tools for making structures and otherwise, but Adamantite.
   category: Crafting Tables
@@ -291,19 +291,19 @@ Metal Jewelry Tools:
   name: Metal Jewelry Tools
   description: A set of tools appropriate for soft metals and stones.
   category: Crafting Tables
-  rarity: Uncommon
+  rarity: Common
   icon: 'flat-hammer'
 
 Iron Jewelry Tools:
   name: Iron Jewelry Tools
   description: A set of tools appropriate for most normal metals and stones.
   category: Crafting Tables
-  rarity: Rare
+  rarity: Common
   icon: 'flat-hammer'
 
 Adamantite Jewelry Tools:
   name: Adamantite Jewelry Tools
   description: A set of tools appropriate for incredibly hard metals and stones.
   category: Crafting Tables
-  rarity: Epic
+  rarity: Common
   icon: 'flat-hammer'

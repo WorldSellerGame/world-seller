@@ -2,12 +2,35 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Store } from '@ngxs/store';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { GameOption } from '../../interfaces';
+import { Observable, Subject, timer } from 'rxjs';
+import { GameOption, Tradeskill } from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotifyService {
+
+  private tradeskillEmits = new Subject<{ tradeskill: string; message: string }>();
+  public tradeskill$: Observable<{ tradeskill: string; message: string }> = this.tradeskillEmits.asObservable();
+
+  private nextTradeskillMessages: Record<Tradeskill, string[]> = {
+    fishing: [],
+    foraging: [],
+    hunting: [],
+    logging: [],
+    mining: [],
+
+    alchemy: [],
+    blacksmithing: [],
+    cooking: [],
+    jewelcrafting: [],
+    weaving: [],
+
+    combat: [],
+    farming: [],
+    mercantile: [],
+    prospecting: []
+  };
 
   private messageHistory: string[] = [];
 
@@ -15,7 +38,33 @@ export class NotifyService {
     return this.messageHistory;
   }
 
-  constructor(private store: Store, private alertCtrl: AlertController) { }
+  constructor(private store: Store, private alertCtrl: AlertController) {
+    this.init();
+  }
+
+  private init() {
+    timer(0, 500).subscribe(() => {
+      Object.keys(this.nextTradeskillMessages).forEach(tradeskill => {
+        const messages = this.nextTradeskillMessages[tradeskill as Tradeskill];
+        const nextMessage = messages.shift();
+
+        if(!nextMessage) {
+          return;
+        }
+
+        if(nextMessage === 'EMPTY') {
+          this.tradeskillEmits.next({ tradeskill, message: '' });
+          return;
+        }
+
+        this.tradeskillEmits.next({ tradeskill, message: nextMessage });
+
+        if(messages.length === 0) {
+          messages.push('EMPTY');
+        }
+      });
+    });
+  }
 
   private notificationPosition() {
     return this.store.selectSnapshot(state => state.options?.[GameOption.NotificationCorner]) ?? 'left-top';
@@ -56,6 +105,12 @@ export class NotifyService {
   }
 
   public error(message: string) {
+
+    // these pop up and they shouldn't. they're annoying.
+    if(message.includes('Firebase')) {
+      return;
+    }
+
     this.logMessage(message);
 
     if(!this.showNotifications()) {
@@ -89,6 +144,16 @@ export class NotifyService {
     Notify.success(message, {
       ...this.notiflixDefaults()
     });
+  }
+
+  public tradeskill(tradeskill: Tradeskill, message: string) {
+    this.logMessage(message);
+
+    if(!this.showNotifications()) {
+      return;
+    }
+
+    this.nextTradeskillMessages[tradeskill].push(message);
   }
 
   public achievement(message: string) {

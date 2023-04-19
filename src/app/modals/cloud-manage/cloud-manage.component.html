@@ -1,0 +1,66 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cloud Save Management</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" color="warning">
+        logout
+      </ion-button>
+
+      <ion-button (click)="modal.dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="savefiles | async as allSavefiles">
+
+    <ion-card *ngIf="allSavefiles.length === 0">
+      <ion-card-header>
+        <ion-card-title class="vertical-center">
+          No Characters Found
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>You have no characters saved to the cloud.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngFor="let save of allSavefiles">
+      <ion-card-header>
+        <ion-card-title class="vertical-center">
+          {{ save.charName }}
+        </ion-card-title>
+
+        <ion-card-subtitle>Level {{ save.lastTotalLevel | number }}</ion-card-subtitle>
+        <ion-card-subtitle>Last saved {{ save.lastSavedAt | date:'medium' }}</ion-card-subtitle>
+
+        <ion-button class="character-actions" fill="clear" (click)="popover.present($event)" *ngIf="save.charId !== currentCharacterId">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+
+        <ion-popover #popover [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item class="cursor-pointer" (click)="deleteCharacterFromCloud(save.charId)">
+                  <ion-icon slot="start" color="danger" name="trash"></ion-icon>
+                  Delete Character From Cloud
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-button expand="block" disabled color="secondary" *ngIf="save.charId === currentCharacterId">Your Current Character</ion-button>
+        <ion-button expand="block" (click)="syncCharacter(save.charId)" *ngIf="save.charId !== currentCharacterId">Use This Character</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
+</ion-content>

@@ -1,4 +1,4 @@
-import { IGameGatherLocation, IGameRecipe } from '../../interfaces';
+import { IGameGatherLocation, IGameRecipe, Tradeskill } from '../../interfaces';
 
 export class BuyWorker {
   static type = '[Workers] Buy';
@@ -7,22 +7,22 @@ export class BuyWorker {
 
 export class AssignGatheringWorker {
   static type = '[Workers] Assign Gathering';
-  constructor(public tradeskill: string, public location: IGameGatherLocation) {}
+  constructor(public tradeskill: Tradeskill, public location: IGameGatherLocation) {}
 }
 
 export class UnassignGatheringWorker {
   static type = '[Workers] Unassign Gathering';
-  constructor(public tradeskill: string, public location: IGameGatherLocation) {}
+  constructor(public tradeskill: Tradeskill, public location: IGameGatherLocation) {}
 }
 
 export class AssignRefiningWorker {
   static type = '[Workers] Assign Refining';
-  constructor(public tradeskill: string, public recipe: IGameRecipe) {}
+  constructor(public tradeskill: Tradeskill, public recipe: IGameRecipe) {}
 }
 
 export class UnassignRefiningWorker {
   static type = '[Workers] Unassign Refining';
-  constructor(public tradeskill: string, public recipe: IGameRecipe) {}
+  constructor(public tradeskill: Tradeskill, public recipe: IGameRecipe) {}
 }
 
 export class AssignMercantileWorker {

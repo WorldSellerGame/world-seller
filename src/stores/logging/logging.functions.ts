@@ -8,6 +8,7 @@ export const defaultLogging: () => IGameGathering = () => ({
   version: 0,
   unlocked: true,
   level: 0,
+  currentLocation: null,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {},

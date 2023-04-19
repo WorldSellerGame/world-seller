@@ -1,0 +1,15 @@
+
+- name: Barbeque Pit
+  description: A pit of celebration.
+  perGather:
+    min: 1
+    max: 1
+  level:
+    min: 0
+    max: 5
+  gatherTime: 5
+  cooldownTime: 0
+  resources:
+    - name: Bone
+      weight: 1
+  maxWorkers: 0

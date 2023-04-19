@@ -16,7 +16,7 @@ export interface IGameGathering {
   version: number;
   unlocked: boolean;
   level: number;
-  currentLocation?: IGameGatherLocation;
+  currentLocation?: IGameGatherLocation | null;
   currentLocationDurationInitial: number;
   currentLocationDuration: number;
   cooldowns: Record<string, number>;

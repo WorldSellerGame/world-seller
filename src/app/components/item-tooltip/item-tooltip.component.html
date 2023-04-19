@@ -1,7 +1,7 @@
 
 <div>
   <strong [ngClass]="[itemClass]" class="name">
-    <app-real-name [name]="item.internalId ?? ''"></app-real-name> &middot; {{ item.category }}
+    <app-real-name [name]="item.internalId || item.name || ''"></app-real-name> &middot; {{ item.category }}
   </strong>
 </div>
 
@@ -31,4 +31,8 @@
 <div class="effects" *ngIf="effects">
   <div><strong>Effects</strong></div>
   Applies {{ effects }}
+</div>
+
+<div class="canclick" *ngIf="showCanClick">
+  <em><small>Click for actions...</small></em>
 </div>

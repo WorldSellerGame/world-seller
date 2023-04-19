@@ -17,5 +17,47 @@ Cut Tanzanite:
   name: Cut Tanzanite
   description: A piece of Tanzanite that has been cut to a specific shape.
   category: Refined Materials
+  rarity: Uncommon
+  icon: 'cut-stone'
+
+Cut Chrysocolla:
+  name: Cut Chrysocolla
+  description: A piece of Chrysocolla that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Rare
+  icon: 'cut-stone'
+
+Cut Peridot:
+  name: Cut Peridot
+  description: A piece of Peridot that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'cut-stone'
+
+Cut Citrine:
+  name: Cut Citrine
+  description: A piece of Citrine that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'cut-stone'
+
+Cut Phosphophyllite:
+  name: Cut Phosphophyllite
+  description: A piece of Phosphophyllite that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Rare
+  icon: 'cut-stone'
+
+Cut Nekruth:
+  name: Cut Nekruth
+  description: A piece of Nekruth that has been cut to a specific shape.
+  category: Refined Materials
+  rarity: Uncommon
+  icon: 'cut-stone'
+
+Cut Akerymite:
+  name: Cut Akerymite
+  description: A piece of Akerymite that has been cut to a specific shape.
+  category: Refined Materials
   rarity: Rare
   icon: 'cut-stone'

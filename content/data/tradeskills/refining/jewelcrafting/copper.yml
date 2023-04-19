@@ -1,0 +1,68 @@
+
+- result: Copper Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ingot: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Copper Nose Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ingot: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Copper Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ring: 1
+    Cut Tanzanite: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Tanzanite Copper Nose Piercing
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Nose Piercing: 1
+    Cut Tanzanite: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1
+
+- result: Chrysocolla Copper Ring
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Copper Ring: 1
+    Cut Chrysocolla: 1
+    Metal Jewelry Tools: 1
+  require:
+    - Metal Jewelry Tools
+  preserve:
+    - Metal Jewelry Tools
+  maxWorkers: 1

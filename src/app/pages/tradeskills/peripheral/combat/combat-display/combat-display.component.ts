@@ -35,11 +35,21 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
   public activeAbilityIndex = -1;
   public activeAbilityInfo: IGameCombatAbility[] | undefined;
 
+  public activeItems: IGameItem[] = [];
+  public encounterData!: { encounter: IGameEncounter; player: IGameEncounterCharacter };
+
+  public abilityArray = Array(8);
+  public itemArray = Array(3);
+
+  public readonly keysArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-'];
+
   public get firstAbilityForTargetting(): IGameCombatAbility | undefined {
     return this.activeAbilityInfo?.[0];
   }
 
   private hpSub!: Subscription;
+  private itemSub!: Subscription;
+  private encSub!: Subscription;
   public hpDeltas: Record<string, Array<{ value: number }>> = {};
 
   @Select(CombatState.activeItems) activeItems$!: Observable<IGameItem[]>;
@@ -52,12 +62,46 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
     private visuals: VisualsService,
   ) { }
 
+  private arrowKeys = (event: KeyboardEvent) => {
+    if(!event) {
+      return;
+    }
+
+    const abilityKeys = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    if(abilityKeys.includes(event.key)) {
+      const abilityIndex = abilityKeys.indexOf(event.key);
+      const ability = this.encounterData.player.abilities[abilityIndex];
+
+      if(ability) {
+        this.selectAbility(ability, abilityIndex);
+      }
+    }
+
+    const itemKeys = ['9', '0', '-'];
+    if(itemKeys.includes(event.key)) {
+      const itemIndex = itemKeys.indexOf(event.key);
+      const item = this.activeItems[itemIndex];
+
+      if(item) {
+        this.selectItem(item, itemIndex);
+      }
+    }
+  };
+
   ngOnInit() {
+    document.addEventListener('keydown', this.arrowKeys);
+
     this.hpSub = this.visuals.damage$.subscribe(({ slot, value }) => this.displayDamageNumber(slot, value));
+    this.itemSub = this.activeItems$.subscribe(items => this.activeItems = items);
+    this.encSub = this.currentEncounter$.subscribe(enc => this.encounterData = enc);
   }
 
   ngOnDestroy() {
+    document.removeEventListener('keydown', this.arrowKeys);
+
     this.hpSub?.unsubscribe();
+    this.itemSub?.unsubscribe();
+    this.encSub?.unsubscribe();
   }
 
   displayItems(items: IGameItem[] = []) {
@@ -70,6 +114,10 @@ export class CombatDisplayComponent implements OnInit, OnDestroy {
 
   canDoAbility(player: IGameEncounterCharacter, ability: string, abilityIndex: number): boolean {
     const abilityRef = this.getAbility(ability);
+    if(!abilityRef) {
+      return false;
+    }
+
     return !(player.cooldowns[abilityIndex] > 0) && player.currentEnergy >= abilityRef.energyCost;
   }
 

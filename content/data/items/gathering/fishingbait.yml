@@ -1,0 +1,63 @@
+
+Squirrel-on-a-String:
+  name: Squirrel-on-a-String
+  description: A rather excessive fishing bait.
+  type: FishingBait
+  category: Tools
+  rarity: Common
+  durability: 15
+  value: 10
+  icon: fishing-pole
+  stats:
+    fishingPower: 15
+    fishingSpeed: 5
+
+Bunny Bits:
+  name: Bunny Bits
+  description: A few chunks of meat, sourced ethically.
+  type: FishingBait
+  category: Tools
+  rarity: Common
+  durability: 25
+  value: 25
+  icon: fishing-pole
+  stats:
+    fishingSpeed: 15
+    fishingPower: 5
+
+Frog Leg:
+  name: Frog Leg
+  description: A frog leg. It was sourced.
+  type: FishingBait
+  category: Tools
+  rarity: Common
+  durability: 35
+  value: 15
+  icon: fishing-pole
+  stats:
+    fishingPowerPercent: 15
+
+Duck Leg:
+  name: Duck Leg
+  description: A duck leg. It's too bad you can only use one at a time.
+  type: FishingBait
+  category: Tools
+  rarity: Common
+  durability: 35
+  value: 25
+  icon: fishing-pole
+  stats:
+    fishingSpeedPercent: 15
+
+Steak Bite:
+  name: Steak Bite
+  description: Who doesn't love steak? Fish definitely do.
+  type: FishingBait
+  category: Tools
+  rarity: Common
+  durability: 50
+  value: 50
+  icon: fishing-pole
+  stats:
+    fishingSpeedPercent: 15
+    fishingPowerPercent: 10

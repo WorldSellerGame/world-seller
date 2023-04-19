@@ -1,0 +1,50 @@
+
+Stone Axe:
+  name: Stone Axe
+  description: An axe made of stone.
+  type: Axe
+  category: Tools
+  rarity: Common
+  durability: 15
+  value: 20
+  icon: axe
+  stats:
+    axePowerPercent: 5
+
+Copper Axe:
+  name: Copper Axe
+  description: An axe made of Copper.
+  type: Axe
+  category: Tools
+  rarity: Uncommon
+  durability: 25
+  value: 100
+  icon: axe
+  stats:
+    axePowerPercent: 10
+    axeSpeed: 10
+
+Iron Axe:
+  name: Iron Axe
+  description: An axe made of Iron.
+  type: Axe
+  category: Tools
+  rarity: Rare
+  durability: 35
+  value: 500
+  icon: axe
+  stats:
+    axePowerPercent: 15
+
+Adamantite Axe:
+  name: Adamantite Axe
+  description: An axe made of Adamantite.
+  type: Axe
+  category: Tools
+  rarity: Epic
+  durability: 50
+  value: 2000
+  icon: axe
+  stats:
+    axePowerPercent: 20
+    axeSpeed: 45

@@ -1,0 +1,48 @@
+
+- startingItem: Stone
+  becomes:
+    - name: nothing
+      weight: 5
+    - name: Quartz
+      weight: 1
+  perGather: { min: 1, max: 1 }
+  level: { min: 0, max: 10 }
+  gatherTime: 0
+
+- startingItem: Copper Ore
+  becomes:
+    - name: nothing
+      weight: 5
+    - name: Tanzanite
+      weight: 3
+    - name: Chrysocolla
+      weight: 1
+  perGather: { min: 1, max: 1 }
+  level: { min: 1, max: 10 }
+  gatherTime: 0
+
+- startingItem: Iron Ore
+  becomes:
+    - name: nothing
+      weight: 5
+    - name: Peridot
+      weight: 5
+    - name: Citrine
+      weight: 3
+    - name: Phosphophyllite
+      weight: 1
+  perGather: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  gatherTime: 0
+
+- startingItem: Adamantite Ore
+  becomes:
+    - name: nothing
+      weight: 15
+    - name: Nekruth
+      weight: 5
+    - name: Akerymite
+      weight: 1
+  perGather: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  gatherTime: 0

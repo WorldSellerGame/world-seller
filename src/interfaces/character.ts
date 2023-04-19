@@ -6,6 +6,8 @@ export interface ICharacter {
 }
 
 export interface IPlayerCharacter extends ICharacter {
+  id: string;
+  isCloud?: boolean;
   lastSavedAt: number;
   lastTotalLevel: number;
   resources: Record<string, number>;

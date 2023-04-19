@@ -1,0 +1,310 @@
+
+# Low gather time, low cooldown
+
+- name: Nearby Forest
+  description: Over-harvested forest with little bounty.
+  perGather:
+    min: 2
+    max: 4
+  level:
+    min: 5
+    max: 10
+  gatherTime: 10
+  cooldownTime: 5
+  resources:
+    - name: Dandelion
+      weight: 1
+    - name: Plant Fiber
+      weight: 1
+  maxWorkers: 1
+
+- name: Pine Forest
+  description: Over-harvested but less so.
+  perGather:
+    min: 3
+    max: 5
+  level:
+    min: 10
+    max: 15
+  gatherTime: 30
+  cooldownTime: 15
+  resources:
+    - name: Pine Needle
+      weight: 1
+    - name: Dandelion
+      weight: 1
+    - name: Plant Fiber
+      weight: 1
+    - name: Sap
+      weight: 1
+  maxWorkers: 1
+
+- name: Coniferous Forest
+  description: Less mulled over location farther into to the wilderness.
+  perGather:
+    min: 4
+    max: 8
+  level:
+    min: 10
+    max: 20
+  gatherTime: 80
+  cooldownTime: 40
+  resources:
+    - name: Dandelion
+      weight: 1
+    - name: Plant Fiber
+      weight: 8
+    - name: Mushroom
+      weight: 3
+    - name: Sap
+      weight: 1
+    - name: Poisonous Mushroom
+      weight: 1
+    - name: Carrot
+      weight: 15
+    - name: Carrot Seed
+      weight: 3
+    - name: Worm
+      weight: 1
+  maxWorkers: 1
+
+- name: Orchard
+  description: It looks to be an abandoned apple farm amongst the wilderness.
+  perGather:
+    min: 5
+    max: 10
+  level:
+    min: 15
+    max: 25
+  gatherTime: 180
+  cooldownTime: 90
+  resources:
+    - name: Apple
+      weight: 8
+    - name: Apple Seed
+      weight: 1
+    - name: Worm
+      weight: 2
+  maxWorkers: 1
+
+- name: Cave Entrance
+  description: Entrance to a cave system near the orchard. Fruit bats congregate here eating off the orchards bounty.
+  perGather:
+    min: 5
+    max: 10
+  level:
+    min: 15
+    max: 25
+  gatherTime: 180
+  cooldownTime: 90
+  resources:
+    - name: Mushroom
+      weight: 2
+    - name: Moss
+      weight: 2
+    - name: Guano
+      weight: 2
+    - name: Plant Fiber
+      weight: 1
+  maxWorkers: 1
+
+- name: Forest Glade
+  description: A small clearing in the Coniferous Forest.
+  perGather:
+    min: 6
+    max: 12
+  level:
+    min: 20
+    max: 30
+  gatherTime: 330
+  cooldownTime: 165
+  resources:
+    - name: Raspberry
+      weight: 20
+    - name: Raspberry Seed
+      weight: 4
+    - name: Strawberry
+      weight: 20
+    - name: Strawberry Seed
+      weight: 4
+    - name: Rose
+      weight: 1
+  maxWorkers: 1
+
+- name: Wheat Meadow # no plantables at time
+  description: A field of wheat, pretty cool right?
+  perGather:
+    min: 7
+    max: 14
+  level:
+    min: 25
+    max: 35
+  gatherTime: 600
+  cooldownTime: 300
+  resources:
+    - name: Wheat
+      weight: 20
+  maxWorkers: 1
+
+- name: Stream Bank
+  description: Soggy.
+  perGather:
+    min: 8
+    max: 16
+  level:
+    min: 30
+    max: 40
+  gatherTime: 1000
+  cooldownTime: 500
+  resources:
+    - name: Plant Fiber
+      weight: 25
+    - name: Worm
+      weight: 20
+    - name: Mushroom
+      weight: 3
+    - name: Poisonous Mushroom
+      weight: 1
+    - name: Pumpkin
+      weight: 100
+    - name: Pumpkin Seed
+      weight: 20
+    - name: Grape
+      weight: 100
+    - name: Grape Seed
+      weight: 20
+    - name: Duck Egg
+      weight: 5
+  maxWorkers: 1
+
+- name: Abandoned Homestead
+  description: A small home with an over grown garden attached. Who can say what happened.
+  perGather:
+    min: 9
+    max: 18
+  level:
+    min: 35
+    max: 45
+  gatherTime: 1650
+  cooldownTime: 825
+  resources:
+    - name: Mushroom
+      weight: 2
+    - name: Poisonous Mushroom
+      weight: 6
+    - name: Garlic
+      weight: 10
+    - name: Spicy Pepper
+      weight: 10
+    - name: Spicy Pepper Seed
+      weight: 2
+  maxWorkers: 1
+
+- name: Iron Wood Grove
+  description: Best place to go searching for bee hives.
+  perGather:
+    min: 10
+    max: 20
+  level:
+    min: 40
+    max: 50
+  gatherTime: 2600
+  cooldownTime: 1300
+  resources:
+    - name: Mushroom
+      weight: 30
+    - name: Poisonous Mushroom
+      weight: 10
+    - name: Honey
+      weight: 48
+    - name: Bee
+      weight: 6
+    - name: Fairy Bell
+      weight: 4
+    - name: Death Cap
+      weight: 1
+    - name: Rose
+      weight: 2
+  maxWorkers: 1
+
+- name: Near Ocean Jungle
+  description: Stack bananas till the morning comes.
+  perGather:
+    min: 11
+    max: 22
+  level:
+    min: 45
+    max: 55
+  gatherTime: 4000
+  cooldownTime: 2000
+  resources:
+    - name: Plant Fiber
+      quantity: 5
+      weight: 1
+    - name: Banana
+      weight: 6
+  maxWorkers: 1
+
+- name: Seashore
+  description: Many things here you cannot grow back home making their value worth the trip.
+  perGather:
+    min: 12
+    max: 24
+  level:
+    min: 50
+    max: 60
+  gatherTime: 6000
+  cooldownTime: 3000
+  resources:
+    - name: Plant Fiber
+      quantity: 5
+      weight: 2
+    - name: Banana
+      weight: 3
+    - name: Coconut
+      weight: 2
+    - name: Carambola
+      weight: 1
+  maxWorkers: 1
+
+- name: Grave of the Forest Nymph
+  description: Roses grow supernaturally thick in this small clearing. Best not to disturb the graves of spirits.
+  perGather:
+    min: 13
+    max: 26
+  level:
+    min: 55
+    max: 65
+  gatherTime: 8700
+  cooldownTime: 4350
+  resources:
+    - name: Rose
+      quantity: 5
+      weight: 14
+    - name: Curse
+      weight: 1
+  maxWorkers: 1
+
+- name: Old Elvish Woods
+  description: The Silverwood trees prevent other plants from growing the fungus do not care.
+  perGather:
+    min: 14
+    max: 28
+  level:
+    min: 60
+    max: 70
+  gatherTime: 12500
+  cooldownTime: 6250
+  resources:
+    - name: Mushroom
+      weight: 90
+    - name: Poisonous Mushroom
+      weight: 30
+    - name: Fairy Bell
+      weight: 15
+    - name: Death Cap
+      weight: 10
+    - name: Grouse Egg
+      weight: 1
+  maxWorkers: 1
+

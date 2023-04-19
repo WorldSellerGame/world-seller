@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
-import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat } from '../../../interfaces';
-import { CharSelectState } from '../../../stores';
+import { IGameGatherLocation, IGameItem, IGameWorkersGathering, Stat, Tradeskill } from '../../../interfaces';
+import { CharSelectState, FishingState, ForagingState, HuntingState, LoggingState, MiningState } from '../../../stores';
 import { AssignGatheringWorker, UnassignGatheringWorker } from '../../../stores/workers/workers.actions';
 import { calculateStat } from '../../helpers';
 import { NotifyService } from '../../services/notify.service';
@@ -11,8 +11,7 @@ import { NotifyService } from '../../services/notify.service';
 @Component({
   selector: 'app-gathering-page-display',
   templateUrl: './gathering-page-display.component.html',
-  styleUrls: ['./gathering-page-display.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./gathering-page-display.component.scss']
 })
 export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
 
@@ -44,6 +43,12 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   private starSub!: Subscription;
 
   @Select(CharSelectState.activeCharacterEquipment) equipment$!: Observable<Record<string, IGameItem>>;
+
+  @Select(FishingState.currentLocation) currentFishingLocation$!: Observable<any>;
+  @Select(ForagingState.currentLocation) currentForagingLocation$!: Observable<any>;
+  @Select(HuntingState.currentLocation) currentHuntingLocation$!: Observable<any>;
+  @Select(LoggingState.currentLocation) currentLoggingLocation$!: Observable<any>;
+  @Select(MiningState.currentLocation) currentMiningLocation$!: Observable<any>;
 
   constructor(
     private store: Store,
@@ -160,11 +165,11 @@ export class GatheringPageDisplayComponent implements OnInit, OnDestroy {
   }
 
   allocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new AssignGatheringWorker(this.tradeskill, location));
+    this.store.dispatch(new AssignGatheringWorker(this.tradeskill as Tradeskill, location));
   }
 
   unallocateWorker(location: IGameGatherLocation) {
-    this.store.dispatch(new UnassignGatheringWorker(this.tradeskill, location));
+    this.store.dispatch(new UnassignGatheringWorker(this.tradeskill as Tradeskill, location));
   }
 
   getHighestWorkerProgress(data: IGameWorkersGathering[]): number {

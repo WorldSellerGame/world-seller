@@ -29,9 +29,9 @@ export const defaultCombat: () => IGameCombat = () => ({
   activeSkills: [],
   activeItems: [],
   activeFoods: [],
-  currentDungeon: undefined,
-  currentEncounter: undefined,
-  currentPlayer: undefined,
+  currentDungeon: null,
+  currentEncounter: null,
+  currentPlayer: null,
   threatChangeTicks: 3600,
   threats: [],
   oocEnergyTicks: 10,
@@ -202,7 +202,12 @@ export function setFoodInSlot(ctx: StateContext<IGameCombat>, { item, slot }: Se
  */
 export function addCombatLogMessage(ctx: StateContext<IGameCombat>, { message }: AddCombatLogMessage) {
 
-  const messages = ctx.getState().currentEncounter?.log ?? [];
+  const encounter = ctx.getState().currentEncounter;
+  if(!encounter) {
+    return;
+  }
+
+  const messages = encounter.log ?? [];
 
   messages.push(message);
 

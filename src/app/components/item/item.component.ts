@@ -12,6 +12,7 @@ export class ItemComponent implements OnInit {
 
   @Input() item!: IGameItem;
   @Input() hideIcon = false;
+  @Input() canClick = false;
 
   get itemClass() {
     return getItemRarityClass(this.item);

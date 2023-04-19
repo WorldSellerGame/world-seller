@@ -1,0 +1,135 @@
+
+Adamant Ring:
+  name: Adamant Ring
+  description: A plain Adamant Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 300
+  icon: 'ring'
+  stats:
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
+
+Adamant Ear Piercing:
+  name: Adamant Ear Piercing
+  description: A plain Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 300
+  icon: 'ear-piercing'
+  stats:
+    healing: 5
+    attack: 3
+    energyBonus: 10
+    healthBonus: 10
+
+Quartz Adamant Ring:
+  name: Adamant Ring (Quartz)
+  description: Cut Quartz set into an Adamant Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 350
+  icon: 'ring-with-stone'
+  stats:
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
+    axeSpeed: 60
+    fishingSpeed: 60
+    scytheSpeed: 60
+    pickaxeSpeed: 60
+    huntingSpeed: 60
+
+Quartz Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Quartz)
+  description: Cut Quartz set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 350
+  icon: 'ear-piercing'
+  stats:
+    healing: 5
+    attack: 3
+    energyBonus: 20
+    healthBonus: 20
+
+Tanzanite Adamant Ring:
+  name: Adamant Ring (Tanzanite)
+  description: Cut Tanzanite set into an Adamant Ring.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ring-with-stone'
+  stats:
+    axePower: 60
+    fishingPower: 60
+    scythePower: 60
+    pickaxePower: 60
+    huntingPower: 60
+    axePowerPercent: 5
+    fishingPowerPercent: 5
+    scythePowerPercent: 5
+    pickaxePowerPercent: 5
+    huntingPowerPercent: 5
+
+Tanzanite Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Tanzanite)
+  description: Cut Tanzanite set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ear-piercing'
+  stats:
+    healing: 5
+    attack: 8
+    energyBonus: 10
+    healthBonus: 10
+
+Nekruth Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Nekruth)
+  description: Cut Nekruth set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ear-piercing'
+  stats:
+    healing: 5
+    attack: 3
+    energyBonus: 10
+    healthBonus: 10
+    armor: 10
+
+Akerymite Adamant Ear Piercing:
+  name: Adamant Ear Piercing (Akerymite)
+  description: Cut Akerymite set into an Adamant Piercing.
+  type: Jewelry
+  category: Jewelry
+  rarity: Rare
+  durability: -1
+  value: 700
+  icon: 'ear-piercing'
+  stats:
+    healing: 5
+    attack: 3
+    energyBonus: 10
+    healthBonus: 10
+    mitigation: 5

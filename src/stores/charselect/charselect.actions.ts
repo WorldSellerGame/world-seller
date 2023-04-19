@@ -2,7 +2,17 @@ import { IGameItem, ItemType } from '../../interfaces';
 
 export class CreateCharacter {
   static type = '[CharSelect] Create Character';
-  constructor(public name: string) {}
+  constructor(public name: string, public isCloud = false) {}
+}
+
+export class ToggleCharacterCloud {
+  static type = '[CharSelect] Toggle Character Cloud';
+  constructor(public slot = 0, public isCloud = false) {}
+}
+
+export class UnlinkCharacterCloud {
+  static type = '[CharSelect] Toggle Character Cloud';
+  constructor(public charId: string) {}
 }
 
 export class DeleteCharacter {
@@ -32,12 +42,12 @@ export class GainResources {
 
 export class GainItemOrResource {
   static type = '[CharSelect] Gain Item Or Resource';
-  constructor(public itemName: string, public quantity = 1) {}
+  constructor(public itemName: string, public quantity = 1, public shouldNotify = true) {}
 }
 
 export class WorkerCreateItem {
   static type = '[CharSelect] Worker Create Item';
-  constructor(public itemName: string, public quantity = 1) {}
+  constructor(public itemName: string, public quantity = 1, public shouldNotify = true) {}
 }
 
 export class SyncTotalLevel {

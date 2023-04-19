@@ -1,0 +1,92 @@
+
+
+Bone Belt:
+  name: Bone Belt
+  description: Belt strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 200
+  icon: 'bone-string'
+  stats:
+    healthBonus: 20
+
+Bone Anklet:
+  name: Bone Anklet
+  description: Anklet strung with Bone.
+  type: Jewelry
+  category: Jewelry
+  rarity: Common
+  durability: -1
+  value: 100
+  icon: 'bone-string'
+  stats:
+    speed: 1
+
+Boar Tusk Belt:
+  name: Boar Tusk Belt
+  description: Belt strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 400
+  icon: 'bone-string'
+  stats:
+    healingPerRound: 4 #mabye 5
+    healthBonus: 20
+
+Boar Tusk Anklet:
+  name: Boar Tusk Anklet
+  description: Anklet strung with Boar Tusk.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'bone-string'
+  stats:
+    energyPerRound: 1
+    speed: 2
+
+Phosphophyllite Boar Tusk Belt:
+  name: Boar Tusk Belt (Phosphophyllite)
+  description: Belt strung with Boar Tusk and inlaid with Phosphophyllite.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 400
+  icon: 'bone-string'
+  stats:
+    healingPerRound: 4
+    healthBonus: 20
+    speed: 4
+
+Citrine Boar Tusk Anklet:
+  name: Boar Tusk Anklet (Citrine)
+  description: Anklet strung with Boar Tusk and inlaid with Citrine.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'bone-string'
+  stats:
+    energyPerRound: 1
+    speed: 2
+    attack: 5
+
+Peridot Boar Tusk Anklet:
+  name: Boar Tusk Anklet (Peridot)
+  description: Anklet strung with Boar Tusk and inlaid with Peridot.
+  type: Jewelry
+  category: Jewelry
+  rarity: Uncommon
+  durability: -1
+  value: 200
+  icon: 'bone-string'
+  stats:
+    energyPerRound: 3
+    speed: 2

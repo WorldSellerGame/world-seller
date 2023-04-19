@@ -1,0 +1,15 @@
+
+Vegetable Soup:
+  name: Vegetable Soup
+  description: Simple and easy. Can be eaten, used in other dishes, or cooked more to make simple veggie stock.
+  type: Food
+  category: Foods
+  rarity: Common
+  value: 10
+  icon: hot-meal
+  oocHealth: 5
+  oocEnergy: 1
+  stats:
+    healingPerRound: 6
+  durability: 6
+  foodDuration: 6

@@ -13,7 +13,7 @@ export const workerStoreMigrations = [
     migrate: (state: IGameWorkers) => ({
       ...state,
       version: 2,
-      farmingWorkerAllocations: []
+      farmingWorkerAllocations: state.farmingWorkerAllocations ?? []
     })
   }
 ].map(x => ({ ...x, key: 'workers' }));

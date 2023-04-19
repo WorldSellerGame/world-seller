@@ -55,6 +55,11 @@
   align-items: center;
 }
 
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -106,4 +111,8 @@ ion-modal.modio-browse {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.card-on-same-bg-color {
+  --ion-card-background: var(--ion-background-color);
 }

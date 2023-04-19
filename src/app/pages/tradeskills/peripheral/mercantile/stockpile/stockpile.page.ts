@@ -215,6 +215,14 @@ export class StockpilePage implements OnInit, OnDestroy {
     this.lastSelectedIndex = index;
   }
 
+  selectAll() {
+    Object.values(this.itemsByCategory).forEach(items => {
+      items.forEach(item => {
+        this.select(item, -1);
+      });
+    });
+  }
+
   toggleSelected(item: IGameItem, index: number) {
     if(this.itemsSelectedById[item.id ?? '']) {
       this.unselect(item, index);

@@ -8,6 +8,7 @@ export const defaultFishing: () => IGameGathering = () => ({
   version: 0,
   unlocked: false,
   level: 0,
+  currentLocation: null,
   currentLocationDurationInitial: -1,
   currentLocationDuration: -1,
   cooldowns: {},

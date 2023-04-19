@@ -14,7 +14,7 @@ import { UnlockCombat } from '../combat/combat.actions';
 import { UnlockCooking } from '../cooking/cooking.actions';
 import { UnlockFarming } from '../farming/farming.actions';
 import { UnlockFishing } from '../fishing/fishing.actions';
-import { NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, UpdateAllItems } from '../game/game.actions';
+import { AnalyticsTrack, NotifyError, NotifyInfo, NotifySuccess, NotifyWarning, UpdateAllItems } from '../game/game.actions';
 import { UnlockHunting } from '../hunting/hunting.actions';
 import { UnlockJewelcrafting } from '../jewelcrafting/jewelcrafting.actions';
 import { UnlockMercantile } from '../mercantile/mercantile.actions';
@@ -87,6 +87,11 @@ export class CharSelectState {
     return { ...this.activeCharacter(state)?.discoveries ?? {} };
   }
 
+  @Selector()
+  static activeCharacterIsCloud(state: ICharSelect) {
+    return this.activeCharacter(state)?.isCloud;
+  }
+
   @Action(UpdateAllItems)
   async updateAllItems(ctx: StateContext<ICharSelect>) {
     const state = ctx.getState();
@@ -146,6 +151,7 @@ export class CharSelectState {
 
     if(!activeCharacter.inventoryUnlocked
     && this.contentService.isItem(itemName)) {
+      ctx.dispatch(new AnalyticsTrack('Unlock:Inventory', 1));
       ctx.setState(patch<ICharSelect>({
         characters: updateItem<IPlayerCharacter>(state.currentCharacter, patch<IPlayerCharacter>({
           inventoryUnlocked: true
@@ -158,6 +164,7 @@ export class CharSelectState {
       this.hasSentNotifications['fishing'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Fishing', 1),
         new UnlockFishing(),
         new NotifySuccess('You can now go fishing!')
       ]);
@@ -168,6 +175,7 @@ export class CharSelectState {
       this.hasSentNotifications['hunting'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Hunting', 1),
         new UnlockHunting(),
         new NotifySuccess('You can now go hunting!')
       ]);
@@ -178,6 +186,7 @@ export class CharSelectState {
       this.hasSentNotifications['mining'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Mining', 1),
         new UnlockMining(),
         new NotifySuccess('You can now go mining!')
       ]);
@@ -188,6 +197,7 @@ export class CharSelectState {
       this.hasSentNotifications['alchemy'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Alchemy', 1),
         new UnlockAlchemy(),
         new NotifySuccess('You can now do alchemy!')
       ]);
@@ -198,6 +208,7 @@ export class CharSelectState {
       this.hasSentNotifications['blacksmithing'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Blacksmithing', 1),
         new UnlockBlacksmithing(),
         new NotifySuccess('You can now do blacksmithing!')
       ]);
@@ -208,6 +219,7 @@ export class CharSelectState {
       this.hasSentNotifications['cooking'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Cooking', 1),
         new UnlockCooking(),
         new NotifySuccess('You can now cook!')
       ]);
@@ -218,6 +230,7 @@ export class CharSelectState {
       this.hasSentNotifications['jewelcrafting'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Jewelcrafting', 1),
         new UnlockJewelcrafting(),
         new NotifySuccess('You can now craft jewelry!')
       ]);
@@ -228,6 +241,7 @@ export class CharSelectState {
       this.hasSentNotifications['weaving'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Weaving', 1),
         new UnlockWeaving(),
         new NotifySuccess('You can now do weaving!')
       ]);
@@ -238,6 +252,7 @@ export class CharSelectState {
       this.hasSentNotifications['combat'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Combat', 1),
         new UnlockCombat(),
         new NotifySuccess('You can now engage in combat!')
       ]);
@@ -248,6 +263,7 @@ export class CharSelectState {
       this.hasSentNotifications['farming'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Farming', 1),
         new UnlockFarming(),
         new NotifySuccess('You can now go farming!')
       ]);
@@ -258,6 +274,7 @@ export class CharSelectState {
       this.hasSentNotifications['mercantile'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Mercantile', 1),
         new UnlockMercantile(),
         new NotifySuccess('You can now engage in mercantile acts!')
       ]);
@@ -268,6 +285,7 @@ export class CharSelectState {
       this.hasSentNotifications['prospecting'] = true;
 
       ctx.dispatch([
+        new AnalyticsTrack('Unlock:Prospecting', 1),
         new UnlockProspecting(),
         new NotifySuccess('You can now transmute!')
       ]);
@@ -290,14 +308,10 @@ export class CharSelectState {
   @Action(GainResources)
   async gainResources(ctx: StateContext<ICharSelect>, { resources, shouldNotify }: GainResources) {
 
-    if(!shouldNotify) {
-      return;
-    }
-
     const resourceNames = Object.keys(resources);
     const earnedNothing = resourceNames.length === 0 || (resourceNames.includes('nothing') && resourceNames.length === 1);
 
-    if(earnedNothing) {
+    if(earnedNothing && shouldNotify) {
       ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
     }
 
@@ -313,15 +327,17 @@ export class CharSelectState {
     // discover all of the resources
     ctx.dispatch(earnedResources.map(r => new DiscoverResourceOrItem(r)));
 
-    const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
-    ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
+    if(shouldNotify) {
+      const resStr = Object.keys(resources).map(key => `${resources[key]}x ${key}`).join(', ');
+      ctx.dispatch(new NotifyInfo(`Gained ${resStr}!`));
+    }
   }
 
   @Action(GainItemOrResource)
-  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity }: GainItemOrResource) {
+  async gainItem(ctx: StateContext<ICharSelect>, { itemName, quantity, shouldNotify }: GainItemOrResource) {
 
     if(itemName === 'nothing') {
-      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
+      // ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
@@ -335,23 +351,23 @@ export class CharSelectState {
     // if it's a resource, gain that
     const isResource = this.itemCreatorService.isResource(itemName);
     if(isResource) {
-      ctx.dispatch(new GainResources({ [itemName]: quantity }));
+      ctx.dispatch(new GainResources({ [itemName]: quantity }, shouldNotify));
       return;
     }
 
     // otherwise, try to gain an item
     const createdItem = this.itemCreatorService.createItem(itemName, quantity);
     if(!createdItem) {
-      ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
+      // ctx.dispatch(new NotifyWarning('You didn\'t get anything...'));
       return;
     }
 
     // discover the thing if it's an item (resources are handled elsewhere)
     ctx.dispatch([
-      new NotifyInfo(`Gained ${itemName} x${quantity}!`),
+      shouldNotify ? new NotifyInfo(`Gained ${itemName} x${quantity}!`) : undefined,
       new DiscoverResourceOrItem(itemName),
       new IncrementStat(AchievementStat.ItemsGained, quantity)
-    ]);
+    ].filter(Boolean));
 
     const existingItem = activeCharacter.inventory.find(item => item.name === itemName);
 

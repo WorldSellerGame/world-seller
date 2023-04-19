@@ -1,0 +1,683 @@
+
+# actually making saltpeter just convert to salk via a recipe and then making salt mineable may fix some issues (this is re-balance stuff though)
+#Yeah this will be done its best
+
+#WE NEED NOODLES
+
+#oh dear god alot of the harvestable should be edible by them selves, that does need to be during the combat rebalance too
+
+
+#Resources
+
+- result: Syrup
+  perCraft: { min: 1, max: 1 }
+  level: { min: 5, max: 15 }
+  craftTime: 20
+  ingredients:
+    Sap: 5
+    Oven: 1
+    Pots and Pans: 1
+    Kitchen Utensils: 1
+  require:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  preserve:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  maxWorkers: 1
+
+- result: Vegetable Stock
+  perCraft: { min: 1, max: 1 }
+  level: { min: 5, max: 15 }
+  craftTime: 20
+  ingredients:
+    Vegetable Soup: 1
+    Oven: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Sugar #hellish to acquire in current state but wew will see if limited use of same result crafting can fix that
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 30
+  ingredients:
+    Syrup: 5
+    Oven: 1
+    Pots and Pans: 1
+    Kitchen Utensils: 1
+  require:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  preserve:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  maxWorkers: 1
+
+- result: Tallow
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 40
+  ingredients:
+    Fat: 3
+    Oven: 1
+    Pots and Pans: 1
+    Kitchen Utensils: 1
+  require:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  preserve:
+    - Oven
+    - Pots and Pans
+    - Kitchen Utensils
+  maxWorkers: 1
+
+- result: Flour
+  perCraft: { min: 5, max: 5 }
+  level: { min: 30, max: 40 }
+  craftTime: 70
+  ingredients:
+    Wheat: 5
+    Millstone: 1
+  require:
+    - Millstone
+  preserve:
+    - Millstone
+  maxWorkers: 1
+
+# Food #0
+
+- result: Pine Nuts
+  perCraft: { min: 1, max: 1 }
+  level: { min: 0, max: 10 }
+  craftTime: 10
+  ingredients:
+    Pinecone: 5
+  require:
+    - Pinecone
+  maxWorkers: 1
+
+- result: Cooked Cropfish
+  perCraft: { min: 1, max: 1 }
+  level: { min: 0, max: 10 }
+  craftTime: 10
+  ingredients:
+    Cropfish: 3
+  require:
+    - Cropfish
+  maxWorkers: 1
+
+#5
+
+- result: Barbecued Squirrel
+  perCraft: { min: 1, max: 1 }
+  level: { min: 5, max: 15 }
+  craftTime: 120
+  ingredients:
+    Squirrel Meat: 3
+    Kitchen Utensils: 1
+  require:
+    - Kitchen Utensils
+  preserve:
+    - Kitchen Utensils
+  maxWorkers: 1
+
+- result: Vegetable Soup
+  perCraft: { min: 1, max: 1 }
+  level: { min: 5, max: 15 }
+  craftTime: 120
+  ingredients:
+    Carrot: 4
+    Mushroom: 1
+    Oven: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+# 10
+
+- result: Pan Fried Panfish
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Panfish: 3
+    Oven: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Roast Bunny
+  perCraft: { min: 1, max: 1 }
+  level: { min: 10, max: 20 }
+  craftTime: 180
+  ingredients:
+    Bunny Meat: 4
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+# 15
+
+- result: Bunny Stew
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 240
+  ingredients:
+    Bunny Meat: 4
+    Vegetable Stock: 1
+    Oven: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Baked Fallfish
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 240
+  ingredients:
+    Fallfish: 2
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Candied Apple
+  perCraft: { min: 1, max: 1 }
+  level: { min: 15, max: 25 }
+  craftTime: 240
+  ingredients:
+    Apple: 1
+    Sugar: 2
+    Oven: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+#20 #brick oven only from now on
+
+- result: Fried Frog Legs
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Tallow: 1
+    Frog: 2
+    Vegetable Stock: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Duck Roast
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Duck Meat: 4
+    Carrot: 1
+    Mushroom: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Cooked Trout
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Trout: 3
+    Garlic: 1
+    Saltpeter: 1
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Strawberry Jam
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Strawberry: 6
+    Sugar: 2
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Raspberry Jam
+  perCraft: { min: 1, max: 1 }
+  level: { min: 20, max: 30 }
+  craftTime: 300
+  ingredients:
+    Raspberry: 6
+    Sugar: 2
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+#25
+
+- result: Bread
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Flour: 5
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Baked Breaded Bass
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Bass: 3
+    Flour: 2
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+- result: Roast Turkey
+  perCraft: { min: 1, max: 1 }
+  level: { min: 25, max: 35 }
+  craftTime: 360
+  ingredients:
+    Turkey Meat: 8
+    Bread: 1
+    Vegetable Stock: 1
+    Carrot: 1
+    Saltpeter: 1
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Kitchen Utensils: 1
+    Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Kitchen Utensils
+    - Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Kitchen Utensils
+    - Pots and Pans
+  maxWorkers: 1
+
+#30 Use metal pots and pans from here on
+
+- result: Venison Steak
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 420
+  ingredients:
+    Deer Meat: 4
+    Saltpeter: 1
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+- result: Apple Pie
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 420
+  ingredients:
+    Apple: 5
+    Sugar: 3
+    Flour: 3
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+- result: Pumpkin Pie
+  perCraft: { min: 1, max: 1 }
+  level: { min: 30, max: 40 }
+  craftTime: 420
+  ingredients:
+    Pumpkin: 4
+    Sugar: 3
+    Flour: 3
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+#35
+
+- result: Duck Eggs Benedict #post lemons this will be changed
+  perCraft: { min: 1, max: 1 }
+  level: { min: 35, max: 45 }
+  craftTime: 480
+  ingredients:
+    Duck Egg: 2
+    Boar Meat: 1
+    Bread: 1
+    Tallow: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+- result: Mixed Fruit Juice
+  perCraft: { min: 1, max: 1 }
+  level: { min: 35, max: 45 }
+  craftTime: 480
+  ingredients:
+    Apple: 1
+    Strawberry: 3
+    Raspberry: 3
+    Grape: 3
+    Glass Bottle: 1
+    Metal Kitchen Utensils: 1
+  require:
+    - Metal Kitchen Utensils
+  preserve:
+    - Metal Kitchen Utensils
+  maxWorkers: 1
+
+#40
+
+- result: Honey Ham
+  perCraft: { min: 1, max: 1 }
+  level: { min: 40, max: 50 }
+  craftTime: 540
+  ingredients:
+    Boar Meat: 10
+    Honey: 4
+    Tallow: 2
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  preserve:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  maxWorkers: 1
+
+- result: Spicy Catfish Stew
+  perCraft: { min: 1, max: 1 }
+  level: { min: 40, max: 50 }
+  craftTime: 540
+  ingredients:
+    Catfish: 3
+    Garlic: 2
+    Spicy Pepper: 2
+    Saltpeter: 1
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  preserve:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  maxWorkers: 1
+
+#45
+
+- result: Pompano Ceviche #lemon update huge for this #avocado update over my dead body those uhh moldy pears yeah yeah thats all an avocado is just a no good rotten dried up pear yeah
+  perCraft: { min: 1, max: 1 }
+  level: { min: 45, max: 55 }
+  craftTime: 600
+  ingredients:
+    Pompano: 3
+    Carambola: 2
+    Spicy Pepper: 2
+    Saltpeter: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  preserve:
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+- result: Banana Bread #add egg later # add salt now?
+  perCraft: { min: 1, max: 1 }
+  level: { min: 45, max: 50 }
+  craftTime: 600
+  ingredients:
+    Flour: 5
+    Banana: 4
+    Sugar: 2
+    Tallow: 1
+    Saltpeter: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  preserve:
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+
+
+- result: Elk Jerky
+  perCraft: { min: 1, max: 1 }
+  level: { min: 45, max: 55 }
+  craftTime: 600
+  ingredients:
+    Elk Meat: 12
+    Garlic: 2
+    Saltpeter: 4
+    Brick Oven: 1
+    Oven Mitts: 1
+    Metal Kitchen Utensils: 1
+    Metal Pots and Pans: 1
+  require:
+    - Brick Oven
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+    - Oven Mitts
+  preserve:
+    - Brick Oven
+    - Oven Mitts
+    - Metal Kitchen Utensils
+    - Metal Pots and Pans
+  maxWorkers: 1
+

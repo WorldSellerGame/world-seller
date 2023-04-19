@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { attachAction } from '@seiyria/ngxs-attach-action';
 import { calculateStat, decreaseGatherTimer, setGatheringLocation } from '../../app/helpers';
-import { AchievementStat, IGameGathering, ItemType, Stat } from '../../interfaces';
+import { AchievementStat, GatheringTradeskill, IGameGathering, ItemType, Stat } from '../../interfaces';
 import { CharSelectState } from '../charselect/charselect';
 import { DecreaseDurability } from '../charselect/charselect.actions';
 import { TickTimer } from '../game/game.actions';
@@ -56,7 +56,7 @@ export class ForagingState {
     const cdrPercent = calculateStat(equipment, Stat.ScytheSpeedPercent);
     const reducedValue = cdrPercent / 100;
 
-    decreaseGatherTimer(ctx, 'foraging', ticks, cdrValue, reducedValue, CancelForaging, AchievementStat.GatherForaging);
+    decreaseGatherTimer(ctx, GatheringTradeskill.Foraging, ticks, cdrValue, reducedValue, CancelForaging, AchievementStat.GatherForaging);
   }
 
   @Action(SetForagingLocation)
@@ -66,7 +66,7 @@ export class ForagingState {
     const gdrPercent = calculateStat(equipment, Stat.ScythePowerPercent);
     const reducedValue = (gdrPercent / 100) * location.gatherTime;
 
-    setGatheringLocation(ctx, location, gdrValue + reducedValue, 'foraging');
+    setGatheringLocation(ctx, location, gdrValue + reducedValue, GatheringTradeskill.Foraging);
     ctx.dispatch(new DecreaseDurability(ItemType.Scythe));
   };
 

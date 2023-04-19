@@ -1,18 +1,18 @@
-import { Rarity } from './game';
+import { Rarity, Tradeskill } from './game';
 import { IGameGatherLocation } from './gathering';
 import { IGameRecipe } from './refining';
 
 export interface IGameWorkersGathering {
   nameId: number;
   currentTick: number;
-  tradeskill: string;
+  tradeskill: Tradeskill;
   location: IGameGatherLocation;
 }
 
 export interface IGameWorkersRefining {
   nameId: number;
   currentTick: number;
-  tradeskill: string;
+  tradeskill: Tradeskill;
   recipe: IGameRecipe;
   missingIngredients?: string[];
 }

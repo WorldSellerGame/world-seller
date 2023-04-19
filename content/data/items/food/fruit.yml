@@ -1,0 +1,132 @@
+
+Candied Apple:
+  name: Candied Apple
+  description: A tasty treat made by dipping an apple in caramelized sugar.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  value: 50
+  icon: apple
+  oocEnergy: 3
+  stats:
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+  durability: 7
+  foodDuration: 7
+
+Strawberry Jam:
+  name: Strawberry Jam
+  description: Tasty jam thats smooth... maybe a little too smooth.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  value: 75
+  icon: jar
+  stats: {}
+  oocEnergy: 3
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  durability: 6
+  foodDuration: 6
+
+Raspberry Jam:
+  name: Raspberry Jam
+  description: Tasty jam thats thick... maybe a little too thick.
+  type: Food
+  category: Foods
+  rarity: Uncommon
+  value: 75
+  icon: jar
+  oocEnergy: 3
+  stats: {}
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff2
+  durability: 6
+  foodDuration: 6
+
+Apple Pie:
+  name: Apple Pie
+  description: A mainstay dessert whose warm smell makes it hard to hold back, with many a mouths burned from pie too hot.
+  type: Food
+  category: Foods
+  rarity: Rare
+  value: 150
+  icon: pie
+  oocHealth: 5
+  oocEnergy: 1
+  stats:
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen1
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  durability: 7
+  foodDuration: 7
+
+Pumpkin Pie:
+  name: Pumpkin Pie
+  description: Made of pumpkins, nutmeg, and deliciousness. #I couldn't figure out how to italicize this (you can't)
+  type: Food
+  category: Foods
+  rarity: Rare
+  value: 150
+  icon: pie
+  oocHealth: 15
+  stats:
+    healingPerCombat: 10
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+  durability: 7
+  foodDuration: 7
+
+Mixed Fruit Juice:
+  name: Mixed Fruit Juice
+  description: Hits the spot - any time, any where.
+  type: Food
+  category: Foods
+  rarity: Rare
+  value: 250
+  icon: cup
+  oocEnergy: 30
+  stats:
+    healingPerCombat: 5
+  effects:
+    - effect: ApplyEffect
+      effectName: SpeedBuff1
+    - effect: ApplyEffect
+      effectName: HealingBuff1
+    - effect: ApplyEffect
+      effectName: AttackBuff1
+    - effect: ApplyEffect
+      effectName: HealthBuff1
+    - effect: ApplyEffect
+      effectName: ArmorBuff1
+  durability: 5
+  foodDuration: 5
+
+Banana Bread:
+  name: Banana Bread
+  description: Lush, moist, sweet, and filling.
+  type: Food
+  category: Foods
+  rarity: Epic
+  value: 500
+  icon: bread
+  oocHealth: 30
+  stats:
+    healing: 10
+  abilities:
+    - abilityName: ItemSelfHeal
+  effects:
+    - effect: ApplyEffect
+      effectName: Regen2
+    - effect: ApplyEffect
+      effectName: HealingBuff2
+  durability: 9
+  foodDuration: 9

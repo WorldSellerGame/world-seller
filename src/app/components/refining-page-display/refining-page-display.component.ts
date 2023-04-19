@@ -4,7 +4,7 @@ import { sortBy } from 'lodash';
 import { Observable, Subscription } from 'rxjs';
 import {
   IGameItem, IGameRecipe, IGameRefiningOptions,
-  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory
+  IGameRefiningRecipe, IGameResource, IGameWorkersRefining, ItemCategory, Tradeskill
 } from '../../../interfaces';
 import { CharSelectState } from '../../../stores';
 import { GainResources } from '../../../stores/charselect/charselect.actions';
@@ -68,6 +68,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   public itemOutputs: Record<string, IGameItem> = {};
   public resourceOutputs: Record<string, IGameResource> = {};
   public rarityOutputs: Record<string, string> = {};
+  public outputIdToName: Record<string, string> = {};
 
   public summedResources: Record<string, number> = {};
 
@@ -87,6 +88,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   ngOnInit() {
     this.allStarredRecipes = this.starredRecipes || {};
 
+    this.setIngredients();
+    this.setResults();
     this.setVisibleRecipes();
     this.setRefiningWorkerHash();
     this.setTotalResources();
@@ -153,6 +156,7 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   setVisibleRecipes() {
+
     this.resourceRecipes = this.visibleRecipes(this.locationData, 'resources');
     this.itemRecipes = this.visibleRecipes(this.locationData, 'items');
 
@@ -168,15 +172,13 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
       this.setType('resources');
     }
 
-    this.setIngredients();
     this.setCanCrafts();
-    this.setResults();
   }
 
   setIngredients() {
     this.ingredients = {};
 
-    [...this.resourceRecipes, ...this.itemRecipes].forEach((recipe) => {
+    this.locationData.forEach((recipe) => {
       this.ingredients[recipe.result] = Object.keys(recipe.ingredients || {})
         .filter(x => this.contentService.isResource(x))
         .map((name) => ({ name, amount: recipe.ingredients[name] }));
@@ -201,15 +203,21 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     this.resourceOutputs = {};
     this.rarityOutputs = {};
 
-    this.itemRecipes.forEach((recipe) => {
-      this.itemOutputs[recipe.result] = this.contentService.getItemByName(recipe.result) as IGameItem;
-      this.rarityOutputs[recipe.result] = this.itemOutputs[recipe.result].rarity;
-    });
+    this.locationData
+      .filter((recipe: IGameRecipe) => this.contentService.isItem(recipe.result))
+      .forEach((recipe: IGameRecipe) => {
+        this.itemOutputs[recipe.result] = this.contentService.getItemByName(recipe.result) as IGameItem;
+        this.rarityOutputs[recipe.result] = this.itemOutputs[recipe.result].rarity;
+        this.outputIdToName[recipe.result] = this.itemOutputs[recipe.result].name;
+      });
 
-    this.resourceRecipes.forEach((recipe) => {
-      this.resourceOutputs[recipe.result] = this.contentService.getResourceByName(recipe.result) as IGameResource;
-      this.rarityOutputs[recipe.result] = this.resourceOutputs[recipe.result].rarity;
-    });
+    this.locationData
+      .filter((recipe: IGameRecipe) => this.contentService.isResource(recipe.result))
+      .forEach((recipe: IGameRecipe) => {
+        this.resourceOutputs[recipe.result] = this.contentService.getResourceByName(recipe.result) as IGameResource;
+        this.rarityOutputs[recipe.result] = this.resourceOutputs[recipe.result].rarity;
+        this.outputIdToName[recipe.result] = this.resourceOutputs[recipe.result].name;
+      });
   }
 
   setRefiningWorkerHash() {
@@ -348,8 +356,8 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
     return sortBy(validRecipes, [
       (recipe) => !this.allStarredRecipes[recipe.result],
       (recipe) => !this.canCraftRecipe(recipe),
-      (recipe) => recipe.result]
-    );
+      (recipe) => this.outputIdToName[recipe.result]
+    ]);
   }
 
   totalResourceHashForCrafting() {
@@ -404,11 +412,11 @@ export class RefiningPageDisplayComponent implements OnInit, OnChanges, OnDestro
   }
 
   assignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new AssignRefiningWorker(this.tradeskill, recipe));
+    this.store.dispatch(new AssignRefiningWorker(this.tradeskill as Tradeskill, recipe));
   }
 
   unassignWorker(recipe: IGameRecipe) {
-    this.store.dispatch(new UnassignRefiningWorker(this.tradeskill, recipe));
+    this.store.dispatch(new UnassignRefiningWorker(this.tradeskill as Tradeskill, recipe));
   }
 
   changeOption(option: keyof IGameRefiningOptions, value: boolean) {

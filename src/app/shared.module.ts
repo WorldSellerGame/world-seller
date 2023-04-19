@@ -7,6 +7,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
+import {
+  CombatAbilityBarActionDisplayComponent
+} from './components/combat-ability-bar-action-display/combat-ability-bar-action-display.component';
+import {
+  CombatAbilityBarItemDisplayComponent
+} from './components/combat-ability-bar-item-display/combat-ability-bar-item-display.component';
 import { CombatFoodDisplayComponent } from './components/combat-food-display/combat-food-display.component';
 import { CombatItemDisplayComponent } from './components/combat-item-display/combat-item-display.component';
 import { CountdownComponent } from './components/countdown/countdown.component';
@@ -27,6 +33,8 @@ import { StatLineComponent } from './components/stat-line/stat-line.component';
 import { StatNameDisplayComponent } from './components/stat-name-display/stat-name-display.component';
 import { TimeResourceIconComponent } from './components/time-resource-icon/time-resource-icon.component';
 import { AnalyticsClickDirective } from './directives/analytics-click.directive';
+import { CloudLoginComponent } from './modals/cloud-login/cloud-login.component';
+import { CloudManageComponent } from './modals/cloud-manage/cloud-manage.component';
 import { ModioBrowseComponent } from './modals/modio-browse/modio-browse.component';
 import { ModioPermissionComponent } from './modals/modio-permission/modio-permission.component';
 
@@ -34,7 +42,8 @@ const sharedComponents = [ResourceIconComponent, ItemIconComponent, TimeResource
   GameIconComponent, ItemComponent, StatLineComponent, SkillDisplayComponent, DebugActionMenuComponent,
   CombatItemDisplayComponent, CombatFoodDisplayComponent, GatheringPageDisplayComponent, RefiningPageDisplayComponent,
   AnalyticsClickDirective, DebugTextComponent, ModioPermissionComponent, ModioBrowseComponent, StatNameDisplayComponent,
-  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent, RealNameComponent];
+  HeroComponent, ItemTooltipComponent, ResourceTooltipComponent, RealNameComponent, CloudLoginComponent, CloudManageComponent,
+  CombatAbilityBarActionDisplayComponent, CombatAbilityBarItemDisplayComponent];
 
 @NgModule({
   declarations: sharedComponents,

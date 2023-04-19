@@ -5,12 +5,16 @@
     </ng-container>
 
     <ion-buttons slot="end" *ngIf="isMultiSelect">
-      <ion-button color="secondary" (click)="quickSellSelected()">
+      <ion-button color="primary" (click)="quickSellSelected()">
         Quick Sell for {{ quickSellValue() | number }} Coins
       </ion-button>
 
-      <ion-button color="secondary" (click)="sendSelectedToInventory()">
+      <ion-button color="primary" (click)="sendSelectedToInventory()">
         Send {{ itemsSelected.length }} to Inventory
+      </ion-button>
+
+      <ion-button color="secondary" (click)="selectAll()">
+        Select All
       </ion-button>
 
       <ion-button color="warning" (click)="clearSelected()">
@@ -90,7 +94,7 @@
               <div class="resource-container" (click)="openMenu(item, i, popover, $event)" (contextmenu)="openMenu(item, i, popover, $event)">
                 <ion-checkbox *ngIf="isMultiSelect" class="resource-checkbox" [checked]="itemsSelectedById[item.id ?? '']"></ion-checkbox>
 
-                <app-item [item]="item" #item class="cursor-pointer" [hideIcon]="isMultiSelect"></app-item>
+                <app-item [item]="item" #item class="cursor-pointer" [hideIcon]="isMultiSelect" [canClick]="true"></app-item>
 
                 <ion-popover #popover [trigger]="item" [dismissOnSelect]="true">
                   <ng-template>

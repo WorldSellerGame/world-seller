@@ -54,7 +54,20 @@
 
                 <ion-card *ngIf="character">
                   <ion-card-header>
-                    <ion-card-title>{{ character.name }}</ion-card-title>
+                    <ion-card-title class="vertical-center">
+                      <ng-container *ngIf="character.isCloud">
+                        <ng-container *ngIf="firebaseUID$ | async; else disconnectedCloud">
+                          <ion-icon name="cloud" ngxTippy="This character is synced with the cloud."></ion-icon>
+                        </ng-container>
+
+                        <ng-template #disconnectedCloud>
+                          <ion-icon name="cloud-offline" ngxTippy="This character is synced with the cloud, but the cloud is currently disconnected."></ion-icon>
+                        </ng-template>
+                      </ng-container>
+
+                      {{ character.name }}
+                    </ion-card-title>
+
                     <ion-card-subtitle>Level {{ character.lastTotalLevel | number }}</ion-card-subtitle>
                     <ion-card-subtitle>Last saved {{ character.lastSavedAt | date:'medium' }}</ion-card-subtitle>
 
@@ -70,6 +83,18 @@
                               <ion-icon slot="start" color="secondary" name="download"></ion-icon>
                               Export Character
                             </ion-item>
+
+                            <ng-container *ngIf="firebaseUID$ | async">
+                              <ion-item *ngIf="!character.isCloud" class="cursor-pointer" (click)="moveToCloud(i)">
+                                <ion-icon slot="start" color="secondary" name="cloud-upload"></ion-icon>
+                                Move to Cloud
+                              </ion-item>
+
+                              <ion-item *ngIf="character.isCloud" class="cursor-pointer" (click)="removeFromCloud(i)">
+                                <ion-icon slot="start" color="danger" name="cloud-offline"></ion-icon>
+                                Remove from Cloud
+                              </ion-item>
+                            </ng-container>
 
                             <ion-item class="cursor-pointer" (click)="deleteCharacter(i)">
                               <ion-icon slot="start" color="danger" name="trash"></ion-icon>
@@ -137,7 +162,19 @@
                       </ion-button>
                     </ion-col>
 
-                    <ion-col></ion-col>
+                    <ion-col>
+                      <ng-container *ngIf="firebaseUID$ | async; else noFirebase">
+                        <ion-button fill="clear" (click)="cloudSaveService.openManage()" color="secondary" ngxTippy="Cloud save management">
+                          <ion-icon slot="start" name="cloud-done" color="primary"></ion-icon> Cloud
+                        </ion-button>
+                      </ng-container>
+
+                      <ng-template #noFirebase>
+                        <ion-button fill="clear" (click)="cloudSaveService.openLogin()" color="secondary" ngxTippy="Cloud save management">
+                          <ion-icon slot="start" name="cloud"></ion-icon> Cloud
+                        </ion-button>
+                      </ng-template>
+                    </ion-col>
 
                     <ion-col>
                       <ion-button fill="clear" (click)="modsService.launchModManager()" color="secondary" ngxTippy="Mod manager (powered by mod.io)">

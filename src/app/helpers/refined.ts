@@ -1,14 +1,14 @@
 import { StateContext } from '@ngxs/store';
 import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 import { cloneDeep, merge, random, zipObject } from 'lodash';
-import { AchievementStat, IGameItem, IGameRecipe, IGameRefining, IGameRefiningRecipe } from '../../interfaces';
+import { AchievementStat, IGameItem, IGameRecipe, IGameRefining, IGameRefiningRecipe, Tradeskill } from '../../interfaces';
 import { IncrementStat } from '../../stores/achievements/achievements.actions';
 import { AddItemToInventory, GainItemOrResource, GainResources, RemoveItemFromInventory } from '../../stores/charselect/charselect.actions';
-import { PlaySFX } from '../../stores/game/game.actions';
+import { NotifyTradeskill, PlaySFX } from '../../stores/game/game.actions';
 
 export function decreaseRefineTimer(
   ctx: StateContext<IGameRefining>,
-  tradeskill: string,
+  tradeskill: Tradeskill,
   ticks: number,
   cancelProto: any,
   incrementStat: AchievementStat
@@ -29,9 +29,12 @@ export function decreaseRefineTimer(
 
   if(newTicks <= 0) {
 
+    const gainedAmt = random(job.recipe.perCraft.min, job.recipe.perCraft.max);
+
     // get a new item
     ctx.dispatch([
-      new GainItemOrResource(job.recipe.result, random(job.recipe.perCraft.min, job.recipe.perCraft.max)),
+      new NotifyTradeskill(tradeskill, `+${gainedAmt}x ${job.recipe.result}!`),
+      new GainItemOrResource(job.recipe.result, gainedAmt, false),
       new IncrementStat(incrementStat)
     ]);
 
@@ -93,7 +96,7 @@ export function startRefineJob(
   ctx: StateContext<IGameRefining>,
   job: IGameRecipe,
   quantity: number,
-  tradeskill: string,
+  tradeskill: Tradeskill,
   refundItems: IGameItem[] = []
 ) {
 

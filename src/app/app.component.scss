@@ -71,6 +71,10 @@ ion-menu ion-list-header {
   margin-bottom: 5px;
 }
 
+ion-menu-toggle {
+  min-height: 70px;
+}
+
 ion-item {
   margin-left: 5px;
 }
@@ -118,4 +122,22 @@ app-game-icon:not([slot]) {
 
 ion-item.item.selected {
   pointer-events: none;
+}
+
+.notify-area {
+  min-height: 20px;
+  color: var(--ion-color-step-600, #666666);
+}
+
+.worker-badge {
+  position: absolute;
+  left: 35px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 0.7rem;
+
+  ion-icon {
+    margin-right: 5px;
+  }
 }
