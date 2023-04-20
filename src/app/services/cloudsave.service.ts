@@ -81,7 +81,7 @@ export class CloudSaveService {
 
   async loadCurrentSavefile() {
     const { charId, saveData } = this.metaService.characterSavefile();
-    if(!saveData) {
+    if(!saveData || !saveData.charselect || !saveData.charselect.characters) {
       return;
     }
 
