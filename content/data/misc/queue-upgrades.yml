@@ -60,6 +60,14 @@ jewelcrafting:
     resources:
       Cut Tanzanite: 10
 
+  - coins: 600
+    resources:
+      Cut Citrine: 10
+
+  - coins: 800
+    resources:
+      Cut Nekruth: 10
+
 weaving:
   - coins: 200
     resources:
