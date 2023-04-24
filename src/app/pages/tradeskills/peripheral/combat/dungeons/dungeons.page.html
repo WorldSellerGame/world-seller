@@ -31,7 +31,10 @@
                 <ion-col>
                   <ion-label class="ion-text-wrap">
                     <h2>{{ dungeon.name }} (Lv.{{ dungeon.givesPointAtCombatLevel }})</h2>
-                    <p>{{ dungeon.description }}</p>
+                    <h5>
+                      <em><small>Recommended total level: {{ dungeon.recommendedTotalLevel }}</small></em>
+                    </h5>
+                    <p class="description">{{ dungeon.description }}</p>
                   </ion-label>
                 </ion-col>
               </ion-row>

@@ -3,6 +3,7 @@ name: Crypt
 description: The skeletons parade the other undead around this resting place. The source of this infestation may be waiting within.
 icon: skeleton
 
+recommendedTotalLevel: 200
 givesPointAtCombatLevel: 20
 
 floors:

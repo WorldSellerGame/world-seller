@@ -41,6 +41,7 @@ export interface IDungeon {
   description: string;
   icon: string;
 
+  recommendedTotalLevel: number;
   givesPointAtCombatLevel: number;
 
   floors: IDungeonFloor[];

@@ -3,6 +3,7 @@ name: Goblin's Hideaway
 description: You think you saw some goblins go in here. You're not sure if they have a leader, but there's only one way to find out for sure.
 icon: goblin-big
 
+recommendedTotalLevel: 100
 givesPointAtCombatLevel: 10
 
 floors:
