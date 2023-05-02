@@ -26,7 +26,7 @@
       max-width: 40px;
       max-height: 25px;
       text-align: center;
-      color: var(--ion-color-dark);
+      color: var(--ion-color-dark, #000);
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
